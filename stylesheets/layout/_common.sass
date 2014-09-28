@@ -1,0 +1,131 @@
+body
+  font-family: "concourse-t3", sans-serif
+
+pre
+  font-family: "pragmata-pro", monospace
+  font-size: em(3/4)
+  line-height: ln(1)
+
+p code
+  display: inline-block
+  background-color: rgba($subject-color, 0.2)
+  padding: 0 ln(1/4)
+  border-radius: 2px
+  color: $gray6
+  white-space: nowrap
+  font-family: "pragmata-pro", monospace
+  font-style: normal
+  font-size: em(3/4)
+  // TODO: No idea why the line spacing becomes off by 2px...
+  margin-bottom: -2px
+
+pre
+  background-color: rgba($subject-color, 0.2)
+  border-radius: 2px
+  color: $gray6
+  padding: ln(1/2)
+  overflow: scroll
+
+
+nav h1 a
+  @include text-hidden
+
+
+main section
+  position: relative
+
+.backlink
+  @include no-underline
+  @include text-button
+  @include text-hidden
+  display: block
+  width: ln(2) + $icon-size
+  height: ln(1)
+  position: absolute
+  right: 0
+
+h2 .backlink
+  top: ln(1/2)
+
+h3 .backlink
+  top: 0
+
+.backlink:after
+  width: $icon-size
+  height: $icon-size
+  position: absolute
+  top: (ln(1) - $icon-size) / 2
+  right: 0
+  z-index: 1
+  pointer-events: none
+  content: ""
+
+
+.menu.toc li:after
+  @include icon("down", $object-color-name)
+
+.menu.toc li:active:after
+  @include icon("down", $accent-color-name)
+
+.no-touch .menu.toc li:active:after
+  @include icon("down", $accent-color-name)
+
+.no-touch .menu.toc li:hover:after
+  @include icon("down", $accent-color-name)
+
+.no-touch .menu.toc li:hover:active:after
+  @include icon("down", $accent-color-name)
+
+
+
+.backlink:after
+  opacity: $icon-opacity
+  @include icon("up", $object-color-name)
+  @include image-glow(none)
+
+.touch .backlink:active:after
+  opacity: $active-icon-opacity
+  @include icon("up", $accent-color-name)
+  @include active-image-glow($accent-color)
+
+.no-touch .backlink:active:after
+  opacity: $icon-opacity
+  @include icon("up", $accent-color-name)
+  @include image-glow(none)
+
+.no-touch .backlink:hover:after
+  opacity: $active-icon-opacity
+  @include icon("up", $accent-color-name)
+  @include image-glow($accent-color)
+
+.no-touch .backlink:hover:active:after
+  opacity: $active-icon-opacity
+  @include icon("up", $accent-color-name)
+  @include active-image-glow($accent-color)
+
+
+.backlink:after
+  transition: ease(opacity, 1, 0), ease(filter, 1, 0), ease(-webkit-filter, 1, 0)
+
+
+main h3
+  display: inline-block
+  margin-right: 0 !important
+
+
+// TODO: This messes up line spacing when it wraps.
+main h3 + blockquote
+  display: inline-block
+  color: $gray9
+  font-style: italic
+  margin-left: 0 !important
+  margin-right: ln(2)
+
+main blockquote p
+  display: inline-block
+  height: ln(1)
+  margin-top: 0
+
+main blockquote p code
+  background-color: rgba($subject-color, 0.1)
+  color: $gray9
