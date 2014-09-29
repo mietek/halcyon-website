@@ -57,8 +57,6 @@ function foo () {
   log_begin fooing...
   log_end fooed
 }
-```
-```
 $ foo
 -----> fooing... fooed
 ```
@@ -72,8 +70,8 @@ Log arguments to _stderr_, prefixed with whitespace.
 For less important messages than [log](#log).
 
 ```
-$ log_indent subfooing
-       subfooing
+$ log_indent baring
+       baring
 ```
 
 
@@ -86,13 +84,11 @@ To be paired with [log_end](#log_end).
 
 ```
 function subfoo () {
-  log_indent_begin subfooing...
-  log_end subfooed
+  log_indent_begin baring...
+  log_end bared
 }
-```
-```
 $ subfoo
-       subfooing... subfooed
+       baring... bared
 ```
 
 
@@ -138,8 +134,6 @@ Log an error and exit with `1` as the exit status.
 function foo () {
   false || die foo
 }
-```
-```
 $ foo
    *** ERROR: foo
 ```
@@ -161,14 +155,8 @@ function foo () {
   expect_args bar baz -- "$@"
   echo "${bar} ${baz}"
 }
-```
-```
 $ foo
    *** ERROR: foo: Expected args: bar baz
-```
-```
-$ foo bar baz
-bar baz
 ```
 
 
@@ -184,15 +172,8 @@ function foo () {
   expect_vars BAR
   echo "${BAR}"
 }
-```
-```
 $ foo
    *** ERROR: foo: Expected var: BAR
-```
-```
-$ BAR=bar
-$ foo
-bar
 ```
 
 
@@ -204,17 +185,10 @@ Check the specified files exist; otherwise, die.
 ```
 function foo () {
   expect_existing bar
-  echo baz
+  cat bar
 }
-```
-```
 $ foo
    *** ERROR: foo: Expected existing bar
-```
-```
-$ touch bar
-$ foo
-baz
 ```
 
 
@@ -225,18 +199,12 @@ Check the specified files do not exist; otherwise, die.
 
 ```
 function foo () {
-  expect_no_existing baz
-  echo bar
+  expect_no_existing bar
+  touch bar
 }
-```
-```
+$ touch bar
 $ foo
-bar
-```
-```
-$ touch baz
-$ foo
-   *** ERROR: foo: Unexpected existing baz
+   *** ERROR: foo: Unexpected existing bar
 ```
 
 
@@ -255,15 +223,8 @@ function foo () {
     echo no BAR
   fi
 }
-```
-```
 $ foo
 no BAR
-```
-```
-$ BAR=bar
-$ foo
-bar
 ```
 
 
@@ -358,7 +319,7 @@ The sorting functions require GNU _sort_.
 
 ### filter_last
 
-Output only the last line of input.
+Output only the last line of input; return `0`.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_last
@@ -368,7 +329,7 @@ baz
 
 ### filter_not_last
 
-Output all lines of input except the last.
+Output all lines of input except the last; return `0`.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_not_last
@@ -380,7 +341,9 @@ bar
 ### filter_matching
 > regex
 
-Output only the lines of input which match the specified regular expression, _awk_ flavor.
+Output only the lines of input which match the specified regular expression; return `0`.
+
+Wrapper for _awk_.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_matching '^bar$'
@@ -391,7 +354,9 @@ bar
 ### filter_not_matching
 > regex
 
-Output only the lines of input which do not match the specified regular expression, _awk_ flavor.
+Output only the lines of input which do not match the specified regular expression; return `0`.
+
+Wrapper for _awk_.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_not_matching '^bar$'
@@ -405,17 +370,29 @@ baz
 Output up to one line of input when the input consists of up to one line; otherwise, return `1`.
 
 ```
+$ echo -n | match_at_most_one
+```
+```
 $ echo foo | match_at_most_one
 foo
 ```
 ```
-$ echo -e "foo\nbar" | match_at_most_one
+$ echo -e "foo\nbar" | match_at_most_one ; echo $?
+1
 ```
 
 ### match_at_least_one
 
 Pipe input to output when the input consists of at least one line; otherwise, return `1`.
 
+```
+$ echo -n | match_at_least_one ; echo $?
+1
+```
+```
+$ echo foo | match_at_least_one
+foo
+```
 ```
 $ echo -e "foo\nbar" | match_at_least_one
 foo
@@ -428,11 +405,16 @@ bar
 Output only one line of input when the input consists of only one line; otherwise, return `1`.
 
 ```
+$ echo -n | match_exactly_one ; echo $?
+1
+```
+```
 $ echo foo | match_exactly_one
 foo
 ```
 ```
-$ echo -e "foo\nbar" | match_exactly_one
+$ echo -e "foo\nbar" | match_exactly_one ; echo $?
+1
 ```
 
 
@@ -441,9 +423,8 @@ $ echo -e "foo\nbar" | match_exactly_one
 Pipe input to output, removing at most one trailing newline.
 
 ```
-$ echo -e "foo\n\n" | strip_trailing_newline
+echo foo | strip_trailing_newline ; echo
 foo
- 
 ```
 ```
 $ echo -e "foo\n" | strip_trailing_newline
@@ -573,7 +554,7 @@ All messages are logged to _stderr_.
 
 Download the specified resource using HTTP `GET`; on failure, return `1`.
 
-Will **not overwrite** existing files.
+Will not overwrite existing files.
 
 ```
 $ curl_download httpbin.org/get foo
@@ -597,7 +578,7 @@ $ curl_check httpbin.org/status/404
 
 Upload the specified file using HTTP `PUT`; on failure, return `1`.
 
-Will **overwrite** existing resources.
+**Will overwrite** existing resources.
 
 ```
 $ curl_upload foo httpbin.org/put
@@ -656,7 +637,7 @@ All messages are logged to _stderr_.
 
 Download the specified resource from S3 using HTTP `GET`; on failure, return `1`.
 
-Will **not overwrite** existing files.
+Will not overwrite existing files.
 
 ```
 $ s3_download foo.halcyon.sh foo/bar bar
@@ -680,7 +661,7 @@ foo/bar
 $ s3_list foo.halcyon.sh ''
        Listing s3://foo.halcyon.sh/... done
 foo/bar
-bar/foo/baz
+bar/baz/foo
 baz
 ```
 
@@ -705,7 +686,7 @@ Upload the specified file to S3 using HTTP `PUT`; on failure, return `1`.
 
 The destination resource will be available under the specified ACL; commonly used values are `private` and `public-read`.
 
-Will **overwrite** existing resources.
+**Will overwrite** existing resources.
 
 ```
 $ s3_upload foo foo.halcyon.sh bar/foo private
@@ -729,7 +710,7 @@ $ s3_create foo.halcyon.sh private
 ### s3_copy
 > src_bucket src_object dst_bucket dst_object dst_acl
 
-Copy the specified resource on S3 in the most efficient way, without downloading and uploading the resource data; on failure, return `1`.
+Copy the specified resource on S3 without downloading or uploading the data; on failure, return `1`.
 
 The source and destination may be in different S3 buckets.  Like with [s3_upload](#s3_upload), the specified ACL is applied to the destination resource.
 
@@ -752,5 +733,5 @@ $ s3_delete foo.halcyon.sh foo/bar
 ```
 ```
 $ s3_delete foo.halcyon.sh ''
-       Deleting s3://foo.halcyon-lib/... done, 204
+       Deleting s3://foo.halcyon.sh/... done, 204
 ```
