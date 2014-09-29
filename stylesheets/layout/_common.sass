@@ -66,10 +66,10 @@ h3 .backlink
 .touch .menu.toc li:active:after
   @include icon("down", $accent-color-name)
 
-.no-touch .menu.toc li:active:after
+.no-touch .menu.toc li:hover:after
   @include icon("down", $accent-color-name)
 
-.no-touch .menu.toc li:hover:after
+.no-touch .menu.toc li:active:after
   @include icon("down", $accent-color-name)
 
 .no-touch .menu.toc li:hover:active:after
@@ -87,15 +87,15 @@ h3 .backlink
   @include icon("up", $accent-color-name)
   @include active-image-glow($accent-color)
 
-.no-touch .backlink:active:after
-  opacity: $icon-opacity
-  @include icon("up", $accent-color-name)
-  @include image-glow(none)
-
 .no-touch .backlink:hover:after
   opacity: $active-icon-opacity
   @include icon("up", $accent-color-name)
   @include image-glow($accent-color)
+
+.no-touch .backlink:active:after
+  opacity: $icon-opacity
+  @include icon("up", $accent-color-name)
+  @include image-glow(none)
 
 .no-touch .backlink:hover:active:after
   opacity: $active-icon-opacity
