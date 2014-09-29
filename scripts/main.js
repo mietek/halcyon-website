@@ -1,8 +1,7 @@
 'use strict';
 
 window.easeScroll = require('ease-scroll');
-window.magic = require('cannot/scripts/magic');
-require('cannot/scripts/touch');
+window.magic = require('cannot');
 
 
 function addToc(level, container, containerHeading) {
