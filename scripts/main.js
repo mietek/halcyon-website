@@ -3,6 +3,8 @@
 window.easeScroll = require('ease-scroll');
 window.magic = require('cannot');
 
+/* global easeScroll */
+
 
 function addToc(level, container, containerHeading) {
   if (level === 4) {
@@ -45,10 +47,10 @@ function fixLocalLinks() {
   function listener(id) {
     return function (event) {
       event.preventDefault();
-      window.easeScroll.scrollToElementById(id, 1000);
+      easeScroll.scrollToElementById(id, 1000);
     };
   }
-  var local = window.location.origin + window.location.pathname;
+  var local = location.origin + location.pathname;
   var links = document.links;
   for (var i = 0; i < links.length; i+= 1) {
     var href = links[i].getAttribute('href');
@@ -61,7 +63,7 @@ function fixLocalLinks() {
 }
 
 
-window.addEventListener('load', function () {
+addEventListener('load', function () {
   if (document.body.classList.contains('toc')) {
     var container = document.getElementsByClassName('level1')[0];
     var containerHeading = container.getElementsByTagName('h1')[0];
