@@ -9,15 +9,14 @@ pre
 p code
   display: inline-block
   background-color: rgba($subject-color, 0.2)
-  padding: 0 ln(1/4)
+  padding: ln(1/8) ln(1/4)
   border-radius: 2px
   color: $gray6
   white-space: nowrap
   font-family: "pragmata-pro", monospace
   font-style: normal
   font-size: em(3/4)
-  // TODO: No idea why the line spacing becomes off by 2px...
-  margin-bottom: -2px
+  line-height: em(3/4)
 
 pre
   background-color: rgba($subject-color, 0.2)
@@ -110,21 +109,30 @@ h3 .backlink
 
 main h3
   display: inline-block
-  margin-right: 0 !important
+  margin-bottom: 0
+  // NOTE: This is a workaround for a bug in Concourse T3 bold.
+  margin-top: -1px
+
+strong
+  // NOTE: The workaround works only with inline-block.
+  display: inline-block
+  margin-top: -1px
 
 
-// TODO: This messes up line spacing when it wraps.
 main h3 + blockquote
   display: inline-block
   color: $gray9
   font-style: italic
   margin-left: 0 !important
   margin-right: ln(2)
+  margin-top: 0
+  margin-bottom: 0
 
 main blockquote p
-  display: inline-block
-  height: ln(1)
+  display: inline
+  line-height: ln(1)
   margin-top: 0
+  margin-bottom: 0
 
 main blockquote p code
   background-color: rgba($subject-color, 0.1)
