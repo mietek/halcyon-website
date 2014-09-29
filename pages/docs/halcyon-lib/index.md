@@ -846,7 +846,7 @@ $ s3_upload foo foo.halcyon.sh bar/foo private
 
 Create an S3 bucket with HTTP `PUT`; on failure, return `1`.
 
-Like with [s3_upload](#s3_upload), the ACL applies to the destination.
+As with [s3_upload](#s3_upload), the ACL applies to the destination.
 
 ```
 $ s3_create foo.halcyon.sh private
@@ -859,7 +859,9 @@ $ s3_create foo.halcyon.sh private
 
 Copy the specified resource on S3 with HTTP `PUT` without downloading or uploading the resource data; on failure, return `1`.
 
-The source and destination may be the same bucket or separate buckets.  Like with [s3_upload](#s3_upload), the ACL applies to the destination.
+The source and destination may be the same bucket or separate buckets.
+
+As with [s3_upload](#s3_upload), the ACL applies to the destination.
 
 ```
 $ s3_copy foo.halcyon.sh foo bar.halcyon.sh bar private
