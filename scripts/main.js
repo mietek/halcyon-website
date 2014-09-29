@@ -5,7 +5,7 @@ window.magic = require('cannot/scripts/magic');
 require('cannot/scripts/touch');
 
 
-function addToc(level, container) {
+function addToc(level, container, containerHeading) {
   if (level === 4) {
     return;
   }
@@ -18,19 +18,21 @@ function addToc(level, container) {
   toc.classList.add('toc' + level);
   var sections = container.getElementsByClassName('level' + (level + 1));
   [].forEach.call(sections, function (section) {
-    var header = section.getElementsByTagName('h' + (level + 1))[0];
+    var sectionHeading = section.getElementsByTagName('h' + (level + 1))[0];
     var tocItem = document.createElement('li');
     toc.appendChild(tocItem);
     var tocLink = document.createElement('a');
     tocItem.appendChild(tocLink);
-    tocLink.appendChild(document.createTextNode(header.textContent));
+    tocLink.appendChild(document.createTextNode(sectionHeading.textContent));
     tocLink.href = '#' + section.id;
+    tocLink.title = sectionHeading.textContent;
     var backLink = document.createElement('a');
-    header.appendChild(backLink);
+    sectionHeading.appendChild(backLink);
     backLink.href = '#' + container.id;
+    backLink.title = containerHeading.textContent.replace(/↩/, '');
     backLink.classList.add('backlink');
     backLink.appendChild(document.createTextNode('↩'));
-    addToc(level + 1, section);
+    addToc(level + 1, section, sectionHeading);
   });
   container.insertBefore(nav, sections[0]);
 }
@@ -58,7 +60,9 @@ function fixLocalLinks() {
 
 window.addEventListener('load', function () {
   if (document.body.classList.contains('toc')) {
-    addToc(1, document.getElementsByClassName('level1')[0]);
+    var container = document.getElementsByClassName('level1')[0];
+    var containerHeading = container.getElementsByTagName('h1')[0];
+    addToc(1, container, containerHeading);
   }
   fixLocalLinks();
 });
