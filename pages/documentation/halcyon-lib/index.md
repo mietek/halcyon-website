@@ -312,7 +312,7 @@ Portable _sed_ with minimal buffering.
 
 ### quote
 
-Pipe _stdin_ to _stderr,_ prefixed with whitespace.
+Pipe input to _stderr_, prefixed with whitespace.
 
 Like [log_indent,](#log_indent) but for files.
 
@@ -325,7 +325,7 @@ $ echo Foo | quote
 ### quote_quietly
 > quiet cmd arg*
 
-Execute the specified command with its output quoted or omitted, depending on _quiet_ and the exit status of the command.
+Execute the specified command with its output quoted or omitted, depending on the _quiet_ parameter and the exit status of the command.
 
 When _quiet_ is `0`, output will always be quoted; otherwise, output will only be quoted if the command exits with a non-zero exit status.
 
@@ -355,7 +355,7 @@ $ quote_quietly 1 bar
 Line processing
 ---------------
 
-Requires GNU _sort._
+Requires GNU _sort_.
 
 ### filter_last
 
@@ -457,7 +457,7 @@ Archiving
 Date formatting
 ---------------
 
-Requires GNU _date._
+Requires GNU _date_.
 
 ### echo_date
 
@@ -489,7 +489,7 @@ $ echo_timestamp
 HTTP transfers
 --------------
 
-Requires _curl._
+Requires _curl_.
 
 ### curl_do
 > url
@@ -500,9 +500,9 @@ Wrapper for _curl_ with uniform logging and failure handling.
 ### curl_download
 > src_file_url dst_file
 
-Download _src_file_url_ with HTTP `GET`, saving any result to _dst_file; on failure, return `1`.
+Download the specified resource to file using HTTP `GET`; on failure, return `1`.
 
-_dst_file_ must not already exist.
+Will not overwrite existing files.
 
 ```
 $ curl_download httpbin.org/get foo
@@ -517,7 +517,7 @@ $ curl_download httpbin.org/status/400 bar
 ### curl_check
 > src_url
 
-Check _src_url_ with HTTP `HEAD`; on failure, return `1`.
+Check the specified resource using HTTP `HEAD`; on failure, return `1`.
 
 ```
 $ curl_check httpbin.org/get
@@ -532,9 +532,9 @@ $ curl_check httpbin.org/status/400
 ### curl_upload
 > src_file dst_file_url
 
-Upload _src_file_ to _dst_file_url_ with HTTP `PUT`; on failure, return `1`.
+Upload the specified file to resource using HTTP `PUT`; on failure, return `1`.
 
-_src_file_ must be available.
+Will overwrite existing resources.
 
 ```
 $ touch foo
@@ -546,7 +546,7 @@ $ curl_upload foo httpbin.org/put
 ### curl_delete
 > dst_url
 
-Delete _dst_url_ with HTTP `DELETE`; on failure, return `1`.
+Delete the specified resource using HTTP `DELETE`; on failure, return `1`.
 
 ```
 $ curl_delete httpbin.org/delete
@@ -559,27 +559,88 @@ Amazon S3 transfers
 
 Requires _curl_ and OpenSSL.
 
+
 ### echo_s3_host
+
+Output the S3 host, `s3.amazonaws.com`.
+
 
 ### echo_s3_url
 > resource
 
+Output the S3 URL for the specified resource.
+
+```
+$ echo_s3_url /foo/bar
+https://s3.amazonaws.com/foo/bar
+```
+
+
 ### read_s3_listing_xml
+
+Parse a XML-formatted S3 bucket listing into a file of S3 objects.
+
 
 ### s3_do
 > url
 
+S3-specific wrapper for _curl_ with uniform logging, failure handling, and authentication.
+
+
 ### s3_download
 > src_bucket src_object dst_file
+
+Download the specified S3 resource to file using HTTP `GET`; on failure, return `1`.
+
+Will not overwrite existing files.
+
+```
+$ s3_download s3.halcyon.sh foo/bar bar
+       Downloading s3://s3.halcyon.sh/foo/bar... done
+```
+
 
 ### s3_list
 > src_bucket src_prefix
 
+List the contents of the specified S3 bucket, returning results starting with _src_prefix_; on failure, return `1`.
+
+The source prefix may be empty.
+
+```
+$ s3_list s3.halcyon.sh ''
+       Listing s3://s3.halcyon.sh/... done
+foo/bar
+foo/baz
+```
+
+
 ### s3_check
 > src_bucket src_object
 
+Check the specified S3 resource using HTTP `HEAD`; on failure, return `1`.
+
+```
+$ s3_check s3.halcyon.sh foo/bar
+       Checking s3://s3.halcyon.sh/foo/bar... done
+```
+
+
 ### s3_upload
 > src_file dst_bucket dst_object dst_acl
+
+Upload the specified file to S3 resource using HTTP `PUT`; on failure, return `1`.
+
+The destination resource will be available under the specified ACL; commonly used values are `private` and `public-read`.
+
+Will overwrite existing resources.
+
+```
+$ touch foo
+$ s3_upload foo test.halcyon.sh bar/foo private
+       Uploading s3://test.halcyon.sh/bar/foo... done
+```
+
 
 ### s3_create
 > dst_bucket dst_acl
