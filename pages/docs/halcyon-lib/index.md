@@ -7,6 +7,12 @@ body-class: toc
 halcyon-lib
 ===========
 
+Safer shell scripting with GNU _bash_.
+
+Minimal.  Functional.  Reasonably cross-platform.
+
+Part of [Halcyon](.).
+
 
 Logging
 -------
@@ -314,9 +320,6 @@ $ quote_quietly 1 bar
 Line processing
 ---------------
 
-The sorting functions require GNU _sort_.
-
-
 ### filter_last
 
 Output only the last line of input; return `0`.
@@ -538,9 +541,6 @@ $ echo_timestamp
 HTTP transfers
 --------------
 
-Requires _curl_.
-
-
 ### curl_do
 > url
 
@@ -600,9 +600,6 @@ $ curl_delete httpbin.org/delete
 Amazon S3 transfers
 -------------------
 
-Requires _curl_ and OpenSSL.
-
-
 ### echo_s3_host
 
 Output the S3 hostname, `s3.amazonaws.com`.
@@ -630,6 +627,8 @@ Parse a S3 bucket listing in XML format into a file of S3 objects.
 S3-specific wrapper for [curl_do](#curl_do) with REST authentication; used by every function in this module.
 
 All messages are logged to _stderr_.
+
+Requires _curl_ and OpenSSL.
 
 
 ### s3_download
