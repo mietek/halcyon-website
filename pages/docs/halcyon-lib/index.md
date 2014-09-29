@@ -148,8 +148,8 @@ $ foo
 ```
 
 
-Expectation
------------
+Expecting
+---------
 
 Contents of [src/lib/expect.sh](https://github.com/mietek/halcyon/blob/master/src/lib/expect.sh):
 
