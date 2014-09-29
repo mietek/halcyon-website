@@ -92,11 +92,11 @@ Like [log_begin](#log_begin), but with whitespace instead of an arrow marker.
 To be paired with [log_end](#log_end).
 
 ```
-function subfoo () {
+function bar () {
   log_indent_begin baring...
   log_end bared
 }
-$ subfoo
+$ bar
        baring... bared
 ```
 
