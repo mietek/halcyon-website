@@ -25,11 +25,11 @@ function addToc(level, container, containerHeading) {
     tocItem.appendChild(tocLink);
     tocLink.appendChild(document.createTextNode(sectionHeading.textContent));
     tocLink.href = '#' + section.id;
-    tocLink.title = sectionHeading.textContent;
+    tocLink.title = sectionHeading.textContent + ', description of';
     var backLink = document.createElement('a');
     sectionHeading.appendChild(backLink);
     backLink.href = '#' + container.id;
-    backLink.title = containerHeading.textContent.replace(/↩/, '');
+    backLink.title = containerHeading.textContent.replace(/↩/, '') + ', contents of';
     backLink.classList.add('backlink');
     backLink.appendChild(document.createTextNode('↩'));
     addToc(level + 1, section, sectionHeading);
