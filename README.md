@@ -1,7 +1,7 @@
 halcyon-website
 ===============
 
-Website for [Halcyon](http://halcyon.sh/).
+Website for [Halcyon](http://mietek.github.io/halcyon-website/).
 
 Built with [Cannot](https://github.com/mietek/cannot/).
 
