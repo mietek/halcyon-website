@@ -17,7 +17,9 @@ function addToc(level, container, containerHeading) {
   toc.classList.add('toc');
   toc.classList.add('toc' + level);
   var sections = container.getElementsByClassName('level' + (level + 1));
+  var items = 0;
   [].forEach.call(sections, function (section) {
+    items += 1;
     var sectionHeading = section.getElementsByTagName('h' + (level + 1))[0];
     var tocItem = document.createElement('li');
     toc.appendChild(tocItem);
@@ -34,7 +36,9 @@ function addToc(level, container, containerHeading) {
     backLink.appendChild(document.createTextNode('↩'));
     addToc(level + 1, section, sectionHeading);
   });
-  container.insertBefore(nav, sections[0]);
+  if (items) {
+    container.insertBefore(nav, sections[0]);
+  }
 }
 
 
