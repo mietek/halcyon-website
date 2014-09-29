@@ -710,7 +710,7 @@ $ curl_download httpbin.org/get foo
 ### curl_check
 > src_url
 
-Check the specified resource with HTTP `HEAD`; on failure, return `1`.
+Access the specified resource with HTTP `HEAD`; on failure, return `1`.
 
 ```
 $ curl_check httpbin.org/status/404
@@ -816,7 +816,7 @@ baz
 ### s3_check
 > src_bucket src_object
 
-Check the specified S3 resource with HTTP `HEAD`; on failure, return `1`.
+Access the specified S3 resource with HTTP `HEAD`; on failure, return `1`.
 
 The source object may be empty.
 
