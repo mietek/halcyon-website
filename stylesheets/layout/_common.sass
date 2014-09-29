@@ -60,21 +60,12 @@ h3 .backlink
   content: ""
 
 
-.menu.toc li:after
-  @include icon("down", $object-color-name)
-
-.touch .menu.toc li:active:after
-  @include icon("down", $accent-color-name)
-
-.no-touch .menu.toc li:hover:after
-  @include icon("down", $accent-color-name)
-
-.no-touch .menu.toc li:active:after
-  @include icon("down", $accent-color-name)
-
-.no-touch .menu.toc li:hover:active:after
-  @include icon("down", $accent-color-name)
-
+.menu.toc li
+  &:after
+    @include icon("down", $object-color-name)
+  @include frob-when-frobbed
+    &:after
+      @include icon("down", $accent-color-name)
 
 
 .backlink:after
