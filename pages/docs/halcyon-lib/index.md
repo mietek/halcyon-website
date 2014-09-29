@@ -294,7 +294,7 @@ $ echo foo | quote
 
 Execute the specified command with its output quoted or omitted, depending on the _quiet_ parameter and the exit status of the command.
 
-When _quiet_ is `0`, output will always be quoted; otherwise, output will only be quoted if the command returns a non-zero exit status.
+When _quiet_ is `0`, output will always be quoted; otherwise, output will be quoted if the command returns a non-zero exit status.
 
 ```
 function foo () {
@@ -322,7 +322,7 @@ Line processing
 
 ### filter_last
 
-Output only the last line of input; return `0`.
+Output the last line of input; return `0`.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_last
@@ -344,7 +344,7 @@ bar
 ### filter_matching
 > regex
 
-Output only the lines of input which match the specified regular expression; return `0`.
+Output the lines of input which match the specified regular expression; return `0`.
 
 Wrapper for _awk_.
 
@@ -357,7 +357,7 @@ bar
 ### filter_not_matching
 > regex
 
-Output only the lines of input which do not match the specified regular expression; return `0`.
+Output the lines of input which do not match the specified regular expression; return `0`.
 
 Wrapper for _awk_.
 
@@ -405,7 +405,7 @@ bar
 
 ### match_exactly_one
 
-Output only one line of input when the input consists of only one line; otherwise, return `1`.
+Output one line of input when the input consists of one line; otherwise, return `1`.
 
 ```
 $ echo -n | match_exactly_one ; echo $?
@@ -628,7 +628,7 @@ S3-specific wrapper for [curl_do](#curl_do) with REST authentication; used by ev
 
 All messages are logged to _stderr_.
 
-Requires _curl_ and OpenSSL.
+Requires OpenSSL.
 
 
 ### s3_download
@@ -647,7 +647,7 @@ $ s3_download foo.halcyon.sh foo/bar bar
 ### s3_list
 > src_bucket src_prefix
 
-List the contents of the specified S3 bucket, outputting resources starting with the specified prefix; on failure, return `1`.
+Output the contents of the specified S3 bucket, filtering the resources which start with the specified prefix; on failure, return `1`.
 
 The source prefix may be empty.
 
