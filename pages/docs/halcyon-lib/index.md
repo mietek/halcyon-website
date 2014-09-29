@@ -72,8 +72,8 @@ Log arguments to _stderr_, prefixed with whitespace.
 For less important messages than [log](#log).
 
 ```
-$ log_indent Subfooing
-       Subfooing
+$ log_indent subfooing
+       subfooing
 ```
 
 
@@ -86,13 +86,13 @@ To be paired with [log_end](#log_end).
 
 ```
 function subfoo () {
-  log_indent_begin Subfooing...
-  log_end Subfooed
+  log_indent_begin subfooing...
+  log_end subfooed
 }
 ```
 ```
 $ subfoo
-       Subfooing... Subfooed
+       subfooing... subfooed
 ```
 
 
