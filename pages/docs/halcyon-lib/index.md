@@ -329,24 +329,22 @@ Execute the specified command with its output quoted or omitted, depending on th
 
 When _quiet_ is `0`, output will always be quoted; otherwise, output will only be quoted if the command returns a non-zero exit status.
 
-```sh
+```
 function foo () {
   echo foo
   return 0
 }
+$ quote_quietly 0 foo
+       foo
+$ quote_quietly 1 foo
+```
+```
 function bar () {
   echo bar
   return 1
 }
-```
-```
-$ quote_quietly 0 foo
-       foo
 $ quote_quietly 0 bar
        bar
-```
-```
-$ quote_quietly 1 foo
 $ quote_quietly 1 bar
        bar
 ```
