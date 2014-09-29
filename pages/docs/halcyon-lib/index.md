@@ -17,6 +17,9 @@ Part of [Halcyon](.).
 Logging
 -------
 
+Contents of [src/lib/log.sh](https://github.com/mietek/halcyon/blob/master/src/lib/log.sh):
+
+
 ### prefix_log
 > prefix arg*\
 
@@ -148,10 +151,13 @@ $ foo
 Expectation
 -----------
 
+Contents of [src/lib/expect.sh](https://github.com/mietek/halcyon/blob/master/src/lib/expect.sh):
+
+
 ### expect_args
 > var* `-- "$@"`
 
-Check the required number of arguments is available; otherwise, die.  Set the specified variables to the values of the corresponding arguments.
+Check the required number of arguments is available; otherwise, die.  Set the specified variables to the values of corresponding arguments.
 
 Must be called with `-- "$@"` after the variable names.  Argument values may be empty.
 
@@ -217,9 +223,7 @@ $ foo
 ### has_vars
 > var*
 
-Check the specified variables are available; otherwise, return `1`.
-
-Variables must not be unset, and variable values must not be empty.
+Check the specified variables are not unset and not empty; otherwise, return `1`.
 
 ```
 function foo () {
@@ -236,6 +240,9 @@ no BAR
 
 OS detection
 ------------
+
+Contents of [src/lib/os.sh](https://github.com/mietek/halcyon/blob/master/src/lib/os.sh):
+
 
 ### echo_os_description
 > os
@@ -271,6 +278,9 @@ linux-ubuntu-14-04-x64
 Quoting
 -------
 
+Contents of [src/lib/quote.sh](https://github.com/mietek/halcyon/blob/master/src/lib/quote.sh):
+
+
 ### sed_unbuffered
 > arg*
 
@@ -292,9 +302,9 @@ $ echo foo | quote
 ### quote_quietly
 > quiet cmd arg*
 
-Execute the specified command with its output quoted or omitted, depending on the _quiet_ parameter and the exit status of the command.
+Execute the specified command with its output quoted or omitted, depending on the value of _quiet_ and the exit status of the command.
 
-When _quiet_ is `0`, output will always be quoted; otherwise, output will be quoted if the command returns a non-zero exit status.
+If _quiet_ is `0`, output is always quoted; otherwise, output is quoted if the command returns a non-zero exit status.
 
 ```
 function foo () {
@@ -320,6 +330,9 @@ $ quote_quietly 1 bar
 Line processing
 ---------------
 
+Contents of [src/lib/line.sh](https://github.com/mietek/halcyon/blob/master/src/lib/line.sh):
+
+
 ### filter_last
 
 Output the last line of input; return `0`.
@@ -344,7 +357,7 @@ bar
 ### filter_matching
 > regex
 
-Output the lines of input which match the specified regular expression; return `0`.
+Output lines of input which match the specified regular expression; return `0`.
 
 Wrapper for _awk_.
 
@@ -357,7 +370,7 @@ bar
 ### filter_not_matching
 > regex
 
-Output the lines of input which do not match the specified regular expression; return `0`.
+Output lines of input which do not match the specified regular expression; return `0`.
 
 Wrapper for _awk_.
 
@@ -370,7 +383,7 @@ baz
 
 ### match_at_most_one
 
-Output up to one line of input when the input consists of up to one line; otherwise, return `1`.
+Output up to one line of input if the input consists of up to one line; otherwise, return `1`.
 
 ```
 $ echo -n | match_at_most_one
@@ -386,7 +399,7 @@ $ echo -e "foo\nbar" | match_at_most_one ; echo $?
 
 ### match_at_least_one
 
-Pipe input to output when the input consists of at least one line; otherwise, return `1`.
+Pipe input to output if the input consists of one line or more; otherwise, return `1`.
 
 ```
 $ echo -n | match_at_least_one ; echo $?
@@ -405,7 +418,7 @@ bar
 
 ### match_exactly_one
 
-Output one line of input when the input consists of one line; otherwise, return `1`.
+Output one line of input if the input consists of only one line; otherwise, return `1`.
 
 ```
 $ echo -n | match_exactly_one ; echo $?
@@ -437,7 +450,7 @@ foo
 
 ### sort_naturally
 
-Portable version sort. 
+Portable version sort, also known as natural sorting order.
 
 Requires GNU _sort_.
 
@@ -457,7 +470,7 @@ foo-2
 
 ### sort0_naturally
 
-Like [sort_naturally](#sort_naturally), but with `NUL` delimiters instead of newlines.
+Like [sort_naturally](#sort_naturally), but with input separated by `NUL` bytes instead of newlines.
 
 Requires GNU _sort_.
 
@@ -465,45 +478,174 @@ Requires GNU _sort_.
 File operations
 ---------------
 
+Contents of [src/lib/file.sh](https://github.com/mietek/halcyon/blob/master/src/lib/file.sh):
+
+
 ### find_added
 > old_dir new_dir
+
+Output paths to files which exist in the old directory and do not exist in the new one, in natural order.
+
+```
+$ mkdir foo1 foo2
+$ touch foo2/bar2
+$ find_added foo1 foo2
+bar2
+```
+
 
 ### find_changed
 > old_dir new_dir
 
+Output paths to files which differ between the two directories, in natural order.
+
+```
+$ mkdir foo1 foo2
+$ echo bar1 >foo1/bar
+$ echo bar2 >foo2/bar
+$ find_changed foo1 foo2
+bar
+```
+
+
 ### find_not_changed
 > old_dir new_dir
+
+Output paths to files which do not differ between the two directories, in natural order.
+
+```
+$ mkdir foo1 foo2
+$ echo baz >foo1/baz
+$ echo baz >foo2/baz
+$ find_not_changed foo1 foo2
+baz
+```
+
 
 ### find_removed
 > old_dir new_dir
 
+Output paths to files which exist in the old directory and do not exist in the new one, in natural order.
+
+```
+$ mkdir foo1 foo2
+$ touch foo1/bar1
+$ find_removed foo1 foo2
+bar1
+```
+
+
 ### compare_recursively
 > old_dir new_dir
 
-### find_spaceless
+Like [find_added](#find_added), [find_changed](#find_changed), [find_not_changed](#find_not_changed), and [find_removed](#find_removed) combined.
+
+The paths are prefixed with `+` for added, `*` for changed, `=` for not changed, and `-` for removed.
+
+```
+$ mkdir foo1 foo2
+$ touch foo1/bar1 foo2/bar2
+$ echo bar1 >foo1/bar
+$ echo bar2 >foo2/bar
+$ echo baz >foo1/baz
+$ echo baz >foo2/baz
+$ compare_recursively foo1 foo2
+- bar1
++ bar2
+* bar
+= baz
+```
+
+
+### find_spaceless_recursively
 > dir
+
+Output paths to all files in the specified directory which are reachable using paths which do not contain spaces.
+
+```
+$ mkdir foo 'foo/foo bar'
+$ touch foo/baz 'foo/foo bar/baz'
+$ find_spaceless_recursively foo
+foo/baz
+```
+
 
 ### measure_recursively
 > dir
 
+Output a human-readable size of the contents of the specified directory.
+
+```
+$ mkdir foo
+$ measure_recursively foo
+0B
+```
+
+
 ### strip0
+
+Remove symbols from each file specified in input, separated by `NUL` bytes.
 
 
 Archiving
 ---------
 
+Contents of [src/lib/tar.sh](https://github.com/mietek/halcyon/blob/master/src/lib/tar.sh):
+
+
 ### echo_tar_format_flag
 > archive_name
+
+Output the flag needed for non-GNU _tar_ to recognize the compression format of the specified archive.
+
+```
+$ echo_tar_format_flag foo.tar.gz
+-z
+```
+```
+$ echo_tar_format_flag bar.tar.xz
+-J
+```
+
 
 ### tar_archive
 > src_dir archive_file
 
+Archive the specified directory, using a compression format determined by the name of the archive.
+
+Does not overwrite existing files.  Creates the destination directory if needed.
+
+
 ### tar_extract
 > archive_file dst_dir
+
+Extract the specified archive in the destination directory, creating the directory if needed.
+
+Does not overwrite the contents of existing directories.
+
+```
+$ mkdir -p foo/bar1
+$ touch foo/bar1/bar
+$ tar_archive foo/bar1 foo/baz/bar.tar.gz
+       Archiving bar.tar.gz... done, 4.0K
+$ tar_extract foo/baz/bar.tar.gz foo/bar2
+       Extracting bar.tar.gz... done
+$ find foo
+foo
+foo/bar1
+foo/bar1/bar
+foo/bar2
+foo/bar2/bar
+foo/baz
+foo/baz/bar.tar.gz
+```
 
 
 Date formatting
 ---------------
+
+Contents of [src/lib/date.sh](https://github.com/mietek/halcyon/blob/master/src/lib/date.sh):
+
 
 ### echo_date
 
@@ -541,6 +683,9 @@ $ echo_timestamp
 HTTP transfers
 --------------
 
+Contents of [src/lib/curl.sh](https://github.com/mietek/halcyon/blob/master/src/lib/curl.sh):
+
+
 ### curl_do
 > url
 
@@ -552,9 +697,9 @@ All messages are logged to _stderr_.
 ### curl_download
 > src_file_url dst_file
 
-Download the specified resource using HTTP `GET`; on failure, return `1`.
+Download the specified resource with HTTP `GET`; on failure, return `1`.
 
-Will not overwrite existing files.
+Does not overwrite existing files.  Creates the destination directory if needed.
 
 ```
 $ curl_download httpbin.org/get foo
@@ -565,7 +710,7 @@ $ curl_download httpbin.org/get foo
 ### curl_check
 > src_url
 
-Check the specified resource using HTTP `HEAD`; on failure, return `1`.
+Check the specified resource with HTTP `HEAD`; on failure, return `1`.
 
 ```
 $ curl_check httpbin.org/status/404
@@ -576,9 +721,9 @@ $ curl_check httpbin.org/status/404
 ### curl_upload
 > src_file dst_file_url
 
-Upload the specified file using HTTP `PUT`; on failure, return `1`.
+Upload the specified file with HTTP `PUT`; on failure, return `1`.
 
-**Will overwrite** existing resources.
+**Overwrites** existing resources.
 
 ```
 $ curl_upload foo httpbin.org/put
@@ -589,7 +734,7 @@ $ curl_upload foo httpbin.org/put
 ### curl_delete
 > dst_url
 
-Delete the specified resource using HTTP `DELETE`; on failure, return `1`.
+Delete the specified resource with HTTP `DELETE`; on failure, return `1`.
 
 ```
 $ curl_delete httpbin.org/delete
@@ -599,6 +744,9 @@ $ curl_delete httpbin.org/delete
 
 Amazon S3 transfers
 -------------------
+
+Contents of [src/lib/s3.sh](https://github.com/mietek/halcyon/blob/master/src/lib/s3.sh):
+
 
 ### echo_s3_host
 
@@ -634,9 +782,9 @@ Requires OpenSSL.
 ### s3_download
 > src_bucket src_object dst_file
 
-Download the specified resource from S3 using HTTP `GET`; on failure, return `1`.
+Download the specified resource from S3 with HTTP `GET`; on failure, return `1`.
 
-Will not overwrite existing files.
+Does not overwrite existing files.  Creates the destination directory if needed.
 
 ```
 $ s3_download foo.halcyon.sh foo/bar bar
@@ -647,7 +795,7 @@ $ s3_download foo.halcyon.sh foo/bar bar
 ### s3_list
 > src_bucket src_prefix
 
-Output the contents of the specified S3 bucket, filtering the resources which start with the specified prefix; on failure, return `1`.
+Output the contents of the specified S3 bucket with HTTP `GET`, listing the resources which start with the specified prefix; on failure, return `1`.
 
 The source prefix may be empty.
 
@@ -668,7 +816,7 @@ baz
 ### s3_check
 > src_bucket src_object
 
-Check the specified S3 resource using HTTP `HEAD`; on failure, return `1`.
+Check the specified S3 resource with HTTP `HEAD`; on failure, return `1`.
 
 The source object may be empty.
 
@@ -681,11 +829,11 @@ $ s3_check foo.halcyon.sh no-foo
 ### s3_upload
 > src_file dst_bucket dst_object dst_acl
 
-Upload the specified file to S3 using HTTP `PUT`; on failure, return `1`.
+Upload the specified file to S3 with HTTP `PUT`; on failure, return `1`.
 
-The destination resource will be available under the specified ACL; commonly used values are `private` and `public-read`.
+The destination resource is published under the specified ACL; commonly used values are `private` and `public-read`.
 
-**Will overwrite** existing resources.
+**Overwrites** existing resources.
 
 ```
 $ s3_upload foo foo.halcyon.sh bar/foo private
@@ -696,9 +844,9 @@ $ s3_upload foo foo.halcyon.sh bar/foo private
 ### s3_create
 > dst_bucket dst_acl
 
-Create an S3 bucket; on failure, return `1`.
+Create an S3 bucket with HTTP `PUT`; on failure, return `1`.
 
-Like with [s3_upload](#s3_upload), the specified ACL is applied to the destination bucket.
+Like with [s3_upload](#s3_upload), the ACL applies to the destination.
 
 ```
 $ s3_create foo.halcyon.sh private
@@ -709,9 +857,9 @@ $ s3_create foo.halcyon.sh private
 ### s3_copy
 > src_bucket src_object dst_bucket dst_object dst_acl
 
-Copy the specified resource on S3 without downloading or uploading the data; on failure, return `1`.
+Copy the specified resource on S3 with HTTP `PUT` without downloading or uploading the resource data; on failure, return `1`.
 
-The source and destination may be in different S3 buckets.  Like with [s3_upload](#s3_upload), the specified ACL is applied to the destination resource.
+The source and destination may be the same bucket or separate buckets.  Like with [s3_upload](#s3_upload), the ACL applies to the destination.
 
 ```
 $ s3_copy foo.halcyon.sh foo bar.halcyon.sh bar private
@@ -722,7 +870,7 @@ $ s3_copy foo.halcyon.sh foo bar.halcyon.sh bar private
 ### s3_delete
 > dst_bucket dst_object
 
-Delete the specified resource from S3 using HTTP `DELETE`; on failure, return `1`.
+Delete the specified resource from S3 with HTTP `DELETE`; on failure, return `1`.
 
 To delete an S3 bucket, specify an empty source object.
 
