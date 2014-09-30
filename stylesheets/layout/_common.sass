@@ -31,7 +31,7 @@ nav h1 a
 
 
 .menu.toc li
-  @include smart-icon-after("down")
+  @include smart-icon-after("down", $object-color-name, $accent-color-name)
 
 
 main section
@@ -44,9 +44,9 @@ main section
   top: 0
   right: 0
   // padding-left: 0 !important  // TODO
-  @include smart-icon-before("up")
-  @include smart-icon-opacity-before
-  @include smart-image-glow-before
+  @include smart-icon-before("up", $object-color-name, $accent-color-name)
+  @include smart-opacity-before(0.2, 1)
+  @include smart-image-glow-before($accent-color)
 
 .backlink-button:before
   width: $icon-size
