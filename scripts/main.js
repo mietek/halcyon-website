@@ -29,8 +29,12 @@ function addToc(level, container, containerHeading) {
     tocLink.appendChild(document.createTextNode(sectionHeading.textContent));
     tocLink.href = '#' + section.id;
     tocLink.title = sectionHeading.textContent + ', description of';
+    var backLinkButton = document.createElement('span');
+    // NOTE: This skips the first blockquote after the h3.
+    section.insertBefore(backLinkButton, sectionHeading.nextSibling.nextSibling);
+    backLinkButton.classList.add('backlink-button');
     var backLink = document.createElement('a');
-    sectionHeading.appendChild(backLink);
+    backLinkButton.appendChild(backLink);
     backLink.href = '#' + container.id;
     backLink.title = containerHeading.textContent.replace(/↩/, '') + ', contents of';
     backLink.classList.add('backlink');
