@@ -1,9 +1,17 @@
 ---
 title: The fastest way to Haskell
+html-class: hero
+header-class: hero
+main-class: hero
+footer-class: hero
+hero:
+  <h1>Halcyon</h1>
+  <p>The fastest way to Haskell.</p>
+  <span id="hero-button" class="hero-button"><a href="" class="click-to-main">More</a></span>
+
 ---
 
-
-# The fastest way to Haskell.
+# Lorem ipsum
 
 Lorem ipsum dolor sit amet, oratio patrioque prodesset cu cum. Usu an cibo cetero suavitate, ne verear senserit pro, et mutat maiestatis vel. Eu denique accumsan democritum ius. Nec ex nusquam intellegam, pro te tation quaeque sensibus. Nibh vocent audire per ne. Nulla nostrum fabellas qui eu, ex oblique facilisi recteque usu.
 
