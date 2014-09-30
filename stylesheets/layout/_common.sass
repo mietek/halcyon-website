@@ -61,37 +61,11 @@ h3 .backlink
 
 
 .menu.toc li
-  &:after
-    @include icon("down", $object-color-name)
-  @include frob-when-frobbed
-    &:after
-      @include icon("down", $accent-color-name)
+  @include smart-icon-after("down")
 
-
-.backlink:after
-  opacity: $icon-opacity
-  @include icon("up", $object-color-name)
-  @include image-glow(none)
-
-.touch .backlink:active:after
-  opacity: $active-icon-opacity
-  @include icon("up", $accent-color-name)
-  @include active-image-glow($accent-color)
-
-.no-touch .backlink:hover:after
-  opacity: $active-icon-opacity
-  @include icon("up", $accent-color-name)
-  @include image-glow($accent-color)
-
-.no-touch .backlink:active:after
-  opacity: $icon-opacity
-  @include icon("up", $accent-color-name)
-  @include image-glow(none)
-
-.no-touch .backlink:hover:active:after
-  opacity: $active-icon-opacity
-  @include icon("up", $accent-color-name)
-  @include active-image-glow($accent-color)
+.backlink
+  @include smart-icon-after("up")
+  @include smart-icon-opacity-after
 
 
 .backlink:after
