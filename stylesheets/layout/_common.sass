@@ -38,12 +38,13 @@ main section
   position: relative
 
 .backlink-button
+  display: block
   width: ln(2) + $icon-size
   height: ln(2)
   position: absolute
   top: 0
   right: 0
-  // padding-left: 0 !important  // TODO
+  padding-left: 0 !important // TODO
   @include smart-icon-before("up", $object-color-name, $accent-color-name)
   @include smart-opacity-before(0.2, 1)
   @include smart-image-glow-before($accent-color)
