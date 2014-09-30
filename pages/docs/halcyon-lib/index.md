@@ -256,6 +256,7 @@ Ubuntu 14.04 LTS (x86_64)
 
 
 ### detect_arch
+>
 
 Output the architecture part of the host OS identifier.
 
@@ -266,6 +267,7 @@ x64
 
 
 ### detect_os
+>
 
 Output the host OS identifier.
 
@@ -288,6 +290,7 @@ Portable _sed_ with minimal buffering.
 
 
 ### quote
+>
 
 Pipe input to _stderr_, prefixed with whitespace.
 
@@ -334,6 +337,7 @@ Contents of [src/lib/line.sh](https://github.com/mietek/halcyon/blob/master/src/
 
 
 ### filter_last
+>
 
 Output the last line of input; return `0`.
 
@@ -344,6 +348,7 @@ baz
 
 
 ### filter_not_last
+>
 
 Output all lines of input except the last; return `0`.
 
@@ -382,6 +387,7 @@ baz
 
 
 ### match_at_most_one
+>
 
 Output up to one line of input if the input consists of up to one line; otherwise, return `1`.
 
@@ -397,7 +403,9 @@ $ echo -e "foo\nbar" | match_at_most_one ; echo $?
 1
 ```
 
+
 ### match_at_least_one
+>
 
 Pipe input to output if the input consists of one line or more; otherwise, return `1`.
 
@@ -417,6 +425,7 @@ bar
 
 
 ### match_exactly_one
+>
 
 Output one line of input if the input consists of only one line; otherwise, return `1`.
 
@@ -435,6 +444,7 @@ $ echo -e "foo\nbar" | match_exactly_one ; echo $?
 
 
 ### strip_trailing_newline
+>
 
 Pipe input to output, removing at most one trailing newline.
 
@@ -449,6 +459,7 @@ foo
 
 
 ### sort_naturally
+>
 
 Portable version sort, also known as natural sorting order.
 
@@ -469,6 +480,7 @@ foo-2
 
 
 ### sort0_naturally
+>
 
 Like [sort_naturally](#sort_naturally), but with input separated by `NUL` bytes instead of newlines.
 
@@ -648,6 +660,7 @@ Contents of [src/lib/date.sh](https://github.com/mietek/halcyon/blob/master/src/
 
 
 ### echo_date
+> args*
 
 Portable _date_.
 
@@ -749,6 +762,7 @@ Contents of [src/lib/s3.sh](https://github.com/mietek/halcyon/blob/master/src/li
 
 
 ### echo_s3_host
+>
 
 Output the S3 hostname, `s3.amazonaws.com`.
 
@@ -765,6 +779,7 @@ https://s3.amazonaws.com/foo/bar
 
 
 ### read_s3_listing_xml
+>
 
 Parse a S3 bucket listing in XML format into a file of S3 objects.
 
