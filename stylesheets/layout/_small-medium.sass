@@ -2,7 +2,17 @@ nav h1 a
   background-size: 75px ln(1)
 
 header nav h1 a
+  @include smart-image-glow
   @include image("logotype-small", "png")
+  @include frob-when-frobbed
+    @include image("logotype-#{$accent-color-name}-small", "png")
+  @include frob-always
+    transition: ease(filter, 1, 0), ease(-webkit-filter, 1, 0)
 
 footer nav h1 a
-  @include image("logotype-grayC-small", "png")
+  @include smart-image-glow
+  @include image("logotype-#{$subject-color-name}-small", "png")
+  @include frob-when-frobbed
+    @include image("logotype-#{$accent-color-name}-small", "png")
+  @include frob-always
+    transition: ease(filter, 1, 0), ease(-webkit-filter, 1, 0)
