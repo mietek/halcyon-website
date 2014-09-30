@@ -27,49 +27,43 @@ pre
 
 
 nav h1 a
-  @include text-hidden
-
-
-main section
-  position: relative
-
-.backlink
-  @include no-underline
-  @include text-button
-  @include text-hidden
-  display: block
-  width: ln(2) + $icon-size
-  height: ln(1)
-  position: absolute
-  right: 0
-
-h2 .backlink
-  top: ln(1/2)
-
-h3 .backlink
-  top: 0
-
-.backlink:after
-  width: $icon-size
-  height: $icon-size
-  position: absolute
-  top: (ln(1) - $icon-size) / 2
-  right: 0
-  z-index: 1
-  pointer-events: none
-  content: ""
+  @include no-text
 
 
 .menu.toc li
   @include smart-icon-after("down")
 
-.backlink
-  @include smart-icon-after("up")
-  @include smart-icon-opacity-after
 
+main section
+  position: relative
 
-.backlink:after
+.backlink-button
+  width: ln(2) + $icon-size
+  height: ln(2)
+  position: absolute
+  top: 0
+  right: 0
+  padding-left: 0 !important  // TODO
+  padding-right: 0 !important // TODO
+  @include smart-icon-before("up")
+  @include smart-icon-opacity-before
+
+.backlink-button:before
+  width: $icon-size
+  height: $icon-size
+  position: absolute
+  top: (ln(2) - $icon-size) / 2
+  right: (ln(2) + $icon-size - $icon-size) / 2
+  z-index: 1
+  pointer-events: none
+  content: ""
   transition: ease(opacity, 1, 0), ease(filter, 1, 0), ease(-webkit-filter, 1, 0)
+
+.backlink-button a
+  @include no-text
+  display: block
+  width: 100%
+  height: 100%
 
 
 main h3
@@ -84,7 +78,10 @@ strong
   margin-top: -1px
 
 
-main h3 + blockquote
+.level3 .backlink-button
+  top: ln(-1/2)
+
+.level3 blockquote:first-of-type
   display: inline-block
   color: $gray9
   font-style: italic
@@ -93,12 +90,12 @@ main h3 + blockquote
   margin-top: 0
   margin-bottom: 0
 
-main blockquote p
+.level3 blockquote:first-of-type p
   display: inline
   line-height: ln(1)
   margin-top: 0
   margin-bottom: 0
 
-main blockquote p code
+.level3 blockquote:first-of-type p code
   background-color: rgba($subject-color, 0.1)
   color: $gray9
