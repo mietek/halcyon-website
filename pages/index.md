@@ -6,8 +6,6 @@ main-class: hero
 hero:
   <h1>Halcyon</h1>
   <p>The fastest way to Haskell.</p>
-  <span id="hero-button" class="hero-button"><a href="" class="click-to-main">More</a></span>
-
 ---
 
 
