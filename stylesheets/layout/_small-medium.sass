@@ -34,3 +34,12 @@ header.hero nav h1 a
   width: 150px
   height: ln(2)
   background-size: 150px ln(2)
+
+
+header.accent nav h1 a
+  @include smart-image-glow(white)
+  @include image("logotype-white-small", "png")
+  @include frob-when-frobbed
+    @include image("logotype-white-small", "png")
+  @include frob-always
+    transition: ease(filter, 1, 0), ease(-webkit-filter, 1, 0)
