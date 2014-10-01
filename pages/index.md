@@ -3,7 +3,6 @@ title: The fastest way to Haskell
 html-class: hero
 header-class: hero
 main-class: hero
-footer-class: hero
 hero:
   <h1>Halcyon</h1>
   <p>The fastest way to Haskell.</p>
