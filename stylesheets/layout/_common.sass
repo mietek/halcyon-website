@@ -26,84 +26,15 @@ pre
   overflow-x: auto
 
 
-nav h1 a
+nav.menu-bar h1.logotype a
   @include no-text
+  @include smart-image-glow($blue)
+  transition: ease(filter, 1, 0), ease(-webkit-filter, 1, 0)
 
 
-.menu.toc li
-  @include smart-icon-after("down", $object-color-name, $accent-color-name)
-
-
-main section
-  position: relative
-
-.backlink-button
-  display: block
-  width: ln(2) + $icon-size
-  height: ln(2)
-  position: absolute
-  top: 0
-  right: 0
-  padding-left: 0 !important // TODO
-  @include smart-icon-before("up", $object-color-name, $accent-color-name)
-  @include smart-opacity-before(0.2, 1)
-  @include smart-image-glow-before($accent-color)
-
-.backlink-button:before
-  width: $icon-size
-  height: $icon-size
-  position: absolute
-  top: (ln(2) - $icon-size) / 2
-  right: (ln(2) + $icon-size - $icon-size) / 2
-  z-index: 1
-  pointer-events: none
-  content: ""
-  transition: ease(opacity, 1, 0), ease(filter, 1, 0), ease(-webkit-filter, 1, 0)
-
-.backlink-button a
-  @include no-text
-  display: block
-  width: 100%
-  height: 100%
-
-
-main h3
-  display: inline-block
-  margin-bottom: 0
-  // NOTE: This is a workaround for a bug in Concourse T3 bold.
-  margin-top: -1px
-
-strong
-  // NOTE: The workaround works only with inline-block.
-  display: inline-block
-  margin-top: -1px
-
-
-.level3 .backlink-button
-  top: ln(-1/2)
-
-.level3 blockquote:first-of-type
-  display: inline-block
-  color: $gray9
-  font-style: italic
-  margin-left: 0 !important
-  margin-right: ln(2)
-  margin-top: 0
-  margin-bottom: 0
-
-.level3 blockquote:first-of-type p
-  display: inline
-  line-height: ln(1)
-  margin-top: 0
-  margin-bottom: 0
-
-.level3 blockquote:first-of-type p code
-  background-color: rgba($grayC, 0.1)
-  color: $gray9
-
-.level3 p:first-of-type
-  margin-top: ln(1)
-
+header.hero nav.menu-bar h1.logotype a
+  @include smart-opacity(0.6, 1)
+  @include smart-image-glow(white)
 
 #hero
   background-image: url(_images/hero.jpg)
@@ -111,3 +42,6 @@ strong
 #hero .hero-wrapper
   background: none
   background-image: radial-gradient(circle farthest-corner at left top, rgba($orange, 0.0) 0%, rgba($blue, 0.6) 50%, rgba($blue, 0.0) 100%)
+
+#hero h1.logotype
+  @include no-text

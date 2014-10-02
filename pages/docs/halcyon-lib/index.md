@@ -1,6 +1,6 @@
 ---
 title: halcyon-lib
-body-class: toc
+html-class: add-toc
 ---
 
 

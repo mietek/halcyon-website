@@ -4,7 +4,7 @@ html-class: hero
 header-class: hero
 main-class: hero
 hero:
-  <h1>Halcyon</h1>
+  <h1 class="logotype">Halcyon</h1>
   <p>The fastest way to Haskell.</p>
 ---
 
