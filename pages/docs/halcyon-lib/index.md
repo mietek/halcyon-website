@@ -9,7 +9,7 @@ halcyon-lib
 
 Safer shell scripting with GNU _bash_.
 
-Minimal.  Functional.  Reasonably cross-platform.
+Minimal dependencies.  Reasonably cross-platform.
 
 Part of [Halcyon](.).
 
