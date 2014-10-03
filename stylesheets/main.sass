@@ -13,3 +13,20 @@ $accent-color-name: blue
 
 
 @import "cannot/layout"
+
+
+@media (max-width: $layout-width-small)
+  #hero
+    @include image(hero-small, jpg)
+
+@media (min-width: $layout-width-small + 1) and (max-width: $layout-width-medium)
+  #hero
+    @include image(hero-medium, jpg)
+
+@media (min-width: $layout-width-medium + 1) and (max-width: $layout-width-large)
+  #hero
+    @include image(hero-large, jpg)
+
+@media (min-width: $layout-width-large + 1)
+  #hero
+    background-image: image-url(hero-large, 2x, jpg)
