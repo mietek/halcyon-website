@@ -4,7 +4,7 @@ html-class: insert-toc
 head-bonus:
   <script>
     window.insertToc = function (toc, container) {
-      var afterToc = 2;
+      var afterToc = 3;
       if (container.classList.contains('level1')) {
         afterToc = 1;
       }
@@ -21,9 +21,9 @@ halcyon-lib — Function reference
 Logging
 -------
 
-Contents of [src/lib/log.sh](https://github.com/mietek/halcyon/blob/master/src/lib/log.sh):
+Found in [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh).
 
-
+No dependencies.
 
 
 ### prefix_log
@@ -157,7 +157,9 @@ $ foo
 Expecting
 ---------
 
-Contents of [src/lib/expect.sh](https://github.com/mietek/halcyon/blob/master/src/lib/expect.sh):
+Found in [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh).
+
+Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh).
 
 
 ### expect_args
@@ -247,7 +249,9 @@ no BAR
 OS detection
 ------------
 
-Contents of [src/lib/os.sh](https://github.com/mietek/halcyon/blob/master/src/lib/os.sh):
+Found in [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
+
+Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh).
 
 
 ### echo_os_description
@@ -286,7 +290,9 @@ linux-ubuntu-14-04-x64
 Quoting
 -------
 
-Contents of [src/lib/quote.sh](https://github.com/mietek/halcyon/blob/master/src/lib/quote.sh):
+Found in [quote.sh](https://github.com/mietek/bash-me-not/blob/master/src/quote.sh).
+
+Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh) and [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
 
 
 ### sed_unbuffered
@@ -339,7 +345,9 @@ $ quote_quietly 1 bar
 Line processing
 ---------------
 
-Contents of [src/lib/line.sh](https://github.com/mietek/halcyon/blob/master/src/lib/line.sh):
+Found in [line.sh](https://github.com/mietek/bash-me-not/blob/master/src/line.sh).
+
+Depends on [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh).
 
 
 ### filter_last
@@ -464,12 +472,18 @@ foo
 ```
 
 
+Sorting
+-------
+
+Found in [sort.sh](https://github.com/mietek/bash-me-not/blob/master/src/sort.sh).
+
+Requires GNU _sort_.  Depends on [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
+
+
 ### sort_naturally
 >
 
 Portable version sort, also known as natural sorting order.
-
-Requires GNU _sort_.
 
 ```
 $ echo -e "foo-1\nfoo-12\nfoo-2" | sort_naturally
@@ -490,13 +504,13 @@ foo-2
 
 Like [sort_naturally](#sort_naturally), but with input separated by `NUL` bytes instead of newlines.
 
-Requires GNU _sort_.
-
 
 File operations
 ---------------
 
-Contents of [src/lib/file.sh](https://github.com/mietek/halcyon/blob/master/src/lib/file.sh):
+Found in [file.sh](https://github.com/mietek/bash-me-not/blob/master/src/file.sh).
+
+Depends on [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh) and [line.sh](https://github.com/mietek/bash-me-not/blob/master/src/line.sh).
 
 
 ### find_added
@@ -608,7 +622,9 @@ Remove symbols from each file specified in input, separated by `NUL` bytes.
 Archiving
 ---------
 
-Contents of [src/lib/tar.sh](https://github.com/mietek/halcyon/blob/master/src/lib/tar.sh):
+Found in [tar.sh](https://github.com/mietek/bash-me-not/blob/master/src/tar.sh).
+
+Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh), and [file.sh](https://github.com/mietek/bash-me-not/blob/master/src/file.sh).
 
 
 ### echo_tar_format_flag
@@ -662,7 +678,9 @@ foo/baz/bar.tar.gz
 Date formatting
 ---------------
 
-Contents of [src/lib/date.sh](https://github.com/mietek/halcyon/blob/master/src/lib/date.sh):
+Found in [date.sh](https://github.com/mietek/bash-me-not/blob/master/src/date.sh).
+
+Requires GNU _date_.  Depends on [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
 
 
 ### echo_date
@@ -670,15 +688,11 @@ Contents of [src/lib/date.sh](https://github.com/mietek/halcyon/blob/master/src/
 
 Portable _date_.
 
-Requires GNU _date_.
-
 
 ### echo_http_date
 > args*
 
 Output the UTC date and time in RFC 2822 format.
-
-Requires GNU _date_.
 
 ```
 $ echo_http_date
@@ -691,8 +705,6 @@ Fri, 26 Sep 2014 13:11:54 +0000
 
 Output the UTC date and time in a compact format.
 
-Requires GNU _date_.
-
 ```
 $ echo_timestamp
 20140926131509
@@ -702,7 +714,9 @@ $ echo_timestamp
 HTTP transfers
 --------------
 
-Contents of [src/lib/curl.sh](https://github.com/mietek/halcyon/blob/master/src/lib/curl.sh):
+Found in [curl.sh](https://github.com/mietek/bash-me-not/blob/master/src/curl.sh).
+
+Requires _curl_.  Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh) and [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh).
 
 
 ### curl_do
@@ -742,7 +756,7 @@ $ curl_check httpbin.org/status/404
 
 Upload the specified file with HTTP `PUT`; on failure, return `1`.
 
-**Overwrites** existing resources.
+**Overwrites** existing resources without warning.
 
 ```
 $ curl_upload foo httpbin.org/put
@@ -764,7 +778,9 @@ $ curl_delete httpbin.org/delete
 Amazon S3 transfers
 -------------------
 
-Contents of [src/lib/s3.sh](https://github.com/mietek/halcyon/blob/master/src/lib/s3.sh):
+Found in [s3.sh](https://github.com/mietek/bash-me-not/blob/master/src/s3.sh).
+
+Requires _curl_ and OpenSSL.  Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh), [line.sh](https://github.com/mietek/bash-me-not/blob/master/src/line.sh), [date.sh](https://github.com/mietek/bash-me-not/blob/master/src/date.sh), and [curl.sh](https://github.com/mietek/bash-me-not/blob/master/src/curl.sh).
 
 
 ### echo_s3_host
@@ -796,8 +812,6 @@ Parse a S3 bucket listing in XML format into a file of S3 objects.
 S3-specific wrapper for [curl_do](#curl_do) with REST authentication; used by every function in this module.
 
 All messages are logged to _stderr_.
-
-Requires OpenSSL.
 
 
 ### s3_download
@@ -854,7 +868,7 @@ Upload the specified file to S3 with HTTP `PUT`; on failure, return `1`.
 
 The destination resource is published under the specified ACL; commonly used values are `private` and `public-read`.
 
-**Overwrites** existing resources.
+**Overwrites** existing resources without warning.
 
 ```
 $ s3_upload foo foo.halcyon.sh bar/foo private
