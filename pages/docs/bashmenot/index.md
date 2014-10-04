@@ -1,5 +1,5 @@
 ---
-title: halcyon-lib — Function reference
+title: bashmenot — Function reference
 html-class: insert-toc
 head-bonus:
   <script>
@@ -14,8 +14,8 @@ head-bonus:
 ---
 
 
-halcyon-lib — Function reference
-================================
+bashmenot — Function reference
+============================
 
 
 Logging
@@ -154,8 +154,8 @@ $ foo
 ```
 
 
-Expecting
----------
+Expecting preconditions
+-----------------------
 
 Found in [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh).
 

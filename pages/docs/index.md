@@ -11,4 +11,4 @@ Lorem ipsum dolor sit amet, oratio patrioque prodesset cu cum. Usu an cibo ceter
 
 ---
 
-[halcyon-lib](docs/halcyon-lib/)
+[bashmenot — Function reference](docs/bashmenot/)
