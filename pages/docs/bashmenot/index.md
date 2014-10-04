@@ -21,7 +21,7 @@ bashmenot — Function reference
 Logging
 -------
 
-Found in [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh).
+Found in [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh).
 
 No dependencies.
 
@@ -157,9 +157,9 @@ $ foo
 Expecting preconditions
 -----------------------
 
-Found in [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh).
+Found in [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh).
 
-Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh).
+Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh).
 
 
 ### expect_args
@@ -249,9 +249,9 @@ no BAR
 OS detection
 ------------
 
-Found in [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
+Found in [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
 
-Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh).
+Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh).
 
 
 ### echo_os_description
@@ -290,9 +290,9 @@ linux-ubuntu-14-04-x64
 Quoting
 -------
 
-Found in [quote.sh](https://github.com/mietek/bash-me-not/blob/master/src/quote.sh).
+Found in [quote.sh](https://github.com/mietek/bashmenot/blob/master/src/quote.sh).
 
-Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh) and [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
+Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh) and [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
 
 
 ### sed_unbuffered
@@ -345,9 +345,9 @@ $ quote_quietly 1 bar
 Line processing
 ---------------
 
-Found in [line.sh](https://github.com/mietek/bash-me-not/blob/master/src/line.sh).
+Found in [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh).
 
-Depends on [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh).
+Depends on [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh).
 
 
 ### filter_last
@@ -475,9 +475,9 @@ foo
 Sorting
 -------
 
-Found in [sort.sh](https://github.com/mietek/bash-me-not/blob/master/src/sort.sh).
+Found in [sort.sh](https://github.com/mietek/bashmenot/blob/master/src/sort.sh).
 
-Requires GNU _sort_.  Depends on [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
+Requires GNU _sort_.  Depends on [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
 
 
 ### sort_naturally
@@ -508,9 +508,9 @@ Like [sort_naturally](#sort_naturally), but with input separated by `NUL` bytes 
 File operations
 ---------------
 
-Found in [file.sh](https://github.com/mietek/bash-me-not/blob/master/src/file.sh).
+Found in [file.sh](https://github.com/mietek/bashmenot/blob/master/src/file.sh).
 
-Depends on [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh) and [line.sh](https://github.com/mietek/bash-me-not/blob/master/src/line.sh).
+Depends on [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh) and [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh).
 
 
 ### find_added
@@ -622,9 +622,9 @@ Remove symbols from each file specified in input, separated by `NUL` bytes.
 Archiving
 ---------
 
-Found in [tar.sh](https://github.com/mietek/bash-me-not/blob/master/src/tar.sh).
+Found in [tar.sh](https://github.com/mietek/bashmenot/blob/master/src/tar.sh).
 
-Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh), and [file.sh](https://github.com/mietek/bash-me-not/blob/master/src/file.sh).
+Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), and [file.sh](https://github.com/mietek/bashmenot/blob/master/src/file.sh).
 
 
 ### echo_tar_format_flag
@@ -678,9 +678,9 @@ foo/baz/bar.tar.gz
 Date formatting
 ---------------
 
-Found in [date.sh](https://github.com/mietek/bash-me-not/blob/master/src/date.sh).
+Found in [date.sh](https://github.com/mietek/bashmenot/blob/master/src/date.sh).
 
-Requires GNU _date_.  Depends on [os.sh](https://github.com/mietek/bash-me-not/blob/master/src/os.sh).
+Requires GNU _date_.  Depends on [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
 
 
 ### echo_date
@@ -714,9 +714,9 @@ $ echo_timestamp
 HTTP transfers
 --------------
 
-Found in [curl.sh](https://github.com/mietek/bash-me-not/blob/master/src/curl.sh).
+Found in [curl.sh](https://github.com/mietek/bashmenot/blob/master/src/curl.sh).
 
-Requires _curl_.  Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh) and [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh).
+Requires _curl_.  Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh) and [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh).
 
 
 ### curl_do
@@ -778,9 +778,9 @@ $ curl_delete httpbin.org/delete
 Amazon S3 transfers
 -------------------
 
-Found in [s3.sh](https://github.com/mietek/bash-me-not/blob/master/src/s3.sh).
+Found in [s3.sh](https://github.com/mietek/bashmenot/blob/master/src/s3.sh).
 
-Requires _curl_ and OpenSSL.  Depends on [log.sh](https://github.com/mietek/bash-me-not/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bash-me-not/blob/master/src/expect.sh), [line.sh](https://github.com/mietek/bash-me-not/blob/master/src/line.sh), [date.sh](https://github.com/mietek/bash-me-not/blob/master/src/date.sh), and [curl.sh](https://github.com/mietek/bash-me-not/blob/master/src/curl.sh).
+Requires _curl_ and OpenSSL.  Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh), [date.sh](https://github.com/mietek/bashmenot/blob/master/src/date.sh), and [curl.sh](https://github.com/mietek/bashmenot/blob/master/src/curl.sh).
 
 
 ### echo_s3_host
