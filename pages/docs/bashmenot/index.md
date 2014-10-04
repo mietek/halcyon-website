@@ -772,6 +772,8 @@ Found in [s3.sh](https://github.com/mietek/bashmenot/blob/master/src/s3.sh).
 
 Requires _curl_ and OpenSSL.  Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh), [date.sh](https://github.com/mietek/bashmenot/blob/master/src/date.sh), and [curl.sh](https://github.com/mietek/bashmenot/blob/master/src/curl.sh).
 
+The `BASHMENOT_AWS_ACCESS_KEY_ID` and `BASHMENOT_AWS_SECRET_ACCESS_KEY` environment variables are expected to contain the required authentication details.
+
 
 ### echo_s3_host
 >
