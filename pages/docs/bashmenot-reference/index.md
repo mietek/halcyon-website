@@ -1,20 +1,20 @@
 ---
-title: bashmenot — Function reference
+title: bashmenot reference
 html-class: insert-toc
 ---
 
 
-bashmenot — Function reference
-============================
+bashmenot reference
+===================
 
 
 Logging
 -------
 
-Found in [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh).
-
 No dependencies.
 
+
+> [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh):
 
 ### prefix_log
 > prefix arg*
@@ -147,15 +147,16 @@ $ foo
 Expecting preconditions
 -----------------------
 
-Found in [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh).
-
 Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh).
 
+
+> [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh):
 
 ### expect_args
 > var* `-- "$@"`
 
-Check the required number of arguments is available; otherwise, die.  Set the specified variables to the values of corresponding arguments.
+- Check the required number of arguments is available.  Otherwise, die.
+- Set the specified variables to the values of corresponding arguments.
 
 Must be called with `-- "$@"` after the variable names.  Argument values may be empty.
 
@@ -173,7 +174,7 @@ $ foo
 ### expect_vars
 > var*
 
-Check the specified variables are available; otherwise, die.
+Check the specified variables are available.  Otherwise, die.
 
 Variables must not be unset, and variable values must not be empty.
 
@@ -190,7 +191,7 @@ $ foo
 ### expect_existing
 > file*
 
-Check the specified files exist; otherwise, die.
+Check the specified files exist.  Otherwise, die.
 
 ```
 function foo () {
@@ -205,7 +206,7 @@ $ foo
 ### expect_no_existing
 > file*
 
-Check the specified files do not exist; otherwise, die.
+Check the specified files do not exist.  Otherwise, die.
 
 ```
 function foo () {
@@ -221,7 +222,7 @@ $ foo
 ### has_vars
 > var*
 
-Check the specified variables are not unset and not empty; otherwise, return `1`.
+Check the specified variables are not unset and not empty.  Otherwise, return `1`.
 
 ```
 function foo () {
@@ -239,10 +240,10 @@ no BAR
 OS detection
 ------------
 
-Found in [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
-
 Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh).
 
+
+> [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh):
 
 ### echo_os_description
 > os
@@ -280,10 +281,10 @@ linux-ubuntu-14-04-x64
 Quoting
 -------
 
-Found in [quote.sh](https://github.com/mietek/bashmenot/blob/master/src/quote.sh).
-
 Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh) and [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
 
+
+> [quote.sh](https://github.com/mietek/bashmenot/blob/master/src/quote.sh):
 
 ### sed_unbuffered
 > arg*
@@ -309,7 +310,7 @@ $ echo foo | quote
 
 Execute the specified command with its output quoted or omitted, depending on the value of _quiet_ and the exit status of the command.
 
-If _quiet_ is `0`, output is always quoted; otherwise, output is quoted if the command returns a non-zero exit status.
+If _quiet_ is `0`, output is always quoted.  Otherwise, output is quoted if the command returns a non-zero exit status.
 
 ```
 function foo () {
@@ -335,15 +336,17 @@ $ quote_quietly 1 bar
 Line processing
 ---------------
 
-Found in [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh).
-
 Depends on [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh).
 
+
+> [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh):
 
 ### filter_last
 >
 
-Output the last line of input; return `0`.
+Output the last line of input.
+
+Never fails.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_last
@@ -354,7 +357,9 @@ baz
 ### filter_not_last
 >
 
-Output all lines of input except the last; return `0`.
+Output all lines of input except the last.
+
+Never fails.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_not_last
@@ -366,9 +371,9 @@ bar
 ### filter_matching
 > regex
 
-Output lines of input which match the specified regular expression; return `0`.
+Output lines of input which match the specified regular expression.
 
-Wrapper for _awk_.
+Wrapper for _awk_.  Never fails.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_matching '^bar$'
@@ -379,9 +384,9 @@ bar
 ### filter_not_matching
 > regex
 
-Output lines of input which do not match the specified regular expression; return `0`.
+Output lines of input which do not match the specified regular expression.
 
-Wrapper for _awk_.
+Wrapper for _awk_.  Never fails.
 
 ```
 $ echo -e "foo\nbar\nbaz" | filter_not_matching '^bar$'
@@ -393,7 +398,7 @@ baz
 ### match_at_most_one
 >
 
-Output up to one line of input if the input consists of up to one line; otherwise, return `1`.
+Output up to one line of input if the input consists of up to one line.  Otherwise, return `1`.
 
 ```
 $ echo -n | match_at_most_one
@@ -411,7 +416,7 @@ $ echo -e "foo\nbar" | match_at_most_one ; echo $?
 ### match_at_least_one
 >
 
-Pipe input to output if the input consists of one line or more; otherwise, return `1`.
+Pipe input to output if the input consists of one line or more.  Otherwise, return `1`.
 
 ```
 $ echo -n | match_at_least_one ; echo $?
@@ -431,7 +436,7 @@ bar
 ### match_exactly_one
 >
 
-Output one line of input if the input consists of only one line; otherwise, return `1`.
+Output one line of input if the input consists of only one line.  Otherwise, return `1`.
 
 ```
 $ echo -n | match_exactly_one ; echo $?
@@ -465,10 +470,10 @@ foo
 Sorting
 -------
 
-Found in [sort.sh](https://github.com/mietek/bashmenot/blob/master/src/sort.sh).
-
 Requires GNU _sort_.  Depends on [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
 
+
+> [sort.sh](https://github.com/mietek/bashmenot/blob/master/src/sort.sh):
 
 ### sort_naturally
 >
@@ -498,10 +503,10 @@ Like [sort_naturally](#sort_naturally), but with input separated by `NUL` bytes 
 File operations
 ---------------
 
-Found in [file.sh](https://github.com/mietek/bashmenot/blob/master/src/file.sh).
-
 Depends on [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh) and [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh).
 
+
+> [file.sh](https://github.com/mietek/bashmenot/blob/master/src/file.sh):
 
 ### find_added
 > old_dir new_dir
@@ -612,10 +617,10 @@ Remove symbols from each file specified in input, separated by `NUL` bytes.
 Archiving
 ---------
 
-Found in [tar.sh](https://github.com/mietek/bashmenot/blob/master/src/tar.sh).
-
 Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), and [file.sh](https://github.com/mietek/bashmenot/blob/master/src/file.sh).
 
+
+> [tar.sh](https://github.com/mietek/bashmenot/blob/master/src/tar.sh):
 
 ### echo_tar_format_flag
 > archive_name
@@ -668,10 +673,10 @@ foo/baz/bar.tar.gz
 Date formatting
 ---------------
 
-Found in [date.sh](https://github.com/mietek/bashmenot/blob/master/src/date.sh).
-
 Requires GNU _date_.  Depends on [os.sh](https://github.com/mietek/bashmenot/blob/master/src/os.sh).
 
+
+> [date.sh](https://github.com/mietek/bashmenot/blob/master/src/date.sh):
 
 ### echo_date
 > args*
@@ -704,15 +709,15 @@ $ echo_timestamp
 HTTP transfers
 --------------
 
-Found in [curl.sh](https://github.com/mietek/bashmenot/blob/master/src/curl.sh).
-
 Requires _curl_.  Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh) and [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh).
 
+
+> [curl.sh](https://github.com/mietek/bashmenot/blob/master/src/curl.sh):
 
 ### curl_do
 > url
 
-Wrapper for _curl_ with uniform logging and failure handling; used by every function in this module.
+Wrapper for _curl_ with uniform logging and failure handling.  Used by every function in this module.
 
 All messages are logged to _stderr_.
 
@@ -720,9 +725,9 @@ All messages are logged to _stderr_.
 ### curl_download
 > src_file_url dst_file
 
-Download the specified resource with HTTP `GET`; on failure, return `1`.
+Download the specified resource with HTTP `GET`.
 
-Does not overwrite existing files.  Creates the destination directory if needed.
+Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
 ```
 $ curl_download httpbin.org/get foo
@@ -733,7 +738,9 @@ $ curl_download httpbin.org/get foo
 ### curl_check
 > src_url
 
-Access the specified resource with HTTP `HEAD`; on failure, return `1`.
+Access the specified resource with HTTP `HEAD`.
+
+Returns `1` on failure.
 
 ```
 $ curl_check httpbin.org/status/404
@@ -744,9 +751,9 @@ $ curl_check httpbin.org/status/404
 ### curl_upload
 > src_file dst_file_url
 
-Upload the specified file with HTTP `PUT`; on failure, return `1`.
+Upload the specified file with HTTP `PUT`.
 
-**Overwrites** existing resources without warning.
+**Overwrites** existing resources without warning.  Returns `1` on failure.
 
 ```
 $ curl_upload foo httpbin.org/put
@@ -757,7 +764,9 @@ $ curl_upload foo httpbin.org/put
 ### curl_delete
 > dst_url
 
-Delete the specified resource with HTTP `DELETE`; on failure, return `1`.
+Delete the specified resource with HTTP `DELETE`.
+
+Returns `1` on failure.
 
 ```
 $ curl_delete httpbin.org/delete
@@ -768,12 +777,12 @@ $ curl_delete httpbin.org/delete
 Amazon S3 transfers
 -------------------
 
-Found in [s3.sh](https://github.com/mietek/bashmenot/blob/master/src/s3.sh).
-
 Requires _curl_ and OpenSSL.  Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [expect.sh](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), [line.sh](https://github.com/mietek/bashmenot/blob/master/src/line.sh), [date.sh](https://github.com/mietek/bashmenot/blob/master/src/date.sh), and [curl.sh](https://github.com/mietek/bashmenot/blob/master/src/curl.sh).
 
-The `BASHMENOT_AWS_ACCESS_KEY_ID` and `BASHMENOT_AWS_SECRET_ACCESS_KEY` environment variables are expected to contain the required authentication details.
+Authentication details are defined by `BASHMENOT_AWS_ACCESS_KEY_ID` and `BASHMENOT_AWS_SECRET_ACCESS_KEY`.
 
+
+> [s3.sh](https://github.com/mietek/bashmenot/blob/master/src/s3.sh):
 
 ### echo_s3_host
 >
@@ -801,7 +810,7 @@ Parse a S3 bucket listing in XML format into a file of S3 objects.
 ### s3_do
 > url
 
-S3-specific wrapper for [curl_do](#curl_do) with REST authentication; used by every function in this module.
+S3-specific wrapper for [curl_do](#curl_do) with REST authentication.  Used by every function in this module.
 
 All messages are logged to _stderr_.
 
@@ -809,9 +818,9 @@ All messages are logged to _stderr_.
 ### s3_download
 > src_bucket src_object dst_file
 
-Download the specified resource from S3 with HTTP `GET`; on failure, return `1`.
+Download the specified resource from S3 with HTTP `GET`.
 
-Does not overwrite existing files.  Creates the destination directory if needed.
+Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
 ```
 $ s3_download foo.halcyon.sh foo/bar bar
@@ -822,9 +831,11 @@ $ s3_download foo.halcyon.sh foo/bar bar
 ### s3_list
 > src_bucket src_prefix
 
-Output the contents of the specified S3 bucket with HTTP `GET`, listing the resources which start with the specified prefix; on failure, return `1`.
+Output the contents of the specified S3 bucket with HTTP `GET`, listing the resources which start with the specified prefix.
 
 The source prefix may be empty.
+
+Returns `1` on failure.
 
 ```
 $ s3_list foo.halcyon.sh foo
@@ -843,9 +854,11 @@ baz
 ### s3_check
 > src_bucket src_object
 
-Access the specified S3 resource with HTTP `HEAD`; on failure, return `1`.
+Access the specified S3 resource with HTTP `HEAD`.
 
 The source object may be empty.
+
+Returns `1` on failure.
 
 ```
 $ s3_check foo.halcyon.sh no-foo
@@ -856,11 +869,11 @@ $ s3_check foo.halcyon.sh no-foo
 ### s3_upload
 > src_file dst_bucket dst_object dst_acl
 
-Upload the specified file to S3 with HTTP `PUT`; on failure, return `1`.
+Upload the specified file to S3 with HTTP `PUT`.
 
-The destination resource is published under the specified ACL; commonly used values are `private` and `public-read`.
+The destination resource is assigned the specified ACL.  Commonly used values are `private` and `public-read`.
 
-**Overwrites** existing resources without warning.
+**Overwrites** existing resources without warning.  Returns `1` on failure.
 
 ```
 $ s3_upload foo foo.halcyon.sh bar/foo private
@@ -871,9 +884,11 @@ $ s3_upload foo foo.halcyon.sh bar/foo private
 ### s3_create
 > dst_bucket dst_acl
 
-Create an S3 bucket with HTTP `PUT`; on failure, return `1`.
+Create an S3 bucket with HTTP `PUT`.
 
-As with [s3_upload](#s3_upload), the ACL applies to the destination.
+As with [s3_upload](#s3_upload), the destination is assigned the specified ACL.
+
+Returns `1` on failure.
 
 ```
 $ s3_create foo.halcyon.sh private
@@ -884,11 +899,13 @@ $ s3_create foo.halcyon.sh private
 ### s3_copy
 > src_bucket src_object dst_bucket dst_object dst_acl
 
-Copy the specified resource on S3 with HTTP `PUT` without downloading or uploading the resource data; on failure, return `1`.
+Copy the specified resource on S3 with HTTP `PUT` without downloading or uploading the resource data.
 
 The source and destination may be the same bucket or separate buckets.
 
-As with [s3_upload](#s3_upload), the ACL applies to the destination.
+As with [s3_upload](#s3_upload), the destination is assigned the specified ACL.
+
+Returns `1` on failure.
 
 ```
 $ s3_copy foo.halcyon.sh foo bar.halcyon.sh bar private
@@ -899,9 +916,11 @@ $ s3_copy foo.halcyon.sh foo bar.halcyon.sh bar private
 ### s3_delete
 > dst_bucket dst_object
 
-Delete the specified resource from S3 with HTTP `DELETE`; on failure, return `1`.
+Delete the specified resource from S3 with HTTP `DELETE`.
 
-To delete an S3 bucket, specify an empty source object.
+The destination object may be empty.
+
+Returns `1` on failure.
 
 ```
 $ s3_delete foo.halcyon.sh foo/bar
