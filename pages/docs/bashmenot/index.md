@@ -1,16 +1,6 @@
 ---
 title: bashmenot — Function reference
 html-class: insert-toc
-head-bonus:
-  <script>
-    window.insertToc = function (toc, container) {
-      var afterToc = 3;
-      if (container.classList.contains('level1')) {
-        afterToc = 1;
-      }
-      container.insertBefore(toc, container.children[afterToc]);
-    }
-  </script>
 ---
 
 
