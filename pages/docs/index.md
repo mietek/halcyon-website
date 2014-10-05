@@ -9,7 +9,7 @@ Docs
 Work in progress.
 
 - [Public prebuilt packages](docs/public-prebuilt-packages/)
-- [Internals](docs/internals/)
+- [Code commentary](docs/code-commentary/)
 - [bashmenot reference](docs/bashmenot-reference/)
 
 

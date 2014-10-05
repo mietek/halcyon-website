@@ -1,11 +1,11 @@
 ---
-title: bashmenot reference
+title: Docs/bashmenot reference
 html-class: insert-toc
 ---
 
 
-bashmenot reference
-===================
+Docs/bashmenot reference
+========================
 
 
 Logging
@@ -155,8 +155,8 @@ Depends on [log.sh](https://github.com/mietek/bashmenot/blob/master/src/log.sh).
 ### expect_args
 > var* `-- "$@"`
 
-- Check the required number of arguments is available.  Otherwise, die.
-- Set the specified variables to the values of corresponding arguments.
+1.  Check the required number of arguments is available.  Otherwise, die.
+2.  Set the specified variables to the values of corresponding arguments.
 
 Must be called with `-- "$@"` after the variable names.  Argument values may be empty.
 
@@ -401,11 +401,13 @@ baz
 Output up to one line of input if the input consists of up to one line.  Otherwise, return `1`.
 
 ```
-$ echo -n | match_at_most_one
+$ echo -n | match_at_most_one ; echo $?
+0
 ```
 ```
-$ echo foo | match_at_most_one
+$ echo foo | match_at_most_one ; echo $?
 foo
+0
 ```
 ```
 $ echo -e "foo\nbar" | match_at_most_one ; echo $?
@@ -423,13 +425,15 @@ $ echo -n | match_at_least_one ; echo $?
 1
 ```
 ```
-$ echo foo | match_at_least_one
+$ echo foo | match_at_least_one ; echo $?
 foo
+0
 ```
 ```
-$ echo -e "foo\nbar" | match_at_least_one
+$ echo -e "foo\nbar" | match_at_least_one ; echo $?
 foo
 bar
+0
 ```
 
 
@@ -443,8 +447,9 @@ $ echo -n | match_exactly_one ; echo $?
 1
 ```
 ```
-$ echo foo | match_exactly_one
+$ echo foo | match_exactly_one ; echo $?
 foo
+0
 ```
 ```
 $ echo -e "foo\nbar" | match_exactly_one ; echo $?

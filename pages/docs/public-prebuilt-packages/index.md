@@ -1,9 +1,9 @@
 ---
-title: Public prebuilt packages
+title: Docs/Public prebuilt packages
 ---
 
 
-Public prebuilt packages
-========================
+Docs/Public prebuilt packages
+=============================
 
 Work in progress.
