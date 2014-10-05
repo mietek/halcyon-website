@@ -54,33 +54,31 @@ Downloads and uploads
 
 Halcyon uses a private Amazon S3 bucket, defined by `HALCYON_S3_BUCKET`.
 
-All prebuilt packages are kept in the bucket with an OS-specific prefix.
+- All prebuilt packages are kept in the bucket with an OS-specific prefix.
 
-```
-$ s3_list s3.halcyon.sh linux-ubuntu-10-04-x64
-       Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-10-04-x64... done
-linux-ubuntu-10-04-x64/halcyon-cabal-1.20.0.3.tar.xz
-linux-ubuntu-10-04-x64/halcyon-ghc-7.6.3.tar.xz
-linux-ubuntu-10-04-x64/halcyon-ghc-7.8.3.tar.xz
-...
-```
+    ```
+    $ s3_list s3.halcyon.sh linux-ubuntu-10-04-x64
+           Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-10-04-x64... done
+    linux-ubuntu-10-04-x64/halcyon-cabal-1.20.0.3.tar.xz
+    linux-ubuntu-10-04-x64/halcyon-ghc-7.6.3.tar.xz
+    linux-ubuntu-10-04-x64/halcyon-ghc-7.8.3.tar.xz
+    ...
+    ```
 
-Any uploads made to the bucket are assigned an ACL, defined by `HALCYON_S3_ACL`.  Commonly used values are `private` and `public-read`.  The default value is `private`.
+- Any uploads made to the bucket are assigned an ACL, defined by `HALCYON_S3_ACL`.  Commonly used values are `private` and `public-read`.  The default value is `private`.
 
-All originals are kept in the bucket with an `original/` prefix, to decrease the load on upstream servers.
+- All originals are kept in the bucket with an `original/` prefix, to decrease the load on upstream servers.
 
-```
-$ s3_list s3.halcyon.sh original
-       Listing s3://s3.halcyon.sh/?prefix=original... done
-original/cabal-install-1.20.0.3.tar.gz
-original/ghc-7.6.3-x86_64-unknown-linux.tar.bz2
-original/ghc-7.8.3-x86_64-unknown-linux-centos65.tar.xz
-original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
-```
+    ```
+    $ s3_list s3.halcyon.sh original
+           Listing s3://s3.halcyon.sh/?prefix=original... done
+    original/cabal-install-1.20.0.3.tar.gz
+    original/ghc-7.6.3-x86_64-unknown-linux.tar.bz2
+    original/ghc-7.8.3-x86_64-unknown-linux-centos65.tar.xz
+    original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
+    ```
 
 Access to the bucket is controlled by defining `HALCYON_AWS_ACCESS_KEY_ID` and `HALCYON_AWS_SECRET_ACCESS_KEY`.
-
-If any of the above 
 
 
 > [transfer.sh](https://github.com/mietek/halcyon/blob/master/src/transfer.sh):
