@@ -49,10 +49,10 @@ After installation:
 Uses `HALCYON_OLD_CACHE_TMP_DIR`.
 
 
-Downloads and uploads
----------------------
+File transfers
+--------------
 
-Halcyon uses a private Amazon S3 bucket, defined by `HALCYON_S3_BUCKET`.
+Halcyon can use a private Amazon S3 bucket, defined by `HALCYON_S3_BUCKET`, to keep prebuilt packages.  If a private bucket is not available, Halcyon falls back to using a default public location, which also happens to be an S3 bucket, `s3.halcyon.sh`.
 
 - All prebuilt packages are kept in the bucket with an OS-specific prefix.
 
@@ -65,9 +65,9 @@ Halcyon uses a private Amazon S3 bucket, defined by `HALCYON_S3_BUCKET`.
     ...
     ```
 
-- Any uploads made to the bucket are assigned an ACL, defined by `HALCYON_S3_ACL`.  Commonly used values are `private` and `public-read`.  The default value is `private`.
+- Any files uploaded to the bucket are assigned an ACL, defined by `HALCYON_S3_ACL`.  Commonly used values are `private` and `public-read`.  The default value is `private`.
 
-- All originals are kept in the bucket with an `original/` prefix, to decrease the load on upstream servers.
+- All original files are kept in the bucket with an `original/` prefix, to decrease the load on upstream servers.
 
     ```
     $ s3_list s3.halcyon.sh original
@@ -86,13 +86,13 @@ Access to the bucket is controlled by defining `HALCYON_AWS_ACCESS_KEY_ID` and `
 ### has_s3
 >
 
-Check the variables necessary for S3 transfers are not unset and not empty.  Otherwise, return `1`.
+Check the variables necessary to use S3 are not unset and not empty.  Otherwise, return `1`.
 
 
 ### echo_default_s3_url
 > object
 
-Output the default Halcyon S3 URL for the specified object.
+Output the default public URL for the specified object.
 
 ```
 $ echo_default_s3_url foo
@@ -103,7 +103,7 @@ http://s3.halcyon.sh/foo
 ### download_original
 > src_file_name original_url dst_dir
 
-If S3 is available, download the specified original from S3.  If unsuccessful, or if S3 is not available, download the file from the original URL.
+If S3 is available, download the specified original file from the bucket.  If unsuccessful, or if the bucket is not available, download the file from the original location.
 
 Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
@@ -111,17 +111,35 @@ Does not overwrite existing files.  Creates the destination directory if needed.
 ### upload_original
 > src_dir src_file_name
 
-If S3 is available, and `HALCYON_NO_UPLOAD` is not set to `1`, upload the specified original to S3.  Otherwise, do nothing.
+If S3 is available, and `HALCYON_NO_UPLOAD` is not set to `1`, upload the specified original file to the bucket.  Otherwise, do nothing.
 
 **Overwrites** existing files without warning.  Returns `1` on failure.
 
 
 ### download_prebuilt
-> 
+> src_prefix src_file_name dst_dir
+
+Like [download_original](#download_original/), but for prebuilt packages, and with no fallback.
+
+If S3 is available, download the specified package from the bucket.  Otherwise, download the file from the default public location.
+
+Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
 
 ### list_prebuilt
+> src_prefix
+
+If S3 is available, output the contents of the bucket, listing the files which start with the specified prefix.  Otherwise, list the contents of the default public location.
+
+
 ### upload_prebuilt
+> src_file dst_prefix
+
+Like [upload_original](#upload_original/), but for prebuilt packages.
+
+If S3 is available, and `HALCYON_NO_UPLOAD` is not set to `1`, upload the specified package to the bucket.  Otherwise, do nothing.
+
+**Overwrites** existing files without warning.  Returns `1` on failure.
 
 
 Constraint resolution
