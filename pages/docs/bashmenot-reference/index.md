@@ -804,7 +804,7 @@ https://s3.amazonaws.com/foo/bar
 ### read_s3_listing_xml
 >
 
-Parse a S3 bucket listing in XML format into a file of S3 objects.
+Parse an S3 bucket listing in XML format into a file of objects.
 
 
 ### s3_do

@@ -52,15 +52,9 @@ Uses `HALCYON_OLD_CACHE_TMP_DIR`.
 Downloads and uploads
 ---------------------
 
-Halcyon is intended to be used with an Amazon S3 bucket, defined by `HALCYON_S3_BUCKET`, but can also be used in a limited fashion without S3.
+Halcyon uses a private Amazon S3 bucket, defined by `HALCYON_S3_BUCKET`.
 
-There are three modes of operation:
-
-1. S3 is not used
-2. S3 is used for downloads only
-3. S3 is used for downloads and uploads
-
-All prebuilt packages are kept in the S3 bucket with an OS-specific prefix.
+All prebuilt packages are kept in the bucket with an OS-specific prefix.
 
 ```
 $ s3_list s3.halcyon.sh linux-ubuntu-10-04-x64
@@ -71,9 +65,9 @@ linux-ubuntu-10-04-x64/halcyon-ghc-7.8.3.tar.xz
 ...
 ```
 
-Any uploads made to the S3 bucket are assigned an ACL, defined by `HALCYON_S3_ACL`.  Commonly used values are `private` and `public-read`.  The default value is `private`.
+Any uploads made to the bucket are assigned an ACL, defined by `HALCYON_S3_ACL`.  Commonly used values are `private` and `public-read`.  The default value is `private`.
 
-All originals are kept in the S3 bucket with an `original/` prefix, to decrease the load on upstream servers.
+All originals are kept in the bucket with an `original/` prefix, to decrease the load on upstream servers.
 
 ```
 $ s3_list s3.halcyon.sh original
@@ -84,7 +78,9 @@ original/ghc-7.8.3-x86_64-unknown-linux-centos65.tar.xz
 original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
 ```
 
-Access to the S3 bucket is controlled by `BASHMENOT_AWS_ACCESS_KEY_ID` and `BASHMENOT_AWS_SECRET_ACCESS_KEY`.
+Access to the bucket is controlled by defining `HALCYON_AWS_ACCESS_KEY_ID` and `HALCYON_AWS_SECRET_ACCESS_KEY`.
+
+If any of the above 
 
 
 > [transfer.sh](https://github.com/mietek/halcyon/blob/master/src/transfer.sh):
