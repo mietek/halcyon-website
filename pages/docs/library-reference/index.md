@@ -18,16 +18,16 @@ Environment variables { .vars }
 ---------------------
 
 
-### `BASHMENOT_AWS_ACCESS_KEY_ID`
+### `HALCYON_AWS_ACCESS_KEY_ID`
 > Default value:  _none_
 
 Part of the authentication details used by all [Amazon S3 transfer functions](#amazon-s3-transfer-functions).
 
 
-### `BASHMENOT_AWS_SECRET_ACCESS_KEY`
+### `HALCYON_AWS_SECRET_ACCESS_KEY`
 > Default value:  _none_
 
-Like [`BASHMENOT_AWS_ACCESS_KEY_ID`](#bashmenot_aws_access_key_id), but secret.
+Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.
 
 
 
@@ -869,7 +869,7 @@ Amazon S3 transfer functions { .funs }
 
 Functions to simplify Amazon S3 transfers, with user-friendly logging and failure handling.  _curl_ and OpenSSL are required.
 
-Authentication details are defined by the [`BASHMENOT_AWS_ACCESS_KEY_ID`](#bashmenot_aws_access_key_id) and [`BASHMENOT_AWS_SECRET_ACCESS_KEY`](#bashmenot_aws_secret_access_key) environment variables.
+Authentication details are defined by the [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](#halcyon_aws_secret_access_key) environment variables.
 
 > Contents of [`s3.sh`](https://github.com/mietek/bashmenot/blob/master/src/s3.sh):
 
