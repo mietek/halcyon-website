@@ -60,3 +60,11 @@ Caching
 Halcyon downloads all files to a cache directory, defined by [`HALCYON_CACHE_DIR`](docs/reference/#halcyon_cache_dir).
 
 The cache is automatically cleaned after every installation, retaining only the most recently used archives.
+
+
+Constraints
+-----------
+
+A constraint consists of a package name and version.  A file of constraints consists of any number of constraints separated by newlines.
+
+Constraints are kept in `cabal.config` files.  The canonical format of these files is defined to match the output of `cabal freeze`.

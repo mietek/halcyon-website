@@ -7,27 +7,9 @@ html-class: insert-toc
 Library reference
 =================
 
-Description of functions available in [_bashmenot_](https://github.com/mietek/bashmenot), a library for GNU _bash_, intended to simplify the development of correct software.
+Documentation for functions available in [_bashmenot_](https://github.com/mietek/bashmenot), a library for GNU _bash_, intended to simplify the development of correct software.
 
 > Contents:
-
-
-
-
-Environment variables { .vars }
----------------------
-
-
-### `HALCYON_AWS_ACCESS_KEY_ID`
-> Default value:  _none_
-
-Part of the authentication details used by all [Amazon S3 transfer functions](#amazon-s3-transfer-functions).
-
-
-### `HALCYON_AWS_SECRET_ACCESS_KEY`
-> Default value:  _none_
-
-Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.
 
 
 
@@ -1020,3 +1002,21 @@ $ s3_delete foo.halcyon.sh foo/bar
 $ s3_delete foo.halcyon.sh ''
        Deleting s3://foo.halcyon.sh/... done, 204
 ```
+
+
+
+
+Environment variables { .vars }
+---------------------
+
+
+### `HALCYON_AWS_ACCESS_KEY_ID`
+> Default value:  _none_
+
+Part of the authentication details used by all [Amazon S3 transfer functions](#amazon-s3-transfer-functions).
+
+
+### `HALCYON_AWS_SECRET_ACCESS_KEY`
+> Default value:  _none_
+
+Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.

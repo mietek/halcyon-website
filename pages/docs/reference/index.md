@@ -7,96 +7,22 @@ html-class: insert-toc
 Reference
 =========
 
-Work in progress.
+Documentation for [Halcyon](https://github.com/mietek/halcyon/) internal functions.
 
-Best read together with the [Halcyon source code](https://github.com/mietek/halcyon/tree/master/src/).
+Work in progress.
 
 > Contents:
 
 
-Environment variables { .vars }
----------------------
-
-### `HALCYON_AWS_ACCESS_KEY_ID`
-> Default value:  _none_
-
-### `HALCYON_AWS_SECRET_ACCESS_KEY`
-> Default value:  _none_
-
-### `HALCYON_S3_BUCKET`
-> Default value:  _none_
-
-### `HALCYON_S3_ACL`
-> Default value:  `private`
-
-### `HALCYON_DIR`
-> Default value:  `/app/.halcyon`
-
-### `HALCYON_CONFIG_DIR`
-> Default value:  `${HALCYON_DIR}/config`
-
-### `HALCYON_INSTALL_DIR`
-> Default value:  `${HALCYON_DIR}/install`
-
-### `HALCYON_CACHE_DIR`
-> Default value:  `/var/tmp/halcyon/cache`
-
-### `HALCYON_PURGE_CACHE`
-> Default value:  `0`
-
-### `HALCYON_NO_ARCHIVE`
-> Default value:  `0`
-
-### `HALCYON_NO_UPLOAD`
-> Default value:  `0`
-
-### `HALCYON_DEPENDENCIES_ONLY`
-> Default value:  `0`
-
-### `HALCYON_PREBUILT_ONLY`
-> Default value:  `0`
-
-### `HALCYON_NO_PREBUILT`
-> Default value:  `0`
-
-### `HALCYON_NO_PREBUILT_GHC`
-> Default value:  `0`
-
-### `HALCYON_NO_PREBUILT_CABAL`
-> Default value:  `0`
-
-### `HALCYON_NO_PREBUILT_SANDBOX`
-> Default value:  `0`
-
-### `HALCYON_NO_PREBUILT_APP`
-> Default value:  `0`
-
-### `HALCYON_FORCE_GHC_VERSION`
-> Default value:  _none_
-
-### `HALCYON_FORCE_CABAL_VERSION`
-> Default value:  _none_
-
-### `HALCYON_FORCE_CABAL_UPDATE`
-> Default value:  `0`
-
-### `HALCYON_TRIM_GHC`
-> Default value:  `0`
-
-### `HALCYON_CUSTOM_SCRIPT`
-> Default value:  _none_
-
-### `HALCYON_QUIET`
-> Default value:  `0`
 
 
 Cache maintenance functions { .funs }
 ---------------------------
 
-Functions to maintain the Halcyon cache, and communicate its state to the user.
+Functions to maintain the Halcyon cache, and communicate the state of the cache to the user.
 
 
-> [`cache.sh`](https://github.com/mietek/halcyon/blob/master/src/cache.sh):
+> Contents of [`cache.sh`](https://github.com/mietek/halcyon/blob/master/src/cache.sh):
 
 ### `echo_tmp_cache_dir`
 > Arguments:  _none_
@@ -132,22 +58,24 @@ After installation:
 Uses a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
 
 
+
+
 File transfer functions { .funs }
 -----------------------
 
+Functions for transferring original files and prebuilt packages.
+
+> Contents of [`transfer.sh`](https://github.com/mietek/halcyon/blob/master/src/transfer.sh):
 
 
-
-> [transfer.sh](https://github.com/mietek/halcyon/blob/master/src/transfer.sh):
-
-### has_s3
->
+### `has_s3`
+> Arguments:  _none_
 
 Check the environment variables necessary to use S3 are not unset and not empty.  Otherwise, return `1`.
 
 
-### echo_default_s3_url
-> object
+### `echo_default_s3_url`
+> Arguments:  _`object`_
 
 Output the default Halcyon public URL of the specified object.
 
@@ -157,66 +85,65 @@ http://s3.halcyon.sh/foo
 ```
 
 
-### download_original
-> src_file_name original_url dst_dir
+### `download_original`
+> Arguments:  _`src_file_name original_url dst_dir`_
 
-If S3 is available, download the specified original file from the bucket.  If unsuccessful, or if the bucket is not available, download the file from the original location.
+If an S3 bucket is available, download the specified original file from the bucket.  If unsuccessful, or if the bucket is not available, download the file from the original location.
 
 Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
 
-### upload_original
-> src_dir src_file_name
+### `upload_original`
+> Arguments:  _`src_dir src_file_name`_
 
-If S3 is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified original file to the bucket.  Otherwise, do nothing.
+If an S3 bucket is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified original file to the bucket.  Otherwise, do nothing.
 
 **Overwrites** existing files without warning.  Returns `1` on failure.
 
 
-### download_prebuilt
-> src_prefix src_file_name dst_dir
+### `download_prebuilt`
+> Arguments:  _`src_prefix src_file_name dst_dir`_
 
 Like [`download_original`](#download_original), but for prebuilt packages, and with no fallback.
 
-If S3 is available, download the specified package from the bucket.  Otherwise, download the file from the default Halcyon public location.
+If an S3 bucket is available, download the specified package from the bucket.  Otherwise, download the file from the default Halcyon public location.
 
 Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
 
-### list_prebuilt
-> src_prefix
+### `list_prebuilt`
+> Arguments:  _`src_prefix`_
 
-If S3 is available, output the contents of the bucket, listing the files which start with the specified prefix.  Otherwise, list the contents of the default Halcyon public location.
+If an S3 bucket is available, output the contents of the bucket, listing the files which start with the specified prefix.  Otherwise, list the contents of the default Halcyon public location.
 
 
-### upload_prebuilt
-> src_file dst_prefix
+### `upload_prebuilt`
+> Arguments:  _`src_file dst_prefix`_
 
 Like [`upload_original`](#upload_original), but for prebuilt packages.
 
-If S3 is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified package to the bucket.  Otherwise, do nothing.
+If an S3 bucket is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified package to the bucket.  Otherwise, do nothing.
 
 **Overwrites** existing files without warning.  Returns `1` on failure.
 
 
-Constraint processing functions
+
+
+Constraint processing functions { .funs }
 -------------------------------
 
-A constraint consists of a package name and version.  A file of constraints consists of any number of constraints separated by newlines.
+TODO
 
-Constraints are kept in `cabal.config` files.  The canonical format of these files is defined to match the output of `cabal freeze`.
+> Contents of [`constraints.sh`](https://github.com/mietek/halcyon/blob/master/src/constraints.sh):
 
-
-> [constraints.sh](https://github.com/mietek/halcyon/blob/master/src/constraints.sh):
-
-### echo_tmp_constraints_config
->
+### `echo_tmp_constraints_config`
+> Arguments:  _none_
 
 Output the path to a temporary file used to tell the user about any differences between the actual and expected constraints.
 
 
-### echo_constraints_digest
->
+### `echo_constraints_digest`
+> Arguments:  _none_
 
 Output the SHA-1 digest of a file of constraints.
 
@@ -226,14 +153,14 @@ $ echo -e "foo 1.0\nbar 2.0" | echo_constraints_digest
 ```
 
 
-### echo_customize_script_digest
->
+### `echo_customize_script_digest`
+> Arguments:  _none_
 
 Like [echo_constraints_digest](#echo_constraints_digest), but for a sandbox customization script.
 
 
-### echo_constraints
->
+### `echo_constraints`
+> Arguments:  _none_
 
 Render a file of constraints into the canonical `cabal.config` format.
 
@@ -244,8 +171,8 @@ constraints: foo ==1.0,
 ```
 
 
-### echo_constraints_difference
-> old_constraints new_constraints
+### `echo_constraints_difference`
+> Arguments:  _`old_constraints new_constraints`_
 
 Output a _diff_ between the two specified files of constraints, as rendered into the canonical format.
 
@@ -263,63 +190,79 @@ $ echo_constraints_difference "${old}" "${new}"
 ```
 
 
-### read_constraints
->
+### `read_constraints`
+> Arguments:  _none_
 
 Parse a file of constraints from the canonical `cabal.config` format.
 
 Accepts slight format variations.  Constraints must be separated by newlines.
 
 
-### read_constraints_dry_run
->
+### `read_constraints_dry_run`
+> Arguments:  _none_
 
 Parse a file of constraints from the `cabal freeze --dry-run` format.
 
 
-### filter_valid_constraints
->
+### `filter_valid_constraints`
+> Arguments:  _none_
 
 Pipe input to output, checking that a constraint for the `base` package is specified, and that no more than one constraint is specified for any package.
 
 
-### score_constraints
-> constraints sandbox_tag
+### `score_constraints`
+> Arguments:  _`constraints sandbox_tag`_
+
+TODO
 
 
-### detect_app_constraint
-> app_dir
+### `detect_app_constraint`
+> Arguments:  `app_dir`
+
+TODO
 
 
-### filter_correct_constraints
-> app_dir
+### `filter_correct_constraints`
+> Arguments:  `app_dir`
+
+TODO
 
 
-### detect_constraints
-> app_dir
+### `detect_constraints`
+> Arguments:  `app_dir`
+
+TODO
 
 
-### insert_customize_script_constraint
-> app_dir
+### `insert_customize_script_constraint`
+> Arguments:  `app_dir`
+
+TODO
 
 
-### freeze_implicit_constraints
-> app_dir
+### `freeze_implicit_constraints`
+> Arguments:  `app_dir`
+
+TODO
 
 
-### freeze_actual_constraints
-> app_dir
+### `freeze_actual_constraints`
+> Arguments:  `app_dir`
+
+TODO
 
 
 
-GHC installation functions
+
+GHC installation functions { .funs }
 --------------------------
 
 
-> [ghc.sh](https://github.com/mietek/halcyon/blob/master/src/ghc.sh):
+> Contents of [`ghc.sh`](https://github.com/mietek/halcyon/blob/master/src/ghc.sh):
 
-### echo_ghc_libgmp10_x64_original_url
-> ghc_version
+
+### `echo_ghc_libgmp10_x64_original_url`
+> Arguments:  _`ghc_version`_
 
 Output the original URL of the `libgmp10` variant `x64` architecture binary distribution for the specified GHC version.
 
@@ -329,14 +272,14 @@ http://www.haskell.org/ghc/dist/7.8.3/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
 ```
 
 
-### echo_ghc_libgmp3_x64_original_url
-> ghc_version
+### `echo_ghc_libgmp3_x64_original_url`
+> Arguments:  _`ghc_version`_
 
 Like [echo_ghc_libgmp10_x64_original_url](#echo_ghc_libgmp10_x64_original_url), but for the `libgmp3` variant.
 
 
-### echo_ghc_version_from_base_version
-> base_version
+### `echo_ghc_version_from_base_version`
+> Arguments:  _`base_version`_
 
 Output the GHC version corresponding to the specified `base` package version.
 
@@ -346,8 +289,8 @@ $ echo_ghc_version_from_base_version 4.7.0.1
 ```
 
 
-### echo_ghc_default_version
->
+### `echo_ghc_default_version`
+> Arguments:  _none_
 
 Output the default Halcyon GHC version.
 
@@ -357,8 +300,8 @@ $ echo_ghc_default_version
 ```
 
 
-### echo_ghc_tag
-> ghc_version ghc_variant
+### `echo_ghc_tag`
+> Arguments:  _`ghc_version ghc_variant`_
 
 Output a tab-separated GHC tag, consisting of the current [HALCYON_DIR](#halcyon_dir), OS identifier, and the specified GHC version and packaging variant.
 
@@ -370,8 +313,8 @@ $ echo_ghc_tag 7.8.3 foo
 ```
 
 
-### echo_ghc_tag_version
-> ghc_tag
+### `echo_ghc_tag_version`
+> Arguments:  _`ghc_tag`_
 
 Output the version included in the specified GHC tag.
 
@@ -381,14 +324,14 @@ $ echo_ghc_tag_version "`echo_ghc_tag 7.8.3 foo`"
 ```
 
 
-### echo_ghc_tag_variant
-> ghc_tag
+### `echo_ghc_tag_variant`
+> Arguments:  _`ghc_tag`_
 
 Like [echo_ghc_tag_version](#echo_ghc_tag_version), but for the packaging variant.
 
 
-### echo_ghc_archive
-> ghc_tag
+### `echo_ghc_archive`
+> Arguments:  _`ghc_tag`_
 
 Output the archive name corresponding to the specified GHC tag.
 
@@ -398,8 +341,8 @@ halcyon-ghc-7.8.3-foo.tar.xz
 ```
 
 
-### echo_ghc_description
-> ghc_tag
+### `echo_ghc_description`
+> Arguments:  _`ghc_tag`_
 
 Output a human-readable description of the specified GHC tag.
 
@@ -409,14 +352,14 @@ GHC 7.8.3 (foo)
 ```
 
 
-### echo_tmp_ghc_dir
->
+### `echo_tmp_ghc_dir`
+> Arguments:  _none_
 
 Output the path to a temporary directory used while installing GHC.
 
 
-### validate_ghc_tag
-> ghc_tag
+### `validate_ghc_tag`
+> Arguments:  _`ghc_tag`_
 
 Parse a tag, checking that it is equal to the specified GHC tag.  Otherwise, return `1`.
 
@@ -430,8 +373,8 @@ $ echo bar | validate_ghc_tag "`echo_ghc_tag 7.8.3 foo`" ; echo $?
 ```
 
 
-### detect_base_version
->
+### `detect_base_version`
+> Arguments:  _none_
 
 Output the `base` package version of the currently active GHC.
 
@@ -441,151 +384,334 @@ $ detect_base_version
 ```
 
 
-### prepare_ghc_libs
-> ghc_version
+### `prepare_ghc_libs`
+> Arguments:  _`ghc_version`_
+
+TODO
 
 
-### build_ghc
-> ghc_version
+### `build_ghc`
+> Arguments:  _`ghc_version`_
+
+TODO
 
 
-### trim_ghc
-> ghc_tag ghc_version
+### `trim_ghc`
+> Arguments:  _`ghc_tag ghc_version`_
+
+TODO
 
 
-### strip_ghc
-> ghc_tag ghc_version
+### `strip_ghc`
+> Arguments:  _`ghc_tag ghc_version`_
+
+TODO
 
 
-### archive_ghc
->
+### `archive_ghc`
+> Arguments:  _none_
 
-### restore_ghc
-> ghc_tag
-
-
-### infer_ghc_version
-> app_dir
+TODO
 
 
-### activate_ghc
-> 
+### `restore_ghc`
+> Arguments:  _`ghc_tag`_
+
+TODO
 
 
-### deactivate_ghc
->
+### `infer_ghc_version`
+> Arguments:  _`app_dir`_
+
+TODO
 
 
-### install_ghc
-> app_dir
+### `activate_ghc`
+> Arguments:  _none_
+
+TODO
 
 
-Cabal installation functions
+### `deactivate_ghc`
+> Arguments:  _none_
+
+TODO
+
+
+### `install_ghc`
+> Arguments: ` _app_dir_`
+
+TODO
+
+
+
+
+Cabal installation functions { .funs }
 ----------------------------
 
+TODO
 
-> [cabal.sh](https://github.com/mietek/halcyon/blob/master/src/cabal.sh):
-
-### echo_cabal_original_url
-### echo_cabal_default_version
-### echo_cabal_config
-### echo_cabal_tag
-### echo_cabal_tag_version
-### echo_cabal_tag_timestamp
-### echo_cabal_archive
-### echo_updated_cabal_tag_pattern
-### echo_updated_cabal_archive_prefix
-### echo_updated_cabal_archive_pattern
-### echo_updated_cabal_archive_timestamp
-### echo_cabal_description
-### echo_tmp_cabal_dir
-### validate_cabal_tag
-### validate_updated_cabal_timestamp
-### validate_updated_cabal_tag
-### validate_updated_cabal_archive
-### match_updated_cabal_archive
-### cabal_do
-### sandboxed_cabal_do
-### cabal_update
-### cabal_list_latest_package_version
-### cabal_create_sandbox
-### cabal_install
-### cabal_install_deps
-### cabal_configure_app
-### cabal_build_app
-### build_cabal
-### update_cabal
-### archive_cabal
-### restore_cabal
-### restore_archived_updated_cabal
-### restore_updated_cabal
-### infer_cabal_version
-### activate_cabal
-### deactivate_cabal
-### install_cabal
+> Contents of [`cabal.sh`](https://github.com/mietek/halcyon/blob/master/src/cabal.sh):
 
 
-Sandbox installation functions
+### `echo_cabal_original_url`
+### `echo_cabal_default_version`
+### `echo_cabal_config`
+### `echo_cabal_tag`
+### `echo_cabal_tag_version`
+### `echo_cabal_tag_timestamp`
+### `echo_cabal_archive`
+### `echo_updated_cabal_tag_pattern`
+### `echo_updated_cabal_archive_prefix`
+### `echo_updated_cabal_archive_pattern`
+### `echo_updated_cabal_archive_timestamp`
+### `echo_cabal_description`
+### `echo_tmp_cabal_dir`
+### `validate_cabal_tag`
+### `validate_updated_cabal_timestamp`
+### `validate_updated_cabal_tag`
+### `validate_updated_cabal_archive`
+### `match_updated_cabal_archive`
+### `cabal_do`
+### `sandboxed_cabal_do`
+### `cabal_update`
+### `cabal_list_latest_package_version`
+### `cabal_create_sandbox`
+### `cabal_install`
+### `cabal_install_deps`
+### `cabal_configure_app`
+### `cabal_build_app`
+### `build_cabal`
+### `update_cabal`
+### `archive_cabal`
+### `restore_cabal`
+### `restore_archived_updated_cabal`
+### `restore_updated_cabal`
+### `infer_cabal_version`
+### `activate_cabal`
+### `deactivate_cabal`
+### `install_cabal`
+
+
+
+
+Sandbox installation functions { .funs }
 ------------------------------
 
+TODO
 
-> [sandbox.sh](https://github.com/mietek/halcyon/blob/master/src/sandbox.sh):
-
-### log_add_config_help
-### echo_sandbox_tag
-### echo_sandbox_tag_ghc_version
-### echo_sandbox_tag_app_label
-### echo_sandbox_tag_digest
-### echo_sandbox_archive
-### echo_sandbox_config
-### echo_sandbox_config_ghc_version
-### echo_sandbox_config_app_label
-### echo_sandbox_config_digest
-### echo_sandbox_config_prefix
-### echo_sandbox_config_pattern
-### echo_sandbox_description
-### echo_tmp_sandbox_config
-### echo_tmp_customize_sandbox_dir
-### validate_sandbox_tag
-### validate_sandbox_config
-### build_sandbox
-### strip_sandbox
-### archive_sandbox
-### restore_sandbox
-### infer_sandbox_constraints
-### infer_sandbox_digest
-### locate_matched_sandbox_tag
-### activate_sandbox
-### deactivate_sandbox
-### install_extended_sandbox
-### install_sandbox
-### customize_sandbox_with_execs
+> Contents of [`sandbox.sh`](https://github.com/mietek/halcyon/blob/master/src/sandbox.sh):
 
 
-App installation functions
+### `log_add_config_help`
+### `echo_sandbox_tag`
+### `echo_sandbox_tag_ghc_version`
+### `echo_sandbox_tag_app_label`
+### `echo_sandbox_tag_digest`
+### `echo_sandbox_archive`
+### `echo_sandbox_config`
+### `echo_sandbox_config_ghc_version`
+### `echo_sandbox_config_app_label`
+### `echo_sandbox_config_digest`
+### `echo_sandbox_config_prefix`
+### `echo_sandbox_config_pattern`
+### `echo_sandbox_description`
+### `echo_tmp_sandbox_config`
+### `echo_tmp_customize_sandbox_dir`
+### `validate_sandbox_tag`
+### `validate_sandbox_config`
+### `build_sandbox`
+### `strip_sandbox`
+### `archive_sandbox`
+### `restore_sandbox`
+### `infer_sandbox_constraints`
+### `infer_sandbox_digest`
+### `locate_matched_sandbox_tag`
+### `activate_sandbox`
+### `deactivate_sandbox`
+### `install_extended_sandbox`
+### `install_sandbox`
+### `customize_sandbox_with_execs`
+
+
+
+
+App installation functions { .funs }
 --------------------------
 
+TODO
 
-> [app.sh](https://github.com/mietek/halcyon/blob/master/src/app.sh):
+> Contents of [`app.sh`](https://github.com/mietek/halcyon/blob/master/src/app.sh):
 
-### echo_app_tag
-### echo_app_tag_ghc_version
-### echo_app_tag_app_label
-### echo_app_archive
-### echo_tmp_app_dir
-### echo_tmp_old_app_dir
-### echo_tmp_app_dist_dir
-### validate_app_tag
-### echo_fake_package
-### fake_app_dir
-### detect_app_package
-### detect_app_name
-### detect_app_version
-### detect_app_executable
-### detect_app_label
-### configure_app
-### build_app
-### archive_app
-### restore_app
-### infer_app_tag
-### install_app
+
+### `echo_app_tag`
+### `echo_app_tag_ghc_version`
+### `echo_app_tag_app_label`
+### `echo_app_archive`
+### `echo_tmp_app_dir`
+### `echo_tmp_old_app_dir`
+### `echo_tmp_app_dist_dir`
+### `validate_app_tag`
+### `echo_fake_package`
+### `fake_app_dir`
+### `detect_app_package`
+### `detect_app_name`
+### `detect_app_version`
+### `detect_app_executable`
+### `detect_app_label`
+### `configure_app`
+### `build_app`
+### `archive_app`
+### `restore_app`
+### `infer_app_tag`
+### `install_app`
+
+
+
+
+Environment variables { .vars }
+---------------------
+
+### `HALCYON_AWS_ACCESS_KEY_ID`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_AWS_SECRET_ACCESS_KEY`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_S3_BUCKET`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_S3_ACL`
+> Default value:  `private`
+
+TODO
+
+
+### `HALCYON_DIR`
+> Default value:  `/app/.halcyon`
+
+TODO
+
+
+### `HALCYON_CONFIG_DIR`
+> Default value:  `${HALCYON_DIR}/config`
+
+TODO
+
+
+### `HALCYON_INSTALL_DIR`
+> Default value:  `${HALCYON_DIR}/install`
+
+TODO
+
+
+### `HALCYON_CACHE_DIR`
+> Default value:  `/var/tmp/halcyon/cache`
+
+TODO
+
+
+### `HALCYON_PURGE_CACHE`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_ARCHIVE`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_UPLOAD`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_DEPENDENCIES_ONLY`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_PREBUILT_ONLY`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_GHC`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_CABAL`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_SANDBOX`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_APP`
+
+TODO
+
+> Default value:  `0`
+
+
+### `HALCYON_FORCE_GHC_VERSION`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_FORCE_CABAL_VERSION`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_FORCE_CABAL_UPDATE`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_TRIM_GHC`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_CUSTOM_SCRIPT`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_QUIET`
+> Default value:  `0`
+
+TODO
