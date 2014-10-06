@@ -7,7 +7,9 @@ html-class: insert-toc
 Library reference
 =================
 
-Documentation for functions available in [_bashmenot_](https://github.com/mietek/bashmenot), a library for GNU _bash_, intended to simplify the development of correct software.
+Documentation for [_bashmenot_](https://github.com/mietek/bashmenot/), a library of functions for safer shell scripting.
+
+Intended for people interested in developing Halcyon, [Haskell on Heroku](http://haskellonheroku.com/), or other complex GNU _bash_ scripts.  Best read together with the source code.
 
 > Contents:
 

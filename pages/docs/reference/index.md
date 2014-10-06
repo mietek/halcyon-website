@@ -7,7 +7,9 @@ html-class: insert-toc
 Reference
 =========
 
-Documentation for [Halcyon](https://github.com/mietek/halcyon/) internal functions.
+Halcyon internal function documentation.
+
+Intended for people interested in developing Halcyon or [Haskell on Heroku](http://haskellonheroku.com/).  Best read together with the source code.
 
 Work in progress.
 
@@ -575,25 +577,25 @@ Environment variables { .vars }
 ### `HALCYON_AWS_ACCESS_KEY_ID`
 > Default value:  _none_
 
-TODO
+Part of the authentication details used to access the private Amazon S3 bucket.
 
 
 ### `HALCYON_AWS_SECRET_ACCESS_KEY`
 > Default value:  _none_
 
-TODO
+Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.
 
 
 ### `HALCYON_S3_BUCKET`
 > Default value:  _none_
 
-TODO
+Name of the private Amazon S3 bucket used to keep prebuilt packages.
 
 
 ### `HALCYON_S3_ACL`
 > Default value:  `private`
 
-TODO
+ACL assigned to all files uploaded to the private Amazon S3 bucket.
 
 
 ### `HALCYON_DIR`
