@@ -1,6 +1,6 @@
 ---
 title: Library reference
-html-class: insert-toc
+page-class: add-section-toc
 ---
 
 

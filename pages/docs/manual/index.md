@@ -1,5 +1,6 @@
 ---
 title: Manual
+page-class: add-section-toc
 ---
 
 

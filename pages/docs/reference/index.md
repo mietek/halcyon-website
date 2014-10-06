@@ -1,6 +1,6 @@
 ---
 title: Reference
-html-class: insert-toc
+page-class: add-section-toc
 ---
 
 

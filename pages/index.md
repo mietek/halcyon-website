@@ -1,6 +1,6 @@
 ---
 title: The fastest way to Haskell
-html-class: hero
+page-class: hero
 header-class: hero
 main-class: hero
 hero:
