@@ -1,80 +1,161 @@
 ---
-title: Docs/Code commentary
+title: Reference
 html-class: insert-toc
 ---
 
 
-Docs/Code commentary
-====================
+Reference
+=========
+
+Work in progress.
+
+Best read together with the [Halcyon source code](https://github.com/mietek/halcyon/tree/master/src/).
 
 
-Caching
--------
+Environment variables { .vars }
+---------------------
 
-All files are downloaded to a cache directory, defined by `HALCYON_CACHE_DIR`.
+### `HALCYON_AWS_ACCESS_KEY_ID`
+> Default value:  _none_
+
+### `HALCYON_AWS_SECRET_ACCESS_KEY`
+> Default value:  _none_
+
+### `HALCYON_S3_BUCKET`
+> Default value:  _none_
+
+### `HALCYON_S3_ACL`
+> Default value:  `private`
+
+### `HALCYON_DIR`
+> Default value:  `/app/.halcyon`
+
+### `HALCYON_CONFIG_DIR`
+> Default value:  `${HALCYON_DIR}/config`
+
+### `HALCYON_INSTALL_DIR`
+> Default value:  `${HALCYON_DIR}/install`
+
+### `HALCYON_CACHE_DIR`
+> Default value:  `/var/tmp/halcyon/cache`
+
+### `HALCYON_PURGE_CACHE`
+> Default value:  `0`
+
+### `HALCYON_NO_ARCHIVE`
+> Default value:  `0`
+
+### `HALCYON_NO_UPLOAD`
+> Default value:  `0`
+
+### `HALCYON_DEPENDENCIES_ONLY`
+> Default value:  `0`
+
+### `HALCYON_PREBUILT_ONLY`
+> Default value:  `0`
+
+### `HALCYON_NO_PREBUILT`
+> Default value:  `0`
+
+### `HALCYON_NO_PREBUILT_GHC`
+> Default value:  `0`
+
+### `HALCYON_NO_PREBUILT_CABAL`
+> Default value:  `0`
+
+### `HALCYON_NO_PREBUILT_SANDBOX`
+> Default value:  `0`
+
+### `HALCYON_NO_PREBUILT_APP`
+> Default value:  `0`
+
+### `HALCYON_FORCE_GHC_VERSION`
+> Default value:  _none_
+
+### `HALCYON_FORCE_CABAL_VERSION`
+> Default value:  _none_
+
+### `HALCYON_FORCE_CABAL_UPDATE`
+> Default value:  `0`
+
+### `HALCYON_TRIM_GHC`
+> Default value:  `0`
+
+### `HALCYON_CUSTOM_SCRIPT`
+> Default value:  _none_
+
+### `HALCYON_QUIET`
+> Default value:  `0`
 
 
-> [cache.sh](https://github.com/mietek/halcyon/blob/master/src/cache.sh):
+Caching functions { .funs }
+-----------------
+> Dependencies: 
 
-### echo_tmp_cache_dir
->
+Halcyon downloads all files to a cache directory, defined by [`HALCYON_CACHE_DIR`](#halcyon_cache_dir).
+
+
+> [`cache.sh`](https://github.com/mietek/halcyon/blob/master/src/cache.sh):
+
+### `echo_tmp_cache_dir`
+> Arguments:  _none_
 
 Output the path to a temporary directory used while cleaning the cache after installation.
 
 
-### echo_tmp_old_cache_dir
->
+### `echo_tmp_old_cache_dir`
+> Arguments:  _none_
 
-Like [echo_tmp_cache_dir](#echo_tmp_cache_dir), but for a temporary directory used to keep the previous contents of the cache safe during installation.
-
-
-### prepare_cache
->
-
-If `HALCYON_PURGE_CACHE` is set to `1`, remove everything from the cache.  Otherwise, tell the user about the previous contents of the cache, and copy them to a temporary location.
-
-Sets `HALCYON_OLD_CACHE_TMP_DIR`.
+Like [`echo_tmp_cache_dir`](#echo_tmp_cache_dir), but for a temporary directory used to keep the previous contents of the cache safe during installation.
 
 
-### clean_cache
->
+### `prepare_cache`
+> Arguments:  _none_
+
+If [`HALCYON_PURGE_CACHE`](#halcyon_purge_cache) is set to `1`, remove everything from the cache.  Otherwise, tell the user about the previous contents of the cache, and copy them to a temporary location.
+
+Sets a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
+
+
+### `clean_cache`
+> Arguments:  _none_
 
 1. Remove everything from the cache, retaining only archives of the currently active GHC, Cabal, sandbox, and app.
 2. Tell the user about any differences between the previous and current contents of the cache, and discard the previous contents.
 
-Uses `HALCYON_OLD_CACHE_TMP_DIR`.
+Uses a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
 
 
-File transfers
---------------
+File transfer functions { .funs }
+-----------------------
 
-Halcyon can use a private Amazon S3 bucket, defined by `HALCYON_S3_BUCKET`, to keep prebuilt packages.  If a private bucket is not available, Halcyon falls back to using a default Halcyon public location, which also happens to be an S3 bucket, `s3.halcyon.sh`.
+Halcyon keeps prebuilt packages in Amazon S3 buckets.  Setting [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket) defines the private bucket to be used.
 
-- All prebuilt packages are kept in the bucket with an OS-specific prefix.
+If this variable is not set, Halcyon will only download files from the default public location, which also happens to be an S3 bucket.  The default location is defined by [`echo_default_s3_url`](#echo_default_s3_url).
 
-    ```
-    $ s3_list s3.halcyon.sh linux-ubuntu-14-04-x64
-           Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14-04-x64... done
-    linux-ubuntu-14-04-x64/halcyon-cabal-1.20.0.3.tar.xz
-    linux-ubuntu-14-04-x64/halcyon-ghc-7.6.3.tar.xz
-    linux-ubuntu-14-04-x64/halcyon-ghc-7.8.3.tar.xz
-    ...
-    ```
+All prebuilt packages are kept in the bucket with the relevant OS identifier as the prefix.
+```
+$ s3_list s3.halcyon.sh linux-ubuntu-14-04-x64
+       Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14-04-x64... done
+linux-ubuntu-14-04-x64/halcyon-cabal-1.20.0.3.tar.xz
+linux-ubuntu-14-04-x64/halcyon-ghc-7.6.3.tar.xz
+linux-ubuntu-14-04-x64/halcyon-ghc-7.8.3.tar.xz
+...
+```
 
-- Any files uploaded to the bucket are assigned an ACL, defined by `HALCYON_S3_ACL`.  Commonly used values are `private` and `public-read`.  The default Halcyon value is `private`.
+All original files are also kept in the bucket, to decrease the load on upstream servers.
+```
+$ s3_list s3.halcyon.sh original
+       Listing s3://s3.halcyon.sh/?prefix=original... done
+original/cabal-install-1.20.0.3.tar.gz
+original/ghc-7.6.3-x86_64-unknown-linux.tar.bz2
+original/ghc-7.8.3-x86_64-unknown-linux-centos65.tar.xz
+original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
+```
 
-- All original files are kept in the bucket with an `original/` prefix, to decrease the load on upstream servers.
+All files uploaded to the bucket are assigned an ACL, defined by [`HALCYON_S3_ACL`](#halcyon_s3_acl).
 
-    ```
-    $ s3_list s3.halcyon.sh original
-           Listing s3://s3.halcyon.sh/?prefix=original... done
-    original/cabal-install-1.20.0.3.tar.gz
-    original/ghc-7.6.3-x86_64-unknown-linux.tar.bz2
-    original/ghc-7.8.3-x86_64-unknown-linux-centos65.tar.xz
-    original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
-    ```
-
-Access to the bucket is controlled by defining `HALCYON_AWS_ACCESS_KEY_ID` and `HALCYON_AWS_SECRET_ACCESS_KEY`.
+Access to the bucket is controlled by setting [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](#halcyon_aws_secret_access_key).
 
 
 > [transfer.sh](https://github.com/mietek/halcyon/blob/master/src/transfer.sh):
@@ -82,13 +163,13 @@ Access to the bucket is controlled by defining `HALCYON_AWS_ACCESS_KEY_ID` and `
 ### has_s3
 >
 
-Check the variables necessary to use S3 are not unset and not empty.  Otherwise, return `1`.
+Check the environment variables necessary to use S3 are not unset and not empty.  Otherwise, return `1`.
 
 
 ### echo_default_s3_url
 > object
 
-Output the default Halcyon public URL for the specified object.
+Output the default Halcyon public URL of the specified object.
 
 ```
 $ echo_default_s3_url foo
@@ -107,7 +188,7 @@ Does not overwrite existing files.  Creates the destination directory if needed.
 ### upload_original
 > src_dir src_file_name
 
-If S3 is available, and `HALCYON_NO_UPLOAD` is not set to `1`, upload the specified original file to the bucket.  Otherwise, do nothing.
+If S3 is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified original file to the bucket.  Otherwise, do nothing.
 
 **Overwrites** existing files without warning.  Returns `1` on failure.
 
@@ -115,7 +196,7 @@ If S3 is available, and `HALCYON_NO_UPLOAD` is not set to `1`, upload the specif
 ### download_prebuilt
 > src_prefix src_file_name dst_dir
 
-Like [download_original](#download_original), but for prebuilt packages, and with no fallback.
+Like [`download_original`](#download_original), but for prebuilt packages, and with no fallback.
 
 If S3 is available, download the specified package from the bucket.  Otherwise, download the file from the default Halcyon public location.
 
@@ -131,19 +212,19 @@ If S3 is available, output the contents of the bucket, listing the files which s
 ### upload_prebuilt
 > src_file dst_prefix
 
-Like [upload_original](#upload_original), but for prebuilt packages.
+Like [`upload_original`](#upload_original), but for prebuilt packages.
 
-If S3 is available, and `HALCYON_NO_UPLOAD` is not set to `1`, upload the specified package to the bucket.  Otherwise, do nothing.
+If S3 is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified package to the bucket.  Otherwise, do nothing.
 
 **Overwrites** existing files without warning.  Returns `1` on failure.
 
 
-Constraint processing
----------------------
+Constraint processing functions
+-------------------------------
 
 A constraint consists of a package name and version.  A file of constraints consists of any number of constraints separated by newlines.
 
-Constraints are kept in `cabal.config` files.  The canonical format of these files is defined by the output of `cabal freeze`.
+Constraints are kept in `cabal.config` files.  The canonical format of these files is defined to match the output of `cabal freeze`.
 
 
 > [constraints.sh](https://github.com/mietek/halcyon/blob/master/src/constraints.sh):
@@ -165,7 +246,7 @@ $ echo -e "foo 1.0\nbar 2.0" | echo_constraints_digest
 ```
 
 
-### echo_customize_sandbox_script_digest
+### echo_customize_script_digest
 >
 
 Like [echo_constraints_digest](#echo_constraints_digest), but for a sandbox customization script.
@@ -225,48 +306,34 @@ Pipe input to output, checking that a constraint for the `base` package is speci
 ### score_constraints
 > constraints sandbox_tag
 
-TODO
-
 
 ### detect_app_constraint
 > app_dir
-
-TODO
 
 
 ### filter_correct_constraints
 > app_dir
 
-TODO
-
 
 ### detect_constraints
 > app_dir
 
-TODO
 
-
-### insert_customize_sandbox_script_constraint
+### insert_customize_script_constraint
 > app_dir
-
-TODO
 
 
 ### freeze_implicit_constraints
 > app_dir
 
-TODO
-
 
 ### freeze_actual_constraints
 > app_dir
 
-TODO
 
 
-
-Installing GHC
---------------
+GHC installation functions
+--------------------------
 
 
 > [ghc.sh](https://github.com/mietek/halcyon/blob/master/src/ghc.sh):
@@ -313,7 +380,7 @@ $ echo_ghc_default_version
 ### echo_ghc_tag
 > ghc_version ghc_variant
 
-Output a tab-separated GHC tag, consisting of the current `HALCYON_DIR`, OS identifier, and the specified GHC version and packaging variant.
+Output a tab-separated GHC tag, consisting of the current [HALCYON_DIR](#halcyon_dir), OS identifier, and the specified GHC version and packaging variant.
 
 The packaging variant may be empty.
 
@@ -411,7 +478,7 @@ $ detect_base_version
 
 
 ### archive_ghc
-
+>
 
 ### restore_ghc
 > ghc_tag
@@ -433,8 +500,8 @@ $ detect_base_version
 > app_dir
 
 
-Installing Cabal
-----------------
+Cabal installation functions
+----------------------------
 
 
 > [cabal.sh](https://github.com/mietek/halcyon/blob/master/src/cabal.sh):
@@ -478,8 +545,8 @@ Installing Cabal
 ### install_cabal
 
 
-Installing sandboxes
---------------------
+Sandbox installation functions
+------------------------------
 
 
 > [sandbox.sh](https://github.com/mietek/halcyon/blob/master/src/sandbox.sh):
@@ -512,11 +579,11 @@ Installing sandboxes
 ### deactivate_sandbox
 ### install_extended_sandbox
 ### install_sandbox
-### customize_sandbox_with_cabal_package_executables
+### customize_sandbox_with_execs
 
 
-Installing apps
----------------
+App installation functions
+--------------------------
 
 
 > [app.sh](https://github.com/mietek/halcyon/blob/master/src/app.sh):

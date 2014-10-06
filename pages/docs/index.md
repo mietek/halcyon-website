@@ -9,21 +9,21 @@ Docs
 Work in progress.
 
 - [Public prebuilt packages](docs/public-prebuilt-packages/)
-- [Code commentary](docs/code-commentary/)
-- [bashmenot reference](docs/bashmenot-reference/)
+- [Reference](docs/reference/)
+- [Library reference](docs/library-reference/)
 
 
 On buckets
 ----------
 
-Halcyon is designed to accomodate machines with ephemeral storage, such as Heroku dynos.  A private Amazon S3 bucket, defined by the `HALCYON_S3_BUCKET` environment variable, serves as permanent storage for prebuilt packages.
+Halcyon is designed to accomodate machines with ephemeral storage, such as Heroku dynos.  A private Amazon S3 bucket, defined by the [`HALCYON_S3_BUCKET`](docs/reference/#halcyon_s3_bucket) environment variable, serves as permanent storage for prebuilt packages.
 
 There are three modes of operation:
 
-1.  If the bucket is not available, Halcyon falls back to using [public prebuilt packages](docs/public-prebuilt-packages/).  These packages may not contain all required dependencies, in which case Halcyon will build any packages necessary on-the-fly.  This may not be desired, as the work will need to be repeated in the future, if the storage is ephemeral and the machine is turned off.  However, this may be perfectly acceptable on another type of machine.
+1.  If the bucket is not available, Halcyon will only use [public prebuilt packages](docs/public-prebuilt-packages/).  As these packages cannot contain all dependencies required to compile every package, Halcyon will build additional packages during installation.  This mode may not be desirable, as the work may need to be repeated in the future, should the ephemeral storage be lost.
 
-2.  Similarly, if the bucket is defined, but uploading to it is not allowed—either by an S3 policy, or by setting `HALCYON_NO_UPLOAD` to `1`—Halcyon only uses the packages which already exist in the bucket.  Public packages are not used in this case.
+2.  Similarly, if the bucket is available, but uploading to it is not allowed—either by an S3 policy, or by setting [`HALCYON_NO_UPLOAD`](docs/reference/#halcyon_no_upload) to `1`—Halcyon will only use the packages which already exist in the bucket.
 
-3.  With full access to the bucket, Halcyon will build any packages necessary on-the-fly, and archive the build results in the bucket for later reuse.  This is the optimal scenario.
+3.  Finally, if the bucket is available, and uploading to it is allowed, Halcyon will archive any built packages in the bucket for later reuse.  This is the optimal mode.
 
-Access to the bucket is controlled by defining the `HALCYON_AWS_ACCESS_KEY_ID` and `HALCYON_AWS_SECRET_ACCESS_KEY` configuration variables.
+Access to the bucket is controlled by setting the [`HALCYON_AWS_ACCESS_KEY_ID`](docs/reference/#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](docs/reference/#halcyon_aws_secret_access_key) configuration variables.
