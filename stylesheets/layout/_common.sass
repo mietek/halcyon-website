@@ -1,41 +1,5 @@
-body
-  font-family: "concourse-t3", sans-serif
+@import "cannot-h/layout/common"
 
-pre
-  font-family: "pragmata-pro", monospace
-  font-size: em(3/4)
-  line-height: ln(1)
-  background-color: rgba($grayC, 0.2)
-  border-radius: 2px
-  color: $gray6
-  padding: ln(1/2)
-  overflow-x: auto
-
-*:not(pre) > code
-  font-family: "pragmata-pro", monospace
-  font-style: normal
-  font-size: em(3/4)
-  line-height: em(3/4)
-  display: inline-block
-  background-color: rgba($grayC, 0.2)
-  padding: ln(1/8) ln(1/4)
-  border-radius: 2px
-  color: $gray6
-  white-space: nowrap
-
-
-nav.menu-bar h1.logotype a
-  @include no-text
-  @include smart-image-glow($blue)
-
-
-header.hero nav.menu-bar h1.logotype a
-  @include smart-opacity(0.6, 1)
-  @include smart-image-glow(white)
 
 #hero div.hero-sash
-  background: none
   background-image: radial-gradient(circle farthest-corner at left top, rgba($orange, 0.0) 0%, rgba($blue, 0.6) 50%, rgba($blue, 0.0) 100%)
-
-#hero h1.logotype
-  @include no-text

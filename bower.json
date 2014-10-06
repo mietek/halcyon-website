@@ -6,6 +6,7 @@
   ],
   "license": "MIT X11",
   "dependencies": {
-    "cannot": "*"
+    "cannot": "*",
+    "cannot-h": "*"
   }
 }
