@@ -7,7 +7,9 @@ html-class: insert-toc
 Library reference
 =================
 
-Best read together with the [_bashmenot_ source code](https://github.com/mietek/bashmenot/tree/master/src/).
+Description of functions available in [_bashmenot_](https://github.com/mietek/bashmenot), a library for GNU _bash_, intended to simplify the development of correct software.
+
+> Contents:
 
 
 
@@ -36,7 +38,7 @@ Logging functions { .funs }
 
 Functions to simplify communication with the user.
 
-> [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh):
+> Contents of [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh):
 
 
 ### `prefix_log`
@@ -172,17 +174,19 @@ $ foo
 
 Expectation control functions { .funs }
 -----------------------------
-> Dependencies:  [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh)
+> Dependencies:
+> [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh)
 
 Functions for declaring and checking preconditions, postconditions, and invariants.  Design by contract, now in GNU _bash_.
 
-> [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh):
+> Contents of [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh):
 
 
 ### `expect_args`
 > Arguments:  _`var*`_ ` -- "$@"`
 
 1.  Check the required number of arguments is available.  Otherwise, die.
+
 2.  Set the specified variables to the values of corresponding arguments.
 
 Must be called with a literal ` -- "$@"` after the variable names.  Argument values may be empty.
@@ -268,11 +272,12 @@ no bar
 
 OS detection functions { .funs }
 ----------------------
-> Dependencies:  [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh)
+> Dependencies:
+> [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh)
 
 Basic functions for attempting cross-platform compatibility.
 
-> [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh):
+> Contents of [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh):
 
 
 ### `echo_os_description`
@@ -313,11 +318,13 @@ linux-ubuntu-14-04-x64
 Quoting functions { .funs }
 -----------------
 
-> Dependencies:  [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh)
+> Dependencies:
+> [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh)
+> [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh)
 
 Additional functions to simplify communication with the user, including quiet mode support.
 
-> [`quote.sh`](https://github.com/mietek/bashmenot/blob/master/src/quote.sh):
+> Contents of [`quote.sh`](https://github.com/mietek/bashmenot/blob/master/src/quote.sh):
 
 
 ### `sed_unbuffered`
@@ -372,11 +379,12 @@ $ quote_quietly 1 bar
 Line processing functions { .funs }
 -------------------------
 
-> Dependencies:  [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh)
+> Dependencies:
+> [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh)
 
 Basic functions for composable line-oriented processing of text data files.
 
-> [`line.sh`](https://github.com/mietek/bashmenot/blob/master/src/line.sh):
+> Contents of [`line.sh`](https://github.com/mietek/bashmenot/blob/master/src/line.sh):
 
 
 ### `filter_last`
@@ -515,11 +523,12 @@ foo
 Sorting functions { .funs }
 -----------------
 
-> Dependencies:  [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh)
+> Dependencies:
+> [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh)
 
-Cross-platform compatibility functions, requiring GNU _sort_.
+Cross-platform compatibility functions.  GNU _sort_ is required.
 
-> [`sort.sh`](https://github.com/mietek/bashmenot/blob/master/src/sort.sh):
+> Contents of [`sort.sh`](https://github.com/mietek/bashmenot/blob/master/src/sort.sh):
 
 
 ### `sort_naturally`
@@ -549,14 +558,57 @@ Like [`sort_naturally`](#sort_naturally), but with input separated by `NUL` byte
 
 
 
+Date formatting functions { .funs }
+-------------------------
+
+> Dependencies:
+> [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh)
+
+Cross-platform compatibility functions.  GNU _date_ is required.
+
+> Contents of [`date.sh`](https://github.com/mietek/bashmenot/blob/master/src/date.sh):
+
+
+### `echo_date`
+> Arguments:  _`args*`_
+
+Portable _date_.
+
+
+### `echo_http_date`
+> Arguments:  _`args*`_
+
+Output a UTC date and time in RFC 2822 format.
+
+```
+$ echo_http_date
+Fri, 26 Sep 2014 13:11:54 +0000
+```
+
+
+### `echo_timestamp`
+> Arguments:  _`args*`_
+
+Output a UTC date and time in a compact format.
+
+```
+$ echo_timestamp
+20140926131509
+```
+
+
+
+
 File system manipulation functions { .funs }
 ----------------------------------
 
-> Dependencies:  [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), [`line.sh`](https://github.com/mietek/bashmenot/blob/master/src/line.sh)
+> Dependencies:
+> [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh),
+> [`line.sh`](https://github.com/mietek/bashmenot/blob/master/src/line.sh)
 
 Functions for user-friendly communication of file system changes to the user, and file utilities.
 
-> [`file.sh`](https://github.com/mietek/bashmenot/blob/master/src/file.sh):
+> Contents of [`file.sh`](https://github.com/mietek/bashmenot/blob/master/src/file.sh):
 
 
 ### `find_added`
@@ -671,11 +723,14 @@ Process a file of paths separated by `NUL` bytes, removing symbols from each lis
 File archiving functions { .funs }
 ------------------------
 
-> Dependencies:  [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), [`file.sh`](https://github.com/mietek/bashmenot/blob/master/src/file.sh)
+> Dependencies:
+> [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh),
+> [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh),
+> [`file.sh`](https://github.com/mietek/bashmenot/blob/master/src/file.sh)
 
 Functions to simplify cross-platform archiving of files, with added safety.
 
-> [`tar.sh`](https://github.com/mietek/bashmenot/blob/master/src/tar.sh):
+> Contents of [`tar.sh`](https://github.com/mietek/bashmenot/blob/master/src/tar.sh):
 
 
 ### `echo_tar_format_flag`
@@ -728,54 +783,16 @@ foo/baz/bar.tar.gz
 
 
 
-Date formatting functions { .funs }
--------------------------
-
-> Dependencies:  [`os.sh`](https://github.com/mietek/bashmenot/blob/master/src/os.sh)
-
-Cross-platform compatibility functions, requiring GNU _date_.
-
-> [`date.sh`](https://github.com/mietek/bashmenot/blob/master/src/date.sh):
-
-
-### `echo_date`
-> Arguments:  _`args*`_
-
-Portable _date_.
-
-
-### `echo_http_date`
-> Arguments:  _`args*`_
-
-Output a UTC date and time in RFC 2822 format.
-
-```
-$ echo_http_date
-Fri, 26 Sep 2014 13:11:54 +0000
-```
-
-
-### `echo_timestamp`
-> Arguments:  _`args*`_
-
-Output a UTC date and time in a compact format.
-
-```
-$ echo_timestamp
-20140926131509
-```
-
-
-
-
 HTTP transfer functions { .funs }
 -----------------------
 
-> Dependencies:  [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh)
+> Dependencies:
+> [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh),
+> [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh)
 
-Functions to simplify HTTP transfers, with user-friendly logging and failure handling, requiring _curl_.
+Functions to simplify HTTP transfers, with user-friendly logging and failure handling.  _curl_ is required.
 
-> [`curl.sh`](https://github.com/mietek/bashmenot/blob/master/src/curl.sh):
+> Contents of [`curl.sh`](https://github.com/mietek/bashmenot/blob/master/src/curl.sh):
 
 
 ### `curl_do`
@@ -843,13 +860,18 @@ $ curl_delete httpbin.org/delete
 Amazon S3 transfer functions { .funs }
 ----------------------------
 
-> Dependencies:  [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh), [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh), [`line.sh`](https://github.com/mietek/bashmenot/blob/master/src/line.sh), [`date.sh`](https://github.com/mietek/bashmenot/blob/master/src/date.sh), [`curl.sh`](https://github.com/mietek/bashmenot/blob/master/src/curl.sh)
+> Dependencies:
+> [`log.sh`](https://github.com/mietek/bashmenot/blob/master/src/log.sh),
+> [`expect.sh`](https://github.com/mietek/bashmenot/blob/master/src/expect.sh),
+> [`line.sh`](https://github.com/mietek/bashmenot/blob/master/src/line.sh),
+> [`date.sh`](https://github.com/mietek/bashmenot/blob/master/src/date.sh),
+> [`curl.sh`](https://github.com/mietek/bashmenot/blob/master/src/curl.sh)
 
-Functions to simplify Amazon S3 transfers, with user-friendly logging and failure handling, requiring _curl_ and OpenSSL.
+Functions to simplify Amazon S3 transfers, with user-friendly logging and failure handling.  _curl_ and OpenSSL are required.
 
 Authentication details are defined by the [`BASHMENOT_AWS_ACCESS_KEY_ID`](#bashmenot_aws_access_key_id) and [`BASHMENOT_AWS_SECRET_ACCESS_KEY`](#bashmenot_aws_secret_access_key) environment variables.
 
-> [`s3.sh`](https://github.com/mietek/bashmenot/blob/master/src/s3.sh):
+> Contents of [`s3.sh`](https://github.com/mietek/bashmenot/blob/master/src/s3.sh):
 
 
 ### `echo_s3_host`

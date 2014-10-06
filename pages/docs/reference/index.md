@@ -11,6 +11,8 @@ Work in progress.
 
 Best read together with the [Halcyon source code](https://github.com/mietek/halcyon/tree/master/src/).
 
+> Contents:
+
 
 Environment variables { .vars }
 ---------------------
@@ -88,11 +90,10 @@ Environment variables { .vars }
 > Default value:  `0`
 
 
-Caching functions { .funs }
------------------
-> Dependencies: 
+Cache maintenance functions { .funs }
+---------------------------
 
-Halcyon downloads all files to a cache directory, defined by [`HALCYON_CACHE_DIR`](#halcyon_cache_dir).
+Functions to maintain the Halcyon cache, and communicate its state to the user.
 
 
 > [`cache.sh`](https://github.com/mietek/halcyon/blob/master/src/cache.sh):
@@ -112,6 +113,8 @@ Like [`echo_tmp_cache_dir`](#echo_tmp_cache_dir), but for a temporary directory 
 ### `prepare_cache`
 > Arguments:  _none_
 
+Before installation:
+
 If [`HALCYON_PURGE_CACHE`](#halcyon_purge_cache) is set to `1`, remove everything from the cache.  Otherwise, tell the user about the previous contents of the cache, and copy them to a temporary location.
 
 Sets a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
@@ -120,7 +123,10 @@ Sets a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
 ### `clean_cache`
 > Arguments:  _none_
 
-1. Remove everything from the cache, retaining only archives of the currently active GHC, Cabal, sandbox, and app.
+After installation:
+
+1. Remove everything from the cache, retaining only the most recently used archives.
+
 2. Tell the user about any differences between the previous and current contents of the cache, and discard the previous contents.
 
 Uses a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
@@ -129,33 +135,7 @@ Uses a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
 File transfer functions { .funs }
 -----------------------
 
-Halcyon keeps prebuilt packages in Amazon S3 buckets.  Setting [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket) defines the private bucket to be used.
 
-If this variable is not set, Halcyon will only download files from the default public location, which also happens to be an S3 bucket.  The default location is defined by [`echo_default_s3_url`](#echo_default_s3_url).
-
-All prebuilt packages are kept in the bucket with the relevant OS identifier as the prefix.
-```
-$ s3_list s3.halcyon.sh linux-ubuntu-14-04-x64
-       Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14-04-x64... done
-linux-ubuntu-14-04-x64/halcyon-cabal-1.20.0.3.tar.xz
-linux-ubuntu-14-04-x64/halcyon-ghc-7.6.3.tar.xz
-linux-ubuntu-14-04-x64/halcyon-ghc-7.8.3.tar.xz
-...
-```
-
-All original files are also kept in the bucket, to decrease the load on upstream servers.
-```
-$ s3_list s3.halcyon.sh original
-       Listing s3://s3.halcyon.sh/?prefix=original... done
-original/cabal-install-1.20.0.3.tar.gz
-original/ghc-7.6.3-x86_64-unknown-linux.tar.bz2
-original/ghc-7.8.3-x86_64-unknown-linux-centos65.tar.xz
-original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
-```
-
-All files uploaded to the bucket are assigned an ACL, defined by [`HALCYON_S3_ACL`](#halcyon_s3_acl).
-
-Access to the bucket is controlled by setting [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](#halcyon_aws_secret_access_key).
 
 
 > [transfer.sh](https://github.com/mietek/halcyon/blob/master/src/transfer.sh):
