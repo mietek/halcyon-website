@@ -6,6 +6,12 @@ page-head: |
       color: #3f96f0;
     }
   </style>
+page-footer: |
+  <script>
+    addEventListener('load', function () {
+      document.getElementById('hello').href = cannot.rot13('znvygb:uryyb@yrnfgsvkrq.pbz');
+    });
+  </script>
 ---
 
 
