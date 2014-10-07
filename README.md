@@ -16,9 +16,9 @@ Please report any problems with the Halcyon documentation on the [issue tracker]
 
 Available as a [Bower](http://bower.io/) package.
 
-```sh
-bower install halcyon-website
-make
+```
+$ bower install halcyon-website
+$ make
 ```
 
 
