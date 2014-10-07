@@ -30,7 +30,7 @@ Work in progress.  Please report any problems with the documentation on the [_ha
 Buckets
 -------
 
-_Halcyon_ is designed to accomodate machines with ephemeral storage, such as Heroku dynos.  A private Amazon S3 bucket, defined by the [`HALCYON_S3_BUCKET`](documentation/reference/#halcyon_s3_bucket) environment variable, is intended to serve as permanent storage for prebuilt packages.
+_Halcyon_ is designed to accommodate machines with ephemeral storage, such as Heroku dynos.  A private Amazon S3 bucket, defined by the [`HALCYON_S3_BUCKET`](documentation/reference/#halcyon_s3_bucket) environment variable, is intended to serve as permanent storage for prebuilt packages.
 
 `s3.halcyon.sh` is the default public S3 bucket, provided in order to facilitate getting started, and as a fallback measure.  Using the public bucket for production purposes is not recommended, as the list of available prebuilt packages may change at any time.
 
@@ -48,7 +48,7 @@ _Halcyon_ can use buckets in one of three ways:
 Access to the private bucket is controlled by setting the [`HALCYON_AWS_ACCESS_KEY_ID`](documentation/reference/#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](documentation/reference/#halcyon_aws_secret_access_key) configuration variables.
 
 
-### Bucket organization
+### Bucket organisation
 
 Bucket contents can be examined using [`s3_list`](documentation/library-reference/#s3_list) and [`s3_download`](documentation/library-reference/#s3_download).
 

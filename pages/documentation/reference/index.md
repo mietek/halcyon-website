@@ -158,7 +158,7 @@ Whether to ignore any existing prebuilt updated Cabal packages and update Cabal 
 ### `HALCYON_TRIM_GHC`
 > Default value:  `0`
 
-Whether to use an aggressively minimized prebuilt variant of GHC.
+Whether to use an aggressively minimised prebuilt variant of GHC.
 
 
 ### `HALCYON_CUSTOM_SCRIPT`
@@ -315,7 +315,7 @@ $ echo -e "foo 1.0\nbar 2.0" | echo_constraints_digest
 ### `echo_customize_script_digest`
 > Arguments:  _none_
 
-Like [`echo_constraints_digest`](#echo_constraints_digest), but for a sandbox customization script.
+Like [`echo_constraints_digest`](#echo_constraints_digest), but for a sandbox customisation script.
 
 
 ### `echo_constraints`

@@ -744,7 +744,7 @@ Functions to simplify cross-platform archiving of files, with added safety.
 ### `echo_tar_format_flag`
 > Arguments:  _`archive_name`_
 
-Output the flag needed for non-GNU _tar_ to recognize the compression format of the specified archive.
+Output the flag needed for non-GNU _tar_ to recognise the compression format of the specified archive.
 
 ```
 $ echo_tar_format_flag foo.tar.gz
