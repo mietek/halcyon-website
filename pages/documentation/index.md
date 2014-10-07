@@ -27,49 +27,86 @@ Work in progress.  Please report any problems with the documentation on the [_ha
 
 
 
-Buckets
--------
+Packages
+--------
+
+_Halcyon_ uses prebuilt packages to speed up deployment.
+
+Please be mindful of the many meanings of the term _package_.  In this documentation, the term _package_ always means _prebuilt package_, and refers to one of the four following types of entities:
+
+1.  _GHC packages_, which contain a live installation of GHC, including the default global GHC database. The user GHC database is always empty.
+
+2.  _Cabal packages_, in two flavours:
+
+    -   _Non-updated Cabal packages_, containing only the `cabal-install` executable and configuration file.
+    
+    -   _Updated Cabal packages_, containing also an updated Cabal database.
+
+3.  _Sandbox packages_, which contain a live sandbox, including all dependencies required to compile a specific app.
+
+4.  _App packages_, which contain a live app, including all intermediate files in its `dist` directory.
+
+All packages include a `tag` file in their top-level directory, declaring the contents of the package.
+
+
+### Naming
+
+All packages are archived following a consistent naming scheme:
+
+1.  GHC packages:\
+    `halcyon-ghc-`_`version`_`.tar.xz`
+
+2.  Cabal packages:
+
+    -   Non-updated Cabal packages:\
+        `halcyon-cabal-`_`version`_`.tar.xz`
+    
+    -   Updated Cabal packages:\
+        `halcyon-cabal-`_`version`_`-`_`timestamp`_`.tar.xz`
+
+3.  Sandbox packages:\
+    `halcyon-sandbox-`_`ghc_version`_`-`_`app_name`_`-`_`app_version`_`-`_`digest`_`.tar.gz`
+
+    Sandbox configuration files are also stored separately:\
+    `halcyon-sandbox-`_`ghc_version`_`-`_`app_name`_`-`_`app_version`_`-`_`digest`_`.cabal.config`
+
+4.  App packages:\
+    `halcyon-app-`_`ghc_version`_`-`_`app-name`_`-`_`app_version`_`.tar.gz`
+
+
+### Rationale
+
+Separating the dependencies required to compile any app into four types is an attempt at striking a balance between the time spent compiling and the space occupied by compilation products.  This design allows for mixing-and-matching GHC and Cabal versions, updating the Cabal database incrementally or from scratch, and extending sandboxes based on existing sandboxes.
+
+Each type of package is expected to vary at a different rate—from never-changing GHC packages, to app packages which change on every deployment.
+
+
+S3 buckets
+----------
 
 _Halcyon_ is designed to accommodate machines with ephemeral storage, such as Heroku dynos.  A private Amazon S3 bucket, defined by the [`HALCYON_S3_BUCKET`](documentation/reference/#halcyon_s3_bucket) environment variable, is intended to serve as permanent storage for prebuilt packages.
 
-`s3.halcyon.sh` is the default public S3 bucket, provided in order to facilitate getting started, and as a fallback measure.  Using the public bucket for production purposes is not recommended, as the list of available prebuilt packages may change at any time.
+All packages required to compile an app are downloaded from the bucket.  If any required packages are not found, they will be built on-the-fly.  It is also possible to prebuild packages in advance.
+
+Any built or prebuilt packages are archived and uploaded to the bucket.  All uploaded files are assigned an [S3 ACL](http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html), defined by [`HALCYON_S3_ACL`](documentation/reference/#halcyon_s3_acl), which defaults to `private`.
+
+Access to the bucket is controlled by setting [`HALCYON_AWS_ACCESS_KEY_ID`](documentation/reference/#halcyon_aws_access_key) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](documentation/reference/#halcyon_aws_secret_access_key).
 
 
-### Bucket usage
+### Public packages
 
-_Halcyon_ can use buckets in one of three ways:
+For the purposes of getting started quickly, it is also possible to use [public packages](http://s3.halcyon.sh/), by not defining a private bucket.  This is not recommended for production usage, as the set of available public packages may change at any time.
 
-1.  If a private bucket is not available, _Halcyon_ will only use packages from the default public bucket.  As these packages cannot contain all potentially required dependencies, _Halcyon_ may build additional packages during installation.  This mode is not optimal, as the work may need to be repeated in the future, if the machine storage is ephemeral.
+Additionally, as public packages cannot satisfy all dependencies required to compile every app, some apps will require building packages on-the-fly.  Since uploading packages is not possible without a private bucket defined, this may not be optimal, as the work may need to be repeated in the future, if the machine storage is ephemeral.  However, this may be perfectly acceptable for other types of machines.
 
-2.  Similarly, if a private bucket is available, but uploading to it is not allowed—either by an S3 policy, or by setting [`HALCYON_NO_UPLOAD`](documentation/reference/#halcyon_no_upload) to `1`—_Halcyon_ will only use the packages which already exist in the bucket.  Public packages are not used in this mode.
-
-3.  Finally, if a private bucket is available, and uploading to it is allowed, _Halcyon_ will archive any built packages in the bucket for later reuse.  All uploaded files will be assigned an ACL, defined by [`HALCYON_S3_ACL`](documentation/reference/#halcyon_s3_acl).  This is the optimal mode.
-
-Access to the private bucket is controlled by setting the [`HALCYON_AWS_ACCESS_KEY_ID`](documentation/reference/#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](documentation/reference/#halcyon_aws_secret_access_key) configuration variables.
+If a private bucket is defined, public packages are never used.  This helps maintain complete control over the deployed code.
 
 
-### Bucket organisation
+### Rationale
 
-Bucket contents can be examined using [`s3_list`](documentation/library-reference/#s3_list) and [`s3_download`](documentation/library-reference/#s3_download).
+A private bucket is necessary to support environments in which the machines used for compiling apps are separate from the machines used for prebuilding packages.  Some form of external storage must be used to transfer the packages between the machines, and an Amazon S3 bucket is a good solution to this problem.
 
-All prebuilt packages are kept in the bucket with the relevant OS identifier as the prefix.
-```
-$ s3_list s3.halcyon.sh linux-ubuntu-14-04-x64
-       Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14-04-x64... done
-linux-ubuntu-14-04-x64/halcyon-cabal-1.20.0.3.tar.xz
-linux-ubuntu-14-04-x64/halcyon-ghc-7.6.3.tar.xz
-linux-ubuntu-14-04-x64/halcyon-ghc-7.8.3.tar.xz
-```
-
-All original files are also kept in the bucket, to decrease the load on upstream servers.
-```
-$ s3_list s3.halcyon.sh original
-       Listing s3://s3.halcyon.sh/?prefix=original... done
-original/cabal-install-1.20.0.3.tar.gz
-original/ghc-7.6.3-x86_64-unknown-linux.tar.bz2
-original/ghc-7.8.3-x86_64-unknown-linux-centos65.tar.xz
-original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
-```
+Storing packages externally also allows unrelated apps to share common dependencies.  Sharing the same private bucket between multiple apps requires no additional configuration beyond defining the same bucket for every app.  This is how public packages are made available.
 
 
 
@@ -77,19 +114,11 @@ original/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
 Caching
 -------
 
-_Halcyon_ downloads all files to a cache directory, defined by [`HALCYON_CACHE_DIR`](documentation/reference/#halcyon_cache_dir).
+_Halcyon_ downloads all files to a cache directory, defined by the [`HALCYON_CACHE_DIR`](documentation/reference/#halcyon_cache_dir) environment variable.
 
-The cache is automatically cleaned after every installation, retaining only the most recently used archives.
+The cache is automatically cleaned after every installation, retaining only the most recently used packages.
 
-
-
-
-Constraints
------------
-
-A constraint consists of a package name and version.  A file of constraints consists of any number of constraints separated by newlines.
-
-Constraints are kept in `cabal.config` files.  The canonical format of these files is defined to match the output of `cabal freeze`.
+Deleting the contents of the cache before installation can be requested by setting [`HALCYON_PURGE_CACHE`](documentation/reference/#halcyon_purge_cache) to `1`.
 
 
 
