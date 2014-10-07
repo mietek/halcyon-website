@@ -40,7 +40,7 @@ The sans-serif font used in this website is [Concourse](http://practicaltypograp
 
 The welcome image is based on [Altocumulus Cloud](https://www.flickr.com/photos/kubina/146306532/) by [Jeff Kubina](https://www.flickr.com/photos/kubina/), published under the [CC BY-SA 2.0 License](https://creativecommons.org/licenses/by-sa/2.0/).
 
-This website is built with [_cannot_](https://github.com/mietek/cannot/), a microframework by [Miëtek Bak](http://mietek.io/).
+This website is built with [_cannot_](https://github.com/mietek/cannot/), a microframework by Miëtek Bak.
 
 
 Legal
