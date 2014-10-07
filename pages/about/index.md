@@ -20,7 +20,7 @@ About
 
 _Halcyon_ is a system for rapid Haskell deployment, made by [Miëtek Bak](http://mietek.io/).
 
-Interested in deploying Haskell web apps?  Try [Haskell on Heroku](http://haskellonheroku.com/).
+Interested in deploying Haskell web apps?  Try [_Haskell on Heroku_](http://haskellonheroku.com/).
 
 
 Support

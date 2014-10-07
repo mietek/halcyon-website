@@ -9,9 +9,7 @@ Built with [cannot](https://github.com/mietek/cannot/).
 Usage
 -----
 
-Not intended for public use.
-
-Need a website?  Say hello@mietek.io
+Please report any problems with the Halcyon documentation on the [issue tracker](https://github.com/mietek/haskell-on-heroku-website/issues/).
 
 
 ### Installation
