@@ -27,4 +27,4 @@ make
 License
 -------
 
-[MIT](https://github.com/mietek/halcyon-website/blob/master/LICENSE.md) © [Miëtek Bak](http://mietek.io/)
+[MIT X11](https://github.com/mietek/license/blob/master/LICENSE.md) © [Miëtek Bak](http://mietek.io/)
