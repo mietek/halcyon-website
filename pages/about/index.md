@@ -47,5 +47,3 @@ Legal
 -----
 
 © 2014 Miëtek Bak.  Published under the [MIT X11 License](license/).
-
-Not affiliated with or supported by [Heroku](http://heroku.com/) or [Salesforce](http://salesforce.com/).
