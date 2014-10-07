@@ -3,7 +3,7 @@ title: Reference
 page-class: add-section-toc
 page-head: |
   <style>
-    header a.link-docs {
+    header a.link-documentation {
       color: #3f96f0;
     }
   </style>
@@ -13,11 +13,11 @@ page-head: |
 Reference
 =========
 
-Halcyon internal function documentation.
+Internal documentation for _Halcyon_.  Intended primarily for people interested in contributing to _Halcyon_.  Best read together with the source code.
 
-Intended for people interested in developing Halcyon or [Haskell on Heroku](http://haskellonheroku.com/).  Best read together with the source code.
+_Halcyon_ is written in GNU _bash_, using [_bashmenot_](https://github.com/mietek/bashmenot/), a library of functions for safer shell scripting.  For more information, including usage examples, please consult the [_bashmenot_ library reference](documentation/library-reference/).
 
-Work in progress.
+Work in progress.  Please report any problems with the documentation on the [_halcyon-website_ issue tracker](https://github.com/mietek/halcyon-website/issues/).
 
 > Contents:
 
@@ -27,7 +27,7 @@ Work in progress.
 Cache maintenance functions { .funs }
 ---------------------------
 
-Functions to maintain the Halcyon cache, and communicate the state of the cache to the user.
+Functions to maintain the _Halcyon_ cache, and communicate the state of the cache to the user.
 
 
 > Contents of [`cache.sh`](https://github.com/mietek/halcyon/blob/master/src/cache.sh):
@@ -85,7 +85,7 @@ Check the environment variables necessary to use S3 are not unset and not empty.
 ### `echo_default_s3_url`
 > Arguments:  _`object`_
 
-Output the default Halcyon public URL of the specified object.
+Output the default _Halcyon_ public URL of the specified object.
 
 ```
 $ echo_default_s3_url foo
@@ -114,7 +114,7 @@ If an S3 bucket is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is n
 
 Like [`download_original`](#download_original), but for prebuilt packages, and with no fallback.
 
-If an S3 bucket is available, download the specified package from the bucket.  Otherwise, download the file from the default Halcyon public location.
+If an S3 bucket is available, download the specified package from the bucket.  Otherwise, download the file from the default _Halcyon_ public location.
 
 Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
@@ -122,7 +122,7 @@ Does not overwrite existing files.  Creates the destination directory if needed.
 ### `list_prebuilt`
 > Arguments:  _`src_prefix`_
 
-If an S3 bucket is available, output the contents of the bucket, listing the files which start with the specified prefix.  Otherwise, list the contents of the default Halcyon public location.
+If an S3 bucket is available, output the contents of the bucket, listing the files which start with the specified prefix.  Otherwise, list the contents of the default _Halcyon_ public location.
 
 
 ### `upload_prebuilt`
@@ -300,7 +300,7 @@ $ echo_ghc_version_from_base_version 4.7.0.1
 ### `echo_ghc_default_version`
 > Arguments:  _none_
 
-Output the default Halcyon GHC version.
+Output the default _Halcyon_ GHC version.
 
 ```
 $ echo_ghc_default_version 

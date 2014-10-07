@@ -3,7 +3,7 @@ title: Library reference
 page-class: add-section-toc
 page-head: |
   <style>
-    header a.link-docs {
+    header a.link-documentation {
       color: #3f96f0;
     }
   </style>
@@ -13,9 +13,9 @@ page-head: |
 Library reference
 =================
 
-Documentation for [_bashmenot_](https://github.com/mietek/bashmenot/), a library of functions for safer shell scripting.
+Internal documentation for [_bashmenot_](https://github.com/mietek/bashmenot/), a library of functions for safer shell scripting.  Intended for people interested in contributing to _Halcyon_ or writing their own complex GNU _bash_ programs.  Best read together with the source code.
 
-Intended for people interested in developing Halcyon, [Haskell on Heroku](http://haskellonheroku.com/), or other complex GNU _bash_ scripts.  Best read together with the source code.
+Please report any problems with the documentation on the [_halcyon-website_ issue tracker](https://github.com/mietek/halcyon-website/issues/).
 
 > Contents:
 

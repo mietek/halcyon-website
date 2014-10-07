@@ -26,7 +26,7 @@ Interested in deploying Haskell web apps?  Try [Haskell on Heroku](http://haskel
 Support
 -------
 
-Please report any problems on the [Halcyon issue tracker](https://github.com/mietek/halcyon/issues/).
+Please report any problems on the [_Halcyon_ issue tracker](https://github.com/mietek/halcyon/issues/).
 
 Commercial support for _Halcyon_ is offered by [Least Fixed](http://leastfixed.com/), a software consultancy based in Cambridge, UK.
 
