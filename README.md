@@ -11,7 +11,7 @@ Usage
 
 Not intended for public use.
 
-Do you need a website?  Say hello@mietek.io
+Need a website?  Say hello@mietek.io
 
 
 ### Installation
