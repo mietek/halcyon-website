@@ -24,6 +24,155 @@ Work in progress.  Please report any problems with the documentation on the [_ha
 
 
 
+Environment variables { .vars }
+---------------------
+
+### `HALCYON_AWS_ACCESS_KEY_ID`
+> Default value:  _none_
+
+Part of the authentication details used to access the private Amazon S3 bucket.
+
+
+### `HALCYON_AWS_SECRET_ACCESS_KEY`
+> Default value:  _none_
+
+Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.
+
+
+### `HALCYON_S3_BUCKET`
+> Default value:  _none_
+
+Name of the private Amazon S3 bucket used to keep prebuilt packages.
+
+
+### `HALCYON_S3_ACL`
+> Default value:  `private`
+
+ACL assigned to all files uploaded to the private Amazon S3 bucket.
+
+
+### `HALCYON_DIR`
+> Default value:  `/app/.halcyon`
+
+TODO
+
+
+### `HALCYON_CONFIG_DIR`
+> Default value:  `${HALCYON_DIR}/config`
+
+TODO
+
+
+### `HALCYON_INSTALL_DIR`
+> Default value:  `${HALCYON_DIR}/install`
+
+TODO
+
+
+### `HALCYON_CACHE_DIR`
+> Default value:  `/var/tmp/halcyon/cache`
+
+TODO
+
+
+### `HALCYON_PURGE_CACHE`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_ARCHIVE`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_UPLOAD`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_DEPENDENCIES_ONLY`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_PREBUILT_ONLY`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_GHC`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_CABAL`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_SANDBOX`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_NO_PREBUILT_APP`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_FORCE_GHC_VERSION`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_FORCE_CABAL_VERSION`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_FORCE_CABAL_UPDATE`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_TRIM_GHC`
+> Default value:  `0`
+
+TODO
+
+
+### `HALCYON_CUSTOM_SCRIPT`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_QUIET`
+> Default value:  `0`
+
+TODO
+
+
+
+
 Cache maintenance functions { .funs }
 ---------------------------
 
@@ -164,7 +313,7 @@ $ echo -e "foo 1.0\nbar 2.0" | echo_constraints_digest
 ### `echo_customize_script_digest`
 > Arguments:  _none_
 
-Like [echo_constraints_digest](#echo_constraints_digest), but for a sandbox customization script.
+Like [`echo_constraints_digest`](#echo_constraints_digest), but for a sandbox customization script.
 
 
 ### `echo_constraints`
@@ -265,6 +414,7 @@ TODO
 GHC installation functions { .funs }
 --------------------------
 
+TODO
 
 > Contents of [`ghc.sh`](https://github.com/mietek/halcyon/blob/master/src/ghc.sh):
 
@@ -272,7 +422,7 @@ GHC installation functions { .funs }
 ### `echo_ghc_libgmp10_x64_original_url`
 > Arguments:  _`ghc_version`_
 
-Output the original URL of the `libgmp10` variant `x64` architecture binary distribution for the specified GHC version.
+Output the original URL of the specified version of the GHC binary distribution linked with `libgmp10`.
 
 ```
 $ echo_ghc_libgmp10_x64_original_url 7.8.3
@@ -283,7 +433,7 @@ http://www.haskell.org/ghc/dist/7.8.3/ghc-7.8.3-x86_64-unknown-linux-deb7.tar.xz
 ### `echo_ghc_libgmp3_x64_original_url`
 > Arguments:  _`ghc_version`_
 
-Like [echo_ghc_libgmp10_x64_original_url](#echo_ghc_libgmp10_x64_original_url), but for the `libgmp3` variant.
+Like [`echo_ghc_libgmp10_x64_original_url`](#echo_ghc_libgmp10_x64_original_url), but for the distribution linked with `libgmp3`.
 
 
 ### `echo_ghc_version_from_base_version`
@@ -311,23 +461,18 @@ $ echo_ghc_default_version
 ### `echo_ghc_tag`
 > Arguments:  _`ghc_version ghc_variant`_
 
-Output a tab-separated GHC tag, consisting of the current [HALCYON_DIR](#halcyon_dir), OS identifier, and the specified GHC version and packaging variant.
+Output a one-line tag, consisting of the current [`HALCYON_DIR`](#halcyon_dir), OS identifier, and the specified GHC version and variant.
 
-The packaging variant may be empty.
-
-```
-$ echo_ghc_tag 7.8.3 foo
-/app/.halcyon	linux-ubuntu-14-04-x64	ghc-7.8.3	foo
-```
+An empty variant can be specified to tag the default GHC variant.
 
 
 ### `echo_ghc_tag_version`
 > Arguments:  _`ghc_tag`_
 
-Output the version included in the specified GHC tag.
+Output the GHC version included in the specified tag.
 
 ```
-$ echo_ghc_tag_version "`echo_ghc_tag 7.8.3 foo`"
+$ echo_ghc_tag_version "`echo_ghc_tag 7.8.3 ''`"
 7.8.3
 ```
 
@@ -335,28 +480,36 @@ $ echo_ghc_tag_version "`echo_ghc_tag 7.8.3 foo`"
 ### `echo_ghc_tag_variant`
 > Arguments:  _`ghc_tag`_
 
-Like [echo_ghc_tag_version](#echo_ghc_tag_version), but for the packaging variant.
+Like [`echo_ghc_tag_version`](#echo_ghc_tag_version), but for the GHC variant.
 
 
 ### `echo_ghc_archive`
 > Arguments:  _`ghc_tag`_
 
-Output the archive name corresponding to the specified GHC tag.
+Output the GHC archive name corresponding to the specified tag.
 
 ```
-$ echo_ghc_archive "`echo_ghc_tag 7.8.3 foo`"
-halcyon-ghc-7.8.3-foo.tar.xz
+$ echo_ghc_archive "`echo_ghc_tag 7.8.3 ''`"
+halcyon-ghc-7.8.3.tar.xz
+```
+```
+$ echo_ghc_archive "`echo_ghc_tag 7.8.3 trimmed`"
+halcyon-ghc-7.8.3-trimmed.tar.xz
 ```
 
 
 ### `echo_ghc_description`
 > Arguments:  _`ghc_tag`_
 
-Output a human-readable description of the specified GHC tag.
+Output a user-friendly GHC description based on the specified tag.
 
 ```
-$ echo_ghc_description "`echo_ghc_tag 7.8.3 foo`"
-GHC 7.8.3 (foo)
+$ echo_ghc_description "`echo_ghc_tag 7.8.3 ''`"
+GHC 7.8.3
+```
+```
+$ echo_ghc_description "`echo_ghc_tag 7.8.3 trimmed`"
+GHC 7.8.3 (trimmed)
 ```
 
 
@@ -371,20 +524,11 @@ Output the path to a temporary directory used while installing GHC.
 
 Parse a tag, checking that it is equal to the specified GHC tag.  Otherwise, return `1`.
 
-```
-$ echo "`echo_ghc_tag 7.8.3 foo`" | validate_ghc_tag "`echo_ghc_tag 7.8.3 foo`" ; echo $?
-0
-```
-```
-$ echo bar | validate_ghc_tag "`echo_ghc_tag 7.8.3 foo`" ; echo $?
-1
-```
-
 
 ### `detect_base_version`
 > Arguments:  _none_
 
-Output the `base` package version of the currently active GHC.
+Output the currently active GHC `base` package version.
 
 ```
 $ detect_base_version
@@ -405,13 +549,13 @@ TODO
 
 
 ### `trim_ghc`
-> Arguments:  _`ghc_tag ghc_version`_
+> Arguments:  _none_
 
 TODO
 
 
 ### `strip_ghc`
-> Arguments:  _`ghc_tag ghc_version`_
+> Arguments:  _none_
 
 TODO
 
@@ -463,42 +607,245 @@ TODO
 
 
 ### `echo_cabal_original_url`
+> Arguments:  _`cabal_version`_
+
+Output the original URL of the specified version of the Cabal source distribution.
+
+
 ### `echo_cabal_default_version`
+> Arguments:  _none_
+
+Output the default _Halcyon_ Cabal version.
+
+```
+$ echo_cabal_default_version
+1.20.0.3
+```
+
+
 ### `echo_cabal_config`
+> Arguments:  _none_
+
+Output the default _Halcyon_ `cabal.config` file.
+
+
 ### `echo_cabal_tag`
+> Arguments:  _`cabal_version cabal_timestamp`_
+
+Output a one-line tag, consisting of the current [`HALCYON_DIR`](#halcyon_dir), OS identifier, and the specified Cabal version and update timestamp.
+
+An empty timestamp can be specified to tag Cabal which has not been updated.
+
+
 ### `echo_cabal_tag_version`
+> Arguments:  _`cabal_tag`_
+
+Output the Cabal version included in the specified tag.
+
+```
+$ echo_cabal_tag_version "`echo_cabal_tag 1.20.0.3 ''`"
+1.20.0.3
+```
+
+
 ### `echo_cabal_tag_timestamp`
+> Arguments:  _`cabal_tag`_
+
+Like [`echo_cabal_tag_version`](#echo_cabal_tag_version), but for the Cabal update timestamp.
+
+
 ### `echo_cabal_archive`
+> Arguments:  _`cabal_tag`_
+
+Output the Cabal archive name corresponding to the specified tag.
+
+```
+$ echo_cabal_archive "`echo_cabal_tag 1.20.0.3 ''`"
+halcyon-cabal-1.20.0.3.tar.xz
+```
+```
+$ echo_cabal_archive "`echo_cabal_tag 1.20.0.3 20141105235959`"
+halcyon-cabal-1.20.0.3-20141105235959.tar.xz
+```
+
+
 ### `echo_updated_cabal_tag_pattern`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `echo_updated_cabal_archive_prefix`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `echo_updated_cabal_archive_pattern`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `echo_updated_cabal_archive_timestamp`
+> Arguments:  _`cabal_archive`_
+
+TODO
+
+
 ### `echo_cabal_description`
+> Arguments:  _`cabal_tag`_
+
+TODO
+
+
 ### `echo_tmp_cabal_dir`
+> Arguments:  _none_
+
+Output the path to a temporary directory used while installing Cabal.
+
+
 ### `validate_cabal_tag`
+> Arguments:  _`cabal_version`_
+
+Parse a tag, checking that the Cabal version included it is equal to the specified version.  Otherwise, return 1.
+
+
 ### `validate_updated_cabal_timestamp`
+> Arguments:  _`candidate_timestamp`_
+
+TODO
+
+
 ### `validate_updated_cabal_tag`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `validate_updated_cabal_archive`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `match_updated_cabal_archive`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `cabal_do`
+> Arguments:  _`work_dir any*`_
+
+TODO
+
+
 ### `sandboxed_cabal_do`
+> Arguments:  _`sandbox_dir work_dir any*`_
+
+TODO
+
+
 ### `cabal_update`
+> Arguments:  _none_
+
+TODO
+
+
 ### `cabal_list_latest_package_version`
+> Arguments:  _`package_name`_
+
+TODO
+
+
 ### `cabal_create_sandbox`
+> Arguments:  _`sandbox_dir`_
+
+TODO
+
+
 ### `cabal_install`
+> Arguments:  _`sandbox_dir app_dir`_
+
+TODO
+
+
 ### `cabal_install_deps`
+> Arguments:  _`sandbox_dir app_dir`_
+
+TODO
+
+
 ### `cabal_configure_app`
+> Arguments:  _`sandbox_dir app_dir`_
+
+TODO
+
+
 ### `cabal_build_app`
+> Arguments:  _`sandbox_dir app_dir`_
+
+TODO
+
+
 ### `build_cabal`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `update_cabal`
+> Arguments:  _none_
+
+TODO
+
+
 ### `archive_cabal`
+> Arguments:  _none_
+
+TODO
+
+
 ### `restore_cabal`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `restore_archived_updated_cabal`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `restore_updated_cabal`
+> Arguments:  _`cabal_version`_
+
+TODO
+
+
 ### `infer_cabal_version`
+> Arguments:  _none_
+
+TODO
+
+
 ### `activate_cabal`
+> Arguments:  _none_
+
+TODO
+
 ### `deactivate_cabal`
+> Arguments:  _none_
+
+TODO
+
+
 ### `install_cabal`
+> Arguments:  _none_
+
+TODO
 
 
 
@@ -512,34 +859,179 @@ TODO
 
 
 ### `log_add_config_help`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_tag`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_tag_ghc_version`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_tag_app_label`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_tag_digest`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_archive`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_config`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_config_ghc_version`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_config_app_label`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_config_digest`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_config_prefix`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_config_pattern`
+> Arguments:
+
+TODO
+
+
 ### `echo_sandbox_description`
+> Arguments:
+
+TODO
+
+
 ### `echo_tmp_sandbox_config`
+> Arguments:
+
+TODO
+
+
 ### `echo_tmp_customize_sandbox_dir`
+> Arguments:
+
+TODO
+
+
 ### `validate_sandbox_tag`
+> Arguments:
+
+TODO
+
+
 ### `validate_sandbox_config`
+> Arguments:
+
+TODO
+
+
 ### `build_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `strip_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `archive_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `restore_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `infer_sandbox_constraints`
+> Arguments:
+
+TODO
+
+
 ### `infer_sandbox_digest`
+> Arguments:
+
+TODO
+
+
 ### `locate_matched_sandbox_tag`
+> Arguments:
+
+TODO
+
+
 ### `activate_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `deactivate_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `install_extended_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `install_sandbox`
+> Arguments:
+
+TODO
+
+
 ### `customize_sandbox_with_execs`
+> Arguments:
+
+TODO
+
+
 
 
 
@@ -553,173 +1045,126 @@ TODO
 
 
 ### `echo_app_tag`
+> Arguments:
+
+TODO
+
+
 ### `echo_app_tag_ghc_version`
+> Arguments:
+
+TODO
+
+
 ### `echo_app_tag_app_label`
+> Arguments:
+
+TODO
+
+
 ### `echo_app_archive`
+> Arguments:
+
+TODO
+
+
 ### `echo_tmp_app_dir`
+> Arguments:
+
+TODO
+
+
 ### `echo_tmp_old_app_dir`
+> Arguments:
+
+TODO
+
+
 ### `echo_tmp_app_dist_dir`
+> Arguments:
+
+TODO
+
+
 ### `validate_app_tag`
+> Arguments:
+
+TODO
+
+
 ### `echo_fake_package`
+> Arguments:
+
+TODO
+
+
 ### `fake_app_dir`
+> Arguments:
+
+TODO
+
+
 ### `detect_app_package`
+> Arguments:
+
+TODO
+
+
 ### `detect_app_name`
+> Arguments:
+
+TODO
+
+
 ### `detect_app_version`
+> Arguments:
+
+TODO
+
+
 ### `detect_app_executable`
+> Arguments:
+
+TODO
+
+
 ### `detect_app_label`
+> Arguments:
+
+TODO
+
+
 ### `configure_app`
+> Arguments:
+
+TODO
+
+
 ### `build_app`
+> Arguments:
+
+TODO
+
+
 ### `archive_app`
+> Arguments:
+
+TODO
+
+
 ### `restore_app`
+> Arguments:
+
+TODO
+
+
 ### `infer_app_tag`
+> Arguments:
+
+TODO
+
+
 ### `install_app`
-
-
-
-
-Environment variables { .vars }
----------------------
-
-### `HALCYON_AWS_ACCESS_KEY_ID`
-> Default value:  _none_
-
-Part of the authentication details used to access the private Amazon S3 bucket.
-
-
-### `HALCYON_AWS_SECRET_ACCESS_KEY`
-> Default value:  _none_
-
-Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.
-
-
-### `HALCYON_S3_BUCKET`
-> Default value:  _none_
-
-Name of the private Amazon S3 bucket used to keep prebuilt packages.
-
-
-### `HALCYON_S3_ACL`
-> Default value:  `private`
-
-ACL assigned to all files uploaded to the private Amazon S3 bucket.
-
-
-### `HALCYON_DIR`
-> Default value:  `/app/.halcyon`
-
-TODO
-
-
-### `HALCYON_CONFIG_DIR`
-> Default value:  `${HALCYON_DIR}/config`
-
-TODO
-
-
-### `HALCYON_INSTALL_DIR`
-> Default value:  `${HALCYON_DIR}/install`
-
-TODO
-
-
-### `HALCYON_CACHE_DIR`
-> Default value:  `/var/tmp/halcyon/cache`
-
-TODO
-
-
-### `HALCYON_PURGE_CACHE`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_ARCHIVE`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_UPLOAD`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_DEPENDENCIES_ONLY`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_PREBUILT_ONLY`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_PREBUILT`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_PREBUILT_GHC`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_PREBUILT_CABAL`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_PREBUILT_SANDBOX`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_PREBUILT_APP`
-
-TODO
-
-> Default value:  `0`
-
-
-### `HALCYON_FORCE_GHC_VERSION`
-> Default value:  _none_
-
-TODO
-
-
-### `HALCYON_FORCE_CABAL_VERSION`
-> Default value:  _none_
-
-TODO
-
-
-### `HALCYON_FORCE_CABAL_UPDATE`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_TRIM_GHC`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_CUSTOM_SCRIPT`
-> Default value:  _none_
-
-TODO
-
-
-### `HALCYON_QUIET`
-> Default value:  `0`
+> Arguments:
 
 TODO
