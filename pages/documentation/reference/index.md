@@ -50,6 +50,8 @@ Name of the private Amazon S3 bucket used to keep prebuilt packages.
 
 ACL assigned to all files uploaded to the private Amazon S3 bucket.
 
+Commonly used values are `private` and `public-read`.
+
 
 ### `HALCYON_DIR`
 > Default value:  `/app/.halcyon`
@@ -78,7 +80,7 @@ TODO
 ### `HALCYON_PURGE_CACHE`
 > Default value:  `0`
 
-TODO
+Whether to delete the contents of the _Halcyon_ cache before compilation.
 
 
 ### `HALCYON_NO_ARCHIVE`
@@ -108,55 +110,55 @@ TODO
 ### `HALCYON_NO_PREBUILT`
 > Default value:  `0`
 
-TODO
+Whether to ignore all existing prebuilt packages and build all required packages from scratch.
 
 
 ### `HALCYON_NO_PREBUILT_GHC`
 > Default value:  `0`
 
-TODO
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only GHC packages.
 
 
 ### `HALCYON_NO_PREBUILT_CABAL`
 > Default value:  `0`
 
-TODO
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only Cabal packages.
 
 
 ### `HALCYON_NO_PREBUILT_SANDBOX`
 > Default value:  `0`
 
-TODO
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only sandbox packages.
 
 
 ### `HALCYON_NO_PREBUILT_APP`
 > Default value:  `0`
 
-TODO
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only app packages.
 
 
 ### `HALCYON_FORCE_GHC_VERSION`
 > Default value:  _none_
 
-TODO
+Version of GHC to use, instead of an inferred version.
 
 
 ### `HALCYON_FORCE_CABAL_VERSION`
 > Default value:  _none_
 
-TODO
+Version of Cabal to use, instead of an inferred version.
 
 
 ### `HALCYON_FORCE_CABAL_UPDATE`
 > Default value:  `0`
 
-TODO
+Whether to ignore any existing prebuilt updated Cabal packages and update Cabal from scratch.
 
 
 ### `HALCYON_TRIM_GHC`
 > Default value:  `0`
 
-TODO
+Whether to use an aggressively minimized prebuilt variant of GHC.
 
 
 ### `HALCYON_CUSTOM_SCRIPT`
@@ -859,175 +861,175 @@ TODO
 
 
 ### `log_add_config_help`
-> Arguments:
+> Arguments:  _`sandbox_constraints`_
 
 TODO
 
 
 ### `echo_sandbox_tag`
-> Arguments:
+> Arguments:  _`ghc_version app_label sandbox_digest`_
 
 TODO
 
 
 ### `echo_sandbox_tag_ghc_version`
-> Arguments:
+> Arguments:  _`sandbox_tag`_
 
 TODO
 
 
 ### `echo_sandbox_tag_app_label`
-> Arguments:
+> Arguments:  _`sandbox_tag`_
 
 TODO
 
 
 ### `echo_sandbox_tag_digest`
-> Arguments:
+> Arguments:  _`sandbox_tag`_
 
 TODO
 
 
 ### `echo_sandbox_archive`
-> Arguments:
+> Arguments:  _`sandbox_tag`_
 
 TODO
 
 
 ### `echo_sandbox_config`
-> Arguments:
+> Arguments:  _`sandbox_tag`_
 
 TODO
 
 
 ### `echo_sandbox_config_ghc_version`
-> Arguments:
+> Arguments:  _`sandbox_config`_
 
 TODO
 
 
 ### `echo_sandbox_config_app_label`
-> Arguments:
+> Arguments:  _`sandbox_config`_
 
 TODO
 
 
 ### `echo_sandbox_config_digest`
-> Arguments:
+> Arguments:  _`sandbox_config`_
 
 TODO
 
 
 ### `echo_sandbox_config_prefix`
-> Arguments:
+> Arguments:  _`sandbox_config_prefix`_
 
 TODO
 
 
 ### `echo_sandbox_config_pattern`
-> Arguments:
+> Arguments:  _`sandbox_config_pattern`_
 
 TODO
 
 
 ### `echo_sandbox_description`
-> Arguments:
+> Arguments:  _`sandbox_description`_
 
 TODO
 
 
 ### `echo_tmp_sandbox_config`
-> Arguments:
+> Arguments:  _none_
 
 TODO
 
 
 ### `echo_tmp_customize_sandbox_dir`
-> Arguments:
+> Arguments:  _none_
 
 TODO
 
 
 ### `validate_sandbox_tag`
-> Arguments:
+> Arguments:  _`sandbox_tag`_
 
 TODO
 
 
 ### `validate_sandbox_config`
-> Arguments:
+> Arguments:  _`sandbox_digest`_
 
 TODO
 
 
 ### `build_sandbox`
-> Arguments:
+> Arguments:  _`app_dir sandbox_constraints sandbox_tag`_
 
 TODO
 
 
 ### `strip_sandbox`
-> Arguments:
+> Arguments:  _none_
 
 TODO
 
 
 ### `archive_sandbox`
-> Arguments:
+> Arguments:  _none_
 
 TODO
 
 
 ### `restore_sandbox`
-> Arguments:
+> Arguments:  _`sandbox_tag`_
 
 TODO
 
 
 ### `infer_sandbox_constraints`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `infer_sandbox_digest`
-> Arguments:
+> Arguments:  _`sandbox_constraints`_
 
 TODO
 
 
 ### `locate_matched_sandbox_tag`
-> Arguments:
+> Arguments:  _`sandbox_constraints`_
 
 TODO
 
 
 ### `activate_sandbox`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `deactivate_sandbox`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `install_extended_sandbox`
-> Arguments:
+> Arguments:  _`app_dir sandbox_constraints sandbox_tag matched_tag`_
 
 TODO
 
 
 ### `install_sandbox`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `customize_sandbox_with_execs`
-> Arguments:
+> Arguments:  _`package_name*`_
 
 TODO
 
@@ -1045,126 +1047,126 @@ TODO
 
 
 ### `echo_app_tag`
-> Arguments:
+> Arguments:  _`ghc_version app_label`_
 
 TODO
 
 
 ### `echo_app_tag_ghc_version`
-> Arguments:
+> Arguments:  _`app_tag`_
 
 TODO
 
 
 ### `echo_app_tag_app_label`
-> Arguments:
+> Arguments:  _`app_tag`_
 
 TODO
 
 
 ### `echo_app_archive`
-> Arguments:
+> Arguments:  _`app_tag`_
 
 TODO
 
 
 ### `echo_tmp_app_dir`
-> Arguments:
+> Arguments:  _none_
 
 TODO
 
 
 ### `echo_tmp_old_app_dir`
-> Arguments:
+> Arguments:  _none_
 
 TODO
 
 
 ### `echo_tmp_app_dist_dir`
-> Arguments:
+> Arguments:  _none_
 
 TODO
 
 
 ### `validate_app_tag`
-> Arguments:
+> Arguments:  _`app_tag`_
 
 TODO
 
 
 ### `echo_fake_package`
-> Arguments:
+> Arguments:  _`app_label`_
 
 TODO
 
 
 ### `fake_app_dir`
-> Arguments:
+> Arguments:  _`app_label`_
 
 TODO
 
 
 ### `detect_app_package`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `detect_app_name`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `detect_app_version`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `detect_app_executable`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `detect_app_label`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `configure_app`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `build_app`
-> Arguments:
+> Arguments:  _`app_dir app_tag`_
 
 TODO
 
 
 ### `archive_app`
-> Arguments:
+> Arguments:  _`app_dir app_tag`_
 
 TODO
 
 
 ### `restore_app`
-> Arguments:
+> Arguments:  _`app_dir app_tag`_
 
 TODO
 
 
 ### `infer_app_tag`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
 
 
 ### `install_app`
-> Arguments:
+> Arguments:  _`app_dir`_
 
 TODO
