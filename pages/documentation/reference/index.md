@@ -59,12 +59,6 @@ Commonly used values are `private` and `public-read`.
 TODO
 
 
-### `HALCYON_CONFIG_DIR`
-> Default value:  `${HALCYON_DIR}/config`
-
-TODO
-
-
 ### `HALCYON_INSTALL_DIR`
 > Default value:  `${HALCYON_DIR}/install`
 

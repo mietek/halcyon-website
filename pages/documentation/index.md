@@ -89,11 +89,11 @@ Building packages
 
 _Halcyon_ is designed to accommodate machines with ephemeral storage, such as Heroku dynos.  A private Amazon S3 bucket, defined by the [`HALCYON_S3_BUCKET`](documentation/reference/#halcyon_s3_bucket) environment variable, is intended to serve as permanent storage for packages.
 
-All packages required for compilation are downloaded from the bucket.  If a required package is not found while attempting to deploy an app, the package will be built on-the-fly, and compilation will proceed without issue.
+All packages required for compilation are downloaded from the private bucket.  If a required package is not found while attempting to deploy an app, the package will be built on-the-fly, and compilation will proceed without issue.
 
-Any built packages are archived and uploaded to the private S3 bucket, prefixed with an appropriate OS identifier.  The original files used for the build are also uploaded to the bucket, in order to decrease the overall load on upstream servers.  All uploaded files are assigned an [S3 ACL](http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html), defined by [`HALCYON_S3_ACL`](documentation/reference/#halcyon_s3_acl), which defaults to `private`.
+Any built packages are archived and uploaded to the private S3 bucket, prefixed with an appropriate OS identifier.  The original files used for the build are also uploaded to the private bucket, in order to decrease the overall load on upstream servers.  All uploaded files are assigned an [S3 ACL](http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html), defined by [`HALCYON_S3_ACL`](documentation/reference/#halcyon_s3_acl), which defaults to `private`.
 
-Access to the bucket is controlled by setting [`HALCYON_AWS_ACCESS_KEY_ID`](documentation/reference/#halcyon_aws_access_key) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](documentation/reference/#halcyon_aws_secret_access_key).
+Access to the private bucket is controlled by setting [`HALCYON_AWS_ACCESS_KEY_ID`](documentation/reference/#halcyon_aws_access_key) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](documentation/reference/#halcyon_aws_secret_access_key).
 
 
 ### Public packages
@@ -109,7 +109,7 @@ If a private bucket is defined, public packages are never used.  This helps main
 
 A private bucket is necessary to support environments in which the machines used for compiling apps are separate from the machines used for building packages.  Some form of external storage must be used to transfer the packages between the machines, and an Amazon S3 bucket is a good solution to this problem.
 
-Storing packages externally also allows unrelated apps to share common dependencies.  Sharing the same private bucket between multiple apps requires no additional configuration beyond defining the same bucket for every app.  This is how public packages are made available.
+Storing packages externally also allows unrelated apps to share common dependencies.  Sharing the same private bucket between multiple apps requires no additional configuration beyond defining the same private bucket for every app.  This is the same method by which public packages are made available.
 
 
 
