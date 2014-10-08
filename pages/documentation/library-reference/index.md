@@ -295,7 +295,7 @@ Output a user-friendly description of the specified OS identifier.
 
 ```
 $ echo_os_description linux-ubuntu-14-04-x64
-Ubuntu 14.04 LTS (x86_64)
+Ubuntu 14.04 LTS (64-bit)
 ```
 
 
