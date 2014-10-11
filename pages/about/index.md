@@ -32,7 +32,7 @@ Halcyon is built with [_bashmenot_](http://bashmenot.mietek.io/), a library of f
 
 For an in-depth discussion of Halcyon internals, please see the [Halcyon programmer’s reference](reference/).
 
-Additional information is available in the [_bashnot_ programmer’s reference](http://bashnot.mietek.io/reference/).
+Additional information is available in the [_bashmenot_ programmer’s reference](http://bashmenot.mietek.io/reference/).
 
 
 Support
