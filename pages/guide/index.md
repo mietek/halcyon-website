@@ -22,9 +22,9 @@ _Work in progress._
 TL;DR
 -----
 
-1.  Define a private S3 bucket for [remote storage](#remote-storage).
+1.  **Define a private S3 bucket** for [remote storage](#remote-storage).
 
-2.  Include a `cabal.config` file in the application directory for [GHC version number](#ghc-version-numbers) and [sandbox constraints](#sandbox-constraints) inference.
+2.  **Include a `cabal.config` file** in the application directory for [GHC version number](#ghc-version-numbers) and [sandbox constraints](#sandbox-constraints) inference.
 
 
 Layers
@@ -77,7 +77,7 @@ To define a new private S3 bucket:
 
 2.  Create a new bucket with an appropriate [S3 bucket name](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html).
 
-    The [S3 management console](https://console.aws.amazon.com/s3/) can be used to create buckets.  However, Halcyon also includes the [_bashmenot_ `s3_create`](http://bashmenot.mietek.io/reference/#s3_create) function:
+    The [S3 management console](https://console.aws.amazon.com/s3/) can be used to create buckets.  It is also possible to use the [_bashmenot_ `s3_create`](http://bashmenot.mietek.io/reference/#s3_create) function:
     ```
     $ source halcyon/halcyon.sh
     $ s3_create foo.halcyon.sh private
