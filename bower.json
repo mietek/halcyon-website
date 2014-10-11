@@ -1,12 +1,11 @@
 {
   "name": "halcyon-website",
-  "description": "Website for Halcyon",
+  "description": "Halcyon website",
   "authors": [
     "Miëtek Bak <hello@mietek.io>"
   ],
   "license": "MIT X11",
   "dependencies": {
-    "cannot": "*",
-    "cannot-h": "*"
+    "cannot": "*"
   }
 }
