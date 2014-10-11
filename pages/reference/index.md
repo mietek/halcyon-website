@@ -1,181 +1,41 @@
 ---
-title: Reference
+title: Programmer’s reference
 page-class: add-section-toc
 page-head: |
   <style>
-    header a.link-documentation {
+    header a.link-reference {
       color: #3f96f0;
     }
   </style>
 ---
 
 
-Reference
-=========
+Programmer’s reference
+======================
 
-Internal documentation for _Halcyon_.  Intended primarily for people interested in contributing to _Halcyon_.  Best read together with the source code.
+_Work in progress._
 
-_Halcyon_ is written in GNU _bash_, using [_bashmenot_](https://github.com/mietek/bashmenot/), a library of functions for safer shell scripting.  For more information, including usage examples, please consult the [_bashmenot_ library reference](documentation/library-reference/).
 
-Work in progress.  Please report any problems with the documentation on the [_halcyon-website_ issue tracker](https://github.com/mietek/halcyon-website/issues/).
+Module usage
+------------
 
-> Contents:
+The Halcyon `install` script is described in the [user’s guide](guide/).
 
+In contrast with executing the `install` script, sourcing the top-level Halcyon module brings all functions into scope, with the side effect of setting default values for all [environment variables](#environment-variables).
 
+```
+$ source halcyon/halcyon.sh
+```
 
 
-Environment variables { .vars }
----------------------
+Cache directory module
+----------------------
 
-### `HALCYON_AWS_ACCESS_KEY_ID`
-> Default value:  _none_
-
-Part of the authentication details used to access the private Amazon S3 bucket.
-
-
-### `HALCYON_AWS_SECRET_ACCESS_KEY`
-> Default value:  _none_
-
-Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.
-
-
-### `HALCYON_S3_BUCKET`
-> Default value:  _none_
-
-Name of the private Amazon S3 bucket used to keep prebuilt packages.
-
-
-### `HALCYON_S3_ACL`
-> Default value:  `private`
-
-ACL assigned to all files uploaded to the private Amazon S3 bucket.
-
-Commonly used values are `private` and `public-read`.
-
-
-### `HALCYON_DIR`
-> Default value:  `/app/.halcyon`
-
-TODO
-
-
-### `HALCYON_INSTALL_DIR`
-> Default value:  `${HALCYON_DIR}/install`
-
-TODO
-
-
-### `HALCYON_CACHE_DIR`
-> Default value:  `/var/tmp/halcyon/cache`
-
-TODO
-
-
-### `HALCYON_PURGE_CACHE`
-> Default value:  `0`
-
-Whether to delete the contents of the _Halcyon_ cache before compilation.
-
-
-### `HALCYON_NO_ARCHIVE`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_UPLOAD`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_DEPENDENCIES_ONLY`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_PREBUILT_ONLY`
-> Default value:  `0`
-
-TODO
-
-
-### `HALCYON_NO_PREBUILT`
-> Default value:  `0`
-
-Whether to ignore all existing prebuilt packages and build all required packages from scratch.
-
-
-### `HALCYON_NO_PREBUILT_GHC`
-> Default value:  `0`
-
-Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only GHC packages.
-
-
-### `HALCYON_NO_PREBUILT_CABAL`
-> Default value:  `0`
-
-Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only Cabal packages.
-
-
-### `HALCYON_NO_PREBUILT_SANDBOX`
-> Default value:  `0`
-
-Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only sandbox packages.
-
-
-### `HALCYON_NO_PREBUILT_APP`
-> Default value:  `0`
-
-Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only app packages.
-
-
-### `HALCYON_FORCE_GHC_VERSION`
-> Default value:  _none_
-
-Version of GHC to use, instead of an inferred version.
-
-
-### `HALCYON_FORCE_CABAL_VERSION`
-> Default value:  _none_
-
-Version of Cabal to use, instead of an inferred version.
-
-
-### `HALCYON_FORCE_CABAL_UPDATE`
-> Default value:  `0`
-
-Whether to ignore any existing prebuilt updated Cabal packages and update Cabal from scratch.
-
-
-### `HALCYON_TRIM_GHC`
-> Default value:  `0`
-
-Whether to use an aggressively minimised prebuilt variant of GHC.
-
-
-### `HALCYON_CUSTOM_SCRIPT`
-> Default value:  _none_
-
-TODO
-
-
-### `HALCYON_QUIET`
-> Default value:  `0`
-
-TODO
-
-
-
-
-Cache maintenance functions { .funs }
----------------------------
+> Source:
+> [`cache.sh`](https://github.com/mietek/halcyon/blob/master/src/cache.sh)
 
 Functions to maintain the _Halcyon_ cache, and communicate the state of the cache to the user.
 
-
-> Contents of [`cache.sh`](https://github.com/mietek/halcyon/blob/master/src/cache.sh):
 
 ### `echo_tmp_cache_dir`
 > Arguments:  _none_
@@ -194,7 +54,7 @@ Like [`echo_tmp_cache_dir`](#echo_tmp_cache_dir), but for a temporary directory 
 
 Before installation:
 
-If [`HALCYON_PURGE_CACHE`](#halcyon_purge_cache) is set to `1`, remove everything from the cache.  Otherwise, tell the user about the previous contents of the cache, and copy them to a temporary location.
+If [`HALCYON_PURGE_CACHE`](#halcyon_purge_cache) is set to `1`, delete the entire contents of the cache.  Otherwise, tell the user about the previous contents of the cache, and copy them to a temporary location.
 
 Sets a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
 
@@ -204,33 +64,32 @@ Sets a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
 
 After installation:
 
-1. Remove everything from the cache, retaining only the most recently used archives.
+1.  Delete the contents of the cache, retaining only the most recently used layer archives.
 
-2. Tell the user about any differences between the previous and current contents of the cache, and discard the previous contents.
+2.  Tell the user about any differences between the previous and current contents of the cache, and discard the previous contents.
 
 Uses a temporary global variable, `HALCYON_OLD_CACHE_TMP_DIR`.
 
 
+Remote storage module
+---------------------
 
+> Source:
+> [`storage.sh`](https://github.com/mietek/halcyon/blob/master/src/storage.sh)
 
-File transfer functions { .funs }
------------------------
-
-Functions for transferring original files and prebuilt packages.
-
-> Contents of [`transfer.sh`](https://github.com/mietek/halcyon/blob/master/src/transfer.sh):
+Functions to support remote storage of original files and layer archives.
 
 
 ### `has_s3`
 > Arguments:  _none_
 
-Check the environment variables necessary to use S3 are not unset and not empty.  Otherwise, return `1`.
+Check the environment variables necessary to use a private S3 bucket for remote storage are not unset and not empty.  Otherwise, return `1`.
 
 
 ### `echo_default_s3_url`
 > Arguments:  _`object`_
 
-Output the default _Halcyon_ public URL of the specified object.
+Output the default Halcyon public URL of the specified object.
 
 ```
 $ echo_default_s3_url foo
@@ -241,7 +100,7 @@ http://s3.halcyon.sh/foo
 ### `download_original`
 > Arguments:  _`src_file_name original_url dst_dir`_
 
-If an S3 bucket is available, download the specified original file from the bucket.  If unsuccessful, or if the bucket is not available, download the file from the original location.
+If remote storage is available, download the specified original file.  If unsuccessful, or if remote storage is not available, download the file from the original location.
 
 Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
@@ -249,7 +108,7 @@ Does not overwrite existing files.  Creates the destination directory if needed.
 ### `upload_original`
 > Arguments:  _`src_dir src_file_name`_
 
-If an S3 bucket is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified original file to the bucket.  Otherwise, do nothing.
+If remote storage is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified original file.  Otherwise, do nothing.
 
 **Overwrites** existing files without warning.  Returns `1` on failure.
 
@@ -257,9 +116,9 @@ If an S3 bucket is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is n
 ### `download_prebuilt`
 > Arguments:  _`src_prefix src_file_name dst_dir`_
 
-Like [`download_original`](#download_original), but for prebuilt packages, and with no fallback.
+Like [`download_original`](#download_original), but for prebuilt layers, and with no fallback.
 
-If an S3 bucket is available, download the specified package from the bucket.  Otherwise, download the file from the default _Halcyon_ public location.
+If remote storage is available, download the specified layer.  Otherwise, download the file from the default Halcyon public location.
 
 Does not overwrite existing files.  Creates the destination directory if needed.  Returns `1` on failure.
 
@@ -267,27 +126,27 @@ Does not overwrite existing files.  Creates the destination directory if needed.
 ### `list_prebuilt`
 > Arguments:  _`src_prefix`_
 
-If an S3 bucket is available, output the contents of the bucket, listing the files which start with the specified prefix.  Otherwise, list the contents of the default _Halcyon_ public location.
+If an S3 bucket is available, output the contents of the bucket, listing the files which start with the specified prefix.  Otherwise, list the contents of the default Halcyon public location.
 
 
 ### `upload_prebuilt`
 > Arguments:  _`src_file dst_prefix`_
 
-Like [`upload_original`](#upload_original), but for prebuilt packages.
+Like [`upload_original`](#upload_original), but for prebuilt layers.
 
-If an S3 bucket is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified package to the bucket.  Otherwise, do nothing.
+If an S3 bucket is available, and [`HALCYON_NO_UPLOAD`](#halcyon_no_upload) is not set to `1`, upload the specified layer to the bucket.  Otherwise, do nothing.
 
 **Overwrites** existing files without warning.  Returns `1` on failure.
 
 
+Constraint processing module
+----------------------------
 
-
-Constraint processing functions { .funs }
--------------------------------
+> Source:
+> [`constraints.sh`](https://github.com/mietek/halcyon/blob/master/src/constraints.sh)
 
 TODO
 
-> Contents of [`constraints.sh`](https://github.com/mietek/halcyon/blob/master/src/constraints.sh):
 
 ### `echo_tmp_constraints_config`
 > Arguments:  _none_
@@ -405,14 +264,13 @@ TODO
 TODO
 
 
+GHC layer module
+----------------
 
-
-GHC installation functions { .funs }
---------------------------
+> Source:
+> [`ghc.sh`](https://github.com/mietek/halcyon/blob/master/src/ghc.sh)
 
 TODO
-
-> Contents of [`ghc.sh`](https://github.com/mietek/halcyon/blob/master/src/ghc.sh):
 
 
 ### `echo_ghc_libgmp10_x64_original_url`
@@ -446,7 +304,7 @@ $ echo_ghc_version_from_base_version 4.7.0.1
 ### `echo_ghc_default_version`
 > Arguments:  _none_
 
-Output the default _Halcyon_ GHC version.
+Output the default Halcyon GHC version.
 
 ```
 $ echo_ghc_default_version 
@@ -592,14 +450,13 @@ TODO
 TODO
 
 
+Cabal layer module
+------------------
 
-
-Cabal installation functions { .funs }
-----------------------------
+> Source:
+> [`cabal.sh`](https://github.com/mietek/halcyon/blob/master/src/cabal.sh)
 
 TODO
-
-> Contents of [`cabal.sh`](https://github.com/mietek/halcyon/blob/master/src/cabal.sh):
 
 
 ### `echo_cabal_original_url`
@@ -611,7 +468,7 @@ Output the original URL of the specified version of the Cabal source distributio
 ### `echo_cabal_default_version`
 > Arguments:  _none_
 
-Output the default _Halcyon_ Cabal version.
+Output the default Halcyon Cabal version.
 
 ```
 $ echo_cabal_default_version
@@ -622,7 +479,7 @@ $ echo_cabal_default_version
 ### `echo_cabal_config`
 > Arguments:  _none_
 
-Output the default _Halcyon_ `cabal.config` file.
+Output the default Halcyon `cabal.config` file.
 
 
 ### `echo_cabal_tag`
@@ -844,14 +701,13 @@ TODO
 TODO
 
 
+Sandbox layer module
+--------------------
 
-
-Sandbox installation functions { .funs }
-------------------------------
+> Source:
+> [`sandbox.sh`](https://github.com/mietek/halcyon/blob/master/src/sandbox.sh)
 
 TODO
-
-> Contents of [`sandbox.sh`](https://github.com/mietek/halcyon/blob/master/src/sandbox.sh):
 
 
 ### `log_add_config_help`
@@ -1028,16 +884,13 @@ TODO
 TODO
 
 
+Application layer module
+------------------------
 
-
-
-
-App installation functions { .funs }
---------------------------
+> Source:
+> [`app.sh`](https://github.com/mietek/halcyon/blob/master/src/app.sh)
 
 TODO
-
-> Contents of [`app.sh`](https://github.com/mietek/halcyon/blob/master/src/app.sh):
 
 
 ### `echo_app_tag`
@@ -1164,3 +1017,141 @@ TODO
 > Arguments:  _`app_dir`_
 
 TODO
+
+
+Environment variables
+---------------------
+
+
+### `HALCYON_AWS_ACCESS_KEY_ID`
+> Default value:  _none_
+
+Part of the authentication details used to access the private S3 bucket.
+
+
+### `HALCYON_AWS_SECRET_ACCESS_KEY`
+> Default value:  _none_
+
+Like [`HALCYON_AWS_ACCESS_KEY_ID`](#halcyon_aws_access_key_id), but secret.
+
+
+### `HALCYON_S3_BUCKET`
+> Default value:  _none_
+
+Name of the private Amazon S3 bucket used to store prebuilt layers.
+
+
+### `HALCYON_S3_ACL`
+> Default value:  `private`
+
+The [S3 <abbr title="Access control list">ACL</abbr>](http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html) assigned to all files uploaded to the private S3 bucket.
+
+Commonly used values are `private` and `public-read`.
+
+
+### `HALCYON_DIR`
+> Default value:  `/app/.halcyon`
+
+Path to the Halcyon directory, which stores all active layers.
+
+
+### `HALCYON_CACHE_DIR`
+> Default value:  `/var/tmp/halcyon/cache`
+
+Path to the cache directory, which stores the most recently used layer archives.
+
+
+### `HALCYON_PURGE_CACHE`
+> Default value:  `0`
+
+Whether to delete the entire contents of the cache directory before compilation.
+
+
+### `HALCYON_NO_ARCHIVE`
+> Default value:  `0`
+
+Whether to skip archiving, caching, and uploading any layers built.
+
+
+### `HALCYON_NO_UPLOAD`
+> Default value:  `0`
+
+Whether to skip uploading any layers built and any original files used while building.
+
+
+### `HALCYON_DEPENDENCIES_ONLY`
+> Default value:  `0`
+
+Whether to only install non-application layers, skipping the application layer entirely.
+
+
+### `HALCYON_PREBUILT_ONLY`
+> Default value:  `0`
+
+Whether to only use prebuilt layers, aborting the installation if any required layers are not prebuilt.
+
+
+### `HALCYON_NO_PREBUILT`
+> Default value:  `0`
+
+Whether to ignore all prebuilt layers, and build all required layers from scratch.
+
+
+### `HALCYON_NO_PREBUILT_GHC`
+> Default value:  `0`
+
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only prebuilt GHC layers.
+
+
+### `HALCYON_NO_PREBUILT_CABAL`
+> Default value:  `0`
+
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only prebuilt Cabal layers.
+
+
+### `HALCYON_NO_PREBUILT_SANDBOX`
+> Default value:  `0`
+
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only prebuilt sandbox layers.
+
+
+### `HALCYON_NO_PREBUILT_APP`
+> Default value:  `0`
+
+Like [`HALCYON_NO_PREBUILT`](#halcyon_no_prebuilt), but ignoring only prebuilt application layers.
+
+
+### `HALCYON_FORCE_GHC_VERSION`
+> Default value:  _none_
+
+The version of GHC to use, instead of an inferred version.
+
+
+### `HALCYON_FORCE_CABAL_VERSION`
+> Default value:  _none_
+
+The version of Cabal to use, instead of the default version.
+
+
+### `HALCYON_FORCE_CABAL_UPDATE`
+> Default value:  `0`
+
+Whether to ignore any existing prebuilt updated Cabal layers and update Cabal from scratch.
+
+
+### `HALCYON_TRIM_GHC`
+> Default value:  `0`
+
+Whether to use an aggressively minimised variant of GHC.
+
+
+### `HALCYON_CUSTOM_SCRIPT`
+> Default value:  _none_
+
+TODO
+
+
+### `HALCYON_QUIET`
+> Default value:  `0`
+
+Whether to conceal all compilation output, unless an error occurs.
