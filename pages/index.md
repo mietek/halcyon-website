@@ -3,7 +3,7 @@ title: Rapid Haskell deployment
 page-class: hero
 header-class: hero
 main-class: hero
-hero:
+hero: |
   <h1 class="logotype">Halcyon</h1>
   <p>Rapid Haskell deployment</p>
 ---
