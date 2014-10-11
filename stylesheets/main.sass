@@ -1,9 +1,39 @@
-@import "cannot-h"
+@import "cannot/reset"
+@import "cannot/color"
+@import "cannot/private-fonts"
 
 
+$hero-background-color: $gray0
+$hero-background-color-name: gray0
 $accent-color: $blue
 $accent-color-name: blue
 
+@include font-face(concourse-c3, regular)
+@include font-face(concourse-t3, regular)
+@include font-face(concourse-t3, italic)
+@include font-face(concourse-t3, bold)
+@include font-face(concourse-t3, bold-italic)
+@include font-face(pragmatapro, regular)
+@include font-face(pragmatapro, bold)
+@include font-face(pragmatapro, italic)
+@include font-face(pragmatapro, bold-italic)
+
 
 @import "cannot/layout"
-@import "cannot-h/hero"
+
+
+@media (max-width: $layout-width-small)
+  #hero
+    @include image(hero-small, jpg)
+
+@media (min-width: $layout-width-small + 1) and (max-width: $layout-width-medium)
+  #hero
+    @include image(hero-medium, jpg)
+
+@media (min-width: $layout-width-medium + 1) and (max-width: $layout-width-large)
+  #hero
+    @include image(hero-large, jpg)
+
+@media (min-width: $layout-width-large + 1)
+  #hero
+    background-image: image-url(hero-large, 2x, jpg)
