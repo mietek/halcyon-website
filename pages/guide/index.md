@@ -22,8 +22,6 @@ _Work in progress._
 TL;DR
 -----
 
-For Halcyon to operate as intended:
-
 1.  Define a private S3 bucket for [remote storage](#remote-storage).
 
 2.  Include a `cabal.config` file in the application directory for [GHC version number](#ghc-version-numbers) and [sandbox constraints](#sandbox-constraints) inference.
@@ -130,9 +128,7 @@ To prevent archiving layers, set [`HALCYON_NO_ARCHIVE`](reference/#halcyon_no_ar
 
 Separating the environment required to compile an application into four types of layers is an attempt at striking a balance between the time spent compiling code, archiving compilation results, and transferring archives over the network.
 
-Every non-application layer is archived using [<abbr title="Lempel-Ziv-Markov chain">LZMA</abbr>](http://en.wikipedia.org/wiki/Lempel–Ziv–Markov_chain_algorithm), which offers a better compression ratio than the default [<span class="small-caps">Deflate</span>](http://en.wikipedia.org/wiki/DEFLATE), but requires more time to compress.  Furthermore, all symbols not needed for relocation processing are stripped from all executables and libraries included in every non-application layer.
-
-••• TODO: Explain this is done to decrease archive size
+Every non-application layer is archived using [<abbr title="Lempel-Ziv-Markov chain">LZMA</abbr>](http://en.wikipedia.org/wiki/Lempel–Ziv–Markov_chain_algorithm), which offers a better compression ratio than the default [<span class="small-caps">Deflate</span>](http://en.wikipedia.org/wiki/DEFLATE), but requires more time to compress.  All symbols not needed for relocation processing are stripped from all executables and libraries included in every non-application layer, to further decrease archive size.
 
 Remote storage is necessary to support environments in which the machines used for compiling applications are separate from the machines used for building layers.
 
