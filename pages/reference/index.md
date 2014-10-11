@@ -16,12 +16,10 @@ Programmer’s reference
 _Work in progress._
 
 
-Module usage
-------------
+Usage
+-----
 
-The Halcyon `install` script is described in the [user’s guide](guide/).
-
-In contrast with executing the `install` script, sourcing the top-level Halcyon module brings all functions into scope, with the side effect of setting default values for all [environment variables](#environment-variables).
+Sourcing the top-level Halcyon module brings all functions into scope, with the side effect of setting default values for all [environment variables](#environment-variables).
 
 ```
 $ source halcyon/halcyon.sh
