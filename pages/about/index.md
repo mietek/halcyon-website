@@ -18,21 +18,46 @@ page-footer: |
 About
 =====
 
-Halcyon is a platform-agnostic system for rapid deployment of [Haskell](http://haskell.org/) installations.
+Halcyon is a platform-agnostic system for installing [Haskell](http://haskell.org/) applications rapidly and reliably.
 
-Please see the [Halcyon user’s guide](guide/) for an introduction to Halcyon concepts and modes of operation.
+To get started with Halcyon, see the [examples](.), and continue with the [user’s guide](guide/).
 
 Interested in deploying Haskell web applications?  Try [Haskell on Heroku](http://haskellonheroku.com/).
 
 
-Internals
----------
+### Internals
 
-Halcyon is built with [_bashmenot_](http://bashmenot.mietek.io/), a library of functions for safer shell scripting.
+For an in-depth discussion of Halcyon internals, see the [programmer’s reference](reference/).
 
-For an in-depth discussion of Halcyon internals, please see the [Halcyon programmer’s reference](reference/).
+Halcyon is built with [_bashmenot_](http://bashmenot.mietek.io/), a library of functions for safer shell scripting in [GNU _bash_](http://gnu.org/software/bash/).
 
-Additional information is available in the [_bashmenot_ programmer’s reference](http://bashmenot.mietek.io/reference/).
+See the [_bashmenot_ programmer’s reference](http://bashmenot.mietek.io/reference/) for a detailed description of each available function, complete with usage examples.
+
+
+### Installation
+
+```
+$ git clone https://github.com/mietek/bashmenot.git
+$ git clone https://github.com/mietek/halcyon.git
+```
+
+Also available as a [Bower](http://bower.io/) package.
+
+```
+$ bower install halcyon
+```
+
+
+### Dependencies
+
+Halcyon requires:
+
+- [GNU _bash_](http://gnu.org/software/bash/) 4 or newer
+- [GNU _date_](https://www.gnu.org/software/coreutils/manual/html_node/date-invocation.html)
+- [GNU _sort_](https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html)
+- [_curl_](http://curl.haxx.se/)
+- [OpenSSL](https://www.openssl.org/)
+- [_bashmenot_](http://bashmenot.mietek.io/)
 
 
 Support
@@ -53,6 +78,8 @@ Thanks to [CircuitHub](https://circuithub.com/), [Tweag I/O](http://www.tweag.io
 The sans-serif font used in this website is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  The monospaced font is [PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://www.fsd.it/).
 
 The welcome image is based on [Altocumulus Cloud](https://www.flickr.com/photos/kubina/146306532/) by [Jeff Kubina](https://www.flickr.com/photos/kubina/).
+
+This website is built with [_cannot_](http://cannot.mietek.io/).
 
 
 License
