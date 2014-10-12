@@ -77,7 +77,7 @@ Thanks to [CircuitHub](https://circuithub.com/), [Tweag I/O](http://www.tweag.io
 
 The sans-serif font used in this website is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  The monospaced font is [PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://www.fsd.it/).
 
-The welcome image is based on [Altocumulus Cloud](https://www.flickr.com/photos/kubina/146306532/) by [Jeff Kubina](https://www.flickr.com/photos/kubina/).
+The welcome image is based on [Altocumulus Cloud](https://www.flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://www.flickr.com/photos/kubina/).
 
 This website is built with [_cannot_](http://cannot.mietek.io/).
 
