@@ -1,11 +1,11 @@
 ---
-title: Rapid Haskell deployment
+title: Haskell application deployment
 page-class: hero
 header-class: hero
 main-class: hero
 hero: |
   <h1 class="logotype">Halcyon</h1>
-  <p>Rapid Haskell deployment</p>
+  <p>Haskell application deployment.</p>
 ---
 
 

@@ -18,7 +18,7 @@ page-footer: |
 About
 =====
 
-Halcyon is a platform-agnostic system for installing [Haskell](http://haskell.org/) applications rapidly and reliably.
+Halcyon is a system for deploying [Haskell](http://haskell.org/) applications rapidly and reliably.
 
 To get started with Halcyon, see the [examples](.), and continue with the [user’s guide](guide/).
 
@@ -31,7 +31,7 @@ For an in-depth discussion of Halcyon internals, see the [programmer’s referen
 
 Halcyon is built with [_bashmenot_](http://bashmenot.mietek.io/), a library of functions for safer shell scripting in [GNU _bash_](http://gnu.org/software/bash/).
 
-See the [_bashmenot_ programmer’s reference](http://bashmenot.mietek.io/reference/) for a detailed description of each available function, complete with usage examples.
+Additional information is available in the [_bashmenot_ programmer’s reference](http://bashmenot.mietek.io/reference/).
 
 
 ### Installation
