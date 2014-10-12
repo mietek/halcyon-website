@@ -1,9 +1,6 @@
 ---
 title: User’s guide
-page-class: add-section-toc
-page-data:
-  - key: max-section-toc-level
-    value: 1
+page-class: add-main-toc
 page-head: |
   <style>
     header a.link-guide {
