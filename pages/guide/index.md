@@ -16,99 +16,107 @@ User’s guide
 _Work in progress._
 
 
+Usage
+-----
+
+Halcyon is a platform-agnostic system for installing Haskell applications rapidly and reliably.
+
+For an application to be installable with Halcyon, the application must compile with GHC, and must be available as a Cabal package.
+
+
 Layers
 ------
 
-The Halcyon core principle is minimising unnecessary work through use of prebuilt layers.
+Halcyon defines four layers:
 
-There are four types of layers:
+1.  [The GHC layer](#the-ghc-layer), which contains an installation of GHC.
 
-1.  [GHC layers](#ghc-layers), which contain a complete installation of GHC.
+2.  [The Cabal layer](#the-cabal-layer), in two flavours:
 
-2.  [Cabal layers](#cabal-layers), in two flavours:
+    -   A Cabal layer only contains the `cabal-install` executable and configuration file.
 
-    -   Cabal layers, only containing the `cabal-install` executable and configuration file.
+    -   An updated Cabal layer also contains an updated Cabal package database.
 
-    -   Updated Cabal layers, also containing an updated Cabal package database.
+3.  [The sandbox layer](#the-sandbox-layer), always built for a specific application, which contains—within a Cabal sandbox—all dependencies required to compile the application.
 
-3.  [Sandbox layers](#sandbox-layers), built for a specific application, which contain—within a Cabal sandbox—all dependencies required to compile the application.
-
-4.  [Application layers](#application-layers), which contain the application executable and all intermediate compilation products.
+4.  [The application layer](#the-application-layer), which contains the application executable and all intermediate build products.
 
 
 ### Halcyon directory
 
-All active layers are installed as subdirectories of the Halcyon directory, specified by the [`HALCYON_DIR`](reference/#halcyon_dir) environment variable, which defaults to `/app/.halcyon`.  Currently, only one layer of each type can be active in a single Halcyon directory.
+All layers are installed as subdirectories of the Halcyon directory, specified by [`HALCYON_DIR`](reference/#halcyon_dir), which defaults to `/app/.halcyon`.
 
-Layers can be used together only if they were built using the same Halcyon directory path.
+A `tag` file is included in every layer, declaring a Halcyon directory, a host OS identifier, and other layer-specific information.  The `tag` is validated every time the layer is used, to ensure the consistency of a Halcyon installation.
 
-A `tag` file is included in every layer, declaring the path to the Halcyon directory, the host OS identifier, the layer type, and other layer-specific information.  The `tag` is validated every time an active layer is used or a layer archive is restored, to help ensure the consistency of a Halcyon installation.
+Layers can be used together only if they declare a common Halcyon directory.
 
 
 ### Cache directory
 
-Halcyon downloads layer archives and other files to the cache directory, specified by the [`HALCYON_CACHE_DIR`](reference/#halcyon_cache_dir) environment variable, which defaults to `/var/tmp/halcyon/cache`.
+Halcyon downloads all files to the cache directory, specified by [`HALCYON_CACHE_DIR`](reference/#halcyon_cache_dir), which defaults to `/var/tmp/halcyon/cache`.
 
-The cache is cleaned after every installation, retaining only the most recently used archive of each layer type.
+The cache is cleaned after every installation, retaining only the most recently used archive of each layer.
 
-To delete the entire contents of the cache before installation, set [`HALCYON_PURGE_CACHE`](reference/#halcyon_purge_cache) to `1`.
+To delete the entire contents of the cache before installation, forcing all required files to be downloaded again, set [`HALCYON_PURGE_CACHE`](reference/#halcyon_purge_cache) to `1`.
 
 
 ### Remote storage
 
-For Halcyon to operate as intended, it is important to **define a private S3 bucket.**
+Halcyon is designed to support machines with ephemeral storage.  A private [Amazon S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html), specified by [`HALCYON_S3_BUCKET`](reference/#halcyon_s3_bucket), is intended to be used as remote storage for all files.
 
-Halcyon is designed to accommodate machines with ephemeral storage, such as [Heroku](http://heroku.com/) dynos.  A private [Amazon S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html), specified by the [`HALCYON_S3_BUCKET`](reference/#halcyon_s3_bucket) environment variable, serves as remote storage for layer archives and other files.
+It is **important** to define a private S3 bucket, as otherwise, Halcyon will use [public layers](#public-layers), and will be unable to upload any files to remote storage.
 
-To define a new private S3 bucket:
+To define a private S3 bucket:
 
-1.  Set [`HALCYON_AWS_ACCESS_KEY_ID`](reference/#halcyon_aws_access_key) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](reference/#halcyon_aws_secret_access_key) to the appropriate values.
+1.  Set [`HALCYON_AWS_ACCESS_KEY_ID`](reference/#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](reference/#halcyon_aws_secret_access_key) to the appropriate values.     Using dedicated [Amazon <abbr title="Identity and access management">IAM</abbr>](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) credentials is recommended.
 
-2.  Create a new bucket with an appropriate [S3 bucket name](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html).
-
-    The [S3 management console](https://console.aws.amazon.com/s3/) can be used to create buckets.  It is also possible to use the [_bashmenot_ `s3_create`](http://bashmenot.mietek.io/reference/#s3_create) function:
+2.  Create a new S3 bucket with an appropriate [S3 bucket name](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html).  The [`s3_create`](http://bashmenot.mietek.io/reference/#s3_create) function can help:
     ```
     $ source halcyon/halcyon.sh
-    $ s3_create foo.halcyon.sh private
-           Creating s3://foo.halcyon.sh/... done
+    $ s3_create foo.example.com private
+           Creating s3://foo.example.com/... done
     ```
 
-3.  Set [`HALCYON_S3_BUCKET`](reference/#halcyon_s3_bucket) to the name of the new bucket.
+3.  Set [`HALCYON_S3_BUCKET`](reference/#halcyon_s3_bucket) to the name of the new S3 bucket.
 
-All files stored in the bucket are assigned an [S3 <abbr title="Access control list">ACL</abbr>](http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html), specified by [`HALCYON_S3_ACL`](reference/#halcyon_s3_acl), which defaults to `private`.
+All files uploaded to the S3 bucket will be assigned an [S3 <abbr title="Access control list">ACL</abbr>](http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html), specified by [`HALCYON_S3_ACL`](reference/#halcyon_s3_acl), which defaults to `private`.
 
 
 ### Public layers
 
-For the purposes of getting started quickly, it is also possible to use [public prebuilt layers](http://s3.halcyon.sh/), by not defining a private S3 bucket.  This is not recommended, as the set of available public layers may change at any time, and there is no guarantee all future public layer sets will remain compatible with any specific application.
+If a private S3 bucket is not defined, Halcyon will use public layers.
 
-As public sandbox layers cannot be perfectly matched to every application, some applications will require building layers on-the-fly.  This may not be optimal, as uploading layer archives is not possible without defining a private bucket, and therefore, if the machine storage is ephemeral, building the layers may need to be repeated in the future.  However, in other scenarios, preventing any layers built from leaving the machine may be acceptable or even desirable.
+Public layers are intended to be used **only** when getting started with Halcyon.  Using public layers for any other purpose is not recommended:
 
-If a private bucket is defined, public layers are never used.  This helps maintain complete control over the deployed code.
+-   The available public layers may change at any time, and there is no guarantee all future public layers will remain compatible with any particular application.
+
+-   Uploading files to remote storage is not possible without defining a private S3 bucket, which means any layers built for a specific application may need to be built again in the future.
+
+If a private S3 bucket is defined, Halcyon will never use public layers, even when using public layers would save time.  This helps maintain complete control over the deployed code.
 
 
 ### Installing layers
 
-When performing an installation, if a required layer is not active, Halcyon will attempt to restore it:
+During installation, if a required layer is not installed, Halcyon will attempt to restore it:
 
-1.  The [cache directory](#cache-directory) will be scanned to locate the required prebuilt layer archive.
+1.  The [cache directory](#cache-directory) will be scanned to locate the required layer archive.
 
 2.  If needed, the archive will be downloaded from [remote storage](#remote-storage) and cached.
 
 3.  Once located, the archive will be extracted to the appropriate subdirectory of the [Halcyon directory](#halcyon-directory).
 
-If the required layer is not prebuilt, Halcyon will build it on-the-fly—either incrementally, if possible for the specific layer type, or from scratch.
+If the required layer cannot be restored, Halcyon will build it on-the-fly—either incrementally, if possible for the specific layer type, or from scratch.
 
 To force building all required layers from scratch, set [`HALCYON_NO_PREBUILT`](reference/#halcyon_no_prebuilt) to `1`.
 
-Conversely, to force the installation to abort unless all required layers are prebuilt, set [`HALCYON_PREBUILT_ONLY`](reference/#halcyon_prebuilt_only) to `1`.
+Conversely, in order to force the installation to abort if any required layers cannot be restored, set [`HALCYON_PREBUILT_ONLY`](reference/#halcyon_prebuilt_only) to `1`.
 
 
 ### Building layers
 
-Any layers built while performing an installation are archived, cached, and uploaded to remote storage, marked with the host OS identifier.
+Any layers built during installation are archived, cached, and uploaded to remote storage, marked with the host OS identifier.
 
-Any original files used while building are also uploaded to remote storage, in order to speed up future builds and decrease load on upstream servers.
+Any original files used while building layers are also uploaded to remote storage, in order to speed up future builds and decrease load on upstream servers.
 
 To prevent archiving layers, set [`HALCYON_NO_ARCHIVE`](reference/#halcyon_no_archive) to `1`.  To prevent uploading files to remote storage, set [`HALCYON_NO_UPLOAD`](reference/#halcyon_no_upload) to `1`.
 
@@ -121,7 +129,9 @@ Every non-application layer is archived using [<abbr title="Lempel-Ziv-Markov ch
 
 Remote storage is necessary to support environments in which the machines used for compiling applications are separate from the machines used for building layers.
 
-Storing layer archives remotely also allows unrelated applications to share common dependencies.  Sharing the same private S3 bucket between multiple applications requires no additional configuration beyond defining the same private bucket for every application.
+Storing layer archives remotely also allows unrelated applications to share common dependencies.  Sharing the same private S3 bucket between multiple applications requires no additional configuration beyond defining the same S3 bucket for every application.
+
+
 
 
 GHC layers  { .layer }
@@ -160,7 +170,7 @@ Cabal layers { .layer }
 > Archive name:  `halcyon-cabal-`_`CABAL_VERSION`_`.tar.xz`\
 > Updated archive name:  `halcyon-cabal-`_`CABAL_VERSION`_`-`_`TIMESTAMP`_`.tar.xz`
 
-There are two flavours of Cabal layers:
+Halcyon defines two flavours of the Cabal layer:
 
 -   Every Cabal layer includes the `cabal-install` executable and configuration file.
 
@@ -244,3 +254,8 @@ As application source code is expected to change for every installation, applica
 TODO
 
 To force building an application layer from scratch, set [`HALCYON_NO_PREBUILT_APP`](reference/#halcyon_no_prebuilt_app) to `1`.
+
+
+TODO:
+
+- [`HALCYON_DEPENDENCIES_ONLY`](reference/#halcyon_dependencies_only)
