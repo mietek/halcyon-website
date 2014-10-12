@@ -19,14 +19,6 @@ User’s guide
 _Work in progress._
 
 
-TL;DR
------
-
-1.  **Define a private S3 bucket** for [remote storage](#remote-storage).
-
-2.  **Include a `cabal.config` file** in the application directory for [GHC version number](#ghc-version-numbers) and [sandbox constraints](#sandbox-constraints) inference.
-
-
 Layers
 ------
 
