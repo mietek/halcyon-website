@@ -34,6 +34,10 @@ _Work in progress._
 Usage
 -----
 
+```
+$ deploy
+```
+
 To learn more, see the [full list of examples](examples/), and continue with the [user’s guide](guide/).
 
 Interested in deploying Haskell web applications?  Try [_Haskell on Heroku_](http://haskellonheroku.com/).
@@ -44,7 +48,9 @@ Interested in deploying Haskell web applications?  Try [_Haskell on Heroku_](h
 ```
 $ git clone --depth=1 https://github.com/mietek/halcyon.git
 $ mkdir halcyon/lib
-$ git clone --depth=1 https://github.com/mietek/bashmenot.git halcyon/lib
+$ git clone --depth=1 https://github.com/mietek/bashmenot.git halcyon/lib/bashmenot
+$ source halcyon/src/paths.sh
+$ set_halcyon_paths
 ```
 
 
