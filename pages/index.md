@@ -108,6 +108,4 @@ Like my work?  I am available for consulting on software projects.  Say <a class
 
 Thanks to [CircuitHub](https://circuithub.com/), [Tweag I/O](http://www.tweag.io/), and [Purely Agile](http://purelyagile.com/) for advice and assistance.
 
-The monospaced font used in this website is [PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://www.fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).
-
-The welcome image is based on [Altocumulus Cloud](https://www.flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://www.flickr.com/photos/kubina/).
+The monospaced font used in this website is [PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://www.fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  The welcome image is based on [Altocumulus Cloud](https://www.flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://www.flickr.com/photos/kubina/).
