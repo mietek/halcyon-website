@@ -182,57 +182,6 @@ TODO
 TODO
 
 
-GHC layer options
------------------
-
-### `HALCYON_GHC_VERSION`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--ghc-version=`_`string`_
-
-TODO
-
-
-### `HALCYON_GHC_MAGIC_HASH`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--ghc-magic-hash=`_`string`_
-
-TODO: Make internal?
-
-
-Cabal layer options
--------------------
-
-### `HALCYON_CABAL_VERSION`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--cabal-version=`_`string`_
-
-TODO
-
-
-### `HALCYON_CABAL_MAGIC_HASH`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--cabal-magic-hash=`_`string`_
-
-TODO: Make internal?
-
-
-### `HALCYON_CABAL_REPO`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--cabal-repo=`_`string`_
-
-TODO
-
-
 Public storage options
 ----------------------
 
@@ -329,6 +278,57 @@ TODO
 > ---------------------|---
 > Default value:       | `0`
 > Command-line option: | `--no-cache`
+
+TODO
+
+
+GHC layer options
+-----------------
+
+### `HALCYON_GHC_VERSION`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--ghc-version=`_`string`_
+
+TODO
+
+
+### `HALCYON_GHC_MAGIC_HASH`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--ghc-magic-hash=`_`string`_
+
+TODO: Make internal?
+
+
+Cabal layer options
+-------------------
+
+### `HALCYON_CABAL_VERSION`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--cabal-version=`_`string`_
+
+TODO
+
+
+### `HALCYON_CABAL_MAGIC_HASH`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--cabal-magic-hash=`_`string`_
+
+TODO: Make internal?
+
+
+### `HALCYON_CABAL_REPO`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--cabal-repo=`_`string`_
 
 TODO
 
