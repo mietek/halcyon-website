@@ -25,7 +25,7 @@ $ source <( ~/halcyon/halcyon paths )
 $ halcyon deploy
 ```
 
-Executing the top-level [`halcyon`](https://github.com/mietek/halcyon/blob/master/halcyon) script automatically updates Halcyon and _bashmenot_ to the newest version available.
+Executing the top-level [`halcyon`](https://github.com/mietek/halcyon/blob/master/halcyon) script automatically updates Halcyon to the newest version available.
 
 To disable automatic updates, set [`HALCYON_NO_AUTOUPDATE`](#halcyon_no_autoupdate) to `1`.
 
@@ -43,7 +43,7 @@ Commands
 TODO
 
 
-### `label`
+### `app-label`
 
 > ---------------------|---
 > Arguments:           | _`app* option*`_
