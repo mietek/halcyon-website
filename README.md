@@ -7,4 +7,4 @@ Built with [_cannot_](http://cannot.mietek.io/).
 About
 -----
 
-Made by [Miëtek Bak](http://mietek.io/).  Published under the [MIT X11 license](http://halcyon.sh/license/).  Not affiliated with [Heroku](http://heroku.com/).
+Made by [Miëtek Bak](http://mietek.io/).  Published under the [MIT X11 license](http://halcyon.sh/license/).
