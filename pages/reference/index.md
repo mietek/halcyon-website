@@ -19,6 +19,12 @@ _Work in progress._
 Usage
 -----
 
+```
+$ git clone https://github.com/mietek/halcyon ~/halcyon
+$ source <( ~/halcyon/halcyon paths )
+$ halcyon deploy
+```
+
 Executing the top-level [`halcyon`](https://github.com/mietek/halcyon/blob/master/halcyon) script automatically updates Halcyon and _bashmenot_ to the newest version available.
 
 To disable automatic updates, set [`HALCYON_NO_AUTOUPDATE`](#halcyon_no_autoupdate) to `1`.

@@ -28,29 +28,7 @@ Halcyon is a system for fast and reliable deployment of Haskell applications, us
 Examples
 --------
 
-### “Hello, world!”
-
-- [hello-happstack](https://github.com/mietek/hello-happstack/) ([Live](http://mietek-hello-happstack.herokuapp.com/))
-- [hello-mflow](https://github.com/mietek/hello-mflow/) ([Live](http://mietek-hello-mflow.herokuapp.com/))
-- [hello-miku](https://github.com/mietek/hello-miku/) ([Live](http://mietek-hello-miku.herokuapp.com/))
-- [hello-scotty](https://github.com/mietek/hello-scotty/) ([Live](http://mietek-hello-scotty.herokuapp.com/))
-- [hello-simple](https://github.com/mietek/hello-simple/) ([Live](http://mietek-hello-simple.herokuapp.com/))
-- [hello-snap](https://github.com/mietek/hello-snap/) ([Live](http://mietek-hello-snap.herokuapp.com/))
-- [hello-spock](https://github.com/mietek/hello-spock/) ([Live](http://mietek-hello-spock.herokuapp.com/))
-- [hello-wai-warp](https://github.com/mietek/hello-wai-warp/) ([Live](http://mietek-hello-wai-warp.herokuapp.com/))
-- [hello-wheb](https://github.com/mietek/hello-wheb/) ([Live](http://mietek-hello-wheb.herokuapp.com/))
-- [hello-yesod](https://github.com/mietek/hello-yesod/) ([Live](http://mietek-hello-yesod.herokuapp.com/))
-
-
-### Real-world
-
-- [gitit](https://github.com/mietek/gitit/) ([Live](http://mietek-gitit.herokuapp.com/))
-- [hl](https://github.com/mietek/hl/) ([Live](http://mietek-hl.herokuapp.com/))
-- [howistart.org](https://github.com/mietek/howistart.org/) ([Live](http://mietek-howistart.herokuapp.com/))
-- [tryhaskell](https://github.com/mietek/tryhaskell/) ([Live](http://mietek-tryhaskell.herokuapp.com/))
-- [tryhplay](https://github.com/mietek/tryhplay/) ([Live](http://mietek-tryhplay.herokuapp.com/))
-- [tryidris](https://github.com/mietek/tryidris/) ([Live](http://mietek-tryidris.herokuapp.com/))
-- [trypurescript](https://github.com/mietek/trypurescript/) ([Live](http://mietek-trypurescript.herokuapp.com/))
+_Work in progress._
 
 
 Usage
@@ -58,7 +36,7 @@ Usage
 
 ```
 $ git clone https://github.com/mietek/halcyon ~/halcyon
-$ source <( ~/halcyon/halcyon show-paths )
+$ source <( ~/halcyon/halcyon paths )
 $ halcyon deploy
 ```
 
