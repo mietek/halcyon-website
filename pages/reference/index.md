@@ -13,11 +13,60 @@ page-head: |
 Programmer’s reference
 ======================
 
+_Work in progress._
+
 
 Usage
 -----
 
-_Work in progress._
+Executing the top-level [`halcyon`](https://github.com/mietek/halcyon/blob/master/halcyon) script automatically updates Halcyon and _bashmenot_ to the newest version available.
+
+To disable automatic updates, set [`HALCYON_NO_AUTOUPDATE`](#halcyon_no_autoupdate) to `1`.
+
+The top-level [`src.sh`](https://github.com/mietek/halcyon/blob/master/src.sh) file can also be sourced to bring all functions into scope.
+
+
+Commands
+--------
+
+### `deploy`
+
+> ---------------------|---
+> Arguments:           | _`app* option*`_
+
+TODO
+
+
+### `label`
+
+> ---------------------|---
+> Arguments:           | _`app* option*`_
+
+TODO
+
+
+### `constraints`
+
+> ---------------------|---
+> Arguments:           | _`app* option*`_
+
+TODO
+
+
+### `tag`
+
+> ---------------------|---
+> Arguments:           | _`app* option*`_
+
+TODO
+
+
+### `paths`
+
+> ---------------------|---
+> Arguments:           | _none_
+
+TODO
 
 
 Automatic update options
@@ -27,6 +76,7 @@ Automatic update options
 
 > ---------------------|---
 > Default value:       | [`https://github.com/mietek/halcyon`](https://github.com/mietek/halcyon)
+> Command-line option: | _none_
 
 _git_ repository used for automatic updates.
 
@@ -37,6 +87,7 @@ Defaults to the `master` branch.  Another branch may be specified with a `#`_`br
 
 > ---------------------|---
 > Default value:       | `0`
+> Command-line option: | _none_
 
 Disables automatic updates.
 
@@ -276,7 +327,7 @@ TODO
 TODO
 
 
-Non-inherited general options
+Non-recursive general options
 -----------------------------
 
 ### `HALCYON_CONSTRAINTS_DIR`
@@ -306,7 +357,7 @@ TODO
 TODO: Make internal?
 
 
-Non-inherited GHC layer options
+Non-recursive GHC layer options
 -------------------------------
 
 ### `HALCYON_GHC_PRE_BUILD_HOOK`
@@ -336,7 +387,7 @@ TODO
 TODO
 
 
-Non-inherited Cabal layer options
+Non-recursive Cabal layer options
 ---------------------------------
 
 ### `HALCYON_CABAL_PRE_BUILD_HOOK`
@@ -374,7 +425,7 @@ TODO
 TODO
 
 
-Non-inherited sandbox layer options
+Non-recursive sandbox layer options
 -----------------------------------
 
 ### `HALCYON_SANDBOX_EXTRA_LIBS`
@@ -430,7 +481,7 @@ TODO
 TODO
 
 
-Non-inherited application layer options
+Non-recursive application layer options
 ---------------------------------------
 
 
@@ -470,7 +521,7 @@ TODO
 TODO
 
 
-Non-inherited slug options
+Non-recursive slug options
 --------------------------
 
 
