@@ -20,8 +20,29 @@ Usage
 _Work in progress._
 
 
-Options
--------
+Automatic update options
+------------------------
+
+### `HALCYON_URL`
+
+> ---------------------|---
+> Default value:       | [`https://github.com/mietek/halcyon`](https://github.com/mietek/halcyon)
+
+_git_ repository used for automatic updates.
+
+Defaults to the `master` branch.  Another branch may be specified with a `#`_`branch`_ suffix.
+
+
+### `HALCYON_NO_AUTOUPDATE`
+
+> ---------------------|---
+> Default value:       | `0`
+
+Disables automatic updates.
+
+
+General options
+---------------
 
 ### `HALCYON_DIR`
 
@@ -185,7 +206,7 @@ Private storage options
 > Default value:       | _none_
 > Command-line option: | `--aws-access-key-id=`_`string`_
 
-TODO
+Identifier used to authenticate S3 requests.
 
 
 ### `HALCYON_AWS_SECRET_ACCESS_KEY`
@@ -194,7 +215,7 @@ TODO
 > Default value:       | _none_
 > Command-line option: | `--aws-secret-access-key=`_`string`_
 
-TODO
+Secret used to authenticate S3 requests.
 
 
 ### `HALCYON_S3_BUCKET`
@@ -213,6 +234,15 @@ TODO
 > Command-line option: | `--s3-acl=`_`string`_
 
 TODO
+
+
+### `HALCYON_S3_HOST`
+
+> ---------------------|---
+> Default value:       | `s3.amazonaws.com`
+> Command-line option: | `--s3-host=`_`string`_
+
+S3 server address.
 
 
 Cache options
@@ -246,8 +276,8 @@ TODO
 TODO
 
 
-Non-inherited options
----------------------
+Non-inherited general options
+-----------------------------
 
 ### `HALCYON_CONSTRAINTS_DIR`
 
