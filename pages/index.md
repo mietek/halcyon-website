@@ -1,6 +1,6 @@
 ---
 title: Haskell application deployment
-page-class: hero
+page-class: hero tweak-listings
 header-class: hero
 main-class: hero
 hero: |

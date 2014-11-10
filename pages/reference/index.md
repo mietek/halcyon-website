@@ -1,6 +1,6 @@
 ---
 title: Programmer’s reference
-page-class: add-section-toc
+page-class: add-section-toc tweak-listings
 page-head: |
   <style>
     header a.link-reference {
@@ -314,15 +314,6 @@ Non-recursive general options
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--constraints-dir=`_`path`_
-
-TODO
-
-
-### `HALCYON_FORCE_RESTORE_ALL`
-
-> ---------------------|---
-> Default value:       | `0`
-> Command-line option: | `--force-restore-all`
 
 TODO
 
