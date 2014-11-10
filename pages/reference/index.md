@@ -279,7 +279,7 @@ GHC layer options
 ### `HALCYON_GHC_VERSION`
 
 > ---------------------|---
-> Default value:       | _none_
+> Default value:       | `7.8.3`
 > Command-line option: | `--ghc-version=`_`string`_
 
 TODO
