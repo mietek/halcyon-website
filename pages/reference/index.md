@@ -415,13 +415,13 @@ TODO
 TODO
 
 
-### `HALCYON_SANDBOX_EXTRA_APPS_CONSTRAINTS_DIR`
+### `HALCYON_SANDBOX_EXTRA_CONSTRAINTS_DIR`
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--sandbox-extra-apps-constraints-dir=`_`path`_
+> Command-line option: | `--sandbox-extra-constraints-dir=`_`path`_
 
-TODO: Rename to `EXTRA_CONSTRAINTS`?
+TODO
 
 
 ### `HALCYON_SANDBOX_PRE_BUILD_HOOK`
@@ -504,13 +504,13 @@ Non-recursive slug options
 TODO
 
 
-### `HALCYON_SLUG_EXTRA_APPS_CONSTRAINTS_DIR`
+### `HALCYON_SLUG_EXTRA_CONSTRAINTS_DIR`
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--slug-extra-apps-constraints-dir=`_`path`_
+> Command-line option: | `--slug-extra-constraints-dir=`_`path`_
 
-TODO: Rename to `EXTRA_CONSTRAINTS`?
+TODO
 
 
 ### `HALCYON_SLUG_PRE_BUILD_HOOK`
