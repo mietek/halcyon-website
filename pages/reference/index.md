@@ -291,7 +291,7 @@ Cabal layer options
 ### `HALCYON_CABAL_VERSION`
 
 > ---------------------|---
-> Default value:       | _none_
+> Default value:       | `1.20.0.3`
 > Command-line option: | `--cabal-version=`_`string`_
 
 TODO
@@ -300,7 +300,7 @@ TODO
 ### `HALCYON_CABAL_REPO`
 
 > ---------------------|---
-> Default value:       | _none_
+> Default value:       | `Hackage:http://hackage.haskell.org/packages/archive`
 > Command-line option: | `--cabal-repo=`_`string`_
 
 TODO
