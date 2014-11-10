@@ -137,15 +137,6 @@ TODO
 TODO
 
 
-### `HALCYON_NO_COPY_LOCAL_SOURCE`
-
-> ---------------------|---
-> Default value:       | `0`
-> Command-line option: | `--no-copy-local-source`
-
-TODO: Make internal?
-
-
 ### `HALCYON_NO_BUILD_DEPENDENCIES`
 
 > ---------------------|---
@@ -294,15 +285,6 @@ GHC layer options
 TODO
 
 
-### `HALCYON_GHC_MAGIC_HASH`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--ghc-magic-hash=`_`string`_
-
-TODO: Make internal?
-
-
 Cabal layer options
 -------------------
 
@@ -313,15 +295,6 @@ Cabal layer options
 > Command-line option: | `--cabal-version=`_`string`_
 
 TODO
-
-
-### `HALCYON_CABAL_MAGIC_HASH`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--cabal-magic-hash=`_`string`_
-
-TODO: Make internal?
 
 
 ### `HALCYON_CABAL_REPO`
@@ -352,15 +325,6 @@ TODO
 > Command-line option: | `--force-restore-all`
 
 TODO
-
-
-### `HALCYON_NO_ANNOUNCE_DEPLOY`
-
-> ---------------------|---
-> Default value:       | `0`
-> Command-line option: | `--no-announce-deploy`
-
-TODO: Make internal?
 
 
 Non-recursive GHC layer options
