@@ -389,6 +389,15 @@ TODO
 Non-recursive sandbox layer options
 -----------------------------------
 
+### `HALCYON_SANDBOX_SOURCES`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--sandbox-sources=`_`strings`_
+
+TODO
+
+
 ### `HALCYON_SANDBOX_EXTRA_LIBS`
 
 > ---------------------|---
@@ -396,6 +405,7 @@ Non-recursive sandbox layer options
 > Command-line option: | `--sandbox-extra-libs=`_`strings`_
 
 TODO
+
 
 ### `HALCYON_SANDBOX_EXTRA_APPS`
 
