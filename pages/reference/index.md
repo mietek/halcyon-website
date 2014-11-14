@@ -176,11 +176,11 @@ TODO
 Public storage options
 ----------------------
 
-### `HALCYON_PUBLIC_STORAGE_HOST`
+### `HALCYON_PUBLIC_STORAGE_URL`
 
 > ---------------------|---
-> Default value:       | `cdn.halcyon.sh`
-> Command-line option: | `--public-storage-host=`_`string`_
+> Default value:       | `https://halcyon.global.ssl.fastly.net`
+> Command-line option: | `--public-storage-url=`_`string`_
 
 TODO
 
@@ -240,6 +240,15 @@ TODO
 > Command-line option: | `--s3-host=`_`string`_
 
 S3 server address.
+
+
+### `HALCYON_NO_PRIVATE_STORAGE`
+
+> ---------------------|---
+> Default value:       | `0`
+> Command-line option: | `--no-private-storage`
+
+TODO
 
 
 Cache options
