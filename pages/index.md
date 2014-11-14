@@ -5,7 +5,7 @@ header-class: hero
 main-class: hero
 hero: |
   <h1 class="logotype">Halcyon</h1>
-  <p>Haskell application deployment.</p>
+  <p>Haskell application deployment</p>
 page-footer: |
   <script>
     addEventListener('load', function () {

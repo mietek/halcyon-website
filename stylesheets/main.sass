@@ -13,6 +13,8 @@ $accent-color-name: blue
 @include font-face(concourse-t3, italic)
 @include font-face(concourse-t3, bold)
 @include font-face(concourse-t3, bold-italic)
+@include font-face(concourse-t3-tab, regular)
+@include font-face(concourse-t3-tab, italic)
 @include font-face(pragmatapro, regular)
 @include font-face(pragmatapro, bold)
 @include font-face(pragmatapro, italic)
@@ -22,18 +24,20 @@ $accent-color-name: blue
 @import "cannot/layout"
 
 
-@media (max-width: $layout-width-small)
-  #hero
-    @include image(hero-small, jpg)
+$hero-width-small: 720px
+$hero-width-medium: 1440px
+$hero-width-large: 2880px
 
-@media (min-width: $layout-width-small + 1) and (max-width: $layout-width-medium)
+@media (max-width: $hero-width-small)
   #hero
-    @include image(hero-medium, jpg)
+    @include background-image-hires(image-url(hero-medium, 1x, jpg))
+    background-image: image-url(hero-small, 1x, jpg)
 
-@media (min-width: $layout-width-medium + 1) and (max-width: $layout-width-large)
+@media (min-width: $hero-width-small + 1) and (max-width: $hero-width-medium)
   #hero
-    @include image(hero-large, jpg)
+    @include background-image-hires(image-url(hero-large, 1x, jpg))
+    background-image: image-url(hero-medium, 1x, jpg)
 
-@media (min-width: $layout-width-large + 1)
+@media (min-width: $layout-width-medium + 1)
   #hero
-    background-image: image-url(hero-large, 2x, jpg)
+    background-image: image-url(hero-large, 1x, jpg)

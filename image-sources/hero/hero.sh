@@ -4,7 +4,7 @@ set -e
 
 mkdir out
 
-variants="568x378_small 1136x756_small@2x 1024x682_medium 2048x1364_medium@2x 1440x960_large 2880x1920_large@2x"
+variants="720x480_small 1440x960_medium 2880x1920_large"
 
 for variant in ${variants}; do
   size=${variant%_*}
