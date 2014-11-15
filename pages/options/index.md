@@ -1,78 +1,17 @@
 ---
-title: Programmer’s reference
+title: Option reference
 page-class: add-section-toc tweak-listings
 page-head: |
   <style>
-    header a.link-reference {
+    header a.link-options {
       color: #3f96f0;
     }
   </style>
 ---
 
 
-Programmer’s reference
-======================
-
-_Work in progress._
-
-
-Usage
------
-
-```
-$ git clone https://github.com/mietek/halcyon ~/halcyon
-$ source <( ~/halcyon/halcyon paths )
-$ halcyon deploy
-```
-
-Executing the top-level [`halcyon`](https://github.com/mietek/halcyon/blob/master/halcyon) script automatically updates Halcyon to the newest version available.
-
-To disable automatic updates, set [`HALCYON_NO_AUTOUPDATE`](#halcyon_no_autoupdate) to `1`.
-
-The top-level [`src.sh`](https://github.com/mietek/halcyon/blob/master/src.sh) file can also be sourced to bring all functions into scope.
-
-
-Commands
---------
-
-### `deploy`
-
-> ---------------------|---
-> Arguments:           | _`app* option*`_
-
-TODO
-
-
-### `app-label`
-
-> ---------------------|---
-> Arguments:           | _`app* option*`_
-
-TODO
-
-
-### `constraints`
-
-> ---------------------|---
-> Arguments:           | _`app* option*`_
-
-TODO
-
-
-### `tag`
-
-> ---------------------|---
-> Arguments:           | _`app* option*`_
-
-TODO
-
-
-### `paths`
-
-> ---------------------|---
-> Arguments:           | _none_
-
-TODO
+Option reference
+================
 
 
 Automatic update options
@@ -84,7 +23,7 @@ Automatic update options
 > Default value:       | [`https://github.com/mietek/halcyon`](https://github.com/mietek/halcyon)
 > Command-line option: | _none_
 
-_git_ repository used for automatic updates.
+URL of the _git_ repository used for automatic updates.
 
 Defaults to the `master` branch.  Another branch may be specified with a `#`_`branch`_ suffix.
 
