@@ -42,10 +42,15 @@ Halcyon aims to achieve 100% reproducible build results, while keeping deploymen
 Usage
 -----
 
-Sourcing the output of the `halcyon paths` command sets up the needed `PATH`, `LIBRARY_PATH`, and `LD_LIBRARY_PATH` environment variables, automatically updating Halcyon to the newest version available.
+Halcyon can be installed in any directory:
 
 ```
 $ git clone https://github.com/mietek/halcyon
+```
+
+Sourcing the output of the `halcyon paths` command sets up the needed `PATH`, `LIBRARY_PATH`, and `LD_LIBRARY_PATH` environment variables, automatically updating Halcyon to the newest version available.
+
+```
 $ source <( halcyon/halcyon paths )
 -----> Auto-updating bashmenot... done, fa1afe1
 -----> Auto-updating Halcyon... done, cab00se
@@ -53,10 +58,14 @@ $ source <( halcyon/halcyon paths )
 
 To disable automatic updates, set [`HALCYON_NO_AUTOUPDATE`](options/#halcyon_no_autoupdate) to `1`.
 
+Halcyon requires write access to [`HALCYON_DIR`](options/#halcyon_dir), which defaults to `/app/.halcyon`.  Changing this path is possible, but requires building all layers from scratch, as public layer archives assume the default path.
+
 
 ### Examples
 
-_Work in progress._
+Please refer to the Haskell on Heroku website for examples of [real-world](https://haskellonheroku.com/apps/) and [“Hello, world!”](https://haskellonheroku.com/examples/) Haskell web applications.
+
+Examples of using Halcyon directly will be available soon.
 
 
 ### Documentation
