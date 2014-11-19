@@ -40,38 +40,38 @@ Disables automatic updates.
 General options
 ---------------
 
-### `HALCYON_DIR`
+### `HALCYON_APP_DIR`
 
 > ---------------------|---
-> Default value:       | `/app/.halcyon`
-> Command-line option: | `--halcyon-dir=`_`path`_
+> Default value:       | `/app`
+> Command-line option: | `--app-dir=`_`path`_
 
 TODO
 
 
-### `HALCYON_INSTALL_DIR`
+### `HALCYON_PREFIX`
+
+> ---------------------|---
+> Default value:       | `/app`
+> Command-line option: | `--prefix=`_`path`_
+
+TODO
+
+
+### `HALCYON_ROOT`
 
 > ---------------------|---
 > Default value:       | `/`
-> Command-line option: | `--install-dir=`_`path`_
+> Command-line option: | `--root=`_`path`_
 
 TODO
 
 
-### `HALCYON_TARGET`
-
-> ---------------------|---
-> Default value:       | `slug`
-> Command-line option: | `--target=slug` or `--target=sandbox`
-
-TODO
-
-
-### `HALCYON_ONLY_DEPLOY_ENV`
+### `HALCYON_NO_APP`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--only-deploy-env`
+> Command-line option: | `--no-app`
 
 TODO
 
@@ -85,29 +85,38 @@ TODO
 TODO
 
 
-### `HALCYON_NO_ARCHIVE`
+### `HALCYON_NO_BUILD_ANY`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--no-archive`
+> Command-line option: | `--no-build-any`
 
 TODO
 
 
-### `HALCYON_NO_UPLOAD`
+### `HALCYON_NO_ARCHIVE_ANY`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--no-upload`
+> Command-line option: | `--no-archive-any`
 
 TODO
 
 
-### `HALCYON_NO_DELETE`
+### `HALCYON_NO_UPLOAD_ANY`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--no-delete`
+> Command-line option: | `--no-upload-any`
+
+TODO
+
+
+### `HALCYON_NO_DELETE_ANY`
+
+> ---------------------|---
+> Default value:       | `0`
+> Command-line option: | `--no-delete-any`
 
 TODO
 
@@ -178,7 +187,7 @@ TODO
 > Default value:       | `s3.amazonaws.com`
 > Command-line option: | `--s3-host=`_`string`_
 
-S3 server address.
+Address used to direct S3 requests.
 
 
 ### `HALCYON_NO_PRIVATE_STORAGE`
@@ -212,11 +221,11 @@ TODO
 TODO
 
 
-### `HALCYON_NO_CACHE`
+### `HALCYON_NO_CLEAN_CACHE`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--no-cache`
+> Command-line option: | `--no-clean-cache`
 
 TODO
 
@@ -229,6 +238,33 @@ GHC layer options
 > ---------------------|---
 > Default value:       | `7.8.3`
 > Command-line option: | `--ghc-version=`_`string`_
+
+TODO
+
+
+### `HALCYON_GHC_PRE_BUILD_HOOK`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--ghc-pre-build-hook=`_`path`_
+
+TODO
+
+
+### `HALCYON_GHC_POST_BUILD_HOOK`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--ghc-post-build-hook=`_`path`_
+
+TODO
+
+
+### `HALCYON_GHC_CLEAN_REBUILD`
+
+> ---------------------|---
+> Default value:       | `0`
+> Command-line option: | `--ghc-clean-rebuild`
 
 TODO
 
@@ -254,51 +290,6 @@ TODO
 TODO
 
 
-Non-recursive general options
------------------------------
-
-### `HALCYON_CONSTRAINTS_DIR`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--constraints-dir=`_`path`_
-
-TODO
-
-
-Non-recursive GHC layer options
--------------------------------
-
-### `HALCYON_GHC_PRE_BUILD_HOOK`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--ghc-pre-build-hook=`_`path`_
-
-TODO
-
-
-### `HALCYON_GHC_POST_BUILD_HOOK`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--ghc-post-build-hook=`_`path`_
-
-TODO
-
-
-### `HALCYON_FORCE_BUILD_GHC`
-
-> ---------------------|---
-> Default value:       | `0`
-> Command-line option: | `--force-build-ghc`
-
-TODO
-
-
-Non-recursive Cabal layer options
----------------------------------
-
 ### `HALCYON_CABAL_PRE_BUILD_HOOK`
 
 > ---------------------|---
@@ -306,6 +297,7 @@ Non-recursive Cabal layer options
 > Command-line option: | `--cabal-pre-build-hook=`_`path`_
 
 TODO
+
 
 ### `HALCYON_CABAL_POST_BUILD_HOOK`
 
@@ -316,32 +308,50 @@ TODO
 TODO
 
 
-### `HALCYON_FORCE_BUILD_CABAL`
+### `HALCYON_CABAL_PRE_UPDATE_HOOK`
 
 > ---------------------|---
-> Default value:       | `0`
-> Command-line option: | `--force-build-cabal`
+> Default value:       | _none_
+> Command-line option: | `--cabal-pre-update-hook=`_`path`_
 
 TODO
 
 
-### `HALCYON_FORCE_UPDATE_CABAL`
+### `HALCYON_CABAL_POST_UPDATE_HOOK`
 
 > ---------------------|---
-> Default value:       | `0`
-> Command-line option: | `--force-update-cabal`
+> Default value:       | _none_
+> Command-line option: | `--cabal-post-update-hook=`_`path`_
 
 TODO
 
 
-Non-recursive sandbox layer options
------------------------------------
+### `HALCYON_CABAL_CLEAN_REBUILD`
+
+> ---------------------|---
+> Default value:       | `0`
+> Command-line option: | `--cabal-clean-rebuild`
+
+TODO
+
+
+### `HALCYON_CABAL_UPDATE`
+
+> ---------------------|---
+> Default value:       | `0`
+> Command-line option: | `--cabal-update`
+
+TODO
+
+
+Sandbox layer options
+---------------------
 
 ### `HALCYON_SANDBOX_SOURCES`
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--sandbox-sources=`_`strings`_
+> Command-line option: | `--sandbox-sources=`_`string`_
 
 TODO
 
@@ -350,7 +360,7 @@ TODO
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--sandbox-extra-libs=`_`strings`_
+> Command-line option: | `--sandbox-extra-libs=`_`string`_
 
 TODO
 
@@ -359,16 +369,16 @@ TODO
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--sandbox-extra-apps=`_`strings`_
+> Command-line option: | `--sandbox-extra-apps=`_`string`_
 
 TODO
 
 
-### `HALCYON_SANDBOX_EXTRA_CONSTRAINTS_DIR`
+### `HALCYON_SANDBOX_EXTRA_APPS_CONSTRAINTS_DIR`
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--sandbox-extra-constraints-dir=`_`path`_
+> Command-line option: | `--sandbox-extra-apps-constraints-dir=`_`path`_
 
 TODO
 
@@ -391,99 +401,112 @@ TODO
 TODO
 
 
-### `HALCYON_FORCE_BUILD_SANDBOX`
+### `HALCYON_SANDBOX_CLEAN_REBUILD`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--force-build-sandbox`
+> Command-line option: | `--sandbox-clean-rebuild`
 
 TODO
 
 
-Non-recursive application layer options
----------------------------------------
+App options
+-----------
 
-
-### `HALCYON_APP_EXTRA_CONFIGURE_FLAGS`
+### `HALCYON_CONSTRAINTS_FILE`
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--app-extra-configure-flags=`_`string`_
+> Command-line option: | `--constraints-file=`_`path`_
 
 TODO
 
 
-### `HALCYON_APP_PRE_BUILD_HOOK`
+### `HALCYON_CONSTRAINTS_DIR`
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--app-pre-build-hook=`_`path`_
+> Command-line option: | `--constraints-dir=`_`path`_
 
 TODO
 
 
-### `HALCYON_APP_POST_BUILD_HOOK`
+### `HALCYON_EXTRA_CONFIGURE_FLAGS`
 
 > ---------------------|---
 > Default value:       | _none_
-> Command-line option: | `--app-post-build-hook=`_`path`_
+> Command-line option: | `--extra-configure-flags=`_`string`_
 
 TODO
 
 
-### `HALCYON_FORCE_BUILD_APP`
+### `HALCYON_EXTRA_APPS`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--extra-apps=`_`string`_
+
+TODO
+
+
+### `HALCYON_EXTRA_APPS_CONSTRAINTS_DIR`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--extra-apps-constraints-dir=`_`path`_
+
+TODO
+
+
+### `HALCYON_PRE_BUILD_HOOK`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--pre-build-hook=`_`path`_
+
+TODO
+
+
+### `HALCYON_POST_BUILD_HOOK`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--post-build-hook=`_`path`_
+
+TODO
+
+
+### `HALCYON_PRE_INSTALL_HOOK`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--pre-install-hook=`_`path`_
+
+TODO
+
+
+### `HALCYON_POST_INSTALL_HOOK`
+
+> ---------------------|---
+> Default value:       | _none_
+> Command-line option: | `--post-install-hook=`_`path`_
+
+TODO
+
+
+### `HALCYON_RECONFIGURE`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--force-build-app`
+> Command-line option: | `--reconfigure`
 
 TODO
 
 
-Non-recursive slug options
---------------------------
-
-
-### `HALCYON_SLUG_EXTRA_APPS`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--slug-extra-apps=`_`strings`_
-
-TODO
-
-
-### `HALCYON_SLUG_EXTRA_CONSTRAINTS_DIR`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--slug-extra-constraints-dir=`_`path`_
-
-TODO
-
-
-### `HALCYON_SLUG_PRE_BUILD_HOOK`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--slug-pre-build-hook=`_`path`_
-
-TODO
-
-
-### `HALCYON_SLUG_POST_BUILD_HOOK`
-
-> ---------------------|---
-> Default value:       | _none_
-> Command-line option: | `--slug-post-build-hook=`_`path`_
-
-TODO
-
-
-### `HALCYON_FORCE_BUILD_SLUG`
+### `HALCYON_CLEAN_REBUILD`
 
 > ---------------------|---
 > Default value:       | `0`
-> Command-line option: | `--force-build-slug`
+> Command-line option: | `--clean-rebuild`
 
 TODO

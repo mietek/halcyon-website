@@ -18,16 +18,16 @@ Command reference
 --------
 
 > ---------------------|---
-> Arguments:           | _`app* option*`_
+> Arguments:           | _`app option*`_
 
 TODO
 
 
-`app-label`
+`label`
 -----------
 
 > ---------------------|---
-> Arguments:           | _`app* option*`_
+> Arguments:           | _`app option*`_
 
 TODO
 
@@ -36,7 +36,7 @@ TODO
 -------------
 
 > ---------------------|---
-> Arguments:           | _`app* option*`_
+> Arguments:           | _`app option*`_
 
 TODO
 
@@ -45,7 +45,7 @@ TODO
 -----
 
 > ---------------------|---
-> Arguments:           | _`app* option*`_
+> Arguments:           | _`app option*`_
 
 TODO
 
