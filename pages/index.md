@@ -22,92 +22,209 @@ Halcyon
 
 Halcyon is a system for deploying Haskell applications, used by [Haskell on Heroku](https://haskellonheroku.com/).
 
+**Pre-release version.  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.**
+
 
 Overview
 --------
 
-Halcyon can deploy any Haskell application with a single command, using the appropriate versions of GHC, Haskell and non-Haskell libraries, and Haskell build tools.
+Halcyon can deploy any Haskell application in a [single command](#usage), using explicitly declared versions of GHC, libraries, build-tools, and other dependencies.
 
-Applications can be deployed from local directories, unpacked from Cabal repositories, or cloned from _git_ repositories.  Additional applications can be specified as build-time or runtime dependencies.
+Applications can be sourced from local directories, unpacked from a Cabal package repository, or cloned from _git_ repositories.
 
-Halcyon archives _build byproducts_ in _layers_, with a separate layer for GHC, Cabal, the sandbox, and the application.  The _build products_ are also archived separately, as _slugs_.
+Halcyon speeds up builds by archiving dependencies in _layers_.  GHC, _cabal-install_ and the Cabal package database, the application sandbox—each of these layers is archived separately from the application build and install directories.
 
-Public and private storage can be used to speed up deployment with previously built layer archives.  Moreover, partially-matching sandbox layers can be detected and extended, speeding up builds which share a common subset of dependencies.
+All archives are cached locally.  Additionally, archives can be uploaded to _private storage,_ enabling distributed workflows by simply sharing the same storage configuration.
 
-The build process is completely customizable, with _hooks_ allowing custom scripts to run before and after the build stage of each layer.  All used hooks are hashed and tracked as explicit dependencies.
+Many commonly used archives are also provided in _public storage,_ making it possible to deploy any of the example applications in under 30 seconds.
 
-Halcyon aims to achieve 100% reproducible build results, while keeping deployment time under 30 seconds.
+The build process is completely customizable, with _hooks_ allowing custom scripts to execute at every stage.  All used hooks are hashed and tracked as explicit dependencies.
+
+Halcyon is designed to minimise the time and effort needed to deploy Haskell applications, while achieving 100% reproducible results.
 
 
 Usage
 -----
 
-Halcyon can be installed in any directory:
+Halcyon is installed by cloning the source repository, and updates itself automatically when a command is executed.  The necessary environment variables can be set by using [`halcyon paths`](commands/#halcyon-paths) either manually, or in a `.profile` script.
 
 ```
 $ git clone https://github.com/mietek/halcyon
-```
-
-Sourcing the output of the `halcyon paths` command sets up the needed `PATH`, `LIBRARY_PATH`, and `LD_LIBRARY_PATH` environment variables, automatically updating Halcyon to the newest version available.
-
-```
 $ source <( halcyon/halcyon paths )
------> Auto-updating bashmenot... done, fa1afe1
------> Auto-updating Halcyon... done, cab00se
 ```
 
 To disable automatic updates, set [`HALCYON_NO_AUTOUPDATE`](options/#halcyon_no_autoupdate) to `1`.
 
-Halcyon requires write access to [`HALCYON_DIR`](options/#halcyon_dir), which defaults to `/app/.halcyon`.  Changing this path is possible, but requires building all layers from scratch, as public layer archives assume the default path.
+Halcyon keeps all files in the `/app` directory.  Changing this is possible, but not recommended, as it will prevent using public archives.  To learn more, see [`HALCYON_APP_DIR`](options/#halcyon_app_dir).
 
 
-### Examples
+### Deploying environment
 
-Please refer to the Haskell on Heroku website for examples of [real-world](https://haskellonheroku.com/apps/) and [“Hello, world!”](https://haskellonheroku.com/examples/) Haskell web applications.
+The [`halcyon deploy`](commands/#halcyon-deploy) command is used to deploy Haskell applications, and can also be used to install a full Haskell development environment.
 
-Examples of using Halcyon directly will be available soon.
+<div class="toggle">
+<a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="log1"><code>$ halcyon deploy
+-----> Deploying environment
+       GHC version:                              <b>7.8.3</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
+       External storage:                         <b>public</b>
+
+-----> Restoring GHC layer
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.3.tar.gz... done
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+-----> GHC layer restored:                       <b>7.8.3</b>
+
+-----> Locating Cabal layers
+       Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
+-----> Restoring Cabal layer
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done, 169MB
+-----> Cabal layer restored:                     <b>1.20.0.3 (Hackage 2014-11-19)</b>
+
+-----> Environment deployed
+</code></pre>
+</div>
+
+The above command installs GHC 7.8.3, _cabal-install_ 1.20.0.3, and an up-to-date Cabal package database—assuming no application is detected in the current working directory.  With public archives, this is expected to take less than 20 seconds.
+
+To select other versions of GHC or _cabal-install_, or to use a different Cabal repository, specify [`--ghc-version`](options/#halcyon_ghc_version), [`--cabal-version`](options/#halcyon_cabal_version), or [`--cabal-repo`](options/#halcyon_cabal_repo).  To skip detecting applications, use [`--no-app`](options/#halcyon_no_app).
+
+
+### Deploying applications
+
+The [`halcyon deploy`](commands/#halcyon-deploy) command accepts one argument, specifying the application to deploy.  This can be a local directory path, a Cabal package `name-version` label, or a _git_ repository URL.
+
+<div class="toggle">
+<a class="toggle-button" data-target="log2" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="log2"><code>$ halcyon deploy https://github.com/mietek/hello
+-----> Cloning https://github.com/mietek/hello... done, 197a7ad
+-----> Deploying app from install
+       Prefix:                                   <b>/app</b>
+       Label:                                    <b>hello-1.0</b>
+       Source hash:                              <b>e64e9a7</b>
+       External storage:                         <b>public</b>
+
+-----> Restoring install
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-e64e9a7-hello-1.0.tar.gz... done
+       Extracting halcyon-install-e64e9a7-hello-1.0.tar.gz... done, 872KB
+-----> Install restored
+-----> Installing app in /app... done, 868KB
+
+-----> App deployed:                             <b>hello-1.0</b>
+</code></pre>
+</div>
+
+Executing the above command will install an example Haskell application to `/app/bin/hello`.  This should finish in under 10 seconds, as Halcyon only needs to restore the archived application install directory from public storage.
+
+To install in another location, specify [`--prefix`](options/#halcyon_prefix).  Halcyon will then restore all layers, reconfigure the application, and complete an incremental build.  With public archives, the expected time is less than 30 seconds.
+
+<div class="toggle">
+<a class="toggle-button" data-target="log3" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="log3"><code>$ halcyon deploy https://github.com/mietek/hello --prefix=/foo
+-----> Cloning https://github.com/mietek/hello... done, 197a7ad
+-----> Deploying app from install
+       Prefix:                                   <b>/foo</b>
+       Label:                                    <b>hello-1.0</b>
+       Source hash:                              <b>e64e9a7</b>
+       External storage:                         <b>public</b>
+
+-----> Restoring install
+       Extracting halcyon-install-e64e9a7-hello-1.0.tar.gz... done, 872KB
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-e64e9a7-hello-1.0.tar.gz... done
+       Extracting halcyon-install-e64e9a7-hello-1.0.tar.gz... done, 872KB
+
+-----> Deploying app
+       Prefix:                                   <b>/foo</b>
+       Label:                                    <b>hello-1.0</b>
+       Source hash:                              <b>e64e9a7</b>
+       Constraints hash:                         <b>f882dd0</b>
+       GHC version:                              <b>7.8.3</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
+       External storage:                         <b>public</b>
+
+-----> Restoring GHC layer
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.3.tar.gz... done
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+-----> GHC layer restored:                       <b>7.8.3</b>
+
+-----> Locating Cabal layers
+       Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
+-----> Restoring Cabal layer
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done, 169MB
+-----> Cabal layer restored:                     <b>1.20.0.3 (Hackage 2014-11-19)</b>
+
+-----> Restoring sandbox layer
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/ghc-7.8.3/halcyon-sandbox-f882dd0-hello-1.0.tar.gz... done
+       Extracting halcyon-sandbox-f882dd0-hello-1.0.tar.gz... done, 52KB
+-----> Sandbox layer restored:                   <b>hello-1.0 (f882dd0)</b>
+
+-----> Restoring build
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/ghc-7.8.3/halcyon-build-hello-1.0.tar.gz... done
+       Extracting halcyon-build-hello-1.0.tar.gz... done, 976KB
+-----> Build restored
+-----> Configuring app
+       Resolving dependencies...
+       Configuring hello-1.0...
+-----> Building app
+       Building hello-1.0...
+       Preprocessing executable 'hello' for hello-1.0...
+       Linking dist/build/hello/hello ...
+-----> Built app, 1.2MB
+       Stripping app... done, 976KB
+-----> Archiving build
+       Creating halcyon-build-hello-1.0.tar.gz... done, 276KB
+
+-----> Preparing install
+       Copying app
+-----> Install prepared, 868KB
+-----> Archiving install
+       Creating halcyon-install-e64e9a7-hello-1.0.tar.gz... done, 264KB
+-----> Installing app in /foo... done, 868KB
+
+-----> App deployed:                             <b>hello-1.0</b>
+</code></pre>
+</div>
 
 
 ### Documentation
+
+_Work in progress._
 
 - [Command reference](commands/)
 - [Option reference](options/)
 - [Source code](https://github.com/mietek/halcyon/)
 
-Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions for [GNU _bash_](https://gnu.org/software/bash/):
+Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions for [GNU _bash_](https://gnu.org/software/bash/).
 
 - [_bashmenot_ function reference](https://bashmenot.mietek.io/functions/)
 - [_bashmenot_ option reference](https://bashmenot.mietek.io/options/)
 - [_bashmenot_ source code](https://github.com/mietek/bashmenot/)
 
 
-### Dependencies
+### Examples
 
-Halcyon requires [GNU _bash_](https://gnu.org/software/bash/) 4 or newer, and:
+_Work in progress._
 
-- [GNU _date_](https://gnu.org/software/coreutils/manual/html_node/date-invocation.html)
-- [GNU _sort_](https://gnu.org/software/coreutils/manual/html_node/sort-invocation.html)
-- [_curl_](http://curl.haxx.se/)
-- [OpenSSL](https://openssl.org/)
-- [_git_](http://git-scm.com/)
+Please check the Haskell on Heroku website for examples of [real-world](https://haskellonheroku.com/apps/) and [“Hello, world!”](https://haskellonheroku.com/examples/) Haskell web applications.
 
-Supported platforms and Haskell environments:
-
-- [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/)
-- [Ubuntu 12.04 LTS](http://releases.ubuntu.com/12.04/)
-- [Ubuntu 10.04 LTS](http://releases.ubuntu.com/10.04/)
-- [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
-- [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3)
-- [_cabal-install_ 1.20.0.0](https://haskell.org/cabal/download.html) and newer
-
-Versions of GHC including [7.8.2](https://haskell.org/ghc/download_ghc_7_8_2), [7.6.1](https://haskell.org/ghc/download_ghc_7_6_1) , [7.4.2](https://haskell.org/ghc/download_ghc_7_4_2), [7.2.2](https://haskell.org/ghc/download_ghc_7_2_2), and [7.0.4](https://haskell.org/ghc/download_ghc_7_0_4) are also expected to work.  Partial functionality is also available on [OS X](http://www.apple.com/osx/).
+Each example can be deployed both to Heroku and on regular machines running one of the supported software stacks.
 
 
 ### Support
 
+- [Ubuntu 10.04 LTS](http://releases.ubuntu.com/10.04/), [Ubuntu 12.04 LTS](http://releases.ubuntu.com/12.04/), and [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/)
+- [GHC 7.0.4](https://haskell.org/ghc/download_ghc_7_0_4), [GHC 7.2.2](https://haskell.org/ghc/download_ghc_7_2_2), [GHC 7.4.2](https://haskell.org/ghc/download_ghc_7_4_2), [GHC 7.6.1](https://haskell.org/ghc/download_ghc_7_6_1), [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3), [GHC 7.8.2](https://haskell.org/ghc/download_ghc_7_8_2), and [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
+- [_cabal-install_ 1.20.0.0](https://haskell.org/cabal/download.html) or newer
+
 Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues/).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues/) for problems with the documentation.
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
+
+Need commercial support?  Contact me <a class="hello" href="">directly</a>.
 
 
 About
@@ -119,11 +236,11 @@ My name is [Miëtek Bak](https://mietek.io/).  I make software, and Halcyon is o
 
 This work is published under the [MIT X11 license](license/), and supported by my company, [Least Fixed](https://leastfixed.com/).
 
-Like my work?  I am available for consulting on software projects.  Say <a class="hello" href="">hello</a>, or follow <a href="https://twitter.com/mietek">@mietek</a>.
+Like my work?  I am available for consulting.  Say <a class="hello" href="">hello</a>, or follow <a href="https://twitter.com/mietek">@mietek</a>.
 
 
 ### Acknowledgments
 
 Thanks to [CircuitHub](https://circuithub.com/), [Tweag I/O](http://tweag.io/), and [Purely Agile](http://purelyagile.com/) for advice and assistance.
 
-The monospaced font used in this website is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).
+The monospaced font used in this website is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).  Website built with [_cannot_](https://cannot.mietek.io/).
