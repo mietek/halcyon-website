@@ -28,7 +28,8 @@ header.hero nav.menu-bar h1.logotype a
 
 
 #mietek a
-  @include button-link
+  @include text-button
+  @include no-text
   @include smart-box-glow($accent-color)
   display: block
   float: left
@@ -46,3 +47,19 @@ header.hero nav.menu-bar h1.logotype a
 
 .hairline #mietek a
   border-width: 0.5px
+
+
+#log1.open
+  height: ln(21)
+  &:before
+    height: ln(20)
+
+#log2.open
+  height: ln(16)
+  &:before
+    height: ln(15)
+
+#log3.open
+  height: ln(65)
+  &:before
+    height: ln(64)
