@@ -13,6 +13,8 @@ page-head: |
 Command reference
 =================
 
+_Work in progress._
+
 
 `deploy`
 --------
@@ -20,7 +22,7 @@ Command reference
 > ---------------------|---
 > Arguments:           | _`app option*`_
 
-TODO
+…
 
 
 `label`
@@ -29,7 +31,7 @@ TODO
 > ---------------------|---
 > Arguments:           | _`app option*`_
 
-TODO
+…
 
 
 `constraints`
@@ -38,7 +40,7 @@ TODO
 > ---------------------|---
 > Arguments:           | _`app option*`_
 
-TODO
+…
 
 
 `tag`
@@ -47,7 +49,7 @@ TODO
 > ---------------------|---
 > Arguments:           | _`app option*`_
 
-TODO
+…
 
 
 `paths`
@@ -56,4 +58,4 @@ TODO
 > ---------------------|---
 > Arguments:           | _none_
 
-TODO
+…

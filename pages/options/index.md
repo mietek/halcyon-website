@@ -13,6 +13,8 @@ page-head: |
 Option reference
 ================
 
+_Work in progress._
+
 
 Automatic update options
 ------------------------
@@ -46,7 +48,7 @@ General options
 > Default value:       | `/app`
 > Command-line option: | `--app-dir=`_`path`_
 
-TODO
+…
 
 
 ### `HALCYON_PREFIX`
@@ -55,7 +57,7 @@ TODO
 > Default value:       | `/app`
 > Command-line option: | `--prefix=`_`path`_
 
-TODO
+…
 
 
 ### `HALCYON_ROOT`
@@ -64,7 +66,7 @@ TODO
 > Default value:       | `/`
 > Command-line option: | `--root=`_`path`_
 
-TODO
+…
 
 
 ### `HALCYON_NO_APP`
@@ -73,7 +75,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-app`
 
-TODO
+…
 
 
 ### `HALCYON_NO_BUILD_DEPENDENCIES`
@@ -82,7 +84,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-build-dependencies`
 
-TODO
+…
 
 
 ### `HALCYON_NO_BUILD_ANY`
@@ -91,7 +93,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-build-any`
 
-TODO
+…
 
 
 ### `HALCYON_NO_ARCHIVE_ANY`
@@ -100,7 +102,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-archive-any`
 
-TODO
+…
 
 
 ### `HALCYON_NO_UPLOAD_ANY`
@@ -109,7 +111,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-upload-any`
 
-TODO
+…
 
 
 ### `HALCYON_NO_DELETE_ANY`
@@ -118,7 +120,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-delete-any`
 
-TODO
+…
 
 
 Public storage options
@@ -127,10 +129,10 @@ Public storage options
 ### `HALCYON_PUBLIC_STORAGE_URL`
 
 > ---------------------|---
-> Default value:       | `https://halcyon.global.ssl.fastly.net`
+> Default value:       | `https://s3.halcyon.sh`
 > Command-line option: | `--public-storage-url=`_`string`_
 
-TODO
+…
 
 
 ### `HALCYON_NO_PUBLIC_STORAGE`
@@ -139,7 +141,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-public-storage`
 
-TODO
+…
 
 
 Private storage options
@@ -169,7 +171,7 @@ Secret used to authenticate S3 requests.
 > Default value:       | _none_
 > Command-line option: | `--s3-bucket=`_`string`_
 
-TODO
+…
 
 
 ### `HALCYON_S3_ACL`
@@ -178,7 +180,7 @@ TODO
 > Default value:       | `private`
 > Command-line option: | `--s3-acl=`_`string`_
 
-TODO
+…
 
 
 ### `HALCYON_S3_HOST`
@@ -196,7 +198,7 @@ Address used to direct S3 requests.
 > Default value:       | `0`
 > Command-line option: | `--no-private-storage`
 
-TODO
+…
 
 
 Cache options
@@ -209,7 +211,7 @@ Cache options
 > Default value:       | `/var/tmp/halcyon-cache`
 > Command-line option: | `--cache-dir=`_`path`_
 
-TODO
+…
 
 
 ### `HALCYON_PURGE_CACHE`
@@ -218,7 +220,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--purge-cache`
 
-TODO
+…
 
 
 ### `HALCYON_NO_CLEAN_CACHE`
@@ -227,7 +229,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--no-clean-cache`
 
-TODO
+…
 
 
 GHC layer options
@@ -239,7 +241,7 @@ GHC layer options
 > Default value:       | `7.8.3`
 > Command-line option: | `--ghc-version=`_`string`_
 
-TODO
+…
 
 
 ### `HALCYON_GHC_PRE_BUILD_HOOK`
@@ -247,8 +249,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--ghc-pre-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/ghc-pre-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_GHC_POST_BUILD_HOOK`
@@ -256,8 +259,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--ghc-post-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/ghc-post-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_GHC_CLEAN_REBUILD`
@@ -266,7 +270,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--ghc-clean-rebuild`
 
-TODO
+…
 
 
 Cabal layer options
@@ -278,7 +282,7 @@ Cabal layer options
 > Default value:       | `1.20.0.3`
 > Command-line option: | `--cabal-version=`_`string`_
 
-TODO
+…
 
 
 ### `HALCYON_CABAL_REPO`
@@ -287,7 +291,7 @@ TODO
 > Default value:       | `Hackage:http://hackage.haskell.org/packages/archive`
 > Command-line option: | `--cabal-repo=`_`string`_
 
-TODO
+…
 
 
 ### `HALCYON_CABAL_PRE_BUILD_HOOK`
@@ -295,8 +299,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--cabal-pre-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/cabal-pre-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_CABAL_POST_BUILD_HOOK`
@@ -304,8 +309,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--cabal-post-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/cabal-post-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_CABAL_PRE_UPDATE_HOOK`
@@ -313,8 +319,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--cabal-pre-update-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/cabal-pre-update-hook`
 
-TODO
+…
 
 
 ### `HALCYON_CABAL_POST_UPDATE_HOOK`
@@ -322,8 +329,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--cabal-post-update-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/cabal-post-update-hook`
 
-TODO
+…
 
 
 ### `HALCYON_CABAL_CLEAN_REBUILD`
@@ -332,7 +340,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--cabal-clean-rebuild`
 
-TODO
+…
 
 
 ### `HALCYON_CABAL_UPDATE`
@@ -341,7 +349,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--cabal-update`
 
-TODO
+…
 
 
 Sandbox layer options
@@ -352,8 +360,9 @@ Sandbox layer options
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--sandbox-sources=`_`string`_
+> Magic file:          | `.halcyon-magic/sandbox-sources`
 
-TODO
+…
 
 
 ### `HALCYON_SANDBOX_EXTRA_LIBS`
@@ -361,8 +370,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--sandbox-extra-libs=`_`string`_
+> Magic file:          | `.halcyon-magic/sandbox-extra-libs`
 
-TODO
+…
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS`
@@ -370,8 +380,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--sandbox-extra-apps=`_`string`_
+> Magic file:          | `.halcyon-magic/sandbox-extra-apps`
 
-TODO
+…
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS_CONSTRAINTS_DIR`
@@ -379,8 +390,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--sandbox-extra-apps-constraints-dir=`_`path`_
+> Magic directory:     | `.halcyon-magic/sandbox-extra-apps-constraints/`
 
-TODO
+…
 
 
 ### `HALCYON_SANDBOX_PRE_BUILD_HOOK`
@@ -388,8 +400,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--sandbox-pre-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/sandbox-pre-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_SANDBOX_POST_BUILD_HOOK`
@@ -397,8 +410,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--sandbox-post-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/sandbox-post-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_SANDBOX_CLEAN_REBUILD`
@@ -407,7 +421,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--sandbox-clean-rebuild`
 
-TODO
+…
 
 
 App options
@@ -418,8 +432,9 @@ App options
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--constraints-file=`_`path`_
+> Standard file:       | `cabal.config`
 
-TODO
+…
 
 
 ### `HALCYON_CONSTRAINTS_DIR`
@@ -428,7 +443,7 @@ TODO
 > Default value:       | _none_
 > Command-line option: | `--constraints-dir=`_`path`_
 
-TODO
+…
 
 
 ### `HALCYON_EXTRA_CONFIGURE_FLAGS`
@@ -436,8 +451,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--extra-configure-flags=`_`string`_
+> Magic file:          | `.halcyon-magic/extra-configure-flags`
 
-TODO
+…
 
 
 ### `HALCYON_EXTRA_APPS`
@@ -445,8 +461,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--extra-apps=`_`string`_
+> Magic file:          | `.halcyon-magic/extra-apps`
 
-TODO
+…
 
 
 ### `HALCYON_EXTRA_APPS_CONSTRAINTS_DIR`
@@ -454,8 +471,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--extra-apps-constraints-dir=`_`path`_
+> Magic directory:     | `.halcyon-magic/extra-apps-constraints/`
 
-TODO
+…
 
 
 ### `HALCYON_PRE_BUILD_HOOK`
@@ -463,8 +481,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--pre-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/pre-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_POST_BUILD_HOOK`
@@ -472,8 +491,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--post-build-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/post-build-hook`
 
-TODO
+…
 
 
 ### `HALCYON_PRE_INSTALL_HOOK`
@@ -481,8 +501,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--pre-install-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/pre-install-hook`
 
-TODO
+…
 
 
 ### `HALCYON_POST_INSTALL_HOOK`
@@ -490,8 +511,9 @@ TODO
 > ---------------------|---
 > Default value:       | _none_
 > Command-line option: | `--post-install-hook=`_`path`_
+> Magic file:          | `.halcyon-magic/post-install-hook`
 
-TODO
+…
 
 
 ### `HALCYON_RECONFIGURE`
@@ -500,7 +522,7 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--reconfigure`
 
-TODO
+…
 
 
 ### `HALCYON_CLEAN_REBUILD`
@@ -509,4 +531,4 @@ TODO
 > Default value:       | `0`
 > Command-line option: | `--clean-rebuild`
 
-TODO
+…
