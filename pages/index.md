@@ -5,7 +5,7 @@ header-class: hero
 main-class: hero
 hero: |
   <h1 class="logotype">Halcyon</h1>
-  <p>One command.  Less than 30 seconds.</p>
+  <p>Deploy any Haskell application.  Instantly.</p>
 page-footer: |
   <script>
     addEventListener('load', function () {
@@ -36,16 +36,12 @@ Halcyon speeds up builds by archiving dependencies in _layers_.  GHC, _cabal-ins
 
 All archives are cached locally.  Additionally, archives can be uploaded to [private storage](options/#private-storage-options), enabling distributed workflows by simply sharing the same storage configuration.
 
-Many commonly used archives are also provided in [public storage](options/#public-storage-options), making it possible to deploy any of the [example applications](#examples) in under 30 seconds.
+Many commonly used archives are provided in [public storage](options/#public-storage-options), making it possible to deploy any of the [example applications](#examples) in under 30 seconds.
 
 The build process is completely customizable, with _hooks_ allowing custom scripts to execute at every stage.  All used hooks are hashed and tracked as explicit dependencies.
 
 
 ### Support
-
-- [Ubuntu 10.04 LTS](http://releases.ubuntu.com/10.04/), [Ubuntu 12.04 LTS](http://releases.ubuntu.com/12.04/), and [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/)
-- [GHC 7.0.4](https://haskell.org/ghc/download_ghc_7_0_4), [GHC 7.2.2](https://haskell.org/ghc/download_ghc_7_2_2), [GHC 7.4.2](https://haskell.org/ghc/download_ghc_7_4_2), [GHC 7.6.1](https://haskell.org/ghc/download_ghc_7_6_1), [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3), [GHC 7.8.2](https://haskell.org/ghc/download_ghc_7_8_2), and [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
-- [_cabal-install_ 1.20.0.0](https://haskell.org/cabal/download.html) or newer
 
 Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues/).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues/) for problems with the documentation.
 
@@ -134,14 +130,43 @@ Executing the above command will install an example Haskell application to `/app
 To install in another location, specify [`--prefix`](options/#halcyon_prefix).  Halcyon will then restore all layers, reconfigure the application, and complete an incremental build.  With public archives, the expected time is less than 30 seconds.
 
 
+### Supported platforms
+
+- [Ubuntu 10.04 LTS](http://releases.ubuntu.com/10.04/), [Ubuntu 12.04 LTS](http://releases.ubuntu.com/12.04/), and [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/)
+- [GHC 7.0.4](https://haskell.org/ghc/download_ghc_7_0_4), [GHC 7.2.2](https://haskell.org/ghc/download_ghc_7_2_2), [GHC 7.4.2](https://haskell.org/ghc/download_ghc_7_4_2), [GHC 7.6.1](https://haskell.org/ghc/download_ghc_7_6_1), [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3), [GHC 7.8.2](https://haskell.org/ghc/download_ghc_7_8_2), and [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
+- [_cabal-install_ 1.20.0.0](https://haskell.org/cabal/download.html) or newer
+
+
 Examples
 --------
 
-_Work in progress._
+Each example application can be deployed on any machine running one of the supported software stacks.
 
-Please check the Haskell on Heroku website for examples of [real-world](https://haskellonheroku.com/apps/) and [“Hello, world!”](https://haskellonheroku.com/examples/) Haskell web applications.
 
-Each example can be deployed both to Heroku and on regular machines running one of the supported software stacks.
+### Real-world examples
+
+- [_haskell-lang.org_](examples/#haskell-lang.org)
+- [_tryhaskell.org_](examples/#tryhaskell.org)
+- [_tryidris.org_](examples/#tryidris.org)
+- [_try.purescript.org_](examples/#try.purescript.org)
+- [_howistart.org_](examples/#howistart.org)
+- [_gitit_](examples/#gitit)
+- [_tryhplay_](examples/#tryhplay)
+- [_mailchimp-subscribe_](examples/#mailchimp-subscribe)
+
+
+### “Hello, world!” examples
+
+- [_hello-happstack_](examples/#hello-happstack)
+- [_hello-mflow_](examples/#hello-mflow)
+- [_hello-miku_](examples/#hello-miku)
+- [_hello-scotty_](examples/#hello-scotty)
+- [_hello-simple_](examples/#hello-simple)
+- [_hello-snap_](examples/#hello-snap)
+- [_hello-spock_](examples/#hello-spock)
+- [_hello-wai_](examples/#hello-wai)
+- [_hello-wheb_](examples/#hello-wheb)
+- [_hello-yesod_](examples/#hello-yesod)
 
 
 Documentation
@@ -149,15 +174,22 @@ Documentation
 
 _Work in progress._
 
+<nav><ul class="menu open">
 - [Command reference](commands/)
 - [Option reference](options/)
 - [Source code](https://github.com/mietek/halcyon/)
+</ul></nav>
+
+
+### Internals
 
 Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions for [GNU _bash_](https://gnu.org/software/bash/).
 
+<nav><ul class="menu open">
 - [_bashmenot_ function reference](https://bashmenot.mietek.io/functions/)
 - [_bashmenot_ option reference](https://bashmenot.mietek.io/options/)
 - [_bashmenot_ source code](https://github.com/mietek/bashmenot/)
+</ul></nav>
 
 
 About
