@@ -4,6 +4,11 @@ body
 code
   font-family: "pragmatapro", monospace
 
+.small-caps
+  font-family: "concourse-c3", sans-serif
+  font-variant: normal
+  letter-spacing: -1px
+
 
 nav.menu-bar h1.logotype a
   @include no-text
@@ -22,25 +27,16 @@ header.hero nav.menu-bar h1.logotype a
   @include no-text
 
 
-#mietek a
-  @include text-button
+#mietek
   @include no-text
-  @include smart-box-glow($accent-color)
   display: block
   float: left
   margin-right: ln(1)
   margin-bottom: ln(1)
   border: 1px $object-color solid
   border-radius: 50%
-  background-position: center center
-  background-color: transparent
-  background-blend-mode: screen
-  transition: ease(border-color, 1, 0), ease(background-color, 1, 0), ease(box-shadow, 1, 0)
-  @include frob-when-frobbed
-    border-color: $accent-color
-    background-color: $accent-color
 
-.hairline #mietek a
+.hairline #mietek
   border-width: 0.5px
 
 

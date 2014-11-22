@@ -1,5 +1,6 @@
 ---
 title: Haskell application deployment
+page-description: Halcyon is a system for deploying Haskell web and non-web applications.
 page-class: hero tweak-listings
 header-class: hero
 main-class: hero
@@ -20,7 +21,7 @@ page-footer: |
 Halcyon
 =======
 
-Halcyon is a system for deploying Haskell applications, used by [Haskell on Heroku](https://haskellonheroku.com/).
+Halcyon is a system for deploying Haskell web and non-web applications.
 
 **Pre-release version.  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.**
 
@@ -195,7 +196,7 @@ Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of 
 About
 -----
 
-<span id="mietek"><a class="hello" href=""></a></span>
+<span id="mietek"></span>
 
 My name is [Miëtek Bak](https://mietek.io/).  I make software, and Halcyon is one of [my projects](https://mietek.io/projects/).
 
