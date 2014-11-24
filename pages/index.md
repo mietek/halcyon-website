@@ -113,19 +113,28 @@ addEventListener('load', function () {
 Usage
 -----
 
-Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`halcyon paths`](/reference/#paths) helps set environment variables.
+Halcyon is installed with _git_, and automatically keeps itself up-to-date.
 
 ```
 # git clone https://github.com/mietek/halcyon ~/halcyon
 # source <( ~/halcyon/halcyon paths )
 ```
 
+[`halcyon paths`](/reference/#paths) helps set environment variables.  See the [user’s guide](/guide/#installing-halcyon) for details.
 
-### Deploying an application
+
+### Deploying
+
+Halcyon speeds up deployment by archiving dependencies in _layers_.
+
+GHC, _cabal-install_ and the Cabal package database, the application sandbox—once built, each of these layers is archived separately from the application build and install directories.
+
+
+#### Deploying an application
 
 [`halcyon deploy`](/reference/#deploy) accepts directories, Cabal packages, and _git_ URLs.
 
-Deploying an application by restoring an install archive is expected to take less than 10 seconds.
+With an application install archive available, deploying an application is expected to take less than 10 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
@@ -148,11 +157,9 @@ Deploying an application by restoring an install archive is expected to take les
 </div>
 
 
-### Installing an environment
+#### Deploying an environment
 
-Executed with no arguments, [`halcyon deploy`](/reference/#deploy) installs a full Haskell development environment.
-
-Deploying GHC, _cabal-install_, and an up-to-date Cabal package database by restoring layer archives is expected to take less than 20 seconds.
+[`halcyon deploy`](/reference/#deploy) can also install a full Haskell development environment.  With layer archives available, this is expected to take less than 20 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
