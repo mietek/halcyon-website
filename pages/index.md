@@ -2,6 +2,9 @@
 title: Haskell application deployment
 page-description: Halcyon is a system for deploying Haskell web and non-web applications.
 page-class: hero tweak-listings
+page-data:
+- key: min-section-link-level
+  value: 1
 header-class: hero
 main-class: hero
 hero: |
@@ -23,7 +26,7 @@ Halcyon
 
 Halcyon is a system for deploying Haskell web and non-web applications.
 
-Any Haskell application can be deployed with a [single command](#deploying-an-application), using explicitly declared versions of GHC, libraries, build-tools, and other dependencies.
+Any Haskell application can be deployed with a [single command](#usage), using explicitly declared versions of GHC, libraries, build-tools, and other dependencies.
 
 Halcyon aims to achieve 100% reproducible build results, while keeping deploy times under 30 seconds.
 
@@ -39,10 +42,78 @@ The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a>
 Need commercial support?  Contact the [author](#about) directly.
 
 
+Example applications
+--------------------
+
+</section></section></section></div>
+<div class="gallery-background">
+<div class="wrapper">
+<div class="gallery-frame" id="examples-gallery">
+<div class="gallery-contents">
+<div class="image-item" id="example-circuithub"></div>
+<div class="image-item" id="example-howistart"></div>
+<div class="image-item" id="example-haskell-lang"></div>
+<div class="image-item" id="example-tryhaskell"></div>
+<div class="image-item" id="example-tryidris"></div>
+<div class="image-item" id="example-trypurescript"></div>
+<div class="image-item" id="example-tryhaste"></div>
+<div class="image-item" id="example-gitit"></div>
+</div></div></div></div>
+<div class="wrapper"><section><section><section>
+
+<div id="gallery-links"><nav>
+<ul class="menu open">
+<li><a class="gallery-link" href="/examples/#circuithub" data-target="example-circuithub">CircuitHub</a></li>
+<li><a class="gallery-link" href="/examples/#howistart" data-target="example-howistart">How I Start</a></li>
+<li><a class="gallery-link" href="/examples/#haskell-lang" data-target="example-haskell-lang">Haskell Language</a></li>
+<li><a class="gallery-link" href="/examples/#tryhaskell" data-target="example-tryhaskell">Try Haskell</a></li>
+<li><a class="gallery-link" href="/examples/#tryidris" data-target="example-tryidris">Try Idris</a></li>
+<li><a class="gallery-link" href="/examples/#trypurescript" data-target="example-trypurescript">Try PureScript</a></li>
+<li><a class="gallery-link" href="/examples/#tryhaste" data-target="example-tryhaste">Try Haste</a></li>
+<li><a class="gallery-link" href="/examples/#gitit" data-target="example-gitit">Gitit</a></li>
+</ul>
+</nav></div>
+
+<script>
+addEventListener('load', function () {
+  var links = document.getElementsByClassName('gallery-link');
+  [].forEach.call(links, function (link) {
+    var target = document.getElementById(link.dataset.target);
+    link.addEventListener('mouseover', function () {
+      target.classList.add('hover');
+      var baseOffset = document.getElementById('gallery-links').getBoundingClientRect().left;
+      easeScroll.scrollElementByIdToHorizontalOffset('examples-gallery', target.offsetLeft - baseOffset);
+    });
+    link.addEventListener('mouseout', function () {
+      target.classList.remove('hover');
+    });
+  });
+});
+</script>
+
+
+### “Hello, world!” shootout
+
+<div><nav>
+<ul class="menu open">
+<li><a href="/examples/#hello-happstack">_hello-happstack_</a></li>
+<li><a href="/examples/#hello-mflow">_hello-mflow_</a></li>
+<li><a href="/examples/#hello-miku">_hello-miku_</a></li>
+<li><a href="/examples/#hello-scotty">_hello-scotty_</a></li>
+<li><a href="/examples/#hello-simple">_hello-simple_</a></li>
+<li><a href="/examples/#hello-snap">_hello-snap_</a></li>
+<li><a href="/examples/#hello-spock">_hello-spock_</a></li>
+<li><a href="/examples/#hello-wai">_hello-wai_</a></li>
+<li><a href="/examples/#hello-wheb">_hello-wheb_</a></li>
+<li><a href="/examples/#hello-yesod">_hello-yesod_</a></li>
+</ul>
+</nav></div>
+
+
 Usage
 -----
 
-Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`halcyon paths`](/reference/#halcyon-paths) helps set environment variables.
+Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`halcyon paths`](/reference/#paths) helps set environment variables.
 
 ```
 # git clone https://github.com/mietek/halcyon ~/halcyon
@@ -52,11 +123,13 @@ Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`h
 
 ### Deploying an application
 
-[`halcyon deploy`](/reference/#halcyon-deploy) accepts directories, Cabal packages, and _git_ URLs.
+[`halcyon deploy`](/reference/#deploy) accepts directories, Cabal packages, and _git_ URLs.
+
+Deploying an application by restoring an install archive is expected to take less than 10 seconds.
 
 <div class="toggle">
-<a class="toggle-button" data-target="log2" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="log2"><code># halcyon deploy https://github.com/mietek/hello
+<a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="deploy1"><code># halcyon deploy <a href="https://github.com/mietek/hello/">https://github.com/mietek/hello</a>
 -----> Cloning https://github.com/mietek/hello... done, 197a7ad
 -----> Deploying app from install
        Prefix:                                   <b>/app</b>
@@ -74,16 +147,16 @@ Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`h
 </code></pre>
 </div>
 
-Deploying an application from an install archive is expected to take less than 10 seconds.
-
 
 ### Installing an environment
 
-With no arguments, [`halcyon deploy`](/reference/#halcyon-deploy) installs a full Haskell development environment.
+Executed with no arguments, [`halcyon deploy`](/reference/#deploy) installs a full Haskell development environment.
+
+Deploying GHC, _cabal-install_, and an up-to-date Cabal package database by restoring layer archives is expected to take less than 20 seconds.
 
 <div class="toggle">
-<a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="log1"><code># halcyon deploy
+<a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="deploy2"><code># halcyon deploy
 -----> Deploying environment
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
@@ -93,67 +166,31 @@ With no arguments, [`halcyon deploy`](/reference/#halcyon-deploy) installs a ful
 -----> Restoring GHC layer
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.3.tar.gz... done
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
------> GHC layer restored:                       <b>7.8.3</b>
 
 -----> Locating Cabal layers
        Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
 -----> Restoring Cabal layer
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done, 169MB
------> Cabal layer restored:                     <b>1.20.0.3 (Hackage 2014-11-19)</b>
 
 -----> Environment deployed
 </code></pre>
 </div>
 
-Installing GHC, _cabal-install_, and an up-to-date Cabal package database is expected to take less than 20 seconds.
-
-
-### Examples
-
-#### Real-world applications
-
-> Details                                                 | Live website
-> --------------------------------------------------------|---------------
-> [_hl_](/examples/#hl)                                   | —
-> [_howistart.org_](/examples/#howistart.org)             | [How I Start](https://mietek-howistart.herokuapp.com/)
-> [_tryhaskell_](/examples/#tryhaskell)                   | [Try Haskell](https://mietek-tryhaskell.herokuapp.com/)
-> [_tryidris_](/examples/#tryidris)                       | [Try Idris](https://mietek-tryidris.herokuapp.com/)
-> [_trypurescript_](/examples/#trypurescript)             | [Try Purescript](https://mietek-trypurescript.herokuapp.com/)
-> [_tryhplay_](/examples/#tryhplay)                       | [Try Haste](https://mietek-tryhplay.herokuapp.com/)
-> [_gitit_](/examples/#gitit)                             | [gitit](https://mietek-gitit.herokuapp.com/)
-> [_mailchimp-subscribe_](/examples/#mailchimp-subscribe) | —
-
-
-#### “Hello, world!” applications
-
-> Details                                                 | Framework
-> --------------------------------------------------------|----------------
-> [_hello-happstack_](/examples/#hello-happstack)         | [Happstack](http://happstack.com/) Lite 7.3.5
-> [_hello-mflow_](/examples/#hello-mflow)                 | [MFlow](https://github.com/agocorona/MFlow/) 0.4.5.9
-> [_hello-miku_](/examples/#hello-miku)                   | [_miku_](https://github.com/nfjinjing/miku/) 2014.5.19
-> [_hello-scotty_](/examples/#hello-scotty)               | [Scotty](https://github.com/scotty-web/scotty/) 0.9.0
-> [_hello-simple_](/examples/#hello-simple)               | [Simple](http://simple.cx/) 0.10.0.2
-> [_hello-snap_](/examples/#hello-snap)                   | [Snap](http://snapframework.com/) 0.9.6.3
-> [_hello-spock_](/examples/#hello-spock)                 | [Spock](https://github.com/agrafix/Spock/) 0.7.4.0
-> [_hello-wai_](/examples/#hello-wai)                     | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2
-> [_hello-wheb_](/examples/#hello-wheb)                   | [Wheb](https://github.com/hansonkd/Wheb-Framework/) 0.3.1.0
-> [_hello-yesod_](/examples/#hello-yesod)                 | [Yesod](http://yesodweb.com/) 1.4.0
-
 
 ### Documentation
 
-- [User’s guide](/guide/)
-- [Programmer’s reference](/reference/)
-- [Source code](https://github.com/mietek/halcyon/)
+<div><nav>
+<ul class="menu open">
+<li><a href="/guide/">User’s guide</a></li>
+<li><a href="/reference/">Programmer’s reference</a></li>
+<li><a href="https://github.com/mietek/halcyon/">Source code</a></li>
+<li><a href="https://bashmenot.mietek.io/reference/">_bashmenot_ programmer’s reference</a></li>
+<li><a href="https://github.com/mietek/bashmenot/">_bashmenot_ source code</a></li>
+</ul>
+</nav></div>
 
-
-#### Internals
-
-Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a shell function library.
-
-- [_bashmenot_ — Programmer’s reference](https://bashmenot.mietek.io/reference/)
-- [_bashmenot_ — Source code](https://github.com/mietek/bashmenot/)
+Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions.
 
 
 About
