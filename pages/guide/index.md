@@ -150,8 +150,8 @@ Halcyon cleans the cache after an application is deployed, retaining the most re
 
 
 
-Setting up separate build and deploy machines
----------------------------------------------
+Separating build and deploy machines
+------------------------------------
 
 1.  Provision as many machines as needed, including one dedicated build machine.  Set up all machines as [build machines](#setting-up-a-build-machine).
 
