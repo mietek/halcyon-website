@@ -5,6 +5,7 @@ page-data:
 - key: max-back-link-level
   value: 3
 page-head: |
+  <meta name="twitter:widgets:link-color" content="#3f96f0">
   <style>
     header a.link-examples {
       color: #3f96f0;
