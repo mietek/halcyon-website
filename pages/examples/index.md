@@ -29,19 +29,9 @@ Example applications { .with-toc }
 <li><a href="#tryhaste">Try Haste</a></li>
 <li><a href="#gitit">Gitit</a></li>
 <li><a href="#hello-world-shootout">“Hello, world!” shootout</a></li>
+<li><a href="#notes">Notes</a></li>
 </ul>
 </nav></div>
-
-
-#### Notes
-
-Deploying any of the example applications by restoring an install archive is expected to take less than 30 seconds.
-
-_First build_ refers to deploying with no sandbox or application archives available to be restored.  All archives created during the first build are used for subsequent builds and deploys.
-
-Times measured on a [DigitalOcean](https://digitalocean.com/) instance with 8GB RAM, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (x86_64).
-
-Build logs trimmed for clarity.
 
 
 CircuitHub
@@ -232,7 +222,7 @@ Gitit
 -----
 
 > ---------------------|---
-> Website:             | [Gitit Demo](http://gitit.net/)
+> Website:             | [Gitit demo](http://gitit.net/)
 > Author:              | [John MacFarlane](https://github.com/jgm/gitit/)
 > Framework:           | [Happstack](http://happstack.com/) 7.3.9
 > Source code:         | [_gitit_](https://github.com/mietek/gitit/)
@@ -258,6 +248,9 @@ Wiki with _git_ file storage.
 
 “Hello, world!” shootout { .with-toc }
 ------------------------
+
+Simple web applications, intended to compare the options available to the Haskell programmer.
+
 
 <div><nav>
 <ul class="toc menu open">
@@ -1135,6 +1128,18 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 -----> App deployed:                             <b>hello-yesod-1.0</b>
 </code></pre>
 </div>
+
+
+Notes
+-----
+
+Deploying any of the example applications by restoring an install archive is expected to take less than 30 seconds.
+
+_First build_ refers to deploying with no sandbox or application archives available to be restored.  All archives created during the first build are used for subsequent builds and deploys.
+
+Times measured on a [DigitalOcean](https://digitalocean.com/) instance with 8GB RAM, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (x86_64).
+
+Build logs trimmed for clarity.
 
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
