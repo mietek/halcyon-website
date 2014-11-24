@@ -127,14 +127,13 @@ Building applications
 
 **TODO**
 
-### Concepts
 
-#### Layers
+### Layers
 
-Halcyon speeds up builds by archiving dependencies in _layers_.  GHC, cabal-install and the Cabal package database, the application sandbox—each of these layers is archived separately from the application build and install directories.
+Halcyon speeds up builds by archiving dependencies in _layers_.  GHC, _cabal-install_ and the Cabal package database, the application sandbox—each of these layers is archived separately from the application build and install directories.
 
 
-#### Cache
+### Cache
 
 All archives are cached locally on the build machine.  The cache directory is defined by [`HALCYON_CACHE_DIR`](/reference/#halcyon_cache_dir), which defaults to `/var/tmp/halcyon-cache`.
 
