@@ -381,7 +381,7 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Install prepared, 8.4MB
 -----> Archiving install
        Creating halcyon-install-f586f68-hello-happstack-1.0.tar.gz... done, 1.7MB
------> Installing app... done, 8.4MB
+-----> Installing app to /app... done, 8.4MB
 
 -----> App deployed:                             <b>hello-happstack-1.0</b>
 </code></pre>
@@ -494,7 +494,7 @@ Simple web applications, intended to compare the options available to the Haskel
        -----> Install prepared, 3.3MB
        -----> Archiving install
               Creating halcyon-install-f93a89d-cpphs-1.18.6.tar.gz... done, 756KB
-       -----> Installing app... done, 3.3MB
+       -----> Installing app to /app/sandbox... done, 3.3MB
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -524,7 +524,7 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Install prepared, 15MB
 -----> Archiving install
        Creating halcyon-install-2ae4e5f-hello-mflow-1.0.tar.gz... done, 3.3MB
------> Installing app... done, 15MB
+-----> Installing app to /app... done, 15MB
 
 -----> App deployed:                             <b>hello-mflow-1.0</b>
 </code></pre>
@@ -611,7 +611,7 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Install prepared, 11MB
 -----> Archiving install
        Creating halcyon-install-0adfaa5-hello-miku-1.0.tar.gz... done, 2.1MB
------> Installing app... done, 11MB
+-----> Installing app to /app... done, 11MB
 
 -----> App deployed:                             <b>hello-miku-1.0</b>
 </code></pre>
@@ -778,7 +778,7 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Install prepared, 8.9MB
 -----> Archiving install
        Creating halcyon-install-9d0aa61-hello-snap-1.0.tar.gz... done, 1.8MB
------> Installing app... done, 8.9MB
+-----> Installing app to /app... done, 8.9MB
 
 -----> App deployed:                             <b>hello-snap-1.0</b>
 </code></pre>
@@ -864,7 +864,7 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Install prepared, 8.7MB
 -----> Archiving install
        Creating halcyon-install-0f869b0-hello-spock-1.0.tar.gz... done, 2.0MB
------> Installing app in /app... done, 8.7MB
+-----> Installing app to /app... done, 8.7MB
 
 -----> App deployed:                             <b>hello-spock-1.0</b>
 </code></pre>
@@ -959,7 +959,7 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Install prepared, 4.5MB
 -----> Archiving install
        Creating halcyon-install-3c97959-hello-wai-1.0.tar.gz... done, 1.1MB
------> Installing app... done, 4.5MB
+-----> Installing app to /app... done, 4.5MB
 
 -----> App deployed:                             <b>hello-wai-1.0</b>
 </code></pre>
@@ -1049,7 +1049,7 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Install prepared, 7.0MB
 -----> Archiving install
        Creating halcyon-install-1688650-hello-wheb-1.0.tar.gz... done, 1.6MB
------> Installing app in /app... done, 7.0MB
+-----> Installing app to /app... done, 7.0MB
 
 -----> App deployed:                             <b>hello-wheb-1.0</b>
 </code></pre>
@@ -1155,7 +1155,7 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 -----> Install prepared, 19MB
 -----> Archiving install
        Creating halcyon-install-5ad16e2-hello-yesod-1.0.tar.gz... done, 3.8MB
------> Installing app in /app... done, 19MB
+-----> Installing app to /app... done, 19MB
 
 -----> App deployed:                             <b>hello-yesod-1.0</b>
 </code></pre>
