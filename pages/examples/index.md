@@ -200,7 +200,6 @@ Try Idris
 
 <div class="tweet">
 <blockquote class="twitter-tweet" lang="en" data-cards="hidden"><p><a href="https://twitter.com/raichoo">@raichoo</a> new version, coming soon - thanks <a href="https://twitter.com/mietek">@mietek</a>! <a href="http://t.co/5G6zPGNpSJ">pic.twitter.com/5G6zPGNpSJ</a></p>&mdash; Brian McKenna (@puffnfresh) <a href="https://twitter.com/puffnfresh/status/521491105549144064">October 13, 2014</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
 
