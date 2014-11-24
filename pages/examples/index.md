@@ -49,7 +49,7 @@ CircuitHub
 
 > ---------------------|---
 > Website:             | [CircuitHub](https://circuithub.com/)
-> Author:              | [CircuitHub team](https://circuithub.com/about/team/)
+> Author:              | [CircuitHub team](https://circuithub.com/about/team)
 > Framework:           | [Yesod](http://yesodweb.com/) 1.2.19
 > Source code:         | _private_
 > Status:              | _live_
