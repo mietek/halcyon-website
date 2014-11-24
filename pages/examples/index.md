@@ -82,7 +82,7 @@ Electronics manufacturing service, built for hardware startups.
 Using Halcyon since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 <div class="tweet">
-<blockquote class="twitter-tweet" lang="en" data-conversation="none"><p><a href="https://twitter.com/mietek">@mietek</a> Great work, great project!</p>&mdash; CircuitHub (@CircuitHub) <a href="https://twitter.com/CircuitHub/status/528883979265781760">November 2, 2014</a></blockquote>
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are a badass. Deploying <a href="http://t.co/gdTCjXQDAO">http://t.co/gdTCjXQDAO</a> is so slick now, I barely stop to think about it! <a href="https://twitter.com/hashtag/Halcyon?src=hash">#Halcyon</a> <a href="https://twitter.com/hashtag/HaskellOnHeroku?src=hash">#HaskellOnHeroku</a></p>&mdash; Rehno Lindeque (@RehnoLindeque) <a href="https://twitter.com/RehnoLindeque/status/536954909506437120">November 24, 2014</a></blockquote>
 </div>
 
 <!-- #### First build log
