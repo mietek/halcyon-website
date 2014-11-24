@@ -27,7 +27,7 @@ User’s guide
 Quick start
 -----------
 
-Set up a Ubuntu 14.04 LTS (x86_64) machine with 8GB RAM, and install Halcyon.
+Set up a Ubuntu 14.04 LTS (`x86_64`) machine with 8GB RAM, and install Halcyon.
 
 ```
 # apt-get update
@@ -59,7 +59,7 @@ At least 8GB RAM is recommended.  Halcyon will use all available cores to build 
 Halcyon is written in a cross-platform fashion, and additional platforms to support are currently under consideration.
 
 
-#### Ubuntu 14.04 LTS (x86_64)
+#### Ubuntu 14.04 LTS (`x86_64`)
 
 ```
 # apt-get update
@@ -67,7 +67,7 @@ Halcyon is written in a cross-platform fashion, and additional platforms to supp
 ```
 
 
-#### Ubuntu 12.04 LTS (x86_64)
+#### Ubuntu 12.04 LTS (`x86_64`)
 
 ```
 # apt-get update
@@ -77,7 +77,7 @@ Halcyon is written in a cross-platform fashion, and additional platforms to supp
 _libgmp3c2_ can be skipped when using GHC 7.8 or newer.
 
 
-#### Ubuntu 10.04 LTS (x86_64)
+#### Ubuntu 10.04 LTS (`x86_64`)
 
 ```
 # apt-get update

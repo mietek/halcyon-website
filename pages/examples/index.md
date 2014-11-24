@@ -1169,7 +1169,7 @@ Deploying any of the example applications by restoring an install archive is exp
 
 _First build_ refers to deploying with no sandbox or application archives available to be restored.  All archives created during the first build are used for subsequent builds and deploys.
 
-Times measured on a [DigitalOcean](https://digitalocean.com/) instance with 8GB RAM, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (x86_64).
+Times measured on a [DigitalOcean](https://digitalocean.com/) instance with 8GB RAM, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
 
 Build logs trimmed for clarity.
 
