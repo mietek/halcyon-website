@@ -64,12 +64,12 @@ Example applications
 <div id="gallery-links"><nav>
 <ul class="menu open">
 <li><a class="gallery-link" href="/examples/#circuithub" data-target="example-circuithub">CircuitHub</a></li>
-<li><a class="gallery-link" href="/examples/#howistart" data-target="example-howistart">How I Start</a></li>
-<li><a class="gallery-link" href="/examples/#haskell-lang" data-target="example-haskell-lang">Haskell Language</a></li>
-<li><a class="gallery-link" href="/examples/#tryhaskell" data-target="example-tryhaskell">Try Haskell</a></li>
-<li><a class="gallery-link" href="/examples/#tryidris" data-target="example-tryidris">Try Idris</a></li>
-<li><a class="gallery-link" href="/examples/#trypurescript" data-target="example-trypurescript">Try PureScript</a></li>
-<li><a class="gallery-link" href="/examples/#tryhaste" data-target="example-tryhaste">Try Haste</a></li>
+<li><a class="gallery-link" href="/examples/#how-i-start" data-target="example-howistart">How I Start</a></li>
+<li><a class="gallery-link" href="/examples/#haskell-language" data-target="example-haskell-lang">Haskell Language</a></li>
+<li><a class="gallery-link" href="/examples/#try-haskell" data-target="example-tryhaskell">Try Haskell</a></li>
+<li><a class="gallery-link" href="/examples/#try-idris" data-target="example-tryidris">Try Idris</a></li>
+<li><a class="gallery-link" href="/examples/#try-purescript" data-target="example-trypurescript">Try PureScript</a></li>
+<li><a class="gallery-link" href="/examples/#try-haste" data-target="example-tryhaste">Try Haste</a></li>
 <li><a class="gallery-link" href="/examples/#gitit" data-target="example-gitit">Gitit</a></li>
 </ul>
 </nav></div>
