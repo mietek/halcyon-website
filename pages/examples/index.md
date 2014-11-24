@@ -18,18 +18,67 @@ Example applications { .with-toc }
 
 **Work in progress.  All available information is up-to-date.**
 
+</section></section></section></div>
+<div class="gallery-background">
+<div class="wrapper">
+<div class="gallery-frame" id="examples-gallery">
+<div class="gallery-contents">
+<div class="image-item" id="example-circuithub"></div>
+<div class="image-item" id="example-howistart"></div>
+<div class="image-item" id="example-haskell-lang"></div>
+<div class="image-item" id="example-tryhaskell"></div>
+<div class="image-item" id="example-tryidris"></div>
+<div class="image-item" id="example-trypurescript"></div>
+<div class="image-item" id="example-tryhaste"></div>
+<div class="image-item" id="example-gitit"></div>
+</div></div></div></div>
+<div class="wrapper"><section><section><section>
+
+<div id="gallery-links"><nav>
+<ul class="menu open">
+<li><a class="gallery-link" href="#circuithub" data-target="example-circuithub">CircuitHub</a></li>
+<li><a class="gallery-link" href="#how-i-start" data-target="example-howistart">How I Start</a></li>
+<li><a class="gallery-link" href="#haskell-language" data-target="example-haskell-lang">Haskell Language</a></li>
+<li><a class="gallery-link" href="#try-haskell" data-target="example-tryhaskell">Try Haskell</a></li>
+<li><a class="gallery-link" href="#try-idris" data-target="example-tryidris">Try Idris</a></li>
+<li><a class="gallery-link" href="#try-purescript" data-target="example-trypurescript">Try PureScript</a></li>
+<li><a class="gallery-link" href="#try-haste" data-target="example-tryhaste">Try Haste</a></li>
+<li><a class="gallery-link" href="#gitit" data-target="example-gitit">Gitit</a></li>
+</ul>
+</nav></div>
+
+<script>
+addEventListener('load', function () {
+  var links = document.getElementsByClassName('gallery-link');
+  [].forEach.call(links, function (link) {
+    var target = document.getElementById(link.dataset.target);
+    link.addEventListener('mouseover', function () {
+      target.classList.add('hover');
+      var baseOffset = document.getElementById('gallery-links').getBoundingClientRect().left;
+      easeScroll.scrollElementByIdToHorizontalOffset('examples-gallery', target.offsetLeft - baseOffset);
+    });
+    link.addEventListener('mouseout', function () {
+      target.classList.remove('hover');
+    });
+  });
+});
+</script>
+
+
+#### “Hello, world!” shootout
+
 <div><nav>
-<ul class="toc menu open">
-<li><a href="#circuithub">CircuitHub</a></li>
-<li><a href="#howistart">How I Start</a></li>
-<li><a href="#haskell-lang">Haskell Language</a></li>
-<li><a href="#tryhaskell">Try Haskell</a></li>
-<li><a href="#tryidris">Try Idris</a></li>
-<li><a href="#trypurescript">Try PureScript</a></li>
-<li><a href="#tryhaste">Try Haste</a></li>
-<li><a href="#gitit">Gitit</a></li>
-<li><a href="#hello-world-shootout">“Hello, world!” shootout</a></li>
-<li><a href="#notes">Notes</a></li>
+<ul class="menu open">
+<li><a href="#hello-happstack">_hello-happstack_</a></li>
+<li><a href="#hello-mflow">_hello-mflow_</a></li>
+<li><a href="#hello-miku">_hello-miku_</a></li>
+<li><a href="#hello-scotty">_hello-scotty_</a></li>
+<li><a href="#hello-simple">_hello-simple_</a></li>
+<li><a href="#hello-snap">_hello-snap_</a></li>
+<li><a href="#hello-spock">_hello-spock_</a></li>
+<li><a href="#hello-wai">_hello-wai_</a></li>
+<li><a href="#hello-wheb">_hello-wheb_</a></li>
+<li><a href="#hello-yesod">_hello-yesod_</a></li>
 </ul>
 </nav></div>
 
@@ -250,22 +299,6 @@ Wiki with _git_ file storage.
 ------------------------
 
 Simple web applications, intended to compare the options available to the Haskell programmer.
-
-
-<div><nav>
-<ul class="toc menu open">
-<li><a href="#hello-happstack">_hello-happstack_</a></li>
-<li><a href="#hello-mflow">_hello-mflow_</a></li>
-<li><a href="#hello-miku">_hello-miku_</a></li>
-<li><a href="#hello-scotty">_hello-scotty_</a></li>
-<li><a href="#hello-simple">_hello-simple_</a></li>
-<li><a href="#hello-snap">_hello-snap_</a></li>
-<li><a href="#hello-spock">_hello-spock_</a></li>
-<li><a href="#hello-wai">_hello-wai_</a></li>
-<li><a href="#hello-wheb">_hello-wheb_</a></li>
-<li><a href="#hello-yesod">_hello-yesod_</a></li>
-</ul>
-</nav></div>
 
 
 ### _hello-happstack_

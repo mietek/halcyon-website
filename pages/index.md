@@ -92,7 +92,7 @@ addEventListener('load', function () {
 </script>
 
 
-### “Hello, world!” shootout
+#### “Hello, world!” shootout
 
 <div><nav>
 <ul class="menu open">
