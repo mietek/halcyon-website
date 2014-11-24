@@ -1,6 +1,6 @@
 ---
 title: Example applications
-page-class: rule-before-h3 tweak-listings
+page-class: rule-before-h3 tweak-gallery tweak-listings
 page-data:
 - key: max-back-link-level
   value: 3
@@ -23,46 +23,29 @@ Example applications { .with-toc }
 <div class="wrapper">
 <div class="gallery-frame" id="examples-gallery">
 <div class="gallery-contents">
-<div class="image-item" id="example-circuithub"></div>
-<div class="image-item" id="example-howistart"></div>
-<div class="image-item" id="example-haskell-lang"></div>
-<div class="image-item" id="example-tryhaskell"></div>
-<div class="image-item" id="example-tryidris"></div>
-<div class="image-item" id="example-trypurescript"></div>
-<div class="image-item" id="example-tryhaste"></div>
-<div class="image-item" id="example-gitit"></div>
+<a href="#circuithub" class="gallery-item" id="item-circuithub">CircuitHub</a>
+<a href="#how-i-start" class="gallery-item" id="item-howistart">How I Start</a>
+<a href="#haskell-language" class="gallery-item" id="item-haskell-lang">Haskell Language</a>
+<a href="#try-haskell" class="gallery-item" id="item-tryhaskell">Try Haskell</a>
+<a href="#try-idris" class="gallery-item" id="item-tryidris">Try Idris</a>
+<a href="#try-purescript" class="gallery-item" id="item-trypurescript">Try PureScript</a>
+<a href="#try-haste" class="gallery-item" id="item-tryhaste">Try Haste</a>
+<a href="#gitit" class="gallery-item" id="item-gitit">Gitit</a>
 </div></div></div></div>
 <div class="wrapper"><section><section><section>
 
 <div id="gallery-links"><nav>
 <ul class="menu open">
-<li><a class="gallery-link" href="#circuithub" data-target="example-circuithub">CircuitHub</a></li>
-<li><a class="gallery-link" href="#how-i-start" data-target="example-howistart">How I Start</a></li>
-<li><a class="gallery-link" href="#haskell-language" data-target="example-haskell-lang">Haskell Language</a></li>
-<li><a class="gallery-link" href="#try-haskell" data-target="example-tryhaskell">Try Haskell</a></li>
-<li><a class="gallery-link" href="#try-idris" data-target="example-tryidris">Try Idris</a></li>
-<li><a class="gallery-link" href="#try-purescript" data-target="example-trypurescript">Try PureScript</a></li>
-<li><a class="gallery-link" href="#try-haste" data-target="example-tryhaste">Try Haste</a></li>
-<li><a class="gallery-link" href="#gitit" data-target="example-gitit">Gitit</a></li>
+<li><a class="gallery-link" href="#circuithub" id="link-circuithub">CircuitHub</a></li>
+<li><a class="gallery-link" href="#how-i-start" id="link-howistart">How I Start</a></li>
+<li><a class="gallery-link" href="#haskell-language" id="link-haskell-lang">Haskell Language</a></li>
+<li><a class="gallery-link" href="#try-haskell" id="link-tryhaskell">Try Haskell</a></li>
+<li><a class="gallery-link" href="#try-idris" id="link-tryidris">Try Idris</a></li>
+<li><a class="gallery-link" href="#try-purescript" id="link-trypurescript">Try PureScript</a></li>
+<li><a class="gallery-link" href="#try-haste" id="link-tryhaste">Try Haste</a></li>
+<li><a class="gallery-link" href="#gitit" id="link-gitit">Gitit</a></li>
 </ul>
 </nav></div>
-
-<script>
-addEventListener('load', function () {
-  var links = document.getElementsByClassName('gallery-link');
-  [].forEach.call(links, function (link) {
-    var target = document.getElementById(link.dataset.target);
-    link.addEventListener('mouseover', function () {
-      target.classList.add('hover');
-      var baseOffset = document.getElementById('gallery-links').getBoundingClientRect().left;
-      easeScroll.scrollElementByIdToHorizontalOffset('examples-gallery', target.offsetLeft - baseOffset);
-    });
-    link.addEventListener('mouseout', function () {
-      target.classList.remove('hover');
-    });
-  });
-});
-</script>
 
 
 #### “Hello, world!” shootout

@@ -1,7 +1,7 @@
 ---
 title: Haskell application deployment
 page-description: Halcyon is a system for deploying Haskell web and non-web applications.
-page-class: hero tweak-listings
+page-class: hero tweak-gallery tweak-listings
 page-data:
 - key: min-section-link-level
   value: 1
@@ -50,46 +50,29 @@ Example applications
 <div class="wrapper">
 <div class="gallery-frame" id="examples-gallery">
 <div class="gallery-contents">
-<div class="image-item" id="example-circuithub"></div>
-<div class="image-item" id="example-howistart"></div>
-<div class="image-item" id="example-haskell-lang"></div>
-<div class="image-item" id="example-tryhaskell"></div>
-<div class="image-item" id="example-tryidris"></div>
-<div class="image-item" id="example-trypurescript"></div>
-<div class="image-item" id="example-tryhaste"></div>
-<div class="image-item" id="example-gitit"></div>
+<a href="/examples/#circuithub" class="gallery-item" id="item-circuithub">CircuitHub</a>
+<a href="/examples/#how-i-start" class="gallery-item" id="item-howistart">How I Start</a>
+<a href="/examples/#haskell-language" class="gallery-item" id="item-haskell-lang">Haskell Language</a>
+<a href="/examples/#try-haskell" class="gallery-item" id="item-tryhaskell">Try Haskell</a>
+<a href="/examples/#try-idris" class="gallery-item" id="item-tryidris">Try Idris</a>
+<a href="/examples/#try-purescript" class="gallery-item" id="item-trypurescript">Try PureScript</a>
+<a href="/examples/#try-haste" class="gallery-item" id="item-tryhaste">Try Haste</a>
+<a href="/examples/#gitit" class="gallery-item" id="item-gitit">Gitit</a>
 </div></div></div></div>
 <div class="wrapper"><section><section><section>
 
 <div id="gallery-links"><nav>
 <ul class="menu open">
-<li><a class="gallery-link" href="/examples/#circuithub" data-target="example-circuithub">CircuitHub</a></li>
-<li><a class="gallery-link" href="/examples/#how-i-start" data-target="example-howistart">How I Start</a></li>
-<li><a class="gallery-link" href="/examples/#haskell-language" data-target="example-haskell-lang">Haskell Language</a></li>
-<li><a class="gallery-link" href="/examples/#try-haskell" data-target="example-tryhaskell">Try Haskell</a></li>
-<li><a class="gallery-link" href="/examples/#try-idris" data-target="example-tryidris">Try Idris</a></li>
-<li><a class="gallery-link" href="/examples/#try-purescript" data-target="example-trypurescript">Try PureScript</a></li>
-<li><a class="gallery-link" href="/examples/#try-haste" data-target="example-tryhaste">Try Haste</a></li>
-<li><a class="gallery-link" href="/examples/#gitit" data-target="example-gitit">Gitit</a></li>
+<li><a class="gallery-link" href="/examples/#circuithub" id="link-circuithub">CircuitHub</a></li>
+<li><a class="gallery-link" href="/examples/#how-i-start" id="link-howistart">How I Start</a></li>
+<li><a class="gallery-link" href="/examples/#haskell-language" id="link-haskell-lang">Haskell Language</a></li>
+<li><a class="gallery-link" href="/examples/#try-haskell" id="link-tryhaskell">Try Haskell</a></li>
+<li><a class="gallery-link" href="/examples/#try-idris" id="link-tryidris">Try Idris</a></li>
+<li><a class="gallery-link" href="/examples/#try-purescript" id="link-trypurescript">Try PureScript</a></li>
+<li><a class="gallery-link" href="/examples/#try-haste" id="link-tryhaste">Try Haste</a></li>
+<li><a class="gallery-link" href="/examples/#gitit" id="link-gitit">Gitit</a></li>
 </ul>
 </nav></div>
-
-<script>
-addEventListener('load', function () {
-  var links = document.getElementsByClassName('gallery-link');
-  [].forEach.call(links, function (link) {
-    var target = document.getElementById(link.dataset.target);
-    link.addEventListener('mouseover', function () {
-      target.classList.add('hover');
-      var baseOffset = document.getElementById('gallery-links').getBoundingClientRect().left;
-      easeScroll.scrollElementByIdToHorizontalOffset('examples-gallery', target.offsetLeft - baseOffset);
-    });
-    link.addEventListener('mouseout', function () {
-      target.classList.remove('hover');
-    });
-  });
-});
-</script>
 
 
 #### “Hello, world!” shootout

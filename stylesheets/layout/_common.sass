@@ -66,22 +66,16 @@ div.gallery-contents
   background-color: $white
   display: flex
 
-div.gallery-frame div.image-item
+div.gallery-frame a.gallery-item
   width: (1/$gallery-size) * 100%
 
 
-div.image-frame
-  margin-top: ln(3/2)
-  margin-bottom: ln(3/2)
-  position: relative
-
-div.image-frame div.image-item
-  width: 100%
-
-
-div.image-item
+a.gallery-item
+  @include text-button
+  @include no-text
   @include smart-opacity(0.8, 1)
   @include smart-opacity-after(0, 1)
+  display: block
   border-top: 1px rgba($object-color, 0.2) solid
   border-right: 1px rgba($object-color, 0.2) solid
   border-bottom: 1px rgba($object-color, 0.2) solid
@@ -92,11 +86,12 @@ div.image-item
   &:last-of-type
     border-right: none
 
-.hairline div.image-item
+.hairline a.gallery-item
   border-width: 0.5px
 
-div.image-item:after
+a.gallery-item:after
   content: ""
+  display: block
   position: absolute
   top: 0
   left: 0
@@ -104,9 +99,6 @@ div.image-item:after
   height: 100%
   background-size: cover
   transition: ease(opacity, 1, 0)
-
-.touch div.image-item
-  user-select: none
 
 
 blockquote.twitter-tweet
@@ -125,56 +117,56 @@ div.tweet
   @include loc(18)
 
 
-#example-circuithub
+#item-circuithub
   @include image("example-circuithub-gray", "jpg")
   &:after
     @include image("example-circuithub-color", "jpg")
 #circuithub-deploy
   @include loc(9) // TODO
 
-#example-howistart
+#item-howistart
   @include image("example-howistart-gray", "jpg")
   &:after
     @include image("example-howistart-color", "jpg")
 #howistart-deploy
   @include loc(9) // TODO
 
-#example-haskell-lang
+#item-haskell-lang
   @include image("example-haskell-lang-gray", "jpg")
   &:after
     @include image("example-haskell-lang-color", "jpg")
 #haskell-lang-deploy
   @include loc(9) // TODO
 
-#example-tryhaskell
+#item-tryhaskell
   @include image("example-tryhaskell-gray", "jpg")
   &:after
     @include image("example-tryhaskell-color", "jpg")
 #tryhaskell-deploy
   @include loc(9) // TODO
 
-#example-tryidris
+#item-tryidris
   @include image("example-tryidris-gray", "jpg")
   &:after
     @include image("example-tryidris-color", "jpg")
 #tryidris-deploy
   @include loc(9) // TODO
 
-#example-trypurescript
+#item-trypurescript
   @include image("example-trypurescript-gray", "jpg")
   &:after
     @include image("example-trypurescript-color", "jpg")
 #trypurescript-deploy
   @include loc(9) // TODO
 
-#example-tryhaste
+#item-tryhaste
   @include image("example-tryhaste-gray", "jpg")
   &:after
     @include image("example-tryhaste-color", "jpg")
 #tryhaste-deploy
   @include loc(9) // TODO
 
-#example-gitit
+#item-gitit
   @include image("example-gitit-gray", "jpg")
   &:after
     @include image("example-gitit-color", "jpg")
