@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu -o pipefail
 
+rm -rf out
 mkdir out
 
-variants="720x480_small 1440x960_medium 2880x1920_large"
+file='hero.jpg'
 
-for variant in ${variants}; do
-  size=${variant%_*}
-  suffix=${variant#*_}
-  convert hero.jpg -resize "${size}!" out/hero-${suffix}.jpg
+declare -A sizes
+sizes[720x480]='-small'
+sizes[1440x960]='-medium'
+sizes[2880x1920]='-large'
+
+for size in "${!sizes[@]}"; do
+	suffix="${sizes[${size}]}"
+	convert "${file}" -resize "${size}!" "out/${file%.jpg}${suffix}.jpg"
 done
