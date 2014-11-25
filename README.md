@@ -1,7 +1,7 @@
 _halcyon-website_
 =================
 
-Website for [_halcyon_](https://halcyon.sh/).
+Website for [Halcyon](https://halcyon.sh/).
 
 Built with [_cannot_](https://cannot.mietek.io/).
 
