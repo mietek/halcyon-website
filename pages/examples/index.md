@@ -288,7 +288,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Happstack](http://happstack.com/) Lite 7.3.5
-> First build time:    | 3m50s
+> First build time:    | 3m27s
 > Dependencies:        | [44](https://github.com/mietek/hello-happstack/blob/master/cabal.config)
 > Sandbox size:        | 64MB
 > App size:            | 12MB
@@ -320,16 +320,10 @@ Simple web applications, intended to compare the options available to the Haskel
        Label:                                    <b>hello-happstack-1.0</b>
        Source hash:                              <b>f586f68</b>
        Constraints hash:                         <b>5e34a95</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -358,14 +352,14 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Built app, 12MB
        Stripping app... done, 8.7MB
 -----> Archiving build
-       Creating halcyon-build-hello-happstack-1.0.tar.gz... done, 1.8MB
+       Creating halcyon-app-build-hello-happstack-1.0.tar.gz... done, 1.8MB
 
 -----> Preparing install
        Copying app
 -----> Install prepared, 8.4MB
 -----> Archiving install
-       Creating halcyon-install-f586f68-hello-happstack-1.0.tar.gz... done, 1.7MB
------> Installing app to /app... done, 8.4MB
+       Creating halcyon-app-install-f586f68-hello-happstack-1.0.tar.gz... done, 1.7MB
+-----> Installing app into /app... done, 8.4MB
 
 -----> App deployed:                             <b>hello-happstack-1.0</b>
 </code></pre>
@@ -376,7 +370,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow/) 0.4.5.9
-> First build time:    | 7m49s
+> First build time:    | 7m17s
 > Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/cabal.config) and _cpphs_ 1.18.6
 > Sandbox size:        | 152MB
 > App size:            | 20MB
@@ -405,18 +399,12 @@ Simple web applications, intended to compare the options available to the Haskel
        Source hash:                              <b>2ae4e5f</b>
        Constraints hash:                         <b>dc98a41</b>
        Magic hash:                               <b>8f018d2</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
        Sandbox magic hash:                       <b>8f018d2</b>
        Sandbox extra apps:                       <b>cpphs-1.18.6</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -430,10 +418,10 @@ Simple web applications, intended to compare the options available to the Haskel
               Label:                                    <b>cpphs-1.18.6</b>
               Source hash:                              <b>f93a89d</b>
               Constraints hash:                         <b>77178fc</b>
+              External storage:                         <b>public</b>
               GHC version:                              <b>7.8.3</b>
               Cabal version:                            <b>1.20.0.3</b>
               Cabal repository:                         <b>Hackage</b>
-              External storage:                         <b>public</b>
 
        -----> Building sandbox layer
        -----> Creating sandbox
@@ -443,14 +431,7 @@ Simple web applications, intended to compare the options available to the Haskel
        -----> Building sandbox
               Resolving dependencies...
               Notice: installing into a sandbox located at /app/sandbox
-              Downloading text-1.2.0.0...
-              Configuring text-1.2.0.0...
-              Building text-1.2.0.0...
-              Installed text-1.2.0.0
-              Downloading polyparse-1.10...
-              Configuring polyparse-1.10...
-              Building polyparse-1.10...
-              Installed polyparse-1.10
+              ...
        -----> Sandbox built, 18MB
               Removing documentation from sandbox layer... done, 18MB
               Stripping sandbox layer... done, 15MB
@@ -471,14 +452,14 @@ Simple web applications, intended to compare the options available to the Haskel
        -----> Built app, 7.2MB
               Stripping app... done, 6.1MB
        -----> Archiving build
-              Creating halcyon-build-cpphs-1.18.6.tar.gz... done, 1.2MB
+              Creating halcyon-app-build-cpphs-1.18.6.tar.gz... done, 1.2MB
 
        -----> Preparing install
               Copying app
        -----> Install prepared, 3.3MB
        -----> Archiving install
-              Creating halcyon-install-f93a89d-cpphs-1.18.6.tar.gz... done, 756KB
-       -----> Installing app to /app/sandbox... done, 3.3MB
+              Creating halcyon-app-install-f93a89d-cpphs-1.18.6.tar.gz... done, 756KB
+       -----> Installing app into /app/sandbox... done, 3.3MB
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -501,14 +482,15 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Built app, 20MB
        Stripping app... done, 15MB
 -----> Archiving build
-       Creating halcyon-build-hello-mflow-1.0.tar.gz... done, 3.3MB
+       Creating halcyon-app-build-hello-mflow-1.0.tar.gz... done, 3.3MB
 
 -----> Preparing install
        Copying app
+       Copying sandbox layer data files
 -----> Install prepared, 15MB
 -----> Archiving install
-       Creating halcyon-install-2ae4e5f-hello-mflow-1.0.tar.gz... done, 3.3MB
------> Installing app to /app... done, 15MB
+       Creating halcyon-app-install-2ae4e5f-hello-mflow-1.0.tar.gz... done, 3.3MB
+-----> Installing app into /app... done, 15MB
 
 -----> App deployed:                             <b>hello-mflow-1.0</b>
 </code></pre>
@@ -519,7 +501,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [_miku_](https://github.com/nfjinjing/miku/) 2014.5.19
-> First build time:    | 5m12s
+> First build time:    | 4m52s
 > Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/cabal.config)
 > Sandbox size:        | 84MB
 > App size:            | 13MB
@@ -547,19 +529,14 @@ Simple web applications, intended to compare the options available to the Haskel
 <pre class="toggle" id="hello-miku-deploy"><code># halcyon deploy <a href="https://github.com/mietek/hello-miku/">https://github.com/mietek/hello-miku</a>
 -----> Cloning https://github.com/mietek/hello-miku... done, cdfe7f8
 -----> Deploying app
+       Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-miku-1.0</b>
        Source hash:                              <b>0adfaa5</b>
        Constraints hash:                         <b>3fa23e0</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -588,14 +565,15 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Built app, 13MB
        Stripping app... done, 11MB
 -----> Archiving build
-       Creating halcyon-build-hello-miku-1.0.tar.gz... done, 2.1MB
+       Creating halcyon-app-build-hello-miku-1.0.tar.gz... done, 2.1MB
 
 -----> Preparing install
        Copying app
+       Copying sandbox layer data files
 -----> Install prepared, 11MB
 -----> Archiving install
-       Creating halcyon-install-0adfaa5-hello-miku-1.0.tar.gz... done, 2.1MB
------> Installing app to /app... done, 11MB
+       Creating halcyon-app-install-0adfaa5-hello-miku-1.0.tar.gz... done, 2.1MB
+-----> Installing app into /app... done, 11MB
 
 -----> App deployed:                             <b>hello-miku-1.0</b>
 </code></pre>
@@ -606,7 +584,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Scotty](https://github.com/scotty-web/scotty/) 0.9.0
-> First build time:    | **TODO**
+> First build time:    | 4m40s
 > Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/cabal.config)
 > Sandbox size:        | 83MB
 > App size:            | 12MB
@@ -626,22 +604,68 @@ Simple web applications, intended to compare the options available to the Haskel
 </div>
 
 
-<!-- #### First build log
+#### First build log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-scotty-deploy"><code># halcyon deploy <a href="https://github.com/mietek/hello-scotty/">https://github.com/mietek/hello-scotty</a>
+-----> Cloning https://github.com/mietek/hello-scotty... done, 030e912
+-----> Deploying app
+       Prefix:                                   <b>/app</b>
+       Label:                                    <b>hello-scotty-1.0</b>
+       Source hash:                              <b>e360666</b>
+       Constraints hash:                         <b>7c013f9</b>
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.3</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
+
+-----> Building sandbox layer
+-----> Creating sandbox
+       Writing a default package environment file to
+       /app/sandbox/cabal.sandbox.config
+       Creating a new sandbox at /app/sandbox
+-----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
+       ...
+       Installed scotty-0.9.0
+-----> Sandbox built, 83MB
+       Removing documentation from sandbox layer... done, 82MB
+       Stripping sandbox layer... done, 71MB
+-----> Archiving sandbox layer
+       Creating halcyon-sandbox-7c013f9-hello-scotty-1.0.tar.gz... done, 12MB
+
+-----> Configuring app
+       Resolving dependencies...
+       Configuring hello-scotty-1.0...
+-----> Building app
+       Building hello-scotty-1.0...
+       Preprocessing executable 'hello-scotty' for hello-scotty-1.0...
+       ...
+       Linking dist/build/hello-scotty/hello-scotty ...
+-----> Built app, 12MB
+       Stripping app... done, 9.1MB
+-----> Archiving build
+       Creating halcyon-app-build-hello-scotty-1.0.tar.gz... done, 2.0MB
+
+-----> Preparing install
+       Copying app
+-----> Install prepared, 8.7MB
+-----> Archiving install
+       Creating halcyon-app-install-e360666-hello-scotty-1.0.tar.gz... done, 1.9MB
+-----> Installing app into /app... done, 8.7MB
+
+-----> App deployed:                             <b>hello-scotty-1.0</b>
 </code></pre>
 </div>
-
-**TODO** -->
 
 
 ### _hello-simple_
 
 > ---------------------|---
 > Framework:           | [Simple](http://simple.cx/) 0.10.0.2
-> First build time:    | **TODO**
+> First build time:    | 5m08s
 > Dependencies:        | [70](https://github.com/mietek/hello-simple/blob/master/cabal.config)
 > Sandbox size:        | 100MB
 > App size:            | 7MB
@@ -667,22 +691,69 @@ Simple web applications, intended to compare the options available to the Haskel
 </div>
 
 
-<!-- #### First build log
+#### First build log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-simple-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-simple-deploy"><code># halcyon deploy <a href="https://github.com/mietek/hello-simple/">https://github.com/mietek/hello-simple</a>
+-----> Cloning https://github.com/mietek/hello-simple... done, 636e97b
+-----> Deploying app
+       Prefix:                                   <b>/app</b>
+       Label:                                    <b>hello-simple-1.0</b>
+       Source hash:                              <b>5c51416</b>
+       Constraints hash:                         <b>90de8cd</b>
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.3</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
+
+-----> Building sandbox layer
+-----> Creating sandbox
+       Writing a default package environment file to
+       /app/sandbox/cabal.sandbox.config
+       Creating a new sandbox at /app/sandbox
+-----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
+       ...
+       Installed simple-0.10.0.2
+-----> Sandbox built, 100MB
+       Removing documentation from sandbox layer... done, 100MB
+       Stripping sandbox layer... done, 88MB
+-----> Archiving sandbox layer
+       Creating halcyon-sandbox-90de8cd-hello-simple-1.0.tar.gz... done, 15MB
+
+-----> Configuring app
+       Resolving dependencies...
+       Configuring hello-simple-1.0...
+-----> Building app
+       Building hello-simple-1.0...
+       Preprocessing executable 'hello-simple' for hello-simple-1.0...
+       ...
+       Linking dist/build/hello-simple/hello-simple ...
+-----> Built app, 6.4MB
+       Stripping app... done, 5.1MB
+-----> Archiving build
+       Creating halcyon-app-build-hello-simple-1.0.tar.gz... done, 1.2MB
+
+-----> Preparing install
+       Copying app
+       Copying sandbox layer data files
+-----> Install prepared, 4.7MB
+-----> Archiving install
+       Creating halcyon-app-install-5c51416-hello-simple-1.0.tar.gz... done, 1.1MB
+-----> Installing app into /app... done, 4.7MB
+
+-----> App deployed:                             <b>hello-simple-1.0</b>
 </code></pre>
 </div>
-
-**TODO** -->
 
 
 ### _hello-snap_
 
 > ---------------------|---
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
-> First build time:    | 4m50s
+> First build time:    | 4m38s
 > Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/cabal.config)
 > Sandbox size:        | 69MB
 > App size:            | 11MB
@@ -714,19 +785,14 @@ Simple web applications, intended to compare the options available to the Haskel
 <pre class="toggle" id="hello-snap-deploy"><code># halcyon deploy <a href="https://github.com/mietek/hello-snap/">https://github.com/mietek/hello-snap</a>
 -----> Cloning https://github.com/mietek/hello-snap... done, bd5d822
 -----> Deploying app
+       Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-snap-1.0</b>
        Source hash:                              <b>9d0aa61</b>
        Constraints hash:                         <b>4531dbe</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -755,14 +821,15 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Built app, 11MB
        Stripping app... done, 9.1MB
 -----> Archiving build
-       Creating halcyon-build-hello-snap-1.0.tar.gz... done, 1.9MB
+       Creating halcyon-app-build-hello-snap-1.0.tar.gz... done, 1.9MB
 
 -----> Preparing install
        Copying app
+       Copying sandbox layer data files
 -----> Install prepared, 8.9MB
 -----> Archiving install
-       Creating halcyon-install-9d0aa61-hello-snap-1.0.tar.gz... done, 1.8MB
------> Installing app to /app... done, 8.9MB
+       Creating halcyon-app-install-9d0aa61-hello-snap-1.0.tar.gz... done, 1.8MB
+-----> Installing app into /app... done, 8.9MB
 
 -----> App deployed:                             <b>hello-snap-1.0</b>
 </code></pre>
@@ -773,7 +840,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Spock](https://github.com/agrafix/Spock/) 0.7.4.0
-> First build time:    | 5m12s
+> First build time:    | 4m57s
 > Dependencies:        | [80](https://github.com/mietek/hello-spock/blob/master/cabal.config)
 > Sandbox size:        | 107MB
 > App size:            | 12MB
@@ -800,19 +867,14 @@ Simple web applications, intended to compare the options available to the Haskel
 <pre class="toggle" id="hello-spock-deploy"><code># halcyon deploy <a href="https://github.com/mietek/hello-spock/">https://github.com/mietek/hello-spock</a>
 -----> Cloning https://github.com/mietek/hello-spock... done, 9ff86ed
 -----> Deploying app
+       Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-spock-1.0</b>
        Source hash:                              <b>0f869b0</b>
        Constraints hash:                         <b>d716519</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -841,14 +903,14 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Built app, 12MB
        Stripping app... done, 9.2MB
 -----> Archiving build
-       Creating halcyon-build-hello-spock-1.0.tar.gz... done, 2.1MB
+       Creating halcyon-app-build-hello-spock-1.0.tar.gz... done, 2.1MB
 
 -----> Preparing install
        Copying app
 -----> Install prepared, 8.7MB
 -----> Archiving install
-       Creating halcyon-install-0f869b0-hello-spock-1.0.tar.gz... done, 2.0MB
------> Installing app to /app... done, 8.7MB
+       Creating halcyon-app-install-0f869b0-hello-spock-1.0.tar.gz... done, 2.0MB
+-----> Installing app into /app... done, 8.7MB
 
 -----> App deployed:                             <b>hello-spock-1.0</b>
 </code></pre>
@@ -859,7 +921,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2
-> First build time:    | 4m20s
+> First build time:    | 3m47s
 > Dependencies:        | [38](https://github.com/mietek/hello-wai/blob/master/cabal.config)
 > Sandbox size:        | 45MB
 > App size:            | 6MB
@@ -898,16 +960,10 @@ Simple web applications, intended to compare the options available to the Haskel
        Label:                                    <b>hello-wai-1.0</b>
        Source hash:                              <b>3c97959</b>
        Constraints hash:                         <b>799b066</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -936,14 +992,14 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Built app, 5.9MB
        Stripping app... done, 4.8MB
 -----> Archiving build
-       Creating halcyon-build-hello-wai-1.0.tar.gz... done, 1.1MB
+       Creating halcyon-app-build-hello-wai-1.0.tar.gz... done, 1.1MB
 
 -----> Preparing install
        Copying app
 -----> Install prepared, 4.5MB
 -----> Archiving install
-       Creating halcyon-install-3c97959-hello-wai-1.0.tar.gz... done, 1.1MB
------> Installing app to /app... done, 4.5MB
+       Creating halcyon-app-install-3c97959-hello-wai-1.0.tar.gz... done, 1.1MB
+-----> Installing app into /app... done, 4.5MB
 
 -----> App deployed:                             <b>hello-wai-1.0</b>
 </code></pre>
@@ -954,7 +1010,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework/) 0.3.1.0
-> First build time:    | 5m37s
+> First build time:    | 5m17s
 > Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/cabal.config)
 > Sandbox size:        | 146MB
 > App size:            | 10MB
@@ -988,16 +1044,10 @@ Simple web applications, intended to compare the options available to the Haskel
        Label:                                    <b>hello-wheb-1.0</b>
        Source hash:                              <b>1688650</b>
        Constraints hash:                         <b>cd0692c</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -1026,14 +1076,15 @@ Simple web applications, intended to compare the options available to the Haskel
 -----> Built app, 9.8MB
        Stripping app... done, 7.4MB
 -----> Archiving build
-       Creating halcyon-build-hello-wheb-1.0.tar.gz... done, 1.7MB
+       Creating halcyon-app-build-hello-wheb-1.0.tar.gz... done, 1.7MB
 
 -----> Preparing install
        Copying app
+       Copying sandbox layer data files
 -----> Install prepared, 7.0MB
 -----> Archiving install
-       Creating halcyon-install-1688650-hello-wheb-1.0.tar.gz... done, 1.6MB
------> Installing app to /app... done, 7.0MB
+       Creating halcyon-app-install-1688650-hello-wheb-1.0.tar.gz... done, 1.6MB
+-----> Installing app into /app... done, 7.0MB
 
 -----> App deployed:                             <b>hello-wheb-1.0</b>
 </code></pre>
@@ -1044,7 +1095,7 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.0
-> First build time:    | 8m47s
+> First build time:    | 8m31s
 > Dependencies:        | [145](https://github.com/mietek/hello-yesod/blob/master/cabal.config)
 > Sandbox size:        | 250MB
 > App size:            | 25MB
@@ -1087,16 +1138,10 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
        Label:                                    <b>hello-yesod-1.0</b>
        Source hash:                              <b>5ad16e2</b>
        Constraints hash:                         <b>4ba3d77</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
-
------> Restoring GHC layer
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Restoring Cabal layer
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-17.tar.gz... done, 169MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -1131,14 +1176,15 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 -----> Built app, 25MB
        Stripping app... done, 20MB
 -----> Archiving build
-       Creating halcyon-build-hello-yesod-1.0.tar.gz... done, 3.9MB
+       Creating halcyon-app-build-hello-yesod-1.0.tar.gz... done, 3.9MB
 
 -----> Preparing install
        Copying app
+       Copying sandbox layer data files
 -----> Install prepared, 19MB
 -----> Archiving install
-       Creating halcyon-install-5ad16e2-hello-yesod-1.0.tar.gz... done, 3.8MB
------> Installing app to /app... done, 19MB
+       Creating halcyon-app-install-5ad16e2-hello-yesod-1.0.tar.gz... done, 3.8MB
+-----> Installing app into /app... done, 19MB
 
 -----> App deployed:                             <b>hello-yesod-1.0</b>
 </code></pre>
