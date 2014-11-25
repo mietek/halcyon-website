@@ -16,8 +16,6 @@ page-head: |
 Programmer’s reference
 ======================
 
-**Work in progress.  All available information is up-to-date.**
-
 
 Commands
 --------
@@ -27,25 +25,23 @@ Commands
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Builds and deploys the specified application, restoring or building all dependencies as needed.
+Builds and installs the specified application, restoring or building all dependencies as needed.
 
-The application can be specified as:
+The application may be specified as:
 
-- local directory path
-- label—`name-version`
-- _git_ URL
+-   _directory path_, to deploy from the specified directory.
 
-All options can be specified either on the command-line, or by setting environment variables.  Some options, such as [`HALCYON_SANDBOX_EXTRA_APPS`](/reference/#halcyon_sandbox_extra_apps), can also be specified by including _magic files_ in the `.halcyon-magic` subdirectory of the application source directory.
+-   _label,_ in `name-version` format, to deploy from the Cabal repository.
+
+-   _git URL,_ to deploy from the specified _git_ repository.
+
+-   _nothing,_ to deploy from the current directory, or deploy an environment only.
+
+To ignore the current directory and force deploying an environment only, set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
+
+All options can be specified either on the command-line, or by setting environment variables.  Some options, such as [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps), can also be specified by including _magic files_ in the `.halcyon-magic` subdirectory of the application source directory.
 
 Command-line options take precedence over environment variables, which in turn take precedence over magic files.
-
-If no application is specified or detected in the current directory, Halcyon restores or builds the environment only, retaining the GHC and Cabal layers.  To ignore any applications in the current directory, set [`HALCYON_NO_APP`](/reference/#halcyon_no_app) to `1`.
-
-Otherwise, the GHC, Cabal, and sandbox layers are not retained.  To retain build-time dependencies without including them in the application install directory, set [`HALCYON_RETAIN_DEPENDENCIES`](/reference/#halcyon_retain_dependencies) to `1`.
-
-For applications which require GHC to be available at runtime, include all layers in the application install directory by setting [`HALCYON_APP_EXTRA_COPY`](/reference/#halcyon_app_extra_copy) to `all`.
-
-**TODO**
 
 
 ### `label`
@@ -53,10 +49,9 @@ For applications which require GHC to be available at runtime, include all layer
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Determines and outputs the label which would be used when deploying the specified application.
+Outputs the label of the specified application, as it would be determined during [`deploy`](#deploy).
 
-**TODO**
-
+Intended to quickly determine the newest version of an application.
 
 
 ### `constraints`
@@ -64,11 +59,13 @@ Determines and outputs the label which would be used when deploying the specifie
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Determines and outputs the constraints file which would be used when deploying the specified application.
+Outputs the constraints file of the specified application, as it would be determined during [`deploy`](#deploy).
 
-**NOTE:**  Works around Cabal issue [#1908](https://github.com/haskell/cabal/issues/1908), hence, recommended over `cabal freeze`.
+Intended to quickly determine the implicit constraints of an application, similarly to `cabal freeze`.  Also intended to help ensure the application `cabal.config` is overridden properly, when using options such as [`HALCYON_CONSTRAINTS`](#halcyon_constraints).
 
-**TODO**
+Not entirely a dry-run, because an environment may need to be installed in [`HALCYON_APP_DIR`](#halcyon_app_dir).
+
+**NOTE:**  Works around Cabal issue [#1908](https://github.com/haskell/cabal/issues/1908).
 
 
 ### `paths`
@@ -76,15 +73,13 @@ Determines and outputs the constraints file which would be used when deploying t
 > ---------------------|---
 > Arguments:           | _none_
 
-Outputs a shell script which sets up the needed environment variables, based on [`HALCYON_APP_DIR`](/reference/#halcyon_app_dir).
+Outputs a shell script which sets up the needed environment variables, based on [`HALCYON_APP_DIR`](#halcyon_app_dir).
 
-1. `HALCYON_TOP_DIR` is set to the path to the directory in which Halcyon is installed.
+1. [`HALCYON_APP_DIR`](#halcyon_app_dir) is set to `/app`, unless already set.
 
-2. [`HALCYON_APP_DIR`](/reference/#halcyon_app_dir) is set to `/app`, unless already set.
+2. `PATH`, `LIBRARY_PATH`, `LD_LIBRARY_PATH` are extended to point into [`HALCYON_APP_DIR`](#halcyon_app_dir).
 
-3. `PATH`, `LIBRARY_PATH`, `LD_LIBRARY_PATH` are extended to point into [`HALCYON_APP_DIR`](/reference/#halcyon_app_dir).
-
-4. `LANG` is set to `C.UTF-8`, unless already set.
+3. `LANG` is set to `C.UTF-8`, unless already set.
 
 **NOTE:**  Using a UTF-8 locale works around Cabal issue [#1883](https://github.com/haskell/cabal/issues/1883).
 
@@ -124,19 +119,19 @@ General options
 
 Directory in which Halcyon restores or builds layers.
 
-Default value of [`HALCYON_PREFIX`](/reference/#halcyon_prefix).
+Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 
 
 ### `HALCYON_PREFIX`
 
 > ---------------------|---
-> Default value:       | [`HALCYON_APP_DIR`](/reference/#halcyon_app_dir)
+> Default value:       | [`HALCYON_APP_DIR`](#halcyon_app_dir)
 > Type:                | directory path
 > Command-line option: | `--prefix=`…
 
 Directory in which Halcyon installs applications.
 
-For example, if the application install directory consists of `bin/hello`, and [`HALCYON_PREFIX`](/reference/#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`.
+For example, if the application install directory consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`.
 
 
 ### `HALCYON_ROOT`
@@ -150,7 +145,7 @@ Root of the path to the directory in which Halcyon installs applications.
 
 Intended to support advanced packaging workflows.
 
-For example, if the application install directory consists of `bin/hello`, [`HALCYON_PREFIX`](/reference/#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](/reference/#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and installed as `/tmp/hello/app/bin/hello`.
+For example, if the application install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and installed as `/tmp/hello/app/bin/hello`.
 
 
 ### `HALCYON_CONSTRAINTS`
@@ -192,7 +187,7 @@ Additional Haskell applications to install together with the application, as run
 
 The applications may be specified as:
 
-- local directory paths
+- directory paths
 - labels—`name-version`
 - _git_ URLs
 
@@ -205,7 +200,7 @@ The applications may be specified as:
 > Command-line option: | `--extra-apps-constraints-dir=`…
 > Magic directory path:| `.halcyon-magic/extra-apps-constraints/`
 
-Directory containing constraints files, in `cabal freeze` format, to override any `cabal.config` included in the source directories of applications specified with [`HALCYON_EXTRA_APPS`](/reference/#halcyon_extra_apps).
+Directory containing constraints files, in `cabal freeze` format, to override any `cabal.config` included in the source directories of applications specified with [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps).
 
 Each constraints file must be named _`name-version`_`.cabal.config`, matching one additional application name and version number.
 
@@ -243,12 +238,9 @@ Script to execute when installing the application, after running `cp -R`.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-app`
 
-Restores and builds the environment only.
-Prevents Halcyon from deploying any application, instead forcing it to deploy the environment only.
+Forces Halcyon to ignore the current directory and deploy an environment only, retaining the GHC and Cabal layers.
 
-Retains the GHC and Cabal layers.
-
-The versions to deploy are specified by [`HALCYON_GHC_VERSION`](/reference/#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](/reference/#halcyon_cabal_version).
+The versions of GHC and _cabal-install_ to deploy are specified by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
 
 
 ### `HALCYON_NO_BUILD`
@@ -373,7 +365,7 @@ Amazon Web Services credential, used to authenticate S3 requests.
 
 Name of the Amazon S3 bucket in which Halcyon stores archives and constraints files.
 
-Specifying buckets in regions other than US Standard requires also specifying the appropriate [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint).
+Specifying buckets in regions other than US Standard requires also specifying the appropriate [`HALCYON_S3_ENDPOINT`](#halcyon_s3_endpoint).
 
 
 ### `HALCYON_S3_ENDPOINT`
@@ -383,7 +375,7 @@ Specifying buckets in regions other than US Standard requires also specifying th
 > Type:                | hostname
 > Command-line option: | `--s3-endpoint=`…
 
-Hostname of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) responsible for [`HALCYON_S3_BUCKET`](/reference/#halcyon_s3_bucket).
+Hostname of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) responsible for [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
 
 ### `HALCYON_S3_ACL`
@@ -600,7 +592,7 @@ Additional Cabal packages to make available for installation in the sandbox laye
 
 The packages may be specified as:
 
-- local directory paths
+- directory paths
 - _git_ URLs
 
 
@@ -616,7 +608,7 @@ Additional Haskell applications to install in the sandbox layer, as build-time d
 
 The applications may be specified as:
 
-- local directory paths
+- directory paths
 - labels—`name-version`
 - _git_ URLs
 
@@ -633,7 +625,7 @@ Intended to support easily installing Cabal `build-tools`, such as _alex_ or _ha
 > Command-line option: | `--sandbox-extra-apps-constraints-dir=`…
 > Magic directory path:| `.halcyon-magic/sandbox-extra-apps-constraints/`
 
-Directory containing constraints files, in `cabal freeze` format, to override any `cabal.config` included in the source directories of applications specified with [`HALCYON_SANDBOX_EXTRA_APPS`](/reference/#halcyon_sandbox_extra_apps).
+Directory containing constraints files, in `cabal freeze` format, to override any `cabal.config` included in the source directories of applications specified with [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps).
 
 Each constraints file must be named _`name-version`_`.cabal.config`, matching one additional application name and version number.
 
@@ -650,7 +642,7 @@ Intended to support easily declaring dependencies of any application which does 
 
 Additional native libraries to install in the sandbox layer, as build-time dependencies.
 
-**TODO**
+**NOTE:**  Support is currently limited to libraries available via `apt-get`.
 
 
 ### `HALCYON_SANDBOX_PRE_BUILD_HOOK`
@@ -711,15 +703,15 @@ Additional flags to specify when running `cabal configure`.
 
 Additional items to include in the application install directory.
 
-- `source`—Contents of the application source directory will be copied into [`HALCYON_PREFIX`](/reference/#halcyon_prefix).
+- `source`—Contents of the application source directory will be copied into [`HALCYON_PREFIX`](#halcyon_prefix).
 
-- `build`—Contents of the application source and build directories will be copied into [`HALCYON_PREFIX`](/reference/#halcyon_prefix), in order.
+- `build`—Contents of the application source and build directories will be copied into [`HALCYON_PREFIX`](#halcyon_prefix), in order.
 
-- `all`—Contents of the application source and build directories will be copied into [`HALCYON_PREFIX`](/reference/#halcyon_prefix), in order, and all layers will be copied into [`HALCYON_APP_DIR`](/reference/#halcyon_app_dir).
+- `all`—Contents of the application source and build directories will be copied into [`HALCYON_PREFIX`](#halcyon_prefix), in order, and all layers will be copied into [`HALCYON_APP_DIR`](#halcyon_app_dir).
 
 Intended to support applications which do not or cannot declare all runtime dependencies.
 
-Most files needed at runtime should be declared as `data-files` in the Cabal package description.  The option to include all layers should be used only for applications which require GHC to be available at runtime.
+Most files needed at runtime should be declared as `data-files` in the Cabal package description file.  The option to include all layers should be used only for applications which require GHC to be available at runtime.
 
 
 ### `HALCYON_APP_PRE_BUILD_HOOK`

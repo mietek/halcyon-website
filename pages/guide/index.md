@@ -128,6 +128,13 @@ Building applications
 **TODO**
 
 
+### Dependencies
+
+By default, no build-time dependencies are retained after the application is installed.  To retain build-time dependencies without including them in the application install directory, set [`HALCYON_RETAIN_DEPENDENCIES`](/reference/#halcyon_retain_dependencies) to `1`.
+
+For applications which require GHC to be available at runtime, include all build-time dependencies in the application install directory by setting [`HALCYON_APP_EXTRA_COPY`](/reference/#halcyon_app_extra_copy) to `all`.
+
+
 ### Cache
 
 All archives are cached locally on the build machine.  The cache directory is defined by [`HALCYON_CACHE_DIR`](/reference/#halcyon_cache_dir), which defaults to `/var/tmp/halcyon-cache`.
