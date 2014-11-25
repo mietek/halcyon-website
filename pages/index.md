@@ -129,7 +129,7 @@ With an application install archive available, deploying an application is expec
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-e64e9a7-hello-1.0.tar.gz... done
        Extracting halcyon-install-e64e9a7-hello-1.0.tar.gz... done, 872KB
 -----> Install restored
------> Installing app in /app... done, 868KB
+-----> Installing app into /app... done, 868KB
 
 -----> App deployed:                             <b>hello-1.0</b>
 </code></pre>
@@ -144,10 +144,10 @@ With an application install archive available, deploying an application is expec
 <a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="deploy2"><code># halcyon deploy
 -----> Deploying environment
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       External storage:                         <b>public</b>
 
 -----> Restoring GHC layer
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.3.tar.gz... done
@@ -156,8 +156,8 @@ With an application install archive available, deploying an application is expec
 -----> Locating Cabal layers
        Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
 -----> Restoring Cabal layer
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-19.tar.gz... done, 169MB
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-25.tar.gz... done
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-25.tar.gz... done, 169MB
 
 -----> Environment deployed
 </code></pre>
