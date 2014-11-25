@@ -39,10 +39,12 @@ Set up a Ubuntu 14.04 LTS (`x86_64`) machine with 8GB RAM, and install Halcyon.
 Halcyon is now ready to deploy any of the [example applications](/examples/).  Read on for options and details.
 
 
-Setting up a build machine
---------------------------
+Single-machine setup
+--------------------
 
-1.  Provision a build machine with one of the supported operating systems, and install the required OS packages.
+To set up one machine for both building and deploying applications:
+
+1.  Provision a machine with one of the supported operating systems, and install the required OS packages.
 
 2.  Clone the Halcyon source repository, and set the necessary environment variables.
 
@@ -196,17 +198,19 @@ Halcyon cleans the cache after an application is deployed, retaining the most re
 
 
 
-Separating build and deploy machines
-------------------------------------
+Multiple-machine setup
+----------------------
 
-1.  Provision as many machines as needed, including one dedicated build machine.  Set up all machines as [build machines](#setting-up-a-build-machine).
+To set up separate machines for building and deploying applications:
 
-2.  Sign up for [Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/gsg/SigningUpforS3.html), create a bucket, and configure each machine to use the same bucket.
+1.  Provision as many machines as needed, including at least one dedicated build machine.  Set up all machines as [described above](#single-machine-setup).
+
+2.  Sign up for [Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/gsg/SigningUpforS3.html), create an S3 bucket, and configure each machine to use the same S3 bucket.
 
 
-#### Build and deploy
+### Build and deploy
 
-The only difference between build and deploy machines is their purpose, which follows from their capabilities.
+The only necessary difference between build and deploy machines is their purpose, which follows from their capabilities.
 
 Halcyon is designed to deploy applications by building everything on the fly, as needed.  If there is no need to build anything, deployment consists of restoring a single application install archive.  This should not consume any significant machine resources, and is expected to finish in under 10 seconds.
 
@@ -215,8 +219,10 @@ Non-trivial Haskell application will not build successfully on a machine with 51
 
 ### Private storage
 
+Private storage allows Halcyon to be used in situations where no permanent storage is available, such as [Haskell on Heroku](https://haskellonheroku.com/).
 
-#### Credentials
+
+#### AWS credentials
 
 Halcyon signs all S3 requests with [`HALCYON_AWS_ACCESS_KEY_ID`](/reference/#halcyon_aws_access_key_id) and [`HALCYON_AWS_SECRET_ACCESS_KEY`](/reference/#halcyon_aws_secret_access_key).
 
@@ -228,7 +234,7 @@ Halcyon signs all S3 requests with [`HALCYON_AWS_ACCESS_KEY_ID`](/reference/#hal
 Using dedicated [IAM credentials](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) is recommended.
 
 
-#### Bucket
+#### S3 bucket
 
 The S3 bucket used to store private archives is defined by [`HALCYON_S3_BUCKET`](/reference/#halcyon_s3_bucket).
 
