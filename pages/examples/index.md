@@ -49,7 +49,7 @@ Example applications { .with-toc }
 </nav></div>
 
 
-#### “Hello, world!” shootout
+#### “Hello, world!” shootout
 
 <div><nav>
 <ul class="menu open">
@@ -283,15 +283,28 @@ Wiki with _git_ file storage.
 
 Simple web applications, intended to compare the options available to the Haskell programmer.
 
+> Example                                           | First build time   | Sandbox size       | App size           |
+> --------------------------------------------------|--------------------|--------------------|--------------------|
+> [`hello-happstack`](#hello-happstack)             | `3m27s`            | ` 64MB`            | `12MB`             |
+> [`hello-mflow`](#hello-mflow)                     | `7m17s`            | `152MB`            | `20MB`             |
+> [`hello-miku`](#hello-miku)                       | `4m52s`            | ` 84MB`            | `13MB`             |
+> [`hello-scotty`](#hello-scotty)                   | `4m40s`            | ` 83MB`            | `12MB`             |
+> [`hello-simple`](#hello-simple)                   | `5m08s`            | `100MB`            | ` 7MB`             |
+> [`hello-snap`](#hello-snap)                       | `4m38s`            | ` 69MB`            | `11MB`             |
+> [`hello-spock`](#hello-spock)                     | `4m57s`            | `107MB`            | `12MB`             |
+> [`hello-wai`](#hello-wai)                         | `3m47s`            | ` 45MB`            | ` 6MB`             |
+> [`hello-wheb`](#hello-wheb)                       | `5m17s`            | `146MB`            | `10MB`             |
+> [`hello-yesod`](#hello-yesod)                     | `8m31s`            | `250MB`            | `25MB`             |
+
 
 ### _hello-happstack_
 
 > ---------------------|---
 > Framework:           | [Happstack](http://happstack.com/) Lite 7.3.5
-> First build time:    | 3m27s
 > Dependencies:        | [44](https://github.com/mietek/hello-happstack/blob/master/cabal.config)
-> Sandbox size:        | 64MB
-> App size:            | 12MB
+> First build time:    | `3m27s`
+> Sandbox size:        | `64MB`
+> App size:            | `12MB`
 > Source code:         | [_hello-happstack_](https://github.com/mietek/hello-happstack/)
 
 <div class="toggle">
@@ -370,10 +383,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow/) 0.4.5.9
-> First build time:    | 7m17s
 > Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/cabal.config) and _cpphs_ 1.18.6
-> Sandbox size:        | 152MB
-> App size:            | 20MB
+> First build time:    | `7m17s`
+> Sandbox size:        | `152MB`
+> App size:            | `20MB`
 > Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow/)
 
 <div class="toggle">
@@ -501,10 +514,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [_miku_](https://github.com/nfjinjing/miku/) 2014.5.19
-> First build time:    | 4m52s
 > Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/cabal.config)
-> Sandbox size:        | 84MB
-> App size:            | 13MB
+> First build time:    | `4m52s`
+> Sandbox size:        | `84MB`
+> App size:            | `13MB`
 > Source code:         | [_hello-miku_](https://github.com/mietek/hello-miku/)
 
 <div class="toggle">
@@ -584,10 +597,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Scotty](https://github.com/scotty-web/scotty/) 0.9.0
-> First build time:    | 4m40s
 > Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/cabal.config)
-> Sandbox size:        | 83MB
-> App size:            | 12MB
+> First build time:    | `4m40s`
+> Sandbox size:        | `83MB`
+> App size:            | `12MB`
 > Source code:         | [_hello-scotty_](https://github.com/mietek/hello-scotty/)
 
 <div class="toggle">
@@ -665,10 +678,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Simple](http://simple.cx/) 0.10.0.2
-> First build time:    | 5m08s
 > Dependencies:        | [70](https://github.com/mietek/hello-simple/blob/master/cabal.config)
-> Sandbox size:        | 100MB
-> App size:            | 7MB
+> First build time:    | `5m08s`
+> Sandbox size:        | `100MB`
+> App size:            | `7MB`
 > Source code:         | [_hello-simple_](https://github.com/mietek/hello-simple/)
 
 <div class="toggle">
@@ -753,10 +766,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
-> First build time:    | 4m38s
 > Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/cabal.config)
-> Sandbox size:        | 69MB
-> App size:            | 11MB
+> First build time:    | `4m38s`
+> Sandbox size:        | `69MB`
+> App size:            | `11MB`
 > Source code:         | [_hello-snap_](https://github.com/mietek/hello-snap/)
 
 <div class="toggle">
@@ -840,10 +853,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Spock](https://github.com/agrafix/Spock/) 0.7.4.0
-> First build time:    | 4m57s
 > Dependencies:        | [80](https://github.com/mietek/hello-spock/blob/master/cabal.config)
-> Sandbox size:        | 107MB
-> App size:            | 12MB
+> First build time:    | `4m57s`
+> Sandbox size:        | `107MB`
+> App size:            | `12MB`
 > Source code:         | [_hello-spock_](https://github.com/mietek/hello-spock/)
 
 <div class="toggle">
@@ -921,10 +934,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2
-> First build time:    | 3m47s
 > Dependencies:        | [38](https://github.com/mietek/hello-wai/blob/master/cabal.config)
-> Sandbox size:        | 45MB
-> App size:            | 6MB
+> First build time:    | `3m47s`
+> Sandbox size:        | `45MB`
+> App size:            | `6MB`
 > Source code:         | [_hello-wai_](https://github.com/mietek/hello-wai/)
 
 <div class="toggle">
@@ -1010,10 +1023,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework/) 0.3.1.0
-> First build time:    | 5m17s
 > Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/cabal.config)
-> Sandbox size:        | 146MB
-> App size:            | 10MB
+> First build time:    | `5m17s`
+> Sandbox size:        | `146MB`
+> App size:            | `10MB`
 > Source code:         | [_hello-wheb_](https://github.com/mietek/hello-wheb/)
 
 <div class="toggle">
@@ -1095,10 +1108,10 @@ Simple web applications, intended to compare the options available to the Haskel
 
 > ---------------------|---
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.0
-> First build time:    | 8m31s
 > Dependencies:        | [145](https://github.com/mietek/hello-yesod/blob/master/cabal.config)
-> Sandbox size:        | 250MB
-> App size:            | 25MB
+> First build time:    | `8m31s`
+> Sandbox size:        | `250MB`
+> App size:            | `25MB`
 > Source code:         | [_hello-yesod_](https://github.com/mietek/hello-yesod/)
 
 <div class="toggle">
