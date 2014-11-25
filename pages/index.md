@@ -42,8 +42,8 @@ The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a>
 Need commercial support?  Contact the [author](#about) directly.
 
 
-Example applications
---------------------
+Examples
+--------
 
 </section></section></section></div>
 <div class="gallery-background">
@@ -75,22 +75,20 @@ Example applications
 </nav></div>
 
 
-#### “Hello, world!” shootout
+#### “Hello, world!” shootout
 
-<div><nav>
-<ul class="menu open">
-<li><a href="/examples/#hello-happstack">_hello-happstack_</a></li>
-<li><a href="/examples/#hello-mflow">_hello-mflow_</a></li>
-<li><a href="/examples/#hello-miku">_hello-miku_</a></li>
-<li><a href="/examples/#hello-scotty">_hello-scotty_</a></li>
-<li><a href="/examples/#hello-simple">_hello-simple_</a></li>
-<li><a href="/examples/#hello-snap">_hello-snap_</a></li>
-<li><a href="/examples/#hello-spock">_hello-spock_</a></li>
-<li><a href="/examples/#hello-wai">_hello-wai_</a></li>
-<li><a href="/examples/#hello-wheb">_hello-wheb_</a></li>
-<li><a href="/examples/#hello-yesod">_hello-yesod_</a></li>
-</ul>
-</nav></div>
+> Example                                           | First build time   | Sandbox size       | App size           |
+> --------------------------------------------------|--------------------|--------------------|--------------------|
+> [_hello-happstack_](/examples/#hello-happstack)   | `3m27s`            | ` 64MB`            | `12MB`             |
+> [_hello-mflow_](/examples/#hello-mflow)           | `7m17s`            | `152MB`            | `20MB`             |
+> [_hello-miku_](/examples/#hello-miku)             | `4m52s`            | ` 84MB`            | `13MB`             |
+> [_hello-scotty_](/examples/#hello-scotty)         | `4m40s`            | ` 83MB`            | `12MB`             |
+> [_hello-simple_](/examples/#hello-simple)         | `5m08s`            | `100MB`            | ` 7MB`             |
+> [_hello-snap_](/examples/#hello-snap)             | `4m38s`            | ` 69MB`            | `11MB`             |
+> [_hello-spock_](/examples/#hello-spock)           | `4m57s`            | `107MB`            | `12MB`             |
+> [_hello-wai_](/examples/#hello-wai)               | `3m47s`            | ` 45MB`            | ` 6MB`             |
+> [_hello-wheb_](/examples/#hello-wheb)             | `5m17s`            | `146MB`            | `10MB`             |
+> [_hello-yesod_](/examples/#hello-yesod)           | `8m31s`            | `250MB`            | `25MB`             |
 
 
 Usage
