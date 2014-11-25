@@ -96,14 +96,12 @@ Example applications
 Usage
 -----
 
-Halcyon is installed with _git_, and automatically keeps itself up-to-date.
+Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`halcyon paths`](/reference/#paths) helps set environment variables.
 
 ```
 # git clone https://github.com/mietek/halcyon ~/halcyon
 # source <( ~/halcyon/halcyon paths )
 ```
-
-[`halcyon paths`](/reference/#paths) helps set environment variables.  See the [user’s guide](/guide/#installing-halcyon) for details.
 
 
 ### Deploying

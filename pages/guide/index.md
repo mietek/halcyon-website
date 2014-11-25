@@ -102,14 +102,14 @@ Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`h
 
 Halcyon updates itself before executing any command.  The source repository used for self-updates is defined by [`HALCYON_URL`](/reference/#halcyon_url).
 
-To disable self-updates, set [`HALCYON_NO_SELFUPDATE`](/reference/#halcyon_no_selfupdate) to `1`.
+To disable self-updates, set [`HALCYON_NO_SELF_UPDATE`](/reference/#halcyon_no_self_update) to `1`.
 
 
-#### Application directory and prefix
+#### Base directory and prefix
 
-Halcyon requires write access to the `/app` directory, which is used for restoring or building layers.  By default, the same directory is also where applications are installed.  These are two separate concepts, defined by [`HALCYON_APP_DIR`](/reference/#halcyon_app_dir) and [`HALCYON_PREFIX`](/reference/#halcyon_prefix), respectively.
+Halcyon requires write access to the `/app` directory, which is used for restoring or building layers.  By default, the same directory is also where applications are installed.  These are two separate concepts, defined by [`HALCYON_BASE`](/reference/#halcyon_base) and [`HALCYON_PREFIX`](/reference/#halcyon_prefix), respectively.
 
-1.  While changing [`HALCYON_APP_DIR`](/reference/#halcyon_app_dir) is possible, a GHC installation is not easily relocatable, and neither are Cabal sandboxes.  Therefore, using a different path than `/app` for the application directory will cause Halcyon to reject all public archives as incompatible, and rebuild everything from scratch.  This may or may not be a problem, but it will prevent getting started as quickly as possible.
+1.  While changing [`HALCYON_BASE`](/reference/#halcyon_base) is possible, a GHC installation is not easily relocatable, and neither are Cabal sandboxes.  Therefore, using a different path than `/app` for the application directory will cause Halcyon to reject all public archives as incompatible, and rebuild everything from scratch.  This may or may not be a problem, but it will prevent getting started as quickly as possible.
 
 2.  On the other hand, [`HALCYON_PREFIX`](/reference/#halcyon_prefix) can be easily changed.  Using a different path than `/app` for the prefix will only cause Halcyon to reconfigure and incrementally build any previously built applications, during a subsequent build.
 
@@ -137,7 +137,7 @@ For applications which require GHC to be available at runtime, include all build
 
 ### Cache
 
-All archives are cached locally on the build machine.  The cache directory is defined by [`HALCYON_CACHE_DIR`](/reference/#halcyon_cache_dir), which defaults to `/var/tmp/halcyon-cache`.
+All archives are cached locally on the build machine.  The cache directory is defined by [`HALCYON_CACHE`](/reference/#halcyon_cache), which defaults to `/var/tmp/halcyon-cache`.
 
 In order to delete the entire contents of the cache before deploying an application, set [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) to `1`.
 
