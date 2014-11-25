@@ -128,11 +128,55 @@ Building applications
 **TODO**
 
 
+### Concepts
+
+#### GHC layer
+
+> ---------------------|---
+> Directory path:      | [`HALCYON_BASE`](#halcyon_base)`/ghc`
+> Archive name:        | `halcyon-ghc-`_`ghc_version`_`-`_`ghc_magic_hash`_`.tar.gz`
+
+
+#### Cabal layer
+
+> ---------------------|---
+> Directory path:      | [`HALCYON_BASE`](#halcyon_base)`/cabal`
+> Archive name:        | `halcyon-cabal-`_`cabal_version`_`-`_`cabal_magic_hash`_`-`_`cabal_repo_name`_`-`_`cabal_date`_`.tar.gz`
+
+
+#### Sandbox layer
+
+> ---------------------|---
+> Directory path:      | [`HALCYON_BASE`](#halcyon_base)`/sandbox`
+> Archive name:        | `halcyon-sandbox-`_`constraints_hash`_`-`_`sandbox_magic_hash`_`-`_`label`_`.tar.gz`
+
+
+#### Application source directory
+
+> ---------------------|---
+> Directory path:      | _temporary_
+> Archive name:        | _none_
+
+
+#### Application build directory
+
+> ---------------------|---
+> Directory path:      | _temporary_
+> Archive name:        | `halcyon-app-build-`_`label`_`.tar.gz`
+
+
+#### Application install directory
+
+> ---------------------|---
+> Directory path:      | _temporary_
+> Archive name:        | `halcyon-app-install-`_`source_hash`_`-`_`label`_`.tar.gz`
+
+
 ### Dependencies
 
-By default, no build-time dependencies are retained after the application is installed.  To retain build-time dependencies without including them in the application install directory, set [`HALCYON_RETAIN_DEPENDENCIES`](/reference/#halcyon_retain_dependencies) to `1`.
+By default, build-time dependencies are deleted after the application is built, and before it is installed.  Moreover, if an application install archive is available, build-time dependencies will not even be restored.  This can be overridden by setting [`HALCYON_KEEP_DEPENDENCIES`](/reference/#halcyon_keep_dependencies) to `1`.
 
-For applications which require GHC to be available at runtime, include all build-time dependencies in the application install directory by setting [`HALCYON_APP_EXTRA_COPY`](/reference/#halcyon_app_extra_copy) to `all`.
+However, applications which require build-time dependencies to be available at runtime should include them in the application install directory.  This can be enabled by setting [`HALCYON_APP_EXTRA_COPY`](/reference/#halcyon_app_extra_copy) to `all`.
 
 
 ### Cache

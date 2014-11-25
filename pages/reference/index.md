@@ -231,6 +231,18 @@ Script to execute when installing the application, before running `cp -R`.
 Script to execute when installing the application, after running `cp -R`.
 
 
+### `HALCYON_KEEP_DEPENDENCIES`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--keep-dependencies`
+
+Prevents deleting the contents of [`HALCYON_BASE`](#halcyon_base) between building and installing the application, and forces restoring all layers even when an application install archive is available.
+
+Intended to support easily restoring a full Haskell development environment, ready to inspect the application with GHCi.
+
+
 ### `HALCYON_NO_APP`
 
 > ---------------------|---
@@ -287,7 +299,7 @@ Directory in which Halcyon caches recently used archives and constraints files.
 > Type:                | `0` or `1`
 > Command-line option: | `--purge-cache`
 
-Forces deleting the entire contents of the cache directory.
+Forces deleting the entire contents of [`HALCYON_CACHE`](#halcyon_cache).
 
 
 ### `HALCYON_NO_ARCHIVE`
@@ -297,7 +309,7 @@ Forces deleting the entire contents of the cache directory.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-archive`
 
-Prevents creating any archives in the cache directory.
+Prevents creating any archives in [`HALCYON_CACHE`](#halcyon_cache).
 
 
 ### `HALCYON_NO_CLEAN_CACHE`
@@ -307,7 +319,7 @@ Prevents creating any archives in the cache directory.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-clean-cache`
 
-Prevents deleting out-of-date archives from the cache directory.
+Prevents deleting out-of-date archives from [`HALCYON_CACHE`](#halcyon_cache).
 
 
 Public storage options
@@ -791,7 +803,7 @@ Magic files
 > Option:              | [`HALCYON_POST_INSTALL_HOOK`](#halcyon_post_install_hook)
 
 
-### GHC magic files
+### GHC layer magic files
 
 #### `ghc-pre-build-hook`
 
@@ -807,7 +819,7 @@ Magic files
 > Option:              | [`HALCYON_GHC_POST_BUILD_HOOK`](#halcyon_ghc_post_build_hook)
 
 
-### Cabal magic files
+### Cabal layer magic files
 
 #### `cabal-pre-build-hook`
 
@@ -837,7 +849,7 @@ Magic files
 > Option:              | [`HALCYON_CABAL_POST_UPDATE_HOOK`](#halcyon_cabal_post_update_hook)
 
 
-### Sandbox magic files
+### Sandbox layer magic files
 
 #### `sandbox-sources`
 
