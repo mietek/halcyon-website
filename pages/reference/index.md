@@ -238,19 +238,21 @@ Script to execute when installing the application, after running `cp -R`.
 > Type:                | `0` or `1`
 > Command-line option: | `--restore-dependencies`
 
-Forces restoring all layers even when an application install archive is available.
+Forces restoring all layers, ignoring the application install archive.
+
+Intended to support applications requiring GHC at install-time.
 
 
-### `HALCYON_KEEP_DEPENDENCIES`
+### `HALCYON_INSTALL_DEPENDENCIES`
 
 > ---------------------|---
 > Default value:       | `0`
 > Type:                | `0` or `1`
-> Command-line option: | `--keep-dependencies`
+> Command-line option: | `--install-dependencies`
 
-Prevents deleting the contents of [`HALCYON_BASE`](#halcyon_base) after installing the application.  Implies [`HALCYON_RESTORE_DEPENDENCIES`](#halcyon_restore_dependencies).
+Forces including all layers in the application install directory.
 
-Intended to support easily restoring a full Haskell development environment, ready to inspect the application with GHCi.
+Intended to support applications requiring GHC at runtime.
 
 
 ### `HALCYON_NO_APP`
@@ -287,6 +289,18 @@ Intended to use on dedicated deploy machines.
 Prevents building any application dependencies.
 
 Intended to use on deploy machines capable of building the application.
+
+
+### `HALCYON_NO_CLEAN_DEPENDENCIES`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--keep-dependencies`
+
+Prevents deleting any layers after installing the application.  Implies [`HALCYON_RESTORE_DEPENDENCIES`](#halcyon_restore_dependencies).
+
+Intended to support easily restoring a full Haskell development environment, ready to inspect the application with GHCi.
 
 
 Cache options
@@ -714,26 +728,22 @@ Application options
 
 Additional flags to specify when running `cabal configure`.
 
+**NOTE:**  Any `--prefix=`… flag will be ignored, as Halcyon specifies its own prefix.
 
-### `HALCYON_APP_EXTRA_COPY`
+
+### `HALCYON_APP_EXTRA_FILES`
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | optional `source` or `build` or `all`
-> Command-line option: | `--app-extra-copy=`…
-> Magic file:          | [`app-extra-copy`](#app-extra-copy)
+> Type:                | optional whitespace-separated globs
+> Command-line option: | `--app-extra-files=`…
+> Magic file:          | [`app-extra-files`](#app-extra-files)
 
-Additional items to include in the application install directory.
+Additional files to include in the application install directory.
 
-The additional items may be specified as:
+Intended to support applications which do not or cannot declare all runtime dependencies as `data-files` in the Cabal package description file.
 
-- `source`—contents of the application source directory
-- `build`—contents of the application source and build directories
-- `all`—contents of the application source and build directories, and all layers
-
-Intended to support applications which do not or cannot declare all runtime dependencies.
-
-Most files needed at runtime should be declared as `data-files` in the Cabal package description file.  The option to include all layers should be used only for applications which require GHC to be available at runtime.
+**NOTE:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713)
 
 
 ### `HALCYON_APP_PRE_BUILD_HOOK`
@@ -912,11 +922,11 @@ Magic files
 > Option:              | [`HALCYON_APP_EXTRA_CONFIGURE_FLAGS`](#halcyon_app_extra_configure_flags)
 
 
-#### `app-extra-copy`
+#### `app-extra-files`
 
 > ---------------------|---
-> File path:           | `.halcyon-magic/app-extra-copy`
-> Option:              | [`HALCYON_APP_EXTRA_COPY`](#halcyon_app_extra_copy)
+> File path:           | `.halcyon-magic/app-extra-files`
+> Option:              | [`HALCYON_APP_EXTRA_FILES`](#halcyon_app_extra_files)
 
 
 #### `app-pre-build-hook`

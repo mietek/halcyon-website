@@ -176,9 +176,13 @@ Building applications
 
 ### Dependencies
 
-By default, build-time dependencies are deleted after the application is installed.  Moreover, if an application install archive is available, build-time dependencies will not even be restored.  This can be fully or partially overridden by setting [`HALCYON_KEEP_DEPENDENCIES`](/reference/#halcyon_keep_dependencies) or [`HALCYON_RESTORE_DEPENDENCIES`](/reference/#halcyon_restore_dependencies) to `1`.
+By default, build-time dependencies are deleted after the application is installed.  Moreover, if an application install archive is available, build-time dependencies will not be restored at all.
 
-However, applications which require build-time dependencies to be available at runtime should include them in the application install directory.  This can be enabled by setting [`HALCYON_APP_EXTRA_COPY`](/reference/#halcyon_app_extra_copy) to `all`.
+Applications which use GHC at install-time, such as [Try Idris](/examples/#try-idris), should set [`HALCYON_RESTORE_DEPENDENCIES`](/reference/#halcyon_restore_dependencies) to `1`, so that build-time dependencies are always restored.
+
+For applications using GHC at runtime, such as [Try Haskell](/examples/#try-haskell), set [`HALCYON_INSTALL_DEPENDENCIES`](/reference/#halcyon_install_dependencies) to `1`, in order to include build-time dependencies in the application install directory.
+
+It is also possible to prevent deleting build-time dependencies, by setting [`HALCYON_NO_CLEAN_DEPENDENCIES`](/reference/#halcyon_no_clean_dependencies) to `1`.  This is intended to support easily inspecting an application with GHCi.
 
 
 ### Cache
