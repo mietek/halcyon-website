@@ -792,6 +792,16 @@ Forces rebuilding the application from scratch.
 Forces re-running `cabal configure`.
 
 
+### `HALCYON_APP_REINSTALL`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--app-reinstall`
+
+Forces recreating the application install directory.
+
+
 Magic files
 -----------
 
