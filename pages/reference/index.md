@@ -231,6 +231,16 @@ Script to execute when installing the application, before running `cp -R`.
 Script to execute when installing the application, after running `cp -R`.
 
 
+### `HALCYON_RESTORE_DEPENDENCIES`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--restore-dependencies`
+
+Forces restoring all layers even when an application install archive is available.
+
+
 ### `HALCYON_KEEP_DEPENDENCIES`
 
 > ---------------------|---
@@ -238,7 +248,7 @@ Script to execute when installing the application, after running `cp -R`.
 > Type:                | `0` or `1`
 > Command-line option: | `--keep-dependencies`
 
-Prevents deleting the contents of [`HALCYON_BASE`](#halcyon_base) between building and installing the application, and forces restoring all layers even when an application install archive is available.
+Prevents deleting the contents of [`HALCYON_BASE`](#halcyon_base) after installing the application.  Implies [`HALCYON_RESTORE_DEPENDENCIES`](#halcyon_restore_dependencies).
 
 Intended to support easily restoring a full Haskell development environment, ready to inspect the application with GHCi.
 
