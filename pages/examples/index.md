@@ -125,10 +125,10 @@ Haskell Language
 
 > ---------------------|---
 > Website:             | [Haskell Language](http://haskell-lang.org/)
-> Author:              | [Chris Done](https://github.com/chrisdone/tryhaskell/)
+> Author:              | [Haskell Infrastructure team](https://github.com/haskell-infra/hl/graphs/contributors/)
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.3
 > Source code:         | [_hl_](https://github.com/mietek/hl/)
-> Status:              | _not ready_
+> Status:              | _ready_
 
 Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
@@ -139,9 +139,9 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 <a class="toggle-button" data-target="haskell-lang-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="haskell-lang-deploy"><code># halcyon deploy <a href="https://github.com/mietek/hl/">https://github.com/mietek/hl#halcyon</a>
 </code></pre>
-</div>-->
+</div>
 
-**TODO**
+**TODO** -->
 
 
 Try Haskell
