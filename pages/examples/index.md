@@ -481,7 +481,6 @@ Wiki with _git_ file storage.
 
 -----> Preparing install
        Copying app
-       Copying sandbox layer data files
 -----> Install prepared, 15MB
 -----> Archiving install
        Creating halcyon-app-install-2ae4e5f-hello-mflow-1.0.tar.gz... done, 3.3MB
@@ -564,7 +563,6 @@ Wiki with _git_ file storage.
 
 -----> Preparing install
        Copying app
-       Copying sandbox layer data files
 -----> Install prepared, 11MB
 -----> Archiving install
        Creating halcyon-app-install-0adfaa5-hello-miku-1.0.tar.gz... done, 2.1MB
@@ -733,7 +731,6 @@ Wiki with _git_ file storage.
 
 -----> Preparing install
        Copying app
-       Copying sandbox layer data files
 -----> Install prepared, 4.7MB
 -----> Archiving install
        Creating halcyon-app-install-5c51416-hello-simple-1.0.tar.gz... done, 1.1MB
@@ -820,7 +817,6 @@ Wiki with _git_ file storage.
 
 -----> Preparing install
        Copying app
-       Copying sandbox layer data files
 -----> Install prepared, 8.9MB
 -----> Archiving install
        Creating halcyon-app-install-9d0aa61-hello-snap-1.0.tar.gz... done, 1.8MB
@@ -1075,7 +1071,6 @@ Wiki with _git_ file storage.
 
 -----> Preparing install
        Copying app
-       Copying sandbox layer data files
 -----> Install prepared, 7.0MB
 -----> Archiving install
        Creating halcyon-app-install-1688650-hello-wheb-1.0.tar.gz... done, 1.6MB
@@ -1175,7 +1170,6 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 
 -----> Preparing install
        Copying app
-       Copying sandbox layer data files
 -----> Install prepared, 19MB
 -----> Archiving install
        Creating halcyon-app-install-5ad16e2-hello-yesod-1.0.tar.gz... done, 3.8MB
