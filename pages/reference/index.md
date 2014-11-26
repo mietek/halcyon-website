@@ -250,7 +250,7 @@ Intended to support applications requiring GHC at install-time.
 > Type:                | `0` or `1`
 > Command-line option: | `--install-dependencies`
 
-Forces including all build-time dependencies in the application install directory.
+Forces build-time dependencies to be installed for run-time use by the application.
 
 Intended to support applications requiring GHC at run-time.
 
