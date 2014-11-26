@@ -183,7 +183,7 @@ Intended to support easily declaring dependencies of any application which does 
 > Command-line option: | `--extra-apps=`…
 > Magic file:          | [`extra-apps`](#extra-apps)
 
-Additional Haskell applications to install together with the application, as runtime dependencies.
+Additional Haskell applications to install together with the application, as run-time dependencies.
 
 The applications may be specified as:
 
@@ -238,7 +238,7 @@ Script to execute when installing the application, after running `cp -R`.
 > Type:                | `0` or `1`
 > Command-line option: | `--restore-dependencies`
 
-Forces restoring all layers, ignoring the application install archive.
+Forces restoring all build-time dependencies, ignoring the application install archive.
 
 Intended to support applications requiring GHC at install-time.
 
@@ -250,9 +250,9 @@ Intended to support applications requiring GHC at install-time.
 > Type:                | `0` or `1`
 > Command-line option: | `--install-dependencies`
 
-Forces including all layers in the application install directory.
+Forces including all build-time dependencies in the application install directory.
 
-Intended to support applications requiring GHC at runtime.
+Intended to support applications requiring GHC at run-time.
 
 
 ### `HALCYON_NO_APP`
@@ -739,7 +739,7 @@ Additional flags to specify when running `cabal configure`.
 > Command-line option: | `--app-extra-files=`…
 > Magic file:          | [`app-extra-files`](#app-extra-files)
 
-Additional files to include in the application install directory.
+Additional files to install for run-time use by the application.
 
 Intended to support applications which do not or cannot declare all runtime dependencies as `data-files` in the Cabal package description file.
 
