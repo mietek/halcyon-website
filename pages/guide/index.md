@@ -248,7 +248,7 @@ The S3 bucket used to store private archives is defined by [`HALCYON_S3_BUCKET`]
 
 By default, all files uploaded to the bucket are assigned the `private` S3 access control list.  To make any subsequent uploads available publicly, set [`HALCYON_S3_ACL`](/reference/#halcyon_s3_acl) to `public-read`.
 
-**NOTE:**  The default S3 host, `s3.amazonaws.com`, can only be used for buckets located in the US Standard region.  To use a bucket located in a different region, set [`HALCYON_S3_HOST`](/reference/#halcyon_s3_host) to the appropriate address, such as `s3-eu-west-1.amazonaws.com`.
+**NOTE:**  The default S3 endpoint, `s3.amazonaws.com`, can only be used for buckets located in the US Standard region.  To use a bucket located in a different region, set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the appropriate address, such as `s3-eu-west-1.amazonaws.com`.
 
 To prevent Halcyon from uploading any files to the bucket, set [`HALCYON_NO_UPLOAD`](/reference/#halcyon_no_upload) to `1`.
 
