@@ -109,7 +109,7 @@ To disable self-updates, set [`HALCYON_NO_SELF_UPDATE`](/reference/#halcyon_no_s
 
 #### Base directory and prefix
 
-Halcyon requires write access to the `/app` directory, which is used for restoring or building layers.  By default, the same directory is also where applications are installed.  These are two separate concepts, defined by [`HALCYON_BASE`](/reference/#halcyon_base) and [`HALCYON_PREFIX`](/reference/#halcyon_prefix), respectively.
+Halcyon requires write access to the `/app` directory, which is where layers are built or restored, and which is where applications are installed.  These are two separate concepts, defined by [`HALCYON_BASE`](/reference/#halcyon_base) and [`HALCYON_PREFIX`](/reference/#halcyon_prefix), respectively.
 
 1.  While changing [`HALCYON_BASE`](/reference/#halcyon_base) is possible, a GHC installation is not easily relocatable, and neither are Cabal sandboxes.  Therefore, using a different path than `/app` for the application directory will cause Halcyon to reject all public archives as incompatible, and rebuild everything from scratch.  This may or may not be a problem, but it will prevent getting started as quickly as possible.
 
@@ -180,7 +180,7 @@ By default, build-time dependencies are deleted after the application is install
 
 Applications which use GHC at install-time, such as [Try Idris](/examples/#try-idris), should set [`HALCYON_RESTORE_DEPENDENCIES`](/reference/#halcyon_restore_dependencies) to `1`, so that build-time dependencies are always restored.
 
-For applications using GHC at runtime, such as [Try Haskell](/examples/#try-haskell), set [`HALCYON_INSTALL_DEPENDENCIES`](/reference/#halcyon_install_dependencies) to `1`, in order to include build-time dependencies in the application install directory.
+For applications using GHC at run-time, such as [Try Haskell](/examples/#try-haskell), set [`HALCYON_INSTALL_DEPENDENCIES`](/reference/#halcyon_install_dependencies) to `1`, in order to include build-time dependencies in the application install directory.
 
 It is also possible to prevent deleting build-time dependencies, by setting [`HALCYON_NO_CLEAN_DEPENDENCIES`](/reference/#halcyon_no_clean_dependencies) to `1`.  This is intended to support easily inspecting an application with GHCi.
 
@@ -252,4 +252,4 @@ By default, all files uploaded to the bucket are assigned the `private` S3 acces
 
 To prevent Halcyon from uploading any files to the bucket, set [`HALCYON_NO_UPLOAD`](/reference/#halcyon_no_upload) to `1`.
 
-Certain files, such as Cabal layer archives, are deleted from the bucket when Halcyon considers them out-of-date.  This can be disabled by setting [`HALCYON_NO_DELETE`](/reference/#halcyon_no_delete) to `1`.
+Out-of-date files with unique names, such as application install archives, are deleted from the bucket after new files are uploaded.  Deleting old files can be disabled by setting [`HALCYON_NO_CLEAN_PRIVATE_STORAGE`](/reference/#halcyon_no_clean_private_storage) to `1`.

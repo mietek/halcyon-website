@@ -739,9 +739,11 @@ Additional flags to specify when running `cabal configure`.
 > Command-line option: | `--app-extra-files=`…
 > Magic file:          | [`app-extra-files`](#app-extra-files)
 
-Additional files to install for run-time use by the application.
+Additional files to install for run-time use by the application, into the [Cabal data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
 
-Intended to support applications which do not or cannot declare all runtime dependencies as `data-files` in the Cabal package description file.
+The files are specified as file or directory paths relative to the application source directory.  Standard GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html)—globbing—is performed on each path.
+
+Intended to support applications which do not or cannot declare all run-time data files as `data-files` in the Cabal package description file.
 
 **NOTE:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713)
 
