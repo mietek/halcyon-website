@@ -668,6 +668,17 @@ When a directory path is specified, the directory must contain files named _`nam
 Intended to support easily declaring dependencies of any application which does not include a constraints file.
 
 
+### `HALCYON_SANDBOX_EXTRA_CONFIGURE_FLAGS`
+
+> ---------------------|---
+> Default value:       | _none_
+> Type:                | optional whitespace-separated strings
+> Command-line option: | `--sandbox-extra-configure-flags=`…
+> Magic file:          | [`sandbox-extra-configure-flags`](#sandbox-extra-configure-flags)
+
+Additional flags to specify when running `cabal configure --dependencies-only`.
+
+
 ### `HALCYON_SANDBOX_EXTRA_LIBS`
 
 > ---------------------|---
@@ -731,17 +742,17 @@ Additional flags to specify when running `cabal configure`.
 **NOTE:**  Any `--prefix=`… flag will be ignored, as Halcyon specifies its own prefix.
 
 
-### `HALCYON_APP_EXTRA_FILES`
+### `HALCYON_APP_EXTRA_DATA_FILES`
 
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | optional whitespace-separated globs
-> Command-line option: | `--app-extra-files=`…
-> Magic file:          | [`app-extra-files`](#app-extra-files)
+> Command-line option: | `--app-extra-data-files=`…
+> Magic file:          | [`app-extra-data-files`](#app-extra-data-files)
 
 Additional files to install for run-time use by the application, into the [Cabal data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
 
-The files are specified as file or directory paths relative to the application source directory.  Standard GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html)—globbing—is performed on each path.
+The files are specified as file or directory paths relative to the application build directory.  Standard GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html)—globbing—is performed on each path.
 
 Intended to support applications which do not or cannot declare all run-time data files as `data-files` in the Cabal package description file.
 
@@ -904,6 +915,13 @@ Magic files
 > Option:              | [`HALCYON_SANDBOX_EXTRA_APPS_CONSTRAINTS`](#halcyon_sandbox_extra_apps_constraints)
 
 
+#### `sandbox-extra-configure-flags`
+
+> ---------------------|---
+> File path:           | `.halcyon-magic/sandbox-extra-configure-flags`
+> Option:              | [`HALCYON_SANDBOX_EXTRA_CONFIGURE_FLAGS`](#halcyon_sandbox_extra_configure_flags)
+
+
 #### `sandbox-extra-libs`
 
 > ---------------------|---
@@ -934,11 +952,11 @@ Magic files
 > Option:              | [`HALCYON_APP_EXTRA_CONFIGURE_FLAGS`](#halcyon_app_extra_configure_flags)
 
 
-#### `app-extra-files`
+#### `app-extra-data-files`
 
 > ---------------------|---
-> File path:           | `.halcyon-magic/app-extra-files`
-> Option:              | [`HALCYON_APP_EXTRA_FILES`](#halcyon_app_extra_files)
+> File path:           | `.halcyon-magic/app-extra-data-files`
+> Option:              | [`HALCYON_APP_EXTRA_DATA_FILES`](#halcyon_app_extra_data_files)
 
 
 #### `app-pre-build-hook`

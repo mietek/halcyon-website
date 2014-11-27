@@ -104,7 +104,7 @@ How I Start
 > Source code:         | [_howistart.org_](https://github.com/mietek/howistart.org/)
 > Status:              | _live_
 
-Mix between a collection of development tutorials and [The Setup](http://usesthis.com/).
+Collection of development tutorials.
 
 Using Halcyon since July 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
@@ -125,7 +125,7 @@ Haskell Language
 
 > ---------------------|---
 > Website:             | [Haskell Language](http://haskell-lang.org/)
-> Author:              | [Haskell Infrastructure team](https://github.com/haskell-infra/hl/graphs/contributors/)
+> Author:              | [Haskell Infrastructure team](https://github.com/haskell-infra/hl/)
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.3
 > Source code:         | [_hl_](https://github.com/mietek/hl/)
 > Status:              | _ready_
