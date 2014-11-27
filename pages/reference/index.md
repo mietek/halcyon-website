@@ -250,7 +250,7 @@ Intended to support applications requiring GHC at install-time.
 > Type:                | `0` or `1`
 > Command-line option: | `--install-dependencies`
 
-Forces build-time dependencies to be installed for run-time use by the application.
+Forces build-time dependencies to be installed for run-time use by the application.  Implies [`HALCYON_RESTORE_DEPENDENCIES`](#halcyon_restore_dependencies).
 
 Intended to support applications requiring GHC at run-time.
 
@@ -756,7 +756,7 @@ The files are specified as file or directory paths relative to the application b
 
 Intended to support applications which do not or cannot declare all run-time data files as `data-files` in the Cabal package description file.
 
-**NOTE:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713)
+**NOTE:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
 
 
 ### `HALCYON_APP_PRE_BUILD_HOOK`
