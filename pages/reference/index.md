@@ -214,9 +214,9 @@ Intended to support easily declaring dependencies of any application which does 
 > Type:                | optional file path
 > Command-line option: | `--pre-install-hook=`…
 > Magic file:          | [`pre-install-hook`](#pre-install-hook)
-> Script rguments:     | _`tag source_dir install_dir root`_
+> Script arguments:    | _`tag source_dir install_dir data_dir`_
 
-Script to execute when installing the application, before running `cp -R`.
+Script to execute when installing the application, before archiving the application install directory.
 
 
 ### `HALCYON_POST_INSTALL_HOOK`
@@ -226,9 +226,9 @@ Script to execute when installing the application, before running `cp -R`.
 > Type:                | optional file path
 > Command-line option: | `--post-install-hook=`…
 > Magic file:          | [`post-install-hook`](#post-install-hook)
-> Script arguments:    | _`tag source_dir install_dir root`_
+> Script arguments:    | _`tag source_dir install_dir data_dir`_
 
-Script to execute when installing the application, after running `cp -R`.
+Script to execute when installing the application, after archiving or restoring the application install directory.
 
 
 ### `HALCYON_RESTORE_DEPENDENCIES`
