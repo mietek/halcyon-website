@@ -24,16 +24,33 @@ page-footer: |
 Halcyon
 =======
 
-Halcyon is a system for deploying Haskell web and non-web applications.
+Halcyon is a system for deploying Haskell web and non-web applications, powering [Haskell on Heroku](https://haskellonheroku.com/).
 
-Any Haskell application can be deployed with a [single command](#usage), using explicitly declared versions of GHC, libraries, build-tools, and other dependencies.
+**Pre-release version.  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.**
 
-Halcyon aims to achieve 100% reproducible build results, while keeping deploy times under 30 seconds.
+
+### Features
+
+> _“If Halcyon is not helping you deploy applications easily, then there is a bug in Halcyon.”_\
+> — With apologies to [Jordan Sissel](https://github.com/jordansissel/fpm/)
+
+
+#### Simple
+
+Halcyon can deploy any Haskell application with a single command, building any required dependencies on the fly.
+
+
+#### Fast
+
+All build results are archived in layers, which means incremental builds can be deployed in under 30 seconds.
+
+
+#### Reliable
+
+Halcyon allows all build-time and run-time dependencies to be declared explicitly, achieving 100% reproducible results.
 
 
 ### Support
-
-**Pre-release version.  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.**
 
 Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues/).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues/) for problems with the documentation.
 
@@ -61,6 +78,11 @@ Examples
 </div></div></div></div>
 <div class="wrapper"><section><section><section>
 
+
+### Real-world applications
+
+Halcyon is being used in production since June 2014.
+
 <div id="gallery-links"><nav>
 <ul class="menu open">
 <li><a class="gallery-link" href="/examples/#circuithub" id="link-circuithub">CircuitHub</a></li>
@@ -75,26 +97,17 @@ Examples
 </nav></div>
 
 
-#### “Hello, world!” shootout
+### “Hello, world!” shootout
 
-> Example                                           | First build time   | Sandbox size       | App size           |
-> --------------------------------------------------|--------------------|--------------------|--------------------|
-> [_hello-happstack_](/examples/#hello-happstack)   | `3m27s`            | ` 64MB`            | `12MB`             |
-> [_hello-mflow_](/examples/#hello-mflow)           | `7m17s`            | `152MB`            | `20MB`             |
-> [_hello-miku_](/examples/#hello-miku)             | `4m52s`            | ` 84MB`            | `13MB`             |
-> [_hello-scotty_](/examples/#hello-scotty)         | `4m40s`            | ` 83MB`            | `12MB`             |
-> [_hello-simple_](/examples/#hello-simple)         | `5m08s`            | `100MB`            | ` 7MB`             |
-> [_hello-snap_](/examples/#hello-snap)             | `4m38s`            | ` 69MB`            | `11MB`             |
-> [_hello-spock_](/examples/#hello-spock)           | `4m57s`            | `107MB`            | `12MB`             |
-> [_hello-wai_](/examples/#hello-wai)               | `3m47s`            | ` 45MB`            | ` 6MB`             |
-> [_hello-wheb_](/examples/#hello-wheb)             | `5m17s`            | `146MB`            | `10MB`             |
-> [_hello-yesod_](/examples/#hello-yesod)           | `8m31s`            | `250MB`            | `25MB`             |
+Additional [simple examples](/shootout/) are available, comparing build times and sizes across most Haskell web frameworks.
 
 
 Usage
 -----
 
-Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`halcyon paths`](/reference/#paths) helps set environment variables.
+Halcyon is installed with _git_, and automatically keeps itself up-to-date.
+
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set environment variables.
 
 ```
 # git clone https://github.com/mietek/halcyon ~/halcyon
@@ -102,18 +115,11 @@ Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`h
 ```
 
 
-### Deploying
+### Deploying an application
 
-Halcyon speeds up deployment by archiving dependencies in _layers_.
+The [`halcyon deploy`](/reference/#halcyon-deploy) command accepts directories, Cabal packages, and _git_ URLs.
 
-GHC, _cabal-install_ and the Cabal package database, the application sandbox—once built, each of these layers is archived separately from the application build and install directories.
-
-
-#### Deploying an application
-
-[`halcyon deploy`](/reference/#deploy) accepts directories, Cabal packages, and _git_ URLs.
-
-With an application install archive available, deploying an application is expected to take less than 10 seconds.
+With an [install directory](/guide/#install-directory) archive available, deploying an application is expected to take less than 10 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
@@ -136,9 +142,11 @@ With an application install archive available, deploying an application is expec
 </div>
 
 
-#### Deploying an environment
+### Deploying an environment
 
-[`halcyon deploy`](/reference/#deploy) can also install a full Haskell development environment.  With layer archives available, this is expected to take less than 20 seconds.
+The [`halcyon deploy`](/reference/#halcyon-deploy) command can also be used to install a full Haskell development environment.
+
+With the needed [layer](/guide/#layers) archives available, this can be ready in under 20 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
@@ -168,15 +176,24 @@ With an application install archive available, deploying an application is expec
 
 <div><nav>
 <ul class="menu open">
+<li><a href="/examples/">Example applications</a></li>
+<li><a href="/shootout/">“Hello, world!” shootout</a></li>
 <li><a href="/guide/">User’s guide</a></li>
 <li><a href="/reference/">Programmer’s reference</a></li>
 <li><a href="https://github.com/mietek/halcyon/">Source code</a></li>
+</nav></div>
+
+
+#### Dependencies
+
+Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions.
+
+<div><nav>
+<ul class="menu open">
 <li><a href="https://bashmenot.mietek.io/reference/">_bashmenot_ programmer’s reference</a></li>
 <li><a href="https://github.com/mietek/bashmenot/">_bashmenot_ source code</a></li>
 </ul>
 </nav></div>
-
-Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions.
 
 
 About
@@ -195,8 +212,8 @@ Like my work?  I am available for consulting.  Say <a class="hello" href="">hell
 
 Thanks to [CircuitHub](https://circuithub.com/), [Purely Agile](http://purelyagile.com/), and [Tweag I/O](http://tweag.io/) for advice and assistance.
 
-The monospaced font used in this website is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).
+Website built with [_cannot_](https://cannot.mietek.io/).  The monospaced font used is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).
 
 The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).
 
-Website built with [_cannot_](https://cannot.mietek.io/).
+This project is not affiliated with [Heroku](https://heroku.com/), [DigitalOcean](https://digitalocean.com/), or [Amazon](https://amazon.com/).
