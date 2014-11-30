@@ -151,6 +151,10 @@ _hello-happstack_
 </code></pre>
 </div>
 
+```
+$ PORT=8080 hello-happstack
+```
+
 
 _hello-mflow_
 -------------
@@ -244,6 +248,10 @@ _hello-mflow_
 -----> App deployed:                             <b>hello-mflow-1.0</b>
 </code></pre>
 </div>
+
+```
+$ PORT=8080 hello-mflow
+```
 
 
 #### Dependencies
@@ -341,6 +349,10 @@ _hello-miku_
 </code></pre>
 </div>
 
+```
+$ PORT=8080 hello-miku
+```
+
 
 _hello-scotty_
 --------------
@@ -422,6 +434,10 @@ _hello-scotty_
 -----> App deployed:                             <b>hello-scotty-1.0</b>
 </code></pre>
 </div>
+
+```
+$ PORT=8080 hello-scotty
+```
 
 
 _hello-simple_
@@ -511,6 +527,10 @@ _hello-simple_
 </code></pre>
 </div>
 
+```
+$ PORT=8080 hello-simple
+```
+
 
 _hello-snap_
 ------------
@@ -598,6 +618,10 @@ _hello-snap_
 </code></pre>
 </div>
 
+```
+$ PORT=8080 hello-snap
+```
+
 
 _hello-spock_
 -------------
@@ -679,6 +703,10 @@ _hello-spock_
 -----> App deployed:                             <b>hello-spock-1.0</b>
 </code></pre>
 </div>
+
+```
+$ PORT=8080 hello-spock
+```
 
 
 _hello-wai_
@@ -770,6 +798,10 @@ _hello-wai_
 </code></pre>
 </div>
 
+```
+$ PORT=8080 hello-wai
+```
+
 
 _hello-wheb_
 ------------
@@ -854,6 +886,10 @@ _hello-wheb_
 -----> App deployed:                             <b>hello-wheb-1.0</b>
 </code></pre>
 </div>
+
+```
+$ PORT=8080 hello-wheb
+```
 
 
 _hello-yesod_
@@ -954,6 +990,10 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 -----> App deployed:                             <b>hello-yesod-1.0</b>
 </code></pre>
 </div>
+
+```
+$ PORT=8080 hello-yesod
+```
 
 
 <script src="https://www.google.com/jsapi"></script>
