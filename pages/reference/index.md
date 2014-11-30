@@ -769,7 +769,7 @@ Script to execute when building the [sandbox layer](/guide/#sandbox-layer), afte
 > Type:                | `0` or `1`
 > Command-line option: | `--sandbox-rebuild`
 
-Forces Halcyon to rebuild the [sandbox layer](/guide/#sandbox-layer) from scratch, which implies reinstalling any [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) or [`HALCYON_SANDBOX_EXTRA_LIBS`](#halcyon_sandbox_extra_libs).
+Forces Halcyon to rebuild the [sandbox layer](/guide/#sandbox-layer) and the application from scratch, which implies reinstalling any [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) or [`HALCYON_SANDBOX_EXTRA_LIBS`](#halcyon_sandbox_extra_libs).
 
 
 Self-update options
