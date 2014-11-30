@@ -512,16 +512,6 @@ Default version of GHC to install or restore in the [GHC layer](/guide/#ghc-laye
 
 Used when deploying an application with no constraints specified, or when deploying an [environment](#layers) only.
 
-Supported versions include:
-
-- [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
-- [GHC 7.8.2](https://haskell.org/ghc/download_ghc_7_8_2)
-- [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3)
-- [GHC 7.6.1](https://haskell.org/ghc/download_ghc_7_6_1)
-- [GHC 7.4.2](https://haskell.org/ghc/download_ghc_7_4_2)
-- [GHC 7.2.2](https://haskell.org/ghc/download_ghc_7_2_2)
-- [GHC 7.0.4](https://haskell.org/ghc/download_ghc_7_0_4)
-
 
 ### `HALCYON_GHC_PRE_BUILD_HOOK`
 
@@ -568,13 +558,6 @@ Cabal layer options
 > Command-line option: | `--cabal-version=`…
 
 Version of _cabal-install_ to bootstrap or restore in the [Cabal layer](/guide/#cabal-layer).
-
-Supported versions include:
-
-- [_cabal-install_ 1.20.0.3](https://www.haskell.org/cabal/release/cabal-install-1.20.0.3/)
-- [_cabal-install_ 1.20.0.2](https://www.haskell.org/cabal/release/cabal-install-1.20.0.2/)
-- [_cabal-install_ 1.20.0.1](https://www.haskell.org/cabal/release/cabal-install-1.20.0.1/)
-- [_cabal-install_ 1.20.0.0](https://www.haskell.org/cabal/release/cabal-install-1.20.0.0/)
 
 
 ### `HALCYON_CABAL_REPO`

@@ -165,6 +165,7 @@ The GHC and Cabal layers form a full Haskell development environment.
 #### GHC layer
 
 > ---------------------|---
+> Supported versions:  | [7.8.3](https://haskell.org/ghc/download_ghc_7_8_3), [7.8.2](https://haskell.org/ghc/download_ghc_7_8_2), [7.6.3](https://haskell.org/ghc/download_ghc_7_6_3), [7.6.1](https://haskell.org/ghc/download_ghc_7_6_1), [7.4.2](https://haskell.org/ghc/download_ghc_7_4_2), [7.2.2](https://haskell.org/ghc/download_ghc_7_2_2), [7.0.4](https://haskell.org/ghc/download_ghc_7_0_4)
 > Directory path:      | [`HALCYON_BASE`](/reference/#halcyon_base)`/ghc`
 > Archive name:        | `halcyon-ghc-`_`ghc_version`_`-`_`ghc_magic_hash`_`.tar.gz`
 
@@ -174,6 +175,7 @@ The GHC and Cabal layers form a full Haskell development environment.
 #### Cabal layer
 
 > ---------------------|---
+> Supported versions:  | [1.20.0.0](https://www.haskell.org/cabal/release/cabal-install-1.20.0.0/) or newer
 > Directory path:      | [`HALCYON_BASE`](/reference/#halcyon_base)`/cabal`
 > Archive name:        | `halcyon-cabal-`_`cabal_version`_`-`_`cabal_magic_hash`_`-`_`cabal_repo_name`_`-`_`cabal_date`_`.tar.gz`
 
