@@ -29,18 +29,35 @@ Simple applications, intended to compare build times and sizes across most Haske
 For more advanced applications, see the [examples](/examples/).
 
 
-### Test results
+### First deploy times
 
 <div class="chart" id="shootout-chart"></div>
 
 
-#### Test methodology
+#### Methodology
 
-Every time each example was deployed, the sandbox and the application were built from scratch.  Each run was repeated 10 times, and a [very small shell script](https://gist.github.com/mietek/8c24c84e84714de5b558) was used to collect the results.
+The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch, using the [`--sandbox-rebuild`](/reference/#halcyon_sandbox_rebuild) option.
 
-The test simulates deploying an application for the first time, with no [sandbox layer](/guide/#sandbox-layer) archive, [build directory](/guide/#build-directory) archive, or [install directory](/guide/#install-directory) archive available to restore.  In normal operation, deploying each example is expected to take less than 10 seconds.
+The times given are _mean [lower bound, upper bound]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
 
-All times were measured on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
+The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, [set up Halcyon](/guide/#quick-start), and perform a test run by executing a [very small shell script](https://gist.github.com/mietek/8c24c84e84714de5b558).
+
+```
+$ ./shootout.sh results.csv
+```
+
+
+#### Commentary
+
+As expected, the results show deploy time is dominated by building the sandbox.
+
+1.  Once the sandbox is built, Halcyon archives it as part of the [sandbox layer](/guide/#sandbox-layer), which is restored during subsequent deploys.
+
+2.  When building a new sandbox, Halcyon attempts to locate any previously built sandbox layers containing a subset of the required dependencies.  Each matching layer is assigned a score, and the highest scoring layer is used as a base for the new sandbox.
+
+Halcyon supports building the application incrementally, by archiving and restoring the [build directory](/guide/#build-directory).
+
+When no build is needed, the application is restored from a previously archived [install directory](/guide/#install-directory).  This allows deploying each of the example applications in under 10 seconds.
 
 
 _hello-happstack_
@@ -49,13 +66,13 @@ _hello-happstack_
 > ---------------------|---
 > Framework:           | [Happstack](http://happstack.com/) Lite 7.3.5
 > Dependencies:        | [44](https://github.com/mietek/hello-happstack/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 64MB
 > App size:            | 12MB
 > Source code:         | [_hello-happstack_](https://github.com/mietek/hello-happstack/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-happstack-source" href="" title="Toggle">Toggle</a>
@@ -135,18 +152,18 @@ _hello-mflow_
 > ---------------------|---
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow/) 0.4.5.9
 > Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/cabal.config) and _cpphs_ 1.18.6
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 152MB
 > App size:            | 20MB
 > Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow/)
 
 
-#### Notable features
+#### Points of interest
 
-Declares a build-time dependency on _cpphs_ by including the [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) and [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) magic files in the [`.halcyon-magic`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic) directory.
+Uses Halcyon to declare a build-time dependency on _cpphs_, and to constrain the dependencies of _cpphs_, by including the [`sandbox-extra-apps`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps) and [`sandbox-extra-apps-constraints`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps-constraints) magic files.  See the [reference](/reference/#halcyon_sandbox_extra_apps) for details.
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-mflow-source" href="" title="Toggle">Toggle</a>
@@ -237,13 +254,13 @@ _hello-miku_
 > ---------------------|---
 > Framework:           | [_miku_](https://github.com/nfjinjing/miku/) 2014.5.19
 > Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 84MB
 > App size:            | 13MB
 > Source code:         | [_hello-miku_](https://github.com/mietek/hello-miku/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-miku-source" href="" title="Toggle">Toggle</a>
@@ -323,13 +340,13 @@ _hello-scotty_
 > ---------------------|---
 > Framework:           | [Scotty](https://github.com/scotty-web/scotty/) 0.9.0
 > Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 83MB
 > App size:            | 12MB
 > Source code:         | [_hello-scotty_](https://github.com/mietek/hello-scotty/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-scotty-source" href="" title="Toggle">Toggle</a>
@@ -408,13 +425,13 @@ _hello-simple_
 > ---------------------|---
 > Framework:           | [Simple](http://simple.cx/) 0.10.0.2
 > Dependencies:        | [70](https://github.com/mietek/hello-simple/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 100MB
 > App size:            | 7MB
 > Source code:         | [_hello-simple_](https://github.com/mietek/hello-simple/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-simple-source" href="" title="Toggle">Toggle</a>
@@ -499,13 +516,13 @@ _hello-snap_
 > ---------------------|---
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
 > Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 69MB
 > App size:            | 11MB
 > Source code:         | [_hello-snap_](https://github.com/mietek/hello-snap/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-snap-source" href="" title="Toggle">Toggle</a>
@@ -589,13 +606,13 @@ _hello-spock_
 > ---------------------|---
 > Framework:           | [Spock](https://github.com/agrafix/Spock/) 0.7.4.0
 > Dependencies:        | [80](https://github.com/mietek/hello-spock/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 107MB
 > App size:            | 12MB
 > Source code:         | [_hello-spock_](https://github.com/mietek/hello-spock/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-spock-source" href="" title="Toggle">Toggle</a>
@@ -674,13 +691,13 @@ _hello-wai_
 > ---------------------|---
 > Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2
 > Dependencies:        | [38](https://github.com/mietek/hello-wai/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 45MB
 > App size:            | 6MB
 > Source code:         | [_hello-wai_](https://github.com/mietek/hello-wai/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-wai-source" href="" title="Toggle">Toggle</a>
@@ -767,13 +784,13 @@ _hello-wheb_
 > ---------------------|---
 > Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework/) 0.3.1.0
 > Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 146MB
 > App size:            | 10MB
 > Source code:         | [_hello-wheb_](https://github.com/mietek/hello-wheb/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-wheb-source" href="" title="Toggle">Toggle</a>
@@ -855,13 +872,13 @@ _hello-yesod_
 > ---------------------|---
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.0
 > Dependencies:        | [145](https://github.com/mietek/hello-yesod/blob/master/cabal.config)
-> Mean first deploy time:   | …
+> First deploy time:   | …
 > Sandbox size:        | 250MB
 > App size:            | 25MB
 > Source code:         | [_hello-yesod_](https://github.com/mietek/hello-yesod/)
 
 
-### `Main.hs`
+#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-yesod-source" href="" title="Toggle">Toggle</a>
@@ -1005,6 +1022,56 @@ var rawResults = [
   ['hello-wai',7,215,219,219],
   ['hello-wheb',6,318,324,325],
   ['hello-yesod',6,507,516,518],
+  ['hello-happstack',5,194,199,199],
+  ['hello-mflow',7,336,345,346],
+  ['hello-miku',6,281,286,287],
+  ['hello-scotty',5,274,279,281],
+  ['hello-simple',6,294,299,300],
+  ['hello-snap',6,275,280,282],
+  ['hello-spock',5,289,294,295],
+  ['hello-wai',6,215,219,220],
+  ['hello-wheb',7,327,332,333],
+  ['hello-yesod',5,522,532,533],
+  ['hello-happstack',6,193,198,199],
+  ['hello-mflow',6,334,340,342],
+  ['hello-miku',6,307,312,313],
+  ['hello-scotty',7,279,284,285],
+  ['hello-simple',6,286,291,292],
+  ['hello-snap',6,288,293,294],
+  ['hello-spock',7,303,310,311],
+  ['hello-wai',8,217,221,222],
+  ['hello-wheb',7,319,326,327],
+  ['hello-yesod',8,531,540,542],
+  ['hello-happstack',6,203,207,208],
+  ['hello-mflow',6,317,323,324],
+  ['hello-miku',5,288,293,294],
+  ['hello-scotty',6,273,279,279],
+  ['hello-simple',6,304,308,309],
+  ['hello-snap',6,275,279,280],
+  ['hello-spock',6,291,296,297],
+  ['hello-wai',6,224,229,229],
+  ['hello-wheb',6,328,335,335],
+  ['hello-yesod',6,517,526,528],
+  ['hello-happstack',7,209,215,215],
+  ['hello-mflow',6,338,344,346],
+  ['hello-miku',8,304,309,310],
+  ['hello-scotty',5,276,282,282],
+  ['hello-simple',7,302,308,308],
+  ['hello-snap',7,289,295,296],
+  ['hello-spock',6,300,306,306],
+  ['hello-wai',6,199,203,204],
+  ['hello-wheb',7,323,329,331],
+  ['hello-yesod',8,527,537,538],
+  ['hello-happstack',6,197,202,202],
+  ['hello-mflow',5,323,330,331],
+  ['hello-miku',7,298,303,303],
+  ['hello-scotty',6,268,274,274],
+  ['hello-simple',6,286,290,291],
+  ['hello-snap',5,273,278,278],
+  ['hello-spock',6,296,302,303],
+  ['hello-wai',6,219,223,224],
+  ['hello-wheb',6,319,324,325],
+  ['hello-yesod',5,519,530,531]
 ];
 var results = {};
 rawResults.forEach(function (rawRow) {
@@ -1062,11 +1129,11 @@ function drawChart() {
     if (deployLow !== deployHigh) {
       deployValue += ' [' + deployLow + 's, ' + deployHigh + 's]';
     }
-    var deployTip = 'Mean first deploy time: ' + deployValue;
+    var deployTip = 'First deploy time: ' + deployValue;
     var envMean = mean(result.envTimes);
     var envLow = low(result.envTimes);
     var envHigh = high(result.envTimes);
-    var envTip = 'Mean environment restore time: ' + fix(envMean) + 's';
+    var envTip = 'Environment restore time: ' + fix(envMean) + 's';
     if (envLow !== envHigh) {
       envTip += ' [' + envLow + 's, ' + envHigh + 's]';
     }
@@ -1074,7 +1141,7 @@ function drawChart() {
     var sandboxMean = mean(result.sandboxTimes);
     var sandboxLow = low(result.sandboxTimes);
     var sandboxHigh = high(result.sandboxTimes);
-    var sandboxTip = 'Mean sandbox build time: ' + fix(sandboxMean) + 's';
+    var sandboxTip = 'Sandbox build time: ' + fix(sandboxMean) + 's';
     if (sandboxLow !== sandboxHigh) {
       sandboxTip += ' [' + sandboxLow + 's, ' + sandboxHigh + 's]';
     }
@@ -1082,7 +1149,7 @@ function drawChart() {
     var appMean = mean(result.appTimes);
     var appLow = low(result.appTimes);
     var appHigh = high(result.appTimes);
-    var appTip = 'Mean application build and install time: ' + fix(appMean) + 's';
+    var appTip = 'Application build and install time: ' + fix(appMean) + 's';
     if (appLow !== appHigh) {
       appTip += ' [' + appLow + 's, ' + appHigh + 's]';
     }
