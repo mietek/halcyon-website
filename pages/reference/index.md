@@ -173,6 +173,16 @@ Prevents building any [layers](/guide/#layers).
 Intended to use on deploy machines, which are also capable of building the application.
 
 
+### `HALCYON_LOG_TIMESTAMP`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--log-timestamp`
+
+Prefixes each logged message with the number of seconds since beginning execution.
+
+
 Build-time options
 ------------------
 
