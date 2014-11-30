@@ -35,7 +35,7 @@ The application may be specified as:
 - label
 - _git_ URL
 
-When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon deploys an [environment](#environment) only.  To ignore the current directory, specify [`--no-app`](#halcyon_no_app), or set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
+When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon deploys an [environment](#layers) only.  To ignore the current directory, specify [`--no-app`](#halcyon_no_app), or set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
 
 All labels are Cabal package names, with or without a `-`_`version`_ suffix.
 
@@ -63,7 +63,7 @@ Outputs the constraints file of the specified application, in `cabal freeze` for
 
 Intended to quickly determine the implicit constraints of an application, and to help ensure any `cabal.config` files are overridden properly, when using options such as [`HALCYON_CONSTRAINTS`](#halcyon_constraints).
 
-Not entirely a dry-run, because an [environment](#environment) may need to be installed.
+Not entirely a dry-run, because an [environment](#layers) may need to be installed.
 
 **Note:**  Recommended over `cabal freeze` because of Cabal issue [#1908](https://github.com/haskell/cabal/issues/1908).
 
@@ -110,7 +110,7 @@ Root of the path to the directory in which Halcyon installs applications.
 
 Intended to support constructing advanced workflows.
 
-_Example:  If the [install directory](/guide/#install-directory) consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
+_**Example:**  If the [install directory](/guide/#install-directory) consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
 
 
 ### `HALCYON_PREFIX`
@@ -122,7 +122,7 @@ _Example:  If the [install directory](/guide/#install-directory) consists of `bi
 
 Directory in which Halcyon installs applications.
 
-_Example:  If the [install directory](/guide/#install-directory) consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
+_**Example:**  If the [install directory](/guide/#install-directory) consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
 
 
 ### `HALCYON_RESTORE_LAYERS`
@@ -144,7 +144,7 @@ Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`
 > Type:                | `0` or `1`
 > Command-line option: | `--no-app`
 
-Forces Halcon to deploy an [environment](#environment) only, even when the current directory is a [source directory](/guide/#source-directory).
+Forces Halcon to deploy an [environment](#layers) only, even when the current directory is a [source directory](/guide/#source-directory).
 
 The versions of GHC and _cabal-install_ to deploy are specified by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
 
@@ -465,7 +465,7 @@ Address of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/
 > Type:                | `private` or `public-read`
 > Command-line option: | `--s3-acl=`…
 
-Amazon S3 access control list assigned to all files uploaded to private storage.
+Amazon S3 access control list assigned to all files uploaded to [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
 
 ### `HALCYON_NO_PRIVATE_STORAGE`
@@ -475,7 +475,7 @@ Amazon S3 access control list assigned to all files uploaded to private storage.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-private-storage`
 
-Prevents accessing private storage.
+Prevents accessing [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
 
 ### `HALCYON_NO_UPLOAD`
@@ -485,7 +485,7 @@ Prevents accessing private storage.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-upload`
 
-Prevents uploading cached archives and constraints files to private storage.
+Prevents uploading cached archives and constraints files to [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
 
 ### `HALCYON_NO_CLEAN_PRIVATE_STORAGE`
@@ -495,7 +495,7 @@ Prevents uploading cached archives and constraints files to private storage.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-clean-private-storage`
 
-Prevents deleting out-of-date archives and constraints files from private storage.
+Prevents deleting out-of-date archives and constraints files from [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
 
 GHC layer options
@@ -510,7 +510,7 @@ GHC layer options
 
 Default version of GHC to install or restore in the [GHC layer](/guide/#ghc-layer).
 
-Used when deploying an application with no constraints specified, or when deploying an [environment](#environment) only.
+Used when deploying an application with no constraints specified, or when deploying an [environment](#layers) only.
 
 Supported versions include:
 
