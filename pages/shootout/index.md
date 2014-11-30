@@ -163,16 +163,6 @@ _hello-mflow_
 > App size:            | 20MB
 > Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow/)
 
-
-### Points of interest
-
-Uses Halcyon to declare a build-time dependency on _cpphs_, and to constrain the dependencies of _cpphs_, by including the [`sandbox-extra-apps`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps) and [`sandbox-extra-apps-constraints`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps-constraints) magic files.
-
-For details, see the [reference](/reference/#halcyon_sandbox_extra_apps).
-
-
-#### `Main.hs`
-
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-mflow-source" href="" title="Toggle">Toggle</a>
 <pre class="toggle open textmate-source" id="hello-mflow-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">MFlow.Wai.Blaze.Html.All</span></span>
@@ -254,6 +244,19 @@ For details, see the [reference](/reference/#halcyon_sandbox_extra_apps).
 -----> App deployed:                             <b>hello-mflow-1.0</b>
 </code></pre>
 </div>
+
+
+#### Dependencies
+
+Includes [magic files](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/) to declare:
+
+- build-time dependency on _cpphs_
+- version constraints for dependencies of _cpphs_
+
+For details, see:
+
+- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
+- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps)
 
 
 _hello-miku_
