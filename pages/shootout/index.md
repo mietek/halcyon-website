@@ -100,16 +100,22 @@ _hello-happstack_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-happstack-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-happstack-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-happstack/">https://github.com/mietek/hello-happstack</a>
------> Cloning https://github.com/mietek/hello-happstack... done, 5f636e6
+-----> Cloning https://github.com/mietek/hello-happstack... done, 04ed38e
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-happstack-1.0</b>
-       Source hash:                              <b>f586f68</b>
+       Source hash:                              <b>ba6ac6c</b>
        Constraints hash:                         <b>5e34a95</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -128,23 +134,21 @@ _hello-happstack_
        Creating halcyon-sandbox-5e34a95-hello-happstack-1.0.tar.gz... done, 8.8MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-happstack-1.0...
 -----> Building app
        Building hello-happstack-1.0...
        Preprocessing executable 'hello-happstack' for hello-happstack-1.0...
        ...
        Linking dist/build/hello-happstack/hello-happstack ...
------> App built, 12MB
+-----> Built app, 12MB
        Stripping app... done, 8.7MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-happstack-1.0.tar.gz... done, 1.8MB
+       Creating halcyon-build-hello-happstack-1.0.tar.gz... done, 1.8MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 8.4MB
 -----> Archiving install
-       Creating halcyon-app-install-f586f68-hello-happstack-1.0.tar.gz... done, 1.7MB
+       Creating halcyon-install-ba6ac6c-hello-happstack-1.0.tar.gz... done, 1.7MB
 -----> Installing app into /app... done, 8.4MB
 
 -----> App deployed:                             <b>hello-happstack-1.0</b>
@@ -183,19 +187,25 @@ _hello-mflow_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-mflow-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-mflow-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-mflow/">https://github.com/mietek/hello-mflow</a>
------> Cloning https://github.com/mietek/hello-mflow... done, b017876
+-----> Cloning https://github.com/mietek/hello-mflow... done, 4588f8d
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-mflow-1.0</b>
-       Source hash:                              <b>2ae4e5f</b>
+       Source hash:                              <b>7eb82a6</b>
        Constraints hash:                         <b>dc98a41</b>
-       Magic hash:                               <b>8f018d2</b>
+       Magic hash:                               <b>7d57137</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
-       Sandbox magic hash:                       <b>8f018d2</b>
+       Sandbox magic hash:                       <b>7d57137</b>
        Sandbox extra apps:                       <b>cpphs-1.18.6</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -223,26 +233,24 @@ _hello-mflow_
        Removing documentation from sandbox layer... done, 151MB
        Stripping sandbox layer... done, 130MB
 -----> Archiving sandbox layer
-       Creating halcyon-sandbox-dc98a41.8f018d2-hello-mflow-1.0.tar.gz... done, 23MB
+       Creating halcyon-sandbox-dc98a41.7d57137-hello-mflow-1.0.tar.gz... done, 23MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-mflow-1.0...
 -----> Building app
        Building hello-mflow-1.0...
        Preprocessing executable 'hello-mflow' for hello-mflow-1.0...
        ...
        Linking dist/build/hello-mflow/hello-mflow ...
------> App built, 20MB
+-----> Built app, 20MB
        Stripping app... done, 15MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-mflow-1.0.tar.gz... done, 3.3MB
+       Creating halcyon-build-hello-mflow-1.0.tar.gz... done, 3.3MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 15MB
 -----> Archiving install
-       Creating halcyon-app-install-2ae4e5f-hello-mflow-1.0.tar.gz... done, 3.3MB
+       Creating halcyon-install-7eb82a6-hello-mflow-1.0.tar.gz... done, 3.3MB
 -----> Installing app into /app... done, 15MB
 
 -----> App deployed:                             <b>hello-mflow-1.0</b>
@@ -298,16 +306,22 @@ _hello-miku_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-miku-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-miku-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-miku/">https://github.com/mietek/hello-miku</a>
------> Cloning https://github.com/mietek/hello-miku... done, cdfe7f8
+-----> Cloning https://github.com/mietek/hello-miku... done, 36784f2
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-miku-1.0</b>
-       Source hash:                              <b>0adfaa5</b>
+       Source hash:                              <b>aaa3abc</b>
        Constraints hash:                         <b>3fa23e0</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -326,23 +340,21 @@ _hello-miku_
        Creating halcyon-sandbox-3fa23e0-hello-miku-1.0.tar.gz... done, 12MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-miku-1.0...
 -----> Building app
        Building hello-miku-1.0...
        Preprocessing executable 'hello-miku' for hello-miku-1.0...
        ...
        Linking dist/build/hello-miku/hello-miku ...
------> App built, 13MB
+-----> Built app, 13MB
        Stripping app... done, 11MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-miku-1.0.tar.gz... done, 2.1MB
+       Creating halcyon-build-hello-miku-1.0.tar.gz... done, 2.1MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 11MB
 -----> Archiving install
-       Creating halcyon-app-install-0adfaa5-hello-miku-1.0.tar.gz... done, 2.1MB
+       Creating halcyon-install-aaa3abc-hello-miku-1.0.tar.gz... done, 2.1MB
 -----> Installing app into /app... done, 11MB
 
 -----> App deployed:                             <b>hello-miku-1.0</b>
@@ -384,16 +396,22 @@ _hello-scotty_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-scotty-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-scotty/">https://github.com/mietek/hello-scotty</a>
------> Cloning https://github.com/mietek/hello-scotty... done, 030e912
+-----> Cloning https://github.com/mietek/hello-scotty... done, 518b4c5
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-scotty-1.0</b>
-       Source hash:                              <b>e360666</b>
+       Source hash:                              <b>289a977</b>
        Constraints hash:                         <b>7c013f9</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -412,23 +430,21 @@ _hello-scotty_
        Creating halcyon-sandbox-7c013f9-hello-scotty-1.0.tar.gz... done, 12MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-scotty-1.0...
 -----> Building app
        Building hello-scotty-1.0...
        Preprocessing executable 'hello-scotty' for hello-scotty-1.0...
        ...
        Linking dist/build/hello-scotty/hello-scotty ...
------> App built, 12MB
+-----> Built app, 12MB
        Stripping app... done, 9.1MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-scotty-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-build-hello-scotty-1.0.tar.gz... done, 2.0MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 8.7MB
 -----> Archiving install
-       Creating halcyon-app-install-e360666-hello-scotty-1.0.tar.gz... done, 1.9MB
+       Creating halcyon-install-289a977-hello-scotty-1.0.tar.gz... done, 1.9MB
 -----> Installing app into /app... done, 8.7MB
 
 -----> App deployed:                             <b>hello-scotty-1.0</b>
@@ -476,16 +492,22 @@ _hello-simple_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-simple-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-simple-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-simple/">https://github.com/mietek/hello-simple</a>
------> Cloning https://github.com/mietek/hello-simple... done, 636e97b
+-----> Cloning https://github.com/mietek/hello-simple... done, 6bba429
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-simple-1.0</b>
-       Source hash:                              <b>5c51416</b>
+       Source hash:                              <b>d505352</b>
        Constraints hash:                         <b>90de8cd</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -504,23 +526,21 @@ _hello-simple_
        Creating halcyon-sandbox-90de8cd-hello-simple-1.0.tar.gz... done, 15MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-simple-1.0...
 -----> Building app
        Building hello-simple-1.0...
        Preprocessing executable 'hello-simple' for hello-simple-1.0...
        ...
        Linking dist/build/hello-simple/hello-simple ...
------> App built, 6.4MB
+-----> Built app, 6.4MB
        Stripping app... done, 5.1MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-simple-1.0.tar.gz... done, 1.2MB
+       Creating halcyon-build-hello-simple-1.0.tar.gz... done, 1.2MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 4.7MB
 -----> Archiving install
-       Creating halcyon-app-install-5c51416-hello-simple-1.0.tar.gz... done, 1.1MB
+       Creating halcyon-install-d505352-hello-simple-1.0.tar.gz... done, 1.1MB
 -----> Installing app into /app... done, 4.7MB
 
 -----> App deployed:                             <b>hello-simple-1.0</b>
@@ -567,16 +587,22 @@ _hello-snap_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-snap-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-snap-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-snap/">https://github.com/mietek/hello-snap</a>
------> Cloning https://github.com/mietek/hello-snap... done, bd5d822
+-----> Cloning https://github.com/mietek/hello-snap... done, ad2edd9
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-snap-1.0</b>
-       Source hash:                              <b>9d0aa61</b>
+       Source hash:                              <b>229bcd8</b>
        Constraints hash:                         <b>4531dbe</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -595,23 +621,21 @@ _hello-snap_
        Creating halcyon-sandbox-4531dbe-hello-snap-1.0.tar.gz... done, 9.9MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-snap-1.0...
 -----> Building app
        Building hello-snap-1.0...
        Preprocessing executable 'hello-snap' for hello-snap-1.0...
        ...
        Linking dist/build/hello-snap/hello-snap ...
------> App built, 11MB
+-----> Built app, 11MB
        Stripping app... done, 9.1MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-snap-1.0.tar.gz... done, 1.9MB
+       Creating halcyon-build-hello-snap-1.0.tar.gz... done, 1.9MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 8.9MB
 -----> Archiving install
-       Creating halcyon-app-install-9d0aa61-hello-snap-1.0.tar.gz... done, 1.8MB
+       Creating halcyon-install-229bcd8-hello-snap-1.0.tar.gz... done, 1.8MB
 -----> Installing app into /app... done, 8.9MB
 
 -----> App deployed:                             <b>hello-snap-1.0</b>
@@ -653,16 +677,22 @@ _hello-spock_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-spock-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-spock-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-spock/">https://github.com/mietek/hello-spock</a>
------> Cloning https://github.com/mietek/hello-spock... done, 9ff86ed
+-----> Cloning https://github.com/mietek/hello-spock... done, da8a471
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-spock-1.0</b>
-       Source hash:                              <b>0f869b0</b>
+       Source hash:                              <b>e414708</b>
        Constraints hash:                         <b>d716519</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -681,23 +711,21 @@ _hello-spock_
        Creating halcyon-sandbox-d716519-hello-spock-1.0.tar.gz... done, 15MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-spock-1.0...
 -----> Building app
        Building hello-spock-1.0...
        Preprocessing executable 'hello-spock' for hello-spock-1.0...
        ...
        Linking dist/build/hello-spock/hello-spock ...
------> App built, 12MB
+-----> Built app, 12MB
        Stripping app... done, 9.2MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-spock-1.0.tar.gz... done, 2.1MB
+       Creating halcyon-build-hello-spock-1.0.tar.gz... done, 2.1MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 8.7MB
 -----> Archiving install
-       Creating halcyon-app-install-0f869b0-hello-spock-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-e414708-hello-spock-1.0.tar.gz... done, 2.0MB
 -----> Installing app into /app... done, 8.7MB
 
 -----> App deployed:                             <b>hello-spock-1.0</b>
@@ -747,16 +775,22 @@ _hello-wai_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wai-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-wai-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wai/">https://github.com/mietek/hello-wai</a>
------> Cloning https://github.com/mietek/hello-wai... done, eb087bc
+-----> Cloning https://github.com/mietek/hello-wai... done, b82d126
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-wai-1.0</b>
-       Source hash:                              <b>3c97959</b>
+       Source hash:                              <b>64c7330</b>
        Constraints hash:                         <b>799b066</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -775,23 +809,21 @@ _hello-wai_
        Creating halcyon-sandbox-799b066-hello-wai-1.0.tar.gz... done, 6.4MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-wai-1.0...
 -----> Building app
        Building hello-wai-1.0...
        Preprocessing executable 'hello-wai' for hello-wai-1.0...
        ...
        Linking dist/build/hello-wai/hello-wai ...
------> App built, 5.9MB
+-----> Built app, 5.9MB
        Stripping app... done, 4.8MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-wai-1.0.tar.gz... done, 1.1MB
+       Creating halcyon-build-hello-wai-1.0.tar.gz... done, 1.1MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 4.5MB
 -----> Archiving install
-       Creating halcyon-app-install-3c97959-hello-wai-1.0.tar.gz... done, 1.1MB
+       Creating halcyon-install-64c7330-hello-wai-1.0.tar.gz... done, 1.1MB
 -----> Installing app into /app... done, 4.5MB
 
 -----> App deployed:                             <b>hello-wai-1.0</b>
@@ -836,16 +868,22 @@ _hello-wheb_
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wheb-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-wheb-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wheb/">https://github.com/mietek/hello-wheb</a>
------> Cloning https://github.com/mietek/hello-wheb... done, 521623f
+-----> Cloning https://github.com/mietek/hello-wheb... done, add5eba
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-wheb-1.0</b>
-       Source hash:                              <b>1688650</b>
+       Source hash:                              <b>2f3917f</b>
        Constraints hash:                         <b>cd0692c</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -864,23 +902,21 @@ _hello-wheb_
        Creating halcyon-sandbox-cd0692c-hello-wheb-1.0.tar.gz... done, 22MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-wheb-1.0...
 -----> Building app
        Building hello-wheb-1.0...
        Preprocessing executable 'hello-wheb' for hello-wheb-1.0...
        ...
        Linking dist/build/hello-wheb/hello-wheb ...
------> App built, 9.8MB
+-----> Built app, 9.8MB
        Stripping app... done, 7.4MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-wheb-1.0.tar.gz... done, 1.7MB
+       Creating halcyon-build-hello-wheb-1.0.tar.gz... done, 1.7MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 7.0MB
 -----> Archiving install
-       Creating halcyon-app-install-1688650-hello-wheb-1.0.tar.gz... done, 1.6MB
+       Creating halcyon-install-2f3917f-hello-wheb-1.0.tar.gz... done, 1.6MB
 -----> Installing app into /app... done, 7.0MB
 
 -----> App deployed:                             <b>hello-wheb-1.0</b>
@@ -934,16 +970,22 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 <div class="toggle">
 <a class="toggle-button" data-target="hello-yesod-deploy" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="hello-yesod-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-yesod/">https://github.com/mietek/hello-yesod</a>
------> Cloning https://github.com/mietek/hello-yesod... done, 073431c
+-----> Cloning https://github.com/mietek/hello-yesod... done, 177cfa7
 -----> Deploying app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-yesod-1.0</b>
-       Source hash:                              <b>5ad16e2</b>
+       Source hash:                              <b>adda2a0</b>
        Constraints hash:                         <b>4ba3d77</b>
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-29.tar.gz... done, 172MB
 
 -----> Building sandbox layer
 -----> Creating sandbox
@@ -962,8 +1004,6 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
        Creating halcyon-sandbox-4ba3d77-hello-yesod-1.0.tar.gz... done, 38MB
 
 -----> Configuring app
-       Resolving dependencies...
-       Configuring hello-yesod-1.0...
 -----> Building app
        Building hello-yesod-1.0...
        Preprocessing executable 'hello-yesod' for hello-yesod-1.0...
@@ -975,16 +1015,16 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 
        Main.hs:10:1: Warning: Defined but not used: ‘resourcesHello’
        Linking dist/build/hello-yesod/hello-yesod ...
------> App built, 25MB
+-----> Built app, 25MB
        Stripping app... done, 20MB
 -----> Archiving build
-       Creating halcyon-app-build-hello-yesod-1.0.tar.gz... done, 3.9MB
+       Creating halcyon-build-hello-yesod-1.0.tar.gz... done, 3.9MB
 
 -----> Preparing install
-       Copying app
+       Including app
 -----> Install prepared, 19MB
 -----> Archiving install
-       Creating halcyon-app-install-5ad16e2-hello-yesod-1.0.tar.gz... done, 3.8MB
+       Creating halcyon-install-adda2a0-hello-yesod-1.0.tar.gz... done, 3.8MB
 -----> Installing app into /app... done, 19MB
 
 -----> App deployed:                             <b>hello-yesod-1.0</b>
