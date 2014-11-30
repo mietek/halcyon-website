@@ -66,6 +66,7 @@ Using Halcyon in production since June 2014, via [Haskell on Heroku](https://has
 $ halcyon deploy circuithub-api
 ```
 
+
 <div class="tweet">
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are a badass. Deploying <a href="http://t.co/gdTCjXQDAO">http://t.co/gdTCjXQDAO</a> is so slick now, I barely stop to think about it! <a href="https://twitter.com/hashtag/Halcyon?src=hash">#Halcyon</a> <a href="https://twitter.com/hashtag/HaskellOnHeroku?src=hash">#HaskellOnHeroku</a></p>&mdash; Rehno Lindeque (@RehnoLindeque) <a href="https://twitter.com/RehnoLindeque/status/536954909506437120">November 24, 2014</a></blockquote>
 </div>
@@ -102,6 +103,11 @@ For details, see:
 - [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps)
 - [`extra-data-files`](/reference/#halcyon_extra_data_files)
+
+
+<div class="tweet">
+<blockquote class="twitter-tweet"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
+</div>
 
 
 Haskell Language
@@ -206,6 +212,7 @@ For details, see:
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
 - [`extra-data-files`](/reference/#halcyon_extra_data_files)
 
+
 <div class="tweet">
 <blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/mietek">@mietek</a> you are absolutely amazing. Thank you!</p>&mdash; Brian McKenna (@puffnfresh) <a href="https://twitter.com/puffnfresh/status/527902645928087553">October 30, 2014</a></blockquote>
 </div>
@@ -225,6 +232,7 @@ Try PureScript
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/trypurescript/">https://github.com/mietek/trypurescript</a></span>
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
+
 
 <div class="tweet">
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> &#39;s HaskellOnHeroku looks excellent <a href="http://t.co/qjFh5rKVE7">http://t.co/qjFh5rKVE7</a></p>&mdash; Phil Freeman (@paf31) <a href="https://twitter.com/paf31/status/527900905900085248">October 30, 2014</a></blockquote>
@@ -271,6 +279,7 @@ For details, see:
 - [`include-layers`](/reference/#halcyon_include_layers)
 - [`extra-data-files`](/reference/#halcyon_extra_data_files)
 
+
 <div class="tweet">
 <blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/mietek">@mietek</a> The idea is fantastic!. But It need ghc and haste running in the instance to compile programs. That is the difficult thing</p>&mdash; Alberto G. Corona (@AGoCorona) <a href="https://twitter.com/AGoCorona/status/527731803432714240">October 30, 2014</a></blockquote>
 </div>
@@ -290,6 +299,7 @@ Wiki with _git_ file storage.
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/gitit/">https://github.com/mietek/gitit</a></span>
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
+
 
 <div class="tweet">
 <blockquote class="twitter-tweet" lang="en" data-conversation="none"><p><a href="https://twitter.com/mietek">@mietek</a> Woo-hoo! I can login gitit using github account! It&#39;s really magic!!!!!! <a href="https://t.co/WH0HGre790">https://t.co/WH0HGre790</a></p>&mdash; Myu-Myu- ATS-tan! (@masterq_mogumog) <a href="https://twitter.com/masterq_mogumog/status/532183331148804096">November 11, 2014</a></blockquote>
