@@ -34,7 +34,7 @@ Halcyon is a system for deploying Haskell web and non-web applications, powering
 
 ### Features
 
-- **Simple.**  Halcyon can deploy any Haskell application with a single command, building any required dependencies on the fly.
+- **Simple.**  Halcyon can deploy any Haskell application with a single command, building all required dependencies on the fly.
 
 - **Fast.**  All build results are archived in layers, which means incremental builds can be deployed in under 30 seconds.
 
