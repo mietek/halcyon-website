@@ -1,6 +1,11 @@
 ---
 title: “Hello, world!” shootout
 page-class: tweak-listings
+page-data:
+- key: max-section-link-level
+  value: 4
+- key: max-back-link-level
+  value: 4
 page-head: |
   <style>
     header a.link-shootout {
@@ -10,11 +15,13 @@ page-head: |
 ---
 
 
-“Hello, world!” shootout
+“Hello, world!” shootout { .with-toc }
 ========================
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
+<div><nav><ul class="toc toc1 menu open">
+- [First deploy times](#first-deploy-times)
 - [_hello-happstack_](#hello-happstack)
 - [_hello-mflow_](#hello-mflow)
 - [_hello-miku_](#hello-miku)
@@ -25,16 +32,18 @@ Simple applications, intended to compare build times and sizes across most Haske
 - [_hello-wai_](#hello-wai)
 - [_hello-wheb_](#hello-wheb)
 - [_hello-yesod_](#hello-yesod)
+</ul></nav></div>
 
-For more advanced applications, see the [examples](/examples/).
+For advanced applications, see the [examples](/examples/).
 
 
-### First deploy times
+First deploy times
+------------------
 
 <div class="chart" id="shootout-chart"></div>
 
 
-#### Methodology
+### Methodology
 
 The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch, using the [`--sandbox-rebuild`](/reference/#halcyon_sandbox_rebuild) option.
 
@@ -47,17 +56,17 @@ $ ./shootout.sh results.csv
 ```
 
 
-#### Commentary
+### Commentary
 
-As expected, the results show deploy time is dominated by building the sandbox.
+Unsurprisingly, the results show first deploy times are dominated by building sandboxes.  Halcyon attempts to mitigate the impact of sandbox build times:
 
 1.  Once the sandbox is built, Halcyon archives it as part of the [sandbox layer](/guide/#sandbox-layer), which is restored during subsequent deploys.
 
-2.  When building a new sandbox, Halcyon attempts to locate any previously built sandbox layers containing a subset of the required dependencies.  Each matching layer is assigned a score, and the highest scoring layer is used as a base for the new sandbox.
+2.  When building a new sandbox, Halcyon locates previously built sandbox layers containing a subset of the required dependencies.  Each matching layer is assigned a score, and the highest scoring layer is used as a base for the new sandbox.
 
-Halcyon supports building the application incrementally, by archiving and restoring the [build directory](/guide/#build-directory).
+Halcyon supports building the application incrementally, by archiving and restoring the [build directory](/guide/#build-directory).  A deploy involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
 
-When no build is needed, the application is restored from a previously archived [install directory](/guide/#install-directory).  This allows deploying each of the example applications in under 10 seconds.
+If no build is needed, the application is restored from a previously archived [install directory](/guide/#install-directory).  This allows deploying any of the example applications in under 10 seconds.
 
 
 _hello-happstack_
@@ -158,9 +167,11 @@ _hello-mflow_
 > Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow/)
 
 
-#### Points of interest
+### Points of interest
 
-Uses Halcyon to declare a build-time dependency on _cpphs_, and to constrain the dependencies of _cpphs_, by including the [`sandbox-extra-apps`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps) and [`sandbox-extra-apps-constraints`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps-constraints) magic files.  See the [reference](/reference/#halcyon_sandbox_extra_apps) for details.
+Uses Halcyon to declare a build-time dependency on _cpphs_, and to constrain the dependencies of _cpphs_, by including the [`sandbox-extra-apps`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps) and [`sandbox-extra-apps-constraints`](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/sandbox-extra-apps-constraints) magic files.
+
+For details, see the [reference](/reference/#halcyon_sandbox_extra_apps).
 
 
 #### `Main.hs`

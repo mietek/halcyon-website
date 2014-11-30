@@ -65,7 +65,7 @@ Intended to quickly determine the implicit constraints of an application, and to
 
 Not entirely a dry-run, because an [environment](#environment) may need to be installed.
 
-**NOTE:**  Recommended over `cabal freeze` because of Cabal issue [#1908](https://github.com/haskell/cabal/issues/1908).
+**Note:**  Recommended over `cabal freeze` because of Cabal issue [#1908](https://github.com/haskell/cabal/issues/1908).
 
 
 ### `halcyon paths`
@@ -81,7 +81,7 @@ Outputs a shell script which sets up the needed environment variables, based on 
 
 3. `LANG` is set to `C.UTF-8`, unless already set.
 
-**NOTE:**  Using a UTF-8 locale works around Cabal issue [#1883](https://github.com/haskell/cabal/issues/1883).
+**Note:**  Using a UTF-8 locale works around Cabal issue [#1883](https://github.com/haskell/cabal/issues/1883).
 
 
 General options
@@ -108,9 +108,9 @@ Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 
 Root of the path to the directory in which Halcyon installs applications.
 
-Intended to support constructing more advanced workflows.
+Intended to support constructing advanced workflows.
 
-_EXAMPLE:  If the [install directory](/guide/#install-directory) consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
+_Example:  If the [install directory](/guide/#install-directory) consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
 
 
 ### `HALCYON_PREFIX`
@@ -122,7 +122,7 @@ _EXAMPLE:  If the [install directory](/guide/#install-directory) consists of `bi
 
 Directory in which Halcyon installs applications.
 
-_EXAMPLE:  If the [install directory](/guide/#install-directory) consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
+_Example:  If the [install directory](/guide/#install-directory) consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
 
 
 ### `HALCYON_RESTORE_LAYERS`
@@ -201,7 +201,7 @@ Intended to support explicitly declaring the dependencies of any application whi
 
 Additional flags to specify when running `cabal configure`.
 
-**NOTE:**  Any `--prefix=`… flag will be ignored.
+**Note:**  Any `--prefix=`… flag will be ignored.
 
 
 ### `HALCYON_PRE_BUILD_HOOK`
@@ -297,7 +297,7 @@ The files are specified as file or directory paths relative to the [build direct
 
 Intended to support applications which do not declare all run-time data files as `data-files` in the Cabal package description.
 
-**NOTE:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
+**Note:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
 
 
 ### `HALCYON_INCLUDE_LAYERS`
@@ -445,7 +445,7 @@ Amazon Web Services password, used to authenticate S3 requests.
 
 Name of the Amazon S3 bucket in which Halcyon stores archives and constraints files.
 
-**NOTE:**  Specifying buckets located in S3 regions other than US Standard requires also specifying the appropriate [`HALCYON_S3_ENDPOINT`](#halcyon_s3_endpoint).
+**Note:**  Specifying buckets located in S3 regions other than US Standard requires also specifying the appropriate [`HALCYON_S3_ENDPOINT`](#halcyon_s3_endpoint).
 
 
 ### `HALCYON_S3_ENDPOINT`
@@ -586,7 +586,7 @@ Supported versions include:
 
 Name and URL of the Cabal repository referenced by the Cabal package database in the [Cabal layer](/guide/#cabal-layer), in `remote-repo` format.
 
-**NOTE:**  Cannot work around Cabal issue [#936](https://github.com/haskell/cabal/issues/936), which means HTTPS URLs are not supported.
+**Note:**  Cannot work around Cabal issue [#936](https://github.com/haskell/cabal/issues/936), which means HTTPS URLs are not supported.
 
 
 ### `HALCYON_CABAL_PRE_BUILD_HOOK`
@@ -675,7 +675,7 @@ The packages are made available for installation by running `cabal sandbox add-s
 - directory paths
 - _git_ URLs
 
-**NOTE:**  Implements Cabal feature requests [#1534](https://github.com/haskell/cabal/issues/1534) and [#2189](https://github.com/haskell/cabal/issues/2189).
+**Note:**  Implements Cabal feature requests [#1534](https://github.com/haskell/cabal/issues/1534) and [#2189](https://github.com/haskell/cabal/issues/2189).
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS`
@@ -696,7 +696,7 @@ The applications may be specified as:
 
 Intended to support installing Cabal `build-tools`, such as _alex_ or _happy_.
 
-**NOTE:**  Works around Cabal issues [#220](https://github.com/haskell/cabal/issues/220) and [#779](https://github.com/haskell/cabal/issues/779).
+**Note:**  Works around Cabal issues [#220](https://github.com/haskell/cabal/issues/220) and [#779](https://github.com/haskell/cabal/issues/779).
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS_CONSTRAINTS`
@@ -735,7 +735,7 @@ Additional flags to specify when running `cabal configure --dependencies-only`.
 
 Additional OS libraries to install in the [sandbox layer](/guide/#sandbox-layer), as build-time dependencies.
 
-**NOTE:**  Support is currently limited to libraries available on Ubuntu, via `apt-get`.
+**Note:**  Support is currently limited to libraries available on Ubuntu, via `apt-get`.
 
 
 ### `HALCYON_SANDBOX_PRE_BUILD_HOOK`

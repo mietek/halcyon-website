@@ -93,7 +93,7 @@ Concepts
 Setting up a machine
 --------------------
 
-To set up one machine for both building and deploying applications:
+To set up one machine for building and deploying applications:
 
 1.  [Provision a machine](#provisioning-a-machine) with one of the supported operating systems, and install the required OS packages.
 
@@ -102,14 +102,9 @@ To set up one machine for both building and deploying applications:
 
 ### Provisioning a machine
 
-Halcyon is designed to deploy applications by building everything on the fly, as needed.  If there is no need to build anything, deployment consists of restoring a single application install archive.  This should not consume any significant machine resources, and is expected to finish in under 10 seconds.
+Halcyon is designed to deploy applications by building any required dependencies on the fly.
 
-
-#### Hardware requirements
-
-The build machine must be capable of compiling and linking Haskell programs.  At least 8GB of memory is recommended, and as many cores as possible.  Halcyon will use all available cores to build packages in parallel.
-
-Many common Cabal packages will fail to build with less than 2GB of memory available.  However, deploying already built applications on the same machine should work perfectly well.
+The build machine must be capable of compiling and linking Haskell programs.  At least 8GB of memory is recommended, as many common Cabal packages will fail to build on a machine with with less than 2GB of memory available.  Halcyon will use all available cores to build packages in parallel.
 
 
 #### Supported platforms
@@ -143,7 +138,7 @@ $ apt-get install build-essential git-core libgmp3c2 pigz zlib1g-dev
 $ apt-get install --reinstall ca-certificates
 ```
 
-**NOTE:**  Reinstalling _ca-certificates_ is required to fix _git_ cloning over HTTPS.
+**Note:**  Reinstalling _ca-certificates_ is required to fix _git_ cloning over HTTPS.
 
 
 ### Installing Halcyon
@@ -216,7 +211,7 @@ $ export HALCYON_S3_BUCKET=...
 
 By default, all files uploaded to the bucket are assigned the `private` S3 access control list.  To make any subsequent uploads available publicly, set [`HALCYON_S3_ACL`](/reference/#halcyon_s3_acl) to `public-read`.
 
-**NOTE:**  The default S3 endpoint, `s3.amazonaws.com`, can only be used for buckets located in the US Standard region.  To use a bucket located in a different region, set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the appropriate address, such as `s3-eu-west-1.amazonaws.com`.
+**Note:**  The default S3 endpoint, `s3.amazonaws.com`, can only be used for buckets located in the US Standard region.  To use a bucket located in a different region, set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the appropriate address, such as `s3-eu-west-1.amazonaws.com`.
 
 To prevent Halcyon from uploading any files to the bucket, set [`HALCYON_NO_UPLOAD`](/reference/#halcyon_no_upload) to `1`.
 

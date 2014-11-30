@@ -14,7 +14,7 @@ page-head: |
 Example applications { .with-toc }
 ====================
 
-Real-world Haskell applications, intended to showcase the depth of customization possible with Halcyon.
+Real-world Haskell applications, demonstrating advanced Halcyon features.
 
 
 </section></section></section></div>
@@ -46,7 +46,7 @@ Real-world Haskell applications, intended to showcase the depth of customization
 </ul>
 </nav></div>
 
-For less advanced examples, see the [shootout](/shootout/).
+For simple applications, see the [shootout](/shootout/).
 
 
 CircuitHub

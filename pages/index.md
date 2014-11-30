@@ -26,28 +26,19 @@ Halcyon
 
 Halcyon is a system for deploying Haskell web and non-web applications, powering [Haskell on Heroku](https://haskellonheroku.com/).
 
-**Pre-release version.  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.**
-
-
-### Features
+**Pre-release version.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.
 
 > _“If Halcyon is not helping you deploy applications easily, then there is a bug in Halcyon.”_\
 > — With apologies to [Jordan Sissel](https://github.com/jordansissel/fpm/)
 
 
-#### Simple
+### Features
 
-Halcyon can deploy any Haskell application with a single command, building any required dependencies on the fly.
+- **Simple.**  Halcyon can deploy any Haskell application with a single command, building any required dependencies on the fly.
 
+- **Fast.**  All build results are archived in layers, which means incremental builds can be deployed in under 30 seconds.
 
-#### Fast
-
-All build results are archived in layers, which means incremental builds can be deployed in under 30 seconds.
-
-
-#### Reliable
-
-Halcyon allows all build-time and run-time dependencies to be declared explicitly, achieving 100% reproducible results.
+- **Reliable.**  Halcyon allows all build-time and run-time dependencies to be explicitly declared, achieving 100% reproducible results.
 
 
 ### Support
@@ -62,7 +53,7 @@ Need commercial support?  Contact the [author](#about) directly.
 Examples
 --------
 
-[Real-world Haskell applications](/examples/), intended to showcase the depth of customization possible with Halcyon.
+[Real-world Haskell applications](/examples/), demonstrating advanced Halcyon features.
 
 </section></section></section></div>
 <div class="gallery-background">
@@ -112,7 +103,7 @@ $ source <( ~/halcyon/halcyon paths )
 ```
 
 
-### Deploying an application
+### Deploying
 
 The [`halcyon deploy`](/reference/#halcyon-deploy) command accepts directories, Cabal packages, and _git_ URLs.
 
@@ -139,7 +130,7 @@ With an [install directory](/guide/#install-directory) archive available, deploy
 </div>
 
 
-### Deploying an environment
+#### Deploying an environment
 
 The [`halcyon deploy`](/reference/#halcyon-deploy) command can also be used to install a full Haskell development environment.
 
@@ -179,7 +170,7 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 </nav></div>
 
 
-#### Dependencies
+#### Internal documentation
 
 Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions.
 
