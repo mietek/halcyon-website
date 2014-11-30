@@ -111,18 +111,19 @@ With an [install directory](/guide/#install-directory) archive available, deploy
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/hello/">https://github.com/mietek/hello</a>
------> Cloning https://github.com/mietek/hello... done, 197a7ad
+-----> Cloning https://github.com/mietek/hello... done, 3091b75
+-----> Preparing source directory
 -----> Deploying app from install
        Prefix:                                   <b>/app</b>
        Label:                                    <b>hello-1.0</b>
-       Source hash:                              <b>e64e9a7</b>
+       Source hash:                              <b>a5d944b</b>
        External storage:                         <b>public</b>
 
 -----> Restoring install
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-e64e9a7-hello-1.0.tar.gz... done
-       Extracting halcyon-install-e64e9a7-hello-1.0.tar.gz... done, 872KB
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-a5d944b-hello-1.0.tar.gz... done
+       Extracting halcyon-install-a5d944b-hello-1.0.tar.gz... done, 876KB
 -----> Install restored
------> Installing app into /app... done, 868KB
+-----> Installing app into /app... done
 
 -----> App deployed:                             <b>hello-1.0</b>
 </code></pre>
@@ -151,8 +152,8 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 -----> Locating Cabal layers
        Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
 -----> Restoring Cabal layer
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-25.tar.gz... done
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-25.tar.gz... done, 169MB
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-30.tar.gz... done
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-30.tar.gz... done, 172MB
 
 -----> Environment deployed
 </code></pre>
