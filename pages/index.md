@@ -110,7 +110,7 @@ With an [install directory](/guide/#install-directory) archive available, deploy
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy1"><code># halcyon deploy <a href="https://github.com/mietek/hello/">https://github.com/mietek/hello</a>
+<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/hello/">https://github.com/mietek/hello</a>
 -----> Cloning https://github.com/mietek/hello... done, 197a7ad
 -----> Deploying app from install
        Prefix:                                   <b>/app</b>
@@ -137,7 +137,7 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy2"><code># halcyon deploy
+<pre class="toggle" id="deploy2"><code>$ halcyon deploy
 -----> Deploying environment
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
