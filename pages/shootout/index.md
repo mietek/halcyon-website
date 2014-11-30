@@ -80,9 +80,6 @@ _hello-happstack_
 > App size:            | 12MB
 > Source code:         | [_hello-happstack_](https://github.com/mietek/hello-happstack/)
 
-
-#### `Main.hs`
-
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-happstack-source" href="" title="Toggle">Toggle</a>
 <pre class="toggle open textmate-source" id="hello-happstack-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Happstack.Lite</span></span>
@@ -270,9 +267,6 @@ _hello-miku_
 > App size:            | 13MB
 > Source code:         | [_hello-miku_](https://github.com/mietek/hello-miku/)
 
-
-#### `Main.hs`
-
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-miku-source" href="" title="Toggle">Toggle</a>
 <pre class="toggle open textmate-source" id="hello-miku-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Network.Miku</span></span>
@@ -356,9 +350,6 @@ _hello-scotty_
 > App size:            | 12MB
 > Source code:         | [_hello-scotty_](https://github.com/mietek/hello-scotty/)
 
-
-#### `Main.hs`
-
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-scotty-source" href="" title="Toggle">Toggle</a>
 <pre class="toggle open textmate-source" id="hello-scotty-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">System.Environment</span></span>
@@ -440,9 +431,6 @@ _hello-simple_
 > Sandbox size:        | 100MB
 > App size:            | 7MB
 > Source code:         | [_hello-simple_](https://github.com/mietek/hello-simple/)
-
-
-#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-simple-source" href="" title="Toggle">Toggle</a>
@@ -532,9 +520,6 @@ _hello-snap_
 > App size:            | 11MB
 > Source code:         | [_hello-snap_](https://github.com/mietek/hello-snap/)
 
-
-#### `Main.hs`
-
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-snap-source" href="" title="Toggle">Toggle</a>
 <pre class="toggle open textmate-source" id="hello-snap-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Snap.Core</span></span>
@@ -622,9 +607,6 @@ _hello-spock_
 > App size:            | 12MB
 > Source code:         | [_hello-spock_](https://github.com/mietek/hello-spock/)
 
-
-#### `Main.hs`
-
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-spock-source" href="" title="Toggle">Toggle</a>
 <pre class="toggle open textmate-source" id="hello-spock-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">System.Environment</span></span>
@@ -706,9 +688,6 @@ _hello-wai_
 > Sandbox size:        | 45MB
 > App size:            | 6MB
 > Source code:         | [_hello-wai_](https://github.com/mietek/hello-wai/)
-
-
-#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-wai-source" href="" title="Toggle">Toggle</a>
@@ -800,9 +779,6 @@ _hello-wheb_
 > App size:            | 10MB
 > Source code:         | [_hello-wheb_](https://github.com/mietek/hello-wheb/)
 
-
-#### `Main.hs`
-
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-wheb-source" href="" title="Toggle">Toggle</a>
 <pre class="toggle open textmate-source" id="hello-wheb-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">System.Environment</span></span>
@@ -887,9 +863,6 @@ _hello-yesod_
 > Sandbox size:        | 250MB
 > App size:            | 25MB
 > Source code:         | [_hello-yesod_](https://github.com/mietek/hello-yesod/)
-
-
-#### `Main.hs`
 
 <div class="toggle">
 <a class="toggle-button open" data-target="hello-yesod-source" href="" title="Toggle">Toggle</a>

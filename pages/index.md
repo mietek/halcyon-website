@@ -97,10 +97,9 @@ Halcyon is installed with _git_, and automatically keeps itself up-to-date.
 
 The [`halcyon paths`](/reference/#halcyon-paths) command helps set environment variables.
 
-```
-$ git clone https://github.com/mietek/halcyon ~/halcyon
-$ source <( ~/halcyon/halcyon paths )
-```
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
+<span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
+</code></pre>
 
 
 ### Deploying

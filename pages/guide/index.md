@@ -28,12 +28,11 @@ Quick start
 
 Set up a Ubuntu 14.04 LTS (`x86_64`) machine with 8GB of memory, and install Halcyon.
 
-```
-$ apt-get update
-$ apt-get install build-essential git pigz zlib1g-dev
-$ git clone https://github.com/mietek/halcyon ~/halcyon
-$ source <( ~/halcyon/halcyon paths )
-```
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">apt-get update</span>
+<span class="prompt">$</span> <span class="input">apt-get install build-essential git pigz zlib1g-dev</span>
+<span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
+<span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
+</code></pre>
 
 Done!  Halcyon is now ready to deploy any of the [example applications](/examples/).
 
@@ -95,10 +94,9 @@ $ apt-get install --reinstall ca-certificates
 
 Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`halcyon paths`](/reference/#halcyon-paths) helps set environment variables.
 
-```
-$ git clone https://github.com/mietek/halcyon ~/halcyon
-$ source <( ~/halcyon/halcyon paths )
-```
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
+<span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
+</code></pre>
 
 
 #### Self-updates
