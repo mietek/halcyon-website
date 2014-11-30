@@ -45,7 +45,7 @@ First deploy times
 
 ### Methodology
 
-The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch, using the [`--sandbox-rebuild`](/reference/#halcyon_sandbox_rebuild) option.
+The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch, using the [`--sandbox-rebuild`](/reference/#halcyon_sandbox_rebuild) option.  The [environment](/guide/#layers) is restored from local cache.
 
 The times given are _mean [lower bound, upper bound]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
 
@@ -1174,16 +1174,26 @@ function fix(float) {
 }
 function drawChart() {
   var data = new google.visualization.DataTable();
+  var envName, sandboxName, appName;
+  if (cannot.getLayout() === 'small') {
+    envName = 'Environment';
+    sandboxName = 'Sandbox';
+    appName = 'Application';
+  } else {
+    envName = 'Restoring environment';
+    sandboxName = 'Building sandbox';
+    appName = 'Building and installing application';
+  }
   data.addColumn('string', 'Name');
-  data.addColumn('number', 'Environment restore time');
+  data.addColumn('number', envName);
   data.addColumn({ type: 'number', role: 'interval' });
   data.addColumn({ type: 'number', role: 'interval' });
   data.addColumn({ type: 'string', role: 'tooltip' });
-  data.addColumn('number', 'Sandbox build time');
+  data.addColumn('number', sandboxName);
   data.addColumn({ type: 'number', role: 'interval' });
   data.addColumn({ type: 'number', role: 'interval' });
   data.addColumn({ type: 'string', role: 'tooltip' });
-  data.addColumn('number', 'Application build and install time');
+  data.addColumn('number', appName);
   data.addColumn({ type: 'number', role: 'interval' });
   data.addColumn({ type: 'number', role: 'interval' });
   data.addColumn({ type: 'string', role: 'tooltip' });
@@ -1196,11 +1206,11 @@ function drawChart() {
     if (deployLow !== deployHigh) {
       deployValue += ' [' + deployLow + 's, ' + deployHigh + 's]';
     }
-    var deployTip = 'First deploy time: ' + deployValue;
+    var deployTip = 'Total: ' + deployValue;
     var envMean = mean(result.envTimes);
     var envLow = low(result.envTimes);
     var envHigh = high(result.envTimes);
-    var envTip = 'Environment restore time: ' + fix(envMean) + 's';
+    var envTip = 'Restoring environment: ' + fix(envMean) + 's';
     if (envLow !== envHigh) {
       envTip += ' [' + envLow + 's, ' + envHigh + 's]';
     }
@@ -1208,7 +1218,7 @@ function drawChart() {
     var sandboxMean = mean(result.sandboxTimes);
     var sandboxLow = low(result.sandboxTimes);
     var sandboxHigh = high(result.sandboxTimes);
-    var sandboxTip = 'Sandbox build time: ' + fix(sandboxMean) + 's';
+    var sandboxTip = 'Building sandbox: ' + fix(sandboxMean) + 's';
     if (sandboxLow !== sandboxHigh) {
       sandboxTip += ' [' + sandboxLow + 's, ' + sandboxHigh + 's]';
     }
@@ -1216,7 +1226,7 @@ function drawChart() {
     var appMean = mean(result.appTimes);
     var appLow = low(result.appTimes);
     var appHigh = high(result.appTimes);
-    var appTip = 'Application build and install time: ' + fix(appMean) + 's';
+    var appTip = 'Building and installing application: ' + fix(appMean) + 's';
     if (appLow !== appHigh) {
       appTip += ' [' + appLow + 's, ' + appHigh + 's]';
     }
@@ -1228,16 +1238,16 @@ function drawChart() {
   var options = {
     chartArea: {
       left: '33.33333333%',
-      top: 0,
+      top: '4.545454545%',
       width: '100%',
-      height: '90%'
+      height: '90.90909091%'
     },
-    colors: ['#9e9792', '#3f96f0'],
+    colors: ['#6d6661', '#3f96f0', '#9e9792'],
     dataOpacity: 0.8,
     fontName: 'concourse-t3',
     fontSize: cannot.getFontSize() * 3/4,
     hAxis: {
-      baselineColor: '#cec7c2',
+      baselineColor: '#9e9792',
       format: '#s',
       gridlines: { color: '#cec7c2' },
       minValue: 0,
@@ -1247,7 +1257,7 @@ function drawChart() {
     },
     isStacked: true,
     legend: {
-      position: 'left',
+      position: 'top',
       textStyle: { color: '#6d6661' }
     },
     tooltip: {
