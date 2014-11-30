@@ -1,9 +1,6 @@
 ---
 title: Example applications
-page-class: rule-before-h3 tweak-gallery tweak-listings
-page-data:
-- key: max-back-link-level
-  value: 3
+page-class: tweak-gallery tweak-listings
 page-head: |
   <meta name="twitter:widgets:link-color" content="#3f96f0">
   <style>
@@ -64,7 +61,7 @@ CircuitHub
 
 Electronics manufacturing service, built for hardware startups.
 
-Using Halcyon since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
+Using Halcyon in production since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 <div class="tweet">
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are a badass. Deploying <a href="http://t.co/gdTCjXQDAO">http://t.co/gdTCjXQDAO</a> is so slick now, I barely stop to think about it! <a href="https://twitter.com/hashtag/Halcyon?src=hash">#Halcyon</a> <a href="https://twitter.com/hashtag/HaskellOnHeroku?src=hash">#HaskellOnHeroku</a></p>&mdash; Rehno Lindeque (@RehnoLindeque) <a href="https://twitter.com/RehnoLindeque/status/536954909506437120">November 24, 2014</a></blockquote>
@@ -83,7 +80,7 @@ How I Start
 
 Collection of development tutorials.
 
-Using Halcyon since July 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
+Using Halcyon in production since July 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 
 Haskell Language
