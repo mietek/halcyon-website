@@ -62,6 +62,8 @@ Need commercial support?  Contact the [author](#about) directly.
 Examples
 --------
 
+[Real-world Haskell applications](/examples/), intended to showcase the depth of customization possible with Halcyon.
+
 </section></section></section></div>
 <div class="gallery-background">
 <div class="wrapper">
@@ -77,11 +79,6 @@ Examples
 <a href="/examples/#gitit" class="gallery-item" id="item-gitit">Gitit</a>
 </div></div></div></div>
 <div class="wrapper"><section><section><section>
-
-
-### Real-world applications
-
-Halcyon is being used in production since June 2014.
 
 <div id="gallery-links"><nav>
 <ul class="menu open">
@@ -99,7 +96,7 @@ Halcyon is being used in production since June 2014.
 
 ### “Hello, world!” shootout
 
-Additional [simple examples](/shootout/) are available, comparing build times and sizes across most Haskell web frameworks.
+[Simple applications](/shootout/), intended to compare build times and sizes across most Haskell web frameworks.
 
 
 Usage
@@ -110,8 +107,8 @@ Halcyon is installed with _git_, and automatically keeps itself up-to-date.
 The [`halcyon paths`](/reference/#halcyon-paths) command helps set environment variables.
 
 ```
-# git clone https://github.com/mietek/halcyon ~/halcyon
-# source <( ~/halcyon/halcyon paths )
+$ git clone https://github.com/mietek/halcyon ~/halcyon
+$ source <( ~/halcyon/halcyon paths )
 ```
 
 
@@ -176,8 +173,6 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 
 <div><nav>
 <ul class="menu open">
-<li><a href="/examples/">Example applications</a></li>
-<li><a href="/shootout/">“Hello, world!” shootout</a></li>
 <li><a href="/guide/">User’s guide</a></li>
 <li><a href="/reference/">Programmer’s reference</a></li>
 <li><a href="https://github.com/mietek/halcyon/">Source code</a></li>
