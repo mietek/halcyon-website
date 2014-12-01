@@ -97,6 +97,18 @@ Directory in which Halcyon restores or builds [layers](/guide/#layers).
 Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 
 
+### `HALCYON_PREFIX`
+
+> ---------------------|---
+> Default value:       | [`HALCYON_BASE`](#halcyon_base)
+> Type:                | directory path
+> Command-line option: | `--prefix=`…
+
+Directory in which Halcyon installs applications.
+
+_**Example:**  If the [install directory](/guide/#install-directory) consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
+
+
 ### `HALCYON_ROOT`
 
 > ---------------------|---
@@ -111,30 +123,6 @@ Intended to support constructing advanced workflows.
 _**Example:**  If the [install directory](/guide/#install-directory) consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
 
 
-### `HALCYON_PREFIX`
-
-> ---------------------|---
-> Default value:       | [`HALCYON_BASE`](#halcyon_base)
-> Type:                | directory path
-> Command-line option: | `--prefix=`…
-
-Directory in which Halcyon installs applications.
-
-_**Example:**  If the [install directory](/guide/#install-directory) consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
-
-
-### `HALCYON_RESTORE_LAYERS`
-
-> ---------------------|---
-> Default value:       | `0`
-> Type:                | `0` or `1`
-> Command-line option: | `--restore-layers`
-
-Forces Halcyon to restore all [layers](/guide/#layers), even when an [install directory](/guide/#install-directory) archive is available.
-
-Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`](#halcyon_post_install_hook) is executed.
-
-
 ### `HALCYON_NO_APP`
 
 > ---------------------|---
@@ -145,30 +133,6 @@ Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`
 Forces Halcon to deploy GHC and Cabal only, even when the current directory is a [source directory](/guide/#source-directory).
 
 The versions of GHC and _cabal-install_ to deploy are specified by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
-
-
-### `HALCYON_NO_BUILD`
-
-> ---------------------|---
-> Default value:       | `0`
-> Type:                | `0` or `1`
-> Command-line option: | `--no-build`
-
-Prevents building any [layers](/guide/#layers), or the application.
-
-Intended to use on dedicated deploy machines.
-
-
-### `HALCYON_NO_BUILD_LAYERS`
-
-> ---------------------|---
-> Default value:       | `0`
-> Type:                | `0` or `1`
-> Command-line option: | `--no-build-layers`
-
-Prevents building any [layers](/guide/#layers).
-
-Intended to use on deploy machines, which are also capable of building the application.
 
 
 ### `HALCYON_LOG_TIMESTAMP`
@@ -256,6 +220,30 @@ Forces Halcyon to build the application from scratch.
 Forces Halcyon to run `cabal configure` again.
 
 
+### `HALCYON_NO_BUILD`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--no-build`
+
+Prevents building any [layers](/guide/#layers), or the application.
+
+Intended to use on dedicated deploy machines.
+
+
+### `HALCYON_NO_BUILD_LAYERS`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--no-build-layers`
+
+Prevents building any [layers](/guide/#layers).
+
+Intended to use on deploy machines, which are also capable of building the application.
+
+
 Install-time options
 --------------------
 
@@ -319,6 +307,18 @@ Intended to support applications which do not declare all run-time data files as
 Forces Halcyon to include all layers in the [install directory](/guide/#install-directory), as run-time dependencies.
 
 Intended to support applications requiring GHC at run-time.
+
+
+### `HALCYON_RESTORE_LAYERS`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--restore-layers`
+
+Forces Halcyon to restore all [layers](/guide/#layers), even when an [install directory](/guide/#install-directory) archive is available.
+
+Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`](#halcyon_post_install_hook) is executed.
 
 
 ### `HALCYON_PRE_INSTALL_HOOK`
