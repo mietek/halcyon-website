@@ -116,17 +116,15 @@ Halcyon requires write access to the `/app` directory, which is where layers are
 Sourcing the output of [`halcyon paths`](/reference/#halcyon-paths) sets up the necessary environment variables, based on the path to the application directory.  This is best done as part of a `.profile` script.
 
 
-Concepts
+Concepts { .rule-before-h3 }
 --------
 
-**Pre-release version.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.
-
-**TODO**
+_TODO_
 
 
 ### Dependencies
 
-**TODO**
+_TODO_
 
 
 #### Build-time dependencies
@@ -153,14 +151,14 @@ Halcyon also supports declaring additional run-time dependencies:
 
 #### Magic files
 
-**TODO**
+_TODO_
 
 
 ### Layers
 
 The GHC and Cabal layers form a full Haskell development environment.
 
-**TODO**
+_TODO_
 
 
 #### GHC layer
@@ -170,7 +168,7 @@ The GHC and Cabal layers form a full Haskell development environment.
 > Directory path:      | [`HALCYON_BASE`](/reference/#halcyon_base)`/ghc`
 > Archive name:        | `halcyon-ghc-`_`ghc_version`_`-`_`ghc_magic_hash`_`.tar.gz`
 
-**TODO**
+_TODO_
 
 
 #### Cabal layer
@@ -180,7 +178,7 @@ The GHC and Cabal layers form a full Haskell development environment.
 > Directory path:      | [`HALCYON_BASE`](/reference/#halcyon_base)`/cabal`
 > Archive name:        | `halcyon-cabal-`_`cabal_version`_`-`_`cabal_magic_hash`_`-`_`cabal_repo_name`_`-`_`cabal_date`_`.tar.gz`
 
-**TODO**
+_TODO_
 
 
 #### Sandbox layer
@@ -189,12 +187,12 @@ The GHC and Cabal layers form a full Haskell development environment.
 > Directory path:      | [`HALCYON_BASE`](/reference/#halcyon_base)`/sandbox`
 > Archive name:        | `halcyon-sandbox-`_`constraints_hash`_`-`_`sandbox_magic_hash`_`-`_`label`_`.tar.gz`
 
-**TODO**
+_TODO_
 
 
 ### Application
 
-**TODO**
+_TODO_
 
 
 #### Source directory
@@ -216,7 +214,7 @@ Any [magic files](#magic-files) corresponding to the specified options are creat
 > Directory path:      | _temporary_
 > Archive name:        | `halcyon-build-`_`label`_`.tar.gz`
 
-**TODO**
+_TODO_
 
 
 #### Install directory
@@ -225,7 +223,7 @@ Any [magic files](#magic-files) corresponding to the specified options are creat
 > Directory path:      | _temporary_
 > Archive name:        | `halcyon-install-`_`source_hash`_`-`_`label`_`.tar.gz`
 
-**TODO**
+_TODO_
 
 
 ### Cache
@@ -249,7 +247,7 @@ The files available in public storage include all layer, build directories, and 
 
 #### Private storage
 
-**TODO**
+_TODO_
 
 
 Setting up multiple machines
