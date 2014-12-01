@@ -92,7 +92,7 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://has
 
 #### Dependencies
 
-Includes [magic files](https://github.com/mietek/howistart.org/tree/master/.halcyon-magic/) to declare:
+Includes [magic files](/guide/#magic-files) to declare:
 
 - build-time dependency on _alex_
 - version constraints for dependencies of _alex_
@@ -128,7 +128,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 #### Dependencies
 
-Includes [magic files](https://github.com/mietek/hl/tree/master/.halcyon-magic/) to declare:
+Includes [magic files](/guide/#magic-files) to declare:
 
 - build-time dependencies on _alex_, _happy_, the OS _libicu_ library, and a patched version of _text-icu_
 - version constraints for dependencies of _alex_ and _happy_
@@ -163,7 +163,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 
 #### Dependencies
 
-Includes [magic files](https://github.com/mietek/tryhaskell/tree/master/.halcyon-magic/) to declare:
+Includes [magic files](/guide/#magic-files) to declare:
 
 - build-time dependency on the current version of _mueval_
 - custom script to run after building the sandbox
@@ -196,7 +196,7 @@ Try Idris
 
 #### Dependencies
 
-Includes [magic files](https://github.com/mietek/tryidris/tree/master/.halcyon-magic/) to declare:
+Includes [magic files](/guide/#magic-files) to declare:
 
 - custom script to run before archiving the [install directory](/guide/#install-directory), installing Idris as a run-time dependency with a recursive invocation of Halcyon, and declaring:
     - build-time dependency for Idris on _alex_
@@ -257,7 +257,7 @@ Try Haste
 
 #### Dependencies
 
-Includes [magic files](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/) to declare:
+Includes [magic files](/guide/#magic-files) to declare:
 
 - build-time dependency on _cpphs_
 - version constraints for dependencies of _cpphs_

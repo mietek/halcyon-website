@@ -264,7 +264,7 @@ $ PORT=8080 hello-mflow
 
 #### Dependencies
 
-Includes [magic files](https://github.com/mietek/hello-mflow/tree/master/.halcyon-magic/) to declare:
+Includes [magic files](/guide/#magic-files) to declare:
 
 - build-time dependency on _cpphs_
 - version constraints for dependencies of _cpphs_

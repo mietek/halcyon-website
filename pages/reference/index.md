@@ -41,7 +41,7 @@ All labels are Cabal package names, with or without a `-`_`version`_ suffix.
 
 For all _git_ URLs, the `master` branch is used by default.  Other branches may be specified with a `#`_`branch`_ suffix.
 
-[Most options](#general-options) can be specified either on the command-line, or by setting environment variables.  Some options can also be specified by including magic files in the [source directory](/guide/#source-directory).  Command-line options take precedence over environment variables, which in turn take precedence over magic files.
+[Most options](#general-options) can be specified either on the command-line, or by setting environment variables.  Some options can also be specified by including [magic files](/guide/#magic-files) in the [source directory](/guide/#source-directory).  Command-line options take precedence over environment variables, which in turn take precedence over magic files.
 
 
 ### `halcyon label`

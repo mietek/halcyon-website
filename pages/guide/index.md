@@ -155,6 +155,11 @@ Halcyon also supports declaring additional run-time dependencies:
 - [`HALCYON_INCLUDE_LAYERS`](/reference/#halcyon_include_layers)
 
 
+#### Magic files
+
+**TODO**
+
+
 ### Layers
 
 The GHC and Cabal layers form a full Haskell development environment.
@@ -206,7 +211,7 @@ Before deploying an application, Halcyon makes a temporary copy of the original 
 
 The contents of the source directory are hashed to determine whether the application can be deployed by restoring an available [install directory](#install-directory) archive.
 
-Any magic files corresponding to the specified options are created in the source directory before hashing.
+Any [magic files](#magic-files) corresponding to the specified options are created in the source directory before hashing.
 
 
 #### Build directory
