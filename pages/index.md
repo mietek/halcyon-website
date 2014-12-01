@@ -130,7 +130,7 @@ With an [install directory](/guide/#install-directory) archive available, deploy
 </div>
 
 
-#### Deploying an environment
+#### Deploying GHC and Cabal only
 
 The [`halcyon deploy`](/reference/#halcyon-deploy) command can also be used to install a full Haskell development environment.
 
@@ -139,7 +139,7 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 <div class="toggle">
 <a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="deploy2"><code>$ halcyon deploy
------> Deploying environment
+-----> Deploying GHC and Cabal layers
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
@@ -155,7 +155,7 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-30.tar.gz... done
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-30.tar.gz... done, 172MB
 
------> Environment deployed
+-----> GHC and Cabal layers deployed
 </code></pre>
 </div>
 

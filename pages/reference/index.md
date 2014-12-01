@@ -35,7 +35,7 @@ The application may be specified as:
 - label
 - _git_ URL
 
-When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon deploys an [environment](#layers) only.  To ignore the current directory, specify [`--no-app`](#halcyon_no_app), or set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
+When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon deploys GHC and Cabal only.  To ignore the current directory, specify [`--no-app`](#halcyon_no_app), or set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
 
 All labels are Cabal package names, with or without a `-`_`version`_ suffix.
 
@@ -63,7 +63,7 @@ Outputs the constraints file of the specified application, in `cabal freeze` for
 
 Intended to quickly determine the implicit constraints of an application, and to help ensure any `cabal.config` files are overridden properly, when using options such as [`HALCYON_CONSTRAINTS`](#halcyon_constraints).
 
-Not entirely a dry-run, because an [environment](#layers) may need to be installed.
+Not entirely a dry-run, because GHC and Cabal may need to be installed.
 
 **Note:**  Recommended over `cabal freeze` because of Cabal issue [#1908](https://github.com/haskell/cabal/issues/1908).
 
@@ -144,7 +144,7 @@ Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`
 > Type:                | `0` or `1`
 > Command-line option: | `--no-app`
 
-Forces Halcon to deploy an [environment](#layers) only, even when the current directory is a [source directory](/guide/#source-directory).
+Forces Halcon to deploy GHC and Cabal only, even when the current directory is a [source directory](/guide/#source-directory).
 
 The versions of GHC and _cabal-install_ to deploy are specified by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
 
@@ -520,7 +520,7 @@ GHC layer options
 
 Default version of GHC to install or restore in the [GHC layer](/guide/#ghc-layer).
 
-Used when deploying an application with no constraints specified, or when deploying an [environment](#layers) only.
+Used when deploying an application with no constraints specified, or when deploying GHC and Cabal only.
 
 
 ### `HALCYON_GHC_PRE_BUILD_HOOK`

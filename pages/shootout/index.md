@@ -45,7 +45,7 @@ First deploy times
 
 ### Methodology
 
-The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch, using the [`--sandbox-rebuild`](/reference/#halcyon_sandbox_rebuild) option.  The [environment](/guide/#layers) is restored from local cache.
+The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch, using the [`--sandbox-rebuild`](/reference/#halcyon_sandbox_rebuild) option.  GHC and Cabal are restored from local cache.
 
 The times given are _mean [lower bound, upper bound]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
 
@@ -1176,11 +1176,11 @@ function drawChart() {
   var data = new google.visualization.DataTable();
   var envName, sandboxName, appName;
   if (cannot.getLayout() === 'small') {
-    envName = 'Environment';
+    envName = 'GHC and Cabal';
     sandboxName = 'Sandbox';
     appName = 'Application';
   } else {
-    envName = 'Restoring environment';
+    envName = 'Restoring GHC and Cabal';
     sandboxName = 'Building sandbox';
     appName = 'Building and installing application';
   }
@@ -1210,7 +1210,7 @@ function drawChart() {
     var envMean = mean(result.envTimes);
     var envLow = low(result.envTimes);
     var envHigh = high(result.envTimes);
-    var envTip = 'Restoring environment: ' + fix(envMean) + 's';
+    var envTip = 'Restoring GHC and Cabal: ' + fix(envMean) + 's';
     if (envLow !== envHigh) {
       envTip += ' [' + envLow + 's, ' + envHigh + 's]';
     }
