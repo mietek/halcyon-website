@@ -766,6 +766,22 @@ Forces Halcyon to rebuild the [sandbox layer](/guide/#sandbox-layer) and the app
 Self-update options
 -------------------
 
+### `HALCYON_DIR`
+
+> ---------------------|---
+> Default value:       | _variable_
+> Type:                | _read-only string_
+> Command-line option: | _none_
+
+Directory in which Halcyon is installed.
+
+Intended to support using Halcyon functions in hook scripts.
+
+```
+$ source "${HALCYON_DIR}/src.sh"
+```
+
+
 ### `HALCYON_URL`
 
 > ---------------------|---
