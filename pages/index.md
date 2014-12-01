@@ -26,8 +26,6 @@ Halcyon
 
 Halcyon is a system for deploying Haskell web and non-web applications, powering [Haskell on Heroku](https://haskellonheroku.com/).
 
-**Pre-release version.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/mietek">@mietek</a>.
-
 > _“If Halcyon is not helping you deploy applications easily, then there is a bug in Halcyon.”_\
 > — With apologies to [Jordan Sissel](https://github.com/jordansissel/fpm/)
 
@@ -43,9 +41,11 @@ Halcyon is a system for deploying Haskell web and non-web applications, powering
 
 ### Support
 
-Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues/).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues/) for problems with the documentation.
+**Pre-release version.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/halcyon_sh">@halcyon_sh</a>.
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
+
+Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues/).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues/) for problems with the documentation.
 
 Need commercial support?  Contact the [author](#about) directly.
 
