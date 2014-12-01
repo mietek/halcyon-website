@@ -2,10 +2,6 @@
 title: User’s guide
 page-class: add-main-toc tweak-listings
 page-data:
-- key: max-main-toc-level
-  value: 2
-- key: max-section-link-level
-  value: 4
 - key: max-back-link-level
   value: 3
 page-head: |

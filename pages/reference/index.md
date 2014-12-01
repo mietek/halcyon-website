@@ -2,10 +2,8 @@
 title: Programmer’s reference
 page-class: add-section-toc rule-before-h3 tweak-listings
 page-data:
-- key: max-section-link-level
-  value: 4
 - key: max-back-link-level
-  value: 4
+  value: 3
 page-head: |
   <style>
     header a.link-reference {

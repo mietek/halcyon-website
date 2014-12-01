@@ -1,11 +1,6 @@
 ---
 title: “Hello, world!” shootout
 page-class: tweak-listings
-page-data:
-- key: max-section-link-level
-  value: 4
-- key: max-back-link-level
-  value: 4
 page-head: |
   <style>
     header a.link-shootout {
