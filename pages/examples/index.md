@@ -60,7 +60,7 @@ CircuitHub
 
 Electronics manufacturing service, built for hardware startups.
 
-Using Halcyon in production since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
+Using Halcyon in production since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 ```
 $ halcyon deploy circuithub-api
@@ -83,7 +83,7 @@ How I Start
 
 Collection of development tutorials.
 
-Using Halcyon in production since July 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
+Using Halcyon in production since July 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/howistart.org/">https://github.com/mietek/howistart.org</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>

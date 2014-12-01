@@ -240,7 +240,7 @@ In order to delete the entire contents of the cache before deploying an applicat
 
 ### Storage
 
-Halcyon supports building and deploying applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent local storage.  This enables a number of use cases, such as [Haskell on Heroku](https://haskellonheroku.com/).
+Halcyon supports building and deploying applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent local storage.  This enables a number of use cases, such as [Haskell on Heroku](https://haskellonheroku.com/).
 
 
 #### Public storage
