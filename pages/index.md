@@ -5,11 +5,16 @@ page-class: hero tweak-gallery tweak-listings
 page-data:
 - key: min-section-link-level
   value: 1
+- key: min-back-link-level
+  value: 2
+- key: h2-back-link-target
+  value: halcyon
 header-class: hero
 main-class: hero
 hero: |
   <h1 class="logotype">Halcyon</h1>
   <p>Deploy any Haskell application.  Instantly.</p>
+  <div id="hero-button"><a href="#halcyon" title="More">More</a></div>
 page-footer: |
   <script>
     addEventListener('load', function () {
