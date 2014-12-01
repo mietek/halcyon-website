@@ -190,6 +190,11 @@ _TODO_
 _TODO_
 
 
+#### Magic hashes
+
+_TODO_
+
+
 ### Application
 
 _TODO_
