@@ -49,12 +49,14 @@ To set up one machine for building and deploying applications:
 
 Halcyon is designed to deploy applications by building all required dependencies on the fly.
 
-The build machine must be capable of compiling and linking Haskell programs.  At least 8GB of memory is recommended, as many common Cabal packages will fail to build on a machine with with less than 2GB of memory available.
+The build machine must be capable of compiling and linking Haskell programs.  At least 8GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2GB of memory available.
 
 
 #### Supported platforms
 
-Halcyon is written in a cross-platform fashion, and additional platforms to support are currently under consideration.
+Currently, Halcyon fully supports deploying to Ubuntu LTS (`x86_64`) only.
+
+Partial support is available for CentOS and OS X, minus the capability to install additional OS libraries.
 
 
 ##### Ubuntu 14.04 LTS (`x86_64`)
@@ -88,7 +90,9 @@ $ apt-get install --reinstall ca-certificates
 
 ### Installing Halcyon
 
-Halcyon is installed with _git_, and automatically keeps itself up-to-date.  [`halcyon paths`](/reference/#halcyon-paths) helps set environment variables.
+Halcyon is installed with _git_, and automatically keeps itself up-to-date.
+
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set environment variables.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
