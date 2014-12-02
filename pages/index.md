@@ -60,7 +60,7 @@ Examples
 
 [Real-world Haskell applications](/examples/), demonstrating advanced Halcyon features.
 
-</section></section></section></div>
+</section></section></div>
 <div class="gallery-background">
 <div class="wrapper">
 <div class="gallery-frame" id="examples-gallery">
@@ -74,7 +74,7 @@ Examples
 <a href="/examples/#try-haste" class="gallery-item" id="item-tryhaste">Try Haste</a>
 <a href="/examples/#gitit" class="gallery-item" id="item-gitit">Gitit</a>
 </div></div></div></div>
-<div class="wrapper"><section><section><section>
+<div class="wrapper"><section><section>
 
 <div id="gallery-links"><nav>
 <ul class="menu open">
@@ -172,6 +172,7 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 <li><a href="/guide/">User’s guide</a></li>
 <li><a href="/reference/">Programmer’s reference</a></li>
 <li><a href="https://github.com/mietek/halcyon/">Source code</a></li>
+</ul>
 </nav></div>
 
 

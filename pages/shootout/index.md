@@ -16,17 +16,17 @@ page-head: |
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
 <div><nav><ul class="toc toc1 menu open">
-- [First deploy times](#first-deploy-times)
-- [_hello-happstack_](#hello-happstack)
-- [_hello-mflow_](#hello-mflow)
-- [_hello-miku_](#hello-miku)
-- [_hello-scotty_](#hello-scotty)
-- [_hello-simple_](#hello-simple)
-- [_hello-snap_](#hello-snap)
-- [_hello-spock_](#hello-spock)
-- [_hello-wai_](#hello-wai)
-- [_hello-wheb_](#hello-wheb)
-- [_hello-yesod_](#hello-yesod)
+<li><a href="#first-deploy-times">First deploy times</a></li>
+<li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
+<li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
+<li><a href="#hello-miku"><i>hello-miku</i></a></li>
+<li><a href="#hello-scotty"><i>hello-scotty</i></a></li>
+<li><a href="#hello-simple"><i>hello-simple</i></a></li>
+<li><a href="#hello-snap"><i>hello-snap</i></a></li>
+<li><a href="#hello-spock"><i>hello-spock</i></a></li>
+<li><a href="#hello-wai"><i>hello-wai</i></a></li>
+<li><a href="#hello-wheb"><i>hello-wheb</i></a></li>
+<li><a href="#hello-yesod"><i>hello-yesod</i></a></li>
 </ul></nav></div>
 
 For advanced applications, see the [examples](/examples/).
