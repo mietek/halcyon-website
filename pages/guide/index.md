@@ -100,7 +100,7 @@ The source repository used for self-updates is defined by [`HALCYON_URL`](/refer
 
 #### Environment variables
 
-The [`halcyon paths`](/reference/#halcyon-paths) command helps set the environment variables needed by Halcyon.
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.
 
 ```
 $ source <( halcyon/halcyon paths )
@@ -242,14 +242,14 @@ In order to delete the entire contents of the cache before deploying an applicat
 
 ### Storage
 
-Halcyon supports building and deploying applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent local storage.  This enables a number of use cases, such as [Haskell on Heroku](https://haskellonheroku.com/).
+Halcyon supports building and deploying applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent local storage.  This is needed to support [Haskell on Heroku](https://haskellonheroku.com/).
 
 
 #### Public storage
 
 By default, Halcyon is configured to download any needed files from a public read-only location, defined by [`HALCYON_PUBLIC_STORAGE`](/reference/#halcyon_public_storage), and controlled by the [author](/#about).  To prevent using public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1`.
 
-The files available in public storage include all layer, build directories, and install directories needed for all example applications, and can be listed by visiting the [default location](https://s3.halcyon.sh/).
+The files available in public storage include all layer, build directories, and install directories needed for all [example applications](/examples/), and can be listed by visiting the [default location](https://s3.halcyon.sh/).
 
 
 #### Private storage

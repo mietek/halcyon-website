@@ -91,6 +91,11 @@ Examples
 </nav></div>
 
 
+<div class="tweet">
+<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
+</div>
+
+
 ### “Hello, world!” shootout
 
 [Simple applications](/shootout/), intended to compare build times and sizes across most Haskell web frameworks.
@@ -101,7 +106,7 @@ Usage
 
 Halcyon is installed with _git_, and automatically updates itself before executing any command.
 
-The [`halcyon paths`](/reference/#halcyon-paths) command helps set the environment variables needed by Halcyon.
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
@@ -112,7 +117,7 @@ The [`halcyon paths`](/reference/#halcyon-paths) command helps set the environme
 
 The [`halcyon deploy`](/reference/#halcyon-deploy) command accepts directories, Cabal packages, and _git_ URLs.
 
-With an [install directory](/guide/#install-directory) archive available, deploying an application is expected to take less than 10 seconds.
+Deploying a previously built application takes less than 10 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
@@ -134,26 +139,19 @@ With an [install directory](/guide/#install-directory) archive available, deploy
 </code></pre>
 </div>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
-
 
 #### Deploying to Heroku
 
-While Halcyon is not limited to web applications, [Haskell on Heroku](https://haskellonheroku.com/) uses Halcyon to enable push-button deployment to the [Heroku](https://heroku.com/) web application platform.
+While Halcyon is not limited to web applications, [Haskell on Heroku](https://haskellonheroku.com/) uses Halcyon for push-button deployment to the [Heroku](https://heroku.com/) web application platform.
 
-All public [example applications](/examples/) can be deployed to Heroku by pushing the appropriate button.
+All [example applications](/examples/) can be deployed to Heroku by pushing a button.
 
-
-<div class="tweet">
-<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
-</div>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
 
 
 #### Deploying GHC and Cabal only
 
-The [`halcyon deploy`](/reference/#halcyon-deploy) command can also be used to install a full Haskell development environment.
-
-With the needed [layer](/guide/#layers) archives available, this can be ready in under 20 seconds.
+The [`halcyon deploy`](/reference/#halcyon-deploy) command can also install a previously built Haskell development environment in under 20 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
@@ -179,7 +177,8 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 </div>
 
 
-### Documentation
+Documentation
+-------------
 
 <div><nav>
 <ul class="menu open">
@@ -190,7 +189,7 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 </nav></div>
 
 
-#### Internal documentation
+### Dependencies
 
 Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashmenot_](https://bashmenot.mietek.io/).
 

@@ -89,12 +89,7 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
-
-
-<div class="tweet">
-<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
-</div>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
 
 
 #### Dependencies
@@ -104,6 +99,11 @@ Includes [magic files](/guide/#magic-files) to declare:
 - build-time dependency on _alex_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
 - version constraints for dependencies of _alex_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
 - additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
+
+
+<div class="tweet">
+<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
+</div>
 
 
 Haskell Language
@@ -124,7 +124,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 <span class="prompt">$</span> <span class="input">PORT=8080 hl</span>
 </code></pre>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy<code> hl </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy<code> hl </code>to Heroku</a>
 
 
 #### Dependencies
@@ -158,7 +158,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 <span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
 </code></pre>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy<code> tryhaskell </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy<code> tryhaskell </code>to Heroku</a>
 
 
 #### Dependencies
@@ -189,12 +189,7 @@ Try Idris
 <span class="prompt">$</span> <span class="input">tryidris 8080</span>
 </code></pre>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy<code> tryidris </code>to Heroku</a>
-
-
-<div class="tweet">
-<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are absolutely amazing. Thank you!</p>&mdash; Brian McKenna (@puffnfresh) <a href="https://twitter.com/puffnfresh/status/527902645928087553">October 30, 2014</a></blockquote>
-</div>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy<code> tryidris </code>to Heroku</a>
 
 
 #### Dependencies
@@ -209,6 +204,11 @@ The custom script installs Idris with a recursive invocation of Halcyon, and dec
 - version constraints for dependencies of Idris, with [`constraints`](/reference/#halcyon_constraints)
 - build-time dependency for Idris on _alex_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
 - version constraints for dependencies of _alex_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
+
+
+<div class="tweet">
+<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are absolutely amazing. Thank you!</p>&mdash; Brian McKenna (@puffnfresh) <a href="https://twitter.com/puffnfresh/status/527902645928087553">October 30, 2014</a></blockquote>
+</div>
 
 
 Try PureScript
@@ -229,7 +229,7 @@ Try PureScript
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy<code> trypurescript </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy<code> trypurescript </code>to Heroku</a>
 
 
 <div class="tweet">
@@ -255,12 +255,7 @@ Try Haste
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhplay">Deploy<code> tryhaste </code>to Heroku</a>
-
-
-<div class="tweet">
-<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> The idea is fantastic!. But It need ghc and haste running in the instance to compile programs. That is the difficult thing</p>&mdash; Alberto G. Corona (@AGoCorona) <a href="https://twitter.com/AGoCorona/status/527731803432714240">October 30, 2014</a></blockquote>
-</div>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhplay">Deploy<code> tryhaste </code>to Heroku</a>
 
 
 #### Dependencies
@@ -281,6 +276,11 @@ The custom script installs Haste with a recursive invocation of Halcyon, and dec
 - custom script to bootstrap Haste, with [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
 
 
+<div class="tweet">
+<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> The idea is fantastic!. But It need ghc and haste running in the instance to compile programs. That is the difficult thing</p>&mdash; Alberto G. Corona (@AGoCorona) <a href="https://twitter.com/AGoCorona/status/527731803432714240">October 30, 2014</a></blockquote>
+</div>
+
+
 Gitit
 -----
 
@@ -299,7 +299,7 @@ Wiki with _git_ file storage.
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
 
-<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy<code> gitit </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy<code> gitit </code>to Heroku</a>
 
 
 <div class="tweet">

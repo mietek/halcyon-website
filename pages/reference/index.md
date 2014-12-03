@@ -289,7 +289,7 @@ Intended to support explicitly declaring the dependencies of any application whi
 
 Additional files to include in the [install directory](/guide/#install-directory), as run-time dependencies.
 
-The files are specified as file or directory paths relative to the [build directory](/guide/#build-directory).  Standard GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html)—globbing—is performed on each path.  At run-time, the files will be available in the [Cabal data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
+The files are specified as file or directory paths relative to the [build directory](/guide/#build-directory).  Standard GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html) — globbing — is performed on each path.  At run-time, the files will be available in the [Cabal data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
 
 Intended to support applications which do not declare all run-time data files as `data-files` in the Cabal package description.
 

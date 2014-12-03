@@ -45,6 +45,14 @@ header.hero nav.menu-bar h1.logotype a
   border-width: 0.5px
 
 
+a.heroku-button
+  @include pill-button
+  color: $violet
+  border-color: $violet
+  @include frob-when-frobbed
+    background-color: $violet
+
+
 $gallery-size: 8
 
 div.gallery-background
