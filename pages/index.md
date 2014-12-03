@@ -98,9 +98,9 @@ Examples
 Usage
 -----
 
-Halcyon is installed with _git_, and automatically keeps itself up-to-date.
+Halcyon is installed with _git_, and automatically updates itself before executing any command.
 
-The [`halcyon paths`](/reference/#halcyon-paths) command helps set environment variables.
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set the environment variables needed by Halcyon.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>

@@ -42,7 +42,7 @@ To set up one machine for building and deploying applications:
 
 1.  [Provision a machine](#provisioning-a-machine) with one of the supported operating systems, and install the required OS packages.
 
-2.  [Install Halcyon](#installing-halcyon) by cloning the Halcyon source repository, and set the necessary environment variables.
+2.  [Install Halcyon](#installing-halcyon) by cloning the Halcyon source repository, and set the needed environment variables.
 
 
 ### Provisioning a machine
@@ -90,20 +90,23 @@ $ apt-get install --reinstall ca-certificates
 
 ### Installing Halcyon
 
-Halcyon is installed with _git_, and automatically keeps itself up-to-date.
-
-The [`halcyon paths`](/reference/#halcyon-paths) command helps set environment variables.
+Halcyon is installed with _git_, and automatically updates itself before executing any command.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
-<span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
 </code></pre>
 
+The source repository used for self-updates is defined by [`HALCYON_URL`](/reference/#halcyon_url).  To disable self-updates, set [`HALCYON_NO_SELF_UPDATE`](/reference/#halcyon_no_self_update) to `1`.
 
-#### Self-updates
 
-Halcyon updates itself before executing any command.  The source repository used for self-updates is defined by [`HALCYON_URL`](/reference/#halcyon_url).
+#### Environment variables
 
-To disable self-updates, set [`HALCYON_NO_SELF_UPDATE`](/reference/#halcyon_no_self_update) to `1`.
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set the environment variables needed by Halcyon.
+
+```
+$ source <( halcyon/halcyon paths )
+```
+
+Setting environment variables is best done as part of a `.profile` script.
 
 
 #### Base directory and prefix
@@ -113,11 +116,6 @@ Halcyon requires write access to the `/app` directory, which is where layers are
 1.  While changing [`HALCYON_BASE`](/reference/#halcyon_base) is possible, a GHC installation is not easily relocatable, and neither are Cabal sandboxes.  Therefore, using a different path than `/app` for the application directory will cause Halcyon to rebuild all dependencies from scratch.
 
 2.  [`HALCYON_PREFIX`](/reference/#halcyon_prefix) can be easily changed.  Using a different path than `/app` for the prefix will cause Halcyon to reconfigure any previously built applications, during a subsequent build.
-
-
-#### Environment variables
-
-Sourcing the output of [`halcyon paths`](/reference/#halcyon-paths) sets up the necessary environment variables, based on the path to the application directory.  This is best done as part of a `.profile` script.
 
 
 Concepts { .rule-before-h3 }
