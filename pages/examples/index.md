@@ -7,6 +7,8 @@ page-head: |
       color: #3f96f0;
     }
   </style>
+page-footer: |
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 ---
 
 
@@ -61,10 +63,6 @@ Electronics manufacturing service, built for hardware startups.
 
 Using Halcyon in production since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
-```
-$ halcyon deploy circuithub-api
-```
-
 
 <div class="tweet">
 <blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are a badass. Deploying <a href="http://t.co/gdTCjXQDAO">http://t.co/gdTCjXQDAO</a> is so slick now, I barely stop to think about it! <a href="https://twitter.com/hashtag/Halcyon?src=hash">#Halcyon</a> <a href="https://twitter.com/hashtag/HaskellOnHeroku?src=hash">#HaskellOnHeroku</a></p>&mdash; Rehno Lindeque (@RehnoLindeque) <a href="https://twitter.com/RehnoLindeque/status/536954909506437120">November 24, 2014</a></blockquote>
@@ -84,29 +82,28 @@ Collection of development tutorials.
 
 Using Halcyon in production since July 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
+
+#### Deploying
+
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/howistart.org/">https://github.com/mietek/howistart.org</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
+
+
+<div class="tweet">
+<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
+</div>
 
 
 #### Dependencies
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependency on _alex_
-- version constraints for dependencies of _alex_
-- additional run-time data files
-
-For details, see:
-
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps)
-- [`extra-data-files`](/reference/#halcyon_extra_data_files)
-
-
-<div class="tweet">
-<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
-</div>
+- build-time dependency on _alex_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
+- version constraints for dependencies of _alex_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
+- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
 
 
 Haskell Language
@@ -120,26 +117,25 @@ Haskell Language
 
 Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
+
+#### Deploying
+
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/hl/">https://github.com/mietek/hl</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 hl</span>
 </code></pre>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy<code> hl </code>to Heroku</a>
 
 
 #### Dependencies
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependencies on _alex_, _happy_, the OS _libicu_ library, and a patched version of _text-icu_
-- version constraints for dependencies of _alex_ and _happy_
-- additional run-time data files
-
-For details, see:
-
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
-- [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs)
-- [`sandbox-sources`](/reference/#halcyon_sandbox_sources)
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps)
-- [`extra-data-files`](/reference/#halcyon_extra_data_files)
+- build-time dependencies on _alex_ and _happy_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
+- version constraints for dependencies of _alex_ and _happy_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
+- build-time dependency on the OS _libicu_ library, with [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs)
+- build-time dependency on a patched version of _text-icu_, with [`sandbox-sources`](/reference/#halcyon_sandbox_sources)
+- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
 
 **Note:**  The patched version of `text-icu` is needed to work around `text-icu` issue [#9](https://bitbucket.org/bos/text-icu/issue/9/ghc-78-and-fpic) and Cabal issue [#2207](https://github.com/haskell/cabal/issues/2207).
 
@@ -155,26 +151,24 @@ Try Haskell
 
 Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mueval/), and featured in [Haskell Language](#haskell-language).
 
+
+#### Deploying
+
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaskell/">https://github.com/mietek/tryhaskell</a></span>
 <span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
 </code></pre>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy<code> tryhaskell </code>to Heroku</a>
 
 
 #### Dependencies
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependency on the current version of _mueval_
-- custom script to run after building the sandbox
-- run-time dependency on the GHC, Cabal, and sandbox layers
-- additional run-time data files
-
-For details, see:
-
-- [`sandbox-sources`](/reference/#halcyon_sandbox_sources)
-- [`sandbox-post-build-hook`](/reference/#halcyon_sandbox_post_build_hook)
-- [`include-layers`](/reference/#halcyon_include_layers)
-- [`extra-data-files`](/reference/#halcyon_extra_data_files)
+- build-time dependency on the current version of _mueval_, with [`sandbox-sources`](/reference/#halcyon_sandbox_sources)
+- custom script to run after building the sandbox, with [`sandbox-post-build-hook`](/reference/#halcyon_sandbox_post_build_hook)
+- run-time dependency on the GHC, Cabal, and sandbox layers, with [`include-layers`](/reference/#halcyon_include_layers)
+- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
 
 
 Try Idris
@@ -188,33 +182,33 @@ Try Idris
 
 [Idris](http://idris-lang.org/) compiler on a webpage.
 
+
+#### Deploying
+
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryidris/">https://github.com/mietek/tryidris</a></span>
 <span class="prompt">$</span> <span class="input">tryidris 8080</span>
 </code></pre>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy<code> tryidris </code>to Heroku</a>
+
+
+<div class="tweet">
+<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are absolutely amazing. Thank you!</p>&mdash; Brian McKenna (@puffnfresh) <a href="https://twitter.com/puffnfresh/status/527902645928087553">October 30, 2014</a></blockquote>
+</div>
 
 
 #### Dependencies
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- custom script to run before archiving the [install directory](/guide/#install-directory), installing Idris as a run-time dependency with a recursive invocation of Halcyon, and declaring:
-    - build-time dependency for Idris on _alex_
-    - version constraints for dependencies of Idris and _alex_
-    - additional Idris packages
-- additional run-time data files
+- custom script to install run-time dependencies, with [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
+- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
 
-For details, see:
+The custom script installs Idris with a recursive invocation of Halcyon, and declares:
 
-- [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
-- [`constraints`](/reference/#halcyon_constraints)
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps_constraints)
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
-- [`extra-data-files`](/reference/#halcyon_extra_data_files)
-
-
-<div class="tweet">
-<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are absolutely amazing. Thank you!</p>&mdash; Brian McKenna (@puffnfresh) <a href="https://twitter.com/puffnfresh/status/527902645928087553">October 30, 2014</a></blockquote>
-</div>
+- version constraints for dependencies of Idris, with [`constraints`](/reference/#halcyon_constraints)
+- build-time dependency for Idris on _alex_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
+- version constraints for dependencies of _alex_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
 
 
 Try PureScript
@@ -228,9 +222,14 @@ Try PureScript
 
 [PureScript](http://purescript.org/) compiler on a webpage.
 
+
+#### Deploying
+
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/trypurescript/">https://github.com/mietek/trypurescript</a></span>
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy<code> trypurescript </code>to Heroku</a>
 
 
 <div class="tweet">
@@ -249,39 +248,37 @@ Try Haste
 
 [Haste](http://haste-lang.org/) development environment on a webpage.
 
+
+#### Deploying
+
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhplay/">https://github.com/mietek/tryhplay</a></span>
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhplay">Deploy<code> tryhaste </code>to Heroku</a>
+
+
+<div class="tweet">
+<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> The idea is fantastic!. But It need ghc and haste running in the instance to compile programs. That is the difficult thing</p>&mdash; Alberto G. Corona (@AGoCorona) <a href="https://twitter.com/AGoCorona/status/527731803432714240">October 30, 2014</a></blockquote>
+</div>
 
 
 #### Dependencies
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependency on _cpphs_
-- version constraints for dependencies of _cpphs_
-- custom script to run before archiving the [install directory](/guide/#install-directory), installing Haste as a run-time dependency with a recursive invocation of Halcyon, and declaring:
-    - build-time dependency for Haste on _libbz2_ and _libgmp_
-    - additional build-time flags for Haste, passed to `cabal configure`
-    - custom script to run before archiving the Haste install directory, used to bootstrap Haste
-    - additional Haste packages
-- run-time dependency on the GHC, Cabal, and sandbox layers
-- additional run-time data files
+- build-time dependency on _cpphs_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
+- version constraints for dependencies of _cpphs_, with  [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
+- custom script to install run-time dependencies, with [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
+- run-time dependency on the GHC, Cabal, and sandbox layers, with [`include-layers`](/reference/#halcyon_include_layers)
+- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
 
-For details, see:
+The custom script installs Haste with a recursive invocation of Halcyon, and declares:
 
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps_constraints)
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
-- [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
-- [`constraints`](/reference/#halcyon_constraints)
-- [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs)
-- [`include-layers`](/reference/#halcyon_include_layers)
-- [`extra-data-files`](/reference/#halcyon_extra_data_files)
-
-
-<div class="tweet">
-<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> The idea is fantastic!. But It need ghc and haste running in the instance to compile programs. That is the difficult thing</p>&mdash; Alberto G. Corona (@AGoCorona) <a href="https://twitter.com/AGoCorona/status/527731803432714240">October 30, 2014</a></blockquote>
-</div>
+- version constraints for dependencies of Haste, with [`constraints`](/reference/#halcyon_constraints)
+- build-time dependency for Haste on the OS _libbz2_ and _libgmp_ libraries, with [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs)
+- additional build-time flags for Haste, with [`extra-configure-flags`](/reference/#halcyon_extra_configure_flags)
+- custom script to bootstrap Haste, with [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
 
 
 Gitit
@@ -295,14 +292,16 @@ Gitit
 
 Wiki with _git_ file storage.
 
+
+#### Deploying
+
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/gitit/">https://github.com/mietek/gitit</a></span>
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy<code> gitit </code>to Heroku</a>
 
 
 <div class="tweet">
 <blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> Woo-hoo! I can login gitit using github account! It&#39;s really magic!!!!!! <a href="https://t.co/WH0HGre790">https://t.co/WH0HGre790</a></p>&mdash; Myu-Myu- ATS-tan! (@masterq_mogumog) <a href="https://twitter.com/masterq_mogumog/status/532183331148804096">November 11, 2014</a></blockquote>
 </div>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
