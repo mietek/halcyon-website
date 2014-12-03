@@ -23,6 +23,7 @@ page-footer: |
       });
     });
   </script>
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 ---
 
 
@@ -46,7 +47,7 @@ Halcyon is a system for deploying Haskell web and non-web applications, powering
 
 ### Support
 
-**Pre-release version.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8KXr9), or follow <a href="https://twitter.com/halcyon_sh">@halcyon_sh</a>.
+**Pre-release version.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8N3tj), or follow <a href="https://twitter.com/halcyon_sh">@halcyon_sh</a>.
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
 
@@ -115,23 +116,36 @@ With an [install directory](/guide/#install-directory) archive available, deploy
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/hello/">https://github.com/mietek/hello</a>
------> Cloning https://github.com/mietek/hello... done, 3091b75
------> Preparing source directory
+<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/hello/">https://github.com/mietek/howistart.org</a>
+-----> Cloning https://github.com/mietek/howistart.org... done, 90914aa
 -----> Deploying app from install
        Prefix:                                   <b>/app</b>
-       Label:                                    <b>hello-1.0</b>
-       Source hash:                              <b>a5d944b</b>
-       External storage:                         <b>public</b>
+       Label:                                    <b>howistart-0.1</b>
+       Source hash:                              <b>d8beceb</b>
+       External storage:                         <b>private and public</b>
 
 -----> Restoring install
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-a5d944b-hello-1.0.tar.gz... done
-       Extracting halcyon-install-a5d944b-hello-1.0.tar.gz... done, 876KB
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-d8beceb-howistart-0.1.tar.gz... done
+       Extracting halcyon-install-d8beceb-howistart-0.1.tar.gz... done, 29MB
 -----> Install restored
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-1.0</b>
+-----> App deployed:                             <b>howistart-0.1</b>
 </code></pre>
+</div>
+
+<a class="pill-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
+
+
+#### Deploying to Heroku
+
+While Halcyon is not limited to web applications, [Haskell on Heroku](https://haskellonheroku.com/) uses Halcyon to enable push-button deployment to the [Heroku](https://heroku.com/) web application platform.
+
+All public [example applications](/examples/) can be deployed to Heroku by pushing the appropriate button.
+
+
+<div class="tweet">
+<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
 </div>
 
 
@@ -157,8 +171,8 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 -----> Locating Cabal layers
        Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
 -----> Restoring Cabal layer
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-11-30.tar.gz... done
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-11-30.tar.gz... done, 172MB
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done, 172MB
 
 -----> GHC and Cabal layers deployed
 </code></pre>
@@ -178,7 +192,7 @@ With the needed [layer](/guide/#layers) archives available, this can be ready in
 
 #### Internal documentation
 
-Halcyon is built with [_bashmenot_](https://bashmenot.mietek.io/), a library of shell functions.
+Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashmenot_](https://bashmenot.mietek.io/).
 
 <div><nav>
 <ul class="menu open">
@@ -195,7 +209,7 @@ About
 
 My name is [Miëtek Bak](https://mietek.io/).  I make software, and Halcyon is one of [my projects](https://mietek.io/projects/).
 
-This work is published under the [MIT X11 license](/license/), and supported by my company, [Least Fixed](https://leastfixed.com/).
+This work is published under the [MIT X11 license](/license/), and supported by my company, [Least Fixed](https://leastfixed.com/).
 
 Like my work?  I am available for consulting.  Say <a class="hello" href="">hello</a>, or follow <a href="https://twitter.com/mietek">@mietek</a>.
 
@@ -204,8 +218,6 @@ Like my work?  I am available for consulting.  Say <a class="hello" href="">hell
 
 Thanks to [CircuitHub](https://circuithub.com/), [Purely Agile](http://purelyagile.com/), and [Tweag I/O](http://tweag.io/) for advice and assistance.
 
-Website built with [_cannot_](https://cannot.mietek.io/).  The monospaced font used is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).
-
-The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).
+Website built with [_cannot_](https://cannot.mietek.io/).  The monospaced font used is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).
 
 This project is not affiliated with [Heroku](https://heroku.com/), [DigitalOcean](https://digitalocean.com/), or [Amazon](https://amazon.com/).
