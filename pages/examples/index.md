@@ -96,9 +96,9 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependency on _alex_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
-- version constraints for dependencies of _alex_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
-- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
+- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _alex_
+- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
+- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
 
 <div class="tweet">
@@ -131,11 +131,11 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependencies on _alex_ and _happy_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
-- version constraints for dependencies of _alex_ and _happy_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
-- build-time dependency on the OS _libicu_ library, with [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs)
-- build-time dependency on a patched version of _text-icu_, with [`sandbox-sources`](/reference/#halcyon_sandbox_sources)
-- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
+- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependencies on _alex_ and _happy_
+- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_ and _happy_
+- [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs) — build-time dependency on the OS _libicu_ library
+- [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependency on a patched version of _text-icu_
+- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
 **Note:**  The patched version of `text-icu` is needed to work around `text-icu` issue [#9](https://bitbucket.org/bos/text-icu/issue/9/ghc-78-and-fpic) and Cabal issue [#2207](https://github.com/haskell/cabal/issues/2207).
 
@@ -165,10 +165,10 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependency on the current version of _mueval_, with [`sandbox-sources`](/reference/#halcyon_sandbox_sources)
-- custom script to run after building the sandbox, with [`sandbox-post-build-hook`](/reference/#halcyon_sandbox_post_build_hook)
-- run-time dependency on the GHC, Cabal, and sandbox layers, with [`include-layers`](/reference/#halcyon_include_layers)
-- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
+- [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependency on the current version of _mueval_
+- [`sandbox-post-build-hook`](/reference/#halcyon_sandbox_post_build_hook) — custom script to run after building the sandbox
+- [`include-layers`](/reference/#halcyon_include_layers) — run-time dependency on the GHC, Cabal, and sandbox layers
+- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
 
 Try Idris
@@ -196,14 +196,14 @@ Try Idris
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- custom script to install run-time dependencies, with [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
-- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
+- [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to install run-time dependencies
+- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
-The custom script installs Idris with a recursive invocation of Halcyon, and declares:
+The custom script installs Idris with a recursive invocation of Halcyon, which declares:
 
-- version constraints for dependencies of Idris, with [`constraints`](/reference/#halcyon_constraints)
-- build-time dependency for Idris on _alex_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
-- version constraints for dependencies of _alex_, with [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
+- [`constraints`](/reference/#halcyon_constraints) — version constraints for dependencies of Idris
+- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency for Idris on _alex_
+- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
 
 
 <div class="tweet">
@@ -262,18 +262,18 @@ Try Haste
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependency on _cpphs_, with [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
-- version constraints for dependencies of _cpphs_, with  [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints)
-- custom script to install run-time dependencies, with [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
-- run-time dependency on the GHC, Cabal, and sandbox layers, with [`include-layers`](/reference/#halcyon_include_layers)
-- additional run-time data files, with [`extra-data-files`](/reference/#halcyon_extra_data_files)
+- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _cpphs_
+- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _cpphs_
+- [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to install run-time dependencies
+- [`include-layers`](/reference/#halcyon_include_layers) — run-time dependency on the GHC, Cabal, and sandbox layers
+- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
-The custom script installs Haste with a recursive invocation of Halcyon, and declares:
+The custom script installs Haste with a recursive invocation of Halcyon, which declares:
 
-- version constraints for dependencies of Haste, with [`constraints`](/reference/#halcyon_constraints)
-- build-time dependency for Haste on the OS _libbz2_ and _libgmp_ libraries, with [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs)
-- additional build-time flags for Haste, with [`extra-configure-flags`](/reference/#halcyon_extra_configure_flags)
-- custom script to bootstrap Haste, with [`pre-install-hook`](/reference/#halcyon_pre_install_hook)
+- [`constraints`](/reference/#halcyon_constraints) — version constraints for dependencies of Haste
+- [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs) — build-time dependency for Haste on the OS _libbz2_ and _libgmp_ libraries
+- [`extra-configure-flags`](/reference/#halcyon_extra_configure_flags) — additional build-time flags for Haste
+- [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to bootstrap Haste
 
 
 <div class="tweet">

@@ -271,13 +271,8 @@ $ PORT=8080 hello-mflow
 
 Includes [magic files](/guide/#magic-files) to declare:
 
-- build-time dependency on _cpphs_
-- version constraints for dependencies of _cpphs_
-
-For details, see:
-
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps)
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps)
+- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _cpphs_
+- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _cpphs_
 
 
 _hello-miku_
