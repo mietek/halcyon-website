@@ -89,7 +89,7 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy<code> howistart </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy How I Start to Heroku</a>
 
 
 #### Dependencies
@@ -124,7 +124,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 <span class="prompt">$</span> <span class="input">PORT=8080 hl</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy<code> hl </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy Haskell Language to Heroku</a>
 
 
 #### Dependencies
@@ -158,7 +158,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 <span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy<code> tryhaskell </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy Try Haskell to Heroku</a>
 
 
 #### Dependencies
@@ -189,7 +189,7 @@ Try Idris
 <span class="prompt">$</span> <span class="input">tryidris 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy<code> tryidris </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy Try Idris to Heroku</a>
 
 
 #### Dependencies
@@ -229,7 +229,7 @@ Try PureScript
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy<code> trypurescript </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy Try PureScript to Heroku</a>
 
 
 <div class="tweet">
@@ -255,7 +255,7 @@ Try Haste
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy<code> tryhaste </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy Try Haste to Heroku</a>
 
 
 #### Dependencies
@@ -299,7 +299,7 @@ Wiki with _git_ file storage.
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy<code> gitit </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy Gitit to Heroku</a>
 
 
 <div class="tweet">

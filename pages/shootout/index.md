@@ -157,7 +157,7 @@ _hello-happstack_
 $ PORT=8080 hello-happstack
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-happstack">Deploy<code> hello-happstack </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-happstack">Deploy _hello-happstack_ to Heroku</a>
 
 
 _hello-mflow_
@@ -264,7 +264,7 @@ _hello-mflow_
 $ PORT=8080 hello-mflow
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-mflow">Deploy<code> hello-mflow </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-mflow">Deploy _hello-mflow_ to Heroku</a>
 
 
 #### Dependencies
@@ -368,7 +368,7 @@ _hello-miku_
 $ PORT=8080 hello-miku
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-miku">Deploy<code> hello-miku </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-miku">Deploy _hello-miku_ to Heroku</a>
 
 
 _hello-scotty_
@@ -463,7 +463,7 @@ _hello-scotty_
 $ PORT=8080 hello-scotty
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-scotty">Deploy<code> hello-scotty </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-scotty">Deploy _hello-scotty_ to Heroku</a>
 
 
 _hello-simple_
@@ -564,7 +564,7 @@ _hello-simple_
 $ PORT=8080 hello-simple
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-simple">Deploy<code> hello-simple </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-simple">Deploy _hello-simple_ to Heroku</a>
 
 
 _hello-snap_
@@ -664,7 +664,7 @@ _hello-snap_
 $ PORT=8080 hello-snap
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-snap">Deploy<code> hello-snap </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-snap">Deploy _hello-snap_ to Heroku</a>
 
 
 _hello-spock_
@@ -759,7 +759,7 @@ _hello-spock_
 $ PORT=8080 hello-spock
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-spock">Deploy<code> hello-spock </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-spock">Deploy _hello-spock_ to Heroku</a>
 
 
 _hello-wai_
@@ -862,7 +862,7 @@ _hello-wai_
 $ PORT=8080 hello-wai
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wai">Deploy<code> hello-wai </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wai">Deploy _hello-wai_ to Heroku</a>
 
 
 _hello-wheb_
@@ -960,7 +960,7 @@ _hello-wheb_
 $ PORT=8080 hello-wheb
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wheb">Deploy<code> hello-wheb </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wheb">Deploy _hello-wheb_ to Heroku</a>
 
 
 _hello-yesod_
@@ -1073,7 +1073,7 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 $ PORT=8080 hello-yesod
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-yesod">Deploy<code> hello-yesod </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-yesod">Deploy _hello-yesod_ to Heroku</a>
 
 
 <script src="https://www.google.com/jsapi"></script>

@@ -146,7 +146,7 @@ While Halcyon is not limited to web applications, [Haskell on Heroku](https://
 
 All [example applications](/examples/) can be deployed to Heroku by pushing a button.
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy<code> howistart </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy How I Start to Heroku</a>
 
 
 #### Deploying GHC and Cabal only
