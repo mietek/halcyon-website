@@ -149,7 +149,7 @@ Try Haskell
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
 > Source code:         | [_tryhaskell_](https://github.com/mietek/tryhaskell/)
 
-Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mueval/), and featured in [Haskell Language](#haskell-language).
+Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mueval/).
 
 
 #### Deploying
