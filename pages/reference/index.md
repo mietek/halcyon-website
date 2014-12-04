@@ -207,7 +207,7 @@ Script to execute when building the application, after running `cabal build`.
 > Type:                | `0` or `1`
 > Command-line option: | `--app-rebuild`
 
-Forces Halcyon to build the application from scratch.
+Forces Halcyon to build the application from scratch, which implies reinstalling all [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps) and [`HALCYON_EXTRA_OS_PACKAGES`](#halcyon_extra_os_packages).
 
 
 ### `HALCYON_APP_RECONFIGURE`
@@ -294,6 +294,19 @@ The files are specified as file or directory paths relative to the [build direct
 Intended to support applications which do not declare all run-time data files as `data-files` in the Cabal package description.
 
 **Note:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
+
+
+### `HALCYON_EXTRA_OS_PACKAGES`
+
+> ---------------------|---
+> Default value:       | _none_
+> Type:                | optional whitespace-separated strings
+> Command-line option: | `--extra-os-packages=`…
+> Magic file:          | `.halcyon-magic/extra-os-packages`
+
+Additional OS packages to include in the [install directory](/guide/#install-directory), as run-time dependencies.
+
+_TODO_
 
 
 ### `HALCYON_INCLUDE_LAYERS`
@@ -716,17 +729,17 @@ Intended to support explicitly declaring the dependencies of any application whi
 Additional flags to specify when running `cabal configure --dependencies-only`.
 
 
-### `HALCYON_SANDBOX_EXTRA_LIBS`
+### `HALCYON_SANDBOX_EXTRA_OS_PACKAGES`
 
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | optional whitespace-separated strings
-> Command-line option: | `--sandbox-extra-libs=`…
-> Magic file:          | `.halcyon-magic/sandbox-extra-libs`
+> Command-line option: | `--sandbox-extra-os-packages=`…
+> Magic file:          | `.halcyon-magic/sandbox-extra-os-packages`
 
-Additional OS libraries to install in the [sandbox layer](/guide/#sandbox-layer), as build-time dependencies.
+Additional OS packages to install in the [sandbox layer](/guide/#sandbox-layer), as build-time dependencies.
 
-**Note:**  Support is currently limited to libraries available on Ubuntu, via `apt-get`.
+_TODO_
 
 
 ### `HALCYON_SANDBOX_PRE_BUILD_HOOK`
@@ -760,7 +773,7 @@ Script to execute when building the [sandbox layer](/guide/#sandbox-layer), afte
 > Type:                | `0` or `1`
 > Command-line option: | `--sandbox-rebuild`
 
-Forces Halcyon to rebuild the [sandbox layer](/guide/#sandbox-layer) and the application from scratch, which implies reinstalling any [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) or [`HALCYON_SANDBOX_EXTRA_LIBS`](#halcyon_sandbox_extra_libs).
+Forces Halcyon to rebuild the [sandbox layer](/guide/#sandbox-layer) and the application from scratch, which implies reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
 
 
 Self-update options

@@ -139,7 +139,7 @@ Additional build-time dependencies can be declared by specifying a number of opt
 
 - [`HALCYON_SANDBOX_SOURCES`](/reference#halcyon_sandbox_sources)
 - [`HALCYON_SANDBOX_EXTRA_APPS`](/reference#halcyon_sandbox_extra_apps)
-- [`HALCYON_SANDBOX_EXTRA_LIBS`](/reference#halcyon_sandbox_extra_libs)
+- [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](/reference#halcyon_sandbox_extra_os_packages)
 
 
 #### Run-time dependencies
@@ -147,6 +147,7 @@ Additional build-time dependencies can be declared by specifying a number of opt
 Halcyon also supports declaring additional run-time dependencies:
 
 - [`HALCYON_EXTRA_APPS`](/reference#halcyon_extra_apps)
+- [`HALCYON_EXTRA_OS_PACKAGES`](/reference#halcyon_extra_os_packages)
 - [`HALCYON_EXTRA_DATA_FILES`](/reference/#halcyon_extra_data_files)
 - [`HALCYON_INCLUDE_LAYERS`](/reference/#halcyon_include_layers)
 

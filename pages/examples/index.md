@@ -133,11 +133,12 @@ Includes [magic files](/guide/#magic-files) to declare:
 
 - [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependencies on _alex_ and _happy_
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_ and _happy_
-- [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs) — build-time dependency on the OS _libicu_ library
+- [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) — build-time dependency on the OS _libicu_ library
 - [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependency on a patched version of _text-icu_
+- [`extra-os-packages`](/reference/#halcyon_extra_os_packages) — run-time dependency on the OS _libicu_ library
 - [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
-**Note:**  The patched version of `text-icu` is needed to work around `text-icu` issue [#9](https://bitbucket.org/bos/text-icu/issue/9/ghc-78-and-fpic) and Cabal issue [#2207](https://github.com/haskell/cabal/issues/2207).
+**Note:**  The patched version of _text-icu_ is needed to work around Cabal issue [#2207](https://github.com/haskell/cabal/issues/2207).
 
 
 Try Haskell
@@ -271,7 +272,7 @@ Includes [magic files](/guide/#magic-files) to declare:
 The custom script installs Haste with a recursive invocation of Halcyon, which declares:
 
 - [`constraints`](/reference/#halcyon_constraints) — version constraints for dependencies of Haste
-- [`sandbox-extra-libs`](/reference/#halcyon_sandbox_extra_libs) — build-time dependency for Haste on the OS _libbz2_ and _libgmp_ libraries
+- [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) — build-time dependency for Haste on the OS _libbz2_ and _libgmp_ libraries
 - [`extra-configure-flags`](/reference/#halcyon_extra_configure_flags) — additional build-time flags for Haste
 - [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to bootstrap Haste
 
