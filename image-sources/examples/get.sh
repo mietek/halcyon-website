@@ -6,7 +6,7 @@ rm -rf input
 mkdir input
 
 declare -A examples
-examples[haskell-lang]='http://haskell-lang.org/'
+examples[hl]='http://haskell-lang.org/'
 examples[circuithub]='http://circuithub.com/'
 examples[howistart]='http://howistart.org/'
 examples[tryhaskell]='http://tryhaskell.org/'

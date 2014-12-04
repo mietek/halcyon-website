@@ -25,7 +25,7 @@ Real-world Haskell applications, demonstrating advanced Halcyon features.
 <div class="gallery-contents">
 <a href="#circuithub" class="gallery-item" id="item-circuithub">CircuitHub</a>
 <a href="#how-i-start" class="gallery-item" id="item-howistart">How I Start</a>
-<a href="#haskell-language" class="gallery-item" id="item-haskell-lang">Haskell Language</a>
+<a href="#haskell-language" class="gallery-item" id="item-hl">Haskell Language</a>
 <a href="#try-haskell" class="gallery-item" id="item-tryhaskell">Try Haskell</a>
 <a href="#try-idris" class="gallery-item" id="item-tryidris">Try Idris</a>
 <a href="#try-purescript" class="gallery-item" id="item-trypurescript">Try PureScript</a>
@@ -38,7 +38,7 @@ Real-world Haskell applications, demonstrating advanced Halcyon features.
 <ul class="menu open">
 <li><a class="gallery-link" href="#circuithub" id="link-circuithub">CircuitHub</a></li>
 <li><a class="gallery-link" href="#how-i-start" id="link-howistart">How I Start</a></li>
-<li><a class="gallery-link" href="#haskell-language" id="link-haskell-lang">Haskell Language</a></li>
+<li><a class="gallery-link" href="#haskell-language" id="link-hl">Haskell Language</a></li>
 <li><a class="gallery-link" href="#try-haskell" id="link-tryhaskell">Try Haskell</a></li>
 <li><a class="gallery-link" href="#try-idris" id="link-tryidris">Try Idris</a></li>
 <li><a class="gallery-link" href="#try-purescript" id="link-trypurescript">Try PureScript</a></li>
@@ -76,7 +76,7 @@ How I Start
 > Website:             | [How I Start](https://howistart.org/)
 > Author:              | [Tristan Sloughter](https://github.com/howistart/howistart.org/)
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
-> Source code:         | [_howistart.org_](https://github.com/mietek/howistart.org/)
+> Source code:         | [_howistart_](https://github.com/mietek/howistart/)
 
 Collection of development tutorials.
 
@@ -85,11 +85,11 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/howistart.org/">https://github.com/mietek/howistart.org</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/howistart/">https://github.com/mietek/howistart</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy<code> howistart </code>to Heroku</a>
 
 
 #### Dependencies
@@ -244,18 +244,18 @@ Try Haste
 > Website:             | [Try Haste](https://tryplayg.herokuapp.com/)
 > Author:              | [Alberto G. Corona](https://github.com/agocorona/tryhplay/)
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow/) 0.4.5.9
-> Source code:         | [_tryhplay_](https://github.com/mietek/tryhplay/)
+> Source code:         | [_tryhaste_](https://github.com/mietek/tryhaste/)
 
 [Haste](http://haste-lang.org/) development environment on a webpage.
 
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhplay/">https://github.com/mietek/tryhplay</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaste/">https://github.com/mietek/tryhaste</a></span>
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhplay">Deploy<code> tryhaste </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy<code> tryhaste </code>to Heroku</a>
 
 
 #### Dependencies

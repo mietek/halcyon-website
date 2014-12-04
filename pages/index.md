@@ -68,7 +68,7 @@ Examples
 <div class="gallery-contents">
 <a href="/examples/#circuithub" class="gallery-item" id="item-circuithub">CircuitHub</a>
 <a href="/examples/#how-i-start" class="gallery-item" id="item-howistart">How I Start</a>
-<a href="/examples/#haskell-language" class="gallery-item" id="item-haskell-lang">Haskell Language</a>
+<a href="/examples/#haskell-language" class="gallery-item" id="item-hl">Haskell Language</a>
 <a href="/examples/#try-haskell" class="gallery-item" id="item-tryhaskell">Try Haskell</a>
 <a href="/examples/#try-idris" class="gallery-item" id="item-tryidris">Try Idris</a>
 <a href="/examples/#try-purescript" class="gallery-item" id="item-trypurescript">Try PureScript</a>
@@ -81,7 +81,7 @@ Examples
 <ul class="menu open">
 <li><a class="gallery-link" href="/examples/#circuithub" id="link-circuithub">CircuitHub</a></li>
 <li><a class="gallery-link" href="/examples/#how-i-start" id="link-howistart">How I Start</a></li>
-<li><a class="gallery-link" href="/examples/#haskell-language" id="link-haskell-lang">Haskell Language</a></li>
+<li><a class="gallery-link" href="/examples/#haskell-language" id="link-hl">Haskell Language</a></li>
 <li><a class="gallery-link" href="/examples/#try-haskell" id="link-tryhaskell">Try Haskell</a></li>
 <li><a class="gallery-link" href="/examples/#try-idris" id="link-tryidris">Try Idris</a></li>
 <li><a class="gallery-link" href="/examples/#try-purescript" id="link-trypurescript">Try PureScript</a></li>
@@ -121,17 +121,17 @@ Deploying a previously built application takes less than 10 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/hello/">https://github.com/mietek/howistart.org</a>
------> Cloning https://github.com/mietek/howistart.org... done, 90914aa
+<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/howistart/">https://github.com/mietek/howistart</a>
+-----> Cloning https://github.com/mietek/howistart... done, cc48e01
 -----> Deploying app from install
        Prefix:                                   <b>/app</b>
        Label:                                    <b>howistart-0.1</b>
-       Source hash:                              <b>d8beceb</b>
+       Source hash:                              <b>bcfc50f</b>
        External storage:                         <b>private and public</b>
 
 -----> Restoring install
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-d8beceb-howistart-0.1.tar.gz... done
-       Extracting halcyon-install-d8beceb-howistart-0.1.tar.gz... done, 29MB
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
+       Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
 -----> Install restored
 -----> Installing app into /app... done
 
@@ -146,7 +146,7 @@ While Halcyon is not limited to web applications, [Haskell on Heroku](https://
 
 All [example applications](/examples/) can be deployed to Heroku by pushing a button.
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart.org">Deploy<code> howistart.org </code>to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy<code> howistart </code>to Heroku</a>
 
 
 #### Deploying GHC and Cabal only
