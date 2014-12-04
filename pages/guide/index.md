@@ -22,7 +22,7 @@ User’s guide
 Quick start
 -----------
 
-Set up a Ubuntu 14.04 LTS (`x86_64`) machine with 8GB of memory, and install Halcyon.
+Set up a Ubuntu 14.04 LTS (`x86_64`) machine, and install Halcyon.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">apt-get update</span>
 <span class="prompt">$</span> <span class="input">apt-get install build-essential git pigz zlib1g-dev</span>
@@ -49,7 +49,7 @@ To set up one machine for building and deploying applications:
 
 Halcyon is designed to deploy applications by building all required dependencies on the fly.
 
-The build machine must be capable of compiling and linking Haskell programs.  At least 8GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2GB of memory available.
+The build machine must be capable of compiling and linking Haskell programs.  At least 4GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2GB of memory available.
 
 
 #### Supported platforms
