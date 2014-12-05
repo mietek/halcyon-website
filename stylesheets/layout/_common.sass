@@ -32,19 +32,6 @@ header.hero nav.menu-bar h1.logotype a
   display: block
 
 
-#mietek
-  @include no-text
-  display: block
-  float: left
-  margin-right: ln(1)
-  margin-bottom: ln(1)
-  border: 1px $object-color solid
-  border-radius: 50%
-
-.hairline #mietek
-  border-width: 0.5px
-
-
 a.heroku-button
   @include pill-button
   color: $violet
@@ -248,3 +235,7 @@ div.chart
 
 #shootout-source
   @include loc(66)
+
+
+#hello-world-shootout > h1:first-of-type, #hello-world-shootout > h2:first-of-type, #hello-world-shootout > h3:first-of-type
+  text-indent: -1ex
