@@ -174,7 +174,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 - [`include-layers`](/reference/#halcyon_include_layers) — run-time dependency on the GHC, Cabal, and sandbox layers
 - [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
-**Note:**  Deploying this example may take longer than expected, because including GHC as a run-time dependency baloons the [install directory](/guide/#install-directory) to just over 1GB.
+**Note:**  Deploying this example may take longer than expected, because including GHC as a run-time dependency balloons the [install directory](/guide/#install-directory) to just over 1GB.
 
 
 Try Idris
@@ -286,7 +286,7 @@ The custom script installs Haste with a recursive invocation of Halcyon, which d
 - [`extra-configure-flags`](/reference/#halcyon_extra_configure_flags) — additional build-time flags for Haste
 - [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to bootstrap Haste
 
-**Note:**  Deploying this example may take longer than expected, because including GHC and Haste as run-time dependencies baloons the [install directory](/guide/#install-directory) to well over 1GB.
+**Note:**  Deploying this example may take longer than expected, because including GHC and Haste as run-time dependencies balloons the [install directory](/guide/#install-directory) to well over 1GB.
 
 
 <aside>
