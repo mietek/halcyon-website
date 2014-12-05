@@ -291,7 +291,7 @@ The custom script installs Haste with a recursive invocation of Halcyon, which d
 
 <aside>
 <a class="micro face alberto-g-corona" href="https://twitter.com/AGoCorona/status/527731803432714240"></a>
-<blockquote>_“The idea is fantastic! But it needs GHC and Haste running in the instance to compile programs. That is the difficult thing.”_</blockquote>
+<blockquote>_“It needs GHC and Haste running in the instance to compile programs. That is the difficult thing.”_</blockquote>
 <p>[— Alberto G. Corona](https://twitter.com/AGoCorona/status/527731803432714240)</p>
 </aside>
 
