@@ -267,9 +267,7 @@ $ PORT=8080 hello-mflow
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-mflow">Deploy _hello-mflow_ to Heroku</a>
 
 
-#### Dependencies
-
-Includes [magic files](/guide/#magic-files) to declare:
+#### Magic files
 
 - [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _cpphs_
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _cpphs_

@@ -7,8 +7,6 @@ page-head: |
       color: #3f96f0;
     }
   </style>
-page-footer: |
-  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 ---
 
 
@@ -64,9 +62,18 @@ Electronics manufacturing service, built for hardware startups.
 Using Halcyon in production since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 
-<div class="tweet">
-<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are a badass. Deploying <a href="http://t.co/gdTCjXQDAO">http://t.co/gdTCjXQDAO</a> is so slick now, I barely stop to think about it! <a href="https://twitter.com/hashtag/Halcyon?src=hash">#Halcyon</a> <a href="https://twitter.com/hashtag/HaskellOnHeroku?src=hash">#HaskellOnHeroku</a></p>&mdash; Rehno Lindeque (@RehnoLindeque) <a href="https://twitter.com/RehnoLindeque/status/536954909506437120">November 24, 2014</a></blockquote>
-</div>
+#### Magic files
+
+- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _alex_
+- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
+- [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) — build-time dependency on the OS _libpcre_ library
+- [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependencies on private packages
+
+<aside>
+<a class="micro face rehno-lindeque" href="https://twitter.com/RehnoLindeque/status/536954909506437120"></a>
+<blockquote>_“[Miëtek](/#about), you are a badass. Deploying [CircuitHub](https://circuithub.com/) is so slick now, I barely stop to think about it!”_</blockquote>
+<p>[— Rehno Lindeque](https://twitter.com/RehnoLindeque/status/536954909506437120)</p>
+</aside>
 
 
 How I Start
@@ -92,18 +99,18 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy How I Start to Heroku</a>
 
 
-#### Dependencies
-
-Includes [magic files](/guide/#magic-files) to declare:
+#### Magic files
 
 - [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _alex_
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
 - [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
 
-<div class="tweet">
-<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
-</div>
+<aside>
+<a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
+<blockquote>_“[Miëtek](/#about)’s [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
+<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904)</p>
+</aside>
 
 
 Haskell Language
@@ -127,9 +134,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy Haskell Language to Heroku</a>
 
 
-#### Dependencies
-
-Includes [magic files](/guide/#magic-files) to declare:
+#### Magic files
 
 - [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependencies on _alex_ and _happy_
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_ and _happy_
@@ -162,14 +167,14 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy Try Haskell to Heroku</a>
 
 
-#### Dependencies
-
-Includes [magic files](/guide/#magic-files) to declare:
+#### Magic files
 
 - [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependency on the current version of _mueval_
 - [`sandbox-post-build-hook`](/reference/#halcyon_sandbox_post_build_hook) — custom script to run after building the sandbox
 - [`include-layers`](/reference/#halcyon_include_layers) — run-time dependency on the GHC, Cabal, and sandbox layers
 - [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
+
+**Note:**  Deploying this example may take longer than expected, because including GHC as a run-time dependency baloons the [install directory](/guide/#install-directory) to just over 1GB.
 
 
 Try Idris
@@ -193,9 +198,7 @@ Try Idris
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy Try Idris to Heroku</a>
 
 
-#### Dependencies
-
-Includes [magic files](/guide/#magic-files) to declare:
+#### Magic files
 
 - [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to install run-time dependencies
 - [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
@@ -207,9 +210,11 @@ The custom script installs Idris with a recursive invocation of Halcyon, which d
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
 
 
-<div class="tweet">
-<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> you are absolutely amazing. Thank you!</p>&mdash; Brian McKenna (@puffnfresh) <a href="https://twitter.com/puffnfresh/status/527902645928087553">October 30, 2014</a></blockquote>
-</div>
+<aside>
+<a class="micro face brian-mckenna" href="https://twitter.com/puffnfresh/status/527902645928087553"></a>
+<blockquote>_“[Miëtek](/#about), you are absolutely amazing. Thank you!”_</blockquote>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553)</p>
+</aside>
 
 
 Try PureScript
@@ -233,9 +238,16 @@ Try PureScript
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy Try PureScript to Heroku</a>
 
 
-<div class="tweet">
-<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> &#39;s HaskellOnHeroku looks excellent <a href="http://t.co/qjFh5rKVE7">http://t.co/qjFh5rKVE7</a></p>&mdash; Phil Freeman (@paf31) <a href="https://twitter.com/paf31/status/527900905900085248">October 30, 2014</a></blockquote>
-</div>
+#### Magic files
+
+None.
+
+
+<aside>
+<a class="micro face phil-freeman" href="https://twitter.com/paf31/status/527900905900085248"></a>
+<blockquote>_“[Miëtek’s](/#about) [Haskell on Heroku](https://haskellonheroku.com/) looks excellent.”_</blockquote>
+<p>[— Phil Freeman](https://twitter.com/paf31/status/527900905900085248)</p>
+</aside>
 
 
 Try Haste
@@ -259,9 +271,7 @@ Try Haste
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy Try Haste to Heroku</a>
 
 
-#### Dependencies
-
-Includes [magic files](/guide/#magic-files) to declare:
+#### Magic files
 
 - [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _cpphs_
 - [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _cpphs_
@@ -276,10 +286,14 @@ The custom script installs Haste with a recursive invocation of Halcyon, which d
 - [`extra-configure-flags`](/reference/#halcyon_extra_configure_flags) — additional build-time flags for Haste
 - [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to bootstrap Haste
 
+**Note:**  Deploying this example may take longer than expected, because including GHC and Haste as run-time dependencies baloons the [install directory](/guide/#install-directory) to well over 1GB.
 
-<div class="tweet">
-<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> The idea is fantastic!. But It need ghc and haste running in the instance to compile programs. That is the difficult thing</p>&mdash; Alberto G. Corona (@AGoCorona) <a href="https://twitter.com/AGoCorona/status/527731803432714240">October 30, 2014</a></blockquote>
-</div>
+
+<aside>
+<a class="micro face alberto-g-corona" href="https://twitter.com/AGoCorona/status/527731803432714240"></a>
+<blockquote>_“The idea is fantastic! But it needs GHC and Haste running in the instance to compile programs. That is the difficult thing.”_</blockquote>
+<p>[— Alberto G. Corona](https://twitter.com/AGoCorona/status/527731803432714240)</p>
+</aside>
 
 
 Gitit
@@ -303,6 +317,13 @@ Wiki with _git_ file storage.
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy Gitit to Heroku</a>
 
 
-<div class="tweet">
-<blockquote class="twitter-tweet" data-conversation="none" data-link-color="#3f96f0" lang="en"><p><a href="https://twitter.com/mietek">@mietek</a> Woo-hoo! I can login gitit using github account! It&#39;s really magic!!!!!! <a href="https://t.co/WH0HGre790">https://t.co/WH0HGre790</a></p>&mdash; Myu-Myu- ATS-tan! (@masterq_mogumog) <a href="https://twitter.com/masterq_mogumog/status/532183331148804096">November 11, 2014</a></blockquote>
-</div>
+#### Magic files
+
+None.
+
+
+<aside>
+<a class="micro face kiwamu-okabe" href="https://twitter.com/masterq_mogumog/status/532183331148804096"></a>
+<blockquote>_“[Miëtek](/#about), woo-hoo!  I can login to Gitit using a GitHub account!  It’s really magic!”_</blockquote>
+<p>[— Kiwamu Okabe](https://twitter.com/masterq_mogumog/status/532183331148804096)</p>
+</aside>

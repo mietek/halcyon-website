@@ -30,7 +30,7 @@ Set up a Ubuntu 14.04 LTS (`x86_64`) machine, and install Halcyon.
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
 </code></pre>
 
-Done!  Halcyon is now ready to deploy any of the [example applications](/examples/).
+Halcyon is now ready to deploy any of the [example applications](/examples/).
 
 Read on for details.
 
@@ -293,6 +293,6 @@ Halcyon stores all build products in the S3 bucket defined by [`HALCYON_S3_BUCKE
 $ export HALCYON_S3_BUCKET=...
 ```
 
-**Note:**  The default S3 endpoint, `s3.amazonaws.com`, can only be used for buckets located in the US Standard region.  To use a bucket located in a different region, set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the appropriate address, such as `s3-eu-west-1.amazonaws.com`.
+**Note:**  The default S3 endpoint, `s3.amazonaws.com`, can only be used for buckets located in the US Standard region.  To use a bucket located in a different region, set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the address of the appropriate [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region), such as `s3-eu-west-1.amazonaws.com`.
 
-By default, all uploaded files are assigned the `private` S3 access control list.  To make any subsequent uploads available publicly, set [`HALCYON_S3_ACL`](/reference/#halcyon_s3_acl) to `public-read`.
+By default, all uploaded files are assigned the `private` [S3 <abbr title="Access control list">ACL</abbr>](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html).  To make any subsequent uploads available publicly, set [`HALCYON_S3_ACL`](/reference/#halcyon_s3_acl) to `public-read`.

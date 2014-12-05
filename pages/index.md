@@ -23,7 +23,6 @@ page-footer: |
       });
     });
   </script>
-  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 ---
 
 
@@ -31,9 +30,6 @@ Halcyon
 =======
 
 Halcyon is a system for deploying Haskell web and non-web applications, powering [Haskell on Heroku](https://haskellonheroku.com/).
-
-> _“If Halcyon is not helping you deploy applications easily, then there is a bug in Halcyon.”_\
-> — With apologies to [Jordan Sissel](https://github.com/jordansissel/fpm/)
 
 
 ### Features
@@ -56,8 +52,14 @@ Please report any problems with Halcyon on the [issue tracker](https://github.co
 Need commercial support?  Contact the [author](#about) directly.
 
 
-Examples
---------
+<aside>
+<a class="micro face mietek" href="#about"></a>
+<blockquote>_“If Halcyon is not helping you deploy applications easily, there is a bug in Halcyon.”_</blockquote>
+<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm/)</p>
+</aside>
+
+
+### Examples
 
 [Real-world Haskell applications](/examples/), demonstrating advanced Halcyon features.
 
@@ -91,9 +93,11 @@ Examples
 </nav></div>
 
 
-<div class="tweet">
-<blockquote class="twitter-tweet" data-link-color="#3f96f0" lang="en"><p>.<a href="https://twitter.com/mietek">@mietek</a>&#39;s <a href="https://t.co/ojcH0h2Ul4">https://t.co/ojcH0h2Ul4</a> and <a href="https://t.co/tURlOiJMKc">https://t.co/tURlOiJMKc</a> has made deploying <a href="https://twitter.com/How_I_Start">@How_I_Start</a> fast &amp; simple! Thanks!</p>&mdash; Erlang Accessories (@t_sloughter) <a href="https://twitter.com/t_sloughter/status/539168929131003904">November 30, 2014</a></blockquote>
-</div>
+<aside>
+<a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
+<blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
+<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904)</p>
+</aside>
 
 
 ### “Hello, world!” shootout
@@ -139,6 +143,8 @@ Deploying a previously built application takes less than 10 seconds.
 </code></pre>
 </div>
 
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy How I Start to Heroku</a>
+
 
 #### Deploying to Heroku
 
@@ -146,7 +152,12 @@ While Halcyon is not limited to web applications, [Haskell on Heroku](https://
 
 All [example applications](/examples/) can be deployed to Heroku by pushing a button.
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy How I Start to Heroku</a>
+
+<aside>
+<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
+<blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329)</p>
+</aside>
 
 
 #### Deploying GHC and Cabal only
@@ -177,8 +188,7 @@ The [`halcyon deploy`](/reference/#halcyon-deploy) command can also install a pr
 </div>
 
 
-Documentation
--------------
+### Documentation
 
 <div><nav>
 <ul class="menu open">
@@ -189,7 +199,7 @@ Documentation
 </nav></div>
 
 
-### Dependencies
+#### Internal documentation
 
 Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashmenot_](https://bashmenot.mietek.io/).
 
@@ -204,7 +214,7 @@ Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashm
 About
 -----
 
-<span id="mietek"></span>
+<a class="face mietek" href="https://mietek.io/"></a>
 
 My name is [Miëtek Bak](https://mietek.io/).  I make software, and Halcyon is one of [my projects](https://mietek.io/projects/).
 
