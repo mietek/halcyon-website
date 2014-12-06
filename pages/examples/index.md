@@ -66,7 +66,7 @@ Using Halcyon in production since June 2014, via [Haskell on Heroku](https://h
 
 #### Extra dependencies
 
-- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
+- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 - _libpcre_, as a [sandbox extra OS package](/guide/#sandbox-extra-os-packages)
 - private Cabal packages, as [sandbox sources](/guide/#sandbox-sources)
 
@@ -103,7 +103,7 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 
 #### Extra dependencies
 
-- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
+- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 - static website content, as [extra data files](/guide/#extra-data-files)
 
 
@@ -137,7 +137,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 #### Extra dependencies
 
-- _alex_ and _happy_, as [sandbox extra apps](/guide/#sandbox-extra-apps) with version constraints
+- _alex_ and _happy_, as [sandbox extra apps](/guide/#sandbox-extra-apps), with version constraints
 - _libicu_, for build-time and run-time use, as a [sandbox extra OS package](/guide/#sandbox-extra-os-packages) and an [extra OS package](/guide/#extra-os-packages)
 - patched version of _text-icu_, as a [sandbox source](/guide/#sandbox-sources)
 - static website content, as [extra data files](/guide/#extra-data-files)
@@ -200,7 +200,7 @@ Try Idris
 #### Extra dependencies
 
 - [pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Idris, with version constraints and extra dependencies:
-    - _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
+    - _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 - static website content, as [extra data files](/guide/#extra-data-files)
 
 

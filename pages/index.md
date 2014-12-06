@@ -194,7 +194,7 @@ The [`halcyon deploy`](/reference/#halcyon-deploy) command can also install a pr
 </nav></div>
 
 
-#### Low-level documentation
+#### Internal documentation
 
 Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashmenot_](https://bashmenot.mietek.io/).
 

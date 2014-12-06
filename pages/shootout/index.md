@@ -281,7 +281,7 @@ $ PORT=8080 hello-mflow
 
 #### Extra dependencies
 
-- _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
+- _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 
 
 _hello-miku_
