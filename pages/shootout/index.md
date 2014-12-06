@@ -15,6 +15,9 @@ page-head: |
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
+All examples can be deployed to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
+
+
 <div><nav><ul class="toc toc1 menu open">
 <li><a href="#first-deploy-times">First deploy times</a></li>
 <li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
@@ -40,9 +43,9 @@ First deploy times
 
 ### Methodology
 
-The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch, using the [`--sandbox-rebuild`](/reference/#halcyon_sandbox_rebuild) option.  GHC and Cabal are restored from local cache.
+The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
 
-The times given are _mean [lower bound, upper bound]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
+The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
 
 The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, [set up Halcyon](/guide/#quick-start), and perform a test run by executing a [very small shell script](https://gist.github.com/mietek/8c24c84e84714de5b558).
 
@@ -53,15 +56,24 @@ $ ./shootout.sh results.csv
 
 ### Commentary
 
-Unsurprisingly, the results show first deploy times are dominated by building sandboxes.  Halcyon attempts to mitigate the impact of sandbox build times:
+Unsurprisingly, the results show first deploy times are dominated by building sandboxes.
 
-1.  Once the sandbox is built, Halcyon archives it as part of the [sandbox layer](/guide/#sandbox-layer), which is restored during subsequent deploys.
+Halcyon attempts to mitigate the impact of sandbox build times:
+
+1.  Once the sandbox is built, Halcyon archives it as part of the sandbox layer, which is restored during subsequent deploys.
 
 2.  When building a new sandbox, Halcyon locates previously built sandbox layers containing a subset of the required dependencies.  Each matching layer is assigned a score, and the highest scoring layer is used as a base for the new sandbox.
 
-Halcyon supports building the application incrementally, by archiving and restoring the [build directory](/guide/#build-directory).  A deploy involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
+Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  A deploy involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
 
-If no build is needed, the application is restored from a previously archived [install directory](/guide/#install-directory).  This allows deploying any of the shootout entries or [example applications](/examples/) in under 10 seconds.
+If no build is needed, the application is restored from a previously archived install directory.  This allows deploying most of the [example applications](/examples/) and shootout entries in under 10 seconds.
+
+
+<aside>
+<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
+<blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329)</p>
+</aside>
 
 
 _hello-happstack_
@@ -157,7 +169,7 @@ _hello-happstack_
 $ PORT=8080 hello-happstack
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-happstack">Deploy _hello-happstack_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-happstack">Deploy **_hello-happstack_** to Heroku</a>
 
 
 _hello-mflow_
@@ -264,13 +276,12 @@ _hello-mflow_
 $ PORT=8080 hello-mflow
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-mflow">Deploy _hello-mflow_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-mflow">Deploy **_hello-mflow_** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _cpphs_
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _cpphs_
+- _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
 
 
 _hello-miku_
@@ -366,7 +377,7 @@ _hello-miku_
 $ PORT=8080 hello-miku
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-miku">Deploy _hello-miku_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-miku">Deploy **_hello-miku_** to Heroku</a>
 
 
 _hello-scotty_
@@ -461,7 +472,7 @@ _hello-scotty_
 $ PORT=8080 hello-scotty
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-scotty">Deploy _hello-scotty_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-scotty">Deploy **_hello-scotty_** to Heroku</a>
 
 
 _hello-simple_
@@ -562,7 +573,7 @@ _hello-simple_
 $ PORT=8080 hello-simple
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-simple">Deploy _hello-simple_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-simple">Deploy **_hello-simple_** to Heroku</a>
 
 
 _hello-snap_
@@ -662,7 +673,7 @@ _hello-snap_
 $ PORT=8080 hello-snap
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-snap">Deploy _hello-snap_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-snap">Deploy **_hello-snap_** to Heroku</a>
 
 
 _hello-spock_
@@ -757,7 +768,7 @@ _hello-spock_
 $ PORT=8080 hello-spock
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-spock">Deploy _hello-spock_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-spock">Deploy **_hello-spock_** to Heroku</a>
 
 
 _hello-wai_
@@ -860,7 +871,7 @@ _hello-wai_
 $ PORT=8080 hello-wai
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wai">Deploy _hello-wai_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wai">Deploy **_hello-wai_** to Heroku</a>
 
 
 _hello-wheb_
@@ -958,7 +969,7 @@ _hello-wheb_
 $ PORT=8080 hello-wheb
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wheb">Deploy _hello-wheb_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wheb">Deploy **_hello-wheb_** to Heroku</a>
 
 
 _hello-yesod_
@@ -1071,7 +1082,7 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 $ PORT=8080 hello-yesod
 ```
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-yesod">Deploy _hello-yesod_ to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-yesod">Deploy **_hello-yesod_** to Heroku</a>
 
 
 <script src="https://www.google.com/jsapi"></script>

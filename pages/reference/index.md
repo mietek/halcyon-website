@@ -1,5 +1,5 @@
 ---
-title: Programmer’s reference
+title: User’s reference
 page-class: add-section-toc rule-before-h3 tweak-listings
 page-data:
 - key: max-back-link-level
@@ -13,8 +13,8 @@ page-head: |
 ---
 
 
-Programmer’s reference
-======================
+User’s reference
+================
 
 
 Commands
@@ -25,21 +25,15 @@ Commands
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Builds and installs the specified application, restoring or building any needed [layers](/guide/#layers).
+Builds and installs the specified application, restoring or building all needed dependencies.
 
 The application may be specified as:
 
+- Cabal package label
 - directory path
-- label
 - _git_ URL
 
-When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon deploys GHC and Cabal only.  To ignore the current directory, specify [`--no-app`](#halcyon_no_app), or set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
-
-All labels are Cabal package names, with or without a `-`_`version`_ suffix.
-
-For all _git_ URLs, the `master` branch is used by default.  Other branches may be specified with a `#`_`branch`_ suffix.
-
-[Most options](#general-options) can be specified either on the command-line, or by setting environment variables.  Some options can also be specified by including [magic files](/guide/#magic-files) in the [source directory](/guide/#source-directory).  Command-line options take precedence over environment variables, which in turn take precedence over magic files.
+When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon deploys GHC and Cabal only.  To ignore the current directory, set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
 
 
 ### `halcyon label`
@@ -47,7 +41,7 @@ For all _git_ URLs, the `master` branch is used by default.  Other branches may 
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Outputs the label of the specified application, as it would be used by [`halcyon deploy`](#halcyon-deploy).
+Outputs the Cabal package label of the specified application, as determined by [`halcyon deploy`](#halcyon-deploy).
 
 Intended to quickly determine the newest version of an application.
 
@@ -57,9 +51,9 @@ Intended to quickly determine the newest version of an application.
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Outputs the constraints file of the specified application, in `cabal freeze` format, as it would be used by [`halcyon deploy`](#halcyon-deploy).
+Outputs the version constraints of the specified application, as determined by [`halcyon deploy`](#halcyon-deploy).
 
-Intended to quickly determine the implicit constraints of an application, and to help ensure any `cabal.config` files are overridden properly, when using options such as [`HALCYON_CONSTRAINTS`](#halcyon_constraints).
+Intended to quickly determine the implicit constraints of an application which does not include a `cabal config` file.  Also helps ensure any `cabal.config` files are overridden properly, when using options such as [`HALCYON_CONSTRAINTS`](#halcyon_constraints).
 
 Not entirely a dry-run, because GHC and Cabal may need to be installed.
 
@@ -71,7 +65,7 @@ Not entirely a dry-run, because GHC and Cabal may need to be installed.
 > ---------------------|---
 > Arguments:           | _none_
 
-Outputs a shell script which sets up the needed environment variables, based on [`HALCYON_BASE`](#halcyon_base).
+Outputs a shell script which sets up the needed environment variables.
 
 1. [`HALCYON_BASE`](#halcyon_base) is set to `/app`, unless already set.
 
@@ -92,7 +86,7 @@ General options
 > Type:                | directory
 > Command-line option: | `--base=…`
 
-Directory in which Halcyon restores or builds [layers](/guide/#layers).
+Directory in which Halcyon restores or builds layers.
 
 Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 
@@ -106,10 +100,9 @@ Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 
 Directory in which Halcyon installs applications.
 
-
-#### Example
-
-If the [install directory](/guide/#install-directory) consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`.
+<div class="pre-like">
+_If the install directory consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
+</div>
 
 
 ### `HALCYON_ROOT`
@@ -121,12 +114,11 @@ If the [install directory](/guide/#install-directory) consists of `bin/hello`, a
 
 Root of the path to the directory in which Halcyon installs applications.
 
-Intended to support constructing advanced workflows.
+Intended to support advanced deployment workflows.
 
-
-#### Example
-
-If the [install directory](/guide/#install-directory) consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`.
+<div class="pre-like">
+_If the install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
+</div>
 
 
 ### `HALCYON_NO_APP`
@@ -136,9 +128,9 @@ If the [install directory](/guide/#install-directory) consists of `bin/hello`, [
 > Type:                | `0` or `1`
 > Command-line option: | `--no-app`
 
-Forces Halcon to deploy GHC and Cabal only, even when the current directory is a [source directory](/guide/#source-directory).
+Forces Halcon to deploy GHC and Cabal only, even when the current directory is a source directory.
 
-The versions of GHC and _cabal-install_ to deploy are specified by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
+The versions of GHC and _cabal-install_ to deploy are defined by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
 
 
 ### `HALCYON_LOG_TIMESTAMP`
@@ -160,13 +152,22 @@ Build-time options
 > Default value:       | _none_
 > Type:                | strings, file, or directory, optional
 > Command-line option: | `--constraints=…`
-> Standard file:       | `cabal.config`
+> Magic file:          | `.halcyon-magic/constraints`
 
-Constraints file, or directory containing a constraints file, to override any `cabal.config` files which may or may not be included in the [source directory](/guide/#source-directory).
+Cabal package labels, to override any constraints declared in a `cabal.config` file, which may or may not be included in the source directory.
 
-The file format must match the output of `cabal freeze`.  Any specified directory must contain a file named _`name-version`_`.cabal.config`, matching the application label.
+Each label must specify a Cabal package name and version number, in _`name`_`-`_`version`_ format.  The labels must be separated by whitespace.
 
-Intended to support explicitly declaring the dependencies of any application which does not already include a constraints file.
+```
+base-4.7.0.1
+ghc-prim-0.3.1.0
+integer-gmp-0.5.1.0
+rts-1.0
+```
+
+Any specified directory must contain a file named _`name-version`_`.constraints`, matching the application label.
+
+Intended to support explicitly declaring the dependencies of any application which does not already do so.
 
 
 ### `HALCYON_EXTRA_CONFIGURE_FLAGS`
@@ -235,9 +236,9 @@ Forces Halcyon to run `cabal configure` again.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-build`
 
-Prevents building any [layers](/guide/#layers), or the application.
+Prevents building any layers, or the application.
 
-Intended to use on dedicated deploy machines.
+Intended to use on deploy machines incapable of building the application.
 
 
 ### `HALCYON_NO_BUILD_LAYERS`
@@ -247,9 +248,9 @@ Intended to use on dedicated deploy machines.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-build-layers`
 
-Prevents building any [layers](/guide/#layers).
+Prevents building any layers.
 
-Intended to use on deploy machines, which are also capable of building the application.
+Intended to use on deploy machines capable of building the application.
 
 
 Install-time options
@@ -263,12 +264,12 @@ Install-time options
 > Command-line option: | `--extra-apps=…`
 > Magic file:          | `.halcyon-magic/extra-apps`
 
-Additional Haskell applications to include in the [install directory](/guide/#install-directory), as run-time dependencies.
+Additional Haskell applications to include in the install directory, as run-time dependencies.
 
 The applications must be separated by whitespace, and may be specified as:
 
+- Cabal package labels
 - directory paths
-- labels
 - _git_ URLs
 
 
@@ -280,11 +281,13 @@ The applications must be separated by whitespace, and may be specified as:
 > Command-line option: | `--extra-apps-constraints=…`
 > Magic file:          | `.halcyon-magic/extra-apps-constraints`
 
-Constraints file, or directory containing constraints files, to override any `cabal.config` files which may or may not be included in the [source directories](/guide/#source-directory) of applications specified with [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps).
+Cabal package labels, to override any constraints declared in `cabal.config` files, which may or may not be included in the source directories of applications specified with [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps).
 
-The file format must match the output of `cabal freeze`.  Any specified directory must contain files named _`name-version`_`.cabal.config`, each matching the label of one application.
+Each label must specify a Cabal package name and version number, in _`name`_`-`_`version`_ format.  The labels must be separated by whitespace.
 
-Intended to support explicitly declaring the dependencies of any application which does not already include a constraints file.
+Any specified directory must contain a file named _`name-version`_`.constraints`, each matching the label of one application.
+
+Intended to support explicitly declaring the dependencies of any application which does not already do so.
 
 
 ### `HALCYON_EXTRA_DATA_FILES`
@@ -295,24 +298,21 @@ Intended to support explicitly declaring the dependencies of any application whi
 > Command-line option: | `--extra-data-files=…`
 > Magic file:          | `.halcyon-magic/extra-data-files`
 
-Additional files to include in the [install directory](/guide/#install-directory), as run-time dependencies.
+Additional files to include in the install directory, as run-time dependencies.
 
-The files must be separated by whitespace, and may be specified as file or directory globs, relative to the [build directory](/guide/#build-directory).  Standard GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html) is performed on each glob.
-
-At run-time, the files will be available in the Cabal [data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
-
-Intended to support applications which do not declare all run-time data files as `data-files` in the Cabal package description.
-
-**Note:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
-
-
-#### Example
+The files must be separated by whitespace, and may be specified as file or directory globs, relative to the build directory.  GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html) is performed on each glob.
 
 ```
 app.cfg
 snaplets
 static
 ```
+
+At run-time, the files will be available in the Cabal [data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
+
+Intended to support applications which do not declare all run-time data files as `data-files` in the Cabal package description.
+
+**Note:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
 
 
 ### `HALCYON_EXTRA_OS_PACKAGES`
@@ -323,14 +323,11 @@ static
 > Command-line option: | `--extra-os-packages=…`
 > Magic file:          | `.halcyon-magic/extra-os-packages`
 
-Additional OS packages to include in the [install directory](/guide/#install-directory), as run-time dependencies.
+Additional OS packages to include in the install directory, as run-time dependencies.
 
-The packages must be separated by whitespace, and may be specified as package names, with or without a _`pattern`_`:` prefix.
+The packages must be separated by whitespace, and may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.
 
-_`pattern`_ is a GNU _bash_ regular expression, matched against the host platform identifier, which is obtained with [`detect_platform`](https://bashmenot.mietek.io/reference/#detect_platform).
-
-
-#### Example
+Halcyon installs packages with no patterns, or with patterns matching the host platform identifier, which is obtained with [`detect_platform`](https://bashmenot.mietek.io/reference/#detect_platform).
 
 ```
 linux-ubuntu-10:libicu42
@@ -347,7 +344,7 @@ linux-ubuntu-14:libicu52
 > Command-line option: | `--include-layers`
 > Magic file:          | `.halcyon-magic/include-layers`
 
-Forces Halcyon to include all layers in the [install directory](/guide/#install-directory), as run-time dependencies.
+Forces Halcyon to include the GHC, Cabal, and sandbox in the install directory, as run-time dependencies.
 
 Intended to support applications requiring GHC at run-time.
 
@@ -359,7 +356,7 @@ Intended to support applications requiring GHC at run-time.
 > Type:                | `0` or `1`
 > Command-line option: | `--restore-layers`
 
-Forces Halcyon to restore all [layers](/guide/#layers), even when an [install directory](/guide/#install-directory) archive is available.
+Forces Halcyon to restore all layers, even when an install directory archive is available.
 
 Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`](#halcyon_post_install_hook) is executed.
 
@@ -373,7 +370,7 @@ Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`
 > Magic file:          | `.halcyon-magic/pre-install-hook`
 > Script arguments:    | _`tag source_dir install_dir data_dir`_
 
-Script to execute when installing the application, before archiving the [install directory](/guide/#install-directory).
+Script to execute when installing the application, before archiving the install directory.
 
 
 ### `HALCYON_POST_INSTALL_HOOK`
@@ -385,7 +382,7 @@ Script to execute when installing the application, before archiving the [install
 > Magic file:          | `.halcyon-magic/post-install-hook`
 > Script arguments:    | _`tag source_dir install_dir data_dir`_
 
-Script to execute when installing the application, after copying the contents of the [install directory](/guide/#install-directory) to [`HALCYON_ROOT`](#halcyon_root).
+Script to execute when installing the application, after copying the contents of the install directory to [`HALCYON_ROOT`](#halcyon_root).
 
 
 ### `HALCYON_APP_REINSTALL`
@@ -395,7 +392,7 @@ Script to execute when installing the application, after copying the contents of
 > Type:                | `0` or `1`
 > Command-line option: | `--app-reinstall`
 
-Forces Halcyon to prepare the [install directory](/guide/#install-directory) again.
+Forces Halcyon to prepare the install directory again.
 
 
 Cache options
@@ -561,11 +558,19 @@ GHC layer options
 > Type:                | version
 > Command-line option: | `--ghc-version=…`
 
-Default version of GHC to install or restore in the [GHC layer](/guide/#ghc-layer).
+Default version of GHC to install or restore in the GHC layer.
 
 Used when deploying an application with no constraints specified, or when deploying GHC and Cabal only.
 
-See the [user’s guide](/guide/#ghc-layer) for supported versions.
+Supported versions include:
+
+- [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
+- [GHC 7.8.2](https://haskell.org/ghc/download_ghc_7_8_2)
+- [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3)
+- [GHC 7.6.1](https://haskell.org/ghc/download_ghc_7_6_1)
+- [GHC 7.4.2](https://haskell.org/ghc/download_ghc_7_4_2)
+- [GHC 7.2.2](https://haskell.org/ghc/download_ghc_7_2_2)
+- [GHC 7.0.4](https://haskell.org/ghc/download_ghc_7_0_4)
 
 
 ### `HALCYON_GHC_PRE_BUILD_HOOK`
@@ -577,7 +582,7 @@ See the [user’s guide](/guide/#ghc-layer) for supported versions.
 > Magic file:          | `.halcyon-magic/ghc-pre-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
-Script to execute when building the [GHC layer](/guide/#ghc-layer), before installing GHC.
+Script to execute when building the GHC layer, before installing GHC.
 
 
 ### `HALCYON_GHC_POST_BUILD_HOOK`
@@ -589,7 +594,7 @@ Script to execute when building the [GHC layer](/guide/#ghc-layer), before insta
 > Magic file:          | `.halcyon-magic/ghc-post-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
-Script to execute when building the [GHC layer](/guide/#ghc-layer), after installing GHC.
+Script to execute when building the GHC layer, after installing GHC.
 
 
 ### `HALCYON_GHC_REBUILD`
@@ -599,7 +604,7 @@ Script to execute when building the [GHC layer](/guide/#ghc-layer), after instal
 > Type:                | `0` or `1`
 > Command-line option: | `--ghc-rebuild`
 
-Forces Halcyon to rebuild the [GHC layer](/guide/#ghc-layer) from scratch, which implies installing GHC again.
+Forces Halcyon to rebuild the GHC layer from scratch, which implies installing GHC again.
 
 
 Cabal layer options
@@ -612,9 +617,14 @@ Cabal layer options
 > Type:                | version
 > Command-line option: | `--cabal-version=…`
 
-Version of _cabal-install_ to bootstrap or restore in the [Cabal layer](/guide/#cabal-layer).
+Version of _cabal-install_ to bootstrap or restore in the Cabal layer.
 
-See the [users’s guide](/guide/#cabal-layer) for supported versions.
+Supported versions include:
+
+- [_cabal-install_ 1.20.0.3](https://www.haskell.org/cabal/release/cabal-install-1.20.0.3/)
+- [_cabal-install_ 1.20.0.2](https://www.haskell.org/cabal/release/cabal-install-1.20.0.2/)
+- [_cabal-install_ 1.20.0.1](https://www.haskell.org/cabal/release/cabal-install-1.20.0.1/)
+- [_cabal-install_ 1.20.0.0](https://www.haskell.org/cabal/release/cabal-install-1.20.0.0/)
 
 
 ### `HALCYON_CABAL_REPO`
@@ -624,7 +634,7 @@ See the [users’s guide](/guide/#cabal-layer) for supported versions.
 > Type:                | special string
 > Command-line option: | `--cabal-repo=…`
 
-Name and URL of the Cabal repository referenced by the Cabal package database in the [Cabal layer](/guide/#cabal-layer).
+Name and URL of the Cabal repository referenced by the Cabal package database in the Cabal layer.
 
 The value must match the format of a `remote-repo` entry in a `cabal.config` file.
 
@@ -640,7 +650,7 @@ The value must match the format of a `remote-repo` entry in a `cabal.config` fil
 > Magic file:          | `.halcyon-magic/cabal-pre-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
-Script to execute when building the [Cabal layer](/guide/#cabal-layer), before bootstrapping _cabal-install_.
+Script to execute when building the Cabal layer, before bootstrapping _cabal-install_.
 
 
 ### `HALCYON_CABAL_POST_BUILD_HOOK`
@@ -652,7 +662,7 @@ Script to execute when building the [Cabal layer](/guide/#cabal-layer), before b
 > Magic file:          | `.halcyon-magic/cabal-post-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
-Script to execute when building the [Cabal layer](/guide/#cabal-layer), after bootstrapping _cabal-install_.
+Script to execute when building the Cabal layer, after bootstrapping _cabal-install_.
 
 
 ### `HALCYON_CABAL_PRE_UPDATE_HOOK`
@@ -664,7 +674,7 @@ Script to execute when building the [Cabal layer](/guide/#cabal-layer), after bo
 > Magic file:          | `.halcyon-magic/cabal-pre-update-hook`
 > Script arguments:    | _none_
 
-Script to execute when updating the [Cabal layer](/guide/#cabal-layer), before running `cabal update`.
+Script to execute when updating the Cabal layer, before running `cabal update`.
 
 
 ### `HALCYON_CABAL_POST_UPDATE_HOOK`
@@ -676,7 +686,7 @@ Script to execute when updating the [Cabal layer](/guide/#cabal-layer), before r
 > Magic file:          | `.halcyon-magic/cabal-post-update-hook`
 > Script arguments:    | _none_
 
-Script to execute when updating the [Cabal layer](/guide/#cabal-layer), after running `cabal update`.
+Script to execute when updating the Cabal layer, after running `cabal update`.
 
 
 ### `HALCYON_CABAL_REBUILD`
@@ -686,7 +696,7 @@ Script to execute when updating the [Cabal layer](/guide/#cabal-layer), after ru
 > Type:                | `0` or `1`
 > Command-line option: | `--cabal-rebuild`
 
-Forces Halcyon to rebuild the [Cabal layer](/guide/#cabal-layer) from scratch, which implies bootstrapping _cabal-install_ again.
+Forces Halcyon to rebuild the Cabal layer from scratch, which implies bootstrapping _cabal-install_ again.
 
 
 ### `HALCYON_CABAL_UPDATE`
@@ -696,7 +706,7 @@ Forces Halcyon to rebuild the [Cabal layer](/guide/#cabal-layer) from scratch, w
 > Type:                | `0` or `1`
 > Command-line option: | `--cabal-update`
 
-Forces Halcyon to update the [Cabal layer](/guide/#cabal-layer), which means running `cabal update` again.
+Forces Halcyon to update the Cabal layer, which means running `cabal update` again.
 
 
 Sandbox layer options
@@ -710,21 +720,18 @@ Sandbox layer options
 > Command-line option: | `--sandbox-sources=…`
 > Magic file:          | `.halcyon-magic/sandbox-sources`
 
-Additional Cabal packages to include in the [sandbox layer](/guide/#sandbox-layer), as build-time dependencies.
+Additional Cabal packages to include in the sandbox layer, as build-time dependencies.
 
 The packages are made available for installation by running `cabal sandbox add-source`, must be separated by whitespace, and may be specified as:
 
 - directory paths
 - _git_ URLs
 
-**Note:**  Implements Cabal feature requests [#1534](https://github.com/haskell/cabal/issues/1534) and [#2189](https://github.com/haskell/cabal/issues/2189).
-
-
-#### Example
-
 ```
 https://github.com/mietek/text-icu#fpic
 ```
+
+**Note:**  Implements Cabal feature requests [#1534](https://github.com/haskell/cabal/issues/1534) and [#2189](https://github.com/haskell/cabal/issues/2189).
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS`
@@ -735,25 +742,22 @@ https://github.com/mietek/text-icu#fpic
 > Command-line option: | `--sandbox-extra-apps=…`
 > Magic file:          | `.halcyon-magic/sandbox-extra-apps`
 
-Additional Haskell applications to include in the [sandbox layer](/guide/#sandbox-layer), as build-time dependencies.
+Additional Haskell applications to include in the sandbox layer, as build-time dependencies.
 
 The applications must be separated by whitespace, and may be specified as:
 
+- Cabal package labels
 - directory paths
-- labels
 - _git_ URLs
-
-Intended to support installing Cabal `build-tools`, such as _alex_ or _happy_.
-
-**Note:**  Works around Cabal issues [#220](https://github.com/haskell/cabal/issues/220) and [#779](https://github.com/haskell/cabal/issues/779).
-
-
-#### Example
 
 ```
 alex-3.1.3
 happy-1.19.4
 ```
+
+Intended to support installing Cabal `build-tools`, such as _alex_ or _happy_.
+
+**Note:**  Works around Cabal issues [#220](https://github.com/haskell/cabal/issues/220) and [#779](https://github.com/haskell/cabal/issues/779).
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS_CONSTRAINTS`
@@ -764,11 +768,13 @@ happy-1.19.4
 > Command-line option: | `--sandbox-extra-apps-constraints=…`
 > Magic file:          | `.halcyon-magic/sandbox-extra-apps-constraints`
 
-Constraints file, or directory containing constraints files, to override any `cabal.config` files which may or may not be included in the [source directories](/guide/#source-directory) of applications specified with [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps).
+Cabal package labels, to override any constraints specified in `cabal.config` files, which may or may not be included in the source directories of applications specified with [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps).
 
-The file format must match the output of `cabal freeze`.  Any specified directory must contain files named _`name-version`_`.cabal.config`, each matching the label of one application.
+Each label must specify a Cabal package name and version number, in _`name`_`-`_`version`_ format.  The labels must be separated by whitespace.
 
-Intended to support explicitly declaring the dependencies of any application which does not already include a constraints file.
+Any specified directory must contain a file named _`name-version`_`.constraints`, matching the application label.
+
+Intended to support explicitly declaring the dependencies of any application which does not already do so.
 
 
 ### `HALCYON_SANDBOX_EXTRA_CONFIGURE_FLAGS`
@@ -794,14 +800,11 @@ The flags must be separated by whitespace.
 > Command-line option: | `--sandbox-extra-os-packages=…`
 > Magic file:          | `.halcyon-magic/sandbox-extra-os-packages`
 
-Additional OS packages to install in the [sandbox layer](/guide/#sandbox-layer), as build-time dependencies.
+Additional OS packages to install in the sandbox layer, as build-time dependencies.
 
-The packages must be separated by whitespace, and may be specified as package names, with or without a _`pattern`_`:` prefix.
+The packages must be separated by whitespace, and may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.
 
-_`pattern`_ is a GNU _bash_ regular expression, matched against the host platform identifier, which is obtained with [`detect_platform`](https://bashmenot.mietek.io/reference/#detect_platform).
-
-
-#### Example
+Halcyon installs packages with no patterns, or with patterns matching the host platform identifier, which is obtained with [`detect_platform`](https://bashmenot.mietek.io/reference/#detect_platform).
 
 ```
 libicu-dev
@@ -820,7 +823,7 @@ linux-ubuntu-14:libicu52
 > Magic file:          | `.halcyon-magic/sandbox-pre-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
-Script to execute when building the [sandbox layer](/guide/#sandbox-layer), before running `cabal install`.
+Script to execute when building the sandbox layer, before running `cabal install`.
 
 
 ### `HALCYON_SANDBOX_POST_BUILD_HOOK`
@@ -832,7 +835,7 @@ Script to execute when building the [sandbox layer](/guide/#sandbox-layer), befo
 > Magic file:          | `.halcyon-magic/sandbox-post-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
-Script to execute when building the [sandbox layer](/guide/#sandbox-layer), after running `cabal install`.
+Script to execute when building the sandbox layer, after running `cabal install`.
 
 
 ### `HALCYON_SANDBOX_REBUILD`
@@ -842,7 +845,7 @@ Script to execute when building the [sandbox layer](/guide/#sandbox-layer), afte
 > Type:                | `0` or `1`
 > Command-line option: | `--sandbox-rebuild`
 
-Forces Halcyon to rebuild the [sandbox layer](/guide/#sandbox-layer) and the application from scratch, which implies reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
+Forces Halcyon to rebuild the sandbox layer and the application from scratch, which implies reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
 
 
 Self-update options

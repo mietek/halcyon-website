@@ -13,7 +13,9 @@ page-head: |
 Example applications { .with-toc }
 ====================
 
-Real-world Haskell applications, demonstrating advanced Halcyon features.
+Real-world Haskell applications, demonstrating advanced usage of Halcyon.
+
+All examples can be deployed to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
 
 
 </section></div>
@@ -62,12 +64,12 @@ Electronics manufacturing service, built for hardware startups.
 Using Halcyon in production since June 2014, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 
-#### Magic files
+#### Extra dependencies
 
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _alex_
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
-- [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) — build-time dependency on the OS _libpcre_ library
-- [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependencies on private packages
+- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
+- _libpcre_, as a [sandbox extra OS package](/guide/#sandbox-extra-os-packages)
+- private Cabal packages, as [sandbox sources](/guide/#sandbox-sources)
+
 
 <aside>
 <a class="micro face rehno-lindeque" href="https://twitter.com/RehnoLindeque/status/536954909506437120"></a>
@@ -96,14 +98,13 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy How I Start to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy **How I Start** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _alex_
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
-- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
+- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
+- static website content, as [extra data files](/guide/#extra-data-files)
 
 
 <aside>
@@ -131,17 +132,15 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 <span class="prompt">$</span> <span class="input">PORT=8080 hl</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy Haskell Language to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy **Haskell Language** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependencies on _alex_ and _happy_
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_ and _happy_
-- [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) — build-time dependency on the OS _libicu_ library
-- [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependency on a patched version of _text-icu_
-- [`extra-os-packages`](/reference/#halcyon_extra_os_packages) — run-time dependency on the OS _libicu_ library
-- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
+- _alex_ and _happy_, as [sandbox extra apps](/guide/#sandbox-extra-apps) with version constraints
+- _libicu_, for build-time and run-time use, as a [sandbox extra OS package](/guide/#sandbox-extra-os-packages) and an [extra OS package](/guide/#extra-os-packages)
+- patched version of _text-icu_, as a [sandbox source](/guide/#sandbox-sources)
+- static website content, as [extra data files](/guide/#extra-data-files)
 
 **Note:**  The patched version of _text-icu_ is needed to work around Cabal issue [#2207](https://github.com/haskell/cabal/issues/2207).
 
@@ -164,17 +163,17 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 <span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy Try Haskell to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy **Try Haskell** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
-- [`sandbox-sources`](/reference/#halcyon_sandbox_sources) — build-time dependency on the current version of _mueval_
-- [`sandbox-post-build-hook`](/reference/#halcyon_sandbox_post_build_hook) — custom script to run after building the sandbox
-- [`include-layers`](/reference/#halcyon_include_layers) — run-time dependency on the GHC, Cabal, and sandbox layers
-- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
+- current version of _mueval_, as a [sandbox source](/guide/#sandbox-sources)
+- [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
+- GHC and sandbox layers, as [extra layers](/guide/#extra-layers)
+- static website content, as [extra data files](/guide/#extra-data-files)
 
-**Note:**  Deploying this example may take longer than expected, because including GHC as a run-time dependency balloons the [install directory](/guide/#install-directory) to just over 1GB.
+**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just over 1GB.
 
 
 Try Idris
@@ -195,19 +194,14 @@ Try Idris
 <span class="prompt">$</span> <span class="input">tryidris 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy Try Idris to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy **Try Idris** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
-- [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to install run-time dependencies
-- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
-
-The custom script installs Idris with a recursive invocation of Halcyon, which declares:
-
-- [`constraints`](/reference/#halcyon_constraints) — version constraints for dependencies of Idris
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency for Idris on _alex_
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _alex_
+- [pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Idris, with version constraints and extra dependencies:
+    - _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps) with version constraints
+- static website content, as [extra data files](/guide/#extra-data-files)
 
 
 <aside>
@@ -235,10 +229,10 @@ Try PureScript
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy Try PureScript to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy **Try PureScript** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
 None.
 
@@ -268,30 +262,26 @@ Try Haste
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy Try Haste to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy **Try Haste** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
-- [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) — build-time dependency on _cpphs_
-- [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) — version constraints for dependencies of _cpphs_
-- [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to install run-time dependencies
-- [`include-layers`](/reference/#halcyon_include_layers) — run-time dependency on the GHC, Cabal, and sandbox layers
-- [`extra-data-files`](/reference/#halcyon_extra_data_files) — additional run-time data files
 
-The custom script installs Haste with a recursive invocation of Halcyon, which declares:
+- _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
+- [pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Haste, with version constraints and extra dependencies:
+    - _libbz2_ and _libgmp_, as [sandbox extra OS packages](/guide/#sandbox-extra-os-packages)
+    - [extra configure flags](/reference/#halcyon_extra_configure_flags) for Haste
+    - [pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
+- GHC and Cabal layers, as [extra layers](/guide/#extra-layers)
+- static website content, as [extra data files](/guide/#extra-data-files)
 
-- [`constraints`](/reference/#halcyon_constraints) — version constraints for dependencies of Haste
-- [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) — build-time dependency for Haste on the OS _libbz2_ and _libgmp_ libraries
-- [`extra-configure-flags`](/reference/#halcyon_extra_configure_flags) — additional build-time flags for Haste
-- [`pre-install-hook`](/reference/#halcyon_pre_install_hook) — custom script to bootstrap Haste
-
-**Note:**  Deploying this example may take longer than expected, because including GHC and Haste as run-time dependencies balloons the [install directory](/guide/#install-directory) to well over 1GB.
+**Note:**  Deploying this example may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1GB.
 
 
 <aside>
 <a class="micro face alberto-g-corona" href="https://twitter.com/AGoCorona/status/527731803432714240"></a>
-<blockquote>_“It needs GHC and Haste running in the instance to compile programs. That is the difficult thing.”_</blockquote>
+<blockquote>_“It needs GHC and Haste running in the instance to compile programs.  That is the difficult thing.”_</blockquote>
 <p>[— Alberto G. Corona](https://twitter.com/AGoCorona/status/527731803432714240)</p>
 </aside>
 
@@ -314,10 +304,10 @@ Wiki with _git_ file storage.
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy Gitit to Heroku</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy **Gitit** to Heroku</a>
 
 
-#### Magic files
+#### Extra dependencies
 
 None.
 

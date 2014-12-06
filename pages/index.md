@@ -36,14 +36,14 @@ Halcyon is a system for deploying Haskell web and non-web applications, powering
 
 - **Simple.**  Halcyon can deploy any Haskell application with a single command, building all required dependencies on the fly.
 
-- **Fast.**  All build results are archived in layers, which means incremental builds can be deployed in under 30 seconds.
+- **Fast.**  All build results are archived in _layers,_ which means incremental builds can be ready in under 30 seconds.
 
-- **Reliable.**  Halcyon allows all build-time and run-time dependencies to be explicitly declared, achieving 100% reproducible results.
+- **Reliable.**  Halcyon allows all build-time and run-time dependencies to be explicitly declared, aiming to achieve 100% reproducible results.
 
 
 ### Support
 
-**Pre-release version.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8N3tj), or follow <a href="https://twitter.com/halcyon_sh">@halcyon_sh</a>.
+_**Work in progress.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8N3tj), or follow <a href="https://twitter.com/mietek">@mietek</a>._
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
 
@@ -59,9 +59,17 @@ Need commercial support?  Contact the [author](#about) directly.
 </aside>
 
 
-### Examples
+Examples
+--------
 
-[Real-world Haskell applications](/examples/), demonstrating advanced Halcyon features.
+Halcyon is being used in production since June 2014, enabling push-button deployment of Haskell applications to the [Heroku](https://heroku.com/) web application platform, as [Haskell on Heroku](https://haskellonheroku.com/).
+
+All examples can be deployed to Heroku just by pushing a button.
+
+
+### Example applications
+
+[Real-world Haskell applications](/examples/), demonstrating advanced usage of Halcyon.
 
 </section></section></div>
 <div class="gallery-background">
@@ -93,6 +101,11 @@ Need commercial support?  Contact the [author](#about) directly.
 </nav></div>
 
 
+### “Hello, world!” shootout
+
+[Simple applications](/shootout/), intended to compare build times and sizes across most Haskell web frameworks.
+
+
 <aside>
 <a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
 <blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
@@ -100,28 +113,25 @@ Need commercial support?  Contact the [author](#about) directly.
 </aside>
 
 
-### “Hello, world!” shootout
-
-[Simple applications](/shootout/), intended to compare build times and sizes across most Haskell web frameworks.
-
-
 Usage
 -----
 
 Halcyon is installed with _git_, and automatically updates itself before executing any command.
 
-The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.  
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
 </code></pre>
 
+See the [user’s guide](/guide/) for details.
 
-### Deploying
+
+### Deploying applications
 
 The [`halcyon deploy`](/reference/#halcyon-deploy) command accepts directories, Cabal packages, and _git_ URLs.
 
-Deploying a previously built application takes less than 10 seconds.
+Deploying a previously built application usually takes less than 10 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
@@ -143,21 +153,7 @@ Deploying a previously built application takes less than 10 seconds.
 </code></pre>
 </div>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy How I Start to Heroku</a>
-
-
-#### Deploying to Heroku
-
-While Halcyon is not limited to web applications, [Haskell on Heroku](https://haskellonheroku.com/) uses Halcyon for push-button deployment to the [Heroku](https://heroku.com/) web application platform.
-
-All [example applications](/examples/) can be deployed to Heroku by pushing a button.
-
-
-<aside>
-<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
-<blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
-<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329)</p>
-</aside>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy **How I Start** to Heroku</a>
 
 
 #### Deploying GHC and Cabal only
@@ -193,18 +189,18 @@ The [`halcyon deploy`](/reference/#halcyon-deploy) command can also install a pr
 <div><nav>
 <ul class="menu open">
 <li><a href="/guide/">User’s guide</a></li>
-<li><a href="/reference/">Programmer’s reference</a></li>
-<li><a href="https://github.com/mietek/halcyon/">Source code</a></li>
+<li><a href="/reference/">User’s reference</a></li>
 </ul>
 </nav></div>
 
 
-#### Internal documentation
+#### Low-level documentation
 
 Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashmenot_](https://bashmenot.mietek.io/).
 
 <div><nav>
 <ul class="menu open">
+<li><a href="https://github.com/mietek/halcyon/">Source code</a></li>
 <li><a href="https://bashmenot.mietek.io/reference/">_bashmenot_ programmer’s reference</a></li>
 <li><a href="https://github.com/mietek/bashmenot/">_bashmenot_ source code</a></li>
 </ul>
@@ -214,19 +210,28 @@ Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashm
 About
 -----
 
+<div class="aside-like">
 <a class="face mietek" href="https://mietek.io/"></a>
+<blockquote>_My name is [Miëtek Bak](https://mietek.io/).  I make software, and Halcyon is one of [my projects](https://mietek.io/projects/)._
 
-My name is [Miëtek Bak](https://mietek.io/).  I make software, and Halcyon is one of [my projects](https://mietek.io/projects/).
+_This work is published under the [MIT X11 license](/license/), and supported by my company, [Least Fixed](https://leastfixed.com/)._
 
-This work is published under the [MIT X11 license](/license/), and supported by my company, [Least Fixed](https://leastfixed.com/).
-
-Like my work?  I am available for consulting.  Say <a class="hello" href="">hello</a>, or follow <a href="https://twitter.com/mietek">@mietek</a>.
+_Like my work?  I am available for consulting.  Say <a class="hello" href="">hello</a>, or follow <a href="https://twitter.com/mietek">@mietek</a>._
+</blockquote>
+</div>
 
 
 ### Acknowledgments
 
-Thanks to [CircuitHub](https://circuithub.com/), [Purely Agile](http://purelyagile.com/), and [Tweag I/O](http://tweag.io/) for advice and assistance.
+Thanks to [Joe Nelson](http://begriffs.com/), [Brian McKenna](http://brianmckenna.org/), and [Neuman Vong](https://github.com/luciferous/) for initial work on Haskell deployment.  Thanks to [CircuitHub](https://circuithub.com/), [Purely Agile](http://purelyagile.com/), and [Tweag I/O](http://tweag.io/) for advice and assistance.
 
-Website built with [_cannot_](https://cannot.mietek.io/).  The monospaced font used is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).
+The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).  The monospaced font is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  Website built with [_cannot_](https://cannot.mietek.io/).
 
 This project is not affiliated with [Heroku](https://heroku.com/), [DigitalOcean](https://digitalocean.com/), or [Amazon](https://amazon.com/).
+
+
+<aside>
+<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
+<blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329)</p>
+</aside>
