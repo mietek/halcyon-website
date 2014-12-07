@@ -196,7 +196,7 @@ The [`halcyon deploy`](/reference/#halcyon-deploy) command can also install a pr
 
 #### Internal documentation
 
-Halcyon is built with [GNU _bash_](https://gnu.org/software/bash/) 4 and [_bashmenot_](https://bashmenot.mietek.io/).
+Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_bashmenot_](https://bashmenot.mietek.io/) shell function library.
 
 <div><nav>
 <ul class="menu open">
@@ -232,6 +232,6 @@ This project is not affiliated with [Heroku](https://heroku.com/), [DigitalOcean
 
 <aside>
 <a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
-<blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
+<blockquote>_“Check out Miëtek’s [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
 <p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329)</p>
 </aside>
