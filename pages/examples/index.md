@@ -74,10 +74,10 @@ Using Halcyon in production since June 2014.
 <aside>
 <a class="micro face andrew-seddon" href="http://www.reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/"></a>
 <blockquote>_“Thanks for all the hard work on Halcyon, [Miëtek](/#about). Rehno tells me this is making our lives much easier!”_</blockquote>
-<p>[— Andrew Seddon](http://www.reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/), co-founder of [CircuitHub](https://circuithub.com/)</p>
+<p>[— Andrew Seddon](http://www.reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/), [CircuitHub](https://circuithub.com/) co-founder</p>
 <a class="micro face rehno-lindeque" href="https://twitter.com/RehnoLindeque/status/536954909506437120"></a>
 <blockquote>_“[Miëtek](/#about), you are a badass. Deploying [CircuitHub](https://circuithub.com/) is so slick now, I barely stop to think about it!”_</blockquote>
-<p>[— Rehno Lindeque](https://twitter.com/RehnoLindeque/status/536954909506437120), co-founder of [CircuitHub](https://circuithub.com/)</p>
+<p>[— Rehno Lindeque](https://twitter.com/RehnoLindeque/status/536954909506437120), [CircuitHub](https://circuithub.com/) co-founder</p>
 </aside>
 
 
@@ -113,7 +113,7 @@ Using Halcyon in production since July 2014.
 <aside>
 <a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
 <blockquote>_“[Miëtek](/#about)’s [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
-<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), author of [How I Start](https://howistart.org/)</p>
+<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
 </aside>
 
 
@@ -210,7 +210,7 @@ Try Idris
 <aside>
 <a class="micro face brian-mckenna" href="https://twitter.com/puffnfresh/status/527902645928087553"></a>
 <blockquote>_“[Miëtek](/#about), you are absolutely amazing. Thank you!”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), author of [Try Idris](http://tryidris.org/)</p>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [Haskell on Heroku](http://brianmckenna.org/blog/haskell_buildpack_heroku) pioneer</p>
 </aside>
 
 
@@ -243,7 +243,7 @@ None.
 <aside>
 <a class="micro face phil-freeman" href="https://twitter.com/paf31/status/527900905900085248"></a>
 <blockquote>_“[Miëtek’s](/#about) [Haskell on Heroku](https://haskellonheroku.com/) looks excellent.”_</blockquote>
-<p>[— Phil Freeman](https://twitter.com/paf31/status/527900905900085248), author of [PureScript](http://purescript.org/) and [Try PureScript](http://try.purescript.org/)</p>
+<p>[— Phil Freeman](https://twitter.com/paf31/status/527900905900085248), [PureScript](http://purescript.org/) and [Try PureScript](http://try.purescript.org/) author</p>
 </aside>
 
 
@@ -285,10 +285,10 @@ Try Haste
 <aside>
 <a class="micro face anton-ekblad" href="https://github.com/valderman/haste-compiler"></a>
 <blockquote>_“Building Haste yourself is not recommended.  Why jump through hoops if you don't have to?”_</blockquote>
-<p>[— Anton Ekblad](https://github.com/valderman/haste-compiler), author of [Haste](http://haste-lang.org/)</p>
+<p>[— Anton Ekblad](https://github.com/valderman/haste-compiler), [Haste](http://haste-lang.org/) author</p>
 <a class="micro face alberto-g-corona" href="https://twitter.com/AGoCorona/status/527731803432714240"></a>
 <blockquote>_“The app needs GHC and Haste running in the instance to compile programs.  That is the difficult thing.”_</blockquote>
-<p>[— Alberto G. Corona](https://twitter.com/AGoCorona/status/527731803432714240), author of [MFlow](https://github.com/agocorona/MFlow) and [Try Haste](https://tryplayg.herokuapp.com/)</p>
+<p>[— Alberto G. Corona](https://twitter.com/AGoCorona/status/527731803432714240), [MFlow](https://github.com/agocorona/MFlow) and [Try Haste](https://tryplayg.herokuapp.com/) author</p>
 </aside>
 
 
@@ -321,5 +321,5 @@ None.
 <aside>
 <a class="micro face kiwamu-okabe" href="https://twitter.com/masterq_mogumog/status/532183331148804096"></a>
 <blockquote>_“[Miëtek](/#about), woo-hoo!  I can login to Gitit using a GitHub account!  It’s really magic!”_</blockquote>
-<p>[— Kiwamu Okabe](https://twitter.com/masterq_mogumog/status/532183331148804096), founder of [Metasepi Project](http://metasepi.org/)</p>
+<p>[— Kiwamu Okabe](https://twitter.com/masterq_mogumog/status/532183331148804096), [Metasepi Project](http://metasepi.org/) founder</p>
 </aside>

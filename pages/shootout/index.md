@@ -72,7 +72,7 @@ If no build is needed, the application is restored from a previously archived in
 <aside>
 <a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
 <blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
-<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329)</p>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [Haskell on Heroku](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) pioneer</p>
 </aside>
 
 
