@@ -15,7 +15,7 @@ page-head: |
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
-All examples can be deployed to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
+All examples can be deployed to the [Heroku](https://heroku.com/) web application platform just by pushing a button, via [Haskell on Heroku](https://haskellonheroku.com/).
 
 
 <div><nav><ul class="toc toc1 menu open">
@@ -43,15 +43,15 @@ First deploy times
 
 ### Methodology
 
-The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
-
-The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
-
 The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, [set up Halcyon](/guide/#quick-start), and perform a test run by executing a [very small shell script](https://gist.github.com/mietek/8c24c84e84714de5b558).
 
 ```
 $ ./shootout.sh results.csv
 ```
+
+The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
+
+The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
 
 
 ### Commentary
