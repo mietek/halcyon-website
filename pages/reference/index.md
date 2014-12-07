@@ -319,7 +319,7 @@ Intended to support applications which do not declare all run-time data files as
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | special strings or file, optional
+> Type:                | strings or file, optional
 > Command-line option: | `--extra-os-packages=…`
 > Magic file:          | `.halcyon-magic/extra-os-packages`
 
@@ -336,17 +336,23 @@ linux-ubuntu-14:libicu52
 ```
 
 
-### `HALCYON_INCLUDE_LAYERS`
+### `HALCYON_EXTRA_LAYERS`
 
 > ---------------------|---
-> Default value:       | `0`
-> Type:                | `0` or `1`
-> Command-line option: | `--include-layers`
-> Magic file:          | `.halcyon-magic/include-layers`
+> Default value:       | _none_
+> Type:                | strings or file, optional
+> Command-line option: | `--extra-layers`
+> Magic file:          | `.halcyon-magic/extra-layers`
 
-Forces Halcyon to include the GHC, Cabal, and sandbox in the install directory, as run-time dependencies.
+Additional layers to include in the install directory, as run-time dependencies.
 
-Intended to support applications requiring GHC at run-time.
+The layers can be specified as one or more of:
+
+- `ghc`
+- `cabal`
+- `sandbox`
+
+Intended to support applications which need to compile Haskell at run-time.
 
 
 ### `HALCYON_RESTORE_LAYERS`
@@ -357,8 +363,6 @@ Intended to support applications requiring GHC at run-time.
 > Command-line option: | `--restore-layers`
 
 Forces Halcyon to restore all layers, even when an install directory archive is available.
-
-Intended to support applications requiring GHC when [`HALCYON_POST_INSTALL_HOOK`](#halcyon_post_install_hook) is executed.
 
 
 ### `HALCYON_PRE_INSTALL_HOOK`
@@ -631,7 +635,7 @@ Supported versions include:
 
 > ---------------------|---
 > Default value:       | `Hackage:http://hackage.haskell.org/packages/archive`
-> Type:                | special string
+> Type:                | string
 > Command-line option: | `--cabal-repo=…`
 
 Name and URL of the Cabal repository referenced by the Cabal package database in the Cabal layer.
@@ -796,7 +800,7 @@ The flags must be separated by whitespace.
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | special strings or file, optional
+> Type:                | strings or file, optional
 > Command-line option: | `--sandbox-extra-os-packages=…`
 > Magic file:          | `.halcyon-magic/sandbox-extra-os-packages`
 
