@@ -232,7 +232,7 @@ It is also possible to declare version constraints without modifying the applica
 The Cabal package description format includes the `build-tools` and `extra-libraries` fields, for the purpose of declaring applications and OS-specific libraries to be used at build-time.  However, _cabal-install_ does not automatically install the declared dependencies.  Requiring the user to manually install packages such as _alex_ or _happy_ has long been a source of frustration.
 
 
-#### `sandbox-extra-apps`
+#### Sandbox extra apps
 
 Halcyon allows additional applications to be declared for installation in the sandbox layer, by including a [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) magic file.
 
@@ -246,7 +246,7 @@ Each entry may be a Cabal package label, a directory path, or a _git_ URL.
 [`sandbox-extra-apps-constraints`](/reference/#halcyon_sandbox_extra_apps_constraints) declares version constraints for all additional applications.
 
 
-#### `sandbox-extra-os-packages`
+#### Sandbox extra OS packages
 
 The [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) magic file is used to declare additional OS-specific packages for installation in the sandbox layer.
 
@@ -262,7 +262,7 @@ To support cross-platform deployment, each entry may include a GNU _bash_ regula
 Halcyon installs packages with no patterns, or with patterns matching the host platform identifier.
 
 
-#### `sandbox-sources`
+#### Sandbox sources
 
 Additional Cabal packages may be made available for installation in the sandbox layer by including a [`sandbox-sources`](/reference/#halcyon_sandbox_sources) magic file.
 
@@ -278,7 +278,7 @@ Each entry may be a directory path or a _git_ URL.
 The Cabal package description format includes the `data-files` field, for the purpose of declaring files to be used at run-time by the application.  However, limitations on the contents of this field make it difficult to use.
 
 
-#### `extra-data-files`
+#### Extra data files
 
 Halcyon allows additional run-time data files to be declared, by including an [`extra-data-files`](/reference/#halcyon_extra_data_files) magic file.
 
@@ -291,19 +291,19 @@ static
 Each entry may be a file or directory path, using GNU _bash_ globbing syntax.
 
 
-#### `extra-apps`
+#### Extra apps
 
 Similarly to [`sandbox-extra-apps`](#sandbox-extra-apps), the [`extra-apps`](/reference/#halcyon_extra_apps) magic file is used to declare additional programs to be installed together with the application.
 
 [`extra-apps-constraints`](/reference/#halcyon_extra_apps_constraints) declares version constraints for all additional applications.
 
 
-#### `extra-os-packages`
+#### Extra OS packages
 
 Using [`sandbox-extra-os-packages`](#sandbox-extra-os-packages) may require a dynamic library to be present at run-time.  Often, dynamic libraries are provided in separate OS-specific packages.  These may be declared in an [`extra-os-packages`](/reference/#halcyon_extra_os_packages) magic file.
 
 
-#### `extra-layers`
+#### Extra layers
 
 Certain applications may require a Haskell development environment to be available at run-time.  To install any of the GHC, Cabal, and sandbox layers together with the application, include an [`extra-layers`](/reference/#halcyon_extra_layers) magic file.
 
@@ -335,7 +335,7 @@ In order to delete the entire contents of the cache before deploying an applicat
 
 #### Public storage
 
-By default, Halcyon tries to download any needed files from a public read-only location, defined by [`HALCYON_PUBLIC_STORAGE`](/reference/#halcyon_public_storage).  To prevent using public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1`.
+By default, Halcyon downloads any needed files from a public read-only location, defined by [`HALCYON_PUBLIC_STORAGE`](/reference/#halcyon_public_storage).  To prevent using public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1`.
 
 
 Setting up multiple machines
