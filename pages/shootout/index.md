@@ -85,7 +85,7 @@ _hello-happstack_
 > First deploy time:   | …
 > Sandbox size:        | 64MB
 > App size:            | 12MB
-> Source code:         | [_hello-happstack_](https://github.com/mietek/hello-happstack/)
+> Source code:         | [_hello-happstack_](https://github.com/mietek/hello-happstack)
 
 
 #### `Main.hs`
@@ -109,7 +109,7 @@ _hello-happstack_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-happstack-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-happstack-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-happstack/">https://github.com/mietek/hello-happstack</a>
+<pre class="toggle" id="hello-happstack-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-happstack">https://github.com/mietek/hello-happstack</a>
 -----> Cloning https://github.com/mietek/hello-happstack... done, 04ed38e
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -176,12 +176,12 @@ _hello-mflow_
 -------------
 
 > ---------------------|---
-> Framework:           | [MFlow](https://github.com/agocorona/MFlow/) 0.4.5.9
+> Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
 > Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/cabal.config) and _cpphs_ 1.18.6
 > First deploy time:   | …
 > Sandbox size:        | 152MB
 > App size:            | 20MB
-> Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow/)
+> Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow)
 
 
 #### `Main.hs`
@@ -201,7 +201,7 @@ _hello-mflow_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-mflow-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-mflow-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-mflow/">https://github.com/mietek/hello-mflow</a>
+<pre class="toggle" id="hello-mflow-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-mflow">https://github.com/mietek/hello-mflow</a>
 -----> Cloning https://github.com/mietek/hello-mflow... done, 4588f8d
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -288,12 +288,12 @@ _hello-miku_
 ------------
 
 > ---------------------|---
-> Framework:           | [_miku_](https://github.com/nfjinjing/miku/) 2014.5.19
+> Framework:           | [_miku_](https://github.com/nfjinjing/miku) 2014.5.19
 > Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/cabal.config)
 > First deploy time:   | …
 > Sandbox size:        | 84MB
 > App size:            | 13MB
-> Source code:         | [_hello-miku_](https://github.com/mietek/hello-miku/)
+> Source code:         | [_hello-miku_](https://github.com/mietek/hello-miku)
 
 
 #### `Main.hs`
@@ -317,7 +317,7 @@ _hello-miku_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-miku-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-miku-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-miku/">https://github.com/mietek/hello-miku</a>
+<pre class="toggle" id="hello-miku-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-miku">https://github.com/mietek/hello-miku</a>
 -----> Cloning https://github.com/mietek/hello-miku... done, 36784f2
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -384,12 +384,12 @@ _hello-scotty_
 --------------
 
 > ---------------------|---
-> Framework:           | [Scotty](https://github.com/scotty-web/scotty/) 0.9.0
+> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
 > Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/cabal.config)
 > First deploy time:   | …
 > Sandbox size:        | 83MB
 > App size:            | 12MB
-> Source code:         | [_hello-scotty_](https://github.com/mietek/hello-scotty/)
+> Source code:         | [_hello-scotty_](https://github.com/mietek/hello-scotty)
 
 
 #### `Main.hs`
@@ -412,7 +412,7 @@ _hello-scotty_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-scotty-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-scotty/">https://github.com/mietek/hello-scotty</a>
+<pre class="toggle" id="hello-scotty-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-scotty">https://github.com/mietek/hello-scotty</a>
 -----> Cloning https://github.com/mietek/hello-scotty... done, 518b4c5
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -484,7 +484,7 @@ _hello-simple_
 > First deploy time:   | …
 > Sandbox size:        | 100MB
 > App size:            | 7MB
-> Source code:         | [_hello-simple_](https://github.com/mietek/hello-simple/)
+> Source code:         | [_hello-simple_](https://github.com/mietek/hello-simple)
 
 
 #### `Main.hs`
@@ -513,7 +513,7 @@ _hello-simple_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-simple-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-simple-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-simple/">https://github.com/mietek/hello-simple</a>
+<pre class="toggle" id="hello-simple-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-simple">https://github.com/mietek/hello-simple</a>
 -----> Cloning https://github.com/mietek/hello-simple... done, 6bba429
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -585,7 +585,7 @@ _hello-snap_
 > First deploy time:   | …
 > Sandbox size:        | 69MB
 > App size:            | 11MB
-> Source code:         | [_hello-snap_](https://github.com/mietek/hello-snap/)
+> Source code:         | [_hello-snap_](https://github.com/mietek/hello-snap)
 
 
 #### `Main.hs`
@@ -613,7 +613,7 @@ _hello-snap_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-snap-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-snap-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-snap/">https://github.com/mietek/hello-snap</a>
+<pre class="toggle" id="hello-snap-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-snap">https://github.com/mietek/hello-snap</a>
 -----> Cloning https://github.com/mietek/hello-snap... done, ad2edd9
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -680,12 +680,12 @@ _hello-spock_
 -------------
 
 > ---------------------|---
-> Framework:           | [Spock](https://github.com/agrafix/Spock/) 0.7.4.0
+> Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.4.0
 > Dependencies:        | [80](https://github.com/mietek/hello-spock/blob/master/cabal.config)
 > First deploy time:   | …
 > Sandbox size:        | 107MB
 > App size:            | 12MB
-> Source code:         | [_hello-spock_](https://github.com/mietek/hello-spock/)
+> Source code:         | [_hello-spock_](https://github.com/mietek/hello-spock)
 
 
 #### `Main.hs`
@@ -708,7 +708,7 @@ _hello-spock_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-spock-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-spock-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-spock/">https://github.com/mietek/hello-spock</a>
+<pre class="toggle" id="hello-spock-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-spock">https://github.com/mietek/hello-spock</a>
 -----> Cloning https://github.com/mietek/hello-spock... done, da8a471
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -780,7 +780,7 @@ _hello-wai_
 > First deploy time:   | …
 > Sandbox size:        | 45MB
 > App size:            | 6MB
-> Source code:         | [_hello-wai_](https://github.com/mietek/hello-wai/)
+> Source code:         | [_hello-wai_](https://github.com/mietek/hello-wai)
 
 
 #### `Main.hs`
@@ -811,7 +811,7 @@ _hello-wai_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wai-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-wai-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wai/">https://github.com/mietek/hello-wai</a>
+<pre class="toggle" id="hello-wai-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wai">https://github.com/mietek/hello-wai</a>
 -----> Cloning https://github.com/mietek/hello-wai... done, b82d126
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -878,12 +878,12 @@ _hello-wheb_
 ------------
 
 > ---------------------|---
-> Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework/) 0.3.1.0
+> Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework) 0.3.1.0
 > Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/cabal.config)
 > First deploy time:   | …
 > Sandbox size:        | 146MB
 > App size:            | 10MB
-> Source code:         | [_hello-wheb_](https://github.com/mietek/hello-wheb/)
+> Source code:         | [_hello-wheb_](https://github.com/mietek/hello-wheb)
 
 
 #### `Main.hs`
@@ -909,7 +909,7 @@ _hello-wheb_
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wheb-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-wheb-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wheb/">https://github.com/mietek/hello-wheb</a>
+<pre class="toggle" id="hello-wheb-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wheb">https://github.com/mietek/hello-wheb</a>
 -----> Cloning https://github.com/mietek/hello-wheb... done, add5eba
 -----> Deploying app
        Prefix:                                   <b>/app</b>
@@ -981,7 +981,7 @@ _hello-yesod_
 > First deploy time:   | …
 > Sandbox size:        | 250MB
 > App size:            | 25MB
-> Source code:         | [_hello-yesod_](https://github.com/mietek/hello-yesod/)
+> Source code:         | [_hello-yesod_](https://github.com/mietek/hello-yesod)
 
 
 #### `Main.hs`
@@ -1016,7 +1016,7 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-yesod-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-yesod-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-yesod/">https://github.com/mietek/hello-yesod</a>
+<pre class="toggle" id="hello-yesod-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-yesod">https://github.com/mietek/hello-yesod</a>
 -----> Cloning https://github.com/mietek/hello-yesod... done, 177cfa7
 -----> Deploying app
        Prefix:                                   <b>/app</b>

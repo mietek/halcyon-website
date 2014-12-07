@@ -83,9 +83,9 @@ How I Start
 
 > ---------------------|---
 > Website:             | [How I Start](https://howistart.org/)
-> Author:              | [Tristan Sloughter](https://github.com/howistart/howistart.org/)
+> Author:              | [Tristan Sloughter](https://github.com/howistart/howistart.org)
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
-> Source code:         | [_howistart_](https://github.com/mietek/howistart/)
+> Source code:         | [_howistart_](https://github.com/mietek/howistart)
 
 Collection of development tutorials.
 
@@ -94,7 +94,7 @@ Using Halcyon in production since July 2014, via [Haskell on Heroku](https://h
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/howistart/">https://github.com/mietek/howistart</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
 
@@ -119,16 +119,16 @@ Haskell Language
 
 > ---------------------|---
 > Website:             | [Haskell Language](http://haskell-lang.org/)
-> Author:              | [Haskell Infrastructure team](https://github.com/haskell-infra/hl/)
+> Author:              | [Haskell Infrastructure team](https://github.com/haskell-infra/hl)
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.3
-> Source code:         | [_hl_](https://github.com/mietek/hl/)
+> Source code:         | [_hl_](https://github.com/mietek/hl)
 
 Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/hl/">https://github.com/mietek/hl</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/hl">https://github.com/mietek/hl</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 hl</span>
 </code></pre>
 
@@ -150,16 +150,16 @@ Try Haskell
 
 > ---------------------|---
 > Website:             | [Try Haskell](http://tryhaskell.org/)
-> Author:              | [Chris Done](https://github.com/chrisdone/tryhaskell/)
+> Author:              | [Chris Done](https://github.com/chrisdone/tryhaskell)
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
-> Source code:         | [_tryhaskell_](https://github.com/mietek/tryhaskell/)
+> Source code:         | [_tryhaskell_](https://github.com/mietek/tryhaskell)
 
-Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mueval/).
+Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mueval).
 
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaskell/">https://github.com/mietek/tryhaskell</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaskell">https://github.com/mietek/tryhaskell</a></span>
 <span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
 </code></pre>
 
@@ -181,16 +181,16 @@ Try Idris
 
 > ---------------------|---
 > Website:             | [Try Idris](http://tryidris.org/)
-> Author:              | [Brian McKenna](https://github.com/puffnfresh/tryidris/)
-> Framework:           | [Scotty](https://github.com/scotty-web/scotty/) 0.9.0
-> Source code:         | [_tryidris_](https://github.com/mietek/tryidris/)
+> Author:              | [Brian McKenna](https://github.com/puffnfresh/tryidris)
+> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
+> Source code:         | [_tryidris_](https://github.com/mietek/tryidris)
 
 [Idris](http://idris-lang.org/) compiler on a webpage.
 
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryidris/">https://github.com/mietek/tryidris</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryidris">https://github.com/mietek/tryidris</a></span>
 <span class="prompt">$</span> <span class="input">tryidris 8080</span>
 </code></pre>
 
@@ -216,16 +216,16 @@ Try PureScript
 
 > ---------------------|---
 > Website:             | [Try PureScript](http://try.purescript.org/)
-> Author:              | [Phil Freeman](https://github.com/purescript/trypurescript/)
-> Framework:           | [Scotty](https://github.com/scotty-web/scotty/) 0.9.0
-> Source code:         | [_trypurescript_](https://github.com/mietek/trypurescript/)
+> Author:              | [Phil Freeman](https://github.com/purescript/trypurescript)
+> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
+> Source code:         | [_trypurescript_](https://github.com/mietek/trypurescript)
 
 [PureScript](http://purescript.org/) compiler on a webpage.
 
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/trypurescript/">https://github.com/mietek/trypurescript</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/trypurescript">https://github.com/mietek/trypurescript</a></span>
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
 
@@ -249,16 +249,16 @@ Try Haste
 
 > ---------------------|---
 > Website:             | [Try Haste](https://tryplayg.herokuapp.com/)
-> Author:              | [Alberto G. Corona](https://github.com/agocorona/tryhplay/)
-> Framework:           | [MFlow](https://github.com/agocorona/MFlow/) 0.4.5.9
-> Source code:         | [_tryhaste_](https://github.com/mietek/tryhaste/)
+> Author:              | [Alberto G. Corona](https://github.com/agocorona/tryhplay)
+> Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
+> Source code:         | [_tryhaste_](https://github.com/mietek/tryhaste)
 
 [Haste](http://haste-lang.org/) development environment on a webpage.
 
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaste/">https://github.com/mietek/tryhaste</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaste">https://github.com/mietek/tryhaste</a></span>
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
 
@@ -291,16 +291,16 @@ Gitit
 
 > ---------------------|---
 > Website:             | [Gitit demo](http://gitit.net/)
-> Author:              | [John MacFarlane](https://github.com/jgm/gitit/)
+> Author:              | [John MacFarlane](https://github.com/jgm/gitit)
 > Framework:           | [Happstack](http://happstack.com/) 7.3.9
-> Source code:         | [_gitit_](https://github.com/mietek/gitit/)
+> Source code:         | [_gitit_](https://github.com/mietek/gitit)
 
 Wiki with _git_ file storage.
 
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/gitit/">https://github.com/mietek/gitit</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/gitit">https://github.com/mietek/gitit</a></span>
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
 

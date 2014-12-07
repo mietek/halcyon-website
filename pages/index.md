@@ -55,7 +55,7 @@ Need commercial support?  Contact the [author](#about) directly.
 <aside>
 <a class="micro face mietek" href="#about"></a>
 <blockquote>_“If Halcyon is not helping you deploy applications easily, there is a bug in Halcyon.”_</blockquote>
-<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm/)</p>
+<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
 </aside>
 
 
@@ -120,7 +120,7 @@ Halcyon is installed with _git_, and automatically updates itself before executi
 
 The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.  
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon">https://github.com/mietek/halcyon</a></span>
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
 </code></pre>
 
@@ -135,7 +135,7 @@ Deploying a previously built application usually takes less than 10 seconds.
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/howistart/">https://github.com/mietek/howistart</a>
+<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
 -----> Cloning https://github.com/mietek/howistart... done, cc48e01
 -----> Deploying app from install
        Prefix:                                   <b>/app</b>
@@ -200,9 +200,9 @@ Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_
 
 <div><nav>
 <ul class="menu open">
-<li><a href="https://github.com/mietek/halcyon/">Source code</a></li>
+<li><a href="https://github.com/mietek/halcyon">Source code</a></li>
 <li><a href="https://bashmenot.mietek.io/reference/">_bashmenot_ programmer’s reference</a></li>
-<li><a href="https://github.com/mietek/bashmenot/">_bashmenot_ source code</a></li>
+<li><a href="https://github.com/mietek/bashmenot">_bashmenot_ source code</a></li>
 </ul>
 </nav></div>
 

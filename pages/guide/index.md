@@ -26,7 +26,7 @@ Set up a 64-bit Ubuntu LTS machine, and install Halcyon.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">apt-get update</span>
 <span class="prompt">$</span> <span class="input">apt-get install build-essential git pigz zlib1g-dev</span>
-<span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
+<span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon">https://github.com/mietek/halcyon</a></span>
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
 </code></pre>
 
@@ -42,7 +42,7 @@ With an archive of the application install directory available, deploying can ta
 
 <div class="toggle">
 <a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/howistart/">https://github.com/mietek/howistart</a>
+<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
 -----> Cloning https://github.com/mietek/howistart... done, cc48e01
 -----> Deploying app from install
        Prefix:                                   <b>/app</b>
@@ -157,7 +157,7 @@ $ apt-get install --reinstall ca-certificates
 
 Halcyon is installed with _git_, and automatically updates itself before executing any command.  The source repository used for self-updates is defined by [`HALCYON_URL`](/reference/#halcyon_url).
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon/">https://github.com/mietek/halcyon</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon">https://github.com/mietek/halcyon</a></span>
 </code></pre>
 
 To disable self-updates, set [`HALCYON_NO_SELF_UPDATE`](/reference/#halcyon_no_self_update) to `1`.
