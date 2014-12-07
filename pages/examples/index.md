@@ -112,7 +112,7 @@ Using Halcyon in production since July 2014.
 
 <aside>
 <a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
-<blockquote>_“[Miëtek](/#about)’s [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
+<blockquote>_“[Miëtek’s](/#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
 <p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
 </aside>
 
@@ -210,7 +210,7 @@ Try Idris
 <aside>
 <a class="micro face brian-mckenna" href="https://twitter.com/puffnfresh/status/527902645928087553"></a>
 <blockquote>_“[Miëtek](/#about), you are absolutely amazing. Thank you!”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [Haskell on Heroku](http://brianmckenna.org/blog/haskell_buildpack_heroku) pioneer</p>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 </aside>
 
 
