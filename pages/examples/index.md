@@ -176,7 +176,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 - GHC and sandbox layers, as [extra layers](/guide/#extra-layers)
 - static website content, as [extra data files](/guide/#extra-data-files)
 
-**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just over 1GB.
+**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1GB.
 
 
 Try Idris
