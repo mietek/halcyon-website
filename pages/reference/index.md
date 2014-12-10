@@ -330,9 +330,11 @@ The packages must be separated by whitespace, and may include a GNU _bash_ regul
 Halcyon installs packages with no patterns, or with patterns matching the host platform identifier, which is obtained with [`detect_platform`](https://bashmenot.mietek.io/reference/#detect_platform).
 
 ```
+linux-debian-6:libicu44
 linux-ubuntu-10:libicu42
-linux-ubuntu-12:libicu48
 linux-ubuntu-14:libicu52
+linux-(centos|fedora):libicu
+linux-(debian-7|ubuntu-12):libicu48
 ```
 
 
@@ -811,10 +813,9 @@ The packages must be separated by whitespace, and may include a GNU _bash_ regul
 Halcyon installs packages with no patterns, or with patterns matching the host platform identifier, which is obtained with [`detect_platform`](https://bashmenot.mietek.io/reference/#detect_platform).
 
 ```
-libicu-dev
-linux-ubuntu-10:libicu42
-linux-ubuntu-12:libicu48
 linux-ubuntu-14:libicu52
+linux-(centos|fedora):libicu-devel
+linux-(debian|ubuntu):libicu-dev
 ```
 
 

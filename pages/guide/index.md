@@ -120,37 +120,14 @@ The build machine must be capable of compiling and linking Haskell programs.  At
 
 #### Supported platforms
 
-Currently, Halcyon fully supports Ubuntu LTS only.  Partial support is available for CentOS and OS X, without the capability to automatically install OS-specific packages.
+Currently, Halcyon fully supports the `x86_64` architecture, and the following Linux distributions:
 
-```
-$ apt-get update
-```
+- CentOS 6 and 7
+- Debian 6 and 7
+- Fedora 19 and 20
+- Ubuntu 10.04 LTS, 12.04 LTS, and 14.04 LTS
 
-
-##### Ubuntu 14.04 LTS (`x86_64`)
-
-```
-$ apt-get install build-essential git pigz zlib1g-dev
-```
-
-
-##### Ubuntu 12.04 LTS (`x86_64`)
-
-```
-$ apt-get install build-essential git libgmp3c2 pigz zlib1g-dev
-```
-
-**Note:**  _libgmp3c2_ can be skipped when using GHC 7.8 or newer.
-
-
-##### Ubuntu 10.04 LTS (`x86_64`)
-
-```
-$ apt-get install build-essential git-core libgmp3c2 pigz zlib1g-dev
-$ apt-get install --reinstall ca-certificates
-```
-
-**Note:**  Reinstalling _ca-certificates_ is required to fix _git_ cloning over HTTPS.
+All platform-specific configuration needed for Halcyon fits in a [very small shell script](https://gist.github.com/mietek/5a213e2023d1c7f6bdf9).
 
 
 ### Installing Halcyon
@@ -251,10 +228,9 @@ Each entry may be a Cabal package label, a directory path, or a _git_ URL.
 The [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) magic file is used to declare additional OS-specific packages for installation in the sandbox layer.
 
 ```
-libicu-dev
-linux-ubuntu-10:libicu42
-linux-ubuntu-12:libicu48
 linux-ubuntu-14:libicu52
+linux-(centos|fedora):libicu-devel
+linux-(debian|ubuntu):libicu-dev
 ```
 
 To support cross-platform deployment, each entry may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.
@@ -302,10 +278,22 @@ Similarly to [`sandbox-extra-apps`](#sandbox-extra-apps), the [`extra-apps`](/re
 
 Using [`sandbox-extra-os-packages`](#sandbox-extra-os-packages) may require a dynamic library to be present at run-time.  Often, dynamic libraries are provided in separate OS-specific packages.  These may be declared in an [`extra-os-packages`](/reference/#halcyon_extra_os_packages) magic file.
 
+```
+linux-debian-6:libicu44
+linux-ubuntu-10:libicu42
+linux-ubuntu-14:libicu52
+linux-(centos|fedora):libicu
+linux-(debian-7|ubuntu-12):libicu48
+```
+
 
 #### Extra layers
 
 Certain applications may require a Haskell development environment to be available at run-time.  To install any of the GHC, Cabal, and sandbox layers together with the application, include an [`extra-layers`](/reference/#halcyon_extra_layers) magic file.
+
+```
+ghc
+```
 
 
 Advanced usage
