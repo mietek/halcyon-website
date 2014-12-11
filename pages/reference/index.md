@@ -152,7 +152,7 @@ Build-time options
 > Default value:       | _none_
 > Type:                | strings, file, or directory, optional
 > Command-line option: | `--constraints=…`
-> Magic file:          | `.halcyon-magic/constraints`
+> Magic file:          | `.halcyon/constraints`
 
 Cabal package labels, to override any constraints declared in a `cabal.config` file, which may or may not be included in the source directory.
 
@@ -176,7 +176,7 @@ Intended to support explicitly declaring the dependencies of any application whi
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--extra-configure-flags=…`
-> Magic file:          | `.halcyon-magic/extra-configure-flags`
+> Magic file:          | `.halcyon/extra-configure-flags`
 
 Additional flags to specify when running `cabal configure`.
 
@@ -191,7 +191,7 @@ The flags must be separated by whitespace.
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--pre-build-hook=…`
-> Magic file:          | `.halcyon-magic/pre-build-hook`
+> Magic file:          | `.halcyon/pre-build-hook`
 > Script arguments:    | _`tag source_dir build_dir`_
 
 Script to execute when building the application, before running `cabal build`.
@@ -203,7 +203,7 @@ Script to execute when building the application, before running `cabal build`.
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--post-build-hook=…`
-> Magic file:          | `.halcyon-magic/post-build-hook`
+> Magic file:          | `.halcyon/post-build-hook`
 > Script arguments:    | _`tag source_dir build_dir`_
 
 Script to execute when building the application, after running `cabal build`.
@@ -262,7 +262,7 @@ Install-time options
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--extra-apps=…`
-> Magic file:          | `.halcyon-magic/extra-apps`
+> Magic file:          | `.halcyon/extra-apps`
 
 Additional Haskell applications to include in the install directory, as run-time dependencies.
 
@@ -279,7 +279,7 @@ The applications must be separated by whitespace, and may be specified as:
 > Default value:       | _none_
 > Type:                | strings, file, or directory, optional
 > Command-line option: | `--extra-apps-constraints=…`
-> Magic file:          | `.halcyon-magic/extra-apps-constraints`
+> Magic file:          | `.halcyon/extra-apps-constraints`
 
 Cabal package labels, to override any constraints declared in `cabal.config` files, which may or may not be included in the source directories of applications specified with [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps).
 
@@ -296,7 +296,7 @@ Intended to support explicitly declaring the dependencies of any application whi
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--extra-data-files=…`
-> Magic file:          | `.halcyon-magic/extra-data-files`
+> Magic file:          | `.halcyon/extra-data-files`
 
 Additional files to include in the install directory, as run-time dependencies.
 
@@ -321,7 +321,7 @@ Intended to support applications which do not declare all run-time data files as
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--extra-os-packages=…`
-> Magic file:          | `.halcyon-magic/extra-os-packages`
+> Magic file:          | `.halcyon/extra-os-packages`
 
 Additional OS packages to include in the install directory, as run-time dependencies.
 
@@ -344,7 +344,7 @@ linux-(debian-7|ubuntu-12):libicu48
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--extra-layers`
-> Magic file:          | `.halcyon-magic/extra-layers`
+> Magic file:          | `.halcyon/extra-layers`
 
 Additional layers to include in the install directory, as run-time dependencies.
 
@@ -373,7 +373,7 @@ Forces Halcyon to restore all layers, even when an install directory archive is 
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--pre-install-hook=…`
-> Magic file:          | `.halcyon-magic/pre-install-hook`
+> Magic file:          | `.halcyon/pre-install-hook`
 > Script arguments:    | _`tag source_dir install_dir data_dir`_
 
 Script to execute when installing the application, before archiving the install directory.
@@ -385,7 +385,7 @@ Script to execute when installing the application, before archiving the install 
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--post-install-hook=…`
-> Magic file:          | `.halcyon-magic/post-install-hook`
+> Magic file:          | `.halcyon/post-install-hook`
 > Script arguments:    | _`tag source_dir install_dir data_dir`_
 
 Script to execute when installing the application, after copying the contents of the install directory to [`HALCYON_ROOT`](#halcyon_root).
@@ -585,7 +585,7 @@ Supported versions include:
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--ghc-pre-build-hook=…`
-> Magic file:          | `.halcyon-magic/ghc-pre-build-hook`
+> Magic file:          | `.halcyon/ghc-pre-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
 Script to execute when building the GHC layer, before installing GHC.
@@ -597,7 +597,7 @@ Script to execute when building the GHC layer, before installing GHC.
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--ghc-post-build-hook=…`
-> Magic file:          | `.halcyon-magic/ghc-post-build-hook`
+> Magic file:          | `.halcyon/ghc-post-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
 Script to execute when building the GHC layer, after installing GHC.
@@ -653,7 +653,7 @@ The value must match the format of a `remote-repo` entry in a `cabal.config` fil
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--cabal-pre-build-hook=…`
-> Magic file:          | `.halcyon-magic/cabal-pre-build-hook`
+> Magic file:          | `.halcyon/cabal-pre-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
 Script to execute when building the Cabal layer, before bootstrapping _cabal-install_.
@@ -665,7 +665,7 @@ Script to execute when building the Cabal layer, before bootstrapping _cabal-ins
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--cabal-post-build-hook=…`
-> Magic file:          | `.halcyon-magic/cabal-post-build-hook`
+> Magic file:          | `.halcyon/cabal-post-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
 Script to execute when building the Cabal layer, after bootstrapping _cabal-install_.
@@ -677,7 +677,7 @@ Script to execute when building the Cabal layer, after bootstrapping _cabal-inst
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--cabal-pre-update-hook=…`
-> Magic file:          | `.halcyon-magic/cabal-pre-update-hook`
+> Magic file:          | `.halcyon/cabal-pre-update-hook`
 > Script arguments:    | _none_
 
 Script to execute when updating the Cabal layer, before running `cabal update`.
@@ -689,7 +689,7 @@ Script to execute when updating the Cabal layer, before running `cabal update`.
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--cabal-post-update-hook=…`
-> Magic file:          | `.halcyon-magic/cabal-post-update-hook`
+> Magic file:          | `.halcyon/cabal-post-update-hook`
 > Script arguments:    | _none_
 
 Script to execute when updating the Cabal layer, after running `cabal update`.
@@ -724,7 +724,7 @@ Sandbox layer options
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--sandbox-sources=…`
-> Magic file:          | `.halcyon-magic/sandbox-sources`
+> Magic file:          | `.halcyon/sandbox-sources`
 
 Additional Cabal packages to include in the sandbox layer, as build-time dependencies.
 
@@ -746,7 +746,7 @@ https://github.com/mietek/text-icu#fpic
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--sandbox-extra-apps=…`
-> Magic file:          | `.halcyon-magic/sandbox-extra-apps`
+> Magic file:          | `.halcyon/sandbox-extra-apps`
 
 Additional Haskell applications to include in the sandbox layer, as build-time dependencies.
 
@@ -772,7 +772,7 @@ Intended to support installing Cabal `build-tools`, such as _alex_ or _happy_.
 > Default value:       | _none_
 > Type:                | strings, file, or directory, optional
 > Command-line option: | `--sandbox-extra-apps-constraints=…`
-> Magic file:          | `.halcyon-magic/sandbox-extra-apps-constraints`
+> Magic file:          | `.halcyon/sandbox-extra-apps-constraints`
 
 Cabal package labels, to override any constraints specified in `cabal.config` files, which may or may not be included in the source directories of applications specified with [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps).
 
@@ -789,7 +789,7 @@ Intended to support explicitly declaring the dependencies of any application whi
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--sandbox-extra-configure-flags=…`
-> Magic file:          | `.halcyon-magic/sandbox-extra-configure-flags`
+> Magic file:          | `.halcyon/sandbox-extra-configure-flags`
 
 Additional flags to specify when running `cabal install --dependencies-only`.
 
@@ -804,7 +804,7 @@ The flags must be separated by whitespace.
 > Default value:       | _none_
 > Type:                | strings or file, optional
 > Command-line option: | `--sandbox-extra-os-packages=…`
-> Magic file:          | `.halcyon-magic/sandbox-extra-os-packages`
+> Magic file:          | `.halcyon/sandbox-extra-os-packages`
 
 Additional OS packages to install in the sandbox layer, as build-time dependencies.
 
@@ -825,7 +825,7 @@ linux-(debian|ubuntu):libicu-dev
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--sandbox-pre-build-hook=…`
-> Magic file:          | `.halcyon-magic/sandbox-pre-build-hook`
+> Magic file:          | `.halcyon/sandbox-pre-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
 Script to execute when building the sandbox layer, before running `cabal install`.
@@ -837,7 +837,7 @@ Script to execute when building the sandbox layer, before running `cabal install
 > Default value:       | _none_
 > Type:                | file, optional
 > Command-line option: | `--sandbox-post-build-hook=…`
-> Magic file:          | `.halcyon-magic/sandbox-post-build-hook`
+> Magic file:          | `.halcyon/sandbox-post-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
 Script to execute when building the sandbox layer, after running `cabal install`.

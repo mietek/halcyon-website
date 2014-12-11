@@ -89,7 +89,7 @@ $ halcyon deploy foo
 ```
 
 ```
-$ echo 'alex-3.1.3 happy-1.19.4' >foo/.halcyon-magic/sandbox-extra-apps
+$ echo 'alex-3.1.3 happy-1.19.4' >foo/.halcyon/sandbox-extra-apps
 $ halcyon deploy foo
 ```
 
