@@ -170,6 +170,20 @@ Any specified directory must contain a file named _`name-version`_`.constraints`
 Intended to support explicitly declaring the dependencies of any application which does not already do so.
 
 
+### `HALCYON_IGNORE_ALL_CONSTRAINTS`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--ignore-all-constraints`
+
+Forces Halcyon to ignore any constraints declared in a `cabal.config` file or `.halcyon/constraints` magic file, and use the newest versions of all required Cabal packages.
+
+Intended to support upgrading dependencies.
+
+**Note:**  Ignoring only certain constraints is not supported.  See Cabal issue [#2265](https://github.com/haskell/cabal/issues/2265) for details.
+
+
 ### `HALCYON_EXTRA_CONFIGURE_FLAGS`
 
 > ---------------------|---
