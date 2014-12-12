@@ -81,7 +81,7 @@ _hello-happstack_
 
 > ---------------------|---
 > Framework:           | [Happstack](http://happstack.com/) Lite 7.3.5
-> Dependencies:        | [44](https://github.com/mietek/hello-happstack/blob/master/cabal.config)
+> Dependencies:        | [44](https://github.com/mietek/hello-happstack/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 64MB
 > App size:            | 12MB
@@ -177,7 +177,7 @@ _hello-mflow_
 
 > ---------------------|---
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
-> Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/cabal.config) and _cpphs_ 1.18.6
+> Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/.halcyon/constraints) and _cpphs_ 1.18.6
 > First deploy time:   | …
 > Sandbox size:        | 152MB
 > App size:            | 20MB
@@ -288,8 +288,8 @@ _hello-miku_
 ------------
 
 > ---------------------|---
-> Framework:           | [_miku_](https://github.com/nfjinjing/miku) 2014.5.19
-> Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/cabal.config)
+> Framework:           | [_miku_](https://github.com/nfjinjing/miku) 2014.11.17
+> Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 84MB
 > App size:            | 13MB
@@ -385,7 +385,7 @@ _hello-scotty_
 
 > ---------------------|---
 > Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
-> Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/cabal.config)
+> Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 83MB
 > App size:            | 12MB
@@ -480,7 +480,7 @@ _hello-simple_
 
 > ---------------------|---
 > Framework:           | [Simple](http://simple.cx/) 0.10.0.2
-> Dependencies:        | [70](https://github.com/mietek/hello-simple/blob/master/cabal.config)
+> Dependencies:        | [70](https://github.com/mietek/hello-simple/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 100MB
 > App size:            | 7MB
@@ -581,7 +581,7 @@ _hello-snap_
 
 > ---------------------|---
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
-> Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/cabal.config)
+> Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 69MB
 > App size:            | 11MB
@@ -680,8 +680,8 @@ _hello-spock_
 -------------
 
 > ---------------------|---
-> Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.4.0
-> Dependencies:        | [80](https://github.com/mietek/hello-spock/blob/master/cabal.config)
+> Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.5.1
+> Dependencies:        | [79](https://github.com/mietek/hello-spock/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 107MB
 > App size:            | 12MB
@@ -776,7 +776,7 @@ _hello-wai_
 
 > ---------------------|---
 > Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2
-> Dependencies:        | [38](https://github.com/mietek/hello-wai/blob/master/cabal.config)
+> Dependencies:        | [38](https://github.com/mietek/hello-wai/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 45MB
 > App size:            | 6MB
@@ -879,7 +879,7 @@ _hello-wheb_
 
 > ---------------------|---
 > Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework) 0.3.1.0
-> Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/cabal.config)
+> Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 146MB
 > App size:            | 10MB
@@ -976,8 +976,8 @@ _hello-yesod_
 -------------
 
 > ---------------------|---
-> Framework:           | [Yesod](http://yesodweb.com/) 1.4.0
-> Dependencies:        | [145](https://github.com/mietek/hello-yesod/blob/master/cabal.config)
+> Framework:           | [Yesod](http://yesodweb.com/) 1.4.1
+> Dependencies:        | [146](https://github.com/mietek/hello-yesod/blob/master/.halcyon/constraints)
 > First deploy time:   | …
 > Sandbox size:        | 250MB
 > App size:            | 25MB
