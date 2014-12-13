@@ -20,6 +20,7 @@ All examples can be deployed to the [Heroku](https://heroku.com/) web applicatio
 
 <div><nav><ul class="toc toc1 menu open">
 <li><a href="#first-deploy-times">First deploy times</a></li>
+<li><a href="#hello-apiary"><i>hello-apiary</i></a></li>
 <li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
 <li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
 <li><a href="#hello-miku"><i>hello-miku</i></a></li>
@@ -74,6 +75,121 @@ If no build is needed, the application is restored from a previously archived in
 <blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
 <p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 </aside>
+
+
+_hello-apiary_
+-----------------
+
+> ---------------------|---
+> Framework:           | [Apiary](https://github.com/philopon/apiary) 1.2.0
+> Dependencies:        | [65](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints)
+> First deploy time:   | …
+> Sandbox size:        | 81MB
+> App size:            | 9.8MB
+> Source code:         | [_hello-apiary_](https://github.com/mietek/hello-apiary)
+
+
+#### `Main.hs`
+
+<div class="toggle">
+<a class="toggle-button open" data-target="hello-apiary-source" href="" title="Toggle">Toggle</a>
+<pre class="toggle open textmate-source" id="hello-apiary-source"><code><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Network.Wai.Handler.Warp</span></span>
+<span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Web.Apiary</span></span>
+<span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Web.Apiary.Heroku</span></span>
+
+<span class="meta meta_function meta_function_type-declaration meta_function_type-declaration_haskell"><span class="entity entity_name entity_name_function entity_name_function_haskell">main</span> <span class="keyword keyword_other keyword_other_double-colon keyword_other_double-colon_haskell">::</span> <span class="support support_type support_type_prelude support_type_prelude_haskell">IO</span> <span class="support support_constant support_constant_unit support_constant_unit_haskell">()</span>
+</span>main <span class="keyword keyword_operator keyword_operator_haskell">=</span>
+  runHeroku run def <span class="keyword keyword_operator keyword_operator_haskell">$</span>
+    action <span class="keyword keyword_operator keyword_operator_haskell">$</span> bytes <span class="string string_quoted string_quoted_double string_quoted_double_haskell"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_haskell">"</span>Hello, world!<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_haskell">"</span></span></span></code></pre>
+</div>
+
+
+#### First deploy log
+
+<div class="toggle">
+<a class="toggle-button" data-target="hello-apiary-deploy" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-apiary-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-apiary">https://github.com/mietek/hello-apiary</a>
+-----> Cloning https://github.com/mietek/hello-apiary... done, d97f2b3
+-----> Determining constraints
+-----> Deploying app
+       Label:                                    <b>hello-apiary-1.0</b>
+       Source hash:                              <b>49d3c4f</b>
+       Prefix:                                   <b>/app</b>
+       Constraints hash:                         <b>f00c991</b>
+       Magic hash:                               <b>075003b</b>
+       External storage:                         <b>private and public</b>
+       GHC version:                              <b>7.8.3</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
+       Sandbox magic hash:                       <b>ae3848d</b>
+       Sandbox extra apps:                       <b>alex-3.1.3</b>
+
+-----> Restoring GHC layer
+       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
+
+-----> Restoring Cabal layer
+       Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
+
+-----> Building sandbox layer
+-----> Creating sandbox
+       Writing a default package environment file to
+       /app/sandbox/cabal.sandbox.config
+       Creating a new sandbox at /app/sandbox
+-----> Deploying sandbox extra apps
+       -----> Unpacking app
+       -----> Deploying app from install
+              Label:                                    <b>alex-3.1.3</b>
+              Source hash:                              <b>b3faab4</b>
+              Prefix:                                   <b>/app/sandbox</b>
+              External storage:                         <b>private and public</b>
+
+       -----> Restoring install
+              Extracting halcyon-install-b3faab4-alex-3.1.3.tar.gz... done, 2.5MB
+       -----> Install restored
+       -----> Installing app into /app/sandbox... done
+-----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
+       ...
+       Installed apiary-1.2.0
+-----> Sandbox built, 81MB
+       Removing documentation from sandbox layer... done, 81MB
+       Stripping sandbox layer... done, 70MB
+-----> Archiving sandbox layer
+       Creating halcyon-sandbox-f00c991.ae3848d-hello-apiary-1.0.tar.gz... done, 12MB
+
+-----> Configuring app
+-----> Building app
+       Building hello-apiary-1.0...
+       Preprocessing executable 'hello-apiary' for hello-apiary-1.0...
+       ...
+       Linking dist/build/hello-apiary/hello-apiary ...
+-----> App built, 9.8MB
+       Stripping app... done, 7.4MB
+-----> Archiving build
+       Creating halcyon-build-hello-apiary-1.0.tar.gz... done, 1.6MB
+
+-----> Preparing install
+       Including app
+-----> Install prepared, 7.1MB
+-----> Archiving install
+       Creating halcyon-install-49d3c4f-hello-apiary-1.0.tar.gz... done, 1.6MB
+-----> Installing app into /app... done
+
+-----> App deployed:                             <b>hello-apiary-1.0</b>
+</code></pre>
+</div>
+
+```
+$ PORT=8080 hello-apiary
+```
+
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-apiary">Deploy **_hello-apiary_** to Heroku</a>
+
+
+#### Extra dependencies
+
+- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 
 
 _hello-happstack_
@@ -1088,6 +1204,7 @@ $ PORT=8080 hello-yesod
 <script src="https://www.google.com/jsapi"></script>
 <script>
 var rawResults = [
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',5,189,193,194],
   ['hello-mflow',6,310,316,317],
   ['hello-miku',5,275,280,280],
@@ -1098,6 +1215,7 @@ var rawResults = [
   ['hello-wai',6,197,201,201],
   ['hello-wheb',6,308,313,314],
   ['hello-yesod',5,490,499,501],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',5,191,195,196],
   ['hello-mflow',6,310,317,318],
   ['hello-miku',6,276,281,281],
@@ -1108,6 +1226,7 @@ var rawResults = [
   ['hello-wai',5,198,202,202],
   ['hello-wheb',5,310,316,316],
   ['hello-yesod',5,490,499,500],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',6,190,195,195],
   ['hello-mflow',5,310,317,318],
   ['hello-miku',6,269,274,275],
@@ -1118,6 +1237,7 @@ var rawResults = [
   ['hello-wai',5,198,202,203],
   ['hello-wheb',5,303,308,309],
   ['hello-yesod',5,504,513,515],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',5,195,199,200],
   ['hello-mflow',6,309,316,317],
   ['hello-miku',6,280,285,286],
@@ -1128,6 +1248,7 @@ var rawResults = [
   ['hello-wai',6,198,202,203],
   ['hello-wheb',6,311,316,317],
   ['hello-yesod',6,503,512,513],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',5,193,197,198],
   ['hello-mflow',6,319,325,326],
   ['hello-miku',5,277,282,283],
@@ -1138,6 +1259,7 @@ var rawResults = [
   ['hello-wai',7,215,219,219],
   ['hello-wheb',6,318,324,325],
   ['hello-yesod',6,507,516,518],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',5,194,199,199],
   ['hello-mflow',7,336,345,346],
   ['hello-miku',6,281,286,287],
@@ -1148,6 +1270,7 @@ var rawResults = [
   ['hello-wai',6,215,219,220],
   ['hello-wheb',7,327,332,333],
   ['hello-yesod',5,522,532,533],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',6,193,198,199],
   ['hello-mflow',6,334,340,342],
   ['hello-miku',6,307,312,313],
@@ -1158,6 +1281,7 @@ var rawResults = [
   ['hello-wai',8,217,221,222],
   ['hello-wheb',7,319,326,327],
   ['hello-yesod',8,531,540,542],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',6,203,207,208],
   ['hello-mflow',6,317,323,324],
   ['hello-miku',5,288,293,294],
@@ -1168,6 +1292,7 @@ var rawResults = [
   ['hello-wai',6,224,229,229],
   ['hello-wheb',6,328,335,335],
   ['hello-yesod',6,517,526,528],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',7,209,215,215],
   ['hello-mflow',6,338,344,346],
   ['hello-miku',8,304,309,310],
@@ -1178,6 +1303,7 @@ var rawResults = [
   ['hello-wai',6,199,203,204],
   ['hello-wheb',7,323,329,331],
   ['hello-yesod',8,527,537,538],
+  ['hello-apiary',0,0,0,0],
   ['hello-happstack',6,197,202,202],
   ['hello-mflow',5,323,330,331],
   ['hello-miku',7,298,303,303],
