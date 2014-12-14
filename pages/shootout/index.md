@@ -144,9 +144,6 @@ _hello-apiary_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Installing sandbox extra apps
        -----> Unpacking app
        -----> Installing app
@@ -259,9 +256,6 @@ _hello-happstack_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -355,9 +349,6 @@ _hello-mflow_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Installing sandbox extra apps
        -----> Unpacking app
        -----> Installing app
@@ -470,9 +461,6 @@ _hello-miku_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -567,9 +555,6 @@ _hello-scotty_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -670,9 +655,6 @@ _hello-simple_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -772,9 +754,6 @@ _hello-snap_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -869,9 +848,6 @@ _hello-spock_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -974,9 +950,6 @@ _hello-wai_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -1074,9 +1047,6 @@ _hello-wheb_
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
@@ -1183,9 +1153,6 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 
 -----> Building sandbox layer
 -----> Creating sandbox
-       Writing a default package environment file to
-       /app/sandbox/cabal.sandbox.config
-       Creating a new sandbox at /app/sandbox
 -----> Building sandbox
        Resolving dependencies...
        Notice: installing into a sandbox located at /app/sandbox
