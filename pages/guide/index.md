@@ -30,21 +30,21 @@ Set up a 64-bit Ubuntu LTS machine, and install Halcyon.
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
 </code></pre>
 
-Halcyon is now ready to deploy any of the [example applications](/examples/) or [shootout entries](/shootout/).
+Halcyon is now ready to install any of the [example applications](/examples/) or [shootout entries](/shootout/).
 
 
 Basic usage
 -----------
 
-The [`halcyon deploy`](/reference/#halcyon-deploy) command accepts directory paths, Cabal package labels, and _git_ URLs.
+The [`halcyon install`](/reference/#halcyon-install) command accepts directory paths, Cabal package labels, and _git_ URLs.
 
-With an archive of the application install directory available, deploying can take less than 10 seconds.
+With an archive of the application install directory available, installing can take less than 10 seconds.
 
 <div class="toggle">
-<a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
+<a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="log1"><code>$ halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
 -----> Cloning https://github.com/mietek/howistart... done, cc48e01
------> Deploying app from install
+-----> Installing app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>howistart-0.1</b>
        Source hash:                              <b>bcfc50f</b>
@@ -56,7 +56,7 @@ With an archive of the application install directory available, deploying can ta
 -----> Install restored
 -----> Installing app into /app... done
 
------> App deployed:                             <b>howistart-0.1</b>
+-----> App installed:                            <b>howistart-0.1</b>
 </code></pre>
 </div>
 
@@ -75,22 +75,22 @@ Halcyon uses the `master` branch for all _git_ URLs.  Other branches may be spec
 
 ### Specifying options
 
-All application-specific Halcyon options may be specified by providing a _command-line option,_ by setting an _environment variable,_ or by including a _magic file._ 
+All application-specific Halcyon options may be specified by providing a _command-line option,_ by setting an _environment variable,_ or by including a _magic file._
 
 If `foo` is an application directory, the following invocations are equivalent:
 
 ```
-$ halcyon deploy foo --sandbox-extra-apps='alex-3.1.3 happy-1.19.4'
+$ halcyon install foo --sandbox-extra-apps='alex-3.1.3 happy-1.19.4'
 ```
 
 ```
 $ export HALCYON_SANDBOX_EXTRA_APPS='alex-3.1.3 happy-1.19.4'
-$ halcyon deploy foo 
+$ halcyon install foo
 ```
 
 ```
 $ echo 'alex-3.1.3 happy-1.19.4' >foo/.halcyon/sandbox-extra-apps
-$ halcyon deploy foo
+$ halcyon install foo
 ```
 
 Command-line options take precedence over environment variables, which in turn take precedence over magic files.
@@ -104,7 +104,7 @@ Using magic files is the recommended method of specifying application-specific o
 Setting up a machine
 --------------------
 
-To set up one machine for building and deploying applications:
+To set up one machine for building and installing applications:
 
 1.  [Provision a machine](#provisioning-a-machine) with one of the supported operating systems, and install the required OS-specific packages.
 
@@ -113,7 +113,7 @@ To set up one machine for building and deploying applications:
 
 ### Provisioning a machine
 
-Halcyon is designed to deploy applications by building all required dependencies on the fly.
+Halcyon is designed to install applications by building all required dependencies on the fly.
 
 The build machine must be capable of compiling and linking Haskell programs.  At least 4GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2GB of memory available.
 
@@ -201,7 +201,7 @@ integer-gmp-0.5.1.0
 rts-1.0
 ```
 
-It is also possible to declare version constraints without modifying the application, by using the command-line option or environment variable corresponding to the [`constraints`](/reference/#halcyon_constraints) magic file.  This is intended to support deploying already published applications while retaining complete control over their dependencies.
+It is also possible to declare version constraints without modifying the application, by using the command-line option or environment variable corresponding to the [`constraints`](/reference/#halcyon_constraints) magic file.  This is intended to support installing already published applications while retaining complete control over their dependencies.
 
 
 ### Build-time dependencies
@@ -233,7 +233,7 @@ linux-(centos|fedora):libicu-devel
 linux-(debian|ubuntu):libicu-dev
 ```
 
-To support cross-platform deployment, each entry may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.
+To support cross-platform installation, each entry may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.
 
 Halcyon installs packages with no patterns, or with patterns matching the host platform identifier.
 
@@ -301,7 +301,7 @@ Advanced usage
 
 _**Work in progress.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8N3tj), or follow <a href="https://twitter.com/mietek">@mietek</a>._
 
-- _Deploying locally.  [Base path](/reference/#halcyon_base), [prefix path](/reference/#halcyon_prefix), [root path](/reference#halcyon_root).  Archive names.  Tags._
+- _Installing locally and remotely.  [Base path](/reference/#halcyon_base), [prefix path](/reference/#halcyon_prefix), [root path](/reference#halcyon_root).  Archive names.  Tags._
 
 - _[Rebuilding applications](/reference/#halcyon_app_rebuild), [reconfiguring applications](/reference/#halcyon_app_reconfigure), [reinstalling applications](/reference/#halcyon_app_reinstall).  Source hash, constraints hash, magic hash.  Source directory, build directory, install directory.  [Pre-build hook](/reference/#halcyon_pre_build_hook), [post-build hook](/reference/#halcyon_post_build_hook), [pre-install hook](/reference/#halcyon_pre_install_hook), [post-install hook](/reference/#halcyon_post_install_hook)._
 
@@ -314,11 +314,11 @@ _**Work in progress.**  For updates, please sign up to the [Halcyon announcement
 
 ### Storage and caching
 
-Halcyon supports building and deploying applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent storage.
+Halcyon supports building and installing applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent storage.
 
 All files are cached locally on the build machine.  The cache directory is defined by [`HALCYON_CACHE`](/reference/#halcyon_cache), which defaults to `/var/tmp/halcyon-cache`.
 
-In order to delete the entire contents of the cache before deploying an application, set [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) to `1`.
+In order to delete the entire contents of the cache before installing an application, set [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) to `1`.
 
 
 #### Public storage
@@ -329,7 +329,7 @@ By default, Halcyon downloads any needed files from a public read-only location,
 Setting up multiple machines
 ----------------------------
 
-To set up separate build and deploy machines:
+To set up separate build and install machines:
 
 1.  [Set up as many machines as needed](#setting-up-a-machine), including at least one dedicated build machine.
 

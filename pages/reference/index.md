@@ -20,7 +20,7 @@ User’s reference
 Commands
 --------
 
-### `halcyon deploy`
+### `halcyon install`
 
 > ---------------------|---
 > Arguments:           | _`app? option*`_
@@ -33,7 +33,7 @@ The application may be specified as:
 - directory path
 - _git_ URL
 
-When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon deploys GHC and Cabal only.  To ignore the current directory, set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
+When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon installs GHC and Cabal only.  To ignore the current directory, set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
 
 
 ### `halcyon label`
@@ -41,7 +41,7 @@ When no application is specified, Halcyon attempts to detect an application in t
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Outputs the Cabal package label of the specified application, as determined by [`halcyon deploy`](#halcyon-deploy).
+Outputs the Cabal package label of the specified application, as determined by [`halcyon install`](#halcyon-install).
 
 Intended to quickly determine the newest version of an application.
 
@@ -51,7 +51,7 @@ Intended to quickly determine the newest version of an application.
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Outputs the version constraints of the specified application, as determined by [`halcyon deploy`](#halcyon-deploy).
+Outputs the version constraints of the specified application, as determined by [`halcyon install`](#halcyon-install).
 
 Intended to quickly determine the implicit constraints of an application which does not include a `cabal config` file.  Also helps ensure any `cabal.config` files are overridden properly, when using options such as [`HALCYON_CONSTRAINTS`](#halcyon_constraints).
 
@@ -114,7 +114,7 @@ _If the install directory consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcy
 
 Root of the path to the directory in which Halcyon installs applications.
 
-Intended to support advanced deployment workflows.
+Intended to support advanced workflows.
 
 <div class="pre-like">
 _If the install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
@@ -128,9 +128,9 @@ _If the install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_p
 > Type:                | `0` or `1`
 > Command-line option: | `--no-app`
 
-Forces Halcon to deploy GHC and Cabal only, even when the current directory is a source directory.
+Forces Halcon to install GHC and Cabal only, even when the current directory is a source directory.
 
-The versions of GHC and _cabal-install_ to deploy are defined by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
+The versions of GHC and _cabal-install_ to install are defined by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
 
 
 ### `HALCYON_LOG_TIMESTAMP`
@@ -252,7 +252,7 @@ Forces Halcyon to run `cabal configure` again.
 
 Prevents building any layers, or the application.
 
-Intended to use on deploy machines incapable of building the application.
+Intended to use on install machines incapable of building the application.
 
 
 ### `HALCYON_NO_BUILD_LAYERS`
@@ -264,7 +264,7 @@ Intended to use on deploy machines incapable of building the application.
 
 Prevents building any layers.
 
-Intended to use on deploy machines capable of building the application.
+Intended to use on install machines capable of building the application.
 
 
 Install-time options
@@ -580,7 +580,7 @@ GHC layer options
 
 Default version of GHC to install or restore in the GHC layer.
 
-Used when deploying an application with no constraints specified, or when deploying GHC and Cabal only.
+Used when installing an application with no constraints specified, or when installing GHC and Cabal only.
 
 Supported versions include:
 

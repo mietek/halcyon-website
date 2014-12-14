@@ -34,7 +34,7 @@ Halcyon is a system for deploying Haskell web and non-web applications, powering
 
 ### Features
 
-- **Simple.**  Halcyon can deploy any Haskell application with a single command, building all required dependencies on the fly.
+- **Simple.**  Halcyon can install any Haskell application with a single command, building all required dependencies on the fly.
 
 - **Fast.**  All build results are archived in _layers,_ which means incremental builds can be ready in under 30 seconds.
 
@@ -118,7 +118,7 @@ Usage
 
 Halcyon is installed with _git_, and automatically updates itself before executing any command.
 
-The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.  
+The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon">https://github.com/mietek/halcyon</a></span>
 <span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
@@ -127,17 +127,17 @@ The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed en
 See the [user’s guide](/guide/) for details.
 
 
-### Deploying applications
+### Installing applications
 
-The [`halcyon deploy`](/reference/#halcyon-deploy) command accepts directories, Cabal packages, and _git_ URLs.
+The [`halcyon install`](/reference/#halcyon-install) command accepts directories, Cabal packages, and _git_ URLs.
 
-Deploying a previously built application usually takes less than 10 seconds.
+Installing a previously built application usually takes less than 10 seconds.
 
 <div class="toggle">
-<a class="toggle-button" data-target="deploy1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy1"><code>$ halcyon deploy <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
+<a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="log1"><code>$ halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
 -----> Cloning https://github.com/mietek/howistart... done, cc48e01
------> Deploying app from install
+-----> Installing app
        Prefix:                                   <b>/app</b>
        Label:                                    <b>howistart-0.1</b>
        Source hash:                              <b>bcfc50f</b>
@@ -149,21 +149,21 @@ Deploying a previously built application usually takes less than 10 seconds.
 -----> Install restored
 -----> Installing app into /app... done
 
------> App deployed:                             <b>howistart-0.1</b>
+-----> App installed:                            <b>howistart-0.1</b>
 </code></pre>
 </div>
 
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy **How I Start** to Heroku</a>
 
 
-#### Deploying GHC and Cabal only
+#### Installing GHC and Cabal only
 
-The [`halcyon deploy`](/reference/#halcyon-deploy) command can also install a previously built Haskell development environment in under 20 seconds.
+The [`halcyon install`](/reference/#halcyon-install) command can also install a previously built Haskell development environment in under 20 seconds.
 
 <div class="toggle">
-<a class="toggle-button" data-target="deploy2" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="deploy2"><code>$ halcyon deploy
------> Deploying GHC and Cabal layers
+<a class="toggle-button" data-target="log2" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="log2"><code>$ halcyon install
+-----> Installing GHC and Cabal layers
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
@@ -179,7 +179,7 @@ The [`halcyon deploy`](/reference/#halcyon-deploy) command can also install a pr
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done, 172MB
 
------> GHC and Cabal layers deployed
+-----> GHC and Cabal layers installed
 </code></pre>
 </div>
 

@@ -97,7 +97,7 @@ Using Halcyon in production since July 2014.
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
 
@@ -131,7 +131,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/hl">https://github.com/mietek/hl</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hl">https://github.com/mietek/hl</a></span>
 <span class="prompt">$</span> <span class="input">PORT=8080 hl</span>
 </code></pre>
 
@@ -162,7 +162,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaskell">https://github.com/mietek/tryhaskell</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/tryhaskell">https://github.com/mietek/tryhaskell</a></span>
 <span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
 </code></pre>
 
@@ -193,7 +193,7 @@ Try Idris
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryidris">https://github.com/mietek/tryidris</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/tryidris">https://github.com/mietek/tryidris</a></span>
 <span class="prompt">$</span> <span class="input">tryidris 8080</span>
 </code></pre>
 
@@ -228,7 +228,7 @@ Try PureScript
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/trypurescript">https://github.com/mietek/trypurescript</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/trypurescript">https://github.com/mietek/trypurescript</a></span>
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
 
@@ -261,7 +261,7 @@ Try Haste
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/tryhaste">https://github.com/mietek/tryhaste</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/tryhaste">https://github.com/mietek/tryhaste</a></span>
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
 
@@ -306,7 +306,7 @@ Wiki with _git_ file storage.
 
 #### Deploying
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon deploy <a href="https://github.com/mietek/gitit">https://github.com/mietek/gitit</a></span>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/gitit">https://github.com/mietek/gitit</a></span>
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
 

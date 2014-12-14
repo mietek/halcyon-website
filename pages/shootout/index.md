@@ -19,7 +19,7 @@ All examples can be deployed to the [Heroku](https://heroku.com/) web applicatio
 
 
 <div><nav><ul class="toc toc1 menu open">
-<li><a href="#first-deploy-times">First deploy times</a></li>
+<li><a href="#first-build-times">First build times</a></li>
 <li><a href="#hello-apiary"><i>hello-apiary</i></a></li>
 <li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
 <li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
@@ -36,8 +36,8 @@ All examples can be deployed to the [Heroku](https://heroku.com/) web applicatio
 For advanced applications, see the [examples](/examples/).
 
 
-First deploy times
-------------------
+First build times
+-----------------
 
 <div class="chart" id="shootout-chart"></div>
 
@@ -50,24 +50,24 @@ The raw results are available as a [CSV file](https://gist.github.com/mietek/c37
 $ ./shootout.sh results.csv
 ```
 
-The test simulates deploying each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
+The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
 
-The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of deploying all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
+The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
 
 
 ### Commentary
 
-Unsurprisingly, the results show first deploy times are dominated by building sandboxes.
+Unsurprisingly, the results show first build times are dominated by building sandboxes.
 
 Halcyon attempts to mitigate the impact of sandbox build times:
 
-1.  Once the sandbox is built, Halcyon archives it as part of the sandbox layer, which is restored during subsequent deploys.
+1.  Once the sandbox is built, Halcyon archives it as part of the sandbox layer, which is restored during subsequent installs.
 
 2.  When building a new sandbox, Halcyon locates previously built sandbox layers containing a subset of the required dependencies.  Each matching layer is assigned a score, and the highest scoring layer is used as a base for the new sandbox.
 
-Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  A deploy involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
+Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  An install involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
 
-If no build is needed, the application is restored from a previously archived install directory.  This allows deploying most of the [example applications](/examples/) and shootout entries in under 10 seconds.
+If no build is needed, the application is restored from a previously archived install directory.  This allows installing most of the [example applications](/examples/) and shootout entries in under 10 seconds.
 
 
 <aside>
@@ -83,7 +83,7 @@ _hello-apiary_
 > ---------------------|---
 > Framework:           | [Apiary](https://github.com/philopon/apiary) 1.2.0
 > Dependencies:        | [65](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 81MB
 > App size:            | 9.8MB
 > Source code:         | [_hello-apiary_](https://github.com/mietek/hello-apiary)
@@ -104,14 +104,14 @@ _hello-apiary_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-apiary-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-apiary-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-apiary">https://github.com/mietek/hello-apiary</a>
+<a class="toggle-button" data-target="hello-apiary-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-apiary-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-apiary">https://github.com/mietek/hello-apiary</a>
 -----> Cloning https://github.com/mietek/hello-apiary... done, d97f2b3
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-apiary-1.0</b>
        Source hash:                              <b>49d3c4f</b>
        Prefix:                                   <b>/app</b>
@@ -135,9 +135,9 @@ _hello-apiary_
        Writing a default package environment file to
        /app/sandbox/cabal.sandbox.config
        Creating a new sandbox at /app/sandbox
------> Deploying sandbox extra apps
+-----> Installing sandbox extra apps
        -----> Unpacking app
-       -----> Deploying app from install
+       -----> Installing app
               Label:                                    <b>alex-3.1.3</b>
               Source hash:                              <b>b3faab4</b>
               Prefix:                                   <b>/app/sandbox</b>
@@ -176,7 +176,7 @@ _hello-apiary_
        Creating halcyon-install-49d3c4f-hello-apiary-1.0.tar.gz... done, 1.6MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-apiary-1.0</b>
+-----> App installed:                            <b>hello-apiary-1.0</b>
 </code></pre>
 </div>
 
@@ -198,7 +198,7 @@ _hello-happstack_
 > ---------------------|---
 > Framework:           | [Happstack](http://happstack.com/) Lite 7.3.5
 > Dependencies:        | [44](https://github.com/mietek/hello-happstack/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 65MB
 > App size:            | 12MB
 > Source code:         | [_hello-happstack_](https://github.com/mietek/hello-happstack)
@@ -221,14 +221,14 @@ _hello-happstack_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-happstack-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-happstack-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-happstack">https://github.com/mietek/hello-happstack</a>
+<a class="toggle-button" data-target="hello-happstack-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-happstack-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-happstack">https://github.com/mietek/hello-happstack</a>
 -----> Cloning https://github.com/mietek/hello-happstack... done, fa472e4
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-happstack-1.0</b>
        Source hash:                              <b>fc844b0</b>
        Prefix:                                   <b>/app</b>
@@ -279,7 +279,7 @@ _hello-happstack_
        Creating halcyon-install-fc844b0-hello-happstack-1.0.tar.gz... done, 1.7MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-happstack-1.0</b>
+-----> App installed:                            <b>hello-happstack-1.0</b>
 </code></pre>
 </div>
 
@@ -296,7 +296,7 @@ _hello-mflow_
 > ---------------------|---
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
 > Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/.halcyon/constraints) and _cpphs_ 1.18.6
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 151MB
 > App size:            | 20MB
 > Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow)
@@ -315,14 +315,14 @@ _hello-mflow_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-mflow-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-mflow-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-mflow">https://github.com/mietek/hello-mflow</a>
+<a class="toggle-button" data-target="hello-mflow-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-mflow-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-mflow">https://github.com/mietek/hello-mflow</a>
 -----> Cloning https://github.com/mietek/hello-mflow... done, ecf421a
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-mflow-1.0</b>
        Source hash:                              <b>83ba62c</b>
        Prefix:                                   <b>/app</b>
@@ -346,9 +346,9 @@ _hello-mflow_
        Writing a default package environment file to
        /app/sandbox/cabal.sandbox.config
        Creating a new sandbox at /app/sandbox
------> Deploying sandbox extra apps
+-----> Installing sandbox extra apps
        -----> Unpacking app
-       -----> Deploying app from install
+       -----> Installing app
               Label:                                    <b>cpphs-1.18.6</b>
               Source hash:                              <b>85c6517</b>
               Prefix:                                   <b>/app/sandbox</b>
@@ -387,7 +387,7 @@ _hello-mflow_
        Creating halcyon-install-83ba62c-hello-mflow-1.0.tar.gz... done, 3.2MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-mflow-1.0</b>
+-----> App installed:                            <b>hello-mflow-1.0</b>
 </code></pre>
 </div>
 
@@ -409,7 +409,7 @@ _hello-miku_
 > ---------------------|---
 > Framework:           | [_miku_](https://github.com/nfjinjing/miku) 2014.11.17
 > Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 84MB
 > App size:            | 13MB
 > Source code:         | [_hello-miku_](https://github.com/mietek/hello-miku)
@@ -432,14 +432,14 @@ _hello-miku_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-miku-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-miku-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-miku">https://github.com/mietek/hello-miku</a>
+<a class="toggle-button" data-target="hello-miku-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-miku-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-miku">https://github.com/mietek/hello-miku</a>
 -----> Cloning https://github.com/mietek/hello-miku... done, 1c95812
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-miku-1.0</b>
        Source hash:                              <b>a8cbc37</b>
        Prefix:                                   <b>/app</b>
@@ -490,7 +490,7 @@ _hello-miku_
        Creating halcyon-install-a8cbc37-hello-miku-1.0.tar.gz... done, 2.1MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-miku-1.0</b>
+-----> App installed:                            <b>hello-miku-1.0</b>
 </code></pre>
 </div>
 
@@ -507,7 +507,7 @@ _hello-scotty_
 > ---------------------|---
 > Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
 > Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 83MB
 > App size:            | 12MB
 > Source code:         | [_hello-scotty_](https://github.com/mietek/hello-scotty)
@@ -529,14 +529,14 @@ _hello-scotty_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-scotty-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-scotty-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-scotty">https://github.com/mietek/hello-scotty</a>
+<a class="toggle-button" data-target="hello-scotty-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-scotty-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-scotty">https://github.com/mietek/hello-scotty</a>
 -----> Cloning https://github.com/mietek/hello-scotty... done, 2412c2c
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-scotty-1.0</b>
        Source hash:                              <b>9d43644</b>
        Prefix:                                   <b>/app</b>
@@ -587,7 +587,7 @@ _hello-scotty_
        Creating halcyon-install-9d43644-hello-scotty-1.0.tar.gz... done, 2.0MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-scotty-1.0</b>
+-----> App installed:                            <b>hello-scotty-1.0</b>
 </code></pre>
 </div>
 
@@ -604,7 +604,7 @@ _hello-simple_
 > ---------------------|---
 > Framework:           | [Simple](http://simple.cx/) 0.10.0.2
 > Dependencies:        | [70](https://github.com/mietek/hello-simple/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 101MB
 > App size:            | 6.4MB
 > Source code:         | [_hello-simple_](https://github.com/mietek/hello-simple)
@@ -632,14 +632,14 @@ _hello-simple_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-simple-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-simple-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-simple">https://github.com/mietek/hello-simple</a>
+<a class="toggle-button" data-target="hello-simple-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-simple-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-simple">https://github.com/mietek/hello-simple</a>
 -----> Cloning https://github.com/mietek/hello-simple... done, 3dec3e1
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-simple-1.0</b>
        Source hash:                              <b>7c42c3b</b>
        Prefix:                                   <b>/app</b>
@@ -690,7 +690,7 @@ _hello-simple_
        Creating halcyon-install-7c42c3b-hello-simple-1.0.tar.gz... done, 1.1MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-simple-1.0</b>
+-----> App installed:                            <b>hello-simple-1.0</b>
 </code></pre>
 </div>
 
@@ -707,7 +707,7 @@ _hello-snap_
 > ---------------------|---
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
 > Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 75MB
 > App size:            | 12MB
 > Source code:         | [_hello-snap_](https://github.com/mietek/hello-snap)
@@ -734,14 +734,14 @@ _hello-snap_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-snap-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-snap-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-snap">https://github.com/mietek/hello-snap</a>
+<a class="toggle-button" data-target="hello-snap-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-snap-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-snap">https://github.com/mietek/hello-snap</a>
 -----> Cloning https://github.com/mietek/hello-snap... done, b094ee3
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-snap-1.0</b>
        Source hash:                              <b>bfb34c1</b>
        Prefix:                                   <b>/app</b>
@@ -792,7 +792,7 @@ _hello-snap_
        Creating halcyon-install-bfb34c1-hello-snap-1.0.tar.gz... done, 1.9MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-snap-1.0</b>
+-----> App installed:                            <b>hello-snap-1.0</b>
 </code></pre>
 </div>
 
@@ -809,7 +809,7 @@ _hello-spock_
 > ---------------------|---
 > Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.5.1
 > Dependencies:        | [79](https://github.com/mietek/hello-spock/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 104MB
 > App size:            | 12MB
 > Source code:         | [_hello-spock_](https://github.com/mietek/hello-spock)
@@ -831,14 +831,14 @@ _hello-spock_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-spock-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-spock-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-spock">https://github.com/mietek/hello-spock</a>
+<a class="toggle-button" data-target="hello-spock-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-spock-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-spock">https://github.com/mietek/hello-spock</a>
 -----> Cloning https://github.com/mietek/hello-spock... done, 903811e
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-spock-1.0</b>
        Source hash:                              <b>476305b</b>
        Prefix:                                   <b>/app</b>
@@ -889,7 +889,7 @@ _hello-spock_
        Creating halcyon-install-476305b-hello-spock-1.0.tar.gz... done, 2.0MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-spock-1.0</b>
+-----> App installed:                            <b>hello-spock-1.0</b>
 </code></pre>
 </div>
 
@@ -906,7 +906,7 @@ _hello-wai_
 > ---------------------|---
 > Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2
 > Dependencies:        | [38](https://github.com/mietek/hello-wai/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 45MB
 > App size:            | 6MB
 > Source code:         | [_hello-wai_](https://github.com/mietek/hello-wai)
@@ -936,14 +936,14 @@ _hello-wai_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-wai-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-wai-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wai">https://github.com/mietek/hello-wai</a>
+<a class="toggle-button" data-target="hello-wai-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-wai-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-wai">https://github.com/mietek/hello-wai</a>
 -----> Cloning https://github.com/mietek/hello-wai... done, 177928b
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-wai-1.0</b>
        Source hash:                              <b>477b187</b>
        Prefix:                                   <b>/app</b>
@@ -994,7 +994,7 @@ _hello-wai_
        Creating halcyon-install-477b187-hello-wai-1.0.tar.gz... done, 1.1MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-wai-1.0</b>
+-----> App installed:                            <b>hello-wai-1.0</b>
 </code></pre>
 </div>
 
@@ -1011,7 +1011,7 @@ _hello-wheb_
 > ---------------------|---
 > Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework) 0.3.1.0
 > Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 146MB
 > App size:            | 9.9MB
 > Source code:         | [_hello-wheb_](https://github.com/mietek/hello-wheb)
@@ -1036,14 +1036,14 @@ _hello-wheb_
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-wheb-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-wheb-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-wheb">https://github.com/mietek/hello-wheb</a>
+<a class="toggle-button" data-target="hello-wheb-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-wheb-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-wheb">https://github.com/mietek/hello-wheb</a>
 -----> Cloning https://github.com/mietek/hello-wheb... done, fb508d2
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-wheb-1.0</b>
        Source hash:                              <b>4853ba3</b>
        Prefix:                                   <b>/app</b>
@@ -1094,7 +1094,7 @@ _hello-wheb_
        Creating halcyon-install-4853ba3-hello-wheb-1.0.tar.gz... done, 1.6MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-wheb-1.0</b>
+-----> App installed:                            <b>hello-wheb-1.0</b>
 </code></pre>
 </div>
 
@@ -1111,7 +1111,7 @@ _hello-yesod_
 > ---------------------|---
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.1.1
 > Dependencies:        | [146](https://github.com/mietek/hello-yesod/blob/master/.halcyon/constraints)
-> First deploy time:   | …
+> First build time:    | …
 > Sandbox size:        | 251MB
 > App size:            | 25MB
 > Source code:         | [_hello-yesod_](https://github.com/mietek/hello-yesod)
@@ -1145,14 +1145,14 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 </div>
 
 
-#### First deploy log
+#### First build log
 
 <div class="toggle">
-<a class="toggle-button" data-target="hello-yesod-deploy" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-yesod-deploy"><code>$ halcyon deploy <a href="https://github.com/mietek/hello-yesod">https://github.com/mietek/hello-yesod</a>
+<a class="toggle-button" data-target="hello-yesod-log" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="hello-yesod-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-yesod">https://github.com/mietek/hello-yesod</a>
 -----> Cloning https://github.com/mietek/hello-yesod... done, f51baad
 -----> Determining constraints
------> Deploying app
+-----> Installing app
        Label:                                    <b>hello-yesod-1.0</b>
        Source hash:                              <b>0169a27</b>
        Prefix:                                   <b>/app</b>
@@ -1209,7 +1209,7 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
        Creating halcyon-install-0169a27-hello-yesod-1.0.tar.gz... done, 3.7MB
 -----> Installing app into /app... done
 
------> App deployed:                             <b>hello-yesod-1.0</b>
+-----> App installed:                            <b>hello-yesod-1.0</b>
 </code></pre>
 </div>
 
@@ -1342,13 +1342,13 @@ rawResults.forEach(function (rawRow) {
       envTimes: [],
       sandboxTimes: [],
       appTimes: [],
-      deployTimes: []
+      installTimes: []
     };
   }
   results[name].envTimes.push(rawRow[1]);
   results[name].sandboxTimes.push(rawRow[2] - rawRow[1]);
   results[name].appTimes.push(rawRow[4] - rawRow[2]);
-  results[name].deployTimes.push(rawRow[4]);
+  results[name].installTimes.push(rawRow[4]);
 });
 google.load("visualization", "1", { packages: ["corechart"] });
 google.setOnLoadCallback(drawChart);
@@ -1393,14 +1393,14 @@ function drawChart() {
   data.addColumn({ type: 'string', role: 'tooltip' });
   Object.keys(results).forEach(function (name) {
     var result = results[name];
-    var deployMean = mean(result.deployTimes);
-    var deployLow = low(result.deployTimes);
-    var deployHigh = high(result.deployTimes);
-    var deployValue = fix(deployMean) + 's';
-    if (deployLow !== deployHigh) {
-      deployValue += ' [' + deployLow + 's, ' + deployHigh + 's]';
+    var installMean = mean(result.installTimes);
+    var installLow = low(result.installTimes);
+    var installHigh = high(result.installTimes);
+    var installValue = fix(installMean) + 's';
+    if (installLow !== installHigh) {
+      installValue += ' [' + installLow + 's, ' + installHigh + 's]';
     }
-    var deployTip = 'Total: ' + deployValue;
+    var installTip = 'Total: ' + installValue;
     var envMean = mean(result.envTimes);
     var envLow = low(result.envTimes);
     var envHigh = high(result.envTimes);
@@ -1408,7 +1408,7 @@ function drawChart() {
     if (envLow !== envHigh) {
       envTip += ' [' + envLow + 's, ' + envHigh + 's]';
     }
-    envTip += '\n' + deployTip;
+    envTip += '\n' + installTip;
     var sandboxMean = mean(result.sandboxTimes);
     var sandboxLow = low(result.sandboxTimes);
     var sandboxHigh = high(result.sandboxTimes);
@@ -1416,7 +1416,7 @@ function drawChart() {
     if (sandboxLow !== sandboxHigh) {
       sandboxTip += ' [' + sandboxLow + 's, ' + sandboxHigh + 's]';
     }
-    sandboxTip += '\n' + deployTip;
+    sandboxTip += '\n' + installTip;
     var appMean = mean(result.appTimes);
     var appLow = low(result.appTimes);
     var appHigh = high(result.appTimes);
@@ -1424,10 +1424,10 @@ function drawChart() {
     if (appLow !== appHigh) {
       appTip += ' [' + appLow + 's, ' + appHigh + 's]';
     }
-    appTip += '\n' + deployTip;
+    appTip += '\n' + installTip;
     data.addRow([name, envMean, envLow, envHigh, envTip, sandboxMean, sandboxLow, sandboxHigh, sandboxTip, appMean, appLow, appHigh, appTip]);
     var sel = '#' + name + ' tr:nth-of-type(3) td:nth-of-type(2)';
-    document.querySelectorAll(sel)[0].firstChild.nodeValue = deployValue;
+    document.querySelectorAll(sel)[0].firstChild.nodeValue = installValue;
   });
   var options = {
     chartArea: {
