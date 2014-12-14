@@ -44,7 +44,15 @@ First build times
 
 ### Methodology
 
-The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, [set up Halcyon](/guide/#quick-start), and perform a benchmark run by using the included test script.  The columns included in the results are:
+The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, [set up Halcyon](/guide/#quick-start), and perform a benchmark run by using the included test script.
+
+```
+$ halcyon/test bench-shootout
+...
+hello-yesod,10,521,535,537,251MB,25MB
+```
+
+The columns included in the results are:
 
 - Example name
 - GHC and Cabal restore time
@@ -53,12 +61,6 @@ The raw results are available as a [CSV file](https://gist.github.com/mietek/c37
 - Application install time
 - Sandbox size
 - Application size
-
-```
-$ halcyon/test bench-shootout
-...
-hello-yesod,10,521,535,537,251MB,25MB
-```
 
 The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
 
@@ -92,7 +94,7 @@ _hello-apiary_
 
 > ---------------------|---
 > Framework:           | [Apiary](https://github.com/philopon/apiary) 1.2.0
-> Dependencies:        | [65](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints)
+> Dependencies:        | [65](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints) and _alex_ 3.1.3
 > First build time:    | …
 > Sandbox size:        | 81MB
 > App size:            | 9.8MB
