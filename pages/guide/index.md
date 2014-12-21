@@ -22,7 +22,7 @@ User’s guide
 Quick start
 -----------
 
-Set up a 64-bit Ubuntu LTS machine, and install Halcyon.
+Set up a 64-bit Ubuntu machine, and install Halcyon.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">apt-get update</span>
 <span class="prompt">$</span> <span class="input">apt-get install build-essential git pigz zlib1g-dev</span>
@@ -125,7 +125,7 @@ Currently, Halcyon fully supports the `x86_64` architecture, and the following L
 - CentOS 6 and 7
 - Debian 6 and 7
 - Fedora 19 and 20
-- Ubuntu 10.04 LTS, 12.04 LTS, and 14.04 LTS
+- Ubuntu 10.04, 12.04, and 14.04
 
 All platform-specific configuration needed for Halcyon fits in a [very small shell script](https://gist.github.com/mietek/5a213e2023d1c7f6bdf9).
 
@@ -233,9 +233,9 @@ linux-(centos|fedora):libicu-devel
 linux-(debian|ubuntu):libicu-dev
 ```
 
-To support cross-platform installation, each entry may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.
+To support cross-platform installation, each entry may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.  If the pattern matches the host platform identifier, the package will be installed.
 
-Halcyon installs packages with no patterns, or with patterns matching the host platform identifier.
+Packages with no patterns are always installed.
 
 
 #### Sandbox sources
