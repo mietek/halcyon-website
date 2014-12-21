@@ -90,7 +90,7 @@ How I Start
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
 > Source code:         | [_howistart_](https://github.com/mietek/howistart)
 
-Collection of development tutorials.
+Collection of software development tutorials.
 
 Using Halcyon in production since July 2014.
 
