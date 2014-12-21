@@ -64,7 +64,7 @@ The columns included in the results are:
 
 The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
 
-The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 LTS (`x86_64`).
+The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 (`x86_64`).
 
 
 ### Commentary
