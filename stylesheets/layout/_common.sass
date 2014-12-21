@@ -35,7 +35,7 @@ header.hero nav.menu-bar h1.logotype a
 a.heroku-button
   @include pill-button
   color: $violet
-  border-color: $violet
+  border-color: rgba($violet, 0.8)
   @include frob-when-frobbed
     background-color: $violet
 
@@ -234,3 +234,150 @@ div.chart
 
 #hello-world-shootout > h1:first-of-type, #hello-world-shootout > h2:first-of-type, #hello-world-shootout > h3:first-of-type
   text-indent: -1ex
+
+
+@mixin input-field
+  background-color: $white
+  border: 1px rgba($gray6, 0.8) solid
+  border-radius: 0
+  font-size: em(3/4)
+  height: ln(3/2)
+  line-height: ln(3/4)
+  font-family: "concourse-t3"
+  color: $gray6
+  padding-left: ln(1/2)
+  padding-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  width: 100%
+  display: inline-block
+  text-overflow: ellipsis
+  transition: ease(border-color, 1, 0), ease(color, 1, 0)
+  -webkit-appearance: none
+  &:focus
+    border-color: $accent-color
+  .hairline &
+    border-width: 0.5px
+  &[disabled]
+    color: $gray9
+    border-color: rgba($gray9, 0.8)
+    -webkit-text-fill-color: $gray9 // Work around Safari bug.
+
+input::-webkit-input-placeholder
+  font-style: italic
+  color: rgba($gray6, 0.4)
+
+input:-moz-placeholder
+  font-style: italic
+  color: rgba($gray6, 0.4)
+
+input::-moz-placeholder
+  font-style: italic
+  color: rgba($gray6, 0.4)
+
+input:-ms-input-placeholder
+  font-style: italic
+  color: rgba($gray6, 0.4)
+
+
+@mixin input-code-field
+  @include input-field
+  font-family: "pragmatapro"
+  font-size: em((12/14) * (3/4))
+
+@mixin static-code-field
+  @include static-field
+  font-family: "pragmatapro"
+  font-size: em((12/14) * (3/4))
+
+
+div.flex
+  display: flex
+  margin-right: ln(1/2)
+  flex-flow: row wrap
+
+.justify-end
+  justify-content: flex-end
+
+
+#account-field
+  @include static-code-field
+  margin-right: ln(1/2)
+  flex: 1 0
+
+#account-button
+  @include pill-button
+  margin-right: ln(1/2)
+  width: ln(4)
+
+
+#source-field
+  @include input-code-field
+  margin-right: ln(1/2)
+  flex: 1 0
+
+
+#hostname-field
+  @include input-code-field
+  margin-right: ln(1/2)
+  flex: 1 0
+
+
+a.size-button
+  @include radio-button
+  margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  width: ln(4)
+
+
+a.region-button
+  @include radio-button
+  margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  width: ln(6.25)
+
+
+a.image-field
+  @include static-field
+  margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  width: ln(13)
+
+
+a.key-button
+  @include check-button
+  margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  width: ln(13)
+
+
+@mixin variable-input
+  @include input-code-field
+  margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  flex: 1 0
+
+
+input.variable-name-input
+  @include variable-input
+
+input.variable-value-input
+  @include variable-input
+
+a.variable-button
+  @include pill-button
+  margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  width: ln(4)
+
+#add-variable-button
+  @include pill-button
+  margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
+  width: ln(4)
+
+
+#deploy-button
+  @include pill-button
+  margin-right: ln(1/2)
+  margin-top: ln(5/2)
+  width: 100%

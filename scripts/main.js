@@ -2,6 +2,7 @@
 
 window.easeScroll = require('ease-scroll');
 window.cannot = require('cannot');
+window.deploy = require('digitalocean-deploy');
 
 
 window.tweakGalleryItems = function () {
