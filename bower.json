@@ -7,6 +7,6 @@
   "license": "MIT X11",
   "dependencies": {
     "cannot": "*",
-    "digitalocean-deploy": "*"
+    "react": "*"
   }
 }
