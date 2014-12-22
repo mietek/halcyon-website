@@ -310,13 +310,13 @@ var ImageWidget = React.createClass({
           var available = availableImageSlugs.indexOf(image.slug) !== -1;
           return (
             React.createElement(RadioButton, {
-                key:        image.slug,
-                className:  'image-button',
-                enabled:    this.state.enabled && available,
-                selected:   image.slug === selectedImageSlug,
-                title:      image.distribution + ' ' + image.name,
-                onClick:    this.props.onSelectImage,
-                payload:    image
+                key:       image.slug,
+                className: 'image-button',
+                enabled:   this.state.enabled && available,
+                selected:  image.slug === selectedImageSlug,
+                title:     image.distribution + ' ' + image.name,
+                onClick:   this.props.onSelectImage,
+                payload:   image
               })
           );
         }.bind(this)))
@@ -372,6 +372,50 @@ var RegionWidget = React.createClass({
 });
 
 
+var KeysWidget = React.createClass({
+  displayName: 'KeysWidget',
+  getDefaultProps: function () {
+    return {
+      onSelectKey: undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled:      false,
+      keys:         undefined,
+      selectedKeys: undefined
+    };
+  },
+  render: function () {
+    if (!this.state.keys) {
+      return React.createElement('em', null, 'not available');
+    }
+    var selectedKeyIds = this.state.selectedKeys ? this.state.selectedKeys.map(function (selectedKey) {
+      return selectedKey.id;
+    }) : [];
+    return (
+      React.createElement('div', {
+          className: 'flex'
+        },
+        this.state.keys.map(function (sshKey) {
+          var selected = selectedKeyIds.indexOf(sshKey.id) !== -1;
+          return (
+            React.createElement(RadioButton, {
+                key:       sshKey.id,
+                className: 'key-button',
+                enabled:   this.state.enabled,
+                selected:  selected,
+                title:     sshKey.name,
+                onClick:   this.props.onSelectKey,
+                payload:   sshKey
+              })
+          );
+        }.bind(this)))
+    );
+  }
+});
+
+
 exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
   this.storage = new exports.CachedStorage(prefix);
   this.props = {
@@ -411,6 +455,12 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
     }),
     document.getElementById('region-widget')
   );
+  this.keysWidget = React.render(
+    React.createElement(KeysWidget, {
+      onSelectKey: this.handleSelectKey.bind(this)
+    }),
+    document.getElementById('keys-widget')
+  );
   this.render();
 };
 exports.DigitalOceanControl.prototype = {
@@ -424,7 +474,9 @@ exports.DigitalOceanControl.prototype = {
       images:         undefined,
       selectedImage:  undefined,
       regions:        undefined,
-      selectedRegion: undefined
+      selectedRegion: undefined,
+      keys:           undefined,
+      selectedKeys:   undefined
     };
   },
   start: function () {
@@ -438,6 +490,8 @@ exports.DigitalOceanControl.prototype = {
       this.state.selectedImage  = null;
       this.state.regions        = null;
       this.state.selectedRegion = null;
+      this.state.keys           = null;
+      this.state.selectedKeys   = null;
       this.resume();
       return;
     }
@@ -445,6 +499,7 @@ exports.DigitalOceanControl.prototype = {
     this.loadSizes(token);
     this.loadImages(token);
     this.loadRegions(token);
+    this.loadKeys(token);
   },
   loadAccount: function (token) {
     DigitalOcean.getAccount(function (account) {
@@ -484,12 +539,22 @@ exports.DigitalOceanControl.prototype = {
   loadRegions: function (token) {
     DigitalOcean.getRegions(function (regions) {
       this.state.regions = regions;
-      this.updateSelectedRegion();
       this.resume();
     }.bind(this), function (err) {
       console.error('Failed to get regions:', err);
       this.state.failed  = true;
       this.state.regions = null;
+      this.resume();
+    }.bind(this), token);
+  },
+  loadKeys: function (token) {
+    DigitalOcean.getAccountKeys(function (keys) {
+      this.state.keys = keys;
+      this.resume();
+    }.bind(this), function (err) {
+      console.error('Failed to get keys:', err);
+      this.state.failed = true;
+      this.state.keys   = null;
       this.resume();
     }.bind(this), token);
   },
@@ -504,7 +569,7 @@ exports.DigitalOceanControl.prototype = {
         }
       }
     }
-    if (!selectedSize) {
+    if (!selectedSize && this.state.sizes.length) {
       selectedSize = this.state.sizes[0];
     }
     this.state.selectedSize = selectedSize;
@@ -514,12 +579,16 @@ exports.DigitalOceanControl.prototype = {
     var availableImageSlugs = ['ubuntu-14-04-x64']; // TODO
     var selectedImageSlug   = this.storage.get('selected_image_slug');
     var selectedImage;
-    if (selectedImageSlug && availableImageSlugs.indexOf(selectedImageSlug) !== -1) {
-      for (var i = 0; i < this.state.images.length; i += 1) {
-        if (this.state.images[i].slug === selectedImageSlug) {
-          selectedImage = this.state.images[i];
-          break;
+    if (selectedImageSlug) {
+      if (availableImageSlugs.indexOf(selectedImageSlug) !== -1) {
+        for (var i = 0; i < this.state.images.length; i += 1) {
+          if (this.state.images[i].slug === selectedImageSlug) {
+            selectedImage = this.state.images[i];
+            break;
+          }
         }
+      } else {
+        selectedImageSlug = undefined;
       }
     }
     if (!selectedImage) {
@@ -538,12 +607,16 @@ exports.DigitalOceanControl.prototype = {
     var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
     var selectedRegionSlug          = this.storage.get('selected_region_slug');
     var selectedRegion;
-    if (selectedRegionSlug && availableRegionSlugsBySize.indexOf(selectedRegionSlug) !== -1 && availableRegionSlugsByImage.indexOf(selectedRegionSlug) !== -1) {
-      for (var i = 0; i < this.state.regions.length; i += 1) {
-        if (this.state.regions[i].slug === selectedRegionSlug) {
-          selectedRegion = this.state.regions[i];
-          break;
+    if (selectedRegionSlug) {
+      if (availableRegionSlugsBySize.indexOf(selectedRegionSlug) !== -1 && availableRegionSlugsByImage.indexOf(selectedRegionSlug) !== -1) {
+        for (var i = 0; i < this.state.regions.length; i += 1) {
+          if (this.state.regions[i].features.indexOf('metadata') !== -1 && this.state.regions[i].slug === selectedRegionSlug) {
+            selectedRegion = this.state.regions[i];
+            break;
+          }
         }
+      } else {
+        selectedRegionSlug = undefined;
       }
     }
     if (!selectedRegion) {
@@ -557,18 +630,38 @@ exports.DigitalOceanControl.prototype = {
     this.state.selectedRegion = selectedRegion;
     this.storage.set('selected_region_slug', selectedRegion ? selectedRegion.slug : undefined);
   },
+  updateSelectedKeys: function () {
+    var selectedKeyIds = this.storage.get('selected_key_ids');
+    var selectedKeys = [];
+    if (selectedKeyIds) {
+      for (var i = 0; i < this.state.keys.length; i += 1) {
+        if (selectedKeyIds.indexOf(this.state.keys[i].id) !== -1) {
+          selectedKeys.push(this.state.keys[i]);
+        }
+      }
+    }
+    if (!selectedKeys.length && this.state.keys.length) {
+      selectedKeys.push(this.state.keys[0]);
+    }
+    this.state.selectedKeys = selectedKeys;
+    this.storage.set('selected_key_ids', selectedKeys ? selectedKeys.map(function (selectedKey) {
+      return selectedKey.id;
+    }) : undefined);
+  },
   resume: function () {
     if (
         this.state.account === undefined ||
         this.state.sizes   === undefined ||
         this.state.images  === undefined ||
-        this.state.regions === undefined
+        this.state.regions === undefined ||
+        this.state.keys    === undefined
     ) {
       return;
     }
     this.updateSelectedSize();
     this.updateSelectedImage();
     this.updateSelectedRegion();
+    this.updateSelectedKeys();
     this.state.enabled = true;
     this.render();
   },
@@ -598,6 +691,11 @@ exports.DigitalOceanControl.prototype = {
       selectedImage:  this.state.selectedImage,
       regions:        this.state.regions,
       selectedRegion: this.state.selectedRegion
+    });
+    this.keysWidget.setState({
+      enabled:      enabled && !failed,
+      keys:         this.state.keys,
+      selectedKeys: this.state.selectedKeys
     });
   },
   handleLink: function () {
@@ -630,7 +728,26 @@ exports.DigitalOceanControl.prototype = {
     this.state.selectedRegion = selectedRegion;
     this.storage.set('selected_region_slug', selectedRegion.slug);
     this.render();
-  }
+  },
+  handleSelectKey: function (selectedKey) {
+    var selectedKeys = [];
+    var found = false;
+    for (var i = 0; i < this.state.selectedKeys.length; i += 1) {
+      if (this.state.selectedKeys[i].id !== selectedKey.id) {
+        selectedKeys.push(this.state.selectedKey[i]);
+      } else {
+        found = true;
+      }
+    }
+    if (!found) {
+      selectedKeys.push(selectedKey);
+    }
+    this.state.selectedKeys = selectedKeys;
+    this.storage.set('selected_key_ids', this.state.selectedKeys ? this.state.selectedKeys.map(function (selectedKey) {
+      return selectedKey.id;
+    }) : undefined);
+    this.render();
+  },
 };
 
 
