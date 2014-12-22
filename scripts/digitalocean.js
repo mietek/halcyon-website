@@ -61,14 +61,6 @@ exports.getAccount = function (yea, nay, token) {
 };
 
 
-exports.getAccountKeys = function (yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/account/keys', function (resp) {
-    var keys = resp['ssh_keys'];
-    return keys ? yea(keys) : nay('bad_response');
-  }, nay, token);
-};
-
-
 exports.getSizes = function (yea, nay, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/sizes', function (resp) {
     var sizes = resp['sizes'];
@@ -79,6 +71,22 @@ exports.getSizes = function (yea, nay, token) {
       return size1['price_monthly'] - size2['price_monthly'];
     });
     return yea(sizes);
+  }, nay, token);
+};
+
+
+exports.getDistributionImages = function (yea, nay, token) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution', function (resp) {
+    var images = resp['images'];
+    if (!images) {
+      return nay('bad_response');
+    }
+    images.sort(function (image1, image2) {
+      var title1 = image1.distribution + ' ' + image1.name;
+      var title2 = image2.distribution + ' ' + image2.name;
+      return title1.localeCompare(title2);
+    });
+    return yea(images);
   }, nay, token);
 };
 
@@ -97,9 +105,15 @@ exports.getRegions = function (yea, nay, token) {
 };
 
 
-exports.getImageWithSlug = function (slug, yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/images/' + slug, function (resp) {
-    var image = resp['image'];
-    return image ? yea(image) : nay('bad_response');
+exports.getAccountKeys = function (yea, nay, token) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/account/keys', function (resp) {
+    var keys = resp['ssh_keys'];
+    if (!keys) {
+      return nay('bad_response');
+    }
+    keys.sort(function (key1, key2) {
+      return key1.name.localeCompare(key2.name);
+    });
+    return yea(keys);
   }, nay, token);
 };

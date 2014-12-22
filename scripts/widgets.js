@@ -282,6 +282,49 @@ var SizeLegend = React.createClass({
 });
 
 
+var ImageWidget = React.createClass({
+  displayName: 'ImageWidget',
+  getDefaultProps: function () {
+    return {
+      onSelectImage: undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled: false,
+      images: undefined,
+      selectedImage: undefined
+    };
+  },
+  render: function () {
+    if (!this.state.images) {
+      return React.createElement('em', null, 'not available');
+    }
+    var availableImageSlugs = ['ubuntu-14-04-x64']; // TODO
+    var selectedImageSlug = this.state.selectedImage ? this.state.selectedImage.slug : null;
+    return (
+      React.createElement('div', {
+          className: 'flex'
+        },
+        this.state.images.map(function (image) {
+          var available = availableImageSlugs.indexOf(image.slug) !== -1;
+          return (
+            React.createElement(RadioButton, {
+                key:        image.slug,
+                className:  'image-button',
+                enabled:    this.state.enabled && available,
+                selected:   image.slug === selectedImageSlug,
+                title:      image.distribution + ' ' + image.name,
+                onClick:    this.props.onSelectImage,
+                payload:    image
+              })
+          );
+        }.bind(this)))
+    );
+  }
+});
+
+
 var RegionWidget = React.createClass({
   displayName: 'RegionWidget',
   getDefaultProps: function () {
@@ -293,6 +336,7 @@ var RegionWidget = React.createClass({
     return {
       enabled:        false,
       selectedSize:   undefined,
+      selectedImage:  undefined,
       regions:        undefined,
       selectedRegion: undefined
     };
@@ -301,19 +345,21 @@ var RegionWidget = React.createClass({
     if (!this.state.regions) {
       return React.createElement('em', null, 'not available');
     }
-    var availableRegionSlugs = this.state.selectedSize ? this.state.selectedSize.regions : [];
-    var selectedRegionSlug = this.state.selectedRegion ? this.state.selectedRegion.slug : null;
+    var availableRegionSlugsBySize  = this.state.selectedSize ? this.state.selectedSize.regions : [];
+    var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
+    var selectedRegionSlug          = this.state.selectedRegion ? this.state.selectedRegion.slug : null;
     return (
       React.createElement('div', {
           className: 'flex'
         },
         this.state.regions.map(function (region) {
-          var available = availableRegionSlugs.indexOf(region.slug) !== -1;
+          var available = availableRegionSlugsBySize.indexOf(region.slug) !== -1 && availableRegionSlugsByImage.indexOf(region.slug);
+          var metadata  = region.features.indexOf('metadata') !== -1;
           return (
             React.createElement(RadioButton, {
                 key:       region.slug,
                 className: 'region-button',
-                enabled:   region.available && this.state.enabled && available,
+                enabled:   region.available && this.state.enabled && available && metadata,
                 selected:  region.slug === selectedRegionSlug,
                 title:     region.name,
                 onClick:   this.props.onSelectRegion,
@@ -340,20 +386,30 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
     React.createElement(AccountWidget, {
       onLink:   this.handleLink.bind(this),
       onUnlink: this.handleUnlink.bind(this)
-    }), document.getElementById('account-widget')
+    }),
+    document.getElementById('account-widget')
   );
   this.sizeWidget = React.render(
     React.createElement(SizeWidget, {
       onSelectSize: this.handleSelectSize.bind(this)
-    }), document.getElementById('size-widget')
+    }),
+    document.getElementById('size-widget')
   );
   this.sizeLegend = React.render(
-    React.createElement(SizeLegend, null), document.getElementById('size-legend')
+    React.createElement(SizeLegend, null),
+    document.getElementById('size-legend')
+  );
+  this.imageWidget = React.render(
+    React.createElement(ImageWidget, {
+      onSelectImage: this.handleSelectImage.bind(this)
+    }),
+    document.getElementById('image-widget')
   );
   this.regionWidget = React.render(
     React.createElement(RegionWidget, {
       onSelectRegion: this.handleSelectRegion.bind(this)
-    }), document.getElementById('region-widget')
+    }),
+    document.getElementById('region-widget')
   );
   this.render();
 };
@@ -365,6 +421,8 @@ exports.DigitalOceanControl.prototype = {
       account:        undefined,
       sizes:          undefined,
       selectedSize:   undefined,
+      images:         undefined,
+      selectedImage:  undefined,
       regions:        undefined,
       selectedRegion: undefined
     };
@@ -376,6 +434,8 @@ exports.DigitalOceanControl.prototype = {
       this.state.account        = null;
       this.state.sizes          = null;
       this.state.selectedSize   = null;
+      this.state.images         = null;
+      this.state.selectedImage  = null;
       this.state.regions        = null;
       this.state.selectedRegion = null;
       this.resume();
@@ -383,6 +443,7 @@ exports.DigitalOceanControl.prototype = {
     }
     this.loadAccount(token);
     this.loadSizes(token);
+    this.loadImages(token);
     this.loadRegions(token);
   },
   loadAccount: function (token) {
@@ -404,6 +465,19 @@ exports.DigitalOceanControl.prototype = {
       console.error('Failed to get sizes:', err);
       this.state.failed = true;
       this.state.sizes  = null;
+      this.resume();
+    }.bind(this), token);
+  },
+  loadImages: function (token) {
+    DigitalOcean.getDistributionImages(function (images) {
+      this.state.images = images.filter(function (image) {
+        return image.slug.lastIndexOf('ubuntu-14-04', 0) === 0 || image.slug.lastIndexOf('centos-7', 0) === 0;
+      });
+      this.resume();
+    }.bind(this), function (err) {
+      console.error('Failed to get images:', err);
+      this.state.failed = true;
+      this.state.images = null;
       this.resume();
     }.bind(this), token);
   },
@@ -436,11 +510,35 @@ exports.DigitalOceanControl.prototype = {
     this.state.selectedSize = selectedSize;
     this.storage.set('selected_size_slug', selectedSize ? selectedSize.slug : undefined);
   },
+  updateSelectedImage: function () {
+    var availableImageSlugs = ['ubuntu-14-04-x64']; // TODO
+    var selectedImageSlug   = this.storage.get('selected_image_slug');
+    var selectedImage;
+    if (selectedImageSlug && availableImageSlugs.indexOf(selectedImageSlug) !== -1) {
+      for (var i = 0; i < this.state.images.length; i += 1) {
+        if (this.state.images[i].slug === selectedImageSlug) {
+          selectedImage = this.state.images[i];
+          break;
+        }
+      }
+    }
+    if (!selectedImage) {
+      for (var j = 0; j < this.state.images.length; j += 1) {
+        if (availableImageSlugs.indexOf(this.state.images[j].slug) !== -1) {
+          selectedImage = this.state.images[j];
+          break;
+        }
+      }
+    }
+    this.state.selectedImage = selectedImage;
+    this.storage.set('selected_image_slug', selectedImage ? selectedImage.slug : undefined);
+  },
   updateSelectedRegion: function () {
-    var availableRegionSlugs = this.state.selectedSize ? this.state.selectedSize.regions : [];
-    var selectedRegionSlug = this.storage.get('selected_region_slug');
+    var availableRegionSlugsBySize  = this.state.selectedSize ? this.state.selectedSize.regions : [];
+    var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
+    var selectedRegionSlug          = this.storage.get('selected_region_slug');
     var selectedRegion;
-    if (selectedRegionSlug && availableRegionSlugs.indexOf(selectedRegionSlug) !== -1) {
+    if (selectedRegionSlug && availableRegionSlugsBySize.indexOf(selectedRegionSlug) !== -1 && availableRegionSlugsByImage.indexOf(selectedRegionSlug) !== -1) {
       for (var i = 0; i < this.state.regions.length; i += 1) {
         if (this.state.regions[i].slug === selectedRegionSlug) {
           selectedRegion = this.state.regions[i];
@@ -450,7 +548,7 @@ exports.DigitalOceanControl.prototype = {
     }
     if (!selectedRegion) {
       for (var j = 0; j < this.state.regions.length; j += 1) {
-        if (availableRegionSlugs.indexOf(this.state.regions[j].slug) !== -1) {
+        if (availableRegionSlugsBySize.indexOf(this.state.regions[j].slug) !== -1 && availableRegionSlugsByImage.indexOf(this.state.regions[j].slug) !== -1) {
           selectedRegion = this.state.regions[j];
           break;
         }
@@ -463,11 +561,13 @@ exports.DigitalOceanControl.prototype = {
     if (
         this.state.account === undefined ||
         this.state.sizes   === undefined ||
+        this.state.images  === undefined ||
         this.state.regions === undefined
     ) {
       return;
     }
     this.updateSelectedSize();
+    this.updateSelectedImage();
     this.updateSelectedRegion();
     this.state.enabled = true;
     this.render();
@@ -487,9 +587,15 @@ exports.DigitalOceanControl.prototype = {
     this.sizeLegend.setState({
       selectedSize: this.state.selectedSize
     });
+    this.imageWidget.setState({
+      enabled:       enabled && !failed,
+      images:        this.state.images,
+      selectedImage: this.state.selectedImage
+    });
     this.regionWidget.setState({
       enabled:        enabled && !failed,
       selectedSize:   this.state.selectedSize,
+      selectedImage:  this.state.selectedImage,
       regions:        this.state.regions,
       selectedRegion: this.state.selectedRegion
     });
@@ -511,6 +617,12 @@ exports.DigitalOceanControl.prototype = {
   handleSelectSize: function (selectedSize) {
     this.state.selectedSize = selectedSize;
     this.storage.set('selected_size_slug', selectedSize.slug);
+    this.updateSelectedRegion();
+    this.render();
+  },
+  handleSelectImage: function (selectedImage) {
+    this.state.selectedImage = selectedImage;
+    this.storage.set('selected_image_slug', selectedImage.slug);
     this.updateSelectedRegion();
     this.render();
   },

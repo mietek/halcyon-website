@@ -69,24 +69,19 @@ _Collection of software development tutorials_
 <div id="size-legend"></div>
 
 
+#### Image
+
+<div id="image-widget"></div>
+
+
 #### Region
 
 <div id="region-widget"></div>
 
 
-#### Image
-
-<div id="image-div" class="flex">
-<a class="image-button disabled">CentOS 7</a>
-<a class="image-button selected">Ubuntu 14.04</a>
-</div>
-
-
 #### SSH keys
 
-<div id="key-div" class="flex">
-<a class="key-button selected">Ori</a>
-</div>
+<div id="keys-widget"></div>
 
 
 <div class="flex">
