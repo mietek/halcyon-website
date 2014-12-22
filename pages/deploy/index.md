@@ -4,7 +4,7 @@ page-data:
 - key: max-section-link-level
   value: 2
 page-footer: |
-  <script>deploy.mountAtElementById('deploy');</script>
+  <script>widgets.initDigitalOcean();</script>
 ---
 
 
@@ -53,10 +53,7 @@ _Collection of software development tutorials_
 
 ### DigitalOcean account
 
-<div class="flex">
-<span id="account-field">_none_</span>
-<a id="account-button" href="">Link</a>
-</div>
+<div id="account-widget"></div>
 
 
 #### Hostname
@@ -68,40 +65,13 @@ _Collection of software development tutorials_
 
 #### Size
 
-<div id="size-div" class="flex">
-<a class="size-button selected">$5/month</a>
-<a class="size-button">$10/month</a>
-<a class="size-button">$20/month</a>
-<a class="size-button">$40/month</a>
-<a class="size-button">$80/month</a>
-<a class="size-button">$160/month</a>
-<a class="size-button">$320/month</a>
-<a class="size-button">$480/month</a>
-<a class="size-button">$640/month</a>
-</div>
-
-<div class="pre-like">
-
-[_**$5/month**_](https://digitalocean.com/pricing/)
-
-_512 MB RAM, 1 CPU, 20 GB SSD disk, 1 TB transfer_
-
-</div>
+<div id="size-widget"></div>
+<div id="size-legend"></div>
 
 
 #### Region
 
-<div id="region-div" class="flex">
-<a class="region-button disabled">New York 1</a>
-<a class="region-button selected">New York 2</a>
-<a class="region-button">New York 3</a>
-<a class="region-button">Amsterdam 1</a>
-<a class="region-button">Amsterdam 2</a>
-<a class="region-button">Amsterdam 3</a>
-<a class="region-button">San Francisco</a>
-<a class="region-button">Singapore</a>
-<a class="region-button">London</a>
-</div>
+<div id="region-widget"></div>
 
 
 #### Image

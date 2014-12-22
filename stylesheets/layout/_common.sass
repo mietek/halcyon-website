@@ -290,24 +290,22 @@ input:-ms-input-placeholder
   font-size: em((12/14) * (3/4))
 
 
-div.flex
+@mixin flex
   display: flex
-  margin-right: ln(1/2)
+  flex-flow: row wrap
+
+@mixin full
+  margin-left: 0
+  margin-right: 0
+
+
+div.flex
+  @include flex
+  display: flex
   flex-flow: row wrap
 
 .justify-end
   justify-content: flex-end
-
-
-#account-field
-  @include static-code-field
-  margin-right: ln(1/2)
-  flex: 1 0
-
-#account-button
-  @include pill-button
-  margin-right: ln(1/2)
-  width: ln(4)
 
 
 #source-field
@@ -316,18 +314,28 @@ div.flex
   flex: 1 0
 
 
+
+.account-field
+  @include static-code-field
+  margin-right: ln(1/2)
+  flex: 1 0
+#account-button
+  @include pill-button
+  width: ln(4)
+
+
 #hostname-field
   @include input-code-field
-  margin-right: ln(1/2)
   flex: 1 0
 
 
-a.size-button
+.size-button
   @include radio-button
   margin-right: ln(1/2)
   margin-bottom: ln(1/4)
   width: ln(6.25)
-
+#size-legend
+  @include full
 
 a.region-button
   @include radio-button

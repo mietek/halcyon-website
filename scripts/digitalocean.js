@@ -55,27 +55,51 @@ exports.revokeToken = function (yea, nay, token) {
 
 exports.getAccount = function (yea, nay, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/account', function (resp) {
-    return yea(resp['account']);
+    var account = resp['account'];
+    return account ? yea(account) : nay('bad_response');
   }, nay, token);
 };
 
 
 exports.getAccountKeys = function (yea, nay, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/account/keys', function (resp) {
-    return yea(resp['ssh_keys']);
+    var keys = resp['ssh_keys'];
+    return keys ? yea(keys) : nay('bad_response');
+  }, nay, token);
+};
+
+
+exports.getSizes = function (yea, nay, token) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/sizes', function (resp) {
+    var sizes = resp['sizes'];
+    if (!sizes) {
+      return nay('bad_response');
+    }
+    sizes.sort(function (size1, size2) {
+      return size1['price_monthly'] - size2['price_monthly'];
+    });
+    return yea(sizes);
   }, nay, token);
 };
 
 
 exports.getRegions = function (yea, nay, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/regions', function (resp) {
-    return yea(resp['regions']);
+    var regions = resp['regions'];
+    if (!regions) {
+      return nay('bad_response');
+    }
+    regions.sort(function (region1, region2) {
+      return region1.name.localeCompare(region2.name);
+    });
+    return yea(regions);
   }, nay, token);
 };
 
 
 exports.getImageWithSlug = function (slug, yea, nay, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/images/' + slug, function (resp) {
-    return yea(resp['image']);
+    var image = resp['image'];
+    return image ? yea(image) : nay('bad_response');
   }, nay, token);
 };
