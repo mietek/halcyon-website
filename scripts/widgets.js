@@ -4,6 +4,7 @@ var React = require('react');
 var GitHub = require('github');
 var DigitalOcean = require('digitalocean');
 var http = require('http');
+var random = require('random');
 
 
 exports.CachedStorage = function (prefix) {
@@ -679,6 +680,14 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
     }),
     document.getElementById('digitalocean-account-widget')
   );
+  this.hostnameWidget = React.render(
+    React.createElement(InputWidget, {
+      type:        'text',
+      placeholder: 'required',
+      onChange:    this.handleChangeHostname.bind(this)
+    }),
+    document.getElementById('digitalocean-hostname-widget')
+  );
   this.sizeWidget = React.render(
     React.createElement(SizeWidget, {
       onSelectSize: this.handleSelectSize.bind(this)
@@ -925,6 +934,10 @@ exports.DigitalOceanControl.prototype = {
       enabled:        enabled,
       account:        this.state.account ? this.state.account.email : undefined
     });
+    this.hostnameWidget.setState({
+      enabled:        enabled,
+      value:          this.storage.get('hostname')
+    });
     this.sizeWidget.setState({
       enabled:        enabled && !failed,
       sizes:          this.state.sizes,
@@ -963,6 +976,10 @@ exports.DigitalOceanControl.prototype = {
     this.storage.unset();
     this.state = this.getInitialState();
     this.state.enabled = true;
+    this.render();
+  },
+  handleChangeHostname: function (hostname) {
+    this.storage.set('hostname', hostname.replace(/[^a-z0-9\-]/g, ''));
     this.render();
   },
   handleSelectSize: function (selectedSize) {
@@ -1044,4 +1061,5 @@ exports.initDigitalOcean = function () {
     token
   );
   window.doc.start();
+  window.doc.handleChangeHostname(random.getHostname());
 };
