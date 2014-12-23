@@ -432,8 +432,8 @@ var ImageWidget = React.createClass({
   },
   getInitialState: function () {
     return {
-      enabled: false,
-      images: undefined,
+      enabled:       false,
+      images:        undefined,
       selectedImage: undefined
     };
   },
