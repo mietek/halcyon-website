@@ -846,6 +846,7 @@ exports.GitHubControl.prototype = {
       this.state.enabled = true;
       this.render();
       this.loadSourceInfo(function () {
+        this.updateSourceVars();
         this.render();
       }.bind(this));
     }.bind(this));
@@ -908,13 +909,13 @@ exports.GitHubControl.prototype = {
   handleChangeSourceUrl: function (sourceUrl) {
     this.storage.set('source_url', sourceUrl);
     this.state.sourceInfo = undefined;
-    this.updateVars();
+    this.updateSourceVars();
     this.handleDebounceSourceUrl();
     this.render();
   },
   handleDebounceSourceUrl: exports.debounce(function () {
     this.loadSourceInfo(function () {
-      this.updateVars();
+      this.updateSourceVars();
       this.render();
     }.bind(this));
   }, 1000),
@@ -922,8 +923,53 @@ exports.GitHubControl.prototype = {
     this.state.vars = vars;
     this.render();
   },
-  updateVars: function () {
-    // TODO
+  updateSourceVars: function () {
+    var info         = this.state.sourceInfo;
+    var vars         = [];
+    var importedVars = {};
+    if (info && info.env) {
+      Object.keys(info.env).forEach(function (name) {
+        if (name === 'BUILDPACK_URL') {
+          return;
+        }
+        var value = info.env[name];
+        var importedItem = {
+          imported: true,
+          name:     name
+        };
+        if (typeof value === 'string') {
+          importedItem.required = true;
+          importedItem.value    = value.length ? value : undefined;
+        } else {
+          importedItem.required = value.required !== false;
+          importedItem.value    = value.value.length ? value.value : undefined;
+        }
+        importedVars[name] = importedItem;
+        vars.push(importedItem);
+      });
+    }
+    if (this.state.vars) {
+      this.state.vars.forEach(function (item) {
+        if (item.imported) {
+          return;
+        }
+        var importedItem = importedVars[item.name];
+        if (importedItem && !importedItem.value) {
+          delete importedItem.imported;
+          importedItem.value = item.value;
+        } else {
+          if (item.required) {
+            vars.push({
+              name:  item.name,
+              value: item.value
+            });
+          } else {
+            vars.push(item);
+          }
+        }
+      });
+    }
+    this.state.vars = vars.length ? vars : undefined;
   }
 };
 
