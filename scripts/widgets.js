@@ -133,6 +133,40 @@ var InputField = React.createClass({
 });
 
 
+var InputWidget = React.createClass({
+  displayName: 'InputWidget',
+  getDefaultProps: function () {
+    return {
+      type:        undefined,
+      placeholder: undefined,
+      onChange:    undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled: false,
+      value:   undefined
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', {
+          className: 'flex'
+        },
+        React.createElement(InputField, {
+            id:          this.props.id,
+            className:   this.props.className,
+            enabled:     this.state.enabled,
+            type:        this.props.type,
+            placeholder: this.props.placeholder,
+            value:       this.state.value,
+            onChange:    this.props.onChange
+          }))
+    );
+  }
+});
+
+
 var LegendArea = React.createClass({
   displayName: 'LegendArea',
   render: function () {
@@ -207,40 +241,6 @@ var RadioButton = React.createClass({
         href:      this.props.enabled ? '' : undefined,
         onClick:   this.props.enabled ? this.handleClick : undefined
       }, this.props.title)
-    );
-  }
-});
-
-
-var InputWidget = React.createClass({
-  displayName: 'InputWidget',
-  getDefaultProps: function () {
-    return {
-      type:        undefined,
-      placeholder: undefined,
-      onChange:    undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled: false,
-      value:   undefined
-    };
-  },
-  render: function () {
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        React.createElement(InputField, {
-            id:          this.props.id,
-            className:   this.props.className,
-            enabled:     this.state.enabled,
-            type:        this.props.type,
-            placeholder: this.props.placeholder,
-            value:       this.state.value,
-            onChange:    this.props.onChange
-          }))
     );
   }
 });
