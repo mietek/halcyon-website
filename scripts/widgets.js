@@ -594,31 +594,27 @@ exports.GitHubControl.prototype = {
   },
   start: function () {
     var token = this.storage.get('token');
-    if (!token) {
-      this.state.account = null;
-      this.resume();
-      return;
-    }
-    this.loadAccount(token);
+    this.loadAccount(token, function (token) {
+      this.state.enabled = true;
+      this.render();
+      this.loadSourceInfo(token, function () {
+        console.log('ghc started'); // TODO
+      }.bind(this));
+    }.bind(this));
   },
-  loadAccount: function (token) {
+  loadAccount: function (token, next) {
     GitHub.getAuthenticatedUser(function (account) {
       this.state.account = account;
-      this.resume();
+      return next(token);
     }.bind(this), function (err) {
       console.error('Failed to load account:', err);
       this.state.account = null;
-      this.resume();
+      return next(token);
     }.bind(this), token);
   },
-  resume: function () {
-    if (
-      this.state.account === undefined
-    ) {
-      return;
-    }
-    this.state.enabled = true;
-    this.render();
+  loadSourceInfo: function (token, next) {
+    // TODO
+    return next(token);
   },
   render: function () {
     var enabled = this.state.enabled;
@@ -730,81 +726,78 @@ exports.DigitalOceanControl.prototype = {
   },
   start: function () {
     var token = this.storage.get('token');
-    if (!token) {
-      this.state.failed         = true;
-      this.state.account        = null;
-      this.state.sizes          = null;
-      this.state.selectedSize   = null;
-      this.state.images         = null;
-      this.state.selectedImage  = null;
-      this.state.regions        = null;
-      this.state.selectedRegion = null;
-      this.state.keys           = null;
-      this.state.selectedKeys   = null;
-      this.resume();
-      return;
-    }
-    this.loadAccount(token);
-    this.loadSizes(token);
-    this.loadImages(token);
-    this.loadRegions(token);
-    this.loadKeys(token);
+    this.loadAccount(token, function (token) {
+      this.loadSizes(token, function (token) {
+        this.updateSelectedSize();
+        this.loadImages(token, function (token) {
+          this.updateSelectedImage();
+          this.loadRegions(token, function (token) {
+            this.updateSelectedRegion();
+            this.loadKeys(token, function () {
+              this.updateSelectedKeys();
+              this.state.enabled = true;
+              this.render();
+            }.bind(this));
+          }.bind(this));
+        }.bind(this));
+      }.bind(this));
+    }.bind(this));
   },
-  loadAccount: function (token) {
+  loadAccount: function (token, next) {
     DigitalOcean.getAccount(function (account) {
       this.state.account = account;
-      this.resume();
+      return next(token);
     }.bind(this), function (err) {
       console.error('Failed to load account:', err);
       this.state.failed  = true;
       this.state.account = null;
-      this.resume();
+      return next(token);
     }.bind(this), token);
   },
-  loadSizes: function (token) {
+  loadSizes: function (token, next) {
     DigitalOcean.getSizes(function (sizes) {
       this.state.sizes = sizes;
-      this.resume();
+      return next(token);
     }.bind(this), function (err) {
       console.error('Failed to load sizes:', err);
       this.state.failed = true;
       this.state.sizes  = null;
-      this.resume();
+      return next(token);
     }.bind(this), token);
   },
-  loadImages: function (token) {
+  loadImages: function (token, next) {
     DigitalOcean.getDistributionImages(function (images) {
       this.state.images = images.filter(function (image) {
         return image.slug === 'ubuntu-14-04-x64';
       });
-      this.resume();
+      return next(token);
     }.bind(this), function (err) {
       console.error('Failed to load images:', err);
       this.state.failed = true;
       this.state.images = null;
-      this.resume();
+      return next(token);
     }.bind(this), token);
   },
-  loadRegions: function (token) {
+  loadRegions: function (token, next) {
     DigitalOcean.getRegions(function (regions) {
       this.state.regions = regions;
-      this.resume();
+      return next(token);
     }.bind(this), function (err) {
       console.error('Failed to load regions:', err);
       this.state.failed  = true;
       this.state.regions = null;
-      this.resume();
+      return next(token);
     }.bind(this), token);
   },
-  loadKeys: function (token) {
+  loadKeys: function (token, next) {
     DigitalOcean.getAccountKeys(function (keys) {
       this.state.keys = keys;
-      this.resume();
+      return next(token);
     }.bind(this), function (err) {
       console.error('Failed to load keys:', err);
       this.state.failed = true;
       this.state.keys   = null;
-      this.resume();
+      return next(token);
     }.bind(this), token);
   },
   updateSelectedSize: function () {
@@ -900,23 +893,6 @@ exports.DigitalOceanControl.prototype = {
       return selectedKey.id;
     }) : [];
     this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
-  },
-  resume: function () {
-    if (
-        this.state.account === undefined ||
-        this.state.sizes   === undefined ||
-        this.state.images  === undefined ||
-        this.state.regions === undefined ||
-        this.state.keys    === undefined
-    ) {
-      return;
-    }
-    this.updateSelectedSize();
-    this.updateSelectedImage();
-    this.updateSelectedRegion();
-    this.updateSelectedKeys();
-    this.state.enabled = true;
-    this.render();
   },
   render: function () {
     var enabled = this.state.enabled;
