@@ -258,9 +258,11 @@ div.chart
   .hairline &
     border-width: 0.5px
   &[disabled]
-    color: rgba($gray6, 0.4)
-    border-color: rgba($gray6, 0.4 * 0.8)
-    -webkit-text-fill-color: rgba($gray9, 0.4) // Work around Safari bug.
+    border-style: dashed
+    color: $gray6
+    border-color: rgba($gray6, 0.8)
+    -webkit-text-fill-color: $gray6 // Work around Safari bug.
+
 
 input::-webkit-input-placeholder
   font-style: italic
@@ -331,10 +333,16 @@ div.pre-like.meta
   margin-right: ln(1/2)
   width: ln(4)
 
+.map-button
+  @include pill-button
+  margin-right: ln(1/2)
+  width: ln(4)
+
 
 .input-field
   @include input-code-field
   margin-right: ln(1/2)
+  margin-bottom: ln(1/4)
   flex: 1 0
 
 
@@ -369,32 +377,6 @@ div.pre-like.meta
   margin-right: ln(1/2)
   margin-bottom: ln(1/4)
   width: ln(6.25)
-
-
-@mixin variable-input
-  @include input-code-field
-  margin-right: ln(1/2)
-  margin-bottom: ln(1/4)
-  flex: 1 0
-
-
-input.variable-name-input
-  @include variable-input
-
-input.variable-value-input
-  @include variable-input
-
-a.variable-button
-  @include pill-button
-  margin-right: ln(1/2)
-  margin-bottom: ln(1/4)
-  width: ln(4)
-
-#add-variable-button
-  @include pill-button
-  margin-right: ln(1/2)
-  margin-bottom: ln(1/4)
-  width: ln(4)
 
 
 #deploy-button

@@ -30,24 +30,7 @@ This page can be used to deploy a Haskell application from a _git_ repository to
 
 #### Environment variables
 
-<div class="flex">
-<input class="variable-name-input" type="text" placeholder="variable name" value="REQUIRED_VARIABLE" disabled>
-<input class="variable-value-input" type="text" placeholder="required value">
-<a class="variable-button disabled">Remove</a>
-</div>
-<div class="flex">
-<input class="variable-name-input" type="text" placeholder="variable name" value="example">
-<input class="variable-value-input" type="text" placeholder="optional value" value="example">
-<a class="variable-button" href="">Remove</a>
-</div>
-<div class="flex">
-<input class="variable-name-input" type="text" placeholder="variable name" value="">
-<input class="variable-value-input" type="text" placeholder="optional value">
-<a class="variable-button" href="">Remove</a>
-</div>
-<div class="flex justify-end">
-<a id="add-variable-button" href="">Add</a>
-</div>
+<div id="github-vars-widget" class="widget"></div>
 
 
 ### DigitalOcean account
