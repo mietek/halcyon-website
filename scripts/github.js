@@ -3,7 +3,10 @@
 var http = require('http');
 
 
-exports.parseUrl = function (url) {
+exports.parseRepoUrl = function (url) {
+  if (!url) {
+    return null;
+  }
   var re = new RegExp('^http(?:s?)://github.com/([^/#]+)/([^/#]+?)(?:\\.git)?(?:/)?(?:#([^/#]+))?$');
   var result = url.match(re);
   if (!result) {
@@ -17,8 +20,8 @@ exports.parseUrl = function (url) {
 };
 
 
-exports.addPathToUrl = function (url, path) {
-  var repo = exports.parseUrl(url);
+exports.addPathToRepoUrl = function (url, path) {
+  var repo = exports.parseRepoUrl(url);
   if (!repo) {
     return null;
   }
@@ -62,8 +65,22 @@ exports.getRawResource = function (url, yea, nay, token, opts) {
 };
 
 
+exports.requestToken = function (clientId, state) {
+  location.href = http.addQueryToUrl({
+    'client_id': clientId,
+    'scope':     '',
+    'state':     state
+  }, 'https://github.com/login/oauth/authorize');
+};
+
+
+exports.getAuthenticatedUser = function (yea, nay, token) {
+  exports.getJsonResource('https://api.github.com/user', yea, nay, token);
+};
+
+
 exports.listRepoRoot = function (url, yea, nay, token) {
-  exports.getJsonResource(exports.addPathToUrl(url), function (resp) {
+  exports.getJsonResource(exports.addPathToRepoUrl(url), function (resp) {
     var result = [];
     resp.forEach(function (file) {
       if (!file.name) {
@@ -77,10 +94,10 @@ exports.listRepoRoot = function (url, yea, nay, token) {
 
 
 exports.getRawFile = function (url, path, yea, nay, token) {
-  exports.getRawResource(exports.addPathToUrl(url, path), yea, nay, token);
+  exports.getRawResource(exports.addPathToRepoUrl(url, path), yea, nay, token);
 };
 
 
 exports.getJsonFile = function (url, path, yea, nay, token) {
-  exports.getJsonResource(exports.addPathToUrl(url, path), yea, nay, token);
+  exports.getJsonResource(exports.addPathToRepoUrl(url, path), yea, nay, token);
 };

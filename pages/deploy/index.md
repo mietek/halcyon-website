@@ -4,7 +4,10 @@ page-data:
 - key: max-section-link-level
   value: 2
 page-footer: |
-  <script>widgets.initDigitalOcean();</script>
+  <script>
+    widgets.initGitHub();
+    widgets.initDigitalOcean();
+  </script>
 ---
 
 
@@ -14,19 +17,15 @@ Deploy to DigitalOcean
 This page can be used to deploy a Haskell application from a _git_ repository to a new DigitalOcean droplet.
 
 
-### Source code
+### GitHub account
 
-<div class="flex">
-<input id="source-field" type="url" placeholder="https://github.com/mietek/hello-scotty" value="https://github.com/mietek/howistart">
-</div>
+<div id="github-account-widget" class="widget"></div>
 
-<div class="pre-like">
 
-[_**How I Start**_](http://howistart.org/)
+#### Source repository
 
-_Collection of software development tutorials_
-
-</div>
+<div id="github-source-widget" class="widget"></div>
+<div id="github-source-legend" class="full"></div>
 
 
 #### Environment variables
@@ -53,35 +52,33 @@ _Collection of software development tutorials_
 
 ### DigitalOcean account
 
-<div id="account-widget"></div>
+<div id="digitalocean-account-widget" class="widget"></div>
 
 
 #### Hostname
 
-<div class="flex">
-<input id="hostname-field" type="text" placeholder="hello-scotty-1984">
-</div>
+<div id="digitalocean-hostname-widget" class="widget"></div>
 
 
 #### Size
 
-<div id="size-widget"></div>
-<div id="size-legend"></div>
+<div id="digitalocean-size-widget" class="widget"></div>
+<div id="digitalocean-size-legend" class="full"></div>
 
 
 #### Image
 
-<div id="image-widget"></div>
+<div id="digitalocean-image-widget" class="widget"></div>
 
 
 #### Region
 
-<div id="region-widget"></div>
+<div id="digitalocean-region-widget" class="widget"></div>
 
 
 #### SSH keys
 
-<div id="keys-widget"></div>
+<div id="digitalocean-keys-widget" class="widget"></div>
 
 
 <div class="flex">

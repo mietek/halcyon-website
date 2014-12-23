@@ -258,9 +258,9 @@ div.chart
   .hairline &
     border-width: 0.5px
   &[disabled]
-    color: $gray9
-    border-color: rgba($gray9, 0.8)
-    -webkit-text-fill-color: $gray9 // Work around Safari bug.
+    color: rgba($gray6, 0.4)
+    border-color: rgba($gray6, 0.4 * 0.8)
+    -webkit-text-fill-color: rgba($gray9, 0.4) // Work around Safari bug.
 
 input::-webkit-input-placeholder
   font-style: italic
@@ -301,41 +301,45 @@ input:-ms-input-placeholder
 
 div.flex
   @include flex
-  display: flex
-  flex-flow: row wrap
 
-.justify-end
+div.justify-end
   justify-content: flex-end
 
+div.full
+  @include full
 
-#source-field
-  @include input-code-field
+
+// TODO
+div.pre-like.meta
+  font-style: italic
+
+
+.widget
   margin-right: ln(1/2)
-  flex: 1 0
-
 
 
 .account-field
-  @include static-code-field
+  @include static-field
   margin-right: ln(1/2)
   flex: 1 0
-#account-button
+
+.account-button
   @include pill-button
   margin-right: ln(1/2)
   width: ln(4)
 
-#hostname-field
+
+.input-field
   @include input-code-field
   margin-right: ln(1/2)
   flex: 1 0
+
 
 .size-button
   @include radio-button
   margin-right: ln(1/2)
   margin-bottom: ln(1/4)
-  width: ln(6.25)
-#size-legend
-  @include full
+  width: ln(4)
 
 .image-button
   @include radio-button

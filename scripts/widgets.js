@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var GitHub = require('github');
 var DigitalOcean = require('digitalocean');
 var http = require('http');
 
@@ -46,11 +47,16 @@ exports.CachedStorage.prototype = {
   },
   clear: function () {
     this.cache = {};
+    // NOTE: This works around a bug in Safari 7.1.
+    var storageKeys = [];
     for (var i = 0; i < localStorage.length; i += 1) {
       var storageKey = localStorage.key(i);
       if (storageKey.lastIndexOf(this.prefix, 0) === 0) {
-        localStorage.removeItem(storageKey);
+        storageKeys.push(storageKey);
       }
+    }
+    for (var j = 0; j < storageKeys.length; j += 1) {
+      localStorage.removeItem(storageKeys[j]);
     }
   }
 };
@@ -61,6 +67,19 @@ exports.dumpCachedStorage = function (prefix) {
       console.log(storageKey, localStorage.getItem(storageKey));
     }
   }
+};
+
+
+exports.debounce = function (func, duration) {
+  var timeout;
+  return function () {
+    var that = this;
+    var args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      func.apply(that, args);
+    }, duration);
+  };
 };
 
 
@@ -82,13 +101,44 @@ var StaticField = React.createClass({
 });
 
 
+var InputField = React.createClass({
+  displayName: 'InputField',
+  getDefaultProps: function () {
+    return {
+      enabled:     false,
+      type:        undefined,
+      placeholder: undefined,
+      value:       undefined,
+      onChange:    undefined,
+      refCon:      undefined
+    };
+  },
+  handleChange: function (event) {
+    this.props.onChange(event.target.value, this.props.refCon);
+  },
+  render: function () {
+    return (
+      React.createElement('input', {
+        id:           this.props.id,
+        className:    this.props.className || 'input-field',
+        disabled:     !this.props.enabled,
+        type:         this.props.type || 'text',
+        placeholder:  this.props.placeholder,
+        value:        this.props.value,
+        onChange:     this.handleChange
+      })
+    );
+  }
+});
+
+
 var LegendArea = React.createClass({
   displayName: 'LegendArea',
   render: function () {
     return (
       React.createElement('div', {
         id:        this.props.id,
-        className: this.props.className || 'pre-like' // TODO
+        className: this.props.className || 'pre-like meta' // TODO
       }, this.props.children)
     );
   }
@@ -105,13 +155,13 @@ var BimodalButton = React.createClass({
       falseTitle:   undefined,
       onTrueClick:  undefined,
       onFalseClick: undefined,
-      payload:      undefined
+      refCon:       undefined
     };
   },
   handleClick: function (event) {
     event.preventDefault();
     var onClick = this.props.mode ? this.props.onTrueClick : this.props.onFalseClick;
-    onClick(this.props.payload);
+    onClick(this.props.refCon);
   },
   render: function () {
     var className = this.props.className || 'bimodal-button';
@@ -138,12 +188,12 @@ var RadioButton = React.createClass({
       selected: false,
       title:    undefined,
       onClick:  undefined,
-      payload:  undefined
+      refCon:   undefined
     };
   },
   handleClick: function (event) {
     event.preventDefault();
-    this.props.onClick(this.props.payload);
+    this.props.onClick(this.props.refCon);
   },
   render: function () {
     var className = this.props.className || 'radio-button';
@@ -176,26 +226,22 @@ var AccountWidget = React.createClass({
     };
   },
   render: function () {
-    var title;
-    if (this.state.account === null) {
-      title = React.createElement('em', null, 'not available');
-    } else if (this.state.account) {
-      title = this.state.account.email;
-    }
+    var className = 'account-field';
+    className += this.state.account ? '' : ' meta';
     return (
       React.createElement('div', {
           className: 'flex'
         },
         React.createElement(StaticField, {
-            className: 'account-field',
-            title:     title
+            className: className,
+            title:     this.state.account ? this.state.account : 'none'
           }),
         React.createElement(BimodalButton, {
-            id:           'account-button',
+            className:    'account-button',
             enabled:      this.state.enabled,
             mode:         this.state.account ? true : false,
-            trueTitle:    'Unlink',
-            falseTitle:   'Link',
+            trueTitle:    'Forget',
+            falseTitle:   'Connect',
             onTrueClick:  this.props.onUnlink,
             onFalseClick: this.props.onLink
           }))
@@ -220,7 +266,11 @@ var SizeWidget = React.createClass({
   },
   render: function () {
     if (!this.state.sizes) {
-      return React.createElement('em', null, 'not available');
+      return React.createElement(RadioButton, {
+          className: 'size-button meta',
+          enabled:   false,
+          title:     'none'
+        });
     }
     var selectedSizeSlug = this.state.selectedSize ? this.state.selectedSize.slug : null;
     return (
@@ -228,18 +278,86 @@ var SizeWidget = React.createClass({
           className: 'flex'
         },
         this.state.sizes.map(function (size) {
+          var title = size.memory < 1024 ? size.memory + ' MB' : size.memory / 1024 + ' GB';
           return (
             React.createElement(RadioButton, {
                 key:       size.slug,
                 className: 'size-button',
                 enabled:   this.state.enabled,
                 selected:  size.slug === selectedSizeSlug,
-                title:     '$' + size['price_monthly'] + '/month',
+                title:     title,
                 onClick:   this.props.onSelectSize,
-                payload:   size
+                refCon:    size
               })
           );
         }.bind(this)))
+    );
+  }
+});
+
+
+var InputWidget = React.createClass({
+  displayName: 'InputWidget',
+  getDefaultProps: function () {
+    return {
+      type:        undefined,
+      placeholder: undefined,
+      onChange:    undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled: false,
+      value:   undefined
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', {
+          className: 'flex'
+        },
+        React.createElement(InputField, {
+            id:          this.props.id,
+            className:   this.props.className,
+            enabled:     this.state.enabled,
+            type:        this.props.type,
+            placeholder: this.props.placeholder,
+            value:       this.state.value,
+            onChange:    this.props.onChange
+          }))
+    );
+  }
+});
+
+
+var SourceLegend = React.createClass({
+  displayName: 'SourceLegend',
+  getDefaultProps: function () {
+    return {
+      onLink: undefined
+    };
+  },
+  handleLink: function (event) {
+    event.preventDefault();
+    this.props.onLink();
+  },
+  render: function () {
+    return (
+      React.createElement(LegendArea, null,
+        React.createElement('p', null,
+          React.createElement('a', {
+              href: '',
+              onClick: this.handleLink
+            },
+            'Connect'),
+          ' your GitHub account to avoid rate limiting.'),
+        React.createElement('p', null,
+          'Environment variables can be determined from an ',
+          React.createElement('a', {
+              href: 'https://devcenter.heroku.com/articles/app-json-schema'
+            },
+            React.createElement('code', null, 'app.json')),
+          ' file included in the source repository.'))
     );
   }
 });
@@ -258,16 +376,23 @@ var SizeLegend = React.createClass({
       return (
         React.createElement(LegendArea, null,
           React.createElement('p', null,
-            React.createElement('em', null, 'not available')))
+            'Connect your DigitalOcean account to see the available options.'),
+          React.createElement('p', null,
+            'If you need to sign up for an account, you can get $10 credit and help the Halcyon project by using a ',
+            React.createElement('a', {
+                href: 'https://cloud.digitalocean.com/registrations/new?refcode=6b1199e29661'
+              },
+              'referral link'),
+            '.'))
       );
     }
-    var legend;
+    var subtitle;
     if (size.memory < 1024) {
-      legend = size.memory + ' MB RAM, ';
+      subtitle = size.memory + ' MB RAM, ';
     } else {
-      legend = size.memory / 1024 + ' GB RAM, ';
+      subtitle = size.memory / 1024 + ' GB RAM, ';
     }
-    legend += size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') +
+    subtitle += size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') +
       size.disk + ' GB SSD disk, ' + size.transfer + ' TB transfer';
     return (
       React.createElement(LegendArea, null,
@@ -275,8 +400,9 @@ var SizeLegend = React.createClass({
           React.createElement('a', {
               href: 'https://digitalocean.com/pricing/'
             },
-            React.createElement('strong', null, '$' + size['price_monthly'] + '/month'))),
-        React.createElement('p', null, legend))
+            React.createElement('strong', null, '$' + size['price_monthly'] + '/month'),
+            ' — $' + size['price_hourly'] + '/hour')),
+        React.createElement('p', null, subtitle))
     );
   }
 });
@@ -298,7 +424,11 @@ var ImageWidget = React.createClass({
   },
   render: function () {
     if (!this.state.images) {
-      return React.createElement('em', null, 'not available');
+      return React.createElement(RadioButton, {
+          className: 'image-button meta',
+          enabled:   false,
+          title:     'none'
+        });
     }
     var availableImageSlugs = ['ubuntu-14-04-x64']; // TODO
     var selectedImageSlug = this.state.selectedImage ? this.state.selectedImage.slug : null;
@@ -316,7 +446,7 @@ var ImageWidget = React.createClass({
                 selected:  image.slug === selectedImageSlug,
                 title:     image.distribution + ' ' + image.name,
                 onClick:   this.props.onSelectImage,
-                payload:   image
+                refCon:    image
               })
           );
         }.bind(this)))
@@ -343,7 +473,11 @@ var RegionWidget = React.createClass({
   },
   render: function () {
     if (!this.state.regions) {
-      return React.createElement('em', null, 'not available');
+      return React.createElement(RadioButton, {
+          className: 'region-button meta',
+          enabled:   false,
+          title:     'none'
+        });
     }
     var availableRegionSlugsBySize  = this.state.selectedSize ? this.state.selectedSize.regions : [];
     var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
@@ -363,7 +497,7 @@ var RegionWidget = React.createClass({
                 selected:  region.slug === selectedRegionSlug,
                 title:     region.name,
                 onClick:   this.props.onSelectRegion,
-                payload:   region
+                refCon:    region
               })
           );
         }.bind(this)))
@@ -388,7 +522,11 @@ var KeysWidget = React.createClass({
   },
   render: function () {
     if (!this.state.keys) {
-      return React.createElement('em', null, 'not available');
+      return React.createElement(RadioButton, {
+          className: 'key-button meta',
+          enabled:   false,
+          title:     'none'
+        });
     }
     var selectedKeyIds = this.state.selectedKeys ? this.state.selectedKeys.map(function (selectedKey) {
       return selectedKey.id;
@@ -407,13 +545,121 @@ var KeysWidget = React.createClass({
                 selected:  selected,
                 title:     sshKey.name,
                 onClick:   this.props.onSelectKey,
-                payload:   sshKey
+                refCon:    sshKey
               })
           );
         }.bind(this)))
     );
   }
 });
+
+
+exports.GitHubControl = function (prefix, clientId, token) {
+  this.storage = new exports.CachedStorage(prefix);
+  this.props = {
+    clientId: clientId
+  };
+  if (token) {
+    this.storage.set('token', token);
+  }
+  this.state = this.getInitialState();
+  this.accountWidget = React.render(
+    React.createElement(AccountWidget, {
+      onLink:   this.handleLink.bind(this),
+      onUnlink: this.handleUnlink.bind(this)
+    }),
+    document.getElementById('github-account-widget')
+  );
+  this.sourceWidget = React.render(
+    React.createElement(InputWidget, {
+      type:        'url',
+      placeholder: 'https://github.com/user/project',
+      onChange:    this.handleChangeSourceUrl.bind(this)
+    }),
+    document.getElementById('github-source-widget')
+  );
+  this.sourceLegend = React.render(
+    React.createElement(SourceLegend, {
+      onLink: this.handleLink.bind(this)
+    }),
+    document.getElementById('github-source-legend')
+  );
+  this.render();
+};
+exports.GitHubControl.prototype = {
+  getInitialState: function () {
+    return {
+      enabled:   false,
+      failed:    false,
+      account:   undefined
+    };
+  },
+  start: function () {
+    var token = this.storage.get('token');
+    if (!token) {
+      this.state.failed = true;
+      this.state.account = null;
+      this.resume();
+      return;
+    }
+    this.loadAccount(token);
+  },
+  loadAccount: function (token) {
+    GitHub.getAuthenticatedUser(function (account) {
+      this.state.account = account;
+      this.resume();
+    }.bind(this), function (err) {
+      console.error('Failed to load account:', err);
+      this.state.failed  = true;
+      this.state.account = null;
+      this.resume();
+    }.bind(this), token);
+  },
+  resume: function () {
+    if (
+      this.state.account === undefined
+    ) {
+      return;
+    }
+    this.state.enabled = true;
+    this.render();
+  },
+  render: function () {
+    var enabled = this.state.enabled;
+    // var failed  = this.state.failed; // TODO
+    this.accountWidget.setState({
+      enabled:  enabled,
+      account:  this.state.account ? this.state.account.login : undefined
+    });
+    this.sourceWidget.setState({
+      enabled: enabled,
+      value:   this.storage.get('source_url')
+    });
+  },
+  handleLink: function () {
+    this.storage.unset('token');
+    this.state.enabled = false;
+    this.state.account = undefined;
+    this.render();
+    setTimeout(function () {
+      GitHub.requestToken(this.props.clientId);
+    }.bind(this), 1000);
+  },
+  handleUnlink: function () {
+    this.storage.unset('token');
+    this.state.enabled = true;
+    this.state.account = undefined;
+    this.render();
+  },
+  handleChangeSourceUrl: function (sourceUrl) {
+    this.storage.set('source_url', sourceUrl);
+    this.handleDebouncedChangeSourceUrl(sourceUrl);
+    this.render();
+  },
+  handleDebouncedChangeSourceUrl: exports.debounce(function (sourceUrl) {
+    console.log(sourceUrl); // TODO
+  }, 1000)
+};
 
 
 exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
@@ -431,35 +677,35 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
       onLink:   this.handleLink.bind(this),
       onUnlink: this.handleUnlink.bind(this)
     }),
-    document.getElementById('account-widget')
+    document.getElementById('digitalocean-account-widget')
   );
   this.sizeWidget = React.render(
     React.createElement(SizeWidget, {
       onSelectSize: this.handleSelectSize.bind(this)
     }),
-    document.getElementById('size-widget')
+    document.getElementById('digitalocean-size-widget')
   );
   this.sizeLegend = React.render(
     React.createElement(SizeLegend, null),
-    document.getElementById('size-legend')
+    document.getElementById('digitalocean-size-legend')
   );
   this.imageWidget = React.render(
     React.createElement(ImageWidget, {
       onSelectImage: this.handleSelectImage.bind(this)
     }),
-    document.getElementById('image-widget')
+    document.getElementById('digitalocean-image-widget')
   );
   this.regionWidget = React.render(
     React.createElement(RegionWidget, {
       onSelectRegion: this.handleSelectRegion.bind(this)
     }),
-    document.getElementById('region-widget')
+    document.getElementById('digitalocean-region-widget')
   );
   this.keysWidget = React.render(
     React.createElement(KeysWidget, {
       onSelectKey: this.handleSelectKey.bind(this)
     }),
-    document.getElementById('keys-widget')
+    document.getElementById('digitalocean-keys-widget')
   );
   this.render();
 };
@@ -506,7 +752,7 @@ exports.DigitalOceanControl.prototype = {
       this.state.account = account;
       this.resume();
     }.bind(this), function (err) {
-      console.error('Failed to get account:', err);
+      console.error('Failed to load account:', err);
       this.state.failed  = true;
       this.state.account = null;
       this.resume();
@@ -517,7 +763,7 @@ exports.DigitalOceanControl.prototype = {
       this.state.sizes = sizes;
       this.resume();
     }.bind(this), function (err) {
-      console.error('Failed to get sizes:', err);
+      console.error('Failed to load sizes:', err);
       this.state.failed = true;
       this.state.sizes  = null;
       this.resume();
@@ -530,7 +776,7 @@ exports.DigitalOceanControl.prototype = {
       });
       this.resume();
     }.bind(this), function (err) {
-      console.error('Failed to get images:', err);
+      console.error('Failed to load images:', err);
       this.state.failed = true;
       this.state.images = null;
       this.resume();
@@ -541,7 +787,7 @@ exports.DigitalOceanControl.prototype = {
       this.state.regions = regions;
       this.resume();
     }.bind(this), function (err) {
-      console.error('Failed to get regions:', err);
+      console.error('Failed to load regions:', err);
       this.state.failed  = true;
       this.state.regions = null;
       this.resume();
@@ -552,50 +798,52 @@ exports.DigitalOceanControl.prototype = {
       this.state.keys = keys;
       this.resume();
     }.bind(this), function (err) {
-      console.error('Failed to get keys:', err);
+      console.error('Failed to load keys:', err);
       this.state.failed = true;
       this.state.keys   = null;
       this.resume();
     }.bind(this), token);
   },
   updateSelectedSize: function () {
+    var sizes            = this.state.sizes;
     var selectedSizeSlug = this.storage.get('selected_size_slug');
     var selectedSize;
-    if (selectedSizeSlug) {
-      for (var i = 0; i < this.state.sizes.length; i += 1) {
-        if (this.state.sizes[i].slug === selectedSizeSlug) {
-          selectedSize = this.state.sizes[i];
-          break;
+    if (sizes) {
+      if (selectedSizeSlug) {
+        for (var i = 0; i < sizes.length; i += 1) {
+          if (sizes[i].slug === selectedSizeSlug) {
+            selectedSize = sizes[i];
+            break;
+          }
         }
       }
-    }
-    if (!selectedSize && this.state.sizes.length) {
-      selectedSize = this.state.sizes[0];
+      if (!selectedSize && sizes.length) {
+        selectedSize = this.state.sizes[0];
+      }
     }
     this.state.selectedSize = selectedSize;
     this.storage.set('selected_size_slug', selectedSize ? selectedSize.slug : undefined);
   },
   updateSelectedImage: function () {
+    var images              = this.state.images;
     var availableImageSlugs = ['ubuntu-14-04-x64']; // TODO
     var selectedImageSlug   = this.storage.get('selected_image_slug');
     var selectedImage;
-    if (selectedImageSlug) {
-      if (availableImageSlugs.indexOf(selectedImageSlug) !== -1) {
-        for (var i = 0; i < this.state.images.length; i += 1) {
-          if (this.state.images[i].slug === selectedImageSlug) {
-            selectedImage = this.state.images[i];
+    if (images) {
+      if (selectedImageSlug && availableImageSlugs.indexOf(selectedImageSlug) !== -1) {
+        for (var i = 0; i < images.length; i += 1) {
+          if (images[i].slug === selectedImageSlug) {
+            selectedImage = images[i];
             break;
           }
         }
-      } else {
-        selectedImageSlug = undefined;
       }
-    }
-    if (!selectedImage) {
-      for (var j = 0; j < this.state.images.length; j += 1) {
-        if (availableImageSlugs.indexOf(this.state.images[j].slug) !== -1) {
-          selectedImage = this.state.images[j];
-          break;
+      if (!selectedImage) {
+        for (var j = 0; j < images.length; j += 1) {
+          if (availableImageSlugs.indexOf(images[j].slug) !== -1) {
+            selectedImage = images[j];
+            break;
+          }
         }
       }
     }
@@ -603,27 +851,28 @@ exports.DigitalOceanControl.prototype = {
     this.storage.set('selected_image_slug', selectedImage ? selectedImage.slug : undefined);
   },
   updateSelectedRegion: function () {
+    var regions                     = this.state.regions;
     var availableRegionSlugsBySize  = this.state.selectedSize ? this.state.selectedSize.regions : [];
     var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
     var selectedRegionSlug          = this.storage.get('selected_region_slug');
     var selectedRegion;
-    if (selectedRegionSlug) {
-      if (availableRegionSlugsBySize.indexOf(selectedRegionSlug) !== -1 && availableRegionSlugsByImage.indexOf(selectedRegionSlug) !== -1) {
-        for (var i = 0; i < this.state.regions.length; i += 1) {
-          if (this.state.regions[i].features.indexOf('metadata') !== -1 && this.state.regions[i].slug === selectedRegionSlug) {
-            selectedRegion = this.state.regions[i];
+    if (regions) {
+      if (selectedRegionSlug && availableRegionSlugsBySize.indexOf(selectedRegionSlug) !== -1 && availableRegionSlugsByImage.indexOf(selectedRegionSlug) !== -1) {
+        for (var i = 0; i < regions.length; i += 1) {
+          if (regions[i].slug === selectedRegionSlug) {
+            if (regions[i].features.indexOf('metadata') !== -1) {
+              selectedRegion = regions[i];
+            }
             break;
           }
         }
-      } else {
-        selectedRegionSlug = undefined;
       }
-    }
-    if (!selectedRegion) {
-      for (var j = 0; j < this.state.regions.length; j += 1) {
-        if (availableRegionSlugsBySize.indexOf(this.state.regions[j].slug) !== -1 && availableRegionSlugsByImage.indexOf(this.state.regions[j].slug) !== -1) {
-          selectedRegion = this.state.regions[j];
-          break;
+      if (!selectedRegion) {
+        for (var j = 0; j < regions.length; j += 1) {
+          if (availableRegionSlugsBySize.indexOf(regions[j].slug) !== -1 && availableRegionSlugsByImage.indexOf(regions[j].slug) !== -1 && regions[j].features.indexOf('metadata') !== -1) {
+            selectedRegion = regions[j];
+            break;
+          }
         }
       }
     }
@@ -631,22 +880,26 @@ exports.DigitalOceanControl.prototype = {
     this.storage.set('selected_region_slug', selectedRegion ? selectedRegion.slug : undefined);
   },
   updateSelectedKeys: function () {
+    var keys           = this.state.keys;
     var selectedKeyIds = this.storage.get('selected_key_ids');
-    var selectedKeys = [];
-    if (selectedKeyIds) {
-      for (var i = 0; i < this.state.keys.length; i += 1) {
-        if (selectedKeyIds.indexOf(this.state.keys[i].id) !== -1) {
-          selectedKeys.push(this.state.keys[i]);
+    var selectedKeys   = [];
+    if (keys) {
+      if (selectedKeyIds) {
+        for (var i = 0; i < keys.length; i += 1) {
+          if (selectedKeyIds.indexOf(keys[i].id) !== -1) {
+            selectedKeys.push(keys[i]);
+          }
         }
       }
-    }
-    if (!selectedKeys.length && this.state.keys.length) {
-      selectedKeys.push(this.state.keys[0]);
+      if (!selectedKeys.length && keys.length) {
+        selectedKeys.push(keys[0]);
+      }
     }
     this.state.selectedKeys = selectedKeys;
-    this.storage.set('selected_key_ids', selectedKeys ? selectedKeys.map(function (selectedKey) {
+    selectedKeyIds = selectedKeys ? selectedKeys.map(function (selectedKey) {
       return selectedKey.id;
-    }) : undefined);
+    }) : [];
+    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
   },
   resume: function () {
     if (
@@ -669,21 +922,21 @@ exports.DigitalOceanControl.prototype = {
     var enabled = this.state.enabled;
     var failed  = this.state.failed;
     this.accountWidget.setState({
-      enabled:      enabled,
-      account:      this.state.account
+      enabled:        enabled,
+      account:        this.state.account ? this.state.account.email : undefined
     });
     this.sizeWidget.setState({
-      enabled:      enabled && !failed,
-      sizes:        this.state.sizes,
-      selectedSize: this.state.selectedSize
+      enabled:        enabled && !failed,
+      sizes:          this.state.sizes,
+      selectedSize:   this.state.selectedSize
     });
     this.sizeLegend.setState({
-      selectedSize: this.state.selectedSize
+      selectedSize:   this.state.selectedSize
     });
     this.imageWidget.setState({
-      enabled:       enabled && !failed,
-      images:        this.state.images,
-      selectedImage: this.state.selectedImage
+      enabled:        enabled && !failed,
+      images:         this.state.images,
+      selectedImage:  this.state.selectedImage
     });
     this.regionWidget.setState({
       enabled:        enabled && !failed,
@@ -693,21 +946,21 @@ exports.DigitalOceanControl.prototype = {
       selectedRegion: this.state.selectedRegion
     });
     this.keysWidget.setState({
-      enabled:      enabled && !failed,
-      keys:         this.state.keys,
-      selectedKeys: this.state.selectedKeys
+      enabled:        enabled && !failed,
+      keys:           this.state.keys,
+      selectedKeys:   this.state.selectedKeys
     });
   },
   handleLink: function () {
-    this.storage.clear();
+    this.storage.unset('token');
     this.state = this.getInitialState();
     this.render();
     setTimeout(function () {
       DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
-    }.bind(this), 500);
+    }.bind(this), 1000);
   },
   handleUnlink: function () {
-    this.storage.clear();
+    this.storage.unset();
     this.state = this.getInitialState();
     this.state.enabled = true;
     this.render();
@@ -751,17 +1004,44 @@ exports.DigitalOceanControl.prototype = {
 };
 
 
+exports.initGitHub = function () {
+  var token;
+  var sourceUrl;
+  if (GitHub.parseRepoUrl(document.referrer)) {
+    sourceUrl = document.referrer;
+  }
+  var query = http.parseCurrentQueryString();
+  if (query) {
+    if (query['vendor'] === 'github') {
+      token = query['access_token'];
+    }
+    if (query['url']) {
+      sourceUrl = query['url'];
+    }
+  }
+  window.ghc = new exports.GitHubControl(
+    'github',
+    '2765f53aa92837f0a835',
+    token
+  );
+  window.ghc.start();
+  if (sourceUrl) {
+    window.ghc.handleChangeSourceUrl(sourceUrl);
+  }
+};
+
+
 exports.initDigitalOcean = function () {
   var token;
   var query = http.parseCurrentQueryString();
-  if (query.vendor === 'digitalocean') {
+  if (query && query.vendor === 'digitalocean') {
     token = query['access_token'];
   }
-  var control = new exports.DigitalOceanControl(
+  window.doc = new exports.DigitalOceanControl(
     'digitalocean',
     '2530da1c8b65fd7e627f9ba234db0cfddae44c2ddf7e603648301f043318cac4',
     'https://halcyon-digitalocean-callback.herokuapp.com/callback',
     token
   );
-  control.start();
+  window.doc.start();
 };
