@@ -338,27 +338,47 @@ var SourceLegend = React.createClass({
       onLink: undefined
     };
   },
+  getInitialState: function () {
+    return {
+      sourceInfo: undefined
+    };
+  },
   handleLink: function (event) {
     event.preventDefault();
     this.props.onLink();
   },
   render: function () {
+    var info = this.state.sourceInfo;
+    if (!info) {
+      return (
+        React.createElement(LegendArea, null,
+          React.createElement('p', null,
+            React.createElement('a', {
+                href: '',
+                onClick: this.handleLink
+              },
+              'Connect'),
+            ' your GitHub account to avoid rate limiting.'),
+          React.createElement('p', null,
+            'Environment variables can be determined from an ',
+            React.createElement('a', {
+                href: 'https://devcenter.heroku.com/articles/app-json-schema'
+              },
+              React.createElement('code', null, 'app.json')),
+            ' file included in the source repository.'))
+      );
+    }
+    var projectName = info.name || 'no name';
+    var projectDescription = info.description || 'no description';
+    var projectLink = info.website || info.repository || undefined;
     return (
       React.createElement(LegendArea, null,
         React.createElement('p', null,
           React.createElement('a', {
-              href: '',
-              onClick: this.handleLink
+              href: projectLink
             },
-            'Connect'),
-          ' your GitHub account to avoid rate limiting.'),
-        React.createElement('p', null,
-          'Environment variables can be determined from an ',
-          React.createElement('a', {
-              href: 'https://devcenter.heroku.com/articles/app-json-schema'
-            },
-            React.createElement('code', null, 'app.json')),
-          ' file included in the source repository.'))
+            React.createElement('strong', null, projectName))),
+        React.createElement('p', null, projectDescription))
     );
   }
 });
@@ -625,19 +645,29 @@ exports.GitHubControl.prototype = {
       return next();
     }.bind(this), this.storage.get('token'));
   },
-  loadSourceInfo: function (token, next) {
-    // TODO
-    return next(token);
+  loadSourceInfo: function (next) {
+    var sourceUrl = this.storage.get('source_url');
+    GitHub.getJsonFile(sourceUrl, 'app.json', function (sourceInfo) {
+      this.state.sourceInfo = sourceInfo;
+      return next();
+    }.bind(this), function (err) {
+      console.error('Failed to load source info:', err);
+      this.state.sourceInfo = null;
+      return next();
+    }.bind(this), this.storage.get('token'));
   },
   render: function () {
     var enabled = this.state.enabled;
     this.accountWidget.setState({
-      enabled:  enabled,
-      account:  this.state.account ? this.state.account.login : undefined
+      enabled: enabled,
+      account: this.state.account ? this.state.account.login : undefined
     });
     this.sourceWidget.setState({
       enabled: enabled,
       value:   this.storage.get('source_url')
+    });
+    this.sourceLegend.setState({
+      sourceInfo: this.state.sourceInfo
     });
   },
   handleLink: function () {
@@ -657,11 +687,14 @@ exports.GitHubControl.prototype = {
   },
   handleChangeSourceUrl: function (sourceUrl) {
     this.storage.set('source_url', sourceUrl);
-    this.handleDebouncedChangeSourceUrl(sourceUrl);
+    this.state.sourceInfo = undefined;
+    this.handleDebounceSourceUrl();
     this.render();
   },
-  handleDebouncedChangeSourceUrl: exports.debounce(function (sourceUrl) {
-    console.log(sourceUrl); // TODO
+  handleDebounceSourceUrl: exports.debounce(function () {
+    this.loadSourceInfo(function () {
+      this.render();
+    }.bind(this));
   }, 1000)
 };
 
