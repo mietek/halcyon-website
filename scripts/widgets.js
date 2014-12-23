@@ -846,7 +846,7 @@ exports.GitHubControl.prototype = {
       this.state.enabled = true;
       this.render();
       this.loadSourceInfo(function () {
-        this.updateSourceVars();
+        this.updateVars();
         this.render();
       }.bind(this));
     }.bind(this));
@@ -909,13 +909,13 @@ exports.GitHubControl.prototype = {
   handleChangeSourceUrl: function (sourceUrl) {
     this.storage.set('source_url', sourceUrl);
     this.state.sourceInfo = undefined;
-    this.updateSourceVars();
+    this.updateVars();
     this.handleDebounceSourceUrl();
     this.render();
   },
   handleDebounceSourceUrl: exports.debounce(function () {
     this.loadSourceInfo(function () {
-      this.updateSourceVars();
+      this.updateVars();
       this.render();
     }.bind(this));
   }, 1000),
@@ -923,7 +923,7 @@ exports.GitHubControl.prototype = {
     this.state.vars = vars;
     this.render();
   },
-  updateSourceVars: function () {
+  updateVars: function () {
     var info         = this.state.sourceInfo;
     var vars         = [];
     var importedVars = {};
