@@ -353,32 +353,44 @@ var SourceLegend = React.createClass({
       return (
         React.createElement(LegendArea, null,
           React.createElement('p', null,
+            'Enter a ',
+            React.createElement('em', null, 'git'),
+            ' repository URL to begin.'),
+          React.createElement('p', null,
+            'The application can be configured using environment variables.  For GitHub repositories, the default configuration can be declared in an ',
+            React.createElement('a', {
+                href: 'https://devcenter.heroku.com/articles/app-json-schema'
+              },
+              React.createElement('code', null, 'app.json')),
+            ' file included with the application.'),
+          React.createElement('p', null,
             React.createElement('a', {
                 href: '',
                 onClick: this.handleLink
               },
               'Connect'),
-            ' your GitHub account to avoid rate limiting.'),
-          React.createElement('p', null,
-            'Environment variables can be determined from an ',
-            React.createElement('a', {
-                href: 'https://devcenter.heroku.com/articles/app-json-schema'
-              },
-              React.createElement('code', null, 'app.json')),
-            ' file included in the source repository.'))
+            ' your GitHub account to avoid rate limiting.'))
       );
     }
-    var projectName = info.name || 'no name';
-    var projectDescription = info.description || 'no description';
-    var projectLink = info.website || info.repository || undefined;
     return (
       React.createElement(LegendArea, null,
-        React.createElement('p', null,
-          React.createElement('a', {
-              href: projectLink
+        React.createElement('div', {
+            className: 'flex'
+          },
+          info.logo ? React.createElement('a', {
+              href: info.website || info.repository
             },
-            React.createElement('strong', null, projectName))),
-        React.createElement('p', null, projectDescription))
+            React.createElement('img', {
+              className: 'source-logo',
+              src:       info.logo
+            })) : null,
+          React.createElement('div', null,
+            React.createElement('p', null,
+              React.createElement('a', {
+                  href: info.website || info.repository
+                },
+                React.createElement('strong', null, info.name || 'no name'))),
+            React.createElement('p', null, info.description || 'no description'))))
     );
   }
 });
