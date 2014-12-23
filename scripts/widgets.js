@@ -181,8 +181,8 @@ var LegendArea = React.createClass({
 });
 
 
-var BimodalButton = React.createClass({
-  displayName: 'BimodalButton',
+var BimodalPushButton = React.createClass({
+  displayName: 'BimodalPushButton',
   getDefaultProps: function () {
     return {
       enabled:      false,
@@ -270,7 +270,7 @@ var AccountWidget = React.createClass({
             className: className,
             title:     this.state.account ? this.state.account : 'none'
           }),
-        React.createElement(BimodalButton, {
+        React.createElement(BimodalPushButton, {
             className:    'account-button',
             enabled:      this.state.enabled,
             mode:         this.state.account ? true : false,
