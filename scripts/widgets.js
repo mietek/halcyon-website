@@ -111,12 +111,11 @@ var InputField = React.createClass({
       type:        undefined,
       placeholder: undefined,
       value:       undefined,
-      onChange:    undefined,
-      refCon:      undefined
+      onChange:    undefined
     };
   },
   handleChange: function (event) {
-    this.props.onChange(event.target.value, this.props.refCon);
+    this.props.onChange(event.target.value);
   },
   render: function () {
     return (
@@ -191,14 +190,13 @@ var BimodalButton = React.createClass({
       trueTitle:    undefined,
       falseTitle:   undefined,
       onTrueClick:  undefined,
-      onFalseClick: undefined,
-      refCon:       undefined
+      onFalseClick: undefined
     };
   },
   handleClick: function (event) {
     event.preventDefault();
     var onClick = this.props.mode ? this.props.onTrueClick : this.props.onFalseClick;
-    onClick(this.props.refCon);
+    onClick();
   },
   render: function () {
     var className = this.props.className || 'bimodal-button';
@@ -224,13 +222,12 @@ var RadioButton = React.createClass({
       enabled:  false,
       selected: false,
       title:    undefined,
-      onClick:  undefined,
-      refCon:   undefined
+      onClick:  undefined
     };
   },
   handleClick: function (event) {
     event.preventDefault();
-    this.props.onClick(this.props.refCon);
+    this.props.onClick();
   },
   render: function () {
     var className = this.props.className || 'radio-button';
@@ -449,8 +446,9 @@ var SizeWidget = React.createClass({
                 enabled:   this.state.enabled,
                 selected:  size.slug === selectedSizeSlug,
                 title:     title,
-                onClick:   this.props.onSelectSize,
-                refCon:    size
+                onClick:   function () {
+                  this.props.onSelectSize(size);
+                }.bind(this)
               })
           );
         }.bind(this)))
@@ -494,8 +492,9 @@ var ImageWidget = React.createClass({
                 enabled:   this.state.enabled,
                 selected:  image.slug === selectedImageSlug,
                 title:     image.distribution + ' ' + image.name,
-                onClick:   this.props.onSelectImage,
-                refCon:    image
+                onClick:   function () {
+                  this.props.onSelectImage(image);
+                }.bind(this)
               })
           );
         }.bind(this)))
@@ -545,8 +544,9 @@ var RegionWidget = React.createClass({
                 enabled:   region.available && this.state.enabled && available && metadata,
                 selected:  region.slug === selectedRegionSlug,
                 title:     region.name,
-                onClick:   this.props.onSelectRegion,
-                refCon:    region
+                onClick:   function () {
+                  this.props.onSelectRegion(region);
+                }.bind(this)
               })
           );
         }.bind(this)))
@@ -593,8 +593,9 @@ var KeysWidget = React.createClass({
                 enabled:   this.state.enabled,
                 selected:  selected,
                 title:     sshKey.name,
-                onClick:   this.props.onSelectKey,
-                refCon:    sshKey
+                onClick:   function () {
+                  this.props.onSelectKey(sshKey);
+                }.bind(this)
               })
           );
         }.bind(this)))
