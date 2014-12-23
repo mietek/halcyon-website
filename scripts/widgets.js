@@ -107,6 +107,7 @@ var InputField = React.createClass({
   getDefaultProps: function () {
     return {
       enabled:     false,
+      readOnly:    false,
       type:        undefined,
       placeholder: undefined,
       value:       undefined,
@@ -123,6 +124,7 @@ var InputField = React.createClass({
         id:           this.props.id,
         className:    this.props.className || 'input-field',
         disabled:     !this.props.enabled,
+        readOnly:     this.props.readOnly,
         type:         this.props.type || 'text',
         placeholder:  this.props.placeholder,
         value:        this.props.value,
