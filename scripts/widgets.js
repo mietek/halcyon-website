@@ -366,10 +366,19 @@ var SourceLegend = React.createClass({
 
 var SizeLegend = React.createClass({
   displayName: 'SizeLegend',
+  getDefaultProps: function () {
+    return {
+      onLink: undefined
+    };
+  },
   getInitialState: function () {
     return {
       selectedSize: undefined
     };
+  },
+  handleLink: function (event) {
+    event.preventDefault();
+    this.props.onLink();
   },
   render: function () {
     var size = this.state.selectedSize;
@@ -377,7 +386,12 @@ var SizeLegend = React.createClass({
       return (
         React.createElement(LegendArea, null,
           React.createElement('p', null,
-            'Connect your DigitalOcean account to see the available options.'),
+            React.createElement('a', {
+                href: '',
+                onClick: this.handleLink
+              },
+              'Connect'),
+            ' your DigitalOcean account to see the available options.'),
           React.createElement('p', null,
             'If you need to sign up for an account, you can get $10 credit and help the Halcyon project by using a ',
             React.createElement('a', {
@@ -684,7 +698,9 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
     document.getElementById('digitalocean-size-widget')
   );
   this.sizeLegend = React.render(
-    React.createElement(SizeLegend, null),
+    React.createElement(SizeLegend, {
+      onLink: this.handleLink.bind(this)
+    }),
     document.getElementById('digitalocean-size-legend')
   );
   this.imageWidget = React.render(
