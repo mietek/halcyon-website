@@ -212,6 +212,40 @@ var RadioButton = React.createClass({
 });
 
 
+var InputWidget = React.createClass({
+  displayName: 'InputWidget',
+  getDefaultProps: function () {
+    return {
+      type:        undefined,
+      placeholder: undefined,
+      onChange:    undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled: false,
+      value:   undefined
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', {
+          className: 'flex'
+        },
+        React.createElement(InputField, {
+            id:          this.props.id,
+            className:   this.props.className,
+            enabled:     this.state.enabled,
+            type:        this.props.type,
+            placeholder: this.props.placeholder,
+            value:       this.state.value,
+            onChange:    this.props.onChange
+          }))
+    );
+  }
+});
+
+
 var AccountWidget = React.createClass({
   displayName: 'AccountWidget',
   getDefaultProps: function () {
@@ -245,86 +279,6 @@ var AccountWidget = React.createClass({
             falseTitle:   'Connect',
             onTrueClick:  this.props.onUnlink,
             onFalseClick: this.props.onLink
-          }))
-    );
-  }
-});
-
-
-var SizeWidget = React.createClass({
-  displayName: 'SizeWidget',
-  getDefaultProps: function () {
-    return {
-      onSelectSize: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled:      false,
-      sizes:        undefined,
-      selectedSize: undefined
-    };
-  },
-  render: function () {
-    if (!this.state.sizes) {
-      return React.createElement(RadioButton, {
-          className: 'size-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    var selectedSizeSlug = this.state.selectedSize ? this.state.selectedSize.slug : null;
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.sizes.map(function (size) {
-          var title = size.memory < 1024 ? size.memory + ' MB' : size.memory / 1024 + ' GB';
-          return (
-            React.createElement(RadioButton, {
-                key:       size.slug,
-                className: 'size-button',
-                enabled:   this.state.enabled,
-                selected:  size.slug === selectedSizeSlug,
-                title:     title,
-                onClick:   this.props.onSelectSize,
-                refCon:    size
-              })
-          );
-        }.bind(this)))
-    );
-  }
-});
-
-
-var InputWidget = React.createClass({
-  displayName: 'InputWidget',
-  getDefaultProps: function () {
-    return {
-      type:        undefined,
-      placeholder: undefined,
-      onChange:    undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled: false,
-      value:   undefined
-    };
-  },
-  render: function () {
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        React.createElement(InputField, {
-            id:          this.props.id,
-            className:   this.props.className,
-            enabled:     this.state.enabled,
-            type:        this.props.type,
-            placeholder: this.props.placeholder,
-            value:       this.state.value,
-            onChange:    this.props.onChange
           }))
     );
   }
@@ -450,6 +404,52 @@ var SizeLegend = React.createClass({
             React.createElement('strong', null, '$' + size['price_monthly'] + '/month'),
             ' — $' + size['price_hourly'] + '/hour')),
         React.createElement('p', null, subtitle))
+    );
+  }
+});
+
+
+var SizeWidget = React.createClass({
+  displayName: 'SizeWidget',
+  getDefaultProps: function () {
+    return {
+      onSelectSize: undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled:      false,
+      sizes:        undefined,
+      selectedSize: undefined
+    };
+  },
+  render: function () {
+    if (!this.state.sizes) {
+      return React.createElement(RadioButton, {
+          className: 'size-button meta',
+          enabled:   false,
+          title:     'none'
+        });
+    }
+    var selectedSizeSlug = this.state.selectedSize ? this.state.selectedSize.slug : null;
+    return (
+      React.createElement('div', {
+          className: 'flex'
+        },
+        this.state.sizes.map(function (size) {
+          var title = size.memory < 1024 ? size.memory + ' MB' : size.memory / 1024 + ' GB';
+          return (
+            React.createElement(RadioButton, {
+                key:       size.slug,
+                className: 'size-button',
+                enabled:   this.state.enabled,
+                selected:  size.slug === selectedSizeSlug,
+                title:     title,
+                onClick:   this.props.onSelectSize,
+                refCon:    size
+              })
+          );
+        }.bind(this)))
     );
   }
 });
