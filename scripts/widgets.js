@@ -275,7 +275,7 @@ var AccountWidget = React.createClass({
             className:    'account-button',
             enabled:      this.state.enabled,
             mode:         this.state.account ? true : false,
-            trueTitle:    'Forget',
+            trueTitle:    'Clear',
             falseTitle:   'Connect',
             onTrueClick:  this.props.onUnlink,
             onFalseClick: this.props.onLink
@@ -379,7 +379,7 @@ var SizeLegend = React.createClass({
               'Connect'),
             ' your DigitalOcean account to see the available options.'),
           React.createElement('p', null,
-            'If you need to sign up for an account, you can get $10 credit and help the Halcyon project by using a ',
+            'If you need to sign up for a new account, you can help the Halcyon project and receive $10 credit from DigitalOcean by using a ',
             React.createElement('a', {
                 href: 'https://cloud.digitalocean.com/registrations/new?refcode=6b1199e29661'
               },
