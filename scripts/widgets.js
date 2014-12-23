@@ -681,7 +681,7 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
   this.hostnameWidget = React.render(
     React.createElement(InputWidget, {
       type:        'text',
-      placeholder: 'required',
+      placeholder: 'hello-world-2015',
       onChange:    this.handleChangeHostname.bind(this)
     }),
     document.getElementById('digitalocean-hostname-widget')
