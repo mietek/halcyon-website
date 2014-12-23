@@ -483,6 +483,7 @@ var SourceLegend = React.createClass({
   },
   getInitialState: function () {
     return {
+      account:    undefined,
       sourceInfo: undefined
     };
   },
@@ -500,19 +501,19 @@ var SourceLegend = React.createClass({
             React.createElement('em', null, 'git'),
             ' URL to begin.'),
           React.createElement('p', null,
-            'For GitHub repositories, the environment variables required to configure the application can be determined from an ',
+            'For applications hosted on GitHub, the environment variables required for configuration can be determined from an ',
             React.createElement('a', {
                 href: 'https://devcenter.heroku.com/articles/app-json-schema'
               },
               React.createElement('code', null, 'app.json')),
-            ' file.'),
-          React.createElement('p', null,
+            ' file included in the repository.'),
+          this.state.account ? null : React.createElement('p', null,
             React.createElement('a', {
                 href: '',
                 onClick: this.handleLink
               },
               'Connect'),
-            ' your GitHub account to avoid rate limiting.'))
+            ' your GitHub account to avoid running into GitHub API rate limits.'))
       );
     }
     return (
@@ -881,6 +882,7 @@ exports.GitHubControl.prototype = {
       value:   this.storage.get('source_url')
     });
     this.sourceLegend.setState({
+      account:    this.state.account,
       sourceInfo: this.state.sourceInfo
     });
     this.varsWidget.setState({
