@@ -589,14 +589,12 @@ exports.GitHubControl.prototype = {
   getInitialState: function () {
     return {
       enabled:   false,
-      failed:    false,
       account:   undefined
     };
   },
   start: function () {
     var token = this.storage.get('token');
     if (!token) {
-      this.state.failed = true;
       this.state.account = null;
       this.resume();
       return;
@@ -609,7 +607,6 @@ exports.GitHubControl.prototype = {
       this.resume();
     }.bind(this), function (err) {
       console.error('Failed to load account:', err);
-      this.state.failed  = true;
       this.state.account = null;
       this.resume();
     }.bind(this), token);
@@ -625,7 +622,6 @@ exports.GitHubControl.prototype = {
   },
   render: function () {
     var enabled = this.state.enabled;
-    // var failed  = this.state.failed; // TODO
     this.accountWidget.setState({
       enabled:  enabled,
       account:  this.state.account ? this.state.account.login : undefined
