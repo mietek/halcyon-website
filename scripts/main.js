@@ -5,7 +5,6 @@ window.cannot = require('cannot');
 
 window.digitalocean = require('digitalocean');
 window.github = require('github');
-window.http = require('http');
 window.widgets = require('widgets');
 
 
