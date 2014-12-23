@@ -593,24 +593,23 @@ exports.GitHubControl.prototype = {
     };
   },
   start: function () {
-    var token = this.storage.get('token');
-    this.loadAccount(token, function (token) {
+    this.loadAccount(function () {
       this.state.enabled = true;
       this.render();
-      this.loadSourceInfo(token, function () {
-        console.log('ghc started'); // TODO
+      this.loadSourceInfo(function () {
+        this.render();
       }.bind(this));
     }.bind(this));
   },
-  loadAccount: function (token, next) {
+  loadAccount: function (next) {
     GitHub.getAuthenticatedUser(function (account) {
       this.state.account = account;
-      return next(token);
+      return next();
     }.bind(this), function (err) {
       console.error('Failed to load account:', err);
       this.state.account = null;
-      return next(token);
-    }.bind(this), token);
+      return next();
+    }.bind(this), this.storage.get('token'));
   },
   loadSourceInfo: function (token, next) {
     // TODO
@@ -725,15 +724,14 @@ exports.DigitalOceanControl.prototype = {
     };
   },
   start: function () {
-    var token = this.storage.get('token');
-    this.loadAccount(token, function (token) {
-      this.loadSizes(token, function (token) {
+    this.loadAccount(function () {
+      this.loadSizes(function () {
         this.updateSelectedSize();
-        this.loadImages(token, function (token) {
+        this.loadImages(function () {
           this.updateSelectedImage();
-          this.loadRegions(token, function (token) {
+          this.loadRegions(function () {
             this.updateSelectedRegion();
-            this.loadKeys(token, function () {
+            this.loadKeys(function () {
               this.updateSelectedKeys();
               this.state.enabled = true;
               this.render();
@@ -743,62 +741,62 @@ exports.DigitalOceanControl.prototype = {
       }.bind(this));
     }.bind(this));
   },
-  loadAccount: function (token, next) {
+  loadAccount: function (next) {
     DigitalOcean.getAccount(function (account) {
       this.state.account = account;
-      return next(token);
+      return next();
     }.bind(this), function (err) {
       console.error('Failed to load account:', err);
       this.state.failed  = true;
       this.state.account = null;
-      return next(token);
-    }.bind(this), token);
+      return next();
+    }.bind(this), this.storage.get('token'));
   },
-  loadSizes: function (token, next) {
+  loadSizes: function (next) {
     DigitalOcean.getSizes(function (sizes) {
       this.state.sizes = sizes;
-      return next(token);
+      return next();
     }.bind(this), function (err) {
       console.error('Failed to load sizes:', err);
       this.state.failed = true;
       this.state.sizes  = null;
-      return next(token);
-    }.bind(this), token);
+      return next();
+    }.bind(this), this.storage.get('token'));
   },
-  loadImages: function (token, next) {
+  loadImages: function (next) {
     DigitalOcean.getDistributionImages(function (images) {
       this.state.images = images.filter(function (image) {
         return image.slug === 'ubuntu-14-04-x64';
       });
-      return next(token);
+      return next();
     }.bind(this), function (err) {
       console.error('Failed to load images:', err);
       this.state.failed = true;
       this.state.images = null;
-      return next(token);
-    }.bind(this), token);
+      return next();
+    }.bind(this), this.storage.get('token'));
   },
-  loadRegions: function (token, next) {
+  loadRegions: function (next) {
     DigitalOcean.getRegions(function (regions) {
       this.state.regions = regions;
-      return next(token);
+      return next();
     }.bind(this), function (err) {
       console.error('Failed to load regions:', err);
       this.state.failed  = true;
       this.state.regions = null;
-      return next(token);
-    }.bind(this), token);
+      return next();
+    }.bind(this), this.storage.get('token'));
   },
-  loadKeys: function (token, next) {
+  loadKeys: function (next) {
     DigitalOcean.getAccountKeys(function (keys) {
       this.state.keys = keys;
-      return next(token);
+      return next();
     }.bind(this), function (err) {
       console.error('Failed to load keys:', err);
       this.state.failed = true;
       this.state.keys   = null;
-      return next(token);
-    }.bind(this), token);
+      return next();
+    }.bind(this), this.storage.get('token'));
   },
   updateSelectedSize: function () {
     var sizes            = this.state.sizes;

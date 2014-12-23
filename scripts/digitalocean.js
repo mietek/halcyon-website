@@ -14,6 +14,9 @@ exports.addJsonHeader = function (opts) {
 
 
 exports.getJsonResource = function (url, yea, nay, token, opts) {
+  if (!token) {
+    return nay('no_token');
+  }
   http.getResource(url, function (resp) {
     var json = JSON.parse(resp);
     if (!json) {
@@ -25,6 +28,9 @@ exports.getJsonResource = function (url, yea, nay, token, opts) {
 
 
 exports.postJsonResource = function (url, obj, yea, nay, token, opts) {
+  if (!token) {
+    return nay('no_token');
+  }
   exports.postResource(url, obj ? JSON.stringify(obj) : null, function (resp) {
     var json = JSON.parse(resp);
     if (!json) {
