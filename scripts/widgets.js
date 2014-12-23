@@ -968,7 +968,7 @@ exports.DigitalOceanControl.prototype = {
     }.bind(this), 1000);
   },
   handleUnlink: function () {
-    this.storage.unset();
+    this.storage.unset('token');
     this.state = this.getInitialState();
     this.state.enabled = true;
     this.render();
