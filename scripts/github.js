@@ -75,6 +75,9 @@ exports.requestToken = function (clientId, state) {
 
 
 exports.getAuthenticatedUser = function (yea, nay, token) {
+  if (!token) {
+    return nay('no_token');
+  }
   exports.getJsonResource('https://api.github.com/user', yea, nay, token);
 };
 
