@@ -878,7 +878,7 @@ exports.GitHubControl.prototype = {
       account: this.state.account ? this.state.account.login : undefined
     });
     this.sourceWidget.setState({
-      enabled: enabled,
+      enabled: true,
       value:   this.storage.get('source_url')
     });
     this.sourceLegend.setState({
@@ -886,7 +886,7 @@ exports.GitHubControl.prototype = {
       sourceInfo: this.state.sourceInfo
     });
     this.varsWidget.setState({
-      enabled: enabled,
+      enabled: true,
       items:   this.state.vars
     });
   },
@@ -1177,7 +1177,7 @@ exports.DigitalOceanControl.prototype = {
       account:        this.state.account ? this.state.account.email : undefined
     });
     this.hostnameWidget.setState({
-      enabled:        enabled,
+      enabled:        true,
       value:          this.storage.get('hostname')
     });
     this.sizeWidget.setState({
