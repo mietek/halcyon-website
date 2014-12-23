@@ -569,7 +569,7 @@ var SizeLegend = React.createClass({
                 onClick: this.handleLink
               },
               'Connect'),
-            ' your DigitalOcean account to see the available options.'),
+            ' your DigitalOcean account to continue.'),
           React.createElement('p', null,
             'If you need to sign up for a new account, you can help the Halcyon project and receive $10 credit from DigitalOcean by using a ',
             React.createElement('a', {
