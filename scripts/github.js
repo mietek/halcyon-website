@@ -53,7 +53,7 @@ exports.getJsonResource = function (url, yea, nay, token, opts) {
   exports.getResource(url, function (resp) {
     var json = JSON.parse(resp);
     if (!json) {
-      return nay('no_json');
+      return nay('bad_response');
     }
     return yea(json);
   }, nay, token, exports.addJsonHeader(opts));
@@ -99,5 +99,11 @@ exports.getRawFile = function (url, path, yea, nay, token) {
 
 
 exports.getJsonFile = function (url, path, yea, nay, token) {
-  exports.getJsonResource(exports.addPathToRepoUrl(url, path), yea, nay, token);
+  exports.getRawResource(exports.addPathToRepoUrl(url, path), function (resp) {
+    var json = JSON.parse(resp);
+    if (!json) {
+      return nay('bad_response');
+    }
+    return yea(json);
+  }, nay, token);
 };

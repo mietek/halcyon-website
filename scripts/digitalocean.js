@@ -20,7 +20,7 @@ exports.getJsonResource = function (url, yea, nay, token, opts) {
   http.getResource(url, function (resp) {
     var json = JSON.parse(resp);
     if (!json) {
-      return nay('no_json');
+      return nay('bad_response');
     }
     return yea(json);
   }, nay, exports.addAuthHeader(token, exports.addJsonHeader(opts)));
@@ -34,7 +34,7 @@ exports.postJsonResource = function (url, obj, yea, nay, token, opts) {
   exports.postResource(url, obj ? JSON.stringify(obj) : null, function (resp) {
     var json = JSON.parse(resp);
     if (!json) {
-      return nay('no_json');
+      return nay('bad_response');
     }
     return yea(json);
   }, nay, exports.addAuthHeader(token, exports.addJsonHeader(opts)));
