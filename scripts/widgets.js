@@ -916,7 +916,7 @@ exports.GitHubControl.prototype = {
     });
     this.varsWidget.setState({
       enabled: true,
-      items:   this.state.vars
+      items:   this.storage.get('vars')
     });
   },
   handleLink: function () {
@@ -948,11 +948,12 @@ exports.GitHubControl.prototype = {
     }.bind(this));
   }, 1000),
   handleChangeVars: function (vars) {
-    this.state.vars = vars;
+    this.storage.set('vars', vars);
     this.render();
   },
   updateVars: function () {
     var info         = this.state.sourceInfo;
+    var storedVars   = this.storage.get('vars');
     var vars         = [];
     var importedVars = {};
     if (info && info.env) {
@@ -976,8 +977,8 @@ exports.GitHubControl.prototype = {
         vars.push(importedItem);
       });
     }
-    if (this.state.vars) {
-      this.state.vars.forEach(function (item) {
+    if (storedVars) {
+      storedVars.forEach(function (item) {
         if (item.imported) {
           return;
         }
@@ -997,7 +998,7 @@ exports.GitHubControl.prototype = {
         }
       });
     }
-    this.state.vars = vars.length ? vars : undefined;
+    this.storage.set('vars', vars.length ? vars : undefined);
   }
 };
 
