@@ -4,17 +4,14 @@ page-data:
 - key: max-section-link-level
   value: 2
 page-footer: |
-  <script>
-    widgets.initGitHub();
-    widgets.initDigitalOcean();
-  </script>
+  <script>widgets.start();</script>
 ---
 
 
 Deploy to DigitalOcean
 ======================
 
-This page can be used to deploy a Haskell application from a _git_ repository to a new DigitalOcean droplet.
+This service can deploy a Haskell application from a _git_ repository to a new DigitalOcean droplet, using Halcyon.
 
 
 ### GitHub account
@@ -64,6 +61,4 @@ This page can be used to deploy a Haskell application from a _git_ repository to
 <div id="digitalocean-keys-widget" class="widget"></div>
 
 
-<div class="flex">
-<a id="deploy-button" href="">Deploy to DigitalOcean</a>
-</div>
+<div id="deploy-widget" class="widget"></div>

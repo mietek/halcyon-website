@@ -18,11 +18,6 @@ exports.parseQueryString = function (str) {
 };
 
 
-exports.parseCurrentQueryString = function () {
-  return exports.parseQueryString(location.search);
-};
-
-
 exports.addQueryToUrl = function (query, url) {
   if (!url) {
     return null;
