@@ -431,19 +431,17 @@ var ImageWidget = React.createClass({
           title:     'none'
         });
     }
-    var availableImageSlugs = ['ubuntu-14-04-x64']; // TODO
     var selectedImageSlug = this.state.selectedImage ? this.state.selectedImage.slug : null;
     return (
       React.createElement('div', {
           className: 'flex'
         },
         this.state.images.map(function (image) {
-          var available = availableImageSlugs.indexOf(image.slug) !== -1;
           return (
             React.createElement(RadioButton, {
                 key:       image.slug,
                 className: 'image-button',
-                enabled:   this.state.enabled && available,
+                enabled:   this.state.enabled,
                 selected:  image.slug === selectedImageSlug,
                 title:     image.distribution + ' ' + image.name,
                 onClick:   this.props.onSelectImage,
@@ -781,7 +779,7 @@ exports.DigitalOceanControl.prototype = {
   loadImages: function (token) {
     DigitalOcean.getDistributionImages(function (images) {
       this.state.images = images.filter(function (image) {
-        return image.slug.lastIndexOf('ubuntu-14-04', 0) === 0 || image.slug.lastIndexOf('centos-7', 0) === 0;
+        return image.slug === 'ubuntu-14-04-x64';
       });
       this.resume();
     }.bind(this), function (err) {
@@ -834,12 +832,11 @@ exports.DigitalOceanControl.prototype = {
     this.storage.set('selected_size_slug', selectedSize ? selectedSize.slug : undefined);
   },
   updateSelectedImage: function () {
-    var images              = this.state.images;
-    var availableImageSlugs = ['ubuntu-14-04-x64']; // TODO
-    var selectedImageSlug   = this.storage.get('selected_image_slug');
+    var images            = this.state.images;
+    var selectedImageSlug = this.storage.get('selected_image_slug');
     var selectedImage;
     if (images) {
-      if (selectedImageSlug && availableImageSlugs.indexOf(selectedImageSlug) !== -1) {
+      if (selectedImageSlug) {
         for (var i = 0; i < images.length; i += 1) {
           if (images[i].slug === selectedImageSlug) {
             selectedImage = images[i];
@@ -849,10 +846,8 @@ exports.DigitalOceanControl.prototype = {
       }
       if (!selectedImage) {
         for (var j = 0; j < images.length; j += 1) {
-          if (availableImageSlugs.indexOf(images[j].slug) !== -1) {
-            selectedImage = images[j];
-            break;
-          }
+          selectedImage = images[j];
+          break;
         }
       }
     }
