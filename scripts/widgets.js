@@ -309,14 +309,14 @@ var SourceLegend = React.createClass({
           React.createElement('p', null,
             'Enter a ',
             React.createElement('em', null, 'git'),
-            ' repository URL to begin.'),
+            ' URL to begin.'),
           React.createElement('p', null,
-            'The application can be configured using environment variables.  For GitHub repositories, the default configuration can be declared in an ',
+            'For GitHub repositories, the environment variables required to configure the application can be determined from an ',
             React.createElement('a', {
                 href: 'https://devcenter.heroku.com/articles/app-json-schema'
               },
               React.createElement('code', null, 'app.json')),
-            ' file included with the application.'),
+            ' file.'),
           React.createElement('p', null,
             React.createElement('a', {
                 href: '',
