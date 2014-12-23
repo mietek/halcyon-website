@@ -338,7 +338,9 @@ var SourceLegend = React.createClass({
               className: 'source-logo',
               src:       info.logo
             })) : null,
-          React.createElement('div', null,
+          React.createElement('div', {
+              className: 'shrink'
+            },
             React.createElement('p', null,
               React.createElement('a', {
                   href: info.website || info.repository
