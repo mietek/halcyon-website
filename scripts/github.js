@@ -25,7 +25,8 @@ exports.addPathToRepoUrl = function (url, path) {
   if (!repo) {
     return null;
   }
-  return 'https://api.github.com/repos/' + repo.user + '/' + repo.name + '/contents' + (path ? '/' + path : '') + '?ref=' + repo.branch;
+  return 'https://api.github.com/repos/' + repo.user + '/' + repo.name +
+    '/contents' + (path ? '/' + path : '') + '?ref=' + repo.branch;
 };
 
 
@@ -51,12 +52,13 @@ exports.getResource = function (url, yea, nay, token, opts) {
 
 exports.getJsonResource = function (url, yea, nay, token, opts) {
   exports.getResource(url, function (resp) {
-    var json = JSON.parse(resp);
-    if (!json) {
-      return nay('bad_response');
-    }
-    return yea(json);
-  }, nay, token, exports.addJsonHeader(opts));
+      var json = JSON.parse(resp);
+      if (!json) {
+        return nay('bad_response');
+      }
+      return yea(json);
+    },
+    nay, token, exports.addJsonHeader(opts));
 };
 
 
@@ -67,10 +69,11 @@ exports.getRawResource = function (url, yea, nay, token, opts) {
 
 exports.requestToken = function (clientId, state) {
   location.href = http.addQueryToUrl({
-    'client_id': clientId,
-    'scope':     '',
-    'state':     state
-  }, 'https://github.com/login/oauth/authorize');
+      'client_id': clientId,
+      'scope':     '',
+      'state':     state
+    },
+    'https://github.com/login/oauth/authorize');
 };
 
 
@@ -84,15 +87,16 @@ exports.getAuthenticatedUser = function (yea, nay, token) {
 
 exports.listRepoRoot = function (url, yea, nay, token) {
   exports.getJsonResource(exports.addPathToRepoUrl(url), function (resp) {
-    var result = [];
-    resp.forEach(function (file) {
-      if (!file.name) {
-        return nay('bad_response');
-      }
-      result.push(file.name);
-    });
-    return yea(result);
-  }, nay, token);
+      var result = [];
+      resp.forEach(function (file) {
+          if (!file.name) {
+            return nay('bad_response');
+          }
+          result.push(file.name);
+        });
+      return yea(result);
+    },
+    nay, token);
 };
 
 
@@ -103,10 +107,11 @@ exports.getRawFile = function (url, path, yea, nay, token) {
 
 exports.getJsonFile = function (url, path, yea, nay, token) {
   exports.getRawResource(exports.addPathToRepoUrl(url, path), function (resp) {
-    var json = JSON.parse(resp);
-    if (!json) {
-      return nay('bad_response');
-    }
-    return yea(json);
-  }, nay, token);
+      var json = JSON.parse(resp);
+      if (!json) {
+        return nay('bad_response');
+      }
+      return yea(json);
+    },
+    nay, token);
 };

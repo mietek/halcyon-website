@@ -10,10 +10,10 @@ exports.parseQueryString = function (str) {
   }
   var result = {};
   str.substr(1).split('&').forEach(function (param) {
-    // TODO: Decoding; key-only and multiple-value params.
-    var pair = param.split('=');
-    result[pair[0]] = pair[1];
-  });
+      // TODO: Decoding; key-only and multiple-value params.
+      var pair = param.split('=');
+      result[pair[0]] = pair[1];
+    });
   return result;
 };
 
@@ -30,13 +30,13 @@ exports.addQueryToUrl = function (query, url) {
     sep = '&';
   }
   Object.keys(query).forEach(function (key) {
-    // TODO: Encoding; key-only and multiple-value params.
-    var value = query[key];
-    if (value !== undefined) {
-      result += sep + key + '=' + query[key];
-      sep = '&';
-    }
-  });
+      // TODO: Encoding; key-only and multiple-value params.
+      var value = query[key];
+      if (value !== undefined) {
+        result += sep + key + '=' + query[key];
+        sep = '&';
+      }
+    });
   return result;
 };
 
@@ -65,8 +65,8 @@ exports.makeRequest = function (method, url, data, yea, nay, opts) {
   req.open(method, url, true);
   if (opts && opts.headers) {
     Object.keys(opts.headers).forEach(function (key) {
-      req.setRequestHeader(key, opts.headers[key]);
-    });
+        req.setRequestHeader(key, opts.headers[key]);
+      });
   }
   req.onreadystatechange = function () {
     if (req.readyState === 4) {
@@ -97,4 +97,9 @@ exports.getResource = function (url, yea, nay, opts) {
 
 exports.postResource = function (url, data, yea, nay, opts) {
   exports.makeRequest('POST', url, data, yea, nay, opts);
+};
+
+
+exports.deleteResource = function (url, yea, nay, opts) {
+  exports.makeRequest('DELETE', url, null, yea, nay, opts);
 };

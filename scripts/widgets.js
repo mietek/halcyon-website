@@ -78,8 +78,9 @@ exports.debounce = function (func, duration) {
     var args = arguments;
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      func.apply(that, args);
-    }, duration);
+        func.apply(that, args);
+      },
+      duration);
   };
 };
 
@@ -96,8 +97,7 @@ var StaticField = React.createClass({
       React.createElement('span', {
         id:        this.props.id,
         className: this.props.className || 'static-field'
-      }, this.props.title)
-    );
+      }, this.props.title));
   }
 });
 
@@ -119,15 +119,14 @@ var InputField = React.createClass({
   render: function () {
     return (
       React.createElement('input', {
-        id:           this.props.id,
-        className:    this.props.className || 'input-field',
-        disabled:     !this.props.enabled,
-        type:         this.props.type || 'text',
-        placeholder:  this.props.placeholder,
-        value:        this.props.value,
-        onChange:     this.handleChange
-      })
-    );
+          id:           this.props.id,
+          className:    this.props.className || 'input-field',
+          disabled:     !this.props.enabled,
+          type:         this.props.type || 'text',
+          placeholder:  this.props.placeholder,
+          value:        this.props.value,
+          onChange:     this.handleChange
+        }));
   }
 });
 
@@ -160,8 +159,7 @@ var InputWidget = React.createClass({
             placeholder: this.props.placeholder,
             value:       this.state.value,
             onChange:    this.props.onChange
-          }))
-    );
+          })));
   }
 });
 
@@ -184,12 +182,11 @@ var PushButton = React.createClass({
     className += this.props.enabled ? ' enabled' : ' disabled';
     return (
       React.createElement('a', {
-        id:        this.props.id,
-        className: className,
-        href:      this.props.enabled ? '' : null,
-        onClick:   this.props.enabled ? this.handleClick : null
-      }, this.props.title)
-    );
+          id:        this.props.id,
+          className: className,
+          href:      this.props.enabled ? '' : null,
+          onClick:   this.props.enabled ? this.handleClick : null
+        }, this.props.title));
   }
 });
 
@@ -233,8 +230,7 @@ var MapItemWidget = React.createClass({
             enabled:     this.props.enabled && !this.props.required,
             title:       'Remove',
             onClick:     this.props.onRemove
-          }))
-    );
+          })));
   }
 });
 
@@ -256,17 +252,17 @@ var MapWidget = React.createClass({
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
-      if (index === changedIndex) {
-        found = true;
-        changedItems.push({
-          required: item.required,
-          name:     changedName,
-          value:    item.value
-        });
-      } else {
-        changedItems.push(item);
-      }
-    });
+        if (index === changedIndex) {
+          found = true;
+          changedItems.push({
+              required: item.required,
+              name:     changedName,
+              value:    item.value
+            });
+        } else {
+          changedItems.push(item);
+        }
+      });
     if (found) {
       this.props.onChange(changedItems);
     }
@@ -275,17 +271,17 @@ var MapWidget = React.createClass({
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
-      if (index === changedIndex) {
-        found = true;
-        changedItems.push({
-          required: item.required,
-          name:     item.name,
-          value:    changedValue
-        });
-      } else {
-        changedItems.push(item);
-      }
-    });
+        if (index === changedIndex) {
+          found = true;
+          changedItems.push({
+              required: item.required,
+              name:     item.name,
+              value:    changedValue
+            });
+        } else {
+          changedItems.push(item);
+        }
+      });
     if (found) {
       this.props.onChange(changedItems);
     }
@@ -294,12 +290,12 @@ var MapWidget = React.createClass({
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
-      if (index === removedIndex) {
-        found = true;
-      } else {
-        changedItems.push(item);
-      }
-    });
+        if (index === removedIndex) {
+          found = true;
+        } else {
+          changedItems.push(item);
+        }
+      });
     if (found) {
       this.props.onChange(changedItems.length ? changedItems : undefined);
     }
@@ -308,8 +304,8 @@ var MapWidget = React.createClass({
     var changedItems = [];
     if (this.state.items) {
       this.state.items.forEach(function (item) {
-        changedItems.push(item);
-      });
+          changedItems.push(item);
+        });
     }
     changedItems.push({});
     this.props.onChange(changedItems);
@@ -318,23 +314,24 @@ var MapWidget = React.createClass({
     return (
       React.createElement('div', null,
         this.state.items ? this.state.items.map(function (item, index) {
-          return React.createElement(MapItemWidget, {
-                key:           index,
-                enabled:       this.state.enabled,
-                required:      item.required,
-                name:          item.name,
-                value:         item.value,
-                onChangeName:  function (name) {
-                  this.handleChangeItemName(index, name);
-                }.bind(this),
-                onChangeValue: function (value) {
-                  this.handleChangeItemValue(index, value);
-                }.bind(this),
-                onRemove:      function () {
-                  this.handleRemoveItem(index);
-                }.bind(this)
-              });
-        }.bind(this)) : null,
+            return (
+              React.createElement(MapItemWidget, {
+                  key:           index,
+                  enabled:       this.state.enabled,
+                  required:      item.required,
+                  name:          item.name,
+                  value:         item.value,
+                  onChangeName:  function (name) {
+                    this.handleChangeItemName(index, name);
+                  }.bind(this),
+                  onChangeValue: function (value) {
+                    this.handleChangeItemValue(index, value);
+                  }.bind(this),
+                  onRemove:      function () {
+                    this.handleRemoveItem(index);
+                  }.bind(this)
+                }));
+          }.bind(this)) : null,
         React.createElement('div', {
             className: 'flex justify-end'
           },
@@ -343,8 +340,7 @@ var MapWidget = React.createClass({
               enabled:   this.state.enabled,
               title:     'Add',
               onClick:   this.handleAddItem
-            })))
-    );
+            }))));
   }
 });
 
@@ -354,10 +350,9 @@ var LegendArea = React.createClass({
   render: function () {
     return (
       React.createElement('div', {
-        id:        this.props.id,
-        className: this.props.className || 'pre-like meta' // TODO
-      }, this.props.children)
-    );
+          id:        this.props.id,
+          className: this.props.className || 'pre-like meta' // TODO
+        }, this.props.children));
   }
 });
 
@@ -386,12 +381,11 @@ var BimodalPushButton = React.createClass({
     var title = this.props.mode ? this.props.trueTitle : this.props.falseTitle;
     return (
       React.createElement('a', {
-        id:        this.props.id,
-        className: className,
-        href:      this.props.enabled ? '' : null,
-        onClick:   this.props.enabled ? this.handleClick : null
-      }, title)
-    );
+          id:        this.props.id,
+          className: className,
+          href:      this.props.enabled ? '' : null,
+          onClick:   this.props.enabled ? this.handleClick : null
+        }, title));
   }
 });
 
@@ -416,12 +410,11 @@ var RadioButton = React.createClass({
     className += this.props.selected ? ' selected' : '';
     return (
       React.createElement('a', {
-        id:        this.props.id,
-        className: className,
-        href:      this.props.enabled ? '' : undefined,
-        onClick:   this.props.enabled ? this.handleClick : undefined
-      }, this.props.title)
-    );
+          id:        this.props.id,
+          className: className,
+          href:      this.props.enabled ? '' : undefined,
+          onClick:   this.props.enabled ? this.handleClick : undefined
+        }, this.props.title));
   }
 });
 
@@ -459,8 +452,7 @@ var AccountWidget = React.createClass({
             falseTitle:   'Connect',
             onTrueClick:  this.props.onUnlink,
             onFalseClick: this.props.onLink
-          }))
-    );
+          })));
   }
 });
 
@@ -504,8 +496,7 @@ var SourceLegend = React.createClass({
                 onClick: this.handleLink
               },
               'Connect'),
-            ' your GitHub account to avoid running into GitHub API rate limits.'))
-      );
+            ' your GitHub account to avoid running into GitHub API rate limits.')));
     }
     return (
       React.createElement(LegendArea, null,
@@ -516,9 +507,9 @@ var SourceLegend = React.createClass({
               href: info.website || info.repository
             },
             React.createElement('img', {
-              className: 'source-logo',
-              src:       info.logo
-            })) : null,
+                className: 'source-logo',
+                src:       info.logo
+              })) : null,
           React.createElement('div', {
               className: 'shrink'
             },
@@ -527,8 +518,7 @@ var SourceLegend = React.createClass({
                   href: info.website || info.repository
                 },
                 React.createElement('strong', null, info.name || 'no name'))),
-            React.createElement('p', null, info.description || 'no description'))))
-    );
+            React.createElement('p', null, info.description || 'no description')))));
   }
 });
 
@@ -567,8 +557,7 @@ var SizeLegend = React.createClass({
                 href: 'https://cloud.digitalocean.com/registrations/new?refcode=6b1199e29661'
               },
               'referral link'),
-            '.'))
-      );
+            '.')));
     }
     var subtitle;
     if (size.memory < 1024) {
@@ -586,8 +575,7 @@ var SizeLegend = React.createClass({
             },
             React.createElement('strong', null, '$' + size['price_monthly'] + '/month'),
             ' — $' + size['price_hourly'] + '/hour')),
-        React.createElement('p', null, subtitle))
-    );
+        React.createElement('p', null, subtitle)));
   }
 });
 
@@ -620,21 +608,20 @@ var SizeWidget = React.createClass({
           className: 'flex'
         },
         this.state.sizes.map(function (size) {
-          var title = size.memory < 1024 ? size.memory + ' MB' : size.memory / 1024 + ' GB';
-          return (
-            React.createElement(RadioButton, {
-                key:       size.slug,
-                className: 'size-button',
-                enabled:   this.state.enabled,
-                selected:  size.slug === selectedSizeSlug,
-                title:     title,
-                onClick:   function () {
-                  this.props.onSelectSize(size);
-                }.bind(this)
-              })
-          );
-        }.bind(this)))
-    );
+            var title = size.memory < 1024 ? size.memory + ' MB' : size.memory / 1024 + ' GB';
+            return (
+              React.createElement(RadioButton, {
+                  key:       size.slug,
+                  className: 'size-button',
+                  enabled:   this.state.enabled,
+                  selected:  size.slug === selectedSizeSlug,
+                  title:     title,
+                  onClick:   function () {
+                    this.props.onSelectSize(size);
+                  }.bind(this)
+                })
+            );
+          }.bind(this))));
   }
 });
 
@@ -667,20 +654,19 @@ var ImageWidget = React.createClass({
           className: 'flex'
         },
         this.state.images.map(function (image) {
-          return (
-            React.createElement(RadioButton, {
-                key:       image.slug,
-                className: 'image-button',
-                enabled:   this.state.enabled,
-                selected:  image.slug === selectedImageSlug,
-                title:     image.distribution + ' ' + image.name,
-                onClick:   function () {
-                  this.props.onSelectImage(image);
-                }.bind(this)
-              })
-          );
-        }.bind(this)))
-    );
+            return (
+              React.createElement(RadioButton, {
+                  key:       image.slug,
+                  className: 'image-button',
+                  enabled:   this.state.enabled,
+                  selected:  image.slug === selectedImageSlug,
+                  title:     image.distribution + ' ' + image.name,
+                  onClick:   function () {
+                    this.props.onSelectImage(image);
+                  }.bind(this)
+                })
+            );
+          }.bind(this))));
   }
 });
 
@@ -717,22 +703,21 @@ var RegionWidget = React.createClass({
           className: 'flex'
         },
         this.state.regions.map(function (region) {
-          var available = availableRegionSlugsBySize.indexOf(region.slug) !== -1 && availableRegionSlugsByImage.indexOf(region.slug);
-          var metadata  = region.features.indexOf('metadata') !== -1;
-          return (
-            React.createElement(RadioButton, {
-                key:       region.slug,
-                className: 'region-button',
-                enabled:   region.available && this.state.enabled && available && metadata,
-                selected:  region.slug === selectedRegionSlug,
-                title:     region.name,
-                onClick:   function () {
-                  this.props.onSelectRegion(region);
-                }.bind(this)
-              })
-          );
-        }.bind(this)))
-    );
+            var available = availableRegionSlugsBySize.indexOf(region.slug) !== -1 && availableRegionSlugsByImage.indexOf(region.slug);
+            var metadata  = region.features.indexOf('metadata') !== -1;
+            return (
+              React.createElement(RadioButton, {
+                  key:       region.slug,
+                  className: 'region-button',
+                  enabled:   region.available && this.state.enabled && available && metadata,
+                  selected:  region.slug === selectedRegionSlug,
+                  title:     region.name,
+                  onClick:   function () {
+                    this.props.onSelectRegion(region);
+                  }.bind(this)
+                })
+            );
+          }.bind(this))));
   }
 });
 
@@ -755,8 +740,8 @@ var KeysWidget = React.createClass({
     var changedSelectedKeys = [];
     if (this.state.selectedKeys) {
       this.state.selectedKeys.forEach(function (key) {
-        changedSelectedKeys.push(key);
-      });
+          changedSelectedKeys.push(key);
+        });
     }
     changedSelectedKeys.push(selectedKey);
     this.props.onChange(changedSelectedKeys);
@@ -764,10 +749,10 @@ var KeysWidget = React.createClass({
   handleDeselectKey: function (deselectedKey) {
     var changedSelectedKeys = [];
     this.state.selectedKeys.forEach(function (key) {
-      if (key.id !== deselectedKey.id) {
-        changedSelectedKeys.push(key);
-      }
-    });
+        if (key.id !== deselectedKey.id) {
+          changedSelectedKeys.push(key);
+        }
+      });
     this.props.onChange(changedSelectedKeys);
   },
   render: function () {
@@ -778,33 +763,34 @@ var KeysWidget = React.createClass({
           title:     'none'
         });
     }
-    var selectedKeyIds = this.state.selectedKeys ? this.state.selectedKeys.map(function (selectedKey) {
-      return selectedKey.id;
-    }) : [];
+    var selectedKeyIds = this.state.selectedKeys ?
+      this.state.selectedKeys.map(function (selectedKey) {
+          return selectedKey.id;
+        }) :
+      [];
     return (
       React.createElement('div', {
           className: 'flex'
         },
         this.state.keys.map(function (key) {
-          var selected = selectedKeyIds.indexOf(key.id) !== -1;
-          return (
-            React.createElement(RadioButton, {
-                key:       key.id,
-                className: 'key-button',
-                enabled:   this.state.enabled,
-                selected:  selected,
-                title:     key.name,
-                onClick:   function () {
-                  if (selected) {
-                    this.handleDeselectKey(key);
-                  } else {
-                    this.handleSelectKey(key);
-                  }
-                }.bind(this)
-              })
-          );
-        }.bind(this)))
-    );
+            var selected = selectedKeyIds.indexOf(key.id) !== -1;
+            return (
+              React.createElement(RadioButton, {
+                  key:       key.id,
+                  className: 'key-button',
+                  enabled:   this.state.enabled,
+                  selected:  selected,
+                  title:     key.name,
+                  onClick:   function () {
+                    if (selected) {
+                      this.handleDeselectKey(key);
+                    } else {
+                      this.handleSelectKey(key);
+                    }
+                  }.bind(this)
+                })
+            );
+          }.bind(this))));
   }
 });
 
@@ -831,8 +817,7 @@ var DeployWidget = React.createClass({
             enabled:   this.state.enabled,
             title:     'Deploy to DigitalOcean',
             onClick:   this.props.onDeploy
-          }))
-    );
+          })));
   }
 });
 
@@ -848,31 +833,27 @@ exports.GitHubControl = function (prefix, clientId, token) {
   this.state = this.getInitialState();
   this.accountWidget = React.render(
     React.createElement(AccountWidget, {
-      onLink:   this.handleLink.bind(this),
-      onUnlink: this.handleUnlink.bind(this)
-    }),
-    document.getElementById('github-account-widget')
-  );
+        onLink:   this.handleLink.bind(this),
+        onUnlink: this.handleUnlink.bind(this)
+      }),
+    document.getElementById('github-account-widget'));
   this.sourceWidget = React.render(
     React.createElement(InputWidget, {
-      type:        'url',
-      placeholder: 'https://github.com/user/project',
-      onChange:    this.handleChangeSourceUrl.bind(this)
-    }),
-    document.getElementById('github-source-widget')
-  );
+        type:        'url',
+        placeholder: 'https://github.com/user/project',
+        onChange:    this.handleChangeSourceUrl.bind(this)
+      }),
+    document.getElementById('github-source-widget'));
   this.sourceLegend = React.render(
     React.createElement(SourceLegend, {
-      onLink: this.handleLink.bind(this)
-    }),
-    document.getElementById('github-source-legend')
-  );
+        onLink: this.handleLink.bind(this)
+      }),
+    document.getElementById('github-source-legend'));
   this.varsWidget = React.render(
     React.createElement(MapWidget, {
-      onChange: this.handleChangeVars.bind(this)
-    }),
-    document.getElementById('github-vars-widget')
-  );
+        onChange: this.handleChangeVars.bind(this)
+      }),
+    document.getElementById('github-vars-widget'));
   this.render();
 };
 exports.GitHubControl.prototype = {
@@ -885,53 +866,57 @@ exports.GitHubControl.prototype = {
   },
   start: function () {
     this.loadAccount(function () {
-      this.state.enabled = true;
-      this.render();
-      this.loadSourceInfo(function () {
-        this.updateVars();
+        this.state.enabled = true;
         this.render();
+        this.loadSourceInfo(function () {
+            this.updateVars();
+            this.render();
+          }.bind(this));
       }.bind(this));
-    }.bind(this));
   },
   loadAccount: function (next) {
     GitHub.getAuthenticatedUser(function (account) {
-      this.state.account = account;
-      return next();
-    }.bind(this), function (err) {
-      console.error('Failed to load account:', err);
-      this.state.account = null;
-      return next();
-    }.bind(this), this.storage.get('token'));
+        this.state.account = account;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load account:', err);
+        this.state.account = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
   },
   loadSourceInfo: function (next) {
     var sourceUrl = this.storage.get('source_url');
     GitHub.getJsonFile(sourceUrl, 'app.json', function (sourceInfo) {
-      this.state.sourceInfo = sourceInfo;
-      return next();
-    }.bind(this), function (err) {
-      console.error('Failed to load source info:', err);
-      this.state.sourceInfo = null;
-      return next();
-    }.bind(this), this.storage.get('token'));
+        this.state.sourceInfo = sourceInfo;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load source info:', err);
+        this.state.sourceInfo = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
   },
   render: function () {
     var enabled = this.state.enabled;
     this.accountWidget.setState({
-      enabled: enabled,
-      account: this.state.account ? this.state.account.login : undefined
-    });
+        enabled: enabled,
+        account: this.state.account ? this.state.account.login : undefined
+      });
     this.sourceWidget.setState({
-      enabled: true,
-      value:   this.storage.get('source_url')
-    });
+        enabled: true,
+        value:   this.storage.get('source_url')
+      });
     this.sourceLegend.setState({
-      account:    this.state.account,
-      sourceInfo: this.state.sourceInfo
-    });
+        account:    this.state.account,
+        sourceInfo: this.state.sourceInfo
+      });
     this.varsWidget.setState({
-      enabled: true,
-      items:   this.storage.get('vars')
-    });
+        enabled: true,
+        items:   this.storage.get('vars')
+      });
   },
   handleLink: function () {
     this.storage.unset('token');
@@ -939,8 +924,9 @@ exports.GitHubControl.prototype = {
     this.state.account = undefined;
     this.render();
     setTimeout(function () {
-      GitHub.requestToken(this.props.clientId);
-    }.bind(this), 1000);
+        GitHub.requestToken(this.props.clientId);
+      }.bind(this),
+      1000);
   },
   handleUnlink: function () {
     this.storage.unset('token');
@@ -956,11 +942,12 @@ exports.GitHubControl.prototype = {
     this.render();
   },
   handleDebounceSourceUrl: exports.debounce(function () {
-    this.loadSourceInfo(function () {
-      this.updateVars();
-      this.render();
-    }.bind(this));
-  }, 1000),
+      this.loadSourceInfo(function () {
+          this.updateVars();
+          this.render();
+        }.bind(this));
+    },
+    1000),
   handleChangeVars: function (vars) {
     this.storage.set('vars', vars);
     this.render();
@@ -972,45 +959,45 @@ exports.GitHubControl.prototype = {
     var importedVars = {};
     if (info && info.env) {
       Object.keys(info.env).forEach(function (name) {
-        if (name === 'BUILDPACK_URL') {
-          return;
-        }
-        var value = info.env[name];
-        var importedItem = {
-          imported: true,
-          name:     name
-        };
-        if (typeof value === 'string') {
-          importedItem.required = true;
-          importedItem.value    = value.length ? value : undefined;
-        } else {
-          importedItem.required = value.required !== false;
-          importedItem.value    = value.value.length ? value.value : undefined;
-        }
-        importedVars[name] = importedItem;
-        vars.push(importedItem);
-      });
+          if (name === 'BUILDPACK_URL') {
+            return;
+          }
+          var value = info.env[name];
+          var importedItem = {
+            imported: true,
+            name:     name
+          };
+          if (typeof value === 'string') {
+            importedItem.required = true;
+            importedItem.value    = value.length ? value : undefined;
+          } else {
+            importedItem.required = value.required !== false;
+            importedItem.value    = value.value.length ? value.value : undefined;
+          }
+          importedVars[name] = importedItem;
+          vars.push(importedItem);
+        });
     }
     if (storedVars) {
       storedVars.forEach(function (item) {
-        if (item.imported) {
-          return;
-        }
-        var importedItem = importedVars[item.name];
-        if (importedItem && !importedItem.value) {
-          delete importedItem.imported;
-          importedItem.value = item.value;
-        } else {
-          if (item.required) {
-            vars.push({
-              name:  item.name,
-              value: item.value
-            });
-          } else {
-            vars.push(item);
+          if (item.imported) {
+            return;
           }
-        }
-      });
+          var importedItem = importedVars[item.name];
+          if (importedItem && !importedItem.value) {
+            delete importedItem.imported;
+            importedItem.value = item.value;
+          } else {
+            if (item.required) {
+              vars.push({
+                  name:  item.name,
+                  value: item.value
+                });
+            } else {
+              vars.push(item);
+            }
+          }
+        });
     }
     this.storage.set('vars', vars.length ? vars : undefined);
   }
@@ -1029,48 +1016,41 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
   this.state = this.getInitialState();
   this.accountWidget = React.render(
     React.createElement(AccountWidget, {
-      onLink:   this.handleLink.bind(this),
-      onUnlink: this.handleUnlink.bind(this)
-    }),
-    document.getElementById('digitalocean-account-widget')
-  );
+        onLink:   this.handleLink.bind(this),
+        onUnlink: this.handleUnlink.bind(this)
+      }),
+    document.getElementById('digitalocean-account-widget'));
   this.hostnameWidget = React.render(
     React.createElement(InputWidget, {
-      placeholder: 'hello-world-2015',
-      onChange:    this.handleChangeHostname.bind(this)
-    }),
-    document.getElementById('digitalocean-hostname-widget')
-  );
+        placeholder: 'hello-world-2015',
+        onChange:    this.handleChangeHostname.bind(this)
+      }),
+    document.getElementById('digitalocean-hostname-widget'));
   this.sizeWidget = React.render(
     React.createElement(SizeWidget, {
-      onSelectSize: this.handleSelectSize.bind(this)
-    }),
-    document.getElementById('digitalocean-size-widget')
-  );
+        onSelectSize: this.handleSelectSize.bind(this)
+      }),
+    document.getElementById('digitalocean-size-widget'));
   this.sizeLegend = React.render(
     React.createElement(SizeLegend, {
-      onLink: this.handleLink.bind(this)
-    }),
-    document.getElementById('digitalocean-size-legend')
-  );
+        onLink: this.handleLink.bind(this)
+      }),
+    document.getElementById('digitalocean-size-legend'));
   this.imageWidget = React.render(
     React.createElement(ImageWidget, {
-      onSelectImage: this.handleSelectImage.bind(this)
-    }),
-    document.getElementById('digitalocean-image-widget')
-  );
+        onSelectImage: this.handleSelectImage.bind(this)
+      }),
+    document.getElementById('digitalocean-image-widget'));
   this.regionWidget = React.render(
     React.createElement(RegionWidget, {
-      onSelectRegion: this.handleSelectRegion.bind(this)
-    }),
-    document.getElementById('digitalocean-region-widget')
-  );
+        onSelectRegion: this.handleSelectRegion.bind(this)
+      }),
+    document.getElementById('digitalocean-region-widget'));
   this.keysWidget = React.render(
     React.createElement(KeysWidget, {
-      onChange: this.handleChangeSelectedKeys.bind(this)
-    }),
-    document.getElementById('digitalocean-keys-widget')
-  );
+        onChange: this.handleChangeSelectedKeys.bind(this)
+      }),
+    document.getElementById('digitalocean-keys-widget'));
   this.render();
 };
 exports.DigitalOceanControl.prototype = {
@@ -1091,78 +1071,88 @@ exports.DigitalOceanControl.prototype = {
   },
   start: function () {
     this.loadAccount(function () {
-      this.loadSizes(function () {
-        this.updateSelectedSize();
-        this.loadImages(function () {
-          this.updateSelectedImage();
-          this.loadRegions(function () {
-            this.updateSelectedRegion();
-            this.loadKeys(function () {
-              this.updateSelectedKeys();
-              this.state.enabled = true;
-              this.render();
+        this.loadSizes(function () {
+            this.updateSelectedSize();
+            this.loadImages(function () {
+                this.updateSelectedImage();
+                this.loadRegions(function () {
+                    this.updateSelectedRegion();
+                    this.loadKeys(function () {
+                        this.updateSelectedKeys();
+                        this.state.enabled = true;
+                        this.render();
+                    }.bind(this));
+                }.bind(this));
             }.bind(this));
-          }.bind(this));
         }.bind(this));
-      }.bind(this));
     }.bind(this));
   },
   loadAccount: function (next) {
     DigitalOcean.getAccount(function (account) {
-      this.state.account = account;
-      return next();
-    }.bind(this), function (err) {
-      console.error('Failed to load account:', err);
-      this.state.failed  = true;
-      this.state.account = null;
-      return next();
-    }.bind(this), this.storage.get('token'));
+        this.state.account = account;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load account:', err);
+        this.state.failed  = true;
+        this.state.account = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
   },
   loadSizes: function (next) {
     DigitalOcean.getSizes(function (sizes) {
-      this.state.sizes = sizes;
-      return next();
-    }.bind(this), function (err) {
-      console.error('Failed to load sizes:', err);
-      this.state.failed = true;
-      this.state.sizes  = null;
-      return next();
-    }.bind(this), this.storage.get('token'));
+        this.state.sizes = sizes;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load sizes:', err);
+        this.state.failed = true;
+        this.state.sizes  = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
   },
   loadImages: function (next) {
     DigitalOcean.getDistributionImages(function (images) {
-      this.state.images = images.filter(function (image) {
-        return image.slug === 'ubuntu-14-04-x64';
-      });
-      return next();
-    }.bind(this), function (err) {
-      console.error('Failed to load images:', err);
-      this.state.failed = true;
-      this.state.images = null;
-      return next();
-    }.bind(this), this.storage.get('token'));
+        this.state.images = images.filter(function (image) {
+            return image.slug === 'ubuntu-14-04-x64'; // TODO
+          });
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load images:', err);
+        this.state.failed = true;
+        this.state.images = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
   },
   loadRegions: function (next) {
     DigitalOcean.getRegions(function (regions) {
-      this.state.regions = regions;
-      return next();
-    }.bind(this), function (err) {
-      console.error('Failed to load regions:', err);
-      this.state.failed  = true;
-      this.state.regions = null;
-      return next();
-    }.bind(this), this.storage.get('token'));
+        this.state.regions = regions;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load regions:', err);
+        this.state.failed  = true;
+        this.state.regions = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
   },
   loadKeys: function (next) {
     DigitalOcean.getAccountKeys(function (keys) {
-      this.state.keys = keys;
-      return next();
-    }.bind(this), function (err) {
-      console.error('Failed to load keys:', err);
-      this.state.failed = true;
-      this.state.keys   = null;
-      return next();
-    }.bind(this), this.storage.get('token'));
+        this.state.keys = keys;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load keys:', err);
+        this.state.failed = true;
+        this.state.keys   = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
   },
   updateSelectedSize: function () {
     var sizes            = this.state.sizes;
@@ -1253,55 +1243,58 @@ exports.DigitalOceanControl.prototype = {
       }
     }
     this.state.selectedKeys = selectedKeys;
-    selectedKeyIds = selectedKeys ? selectedKeys.map(function (selectedKey) {
-      return selectedKey.id;
-    }) : [];
+    selectedKeyIds = selectedKeys ?
+      selectedKeys.map(function (selectedKey) {
+          return selectedKey.id;
+        }) :
+      [];
     this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
   },
   render: function () {
     var enabled = this.state.enabled;
     var failed  = this.state.failed;
     this.accountWidget.setState({
-      enabled:        enabled,
-      account:        this.state.account ? this.state.account.email : undefined
-    });
+        enabled:        enabled,
+        account:        this.state.account ? this.state.account.email : undefined
+      });
     this.hostnameWidget.setState({
-      enabled:        true,
-      value:          this.storage.get('hostname')
-    });
+        enabled:        true,
+        value:          this.storage.get('hostname')
+      });
     this.sizeWidget.setState({
-      enabled:        enabled && !failed,
-      sizes:          this.state.sizes,
-      selectedSize:   this.state.selectedSize
-    });
+        enabled:        enabled && !failed,
+        sizes:          this.state.sizes,
+        selectedSize:   this.state.selectedSize
+      });
     this.sizeLegend.setState({
-      selectedSize:   this.state.selectedSize
-    });
+        selectedSize:   this.state.selectedSize
+      });
     this.imageWidget.setState({
-      enabled:        enabled && !failed,
-      images:         this.state.images,
-      selectedImage:  this.state.selectedImage
-    });
+        enabled:        enabled && !failed,
+        images:         this.state.images,
+        selectedImage:  this.state.selectedImage
+      });
     this.regionWidget.setState({
-      enabled:        enabled && !failed,
-      selectedSize:   this.state.selectedSize,
-      selectedImage:  this.state.selectedImage,
-      regions:        this.state.regions,
-      selectedRegion: this.state.selectedRegion
-    });
+        enabled:        enabled && !failed,
+        selectedSize:   this.state.selectedSize,
+        selectedImage:  this.state.selectedImage,
+        regions:        this.state.regions,
+        selectedRegion: this.state.selectedRegion
+      });
     this.keysWidget.setState({
-      enabled:        enabled && !failed,
-      keys:           this.state.keys,
-      selectedKeys:   this.state.selectedKeys
-    });
+        enabled:        enabled && !failed,
+        keys:           this.state.keys,
+        selectedKeys:   this.state.selectedKeys
+      });
   },
   handleLink: function () {
     this.storage.unset('token');
     this.state = this.getInitialState();
     this.render();
     setTimeout(function () {
-      DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
-    }.bind(this), 1000);
+        DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
+      }.bind(this),
+      1000);
   },
   handleUnlink: function () {
     this.storage.unset('token');
@@ -1333,9 +1326,11 @@ exports.DigitalOceanControl.prototype = {
   },
   handleChangeSelectedKeys: function (selectedKeys) {
     this.state.selectedKeys = selectedKeys;
-    var selectedKeyIds = selectedKeys ? selectedKeys.map(function (selectedKey) {
-      return selectedKey.id;
-    }) : [];
+    var selectedKeyIds = selectedKeys ?
+      selectedKeys.map(function (selectedKey) {
+          return selectedKey.id;
+        }) :
+      [];
     this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
     this.render();
   },
@@ -1353,8 +1348,7 @@ exports.MainControl = function (ghClientId, doClientId, doCallbackUrl) {
   this.state = this.getInitialState();
   this.deployWidget = React.render(
     React.createElement(DeployWidget, null),
-    document.getElementById('deploy-widget')
-  );
+    document.getElementById('deploy-widget'));
   this.render();
 };
 exports.MainControl.prototype = {
@@ -1386,8 +1380,7 @@ exports.MainControl.prototype = {
     this.state.ghControl = new exports.GitHubControl(
       'github',
       this.props.ghClientId,
-      token
-    );
+      token);
     this.state.ghControl.start();
     if (sourceUrl) {
       this.state.ghControl.handleChangeSourceUrl(sourceUrl);
@@ -1403,8 +1396,7 @@ exports.MainControl.prototype = {
       'digitalocean',
       this.props.doClientId,
       this.props.doCallbackUrl,
-      token
-    );
+      token);
     this.state.doControl.start();
     this.state.doControl.handleChangeHostname(random.getHostname());
   },
@@ -1420,7 +1412,6 @@ exports.start = function () {
   var control = new exports.MainControl(
     '2765f53aa92837f0a835',
     '2530da1c8b65fd7e627f9ba234db0cfddae44c2ddf7e603648301f043318cac4',
-    'https://halcyon-digitalocean-callback.herokuapp.com/callback'
-  );
+    'https://halcyon-digitalocean-callback.herokuapp.com/callback');
   control.start();
 };
