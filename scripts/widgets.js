@@ -1413,81 +1413,111 @@ exports.DigitalOceanControl.prototype = {
 };
 
 
-exports.MainControl = function (ghClientId, doClientId, doCallbackUrl) {
-  this.props = {
-    ghClientId:    ghClientId,
-    doClientId:    doClientId,
-    doCallbackUrl: doCallbackUrl,
-    referrer:      document.referred,
-    queryString:   location.search
-  };
+exports.MainControl = function (props) {
+  this.props = this.getDefaultProps();
+  Object.keys(props).forEach(function (key) {
+      this.props[key] = props[key];
+    }.bind(this));
   this.state = this.getInitialState();
-  this.deployWidget = React.render(
-    React.createElement(DeployWidget, null),
-    document.getElementById('deploy-widget'));
-  this.render();
+  this.createWidgets();
+  this.createControl();
 };
 exports.MainControl.prototype = {
-  getInitialState: function () {
+  getDefaultProps: function () {
     return {
-      ghControl: undefined,
-      doControl: undefined,
+      ghClientId:    undefined,
+      ghToken:       undefined,
+      doClientId:    undefined,
+      doCallbackUrl: undefined,
+      doToken:       undefined,
+      sourceUrl:     undefined
     };
   },
-  start: function () {
-    this.startGitHub();
-    this.startDigitalOcean();
+  getInitialState: function () {
+    return {
+      ghReady: undefined,
+      doReady: undefined,
+    };
   },
-  startGitHub: function () {
-    var token;
-    var sourceUrl;
-    if (GitHub.parseRepoUrl(this.props.referrer)) {
-      sourceUrl = this.props.referrer;
-    }
-    var query = http.parseQueryString(this.props.queryString);
-    if (query) {
-      if (query['vendor'] === 'github') {
-        token = query['access_token'];
-      }
-      if (query['url']) {
-        sourceUrl = query['url'];
-      }
-    }
-    this.state.ghControl = new exports.GitHubControl(
-      'github',
-      this.props.ghClientId,
-      token);
-    this.state.ghControl.start();
-    if (sourceUrl) {
-      this.state.ghControl.handleChangeSourceUrl(sourceUrl);
-    }
+  createWidgets: function () {
+    this.deployWidget = React.render(
+      React.createElement(DeployWidget, {
+          onDeploy: this.handleDeploy.bind(this)
+        }),
+      document.getElementById('deploy-widget'));
+    this.renderWidgets();
   },
-  startDigitalOcean: function () {
-    var token;
-    var query = http.parseQueryString(this.props.queryString);
-    if (query && query.vendor === 'digitalocean') {
-      token = query['access_token'];
-    }
-    this.state.doControl = new exports.DigitalOceanControl(
-      'digitalocean',
-      this.props.doClientId,
-      this.props.doCallbackUrl,
-      token);
-    this.state.doControl.start();
-    this.state.doControl.handleChangeHostname(random.getHostname());
-  },
-  render: function () {
+  renderWidgets: function () {
     this.deployWidget.setState({
-      enabled: false // TODO
-    });
+        enabled: this.state.ghReady && this.state.doReady
+      });
+  },
+  createControl: function () {
+    this.ghControl = new exports.GitHubControl({
+        clientId:  this.props.ghClientId,
+        token:     this.props.ghToken,
+        sourceUrl: this.props.sourceUrl,
+        onReady:   function () {
+          console.log('GH ready');
+          this.state.ghReady = true;
+          this.renderWidgets();
+        }.bind(this),
+        onUnready: function () {
+          console.log('GH not ready');
+          this.state.ghReady = false;
+          this.renderWidgets();
+        }.bind(this)
+      });
+    this.doControl = new exports.DigitalOceanControl({
+        clientId:        this.props.doClientId,
+        callbackUrl:     this.props.doCallbackUrl,
+        token:           this.props.doToken,
+        defaultHostname: random.getHostname(),
+        onReady:         function () {
+          console.log('DO ready');
+          this.state.doReady = true;
+          this.renderWidgets();
+        }.bind(this),
+        onUnready:       function () {
+          console.log('DO not ready');
+          this.state.doReady = false;
+          this.renderWidgets();
+        }.bind(this)
+      });
+  },
+  loadData: function () {
+    this.doControl.loadData();
+    this.ghControl.loadData();
+  },
+  handleDeploy: function () {
+    // TODO
   }
 };
 
 
 exports.start = function () {
-  var control = new exports.MainControl(
-    '2765f53aa92837f0a835',
-    '2530da1c8b65fd7e627f9ba234db0cfddae44c2ddf7e603648301f043318cac4',
-    'https://halcyon-digitalocean-callback.herokuapp.com/callback');
-  control.start();
+  var sourceUrl;
+  if (GitHub.parseRepoUrl(document.referrer)) {
+    sourceUrl = document.referrer;
+  }
+  var ghToken, doToken;
+  var query = http.parseQueryString(location.search);
+  if (query) {
+    var token = query['access_token'];
+    if (query['vendor'] === 'github') {
+      ghToken = token;
+    } else if (query.vendor === 'digitalocean') {
+      doToken = token;
+    }
+    sourceUrl = query['url'];
+  }
+  var control = new exports.MainControl({
+      ghClientId:    '2765f53aa92837f0a835',
+      ghToken:       ghToken,
+      doClientId:    '2530da1c8b65fd7e627f9ba234db0cfddae44c2ddf7e603648301f043318cac4',
+      doCallbackUrl: 'https://halcyon-digitalocean-callback.herokuapp.com/callback',
+      doToken:       doToken,
+      sourceUrl:     sourceUrl
+    });
+  control.loadData();
 };
