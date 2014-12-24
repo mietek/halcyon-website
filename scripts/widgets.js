@@ -834,41 +834,33 @@ var DeployWidget = React.createClass({
 });
 
 
-exports.GitHubControl = function (prefix, clientId, token) {
-  this.storage = new exports.CachedStorage(prefix);
-  this.props = {
-    clientId: clientId
-  };
-  if (token) {
-    this.storage.set('token', token);
+exports.GitHubControl = function (props) {
+  this.props = this.getDefaultProps();
+  Object.keys(props).forEach(function (key) {
+      this.props[key] = props[key];
+    }.bind(this));
+  this.storage = new exports.CachedStorage(this.props.prefix);
+  if (this.props.token) {
+    this.storage.set('token', this.props.token);
+  }
+  if (this.props.sourceUrl) {
+    this.storage.set('source_url', this.props.sourceUrl);
   }
   this.state = this.getInitialState();
-  this.accountWidget = React.render(
-    React.createElement(AccountWidget, {
-        onLink:   this.handleLink.bind(this),
-        onUnlink: this.handleUnlink.bind(this)
-      }),
-    document.getElementById('github-account-widget'));
-  this.sourceWidget = React.render(
-    React.createElement(InputWidget, {
-        type:        'url',
-        placeholder: 'https://github.com/user/project',
-        onChange:    this.handleChangeSourceUrl.bind(this)
-      }),
-    document.getElementById('github-source-widget'));
-  this.sourceLegend = React.render(
-    React.createElement(SourceLegend, {
-        onLink: this.handleLink.bind(this)
-      }),
-    document.getElementById('github-source-legend'));
-  this.varsWidget = React.render(
-    React.createElement(MapWidget, {
-        onChange: this.handleChangeVars.bind(this)
-      }),
-    document.getElementById('github-vars-widget'));
-  this.render();
+  this.createWidgets();
+  this.updateReady();
 };
 exports.GitHubControl.prototype = {
+  getDefaultProps: function () {
+    return {
+      prefix:    'github',
+      clientId:  undefined,
+      token:     undefined,
+      sourceUrl: undefined,
+      onReady:   undefined,
+      onUnready: undefined
+    };
+  },
   getInitialState: function () {
     return {
       enabled: false,
@@ -876,13 +868,57 @@ exports.GitHubControl.prototype = {
       vars:    undefined
     };
   },
-  start: function () {
+  createWidgets: function () {
+    this.accountWidget = React.render(
+      React.createElement(AccountWidget, {
+          onLink:   this.handleLink.bind(this),
+          onUnlink: this.handleUnlink.bind(this)
+        }),
+      document.getElementById('github-account-widget'));
+    this.sourceWidget = React.render(
+      React.createElement(InputWidget, {
+          type:        'url',
+          placeholder: 'https://github.com/user/project',
+          onChange:    this.handleChangeSourceUrl.bind(this)
+        }),
+      document.getElementById('github-source-widget'));
+    this.sourceLegend = React.render(
+      React.createElement(SourceLegend, {
+          onLink: this.handleLink.bind(this)
+        }),
+      document.getElementById('github-source-legend'));
+    this.varsWidget = React.render(
+      React.createElement(MapWidget, {
+          onChange: this.handleChangeVars.bind(this)
+        }),
+      document.getElementById('github-vars-widget'));
+    this.renderWidgets();
+  },
+  renderWidgets: function () {
+    this.accountWidget.setState({
+        enabled:    this.state.enabled,
+        account:    this.state.account ? this.state.account.login : undefined
+      });
+    this.sourceWidget.setState({
+        enabled:    true,
+        value:      this.storage.get('source_url')
+      });
+    this.sourceLegend.setState({
+        account:    this.state.account,
+        sourceInfo: this.state.sourceInfo
+      });
+    this.varsWidget.setState({
+        enabled:    true,
+        items:      this.storage.get('vars')
+      });
+  },
+  loadData: function () {
     this.loadAccount(function () {
         this.state.enabled = true;
-        this.render();
+        this.renderWidgets();
         this.loadSourceInfo(function () {
             this.updateVars();
-            this.render();
+            this.renderWidgets();
           }.bind(this));
       }.bind(this));
   },
@@ -911,30 +947,11 @@ exports.GitHubControl.prototype = {
       }.bind(this),
       this.storage.get('token'));
   },
-  render: function () {
-    var enabled = this.state.enabled;
-    this.accountWidget.setState({
-        enabled: enabled,
-        account: this.state.account ? this.state.account.login : undefined
-      });
-    this.sourceWidget.setState({
-        enabled: true,
-        value:   this.storage.get('source_url')
-      });
-    this.sourceLegend.setState({
-        account:    this.state.account,
-        sourceInfo: this.state.sourceInfo
-      });
-    this.varsWidget.setState({
-        enabled: true,
-        items:   this.storage.get('vars')
-      });
-  },
   handleLink: function () {
     this.storage.unset('token');
     this.state.enabled = false;
     this.state.account = undefined;
-    this.render();
+    this.renderWidgets();
     setTimeout(function () {
         GitHub.requestToken(this.props.clientId);
       }.bind(this),
@@ -944,25 +961,26 @@ exports.GitHubControl.prototype = {
     this.storage.unset('token');
     this.state.enabled = true;
     this.state.account = undefined;
-    this.render();
+    this.renderWidgets();
   },
   handleChangeSourceUrl: function (sourceUrl) {
     this.storage.set('source_url', sourceUrl.length ? sourceUrl : undefined);
     this.state.sourceInfo = undefined;
-    this.updateVars();
     this.handleDebounceSourceUrl();
-    this.render();
+    this.updateVars();
+    this.updateReady();
+    this.renderWidgets();
   },
   handleDebounceSourceUrl: exports.debounce(function () {
       this.loadSourceInfo(function () {
           this.updateVars();
-          this.render();
+          this.renderWidgets();
         }.bind(this));
     },
     1000),
   handleChangeVars: function (vars) {
     this.storage.set('vars', vars);
-    this.render();
+    this.renderWidgets();
   },
   updateVars: function () {
     var info         = this.state.sourceInfo;
@@ -988,7 +1006,7 @@ exports.GitHubControl.prototype = {
           }
           importedVars[name] = importedItem;
           vars.push(importedItem);
-        });
+        }.bind(this));
     }
     if (storedVars) {
       storedVars.forEach(function (item) {
@@ -1012,7 +1030,14 @@ exports.GitHubControl.prototype = {
         });
     }
     this.storage.set('vars', vars.length ? vars : undefined);
-  }
+  },
+  updateReady: function () {
+    if (this.storage.get('source_url')) {
+      this.props.onReady();
+    } else {
+      this.props.onUneady();
+    }
+  },
 };
 
 
