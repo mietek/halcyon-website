@@ -391,7 +391,7 @@ exports.AccountWidget = React.createClass({
             className:    'account-button',
             enabled:      this.state.enabled,
             mode:         this.state.account ? true : false,
-            trueTitle:    'Clear',
+            trueTitle:    'Forget',
             falseTitle:   'Connect',
             onTrueClick:  this.props.onUnlink,
             onFalseClick: this.props.onLink
