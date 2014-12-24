@@ -110,7 +110,7 @@ exports.Control.prototype = {
   handleDeploy: function () {
     this.doControl.createDroplet(this.ghControl.getSourceUrl(),
       function (droplet) {
-        console.log('yea', droplet);
+        console.log('yea', droplet); // TODO
       },
       function (err) {
         console.log('nay', err);
