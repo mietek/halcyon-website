@@ -949,7 +949,7 @@ exports.GitHubControl.prototype = {
     this.render();
   },
   handleChangeSourceUrl: function (sourceUrl) {
-    this.storage.set('source_url', sourceUrl);
+    this.storage.set('source_url', sourceUrl.length ? sourceUrl : undefined);
     this.state.sourceInfo = undefined;
     this.updateVars();
     this.handleDebounceSourceUrl();
@@ -1310,7 +1310,8 @@ exports.DigitalOceanControl.prototype = {
     this.render();
   },
   handleChangeHostname: function (hostname) {
-    this.storage.set('hostname', hostname.replace(/[^a-z0-9\-]/g, ''));
+    var validHostname = hostname.replace(/[^a-z0-9\-]/g, '');
+    this.storage.set('hostname', validHostname.length ? validHostname : undefined);
     this.render();
   },
   handleSelectSize: function (selectedSize) {
