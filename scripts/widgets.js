@@ -253,9 +253,6 @@ var MapWidget = React.createClass({
     };
   },
   handleChangeItemName: function (changedIndex, changedName) {
-    if (!this.state.items) {
-      return;
-    }
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
@@ -275,9 +272,6 @@ var MapWidget = React.createClass({
     }
   },
   handleChangeItemValue: function (changedIndex, changedValue) {
-    if (!this.state.items) {
-      return;
-    }
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
@@ -297,9 +291,6 @@ var MapWidget = React.createClass({
     }
   },
   handleRemoveItem: function (removedIndex) {
-    if (!this.state.items) {
-      return;
-    }
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
