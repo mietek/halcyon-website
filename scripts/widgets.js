@@ -1041,56 +1041,28 @@ exports.GitHubControl.prototype = {
 };
 
 
-exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
-  this.storage = new exports.CachedStorage(prefix);
-  this.props = {
-    clientId:    clientId,
-    callbackUrl: callbackUrl,
-  };
-  if (token) {
-    this.storage.set('token', token);
-  }
+exports.DigitalOceanControl = function (props) {
+  this.props = this.getDefaultProps();
+  Object.keys(props).forEach(function (key) {
+      this.props[key] = props[key];
+    }.bind(this));
+  this.storage = new exports.CachedStorage(this.props.prefix);
+  this.storage.set('token', this.props.token);
+  this.storage.set('default_hostname', this.props.defaultHostname);
   this.state = this.getInitialState();
-  this.accountWidget = React.render(
-    React.createElement(AccountWidget, {
-        onLink:   this.handleLink.bind(this),
-        onUnlink: this.handleUnlink.bind(this)
-      }),
-    document.getElementById('digitalocean-account-widget'));
-  this.hostnameWidget = React.render(
-    React.createElement(InputWidget, {
-        placeholder: 'hello-world-2015',
-        onChange:    this.handleChangeHostname.bind(this)
-      }),
-    document.getElementById('digitalocean-hostname-widget'));
-  this.sizeWidget = React.render(
-    React.createElement(SizeWidget, {
-        onSelectSize: this.handleSelectSize.bind(this)
-      }),
-    document.getElementById('digitalocean-size-widget'));
-  this.sizeLegend = React.render(
-    React.createElement(SizeLegend, {
-        onLink: this.handleLink.bind(this)
-      }),
-    document.getElementById('digitalocean-size-legend'));
-  this.imageWidget = React.render(
-    React.createElement(ImageWidget, {
-        onSelectImage: this.handleSelectImage.bind(this)
-      }),
-    document.getElementById('digitalocean-image-widget'));
-  this.regionWidget = React.render(
-    React.createElement(RegionWidget, {
-        onSelectRegion: this.handleSelectRegion.bind(this)
-      }),
-    document.getElementById('digitalocean-region-widget'));
-  this.keysWidget = React.render(
-    React.createElement(KeysWidget, {
-        onChange: this.handleChangeSelectedKeys.bind(this)
-      }),
-    document.getElementById('digitalocean-keys-widget'));
-  this.render();
+  this.createWidgets();
 };
 exports.DigitalOceanControl.prototype = {
+  getDefaultProps: function () {
+    return {
+      prefix:      'digitalocean',
+      clientId:    undefined,
+      callbackUrl: undefined,
+      token:       undefined,
+      onReady:     undefined,
+      onUnready:   undefined
+    };
+  },
   getInitialState: function () {
     return {
       enabled:        false,
@@ -1106,23 +1078,102 @@ exports.DigitalOceanControl.prototype = {
       selectedKeys:   undefined
     };
   },
-  start: function () {
-    this.loadAccount(function () {
-        this.loadSizes(function () {
-            this.updateSelectedSize();
-            this.loadImages(function () {
-                this.updateSelectedImage();
-                this.loadRegions(function () {
-                    this.updateSelectedRegion();
-                    this.loadKeys(function () {
-                        this.updateSelectedKeys();
-                        this.state.enabled = true;
-                        this.render();
+  createWidgets: function () {
+    this.accountWidget = React.render(
+      React.createElement(AccountWidget, {
+          onLink:   this.handleLink.bind(this),
+          onUnlink: this.handleUnlink.bind(this)
+        }),
+      document.getElementById('digitalocean-account-widget'));
+    this.hostnameWidget = React.render(
+      React.createElement(InputWidget, {
+          placeholder: this.storage.get('default_hostname'),
+          onChange:    this.handleChangeHostname.bind(this)
+        }),
+      document.getElementById('digitalocean-hostname-widget'));
+    this.sizeWidget = React.render(
+      React.createElement(SizeWidget, {
+          onSelectSize: this.handleSelectSize.bind(this)
+        }),
+      document.getElementById('digitalocean-size-widget'));
+    this.sizeLegend = React.render(
+      React.createElement(SizeLegend, {
+          onLink: this.handleLink.bind(this)
+        }),
+      document.getElementById('digitalocean-size-legend'));
+    this.imageWidget = React.render(
+      React.createElement(ImageWidget, {
+          onSelectImage: this.handleSelectImage.bind(this)
+        }),
+      document.getElementById('digitalocean-image-widget'));
+    this.regionWidget = React.render(
+      React.createElement(RegionWidget, {
+          onSelectRegion: this.handleSelectRegion.bind(this)
+        }),
+      document.getElementById('digitalocean-region-widget'));
+    this.keysWidget = React.render(
+      React.createElement(KeysWidget, {
+          onChange: this.handleChangeSelectedKeys.bind(this)
+        }),
+      document.getElementById('digitalocean-keys-widget'));
+    this.renderWidgets();
+  },
+  renderWidgets: function () {
+    var enabled = this.state.enabled;
+    var failed  = this.state.failed;
+    this.accountWidget.setState({
+        enabled:        enabled,
+        account:        this.state.account ? this.state.account.email : undefined
+      });
+    this.hostnameWidget.setState({
+        enabled:        true,
+        value:          this.storage.get('hostname')
+      });
+    this.sizeWidget.setState({
+        enabled:        enabled && !failed,
+        sizes:          this.state.sizes,
+        selectedSize:   this.state.selectedSize
+      });
+    this.sizeLegend.setState({
+        selectedSize:   this.state.selectedSize,
+        failed:         failed
+      });
+    this.imageWidget.setState({
+        enabled:        enabled && !failed,
+        images:         this.state.images,
+        selectedImage:  this.state.selectedImage
+      });
+    this.regionWidget.setState({
+        enabled:        enabled && !failed,
+        selectedSize:   this.state.selectedSize,
+        selectedImage:  this.state.selectedImage,
+        regions:        this.state.regions,
+        selectedRegion: this.state.selectedRegion
+      });
+    this.keysWidget.setState({
+        enabled:        enabled && !failed,
+        keys:           this.state.keys,
+        selectedKeys:   this.state.selectedKeys
+      });
+  },
+  loadData: function () {
+      this.loadAccount(function () {
+          this.loadSizes(function () {
+              this.updateSelectedSize();
+              this.loadImages(function () {
+                  this.updateSelectedImage();
+                  this.loadRegions(function () {
+                      this.updateSelectedRegion();
+                      this.loadKeys(function () {
+                          this.updateSelectedKeys();
+                          this.state.enabled = true;
+                          this.updateReady();
+                          this.renderWidgets();
+                        }.bind(this));
                     }.bind(this));
                 }.bind(this));
             }.bind(this));
         }.bind(this));
-    }.bind(this));
   },
   loadAccount: function (next) {
     DigitalOcean.getAccount(function (account) {
@@ -1190,6 +1241,65 @@ exports.DigitalOceanControl.prototype = {
         return next();
       }.bind(this),
       this.storage.get('token'));
+  },
+  createDroplet: function (sourceUrl, yea, nay) {
+    DigitalOcean.createDroplet(
+      this.storage.get('hostname') || this.storage.get('default_hostname'),
+      this.storage.get('selected_size_slug'),
+      this.storage.get('selected_image_slug'),
+      this.storage.get('selected_region_slug'),
+      this.storage.get('selected_key_ids'),
+      sourceUrl, yea, nay,
+      this.storage.get('token'));
+  },
+  handleLink: function () {
+    this.storage.unset('token');
+    this.state = this.getInitialState();
+    this.updateReady();
+    this.renderWidgets();
+    setTimeout(function () {
+        DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
+      }.bind(this),
+      1000);
+  },
+  handleUnlink: function () {
+    this.storage.unset('token');
+    this.state = this.getInitialState();
+    this.state.enabled = true;
+    this.updateReady();
+    this.renderWidgets();
+  },
+  handleChangeHostname: function (hostname) {
+    var validHostname = hostname.replace(/[^a-z0-9\-]/g, '');
+    this.storage.set('hostname', validHostname.length ? validHostname : undefined);
+    this.renderWidgets();
+  },
+  handleSelectSize: function (selectedSize) {
+    this.state.selectedSize = selectedSize;
+    this.storage.set('selected_size_slug', selectedSize.slug);
+    this.updateSelectedRegion();
+    this.renderWidgets();
+  },
+  handleSelectImage: function (selectedImage) {
+    this.state.selectedImage = selectedImage;
+    this.storage.set('selected_image_slug', selectedImage.slug);
+    this.updateSelectedRegion();
+    this.renderWidgets();
+  },
+  handleSelectRegion: function (selectedRegion) {
+    this.state.selectedRegion = selectedRegion;
+    this.storage.set('selected_region_slug', selectedRegion.slug);
+    this.renderWidgets();
+  },
+  handleChangeSelectedKeys: function (selectedKeys) {
+    this.state.selectedKeys = selectedKeys;
+    var selectedKeyIds = selectedKeys ?
+      selectedKeys.map(function (selectedKey) {
+          return selectedKey.id;
+        }) :
+      [];
+    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
+    this.renderWidgets();
   },
   updateSelectedSize: function () {
     var sizes            = this.state.sizes;
@@ -1287,90 +1397,19 @@ exports.DigitalOceanControl.prototype = {
       [];
     this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
   },
-  render: function () {
-    var enabled = this.state.enabled;
-    var failed  = this.state.failed;
-    this.accountWidget.setState({
-        enabled:        enabled,
-        account:        this.state.account ? this.state.account.email : undefined
-      });
-    this.hostnameWidget.setState({
-        enabled:        true,
-        value:          this.storage.get('hostname')
-      });
-    this.sizeWidget.setState({
-        enabled:        enabled && !failed,
-        sizes:          this.state.sizes,
-        selectedSize:   this.state.selectedSize
-      });
-    this.sizeLegend.setState({
-        selectedSize:   this.state.selectedSize
-      });
-    this.imageWidget.setState({
-        enabled:        enabled && !failed,
-        images:         this.state.images,
-        selectedImage:  this.state.selectedImage
-      });
-    this.regionWidget.setState({
-        enabled:        enabled && !failed,
-        selectedSize:   this.state.selectedSize,
-        selectedImage:  this.state.selectedImage,
-        regions:        this.state.regions,
-        selectedRegion: this.state.selectedRegion
-      });
-    this.keysWidget.setState({
-        enabled:        enabled && !failed,
-        keys:           this.state.keys,
-        selectedKeys:   this.state.selectedKeys
-      });
-  },
-  handleLink: function () {
-    this.storage.unset('token');
-    this.state = this.getInitialState();
-    this.render();
-    setTimeout(function () {
-        DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
-      }.bind(this),
-      1000);
-  },
-  handleUnlink: function () {
-    this.storage.unset('token');
-    this.state = this.getInitialState();
-    this.state.enabled = true;
-    this.render();
-  },
-  handleChangeHostname: function (hostname) {
-    var validHostname = hostname.replace(/[^a-z0-9\-]/g, '');
-    this.storage.set('hostname', validHostname.length ? validHostname : undefined);
-    this.render();
-  },
-  handleSelectSize: function (selectedSize) {
-    this.state.selectedSize = selectedSize;
-    this.storage.set('selected_size_slug', selectedSize.slug);
-    this.updateSelectedRegion();
-    this.render();
-  },
-  handleSelectImage: function (selectedImage) {
-    this.state.selectedImage = selectedImage;
-    this.storage.set('selected_image_slug', selectedImage.slug);
-    this.updateSelectedRegion();
-    this.render();
-  },
-  handleSelectRegion: function (selectedRegion) {
-    this.state.selectedRegion = selectedRegion;
-    this.storage.set('selected_region_slug', selectedRegion.slug);
-    this.render();
-  },
-  handleChangeSelectedKeys: function (selectedKeys) {
-    this.state.selectedKeys = selectedKeys;
-    var selectedKeyIds = selectedKeys ?
-      selectedKeys.map(function (selectedKey) {
-          return selectedKey.id;
-        }) :
-      [];
-    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
-    this.render();
-  },
+  updateReady: function () {
+    if (
+      (this.storage.get('hostname') || this.storage.get('default_hostname')) &&
+      this.storage.get('selected_size_slug') &&
+      this.storage.get('selected_image_slug') &&
+      this.storage.get('selected_region_slug') &&
+      this.storage.get('token')
+    ) {
+      this.props.onReady();
+    } else {
+      this.props.onUnready();
+    }
+  }
 };
 
 
