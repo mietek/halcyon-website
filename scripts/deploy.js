@@ -43,7 +43,7 @@ exports.Control = function (props) {
   this.state = this.getInitialState();
   this.createWidgets();
   this.createControl();
-}
+};
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
