@@ -2,7 +2,7 @@
 title: Deploy to DigitalOcean
 page-data:
 - key: max-section-link-level
-  value: 2
+  value: 4
 page-footer: |
   <script>widgets.start();</script>
 ---
