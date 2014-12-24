@@ -583,23 +583,23 @@ exports.DeployControl.prototype = {
       });
   },
   loadData: function () {
-      this.loadAccount(function () {
-          this.loadSizes(function () {
-              this.updateSelectedSize();
-              this.loadImages(function () {
-                  this.updateSelectedImage();
-                  this.loadRegions(function () {
-                      this.updateSelectedRegion();
-                      this.loadKeys(function () {
-                          this.updateSelectedKeys();
-                          this.state.linkable = true;
-                          this.updateReady();
-                          this.renderWidgets();
-                        }.bind(this));
-                    }.bind(this));
-                }.bind(this));
-            }.bind(this));
-        }.bind(this));
+    this.loadAccount(function () {
+        this.loadSizes(function () {
+            this.updateSelectedSize();
+            this.loadImages(function () {
+                this.updateSelectedImage();
+                this.loadRegions(function () {
+                    this.updateSelectedRegion();
+                    this.loadKeys(function () {
+                        this.updateSelectedKeys();
+                        this.state.linkable = true;
+                        this.updateReady();
+                        this.renderWidgets();
+                      }.bind(this));
+                  }.bind(this));
+              }.bind(this));
+          }.bind(this));
+      }.bind(this));
   },
   loadAccount: function (next) {
     exports.getAccount(function (account) {
@@ -741,7 +741,7 @@ exports.DeployControl.prototype = {
         }
       }
       if (!selectedSize && sizes.length) {
-        selectedSize = this.state.sizes[0];
+        selectedSize = sizes[0];
       }
     }
     this.state.selectedSize = selectedSize;
