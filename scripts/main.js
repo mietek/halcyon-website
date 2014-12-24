@@ -3,6 +3,7 @@
 window.easeScroll = require('ease-scroll');
 window.cannot = require('cannot');
 window.deploy = require('deploy');
+window.monitor = require('monitor');
 
 
 window.tweakGalleryItems = function () {
