@@ -863,9 +863,9 @@ exports.GitHubControl.prototype = {
   },
   getInitialState: function () {
     return {
-      enabled: false,
-      account: undefined,
-      vars:    undefined
+      linkable: false,
+      account:  undefined,
+      vars:     undefined
     };
   },
   createWidgets: function () {
@@ -896,7 +896,7 @@ exports.GitHubControl.prototype = {
   },
   renderWidgets: function () {
     this.accountWidget.setState({
-        enabled:    this.state.enabled,
+        enabled:    this.state.linkable,
         account:    this.state.account ? this.state.account.login : undefined
       });
     this.sourceWidget.setState({
@@ -914,7 +914,7 @@ exports.GitHubControl.prototype = {
   },
   loadData: function () {
     this.loadAccount(function () {
-        this.state.enabled = true;
+        this.state.linkable = true;
         this.renderWidgets();
         this.loadSourceInfo(function () {
             this.updateVars();
@@ -949,7 +949,7 @@ exports.GitHubControl.prototype = {
   },
   handleLink: function () {
     this.storage.unset('token');
-    this.state.enabled = false;
+    this.state.linkable = false;
     this.state.account = undefined;
     this.renderWidgets();
     setTimeout(function () {
@@ -959,7 +959,7 @@ exports.GitHubControl.prototype = {
   },
   handleUnlink: function () {
     this.storage.unset('token');
-    this.state.enabled = true;
+    this.state.linkable = true;
     this.state.account = undefined;
     this.renderWidgets();
   },
@@ -1065,7 +1065,7 @@ exports.DigitalOceanControl.prototype = {
   },
   getInitialState: function () {
     return {
-      enabled:        false,
+      linkable:       false,
       failed:         false,
       account:        undefined,
       sizes:          undefined,
@@ -1119,10 +1119,10 @@ exports.DigitalOceanControl.prototype = {
     this.renderWidgets();
   },
   renderWidgets: function () {
-    var enabled = this.state.enabled;
-    var failed  = this.state.failed;
+    var linkable = this.state.linkable;
+    var failed   = this.state.failed;
     this.accountWidget.setState({
-        enabled:        enabled,
+        enabled:        linkable,
         account:        this.state.account ? this.state.account.email : undefined
       });
     this.hostnameWidget.setState({
@@ -1130,7 +1130,7 @@ exports.DigitalOceanControl.prototype = {
         value:          this.storage.get('hostname')
       });
     this.sizeWidget.setState({
-        enabled:        enabled && !failed,
+        enabled:        linkable && !failed,
         sizes:          this.state.sizes,
         selectedSize:   this.state.selectedSize
       });
@@ -1139,19 +1139,19 @@ exports.DigitalOceanControl.prototype = {
         failed:         failed
       });
     this.imageWidget.setState({
-        enabled:        enabled && !failed,
+        enabled:        linkable && !failed,
         images:         this.state.images,
         selectedImage:  this.state.selectedImage
       });
     this.regionWidget.setState({
-        enabled:        enabled && !failed,
+        enabled:        linkable && !failed,
         selectedSize:   this.state.selectedSize,
         selectedImage:  this.state.selectedImage,
         regions:        this.state.regions,
         selectedRegion: this.state.selectedRegion
       });
     this.keysWidget.setState({
-        enabled:        enabled && !failed,
+        enabled:        linkable && !failed,
         keys:           this.state.keys,
         selectedKeys:   this.state.selectedKeys
       });
@@ -1166,7 +1166,7 @@ exports.DigitalOceanControl.prototype = {
                       this.updateSelectedRegion();
                       this.loadKeys(function () {
                           this.updateSelectedKeys();
-                          this.state.enabled = true;
+                          this.state.linkable = true;
                           this.updateReady();
                           this.renderWidgets();
                         }.bind(this));
@@ -1265,7 +1265,7 @@ exports.DigitalOceanControl.prototype = {
   handleUnlink: function () {
     this.storage.unset('token');
     this.state = this.getInitialState();
-    this.state.enabled = true;
+    this.state.linkable = true;
     this.updateReady();
     this.renderWidgets();
   },
