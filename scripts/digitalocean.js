@@ -143,7 +143,7 @@ exports.getAccountKeys = function (yea, nay, token) {
 };
 
 
-exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, keyIds, yea, nay, token) {
+exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, keyIds, sourceUrl, yea, nay, token) {
   http.postJsonResource('https://api.digitalocean.com/v2/droplets', {
       'name':               hostname,
       'size':               sizeSlug,
@@ -153,7 +153,7 @@ exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, key
       'backups':            false, // TODO: Support extra options.
       'ipv6':               false,
       'private_networking': false,
-      'user_data':          null // TODO
+      'user_data':          null // TODO: Use sourceUrl.
     },
     function (resp) {
       var droplet = resp['droplet'];
