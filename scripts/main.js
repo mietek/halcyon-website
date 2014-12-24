@@ -3,6 +3,9 @@
 window.easeScroll = require('ease-scroll');
 window.cannot = require('cannot');
 window.deploy = require('deploy');
+window.digitalocean = require('digitalocean');
+window.github = require('github');
+window.http = require('http');
 window.monitor = require('monitor');
 
 
