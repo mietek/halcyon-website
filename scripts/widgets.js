@@ -178,7 +178,7 @@ var PushButton = React.createClass({
     this.props.onClick();
   },
   render: function () {
-    var className = this.props.className || 'pill-button'; // TODO
+    var className = this.props.className || 'pill-button'; // TODO: Clean up CSS.
     className += this.props.enabled ? ' enabled' : ' disabled';
     return (
       React.createElement('a', {
@@ -351,7 +351,7 @@ var LegendArea = React.createClass({
     return (
       React.createElement('div', {
           id:        this.props.id,
-          className: this.props.className || 'pre-like meta' // TODO
+          className: this.props.className || 'pre-like meta' // TODO: Clean up CSS.
         }, this.props.children));
   }
 });
@@ -1116,7 +1116,7 @@ exports.DigitalOceanControl.prototype = {
   loadImages: function (next) {
     DigitalOcean.getDistributionImages(function (images) {
         this.state.images = images.filter(function (image) {
-            return image.slug === 'ubuntu-14-04-x64'; // TODO
+            return image.slug === 'ubuntu-14-04-x64'; // TODO: Support CentOS 7.
           });
         return next();
       }.bind(this),

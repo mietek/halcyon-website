@@ -150,10 +150,10 @@ exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, key
       'image':              imageSlug,
       'region':             regionSlug,
       'ssh_keys':           keyIds,
-      'backups':            false, // TODO
+      'backups':            false, // TODO: Support extra options.
       'ipv6':               false,
       'private_networking': false,
-      'user_data':          null
+      'user_data':          null // TODO
     },
     function (resp) {
       var droplet = resp['droplet'];
