@@ -35,6 +35,9 @@ window.tweakGalleryLinks = function () {
 };
 
 
+
+// TODO: Rewrite gallery and other widgets using React.
+
 (function () {
   addEventListener('load', function () {
       if (document.documentElement.classList.contains('tweak-gallery')) {
