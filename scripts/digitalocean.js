@@ -35,7 +35,8 @@ exports.postJsonResource = function (url, obj, yea, nay, token, opts) {
   if (!token) {
     return nay('no_token');
   }
-  http.postResource(url, obj ? JSON.stringify(obj) : null, function (resp) {
+  http.postResource(url, obj ? JSON.stringify(obj) : null,
+    function (resp) {
       var json = JSON.parse(resp);
       if (!json) {
         return nay('bad_response');
@@ -76,7 +77,8 @@ exports.revokeToken = function (yea, nay, token) {
 
 
 exports.getAccount = function (yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/account', function (resp) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/account',
+    function (resp) {
       var account = resp['account'];
       return account ? yea(account) : nay('bad_response');
     },
@@ -85,7 +87,8 @@ exports.getAccount = function (yea, nay, token) {
 
 
 exports.getSizes = function (yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/sizes', function (resp) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/sizes',
+    function (resp) {
       var sizes = resp['sizes'];
       if (!sizes) {
         return nay('bad_response');
@@ -100,7 +103,8 @@ exports.getSizes = function (yea, nay, token) {
 
 
 exports.getDistributionImages = function (yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution', function (resp) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution',
+    function (resp) {
       var images = resp['images'];
       if (!images) {
         return nay('bad_response');
@@ -117,7 +121,8 @@ exports.getDistributionImages = function (yea, nay, token) {
 
 
 exports.getRegions = function (yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/regions', function (resp) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/regions',
+    function (resp) {
       var regions = resp['regions'];
       if (!regions) {
         return nay('bad_response');
@@ -132,7 +137,8 @@ exports.getRegions = function (yea, nay, token) {
 
 
 exports.getAccountKeys = function (yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/account/keys', function (resp) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/account/keys',
+    function (resp) {
       var keys = resp['ssh_keys'];
       if (!keys) {
         return nay('bad_response');
