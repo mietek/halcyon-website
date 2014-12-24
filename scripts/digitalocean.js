@@ -32,7 +32,7 @@ exports.postJsonResource = function (url, obj, yea, nay, token, opts) {
   if (!token) {
     return nay('no_token');
   }
-  exports.postResource(url, obj ? JSON.stringify(obj) : null, function (resp) {
+  http.postResource(url, obj ? JSON.stringify(obj) : null, function (resp) {
       var json = JSON.parse(resp);
       if (!json) {
         return nay('bad_response');
@@ -144,7 +144,7 @@ exports.getAccountKeys = function (yea, nay, token) {
 
 
 exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, keyIds, sourceUrl, yea, nay, token) {
-  http.postJsonResource('https://api.digitalocean.com/v2/droplets', {
+  exports.postJsonResource('https://api.digitalocean.com/v2/droplets', {
       'name':               hostname,
       'size':               sizeSlug,
       'image':              imageSlug,
