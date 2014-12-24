@@ -187,7 +187,7 @@ var SourceLegend = React.createClass({
 });
 
 
-exports.Control = function (props) {
+exports.DeployControl = function (props) {
   this.props = this.getDefaultProps();
   Object.keys(props).forEach(function (key) {
       this.props[key] = props[key];
@@ -203,7 +203,7 @@ exports.Control = function (props) {
   this.createWidgets();
   this.updateReady();
 };
-exports.Control.prototype = {
+exports.DeployControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:    'github',

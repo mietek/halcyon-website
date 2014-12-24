@@ -459,7 +459,7 @@ var KeysWidget = React.createClass({
 });
 
 
-exports.Control = function (props) {
+exports.DeployControl = function (props) {
   this.props = this.getDefaultProps();
   Object.keys(props).forEach(function (key) {
       this.props[key] = props[key];
@@ -470,7 +470,7 @@ exports.Control = function (props) {
   this.state = this.getInitialState();
   this.createWidgets();
 };
-exports.Control.prototype = {
+exports.DeployControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:      'digitalocean',

@@ -75,7 +75,7 @@ exports.Control.prototype = {
       });
   },
   createControl: function () {
-    this.ghControl = new GitHub.Control({
+    this.ghControl = new GitHub.DeployControl({
         clientId:  this.props.ghClientId,
         token:     this.props.ghToken,
         sourceUrl: this.props.sourceUrl,
@@ -88,7 +88,7 @@ exports.Control.prototype = {
           this.renderWidgets();
         }.bind(this)
       });
-    this.doControl = new DigitalOcean.Control({
+    this.doControl = new DigitalOcean.DeployControl({
         clientId:        this.props.doClientId,
         callbackUrl:     this.props.doCallbackUrl,
         token:           this.props.doToken,
