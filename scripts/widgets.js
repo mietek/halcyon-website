@@ -490,7 +490,7 @@ var SourceLegend = React.createClass({
           React.createElement('p', null,
             'Enter a ',
             React.createElement('em', null, 'git'),
-            ' URL to begin.'),
+            ' URL to continue.'),
           React.createElement('p', null,
             'For applications hosted on GitHub, the environment variables required for configuration can be determined from an ',
             React.createElement('a', {
