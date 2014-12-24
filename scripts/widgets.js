@@ -968,12 +968,12 @@ exports.GitHubControl.prototype = {
     this.state.sourceInfo = undefined;
     this.handleDebounceSourceUrl();
     this.updateVars();
-    this.updateReady();
     this.renderWidgets();
   },
   handleDebounceSourceUrl: exports.debounce(function () {
       this.loadSourceInfo(function () {
           this.updateVars();
+          this.updateReady();
           this.renderWidgets();
         }.bind(this));
     },
@@ -1035,9 +1035,12 @@ exports.GitHubControl.prototype = {
     if (this.storage.get('source_url')) {
       this.props.onReady();
     } else {
-      this.props.onUneady();
+      this.props.onUnready();
     }
   },
+  getSourceUrl: function () {
+    return this.storage.get('source_url');
+  }
 };
 
 
@@ -1458,12 +1461,10 @@ exports.MainControl.prototype = {
         token:     this.props.ghToken,
         sourceUrl: this.props.sourceUrl,
         onReady:   function () {
-          console.log('GH ready');
           this.state.ghReady = true;
           this.renderWidgets();
         }.bind(this),
         onUnready: function () {
-          console.log('GH not ready');
           this.state.ghReady = false;
           this.renderWidgets();
         }.bind(this)
@@ -1474,12 +1475,10 @@ exports.MainControl.prototype = {
         token:           this.props.doToken,
         defaultHostname: random.getHostname(),
         onReady:         function () {
-          console.log('DO ready');
           this.state.doReady = true;
           this.renderWidgets();
         }.bind(this),
         onUnready:       function () {
-          console.log('DO not ready');
           this.state.doReady = false;
           this.renderWidgets();
         }.bind(this)
@@ -1490,7 +1489,13 @@ exports.MainControl.prototype = {
     this.ghControl.loadData();
   },
   handleDeploy: function () {
-    // TODO
+    this.doControl.createDroplet(this.ghControl.getSourceUrl(),
+      function (droplet) {
+        console.log('yea', droplet);
+      },
+      function (err) {
+        console.log('nay', err);
+      });
   }
 };
 
