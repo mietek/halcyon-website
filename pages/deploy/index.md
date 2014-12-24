@@ -4,7 +4,7 @@ page-data:
 - key: max-section-link-level
   value: 4
 page-footer: |
-  <script>widgets.start();</script>
+  <script>deploy.start();</script>
 ---
 
 

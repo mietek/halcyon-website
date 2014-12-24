@@ -2,10 +2,7 @@
 
 window.easeScroll = require('ease-scroll');
 window.cannot = require('cannot');
-
-window.digitalocean = require('digitalocean');
-window.github = require('github');
-window.widgets = require('widgets');
+window.deploy = require('deploy');
 
 
 window.tweakGalleryItems = function () {

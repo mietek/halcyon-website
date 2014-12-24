@@ -1,91 +1,9 @@
 'use strict';
 
 var React = require('react');
-var GitHub = require('github');
-var DigitalOcean = require('digitalocean');
-var http = require('http');
-var random = require('random');
 
 
-exports.CachedStorage = function (prefix) {
-  this.prefix = prefix;
-};
-exports.CachedStorage.prototype = {
-  storageKey: function (key) {
-    return this.prefix ? this.prefix + '_' + key : key;
-  },
-  get: function (key, defaultValue) {
-    this.cache = this.cache || {};
-    var value = this.cache[key];
-    if (value !== undefined) {
-      return value;
-    }
-    var jsonValue = localStorage.getItem(this.storageKey(key));
-    if (jsonValue !== undefined) {
-      value = JSON.parse(jsonValue);
-      this.cache[key] = value;
-      return value;
-    }
-    if (defaultValue !== undefined) {
-      return this.set(key, defaultValue);
-    }
-    return undefined;
-  },
-  set: function (key, value) {
-    this.cache = this.cache || {};
-    if (value === undefined) {
-      return this.unset(key);
-    }
-    this.cache[key] = value;
-    localStorage.setItem(this.storageKey(key), JSON.stringify(value));
-    return value;
-  },
-  unset: function (key) {
-    this.cache = this.cache || {};
-    delete this.cache[key];
-    localStorage.removeItem(this.storageKey(key));
-    return undefined;
-  },
-  clear: function () {
-    this.cache = {};
-    // NOTE: This works around a bug in Safari 7.1.
-    var storageKeys = [];
-    for (var i = 0; i < localStorage.length; i += 1) {
-      var storageKey = localStorage.key(i);
-      if (storageKey.lastIndexOf(this.prefix, 0) === 0) {
-        storageKeys.push(storageKey);
-      }
-    }
-    for (var j = 0; j < storageKeys.length; j += 1) {
-      localStorage.removeItem(storageKeys[j]);
-    }
-  }
-};
-exports.dumpCachedStorage = function (prefix) {
-  for (var i = 0; i < localStorage.length; i += 1) {
-    var storageKey = localStorage.key(i);
-    if (storageKey.lastIndexOf(prefix, 0) === 0) {
-      console.log(storageKey, localStorage.getItem(storageKey));
-    }
-  }
-};
-
-
-exports.debounce = function (func, duration) {
-  var timeout;
-  return function () {
-    var that = this;
-    var args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-        func.apply(that, args);
-      },
-      duration);
-  };
-};
-
-
-var StaticField = React.createClass({
+exports.StaticField = React.createClass({
   displayName: 'StaticField',
   getDefaultProps: function () {
     return {
@@ -102,7 +20,7 @@ var StaticField = React.createClass({
 });
 
 
-var BackgroundImage = React.createClass({
+exports.BackgroundImage = React.createClass({
   displayName: 'BackgroundImage',
   getDefaultProps: function () {
     return {
@@ -127,7 +45,7 @@ var BackgroundImage = React.createClass({
 });
 
 
-var InputField = React.createClass({
+exports.InputField = React.createClass({
   displayName: 'InputField',
   getDefaultProps: function () {
     return {
@@ -156,7 +74,7 @@ var InputField = React.createClass({
 });
 
 
-var InputWidget = React.createClass({
+exports.InputWidget = React.createClass({
   displayName: 'InputWidget',
   getDefaultProps: function () {
     return {
@@ -176,7 +94,7 @@ var InputWidget = React.createClass({
       React.createElement('div', {
           className: 'flex'
         },
-        React.createElement(InputField, {
+        React.createElement(exports.InputField, {
             id:          this.props.id,
             className:   this.props.className,
             enabled:     this.state.enabled,
@@ -189,7 +107,7 @@ var InputWidget = React.createClass({
 });
 
 
-var PushButton = React.createClass({
+exports.PushButton = React.createClass({
   displayName: 'PushButton',
   getDefaultProps: function () {
     return {
@@ -216,7 +134,7 @@ var PushButton = React.createClass({
 });
 
 
-var MapItemWidget = React.createClass({
+exports.MapItemWidget = React.createClass({
   displayName: 'MapItemWidget',
   getDefaultProps: function () {
     return {
@@ -236,21 +154,21 @@ var MapItemWidget = React.createClass({
       React.createElement('div', {
           className: 'flex'
         },
-        React.createElement(InputField, {
+        React.createElement(exports.InputField, {
             className:   className,
             enabled:     this.props.enabled && !this.props.required,
             placeholder: this.props.required ? 'required name' : 'name',
             value:       this.props.name,
             onChange:    this.props.onChangeName
           }),
-        React.createElement(InputField, {
+        React.createElement(exports.InputField, {
             className:   className,
             enabled:     this.props.enabled,
             placeholder: this.props.required ? 'required value' : 'value',
             value:       this.props.value,
             onChange:    this.props.onChangeValue
           }),
-        React.createElement(PushButton, {
+        React.createElement(exports.PushButton, {
             className:   'map-button',
             enabled:     this.props.enabled && !this.props.required,
             title:       'Remove',
@@ -260,7 +178,7 @@ var MapItemWidget = React.createClass({
 });
 
 
-var MapWidget = React.createClass({
+exports.MapWidget = React.createClass({
   displayName: 'MapWidget',
   getDefaultProps: function () {
     return {
@@ -340,7 +258,7 @@ var MapWidget = React.createClass({
       React.createElement('div', null,
         this.state.items ? this.state.items.map(function (item, index) {
             return (
-              React.createElement(MapItemWidget, {
+              React.createElement(exports.MapItemWidget, {
                   key:           index,
                   enabled:       this.state.enabled,
                   required:      item.required,
@@ -360,7 +278,7 @@ var MapWidget = React.createClass({
         React.createElement('div', {
             className: 'flex justify-end'
           },
-          React.createElement(PushButton, {
+          React.createElement(exports.PushButton, {
               className: 'map-button',
               enabled:   this.state.enabled,
               title:     'Add',
@@ -370,7 +288,7 @@ var MapWidget = React.createClass({
 });
 
 
-var LegendArea = React.createClass({
+exports.LegendArea = React.createClass({
   displayName: 'LegendArea',
   render: function () {
     return (
@@ -382,7 +300,7 @@ var LegendArea = React.createClass({
 });
 
 
-var BimodalPushButton = React.createClass({
+exports.BimodalPushButton = React.createClass({
   displayName: 'BimodalPushButton',
   getDefaultProps: function () {
     return {
@@ -415,7 +333,7 @@ var BimodalPushButton = React.createClass({
 });
 
 
-var RadioButton = React.createClass({
+exports.RadioButton = React.createClass({
   displayName: 'RadioButton',
   getDefaultProps: function () {
     return {
@@ -444,7 +362,7 @@ var RadioButton = React.createClass({
 });
 
 
-var AccountWidget = React.createClass({
+exports.AccountWidget = React.createClass({
   displayName: 'AccountWidget',
   getDefaultProps: function () {
     return {
@@ -465,11 +383,11 @@ var AccountWidget = React.createClass({
       React.createElement('div', {
           className: 'flex'
         },
-        React.createElement(StaticField, {
+        React.createElement(exports.StaticField, {
             className: className,
             title:     this.state.account ? this.state.account : 'none'
           }),
-        React.createElement(BimodalPushButton, {
+        React.createElement(exports.BimodalPushButton, {
             className:    'account-button',
             enabled:      this.state.enabled,
             mode:         this.state.account ? true : false,
@@ -480,1082 +398,3 @@ var AccountWidget = React.createClass({
           })));
   }
 });
-
-
-var SourceLegend = React.createClass({
-  displayName: 'SourceLegend',
-  getDefaultProps: function () {
-    return {
-      onLink: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      account:    undefined,
-      sourceInfo: undefined
-    };
-  },
-  handleLink: function (event) {
-    event.preventDefault();
-    this.props.onLink();
-  },
-  render: function () {
-    var info = this.state.sourceInfo;
-    if (!info) {
-      return (
-        React.createElement(LegendArea, null,
-          React.createElement('p', null,
-            'Enter a ',
-            React.createElement('em', null, 'git'),
-            ' URL to continue.'),
-          React.createElement('p', null,
-            'For applications hosted on GitHub, the environment variables required for configuration can be determined from an ',
-            React.createElement('a', {
-                href: 'https://devcenter.heroku.com/articles/app-json-schema'
-              },
-              React.createElement('code', null, 'app.json')),
-            ' file included in the repository.'),
-          this.state.account ? null : React.createElement('p', null,
-            React.createElement('a', {
-                href: '',
-                onClick: this.handleLink
-              },
-              'Connect'),
-            ' your GitHub account to avoid running into GitHub API rate limits.')));
-    }
-    return (
-      React.createElement(LegendArea, null,
-        React.createElement('div', {
-            className: 'flex'
-          },
-          info.logo ? React.createElement('a', {
-              href: info.website || info.repository
-            },
-            React.createElement('img', {
-                className: 'source-logo',
-                src:       info.logo
-              })) : null,
-          React.createElement('div', {
-              className: 'shrink'
-            },
-            React.createElement('p', null,
-              React.createElement('a', {
-                  href: info.website || info.repository
-                },
-                React.createElement('strong', null, info.name || 'no name'))),
-            React.createElement('p', null, info.description || 'no description')))));
-  }
-});
-
-
-var SizeLegend = React.createClass({
-  displayName: 'SizeLegend',
-  getDefaultProps: function () {
-    return {
-      onLink: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      failed:       false,
-      selectedSize: undefined
-    };
-  },
-  handleLink: function (event) {
-    event.preventDefault();
-    this.props.onLink();
-  },
-  render: function () {
-    if (this.state.failed) {
-      return (
-        React.createElement(LegendArea, null,
-          React.createElement('p', null,
-            'Something went wrong.  ',
-            React.createElement('a', {
-                href: ''
-              },
-              'Refresh'),
-            ' the page to continue.')));
-    }
-    var size = this.state.selectedSize;
-    if (!size) {
-      return (
-        React.createElement(LegendArea, null,
-          React.createElement('p', null,
-            React.createElement('a', {
-                href: '',
-                onClick: this.handleLink
-              },
-              'Connect'),
-            ' your DigitalOcean account to continue.'),
-          React.createElement('p', null,
-            'If you need to sign up for a new account, you can help the Halcyon project and receive $10 credit from DigitalOcean by using a ',
-            React.createElement('a', {
-                href: 'https://cloud.digitalocean.com/registrations/new?refcode=6b1199e29661'
-              },
-              'referral link'),
-            '.')));
-    }
-    var subtitle;
-    if (size.memory < 1024) {
-      subtitle = size.memory + ' MB RAM, ';
-    } else {
-      subtitle = size.memory / 1024 + ' GB RAM, ';
-    }
-    subtitle += size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') +
-      size.disk + ' GB SSD disk, ' + size.transfer + ' TB transfer';
-    return (
-      React.createElement(LegendArea, null,
-        React.createElement('p', null,
-          React.createElement('a', {
-              href: 'https://digitalocean.com/pricing/'
-            },
-            React.createElement('strong', null, '$' + size['price_monthly'] + '/month'),
-            ' — $' + size['price_hourly'] + '/hour')),
-        React.createElement('p', null, subtitle)));
-  }
-});
-
-
-var SizeWidget = React.createClass({
-  displayName: 'SizeWidget',
-  getDefaultProps: function () {
-    return {
-      onSelectSize: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled:      false,
-      sizes:        undefined,
-      selectedSize: undefined
-    };
-  },
-  render: function () {
-    if (!this.state.sizes) {
-      return React.createElement(RadioButton, {
-          className: 'size-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    var selectedSizeSlug = this.state.selectedSize ? this.state.selectedSize.slug : null;
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.sizes.map(function (size) {
-            var title = size.memory < 1024 ? size.memory + ' MB' : size.memory / 1024 + ' GB';
-            return (
-              React.createElement(RadioButton, {
-                  key:       size.slug,
-                  className: 'size-button',
-                  enabled:   this.state.enabled,
-                  selected:  size.slug === selectedSizeSlug,
-                  title:     title,
-                  onClick:   function () {
-                    this.props.onSelectSize(size);
-                  }.bind(this)
-                })
-            );
-          }.bind(this))));
-  }
-});
-
-
-var ImageWidget = React.createClass({
-  displayName: 'ImageWidget',
-  getDefaultProps: function () {
-    return {
-      onSelectImage: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled:       false,
-      images:        undefined,
-      selectedImage: undefined
-    };
-  },
-  render: function () {
-    if (!this.state.images) {
-      return React.createElement(RadioButton, {
-          className: 'image-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    var selectedImageSlug = this.state.selectedImage ? this.state.selectedImage.slug : null;
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.images.map(function (image) {
-            return (
-              React.createElement(RadioButton, {
-                  key:       image.slug,
-                  className: 'image-button',
-                  enabled:   this.state.enabled,
-                  selected:  image.slug === selectedImageSlug,
-                  title:     image.distribution + ' ' + image.name,
-                  onClick:   function () {
-                    this.props.onSelectImage(image);
-                  }.bind(this)
-                })
-            );
-          }.bind(this))));
-  }
-});
-
-
-var RegionWidget = React.createClass({
-  displayName: 'RegionWidget',
-  getDefaultProps: function () {
-    return {
-      onSelectRegion: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled:        false,
-      selectedSize:   undefined,
-      selectedImage:  undefined,
-      regions:        undefined,
-      selectedRegion: undefined
-    };
-  },
-  render: function () {
-    if (!this.state.regions) {
-      return React.createElement(RadioButton, {
-          className: 'region-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    var availableRegionSlugsBySize  = this.state.selectedSize ? this.state.selectedSize.regions : [];
-    var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
-    var selectedRegionSlug          = this.state.selectedRegion ? this.state.selectedRegion.slug : null;
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.regions.map(function (region) {
-            var available = availableRegionSlugsBySize.indexOf(region.slug) !== -1 && availableRegionSlugsByImage.indexOf(region.slug);
-            var metadata  = region.features.indexOf('metadata') !== -1;
-            return (
-              React.createElement(RadioButton, {
-                  key:       region.slug,
-                  className: 'region-button',
-                  enabled:   region.available && this.state.enabled && available && metadata,
-                  selected:  region.slug === selectedRegionSlug,
-                  title:     region.name,
-                  onClick:   function () {
-                    this.props.onSelectRegion(region);
-                  }.bind(this)
-                })
-            );
-          }.bind(this))));
-  }
-});
-
-
-var KeysWidget = React.createClass({
-  displayName: 'KeysWidget',
-  getDefaultProps: function () {
-    return {
-      onChange: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled:      false,
-      keys:         undefined,
-      selectedKeys: undefined
-    };
-  },
-  handleSelectKey: function (selectedKey) {
-    var changedSelectedKeys = [];
-    if (this.state.selectedKeys) {
-      this.state.selectedKeys.forEach(function (key) {
-          changedSelectedKeys.push(key);
-        });
-    }
-    changedSelectedKeys.push(selectedKey);
-    this.props.onChange(changedSelectedKeys);
-  },
-  handleDeselectKey: function (deselectedKey) {
-    var changedSelectedKeys = [];
-    this.state.selectedKeys.forEach(function (key) {
-        if (key.id !== deselectedKey.id) {
-          changedSelectedKeys.push(key);
-        }
-      });
-    this.props.onChange(changedSelectedKeys);
-  },
-  render: function () {
-    if (!this.state.keys) {
-      return React.createElement(RadioButton, {
-          className: 'key-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    var selectedKeyIds = this.state.selectedKeys ?
-      this.state.selectedKeys.map(function (selectedKey) {
-          return selectedKey.id;
-        }) :
-      [];
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.keys.map(function (key) {
-            var selected = selectedKeyIds.indexOf(key.id) !== -1;
-            return (
-              React.createElement(RadioButton, {
-                  key:       key.id,
-                  className: 'key-button',
-                  enabled:   this.state.enabled,
-                  selected:  selected,
-                  title:     key.name,
-                  onClick:   function () {
-                    if (selected) {
-                      this.handleDeselectKey(key);
-                    } else {
-                      this.handleSelectKey(key);
-                    }
-                  }.bind(this)
-                })
-            );
-          }.bind(this))));
-  }
-});
-
-
-var DeployWidget = React.createClass({
-  displayName: 'DeployWidget',
-  getDefaultProps: function () {
-    return {
-      onDeploy: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled: false
-    };
-  },
-  render: function () {
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        React.createElement(PushButton, {
-            className: 'deploy-button',
-            enabled:   this.state.enabled,
-            title:     'Deploy to DigitalOcean',
-            onClick:   this.props.onDeploy
-          })));
-  }
-});
-
-
-exports.GitHubControl = function (props) {
-  this.props = this.getDefaultProps();
-  Object.keys(props).forEach(function (key) {
-      this.props[key] = props[key];
-    }.bind(this));
-  this.storage = new exports.CachedStorage(this.props.prefix);
-  if (this.props.token) {
-    this.storage.set('token', this.props.token);
-  }
-  if (this.props.sourceUrl) {
-    this.storage.set('source_url', this.props.sourceUrl);
-  }
-  this.state = this.getInitialState();
-  this.createWidgets();
-  this.updateReady();
-};
-exports.GitHubControl.prototype = {
-  getDefaultProps: function () {
-    return {
-      prefix:    'github',
-      clientId:  undefined,
-      token:     undefined,
-      sourceUrl: undefined,
-      onReady:   undefined,
-      onUnready: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      linkable: false,
-      account:  undefined,
-      vars:     undefined
-    };
-  },
-  createWidgets: function () {
-    this.accountWidget = React.render(
-      React.createElement(AccountWidget, {
-          onLink:   this.handleLink.bind(this),
-          onUnlink: this.handleUnlink.bind(this)
-        }),
-      document.getElementById('github-account-widget'));
-    this.sourceWidget = React.render(
-      React.createElement(InputWidget, {
-          type:        'url',
-          placeholder: 'https://github.com/user/project',
-          onChange:    this.handleChangeSourceUrl.bind(this)
-        }),
-      document.getElementById('github-source-widget'));
-    this.sourceLegend = React.render(
-      React.createElement(SourceLegend, {
-          onLink: this.handleLink.bind(this)
-        }),
-      document.getElementById('github-source-legend'));
-    this.varsWidget = React.render(
-      React.createElement(MapWidget, {
-          onChange: this.handleChangeVars.bind(this)
-        }),
-      document.getElementById('github-vars-widget'));
-    this.renderWidgets();
-  },
-  renderWidgets: function () {
-    this.accountWidget.setState({
-        enabled:    this.state.linkable,
-        account:    this.state.account ? this.state.account.login : undefined
-      });
-    this.sourceWidget.setState({
-        enabled:    true,
-        value:      this.storage.get('source_url')
-      });
-    this.sourceLegend.setState({
-        account:    this.state.account,
-        sourceInfo: this.state.sourceInfo
-      });
-    this.varsWidget.setState({
-        enabled:    true,
-        items:      this.storage.get('vars')
-      });
-  },
-  loadData: function () {
-    this.loadAccount(function () {
-        this.state.linkable = true;
-        this.renderWidgets();
-        this.loadSourceInfo(function () {
-            this.updateVars();
-            this.renderWidgets();
-          }.bind(this));
-      }.bind(this));
-  },
-  loadAccount: function (next) {
-    GitHub.getAuthenticatedUser(function (account) {
-        this.state.account = account;
-        return next();
-      }.bind(this),
-      function (err) {
-        console.error('Failed to load account:', err);
-        this.state.account = null;
-        return next();
-      }.bind(this),
-      this.storage.get('token'));
-  },
-  loadSourceInfo: function (next) {
-    var sourceUrl = this.storage.get('source_url');
-    GitHub.getJsonFile(sourceUrl, 'app.json', function (sourceInfo) {
-        this.state.sourceInfo = sourceInfo;
-        return next();
-      }.bind(this),
-      function (err) {
-        console.error('Failed to load source info:', err);
-        this.state.sourceInfo = null;
-        return next();
-      }.bind(this),
-      this.storage.get('token'));
-  },
-  handleLink: function () {
-    this.storage.unset('token');
-    this.state.linkable = false;
-    this.state.account = undefined;
-    this.renderWidgets();
-    setTimeout(function () {
-        GitHub.requestToken(this.props.clientId);
-      }.bind(this),
-      1000);
-  },
-  handleUnlink: function () {
-    this.storage.unset('token');
-    this.state.linkable = true;
-    this.state.account = undefined;
-    this.renderWidgets();
-  },
-  handleChangeSourceUrl: function (sourceUrl) {
-    this.storage.set('source_url', sourceUrl.length ? sourceUrl : undefined);
-    this.state.sourceInfo = undefined;
-    this.handleDebounceSourceUrl();
-    this.updateVars();
-    this.renderWidgets();
-  },
-  handleDebounceSourceUrl: exports.debounce(function () {
-      this.loadSourceInfo(function () {
-          this.updateVars();
-          this.updateReady();
-          this.renderWidgets();
-        }.bind(this));
-    },
-    1000),
-  handleChangeVars: function (vars) {
-    this.storage.set('vars', vars);
-    this.renderWidgets();
-  },
-  updateVars: function () {
-    var info         = this.state.sourceInfo;
-    var storedVars   = this.storage.get('vars');
-    var vars         = [];
-    var importedVars = {};
-    if (info && info.env) {
-      Object.keys(info.env).forEach(function (name) {
-          if (name === 'BUILDPACK_URL') {
-            return;
-          }
-          var value = info.env[name];
-          var importedItem = {
-            imported: true,
-            name:     name
-          };
-          if (typeof value === 'string') {
-            importedItem.required = true;
-            importedItem.value    = value.length ? value : undefined;
-          } else {
-            importedItem.required = value.required !== false;
-            importedItem.value    = value.value.length ? value.value : undefined;
-          }
-          importedVars[name] = importedItem;
-          vars.push(importedItem);
-        }.bind(this));
-    }
-    if (storedVars) {
-      storedVars.forEach(function (item) {
-          if (item.imported) {
-            return;
-          }
-          var importedItem = importedVars[item.name];
-          if (importedItem && !importedItem.value) {
-            delete importedItem.imported;
-            importedItem.value = item.value;
-          } else {
-            if (item.required) {
-              vars.push({
-                  name:  item.name,
-                  value: item.value
-                });
-            } else {
-              vars.push(item);
-            }
-          }
-        });
-    }
-    this.storage.set('vars', vars.length ? vars : undefined);
-  },
-  updateReady: function () {
-    if (this.storage.get('source_url')) {
-      this.props.onReady();
-    } else {
-      this.props.onUnready();
-    }
-  },
-  getSourceUrl: function () {
-    return this.storage.get('source_url');
-  }
-};
-
-
-exports.DigitalOceanControl = function (props) {
-  this.props = this.getDefaultProps();
-  Object.keys(props).forEach(function (key) {
-      this.props[key] = props[key];
-    }.bind(this));
-  this.storage = new exports.CachedStorage(this.props.prefix);
-  this.storage.set('token', this.props.token);
-  this.storage.set('default_hostname', this.props.defaultHostname);
-  this.state = this.getInitialState();
-  this.createWidgets();
-};
-exports.DigitalOceanControl.prototype = {
-  getDefaultProps: function () {
-    return {
-      prefix:      'digitalocean',
-      clientId:    undefined,
-      callbackUrl: undefined,
-      token:       undefined,
-      onReady:     undefined,
-      onUnready:   undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      linkable:       false,
-      failed:         false,
-      account:        undefined,
-      sizes:          undefined,
-      selectedSize:   undefined,
-      images:         undefined,
-      selectedImage:  undefined,
-      regions:        undefined,
-      selectedRegion: undefined,
-      keys:           undefined,
-      selectedKeys:   undefined
-    };
-  },
-  createWidgets: function () {
-    this.accountWidget = React.render(
-      React.createElement(AccountWidget, {
-          onLink:   this.handleLink.bind(this),
-          onUnlink: this.handleUnlink.bind(this)
-        }),
-      document.getElementById('digitalocean-account-widget'));
-    this.hostnameWidget = React.render(
-      React.createElement(InputWidget, {
-          placeholder: this.storage.get('default_hostname'),
-          onChange:    this.handleChangeHostname.bind(this)
-        }),
-      document.getElementById('digitalocean-hostname-widget'));
-    this.sizeWidget = React.render(
-      React.createElement(SizeWidget, {
-          onSelectSize: this.handleSelectSize.bind(this)
-        }),
-      document.getElementById('digitalocean-size-widget'));
-    this.sizeLegend = React.render(
-      React.createElement(SizeLegend, {
-          onLink: this.handleLink.bind(this)
-        }),
-      document.getElementById('digitalocean-size-legend'));
-    this.imageWidget = React.render(
-      React.createElement(ImageWidget, {
-          onSelectImage: this.handleSelectImage.bind(this)
-        }),
-      document.getElementById('digitalocean-image-widget'));
-    this.regionWidget = React.render(
-      React.createElement(RegionWidget, {
-          onSelectRegion: this.handleSelectRegion.bind(this)
-        }),
-      document.getElementById('digitalocean-region-widget'));
-    this.keysWidget = React.render(
-      React.createElement(KeysWidget, {
-          onChange: this.handleChangeSelectedKeys.bind(this)
-        }),
-      document.getElementById('digitalocean-keys-widget'));
-    this.backgroundImage = React.render(
-      React.createElement(BackgroundImage, {
-          src: 'http://i.imgur.com/WZEf0tB.png'
-        }),
-      document.getElementById('background-image'));
-    this.renderWidgets();
-  },
-  renderWidgets: function () {
-    var linkable = this.state.linkable;
-    var failed   = this.state.failed;
-    this.accountWidget.setState({
-        enabled:        linkable,
-        account:        this.state.account ? this.state.account.email : undefined
-      });
-    this.hostnameWidget.setState({
-        enabled:        true,
-        value:          this.storage.get('hostname')
-      });
-    this.sizeWidget.setState({
-        enabled:        linkable && !failed,
-        sizes:          this.state.sizes,
-        selectedSize:   this.state.selectedSize
-      });
-    this.sizeLegend.setState({
-        selectedSize:   this.state.selectedSize,
-        failed:         failed
-      });
-    this.imageWidget.setState({
-        enabled:        linkable && !failed,
-        images:         this.state.images,
-        selectedImage:  this.state.selectedImage
-      });
-    this.regionWidget.setState({
-        enabled:        linkable && !failed,
-        selectedSize:   this.state.selectedSize,
-        selectedImage:  this.state.selectedImage,
-        regions:        this.state.regions,
-        selectedRegion: this.state.selectedRegion
-      });
-    this.keysWidget.setState({
-        enabled:        linkable && !failed,
-        keys:           this.state.keys,
-        selectedKeys:   this.state.selectedKeys
-      });
-    this.backgroundImage.setState({
-        visible:        this.storage.get('hostname') === 'tallest-leek-2014'
-      });
-  },
-  loadData: function () {
-      this.loadAccount(function () {
-          this.loadSizes(function () {
-              this.updateSelectedSize();
-              this.loadImages(function () {
-                  this.updateSelectedImage();
-                  this.loadRegions(function () {
-                      this.updateSelectedRegion();
-                      this.loadKeys(function () {
-                          this.updateSelectedKeys();
-                          this.state.linkable = true;
-                          this.updateReady();
-                          this.renderWidgets();
-                        }.bind(this));
-                    }.bind(this));
-                }.bind(this));
-            }.bind(this));
-        }.bind(this));
-  },
-  loadAccount: function (next) {
-    DigitalOcean.getAccount(function (account) {
-        this.state.account = account;
-        return next();
-      }.bind(this),
-      function (err) {
-        console.error('Failed to load account:', err);
-        this.state.failed  = true;
-        this.state.account = null;
-        return next();
-      }.bind(this),
-      this.storage.get('token'));
-  },
-  loadSizes: function (next) {
-    DigitalOcean.getSizes(function (sizes) {
-        this.state.sizes = sizes;
-        return next();
-      }.bind(this),
-      function (err) {
-        console.error('Failed to load sizes:', err);
-        this.state.failed = true;
-        this.state.sizes  = null;
-        return next();
-      }.bind(this),
-      this.storage.get('token'));
-  },
-  loadImages: function (next) {
-    DigitalOcean.getDistributionImages(function (images) {
-        this.state.images = images.filter(function (image) {
-            return image.slug === 'ubuntu-14-04-x64'; // TODO: Support CentOS 7.
-          });
-        return next();
-      }.bind(this),
-      function (err) {
-        console.error('Failed to load images:', err);
-        this.state.failed = true;
-        this.state.images = null;
-        return next();
-      }.bind(this),
-      this.storage.get('token'));
-  },
-  loadRegions: function (next) {
-    DigitalOcean.getRegions(function (regions) {
-        this.state.regions = regions;
-        return next();
-      }.bind(this),
-      function (err) {
-        console.error('Failed to load regions:', err);
-        this.state.failed  = true;
-        this.state.regions = null;
-        return next();
-      }.bind(this),
-      this.storage.get('token'));
-  },
-  loadKeys: function (next) {
-    DigitalOcean.getAccountKeys(function (keys) {
-        this.state.keys = keys;
-        return next();
-      }.bind(this),
-      function (err) {
-        console.error('Failed to load keys:', err);
-        this.state.failed = true;
-        this.state.keys   = null;
-        return next();
-      }.bind(this),
-      this.storage.get('token'));
-  },
-  createDroplet: function (sourceUrl, yea, nay) {
-    DigitalOcean.createDroplet(
-      this.storage.get('hostname') || this.storage.get('default_hostname'),
-      this.storage.get('selected_size_slug'),
-      this.storage.get('selected_image_slug'),
-      this.storage.get('selected_region_slug'),
-      this.storage.get('selected_key_ids'),
-      sourceUrl, yea, nay,
-      this.storage.get('token'));
-  },
-  handleLink: function () {
-    this.storage.unset('token');
-    this.state = this.getInitialState();
-    this.updateReady();
-    this.renderWidgets();
-    setTimeout(function () {
-        DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
-      }.bind(this),
-      1000);
-  },
-  handleUnlink: function () {
-    this.storage.unset('token');
-    this.state = this.getInitialState();
-    this.state.linkable = true;
-    this.updateReady();
-    this.renderWidgets();
-  },
-  handleChangeHostname: function (hostname) {
-    var validHostname = hostname.replace(/[^a-z0-9\-]/g, '');
-    this.storage.set('hostname', validHostname.length ? validHostname : undefined);
-    this.renderWidgets();
-  },
-  handleSelectSize: function (selectedSize) {
-    this.state.selectedSize = selectedSize;
-    this.storage.set('selected_size_slug', selectedSize.slug);
-    this.updateSelectedRegion();
-    this.renderWidgets();
-  },
-  handleSelectImage: function (selectedImage) {
-    this.state.selectedImage = selectedImage;
-    this.storage.set('selected_image_slug', selectedImage.slug);
-    this.updateSelectedRegion();
-    this.renderWidgets();
-  },
-  handleSelectRegion: function (selectedRegion) {
-    this.state.selectedRegion = selectedRegion;
-    this.storage.set('selected_region_slug', selectedRegion.slug);
-    this.renderWidgets();
-  },
-  handleChangeSelectedKeys: function (selectedKeys) {
-    this.state.selectedKeys = selectedKeys;
-    var selectedKeyIds = selectedKeys ?
-      selectedKeys.map(function (selectedKey) {
-          return selectedKey.id;
-        }) :
-      [];
-    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
-    this.renderWidgets();
-  },
-  updateSelectedSize: function () {
-    var sizes            = this.state.sizes;
-    var selectedSizeSlug = this.storage.get('selected_size_slug');
-    var selectedSize;
-    if (sizes) {
-      if (selectedSizeSlug) {
-        for (var i = 0; i < sizes.length; i += 1) {
-          if (sizes[i].slug === selectedSizeSlug) {
-            selectedSize = sizes[i];
-            break;
-          }
-        }
-      }
-      if (!selectedSize && sizes.length) {
-        selectedSize = this.state.sizes[0];
-      }
-    }
-    this.state.selectedSize = selectedSize;
-    this.storage.set('selected_size_slug', selectedSize ? selectedSize.slug : undefined);
-  },
-  updateSelectedImage: function () {
-    var images            = this.state.images;
-    var selectedImageSlug = this.storage.get('selected_image_slug');
-    var selectedImage;
-    if (images) {
-      if (selectedImageSlug) {
-        for (var i = 0; i < images.length; i += 1) {
-          if (images[i].slug === selectedImageSlug) {
-            selectedImage = images[i];
-            break;
-          }
-        }
-      }
-      if (!selectedImage) {
-        for (var j = 0; j < images.length; j += 1) {
-          selectedImage = images[j];
-          break;
-        }
-      }
-    }
-    this.state.selectedImage = selectedImage;
-    this.storage.set('selected_image_slug', selectedImage ? selectedImage.slug : undefined);
-  },
-  updateSelectedRegion: function () {
-    var regions                     = this.state.regions;
-    var availableRegionSlugsBySize  = this.state.selectedSize ? this.state.selectedSize.regions : [];
-    var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
-    var selectedRegionSlug          = this.storage.get('selected_region_slug');
-    var selectedRegion;
-    if (regions) {
-      if (selectedRegionSlug && availableRegionSlugsBySize.indexOf(selectedRegionSlug) !== -1 && availableRegionSlugsByImage.indexOf(selectedRegionSlug) !== -1) {
-        for (var i = 0; i < regions.length; i += 1) {
-          if (regions[i].slug === selectedRegionSlug) {
-            if (regions[i].features.indexOf('metadata') !== -1) {
-              selectedRegion = regions[i];
-            }
-            break;
-          }
-        }
-      }
-      if (!selectedRegion) {
-        for (var j = 0; j < regions.length; j += 1) {
-          if (availableRegionSlugsBySize.indexOf(regions[j].slug) !== -1 && availableRegionSlugsByImage.indexOf(regions[j].slug) !== -1 && regions[j].features.indexOf('metadata') !== -1) {
-            selectedRegion = regions[j];
-            break;
-          }
-        }
-      }
-    }
-    this.state.selectedRegion = selectedRegion;
-    this.storage.set('selected_region_slug', selectedRegion ? selectedRegion.slug : undefined);
-  },
-  updateSelectedKeys: function () {
-    var keys           = this.state.keys;
-    var selectedKeyIds = this.storage.get('selected_key_ids');
-    var selectedKeys   = [];
-    if (keys) {
-      if (selectedKeyIds) {
-        for (var i = 0; i < keys.length; i += 1) {
-          if (selectedKeyIds.indexOf(keys[i].id) !== -1) {
-            selectedKeys.push(keys[i]);
-          }
-        }
-      }
-      if (!selectedKeys.length && keys.length) {
-        selectedKeys.push(keys[0]);
-      }
-    }
-    this.state.selectedKeys = selectedKeys;
-    selectedKeyIds = selectedKeys ?
-      selectedKeys.map(function (selectedKey) {
-          return selectedKey.id;
-        }) :
-      [];
-    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
-  },
-  updateReady: function () {
-    if (
-      (this.storage.get('hostname') || this.storage.get('default_hostname')) &&
-      this.storage.get('selected_size_slug') &&
-      this.storage.get('selected_image_slug') &&
-      this.storage.get('selected_region_slug') &&
-      this.storage.get('token')
-    ) {
-      this.props.onReady();
-    } else {
-      this.props.onUnready();
-    }
-  }
-};
-
-
-exports.MainControl = function (props) {
-  this.props = this.getDefaultProps();
-  Object.keys(props).forEach(function (key) {
-      this.props[key] = props[key];
-    }.bind(this));
-  this.state = this.getInitialState();
-  this.createWidgets();
-  this.createControl();
-};
-exports.MainControl.prototype = {
-  getDefaultProps: function () {
-    return {
-      ghClientId:    undefined,
-      ghToken:       undefined,
-      doClientId:    undefined,
-      doCallbackUrl: undefined,
-      doToken:       undefined,
-      sourceUrl:     undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      ghReady: undefined,
-      doReady: undefined,
-    };
-  },
-  createWidgets: function () {
-    this.deployWidget = React.render(
-      React.createElement(DeployWidget, {
-          onDeploy: this.handleDeploy.bind(this)
-        }),
-      document.getElementById('deploy-widget'));
-    this.renderWidgets();
-  },
-  renderWidgets: function () {
-    this.deployWidget.setState({
-        enabled: this.state.ghReady && this.state.doReady
-      });
-  },
-  createControl: function () {
-    this.ghControl = new exports.GitHubControl({
-        clientId:  this.props.ghClientId,
-        token:     this.props.ghToken,
-        sourceUrl: this.props.sourceUrl,
-        onReady:   function () {
-          this.state.ghReady = true;
-          this.renderWidgets();
-        }.bind(this),
-        onUnready: function () {
-          this.state.ghReady = false;
-          this.renderWidgets();
-        }.bind(this)
-      });
-    this.doControl = new exports.DigitalOceanControl({
-        clientId:        this.props.doClientId,
-        callbackUrl:     this.props.doCallbackUrl,
-        token:           this.props.doToken,
-        defaultHostname: random.getHostname(),
-        onReady:         function () {
-          this.state.doReady = true;
-          this.renderWidgets();
-        }.bind(this),
-        onUnready:       function () {
-          this.state.doReady = false;
-          this.renderWidgets();
-        }.bind(this)
-      });
-  },
-  loadData: function () {
-    this.doControl.loadData();
-    this.ghControl.loadData();
-  },
-  handleDeploy: function () {
-    this.doControl.createDroplet(this.ghControl.getSourceUrl(),
-      function (droplet) {
-        console.log('yea', droplet);
-      },
-      function (err) {
-        console.log('nay', err);
-      });
-  }
-};
-
-
-exports.start = function () {
-  var sourceUrl;
-  if (GitHub.parseRepoUrl(document.referrer)) {
-    sourceUrl = document.referrer;
-  }
-  var ghToken, doToken;
-  var query = http.parseQueryString(location.search);
-  if (query) {
-    var token = query['access_token'];
-    if (query['vendor'] === 'github') {
-      ghToken = token;
-    } else if (query.vendor === 'digitalocean') {
-      doToken = token;
-    }
-    sourceUrl = query['url'];
-  }
-  var control = new exports.MainControl({
-      ghClientId:    '2765f53aa92837f0a835',
-      ghToken:       ghToken,
-      doClientId:    '2530da1c8b65fd7e627f9ba234db0cfddae44c2ddf7e603648301f043318cac4',
-      doCallbackUrl: 'https://halcyon-digitalocean-callback.herokuapp.com/callback',
-      doToken:       doToken,
-      sourceUrl:     sourceUrl
-    });
-  control.loadData();
-};

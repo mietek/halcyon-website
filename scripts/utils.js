@@ -1,12 +1,12 @@
 'use strict';
 
 
-exports.getInteger = function (min, max) {
+exports.getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
 
-exports.getHostname = function () {
+exports.getRandomHostname = function () {
   var color = [
     'red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'violet', 'magenta'
   ];
@@ -39,8 +39,22 @@ exports.getHostname = function () {
     'zucchini'
   ];
   return (
-    color[exports.getInteger(0, color.length)] + '-' +
-    food[exports.getInteger(0, food.length)] + '-' +
-    exports.getInteger(1000, 9999)
+    color[exports.getRandomInteger(0, color.length)] + '-' +
+    food[exports.getRandomInteger(0, food.length)] + '-' +
+    exports.getRandomInteger(1000, 9999)
   );
+};
+
+
+exports.debounce = function (func, duration) {
+  var timeout;
+  return function () {
+    var that = this;
+    var args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+        func.apply(that, args);
+      },
+      duration);
+  };
 };
