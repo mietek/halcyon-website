@@ -532,6 +532,7 @@ var SizeLegend = React.createClass({
   },
   getInitialState: function () {
     return {
+      failed:       false,
       selectedSize: undefined
     };
   },
@@ -540,6 +541,17 @@ var SizeLegend = React.createClass({
     this.props.onLink();
   },
   render: function () {
+    if (this.state.failed) {
+      return (
+        React.createElement(LegendArea, null,
+          React.createElement('p', null,
+            'Something went wrong.  ',
+            React.createElement('a', {
+                href: ''
+              },
+              'Refresh'),
+            ' the page to continue.')));
+    }
     var size = this.state.selectedSize;
     if (!size) {
       return (
