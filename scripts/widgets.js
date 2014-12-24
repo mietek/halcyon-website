@@ -741,7 +741,7 @@ var KeysWidget = React.createClass({
   displayName: 'KeysWidget',
   getDefaultProps: function () {
     return {
-      onSelectKey: undefined
+      onChange: undefined
     };
   },
   getInitialState: function () {
@@ -750,6 +750,25 @@ var KeysWidget = React.createClass({
       keys:         undefined,
       selectedKeys: undefined
     };
+  },
+  handleSelectKey: function (selectedKey) {
+    var changedSelectedKeys = [];
+    if (this.state.selectedKeys) {
+      this.state.selectedKeys.forEach(function (key) {
+        changedSelectedKeys.push(key);
+      });
+    }
+    changedSelectedKeys.push(selectedKey);
+    this.props.onChange(changedSelectedKeys);
+  },
+  handleDeselectKey: function (deselectedKey) {
+    var changedSelectedKeys = [];
+    this.state.selectedKeys.forEach(function (key) {
+      if (key.id !== deselectedKey.id) {
+        changedSelectedKeys.push(key);
+      }
+    });
+    this.props.onChange(changedSelectedKeys);
   },
   render: function () {
     if (!this.state.keys) {
@@ -766,17 +785,21 @@ var KeysWidget = React.createClass({
       React.createElement('div', {
           className: 'flex'
         },
-        this.state.keys.map(function (sshKey) {
-          var selected = selectedKeyIds.indexOf(sshKey.id) !== -1;
+        this.state.keys.map(function (key) {
+          var selected = selectedKeyIds.indexOf(key.id) !== -1;
           return (
             React.createElement(RadioButton, {
-                key:       sshKey.id,
+                key:       key.id,
                 className: 'key-button',
                 enabled:   this.state.enabled,
                 selected:  selected,
-                title:     sshKey.name,
+                title:     key.name,
                 onClick:   function () {
-                  this.props.onSelectKey(sshKey);
+                  if (selected) {
+                    this.handleDeselectKey(key);
+                  } else {
+                    this.handleSelectKey(key);
+                  }
                 }.bind(this)
               })
           );
@@ -1044,7 +1067,7 @@ exports.DigitalOceanControl = function (prefix, clientId, callbackUrl, token) {
   );
   this.keysWidget = React.render(
     React.createElement(KeysWidget, {
-      onSelectKey: this.handleSelectKey.bind(this)
+      onChange: this.handleChangeSelectedKeys.bind(this)
     }),
     document.getElementById('digitalocean-keys-widget')
   );
@@ -1307,23 +1330,12 @@ exports.DigitalOceanControl.prototype = {
     this.storage.set('selected_region_slug', selectedRegion.slug);
     this.render();
   },
-  handleSelectKey: function (selectedKey) {
-    var selectedKeys = [];
-    var found = false;
-    for (var i = 0; i < this.state.selectedKeys.length; i += 1) {
-      if (this.state.selectedKeys[i].id !== selectedKey.id) {
-        selectedKeys.push(this.state.selectedKey[i]);
-      } else {
-        found = true;
-      }
-    }
-    if (!found) {
-      selectedKeys.push(selectedKey);
-    }
+  handleChangeSelectedKeys: function (selectedKeys) {
     this.state.selectedKeys = selectedKeys;
-    this.storage.set('selected_key_ids', this.state.selectedKeys ? this.state.selectedKeys.map(function (selectedKey) {
+    var selectedKeyIds = selectedKeys ? selectedKeys.map(function (selectedKey) {
       return selectedKey.id;
-    }) : undefined);
+    }) : [];
+    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
     this.render();
   },
 };
