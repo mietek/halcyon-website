@@ -384,3 +384,22 @@ div.pre-like.meta
   margin-right: ln(1/2)
   margin-top: ln(5/2)
   width: 100%
+
+
+#background-image
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  overflow: hidden
+  pointer-events: none
+
+.background-image
+  opacity: 0.4
+  position: absolute
+  top: 15%
+  transition: ease(top, 2, 0)
+  z-index: 100
+  &.hidden
+    top: 100%

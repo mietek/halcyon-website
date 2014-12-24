@@ -102,6 +102,31 @@ var StaticField = React.createClass({
 });
 
 
+var BackgroundImage = React.createClass({
+  displayName: 'BackgroundImage',
+  getDefaultProps: function () {
+    return {
+      src: undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      visible: false
+    };
+  },
+  render: function () {
+    var className = this.props.className || 'background-image';
+    className += this.state.visible ? '' : ' hidden';
+    return (
+      React.createElement('img', {
+        id:        this.props.id,
+        className: className,
+        src:       this.state.visible ? this.props.src : undefined
+      }));
+  }
+});
+
+
 var InputField = React.createClass({
   displayName: 'InputField',
   getDefaultProps: function () {
@@ -1119,6 +1144,11 @@ exports.DigitalOceanControl.prototype = {
           onChange: this.handleChangeSelectedKeys.bind(this)
         }),
       document.getElementById('digitalocean-keys-widget'));
+    this.backgroundImage = React.render(
+      React.createElement(BackgroundImage, {
+          src: 'http://i.imgur.com/WZEf0tB.png'
+        }),
+      document.getElementById('background-image'));
     this.renderWidgets();
   },
   renderWidgets: function () {
@@ -1157,6 +1187,9 @@ exports.DigitalOceanControl.prototype = {
         enabled:        linkable && !failed,
         keys:           this.state.keys,
         selectedKeys:   this.state.selectedKeys
+      });
+    this.backgroundImage.setState({
+        visible:        this.storage.get('hostname') === 'tallest-leek-2014'
       });
   },
   loadData: function () {

@@ -13,6 +13,8 @@ Deploy to DigitalOcean
 
 This service can deploy a Haskell application from a _git_ repository to a new DigitalOcean droplet, using Halcyon.
 
+<div id="background-image"></div>
+
 
 ### GitHub account
 
