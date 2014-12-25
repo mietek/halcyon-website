@@ -3,7 +3,6 @@
 var DigitalOcean = require('digitalocean');
 var React = require('react');
 var http = require('http');
-var storage = require('storage');
 var widgets = require('widgets');
 
 
@@ -102,8 +101,8 @@ var DropletLegend = React.createClass({
 });
 
 
-var DropletActionWidget = React.createClass({
-  displayName: 'DropletActionWidget',
+var ActionWidget = React.createClass({
+  displayName: 'ActionWidget',
   getDefaultProps: function () {
     return {
       onView:    null,
@@ -137,19 +136,18 @@ var DropletActionWidget = React.createClass({
 });
 
 
-var MonitorControl = function (props) {
+var DigitalOceanMonitorControl = function (props) {
   this.props = this.getDefaultProps();
+  this.state = this.getInitialState();
   Object.keys(props || {}).forEach(function (key) {
       this.props[key] = props[key];
     }.bind(this));
-  this.storage = new storage.CachedStorage(this.props.prefix);
-  this.state   = this.getInitialState();
   this.createWidgets();
 };
-MonitorControl.prototype = {
+DigitalOceanMonitorControl.prototype = {
   getDefaultProps: function () {
     return {
-      prefix:            'digitalocean',
+      token:             null,
       dropletId:         null,
       onSelectIpAddress: null
     };
@@ -176,7 +174,7 @@ MonitorControl.prototype = {
       React.createElement(DropletLegend, null),
       document.getElementById('digitalocean-droplet-legend'));
     this.dropletActionWidget = React.render(
-      React.createElement(DropletActionWidget, {
+      React.createElement(ActionWidget, {
           onView:    this.handleViewDroplet.bind(this),
           onDestroy: this.handleDestroyDroplet.bind(this)
         }),
@@ -219,15 +217,11 @@ MonitorControl.prototype = {
         this.state.account = null;
         return next();
       }.bind(this),
-      this.storage.get('token'));
+      this.props.token);
   },
   loadDroplets: function (next) {
     DigitalOcean.getDroplets(function (droplets) {
-        var createdDropletIds = this.storage.get('created_droplet_ids', []);
-        var validDroplets     = droplets.filter(function (droplet) {
-            return createdDropletIds.indexOf(droplet.id) !== -1;
-          });
-        this.state.droplets = validDroplets.length ? validDroplets : null;
+        this.state.droplets = droplets;
         return next();
       }.bind(this),
       function (err) {
@@ -236,7 +230,7 @@ MonitorControl.prototype = {
         this.state.droplets = null;
         return next();
       }.bind(this),
-      this.storage.get('token'));
+      this.props.token);
   },
   updateSelectedDroplet: function () {
     var droplets   = this.state.droplets || [];
@@ -281,7 +275,7 @@ MonitorControl.prototype = {
         this.state.locked = false;
         this.renderWidgets();
       }.bind(this),
-      this.storage.get('token'));
+      this.props.token);
   }
 };
 
@@ -339,13 +333,14 @@ exports.Control.prototype = {
       });
   },
   createControl: function () {
-    this.doControl = new MonitorControl({
+    this.digitalOceanControl = new DigitalOceanMonitorControl({
+        token:             this.props.digitalOceanToken,
         dropletId:         this.props.dropletId,
         onSelectIpAddress: this.handleSelectIpAddress.bind(this)
       });
   },
   loadData: function () {
-    this.doControl.loadData();
+    this.digitalOceanControl.loadData();
   },
   handleSelectIpAddress: function (ipAddress) {
     this.state.ipAddress = ipAddress;
@@ -357,7 +352,8 @@ exports.Control.prototype = {
 exports.start = function () {
   var query = http.parseQueryString(location.search);
   var control = new exports.Control({
-      dropletId: query && parseInt(query['id'])
+      digitalOceanToken: localStorage.getItem('digitalocean-token'),
+      dropletId:         query && parseInt(query['id'])
     });
   control.loadData();
 };
