@@ -12,7 +12,7 @@ var DeployWidget = React.createClass({
   displayName: 'DeployWidget',
   getDefaultProps: function () {
     return {
-      onDeploy: null
+      onCreate: null
     };
   },
   getInitialState: function () {
@@ -26,10 +26,10 @@ var DeployWidget = React.createClass({
           className: 'flex'
         },
         React.createElement(widgets.PushButton, {
-            className: 'deploy-button',
+            className: 'create-button',
             enabled:   this.state.enabled,
             title:     'Create droplet',
-            onClick:   this.props.onDeploy
+            onClick:   this.props.onCreate
           })));
   }
 });
@@ -65,7 +65,7 @@ exports.Control.prototype = {
   createWidgets: function () {
     this.deployWidget = React.render(
       React.createElement(DeployWidget, {
-          onDeploy: this.handleDeploy.bind(this)
+          onCreate: this.handleCreate.bind(this)
         }),
       document.getElementById('deploy-widget'));
     this.renderWidgets();
@@ -108,7 +108,7 @@ exports.Control.prototype = {
     this.ghControl.loadData();
     this.doControl.loadData();
   },
-  handleDeploy: function () {
+  handleCreate: function () {
     this.state.locked = true;
     this.renderWidgets();
     this.doControl.createDroplet(this.ghControl.getSourceUrl(),

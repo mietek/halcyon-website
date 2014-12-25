@@ -191,8 +191,8 @@ exports.getDroplets = function (yea, nay, token) {
 };
 
 
-exports.getDroplet = function (id, yea, nay, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/droplets/' + id,
+exports.getDroplet = function (dropletId, yea, nay, token) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/droplets/' + dropletId,
     function (resp) {
       var droplet = resp['droplet'];
       if (!droplet) {
@@ -277,7 +277,7 @@ var SizeWidget = React.createClass({
   displayName: 'SizeWidget',
   getDefaultProps: function () {
     return {
-      onSelectSize: null
+      onSelect: null
     };
   },
   getInitialState: function () {
@@ -310,7 +310,7 @@ var SizeWidget = React.createClass({
                   selected:  size.slug === selectedSizeSlug,
                   title:     title,
                   onClick:   function () {
-                    this.props.onSelectSize(size);
+                    this.props.onSelect(size);
                   }.bind(this)
                 })
             );
@@ -323,7 +323,7 @@ var ImageWidget = React.createClass({
   displayName: 'ImageWidget',
   getDefaultProps: function () {
     return {
-      onSelectImage: null
+      onSelect: null
     };
   },
   getInitialState: function () {
@@ -355,7 +355,7 @@ var ImageWidget = React.createClass({
                   selected:  image.slug === selectedImageSlug,
                   title:     image.distribution + ' ' + image.name,
                   onClick:   function () {
-                    this.props.onSelectImage(image);
+                    this.props.onSelect(image);
                   }.bind(this)
                 })
             );
@@ -368,7 +368,7 @@ var RegionWidget = React.createClass({
   displayName: 'RegionWidget',
   getDefaultProps: function () {
     return {
-      onSelectRegion: null
+      onSelect: null
     };
   },
   getInitialState: function () {
@@ -406,7 +406,7 @@ var RegionWidget = React.createClass({
                   selected:  region.slug === selectedRegionSlug,
                   title:     region.name,
                   onClick:   function () {
-                    this.props.onSelectRegion(region);
+                    this.props.onSelect(region);
                   }.bind(this)
                 })
             );
@@ -532,8 +532,8 @@ exports.DeployControl.prototype = {
   createWidgets: function () {
     this.accountWidget = React.render(
       React.createElement(widgets.AccountWidget, {
-          onLink:   this.handleLink.bind(this),
-          onUnlink: this.handleUnlink.bind(this)
+          onLink:      this.handleLink.bind(this),
+          onUnlink:    this.handleUnlink.bind(this)
         }),
       document.getElementById('digitalocean-account-widget'));
     this.hostnameWidget = React.render(
@@ -544,32 +544,32 @@ exports.DeployControl.prototype = {
       document.getElementById('digitalocean-hostname-widget'));
     this.sizeWidget = React.render(
       React.createElement(SizeWidget, {
-          onSelectSize: this.handleSelectSize.bind(this)
+          onSelect:    this.handleSelectSize.bind(this)
         }),
       document.getElementById('digitalocean-size-widget'));
     this.sizeLegend = React.render(
       React.createElement(SizeLegend, {
-          onLink: this.handleLink.bind(this)
+          onLink:      this.handleLink.bind(this)
         }),
       document.getElementById('digitalocean-size-legend'));
     this.imageWidget = React.render(
       React.createElement(ImageWidget, {
-          onSelectImage: this.handleSelectImage.bind(this)
+          onSelect:    this.handleSelectImage.bind(this)
         }),
       document.getElementById('digitalocean-image-widget'));
     this.regionWidget = React.render(
       React.createElement(RegionWidget, {
-          onSelectRegion: this.handleSelectRegion.bind(this)
+          onSelect:    this.handleSelectRegion.bind(this)
         }),
       document.getElementById('digitalocean-region-widget'));
     this.keysWidget = React.render(
       React.createElement(KeysWidget, {
-          onChange: this.handleChangeSelectedKeys.bind(this)
+          onChange:    this.handleChangeSelectedKeys.bind(this)
         }),
       document.getElementById('digitalocean-keys-widget'));
     this.backgroundImage = React.render(
       React.createElement(widgets.BackgroundImage, {
-          src: 'http://i.imgur.com/WZEf0tB.png'
+          src:         'http://i.imgur.com/WZEf0tB.png'
         }),
       document.getElementById('background-image'));
     this.renderWidgets();
@@ -884,7 +884,7 @@ var DropletWidget = React.createClass({
   displayName: 'DropletWidget',
   getDefaultProps: function () {
     return {
-      onSelectDroplet: null
+      onSelect: null
     };
   },
   getInitialState: function () {
@@ -916,7 +916,7 @@ var DropletWidget = React.createClass({
                   selected:  droplet.id === selectedDropletId,
                   title:     droplet.name,
                   onClick:   function () {
-                    this.props.onSelectDroplet(droplet);
+                    this.props.onSelect(droplet);
                   }.bind(this)
                 })
             );
@@ -993,7 +993,7 @@ exports.MonitorControl.prototype = {
       document.getElementById('digitalocean-account-widget'));
     this.dropletWidget = React.render(
       React.createElement(DropletWidget, {
-          onSelectDroplet: this.handleSelectDroplet.bind(this)
+          onSelect: this.handleSelectDroplet.bind(this)
         }),
       document.getElementById('digitalocean-droplet-widget'));
     this.dropletLegend = React.render(
