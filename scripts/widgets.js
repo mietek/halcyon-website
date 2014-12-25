@@ -290,12 +290,20 @@ exports.MapWidget = React.createClass({
 
 exports.LegendArea = React.createClass({
   displayName: 'LegendArea',
+  getDefaultProps: function () {
+    return {
+      pre: false
+    };
+  },
   render: function () {
+    var tag = this.props.pre ? 'pre' : 'div';
+    var className = this.props.pre ? '' : 'pre-like meta'; // TODO: Clean up CSS.
     return (
-      React.createElement('div', {
+      React.createElement(tag, {
           id:        this.props.id,
-          className: this.props.className || 'pre-like meta' // TODO: Clean up CSS.
-        }, this.props.children));
+          className: className // TODO: Clean up CSS.
+        },
+        this.props.pre ? React.createElement('code', null, this.props.children) : this.props.children));
   }
 });
 

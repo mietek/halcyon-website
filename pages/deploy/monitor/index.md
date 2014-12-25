@@ -28,4 +28,4 @@ Words words words.
 
 #### Live install log
 
-<div id="monitor-widget" class="full"></div>
+<div id="monitor-legend" class="full"></div>

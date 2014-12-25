@@ -3,25 +3,7 @@
 var DigitalOcean = require('digitalocean');
 var React = require('react');
 var http = require('http');
-
-
-var MonitorWidget = React.createClass({
-  displayName: 'MonitorWidget',
-  getDefaultProps: function () {
-    return {
-    };
-  },
-  getInitialState: function () {
-    return {
-    };
-  },
-  render: function () {
-    return (
-      React.createElement('pre', null,
-        React.createElement('code', null,
-          'Hello, world!')));
-  }
-});
+var widgets = require('widgets');
 
 
 exports.Control = function (props) {
@@ -45,8 +27,11 @@ exports.Control.prototype = {
   },
   createWidgets: function () {
     this.monitorWidget = React.render(
-      React.createElement(MonitorWidget, null),
-      document.getElementById('monitor-widget'));
+      React.createElement(widgets.LegendArea, {
+          pre: true
+        },
+        'Hello, world!'),
+      document.getElementById('monitor-legend'));
     this.renderWidgets();
   },
   renderWidgets: function () {

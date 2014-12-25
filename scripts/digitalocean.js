@@ -987,13 +987,26 @@ var DropletLegend = React.createClass({
     if (!droplet) {
       return (
         React.createElement(widgets.LegendArea, null,
-          React.createElement('p', null, 'Loading…')));
+          React.createElement('p', null,
+            React.createElement('a', {
+                href: '/deploy/'
+              },
+              'Create'),
+            ' a droplet first.')));
     }
-    var dump;
-    dump = JSON.stringify(droplet);
+    var info = {
+      locked:    droplet.locked,
+      status:    droplet.status,
+      createdAt: droplet['created_at']
+    };
+    if (droplet.networks && droplet.networks.v4 && droplet.networks.v4['ip_address']) {
+      info.ipAddress = droplet.networks.v4['ip_address'];
+    }
     return (
-      React.createElement(widgets.LegendArea, null,
-        React.createElement('p', null, dump)));
+      React.createElement(widgets.LegendArea, {
+          pre: true
+        },
+        JSON.stringify(info, null, 2)));
   }
 });
 
