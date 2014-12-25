@@ -189,7 +189,7 @@ var SourceLegend = React.createClass({
 
 exports.DeployControl = function (props) {
   this.props = this.getDefaultProps();
-  Object.keys(props).forEach(function (key) {
+  Object.keys(props || {}).forEach(function (key) {
       this.props[key] = props[key];
     }.bind(this));
   this.storage = new storage.CachedStorage(this.props.prefix);

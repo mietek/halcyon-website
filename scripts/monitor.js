@@ -140,7 +140,7 @@ var DropletActionWidget = React.createClass({
 
 var MonitorControl = function (props) {
   this.props = this.getDefaultProps();
-  Object.keys(props).forEach(function (key) {
+  Object.keys(props || {}).forEach(function (key) {
       this.props[key] = props[key];
     }.bind(this));
   this.storage = new storage.CachedStorage(this.props.prefix);
@@ -313,7 +313,7 @@ var MonitorLegend = React.createClass({
 
 exports.Control = function (props) {
   this.props = this.getDefaultProps();
-  Object.keys(props).forEach(function (key) {
+  Object.keys(props || {}).forEach(function (key) {
       this.props[key] = props[key];
     }.bind(this));
   this.state = this.getInitialState();
