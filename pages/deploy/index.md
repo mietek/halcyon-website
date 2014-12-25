@@ -11,8 +11,6 @@ page-footer: |
 Deploy to DigitalOcean
 ======================
 
-This service can deploy a Haskell application from a _git_ repository to a new DigitalOcean droplet, using Halcyon.
-
 <div id="background-image"></div>
 
 
@@ -24,12 +22,12 @@ This service can deploy a Haskell application from a _git_ repository to a new D
 #### Source repository
 
 <div id="github-source-widget" class="widget"></div>
-<div id="github-source-legend" class="full"></div>
 
 
 #### Environment variables
 
 <div id="github-vars-widget" class="widget"></div>
+<div id="github-source-legend" class="full"></div>
 
 
 ### DigitalOcean account
@@ -45,7 +43,6 @@ This service can deploy a Haskell application from a _git_ repository to a new D
 #### Size
 
 <div id="digitalocean-size-widget" class="widget"></div>
-<div id="digitalocean-size-legend" class="full"></div>
 
 
 #### Image
@@ -63,4 +60,5 @@ This service can deploy a Haskell application from a _git_ repository to a new D
 <div id="digitalocean-keys-widget" class="widget"></div>
 
 
+<div id="digitalocean-size-legend" class="full"></div>
 <div id="deploy-widget" class="widget"></div>

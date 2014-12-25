@@ -11,8 +11,6 @@ page-footer: |
 Deploy to DigitalOcean
 ======================
 
-Words words words.
-
 
 ### DigitalOcean account
 
