@@ -521,7 +521,7 @@ DeployControl.prototype = {
       this.storage.get('selected_key_ids'),
       sourceUrl,
       function (droplet) {
-        var createdDropletIds = this.storage.get('created_droplet_ids', []);
+        var createdDropletIds = this.storage.get('created_droplet_ids', []); // TODO: Atomically get and set?
         createdDropletIds.push(droplet.id);
         this.storage.set('created_droplet_ids', createdDropletIds);
         this.storage.set('selected_droplet_id', droplet.id);
