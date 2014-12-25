@@ -88,6 +88,7 @@ var DropletLegend = React.createClass({
             ' a droplet first.')));
     }
     var info = {
+      id:        droplet.id,
       locked:    droplet.locked,
       status:    droplet.status,
       createdAt: droplet['created_at'],
@@ -143,17 +144,14 @@ var MonitorControl = function (props) {
       this.props[key] = props[key];
     }.bind(this));
   this.storage = new storage.CachedStorage(this.props.prefix);
-  if (this.props.selectedDropletId) {
-    this.storage.set('selected_droplet_id', this.props.selectedDropletId);
-  }
-  this.state = this.getInitialState();
+  this.state   = this.getInitialState();
   this.createWidgets();
 };
 MonitorControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:            'digitalocean',
-      onChangeIpAddress: null
+      onSelectIpAddress: null
     };
   },
   getInitialState: function () {
@@ -185,30 +183,26 @@ MonitorControl.prototype = {
       document.getElementById('droplet-action-widget'));
   },
   renderWidgets: function () {
-    var locked = this.state.locked;
-    var failed = this.state.failed;
-    var selectedDropletEnabled = !locked && !failed &&
-      this.state.selectedDroplet && !this.state.selectedDroplet.locked;
     this.accountWidget.setState({
-        account: this.state.account ? this.state.account.email : null
+        account:           this.state.account ? this.state.account.email : null
       });
     this.dropletWidget.setState({
-        enabled:           !failed,
+        enabled:           !this.state.failed,
         droplets:          this.state.droplets,
         selectedDroplet:   this.state.selectedDroplet
       });
     this.dropletLegend.setState({
-        failed:            failed,
+        failed:            this.state.failed,
         selectedDroplet:   this.state.selectedDroplet
       });
     this.dropletActionWidget.setState({
-        enabled:           selectedDropletEnabled
+        enabled:           !this.state.locked && !this.state.failed &&
+          this.state.selectedDroplet && !this.state.selectedDroplet.locked
       });
   },
   loadData: function () {
     this.loadAccount(function () {
         this.loadDroplets(function () {
-            this.updateCreatedDropletIds();
             this.updateSelectedDroplet();
             this.renderWidgets();
           }.bind(this));
@@ -244,29 +238,17 @@ MonitorControl.prototype = {
       }.bind(this),
       this.storage.get('token'));
   },
-  updateCreatedDropletIds: function () {
-    var droplets          = this.state.droplets || [];
-    var createdDropletIds = this.storage.get('created_droplet_ids');
-    var createdDroplets   = [];
-    if (createdDropletIds) {
-      for (var i = 0; i < droplets.length; i += 1) {
-        if (createdDropletIds.indexOf(droplets[i].id) !== -1) {
-          createdDroplets.push(droplets[i]);
-        }
-      }
-    }
-    createdDropletIds = createdDroplets.map(function (droplet) {
-        return droplet.id;
-      });
-    this.storage.set('created_droplet_ids', createdDropletIds.length ? createdDropletIds : null);
-  },
   updateSelectedDroplet: function () {
-    var droplets          = this.state.droplets || [];
-    var selectedDropletId = this.storage.get('selected_droplet_id');
+    var droplets   = this.state.droplets || [];
+    var selectedId = this.state.selectedDroplet && this.state.selectedDroplet.id;
+    if (!selectedId) {
+      var query = http.parseQueryString(location.search);
+      selectedId = query && parseInt(query['id']);
+    }
     var selectedDroplet;
-    if (selectedDropletId) {
+    if (selectedId) {
       for (var i = 0; i < droplets.length; i += 1) {
-        if (droplets[i].id === selectedDropletId) {
+        if (droplets[i].id === selectedId) {
           selectedDroplet = droplets[i];
           break;
         }
@@ -276,13 +258,11 @@ MonitorControl.prototype = {
       selectedDroplet = droplets[0];
     }
     this.state.selectedDroplet = selectedDroplet;
-    this.storage.set('selected_droplet_id', selectedDroplet ? selectedDroplet.id : null);
-    this.props.onChangeIpAddress(selectedDroplet ? selectedDroplet.ipAddress : null);
+    this.props.onSelectIpAddress(selectedDroplet ? selectedDroplet.ipAddress : null);
   },
   handleSelectDroplet: function (selectedDroplet) {
     this.state.selectedDroplet = selectedDroplet;
-    this.storage.set('selected_droplet_id', selectedDroplet.id);
-    this.props.onChangeIpAddress(selectedDroplet.ipAddress);
+    this.props.onSelectIpAddress(selectedDroplet.ipAddress);
     this.renderWidgets();
   },
   handleViewDroplet: function () {
@@ -291,12 +271,10 @@ MonitorControl.prototype = {
   handleDestroyDroplet: function () {
     this.state.locked = true;
     this.renderWidgets();
-    var selectedDropletId = this.storage.get('selected_droplet_id');
     DigitalOcean.destroyDroplet(
-      selectedDropletId,
+      this.state.selectedDroplet.id,
       function () {
         this.loadDroplets(function () {
-            this.updateCreatedDropletIds();
             this.updateSelectedDroplet();
             this.state.locked = false;
             this.renderWidgets();
@@ -345,7 +323,6 @@ exports.Control = function (props) {
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
-      selectedDropletId: null
     };
   },
   getInitialState: function () {
@@ -366,13 +343,13 @@ exports.Control.prototype = {
   },
   createControl: function () {
     this.doControl = new MonitorControl({
-        onChangeIpAddress: this.handleChangeIpAddress.bind(this)
+        onSelectIpAddress: this.handleSelectIpAddress.bind(this)
       });
   },
   loadData: function () {
     this.doControl.loadData();
   },
-  handleChangeIpAddress: function (ipAddress) {
+  handleSelectIpAddress: function (ipAddress) {
     this.state.ipAddress = ipAddress;
     this.renderWidgets();
   }
@@ -380,13 +357,6 @@ exports.Control.prototype = {
 
 
 exports.start = function () {
-  var selectedDropletId;
-  var query = http.parseQueryString(location.search);
-  if (query) {
-    selectedDropletId = query['id'];
-  }
-  var control = new exports.Control({
-      selectedDropletId: selectedDropletId
-    });
+  var control = new exports.Control();
   control.loadData();
 };

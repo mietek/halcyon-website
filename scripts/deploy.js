@@ -524,7 +524,6 @@ DeployControl.prototype = {
         var createdDropletIds = this.storage.get('created_droplet_ids', []); // TODO: Atomically get and set?
         createdDropletIds.push(droplet.id);
         this.storage.set('created_droplet_ids', createdDropletIds);
-        this.storage.set('selected_droplet_id', droplet.id);
         return yea(droplet);
       }.bind(this),
       nay,
@@ -783,8 +782,8 @@ exports.Control.prototype = {
     this.state.locked = true;
     this.renderWidgets();
     this.doControl.createDroplet(this.ghControl.getSourceUrl(),
-      function () {
-        location.href = '/deploy/monitor/';
+      function (droplet) {
+        location.href = '/deploy/monitor/?id=' + droplet.id;
       }.bind(this),
       function (err) {
         console.error('Failed to create droplet:', err); // TODO: Improve error display.
