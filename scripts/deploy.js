@@ -65,7 +65,7 @@ exports.Control.prototype = {
   createWidgets: function () {
     this.deployWidget = React.render(
       React.createElement(DeployWidget, {
-          onCreate: this.handleCreate.bind(this)
+          onCreate: this.handleCreateDroplet.bind(this)
         }),
       document.getElementById('deploy-widget'));
     this.renderWidgets();
@@ -108,7 +108,7 @@ exports.Control.prototype = {
     this.ghControl.loadData();
     this.doControl.loadData();
   },
-  handleCreate: function () {
+  handleCreateDroplet: function () {
     this.state.locked = true;
     this.renderWidgets();
     this.doControl.createDroplet(this.ghControl.getSourceUrl(),
