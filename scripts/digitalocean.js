@@ -351,7 +351,7 @@ var ImageWidget = React.createClass({
               React.createElement(widgets.RadioButton, {
                   key:       image.slug,
                   className: 'image-button',
-                  enabled:   this.state.enabled,
+                  enabled:   this.state.enabled && image.slug === 'ubuntu-14-04-x64', // TODO: Support CentOS 7.
                   selected:  image.slug === selectedImageSlug,
                   title:     image.distribution + ' ' + image.name,
                   onClick:   function () {
@@ -663,7 +663,7 @@ exports.DeployControl.prototype = {
   loadImages: function (next) {
     exports.getDistributionImages(function (images) {
         this.state.images = images.filter(function (image) {
-            return image.slug === 'ubuntu-14-04-x64'; // TODO: Support CentOS 7.
+            return image.slug === 'ubuntu-14-04-x64' || image.slug === 'centos-7-0-x64';
           });
         return next();
       }.bind(this),
