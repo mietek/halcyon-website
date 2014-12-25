@@ -36,7 +36,7 @@ exports.Control = function (props) {
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
-      dropletId: undefined
+      dropletId: null
     };
   },
   getInitialState: function () {

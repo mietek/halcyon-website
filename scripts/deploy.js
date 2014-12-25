@@ -12,7 +12,7 @@ var DeployWidget = React.createClass({
   displayName: 'DeployWidget',
   getDefaultProps: function () {
     return {
-      onDeploy: undefined
+      onDeploy: null
     };
   },
   getInitialState: function () {
@@ -47,12 +47,12 @@ exports.Control = function (props) {
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
-      ghClientId:    undefined,
-      ghToken:       undefined,
-      doClientId:    undefined,
-      doCallbackUrl: undefined,
-      doToken:       undefined,
-      sourceUrl:     undefined
+      ghClientId:    null,
+      ghToken:       null,
+      doClientId:    null,
+      doCallbackUrl: null,
+      doToken:       null,
+      sourceUrl:     null
     };
   },
   getInitialState: function () {

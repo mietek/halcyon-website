@@ -125,13 +125,13 @@ var SourceLegend = React.createClass({
   displayName: 'SourceLegend',
   getDefaultProps: function () {
     return {
-      onLink: undefined
+      onLink: null
     };
   },
   getInitialState: function () {
     return {
-      account:    undefined,
-      sourceInfo: undefined
+      account:    null,
+      sourceInfo: null
     };
   },
   handleLink: function (event) {
@@ -207,18 +207,18 @@ exports.DeployControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:    'github',
-      clientId:  undefined,
-      token:     undefined,
-      sourceUrl: undefined,
-      onReady:   undefined,
-      onUnready: undefined
+      clientId:  null,
+      token:     null,
+      sourceUrl: null,
+      onReady:   null,
+      onUnready: null
     };
   },
   getInitialState: function () {
     return {
       linkable: false,
-      account:  undefined,
-      vars:     undefined
+      account:  null,
+      vars:     null
     };
   },
   createWidgets: function () {
@@ -250,7 +250,7 @@ exports.DeployControl.prototype = {
   renderWidgets: function () {
     this.accountWidget.setState({
         enabled:    this.state.linkable,
-        account:    this.state.account ? this.state.account.login : undefined
+        account:    this.state.account ? this.state.account.login : null
       });
     this.sourceWidget.setState({
         enabled:    true,
@@ -303,7 +303,7 @@ exports.DeployControl.prototype = {
   handleLink: function () {
     this.storage.unset('token');
     this.state.linkable = false;
-    this.state.account = undefined;
+    this.state.account  = null;
     this.renderWidgets();
     setTimeout(function () {
         exports.requestToken(this.props.clientId);
@@ -313,12 +313,12 @@ exports.DeployControl.prototype = {
   handleUnlink: function () {
     this.storage.unset('token');
     this.state.linkable = true;
-    this.state.account = undefined;
+    this.state.account  = null;
     this.renderWidgets();
   },
   handleChangeSourceUrl: function (sourceUrl) {
-    this.storage.set('source_url', sourceUrl.length ? sourceUrl : undefined);
-    this.state.sourceInfo = undefined;
+    this.storage.set('source_url', sourceUrl.length ? sourceUrl : null);
+    this.state.sourceInfo = null;
     this.handleDebounceSourceUrl();
     this.updateVars();
     this.renderWidgets();
@@ -352,10 +352,10 @@ exports.DeployControl.prototype = {
           };
           if (typeof value === 'string') {
             importedItem.required = true;
-            importedItem.value    = value.length ? value : undefined;
+            importedItem.value    = value.length ? value : null;
           } else {
             importedItem.required = value.required !== false;
-            importedItem.value    = value.value.length ? value.value : undefined;
+            importedItem.value    = value.value.length ? value.value : null;
           }
           importedVars[name] = importedItem;
           vars.push(importedItem);
@@ -382,7 +382,7 @@ exports.DeployControl.prototype = {
           }
         });
     }
-    this.storage.set('vars', vars.length ? vars : undefined);
+    this.storage.set('vars', vars.length ? vars : null);
   },
   updateReady: function () {
     if (this.storage.get('source_url')) {

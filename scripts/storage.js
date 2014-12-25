@@ -11,25 +11,25 @@ exports.CachedStorage.prototype = {
   get: function (key, defaultValue) {
     this.cache = this.cache || {};
     var value = this.cache[key];
-    if (value !== undefined) {
+    if (value !== null && value !== undefined) {
       return value;
     }
     var jsonValue = localStorage.getItem(this.storageKey(key));
-    if (jsonValue !== undefined) {
+    if (jsonValue !== null) {
       value = JSON.parse(jsonValue);
       this.cache[key] = value;
       return value;
     }
-    if (defaultValue !== undefined) {
+    if (defaultValue !== null && defaultValue !== undefined) {
       return this.set(key, defaultValue);
     }
-    return undefined;
+    return null;
   },
   set: function (key, value) {
-    this.cache = this.cache || {};
-    if (value === undefined) {
+    if (value === null || value === undefined) {
       return this.unset(key);
     }
+    this.cache = this.cache || {};
     this.cache[key] = value;
     localStorage.setItem(this.storageKey(key), JSON.stringify(value));
     return value;
@@ -38,7 +38,7 @@ exports.CachedStorage.prototype = {
     this.cache = this.cache || {};
     delete this.cache[key];
     localStorage.removeItem(this.storageKey(key));
-    return undefined;
+    return null;
   },
   clear: function () {
     this.cache = {};

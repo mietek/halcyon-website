@@ -32,7 +32,7 @@ exports.addQueryToUrl = function (query, url) {
   Object.keys(query).forEach(function (key) {
       // TODO: Encoding; key-only and multiple-value params.
       var value = query[key];
-      if (value !== undefined) {
+      if (value !== null && value !== undefined) {
         result += sep + key + '=' + query[key];
         sep = '&';
       }

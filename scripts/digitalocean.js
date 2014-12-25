@@ -208,13 +208,13 @@ var SizeLegend = React.createClass({
   displayName: 'SizeLegend',
   getDefaultProps: function () {
     return {
-      onLink: undefined
+      onLink: null
     };
   },
   getInitialState: function () {
     return {
       failed:       false,
-      selectedSize: undefined
+      selectedSize: null
     };
   },
   handleLink: function (event) {
@@ -277,14 +277,14 @@ var SizeWidget = React.createClass({
   displayName: 'SizeWidget',
   getDefaultProps: function () {
     return {
-      onSelectSize: undefined
+      onSelectSize: null
     };
   },
   getInitialState: function () {
     return {
       enabled:      false,
-      sizes:        undefined,
-      selectedSize: undefined
+      sizes:        null,
+      selectedSize: null
     };
   },
   render: function () {
@@ -323,14 +323,14 @@ var ImageWidget = React.createClass({
   displayName: 'ImageWidget',
   getDefaultProps: function () {
     return {
-      onSelectImage: undefined
+      onSelectImage: null
     };
   },
   getInitialState: function () {
     return {
       enabled:       false,
-      images:        undefined,
-      selectedImage: undefined
+      images:        null,
+      selectedImage: null
     };
   },
   render: function () {
@@ -368,16 +368,16 @@ var RegionWidget = React.createClass({
   displayName: 'RegionWidget',
   getDefaultProps: function () {
     return {
-      onSelectRegion: undefined
+      onSelectRegion: null
     };
   },
   getInitialState: function () {
     return {
       enabled:        false,
-      selectedSize:   undefined,
-      selectedImage:  undefined,
-      regions:        undefined,
-      selectedRegion: undefined
+      selectedSize:   null,
+      selectedImage:  null,
+      regions:        null,
+      selectedRegion: null
     };
   },
   render: function () {
@@ -419,14 +419,14 @@ var KeysWidget = React.createClass({
   displayName: 'KeysWidget',
   getDefaultProps: function () {
     return {
-      onChange: undefined
+      onChange: null
     };
   },
   getInitialState: function () {
     return {
       enabled:      false,
-      keys:         undefined,
-      selectedKeys: undefined
+      keys:         null,
+      selectedKeys: null
     };
   },
   handleSelectKey: function (selectedKey) {
@@ -507,26 +507,26 @@ exports.DeployControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:      'digitalocean',
-      clientId:    undefined,
-      callbackUrl: undefined,
-      token:       undefined,
-      onReady:     undefined,
-      onUnready:   undefined
+      clientId:    null,
+      callbackUrl: null,
+      token:       null,
+      onReady:     null,
+      onUnready:   null
     };
   },
   getInitialState: function () {
     return {
       linkable:       false,
       failed:         false,
-      account:        undefined,
-      sizes:          undefined,
-      selectedSize:   undefined,
-      images:         undefined,
-      selectedImage:  undefined,
-      regions:        undefined,
-      selectedRegion: undefined,
-      keys:           undefined,
-      selectedKeys:   undefined
+      account:        null,
+      sizes:          null,
+      selectedSize:   null,
+      images:         null,
+      selectedImage:  null,
+      regions:        null,
+      selectedRegion: null,
+      keys:           null,
+      selectedKeys:   null
     };
   },
   createWidgets: function () {
@@ -579,7 +579,7 @@ exports.DeployControl.prototype = {
     var failed   = this.state.failed;
     this.accountWidget.setState({
         enabled:        linkable,
-        account:        this.state.account ? this.state.account.email : undefined
+        account:        this.state.account ? this.state.account.email : null
       });
     this.hostnameWidget.setState({
         enabled:        true,
@@ -738,7 +738,7 @@ exports.DeployControl.prototype = {
   },
   handleChangeHostname: function (hostname) {
     var validHostname = hostname.replace(/[^a-z0-9\-]/g, '');
-    this.storage.set('hostname', validHostname.length ? validHostname : undefined);
+    this.storage.set('hostname', validHostname.length ? validHostname : null);
     this.renderWidgets();
   },
   handleSelectSize: function (selectedSize) {
@@ -765,7 +765,7 @@ exports.DeployControl.prototype = {
           return selectedKey.id;
         }) :
       [];
-    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
+    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : null);
     this.renderWidgets();
   },
   updateSelectedSize: function () {
@@ -786,7 +786,7 @@ exports.DeployControl.prototype = {
       }
     }
     this.state.selectedSize = selectedSize;
-    this.storage.set('selected_size_slug', selectedSize ? selectedSize.slug : undefined);
+    this.storage.set('selected_size_slug', selectedSize ? selectedSize.slug : null);
   },
   updateSelectedImage: function () {
     var images            = this.state.images;
@@ -809,7 +809,7 @@ exports.DeployControl.prototype = {
       }
     }
     this.state.selectedImage = selectedImage;
-    this.storage.set('selected_image_slug', selectedImage ? selectedImage.slug : undefined);
+    this.storage.set('selected_image_slug', selectedImage ? selectedImage.slug : null);
   },
   updateSelectedRegion: function () {
     var regions                     = this.state.regions;
@@ -838,7 +838,7 @@ exports.DeployControl.prototype = {
       }
     }
     this.state.selectedRegion = selectedRegion;
-    this.storage.set('selected_region_slug', selectedRegion ? selectedRegion.slug : undefined);
+    this.storage.set('selected_region_slug', selectedRegion ? selectedRegion.slug : null);
   },
   updateSelectedKeys: function () {
     var keys           = this.state.keys;
@@ -862,7 +862,7 @@ exports.DeployControl.prototype = {
           return selectedKey.id;
         }) :
       [];
-    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : undefined);
+    this.storage.set('selected_key_ids', selectedKeyIds.length ? selectedKeyIds : null);
   },
   updateReady: function () {
     if (
@@ -884,14 +884,14 @@ var DropletWidget = React.createClass({
   displayName: 'DropletWidget',
   getDefaultProps: function () {
     return {
-      onSelectDroplet: undefined
+      onSelectDroplet: null
     };
   },
   getInitialState: function () {
     return {
       enabled:         false,
-      droplets:        undefined,
-      selectedDroplet: undefined
+      droplets:        null,
+      selectedDroplet: null
     };
   },
   render: function () {
@@ -934,7 +934,7 @@ var DropletLegend = React.createClass({
   getInitialState: function () {
     return {
       failed:          false,
-      selectedDroplet: undefined
+      selectedDroplet: null
     };
   },
   render: function () {
@@ -982,9 +982,9 @@ exports.MonitorControl.prototype = {
   getInitialState: function () {
     return {
       failed:          false,
-      account:         undefined,
-      droplets:        undefined,
-      selectedDroplet: undefined
+      account:         null,
+      droplets:        null,
+      selectedDroplet: null
     };
   },
   createWidgets: function () {
@@ -1003,7 +1003,7 @@ exports.MonitorControl.prototype = {
   renderWidgets: function () {
     var failed = this.state.failed;
     this.accountWidget.setState({
-        account: this.state.account ? this.state.account.email : undefined
+        account: this.state.account ? this.state.account.email : null
       });
     this.dropletWidget.setState({
         enabled:         !failed,
@@ -1068,7 +1068,7 @@ exports.MonitorControl.prototype = {
       }
     }
     this.state.selectedDroplet = selectedDroplet;
-    this.storage.set('selected_droplet_id', selectedDroplet ? selectedDroplet.id : undefined);
+    this.storage.set('selected_droplet_id', selectedDroplet ? selectedDroplet.id : null);
   },
   handleSelectDroplet: function (selectedDroplet) {
     this.state.selectedDroplet = selectedDroplet;
