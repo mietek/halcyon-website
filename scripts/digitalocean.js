@@ -887,14 +887,14 @@ var DropletWidget = React.createClass({
   displayName: 'DropletWidget',
   getDefaultProps: function () {
     return {
-      onSelect: null
+      onSelect:  null
     };
   },
   getInitialState: function () {
     return {
-      enabled:         false,
-      droplets:        null,
-      selectedDroplet: null
+      enabled:           false,
+      droplets:          null,
+      selectedDroplet:   null
     };
   },
   render: function () {
