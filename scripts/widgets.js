@@ -390,7 +390,7 @@ exports.AccountWidget = React.createClass({
         React.createElement(exports.BimodalPushButton, {
             className:    'account-button',
             enabled:      this.state.enabled,
-            mode:         this.state.account ? true : false,
+            mode:         !!this.state.account,
             trueTitle:    'Forget',
             falseTitle:   'Connect',
             onTrueClick:  this.props.onUnlink,
