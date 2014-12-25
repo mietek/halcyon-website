@@ -928,34 +928,6 @@ var DropletWidget = React.createClass({
 });
 
 
-var DropletActionWidget = React.createClass({
-  displayName: 'DropletActionWidget',
-  getDefaultProps: function () {
-    return {
-      onDestroy: null
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled: false
-    };
-  },
-  render: function () {
-    return (
-      React.createElement('div', null,
-        React.createElement('div', {
-            className: 'flex'
-          },
-          React.createElement(widgets.PushButton, {
-              className: 'destroy-button',
-              enabled:   this.state.enabled,
-              title:     'Destroy droplet',
-              onClick:   this.props.onDestroy
-            }))));
-  }
-});
-
-
 var DropletLegend = React.createClass({
   displayName: 'DropletLegend',
   getDefaultProps: function () {
@@ -1004,6 +976,34 @@ var DropletLegend = React.createClass({
           pre: true
         },
         JSON.stringify(info, null, 2)));
+  }
+});
+
+
+var DropletActionWidget = React.createClass({
+  displayName: 'DropletActionWidget',
+  getDefaultProps: function () {
+    return {
+      onDestroy: null
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled: false
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex'
+          },
+          React.createElement(widgets.PushButton, {
+              className: 'destroy-button',
+              enabled:   this.state.enabled,
+              title:     'Destroy droplet',
+              onClick:   this.props.onDestroy
+            }))));
   }
 });
 
