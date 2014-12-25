@@ -51,7 +51,7 @@ exports.deleteResource = function (url, yea, nay, token, opts) {
   if (!token) {
     return nay('no_token');
   }
-  exports.deleteResource(url, yea, nay,
+  http.deleteResource(url, yea, nay,
     exports.addAuthHeader(token, exports.addJsonHeader(opts)));
 };
 
