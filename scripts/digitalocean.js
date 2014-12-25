@@ -175,6 +175,12 @@ exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, key
 };
 
 
+exports.destroyDroplet = function (dropletId, yea, nay, token) {
+  exports.deleteResource('https://api.digitalocean.com/v2/droplets/' + dropletId,
+    yea, nay, token);
+};
+
+
 exports.getDroplets = function (yea, nay, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/droplets',
     function (resp) {
@@ -925,6 +931,34 @@ var DropletWidget = React.createClass({
 });
 
 
+var DropletActionWidget = React.createClass({
+  displayName: 'DropletActionWidget',
+  getDefaultProps: function () {
+    return {
+      onDestroy: null
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled: false
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex'
+          },
+          React.createElement(widgets.PushButton, {
+              className: 'destroy-button',
+              enabled:   this.state.enabled,
+              title:     'Destroy droplet',
+              onClick:   this.props.onDestroy
+            }))));
+  }
+});
+
+
 var DropletLegend = React.createClass({
   displayName: 'DropletLegend',
   getDefaultProps: function () {
@@ -981,6 +1015,7 @@ exports.MonitorControl.prototype = {
   },
   getInitialState: function () {
     return {
+      locked:          false,
       failed:          false,
       account:         null,
       droplets:        null,
@@ -999,26 +1034,37 @@ exports.MonitorControl.prototype = {
     this.dropletLegend = React.render(
       React.createElement(DropletLegend, null),
       document.getElementById('digitalocean-droplet-legend'));
+    this.dropletActionWidget = React.render(
+      React.createElement(DropletActionWidget, {
+          onDestroy: this.handleDestroyDroplet.bind(this)
+        }),
+      document.getElementById('droplet-action-widget'));
   },
   renderWidgets: function () {
+    var locked = this.state.locked;
     var failed = this.state.failed;
+    var selectedDropletEnabled = !locked && !failed &&
+      this.state.selectedDroplet && !this.state.selectedDroplet.locked;
     this.accountWidget.setState({
         account: this.state.account ? this.state.account.email : null
       });
     this.dropletWidget.setState({
-        enabled:         !failed,
-        droplets:        this.state.droplets,
-        selectedDroplet: this.state.selectedDroplet
+        enabled:           !locked && !failed,
+        droplets:          this.state.droplets,
+        selectedDroplet:   this.state.selectedDroplet
       });
     this.dropletLegend.setState({
-        failed:          failed,
-        selectedDroplet: this.state.selectedDroplet
+        failed:            failed,
+        selectedDroplet:   this.state.selectedDroplet
+      });
+    this.dropletActionWidget.setState({
+        enabled:           selectedDropletEnabled
       });
   },
   loadData: function () {
     this.loadAccount(function () {
         this.loadDroplets(function () {
-            console.log(this.state.droplets);
+            this.updateCreatedDropletIds();
             this.updateSelectedDroplet();
             this.renderWidgets();
           }.bind(this));
@@ -1039,7 +1085,11 @@ exports.MonitorControl.prototype = {
   },
   loadDroplets: function (next) {
     exports.getDroplets(function (droplets) {
-        this.state.droplets = droplets;
+        var createdDropletIds = this.storage.get('created_droplet_ids', []);
+        var validDroplets     = droplets.filter(function (droplet) {
+            return createdDropletIds.indexOf(droplet.id) !== -1;
+          });
+        this.state.droplets = validDroplets.length ? validDroplets : null;
         return next();
       }.bind(this),
       function (err) {
@@ -1050,22 +1100,36 @@ exports.MonitorControl.prototype = {
       }.bind(this),
       this.storage.get('token'));
   },
-  updateSelectedDroplet: function () {
-    var droplets          = this.state.droplets;
-    var selectedDropletId = this.storage.get('selected_droplet_id');
-    var selectedDroplet;
-    if (droplets) {
-      if (selectedDropletId) {
-        for (var i = 0; i < droplets.length; i += 1) {
-          if (droplets[i].id === selectedDropletId) {
-            selectedDroplet = droplets[i];
-            break;
-          }
+  updateCreatedDropletIds: function () {
+    var droplets          = this.state.droplets || [];
+    var createdDropletIds = this.storage.get('created_droplet_ids');
+    var createdDroplets   = [];
+    if (createdDropletIds) {
+      for (var i = 0; i < droplets.length; i += 1) {
+        if (createdDropletIds.indexOf(droplets[i].id) !== -1) {
+          createdDroplets.push(droplets[i]);
         }
       }
-      if (!selectedDroplet && droplets.length) {
-        selectedDroplet = droplets[0];
+    }
+    createdDropletIds = createdDroplets.map(function (droplet) {
+        return droplet.id;
+      });
+    this.storage.set('created_droplet_ids', createdDropletIds.length ? createdDropletIds : null);
+  },
+  updateSelectedDroplet: function () {
+    var droplets          = this.state.droplets || [];
+    var selectedDropletId = this.storage.get('selected_droplet_id');
+    var selectedDroplet;
+    if (selectedDropletId) {
+      for (var i = 0; i < droplets.length; i += 1) {
+        if (droplets[i].id === selectedDropletId) {
+          selectedDroplet = droplets[i];
+          break;
+        }
       }
+    }
+    if (!selectedDroplet && droplets.length) {
+      selectedDroplet = droplets[0];
     }
     this.state.selectedDroplet = selectedDroplet;
     this.storage.set('selected_droplet_id', selectedDroplet ? selectedDroplet.id : null);
@@ -1074,5 +1138,26 @@ exports.MonitorControl.prototype = {
     this.state.selectedDroplet = selectedDroplet;
     this.storage.set('selected_droplet_id', selectedDroplet.id);
     this.renderWidgets();
+  },
+  handleDestroyDroplet: function () {
+    this.state.locked = true;
+    this.renderWidgets();
+    var selectedDropletId = this.storage.get('selected_droplet_id');
+    exports.destroyDroplet(
+      selectedDropletId,
+      function () {
+        this.loadDroplets(function () {
+            this.updateCreatedDropletIds();
+            this.updateSelectedDroplet();
+            this.state.locked = false;
+            this.renderWidgets();
+          }.bind(this));
+      }.bind(this),
+      function (err) {
+        console.error('Failed to destroy droplet:', err); // TODO: Improve error display.
+        this.state.locked = false;
+        this.renderWidgets();
+      }.bind(this),
+      this.storage.get('token'));
   }
 };

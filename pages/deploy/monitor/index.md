@@ -23,6 +23,7 @@ Words words words.
 
 <div id="digitalocean-droplet-widget" class="widget"></div>
 <div id="digitalocean-droplet-legend" class="full"></div>
+<div id="droplet-action-widget" class="widget"></div>
 
 
 #### Live install log
