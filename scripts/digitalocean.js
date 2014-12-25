@@ -744,10 +744,7 @@ exports.DeployControl.prototype = {
     this.state = this.getInitialState();
     this.updateReady();
     this.renderWidgets();
-    setTimeout(function () {
-        exports.requestToken(this.props.clientId, this.props.callbackUrl);
-      }.bind(this),
-      1000);
+    exports.requestToken(this.props.clientId, this.props.callbackUrl);
   },
   handleUnlink: function () {
     this.storage.unset('token');

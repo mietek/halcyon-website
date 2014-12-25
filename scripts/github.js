@@ -305,10 +305,7 @@ exports.DeployControl.prototype = {
     this.state.linkable = false;
     this.state.account  = null;
     this.renderWidgets();
-    setTimeout(function () {
-        exports.requestToken(this.props.clientId);
-      }.bind(this),
-      1000);
+    exports.requestToken(this.props.clientId);
   },
   handleUnlink: function () {
     this.storage.unset('token');

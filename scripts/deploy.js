@@ -113,10 +113,7 @@ exports.Control.prototype = {
     this.renderWidgets();
     this.doControl.createDroplet(this.ghControl.getSourceUrl(),
       function () {
-        setTimeout(function () {
-          location.href = '/deploy/monitor/';
-        }.bind(this),
-        1000);
+        location.href = '/deploy/monitor/';
       }.bind(this),
       function (err) {
         console.error('Failed to create droplet:', err); // TODO: Improve error display.
