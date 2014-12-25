@@ -182,6 +182,9 @@ exports.getDroplets = function (yea, nay, token) {
       if (!droplets) {
         return nay('bad_response');
       }
+      droplets.sort(function (droplet1, droplet2) {
+          return droplet1.name.localeCompare(droplet2.name);
+        });
       return yea(droplets);
     },
     nay, token);
@@ -705,7 +708,15 @@ exports.DeployControl.prototype = {
       this.storage.get('selected_image_slug'),
       this.storage.get('selected_region_slug'),
       this.storage.get('selected_key_ids'),
-      sourceUrl, yea, nay,
+      sourceUrl,
+      function (droplet) {
+        var createdDropletIds = this.storage.get('created_droplet_ids', []);
+        createdDropletIds.push(droplet.id);
+        this.storage.set('created_droplet_ids', createdDropletIds);
+        this.storage.set('selected_droplet_id', droplet.id);
+        return yea(droplet);
+      }.bind(this),
+      nay,
       this.storage.get('token'));
   },
   handleLink: function () {

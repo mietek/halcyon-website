@@ -28,7 +28,7 @@ var DeployWidget = React.createClass({
         React.createElement(widgets.PushButton, {
             className: 'deploy-button',
             enabled:   this.state.enabled,
-            title:     'Deploy to DigitalOcean',
+            title:     'Create droplet',
             onClick:   this.props.onDeploy
           })));
   }
@@ -57,8 +57,9 @@ exports.Control.prototype = {
   },
   getInitialState: function () {
     return {
-      ghReady: undefined,
-      doReady: undefined,
+      locked:  false,
+      ghReady: false,
+      doReady: false
     };
   },
   createWidgets: function () {
@@ -71,7 +72,7 @@ exports.Control.prototype = {
   },
   renderWidgets: function () {
     this.deployWidget.setState({
-        enabled: this.state.ghReady && this.state.doReady
+        enabled: !this.state.locked && this.state.ghReady && this.state.doReady
       });
   },
   createControl: function () {
@@ -104,17 +105,24 @@ exports.Control.prototype = {
       });
   },
   loadData: function () {
-    this.doControl.loadData();
     this.ghControl.loadData();
+    this.doControl.loadData();
   },
   handleDeploy: function () {
+    this.state.locked = true;
+    this.renderWidgets();
     this.doControl.createDroplet(this.ghControl.getSourceUrl(),
-      function (droplet) {
-        console.log('yea', droplet); // TODO
-      },
+      function () {
+        setTimeout(function () {
+          location.href = '/deploy/monitor/';
+        }.bind(this),
+        1000);
+      }.bind(this),
       function (err) {
-        console.log('nay', err);
-      });
+        console.error('Failed to create droplet:', err); // TODO: Improve error display.
+        this.state.locked = false;
+        this.renderWidgets();
+      }.bind(this));
   }
 };
 
