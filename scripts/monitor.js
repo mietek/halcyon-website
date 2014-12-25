@@ -14,7 +14,7 @@ var MonitorLegend = React.createClass({
   },
   getInitialState: function () {
     return {
-      selectedIpAddress: null
+      ipAddress: null
     };
   },
   render: function () {
@@ -22,7 +22,7 @@ var MonitorLegend = React.createClass({
       React.createElement(widgets.LegendArea, {
           pre: true
         },
-        this.state.selectedIpAddress));
+        this.state.ipAddress));
   }
 });
 
@@ -44,7 +44,7 @@ exports.Control.prototype = {
   },
   getInitialState: function () {
     return {
-      selectedIpAddress: null
+      ipAddress: null
     };
   },
   createWidgets: function () {
@@ -55,19 +55,19 @@ exports.Control.prototype = {
   },
   renderWidgets: function () {
     this.monitorLegend.setState({
-        selectedIpAddress: this.state.selectedIpAddress
+        ipAddress: this.state.ipAddress
       });
   },
   createControl: function () {
     this.doControl = new DigitalOcean.MonitorControl({
-        onSelectIpAddress: this.handleSelectIpAddress.bind(this)
+        onChangeIpAddress: this.handleChangeIpAddress.bind(this)
       });
   },
   loadData: function () {
     this.doControl.loadData();
   },
-  handleSelectIpAddress: function (ipAddress) {
-    this.state.selectedIpAddress = ipAddress;
+  handleChangeIpAddress: function (ipAddress) {
+    this.state.ipAddress = ipAddress;
     this.renderWidgets();
   }
 };

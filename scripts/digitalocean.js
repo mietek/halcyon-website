@@ -191,7 +191,12 @@ exports.getDroplets = function (yea, nay, token) {
       droplets.sort(function (droplet1, droplet2) {
           return droplet1.name.localeCompare(droplet2.name);
         });
-      return yea(droplets);
+      return yea(droplets.map(function (droplet) {
+          if (droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
+            droplet.ipAddress = droplet.networks.v4[0]['ip_address'];
+          }
+          return droplet;
+        }));
     },
     nay, token);
 };
@@ -203,6 +208,9 @@ exports.getDroplet = function (dropletId, yea, nay, token) {
       var droplet = resp['droplet'];
       if (!droplet) {
         return nay('bad_response');
+      }
+      if (droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
+        droplet.ipAddress = droplet.networks.v4[0]['ip_address'];
       }
       return yea(droplet);
     },
@@ -966,11 +974,9 @@ var DropletLegend = React.createClass({
     var info = {
       locked:    droplet.locked,
       status:    droplet.status,
-      createdAt: droplet['created_at']
+      createdAt: droplet['created_at'],
+      ipAddress: droplet.ipAddress
     };
-    if (droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
-      info.ipAddress = droplet.networks.v4[0]['ip_address'];
-    }
     return (
       React.createElement(widgets.LegendArea, {
           pre: true
@@ -1024,7 +1030,7 @@ exports.MonitorControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:            'digitalocean',
-      onSelectIpAddress: null
+      onChangeIpAddress: null
     };
   },
   getInitialState: function () {
@@ -1147,21 +1153,12 @@ exports.MonitorControl.prototype = {
     }
     this.state.selectedDroplet = selectedDroplet;
     this.storage.set('selected_droplet_id', selectedDroplet ? selectedDroplet.id : null);
-    this.updateSelectedIpAddress();
-  },
-  updateSelectedIpAddress: function () {
-    var droplet = this.state.selectedDroplet;
-    var ipAddress;
-    if (droplet && droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
-      ipAddress = droplet.networks.v4[0]['ip_address'];
-    }
-    this.storage.set('selected_ip_address', ipAddress);
-    this.props.onSelectIpAddress(ipAddress);
+    this.props.onChangeIpAddress(selectedDroplet ? selectedDroplet.ipAddress : null);
   },
   handleSelectDroplet: function (selectedDroplet) {
     this.state.selectedDroplet = selectedDroplet;
     this.storage.set('selected_droplet_id', selectedDroplet.id);
-    this.updateSelectedIpAddress();
+    this.props.onChangeIpAddress(selectedDroplet.ipAddress);
     this.renderWidgets();
   },
   handleDestroyDroplet: function () {
