@@ -58,22 +58,10 @@ var DropletLegend = React.createClass({
   },
   getInitialState: function () {
     return {
-      failed:          false,
       selectedDroplet: null
     };
   },
   render: function () {
-    if (this.state.failed) {
-      return (
-        React.createElement(widgets.LegendArea, null,
-          React.createElement('p', null,
-            'Something went wrong.  ',
-            React.createElement('a', {
-                href: ''
-              },
-              'Refresh'),
-            ' the page to continue.')));
-    }
     var droplet = this.state.selectedDroplet;
     if (!droplet) {
       return (
@@ -83,7 +71,7 @@ var DropletLegend = React.createClass({
                 href: '/deploy/'
               },
               'Create'),
-            ' a droplet first.')));
+            ' a droplet to begin.')));
     }
     var info = {
       id:        droplet.id,
@@ -147,18 +135,17 @@ var DigitalOceanMonitorControl = function (props) {
 DigitalOceanMonitorControl.prototype = {
   getDefaultProps: function () {
     return {
-      token:             null,
-      dropletId:         null,
-      onSelectIpAddress: null
+      token:           null,
+      dropletId:       null,
+      onSelectDroplet: null
     };
   },
   getInitialState: function () {
     return {
-      locked:          false,
-      failed:          false,
       account:         null,
       droplets:        null,
-      selectedDroplet: null
+      selectedDroplet: null,
+      actionPending:   false
     };
   },
   createWidgets: function () {
@@ -173,7 +160,7 @@ DigitalOceanMonitorControl.prototype = {
     this.dropletLegend = React.render(
       React.createElement(DropletLegend, null),
       document.getElementById('digitalocean-droplet-legend'));
-    this.dropletActionWidget = React.render(
+    this.actionWidget = React.render(
       React.createElement(ActionWidget, {
           onView:    this.handleViewDroplet.bind(this),
           onDestroy: this.handleDestroyDroplet.bind(this)
@@ -182,20 +169,18 @@ DigitalOceanMonitorControl.prototype = {
   },
   renderWidgets: function () {
     this.accountWidget.setState({
-        account:           this.state.account ? this.state.account.email : null
+        account:           this.state.account && this.state.account.email
       });
     this.dropletWidget.setState({
-        enabled:           !this.state.failed,
+        enabled:           !!this.state.account,
         droplets:          this.state.droplets,
         selectedDroplet:   this.state.selectedDroplet
       });
     this.dropletLegend.setState({
-        failed:            this.state.failed,
         selectedDroplet:   this.state.selectedDroplet
       });
-    this.dropletActionWidget.setState({
-        enabled:           !this.state.locked && !this.state.failed &&
-          this.state.selectedDroplet && !this.state.selectedDroplet.locked
+    this.actionWidget.setState({
+        enabled:           this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.actionPending
       });
   },
   loadData: function () {
@@ -212,8 +197,7 @@ DigitalOceanMonitorControl.prototype = {
         return next();
       }.bind(this),
       function (err) {
-        console.error('Failed to load account:', err);
-        this.state.failed  = true;
+        console.error('Failed to load account:', err); // TODO: Improve failure handling.
         this.state.account = null;
         return next();
       }.bind(this),
@@ -225,8 +209,7 @@ DigitalOceanMonitorControl.prototype = {
         return next();
       }.bind(this),
       function (err) {
-        console.error('Failed to load droplets:', err);
-        this.state.failed   = true;
+        console.error('Failed to load droplets:', err); // TODO: Improve failure handling.
         this.state.droplets = null;
         return next();
       }.bind(this),
@@ -247,32 +230,32 @@ DigitalOceanMonitorControl.prototype = {
     if (!selectedDroplet && droplets.length) {
       selectedDroplet = droplets[0];
     }
-    this.state.selectedDroplet = selectedDroplet;
-    this.props.onSelectIpAddress(selectedDroplet ? selectedDroplet.ipAddress : null);
+    this.handleSelectDroplet(selectedDroplet);
   },
   handleSelectDroplet: function (selectedDroplet) {
     this.state.selectedDroplet = selectedDroplet;
-    this.props.onSelectIpAddress(selectedDroplet.ipAddress);
+    localStorage.setItem('monitor-droplet-id', selectedDroplet.id);
+    this.props.onSelectDroplet(selectedDroplet);
     this.renderWidgets();
   },
   handleViewDroplet: function () {
     location.href = 'http://' + this.state.selectedDroplet.ipAddress + ':8080/'; // TODO: Use custom port.
   },
   handleDestroyDroplet: function () {
-    this.state.locked = true;
+    this.state.actionPending = true;
     this.renderWidgets();
     DigitalOcean.destroyDroplet(
       this.state.selectedDroplet.id,
       function () {
         this.loadDroplets(function () {
             this.updateSelectedDroplet();
-            this.state.locked = false;
+            this.state.actionPending = false;
             this.renderWidgets();
           }.bind(this));
       }.bind(this),
       function (err) {
-        console.error('Failed to destroy droplet:', err); // TODO: Improve error display.
-        this.state.locked = false;
+        console.error('Failed to destroy droplet:', err); // TODO: Improve failure handling.
+        this.state.actionPending = false;
         this.renderWidgets();
       }.bind(this),
       this.props.token);
@@ -318,7 +301,7 @@ exports.Control.prototype = {
   },
   getInitialState: function () {
     return {
-      ipAddress: null
+      droplet: null
     };
   },
   createWidgets: function () {
@@ -329,21 +312,21 @@ exports.Control.prototype = {
   },
   renderWidgets: function () {
     this.monitorLegend.setState({
-        ipAddress: this.state.ipAddress
+        ipAddress: this.state.droplet && this.state.droplet.ipAddress
       });
   },
   createControl: function () {
     this.digitalOceanControl = new DigitalOceanMonitorControl({
-        token:             this.props.digitalOceanToken,
-        dropletId:         this.props.dropletId,
-        onSelectIpAddress: this.handleSelectIpAddress.bind(this)
+        token:           this.props.digitalOceanToken,
+        dropletId:       this.props.dropletId,
+        onSelectDroplet: this.handleSelectDroplet.bind(this)
       });
   },
   loadData: function () {
     this.digitalOceanControl.loadData();
   },
-  handleSelectIpAddress: function (ipAddress) {
-    this.state.ipAddress = ipAddress;
+  handleSelectDroplet: function (droplet) {
+    this.state.droplet = droplet;
     this.renderWidgets();
   }
 };
@@ -351,9 +334,15 @@ exports.Control.prototype = {
 
 exports.start = function () {
   var query = http.parseQueryString(location.search);
+  if (query) {
+    if (query['id']) {
+      localStorage.setItem('monitor-droplet-id', query['id']);
+    }
+  }
+  var dropletId = localStorage.getItem('monitor-droplet-id');
   var control = new exports.Control({
       digitalOceanToken: localStorage.getItem('digitalocean-token'),
-      dropletId:         query && parseInt(query['id'])
+      dropletId:         dropletId && parseInt(dropletId)
     });
   control.loadData();
 };
