@@ -990,6 +990,7 @@ var DropletActionWidget = React.createClass({
   displayName: 'DropletActionWidget',
   getDefaultProps: function () {
     return {
+      onView:    null,
       onDestroy: null
     };
   },
@@ -1004,6 +1005,12 @@ var DropletActionWidget = React.createClass({
         React.createElement('div', {
             className: 'flex'
           },
+          React.createElement(widgets.PushButton, {
+              className: 'view-button',
+              enabled:   this.state.enabled,
+              title:     'View droplet',
+              onClick:   this.props.onView
+            }),
           React.createElement(widgets.PushButton, {
               className: 'destroy-button',
               enabled:   this.state.enabled,
@@ -1056,6 +1063,7 @@ exports.MonitorControl.prototype = {
       document.getElementById('digitalocean-droplet-legend'));
     this.dropletActionWidget = React.render(
       React.createElement(DropletActionWidget, {
+          onView:    this.handleViewDroplet.bind(this),
           onDestroy: this.handleDestroyDroplet.bind(this)
         }),
       document.getElementById('droplet-action-widget'));
@@ -1160,6 +1168,9 @@ exports.MonitorControl.prototype = {
     this.storage.set('selected_droplet_id', selectedDroplet.id);
     this.props.onChangeIpAddress(selectedDroplet.ipAddress);
     this.renderWidgets();
+  },
+  handleViewDroplet: function () {
+    location.href = 'http://' + this.state.selectedDroplet.ipAddress + ':8080/'; // TODO: Use custom port.
   },
   handleDestroyDroplet: function () {
     this.state.locked = true;
