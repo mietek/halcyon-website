@@ -29,7 +29,6 @@ var DropletWidget = React.createClass({
           title:     'none'
         });
     }
-    var selectedDropletId = this.state.selectedDroplet ? this.state.selectedDroplet.id : null;
     return (
       React.createElement('div', {
           className: 'flex'
@@ -40,7 +39,7 @@ var DropletWidget = React.createClass({
                   key:       droplet.id,
                   className: 'droplet-button',
                   enabled:   this.state.enabled,
-                  selected:  droplet.id === selectedDropletId,
+                  selected:  this.state.selectedDroplet && droplet.id === this.state.selectedDroplet.id,
                   title:     droplet.name,
                   onClick:   function () {
                     this.props.onSelect(droplet);
@@ -151,7 +150,7 @@ MonitorControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:            'digitalocean',
-      selectedDropletId: null,
+      dropletId:         null,
       onSelectIpAddress: null
     };
   },
@@ -241,7 +240,7 @@ MonitorControl.prototype = {
   },
   updateSelectedDroplet: function () {
     var droplets   = this.state.droplets || [];
-    var selectedId = (this.state.selectedDroplet && this.state.selectedDroplet.id) || this.props.selectedDropletId;
+    var selectedId = (this.state.selectedDroplet && this.state.selectedDroplet.id) || this.props.dropletId;
     var selectedDroplet;
     if (selectedId) {
       for (var i = 0; i < droplets.length; i += 1) {
@@ -320,7 +319,7 @@ exports.Control = function (props) {
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
-      selectedDropletId: null
+      dropletId: null
     };
   },
   getInitialState: function () {
@@ -341,7 +340,7 @@ exports.Control.prototype = {
   },
   createControl: function () {
     this.doControl = new MonitorControl({
-        selectedDropletId: this.props.selectedDropletId,
+        dropletId:         this.props.dropletId,
         onSelectIpAddress: this.handleSelectIpAddress.bind(this)
       });
   },
@@ -358,7 +357,7 @@ exports.Control.prototype = {
 exports.start = function () {
   var query = http.parseQueryString(location.search);
   var control = new exports.Control({
-      selectedDropletId: query && parseInt(query['id'])
+      dropletId: query && parseInt(query['id'])
     });
   control.loadData();
 };
