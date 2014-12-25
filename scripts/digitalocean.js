@@ -347,17 +347,19 @@ var ImageWidget = React.createClass({
           title:     'none'
         });
     }
-    var selectedImageSlug = this.state.selectedImage ? this.state.selectedImage.slug : null;
+    var supportedImageSlugs = ['ubuntu-14-04-x64']; // TODO: Support CentOS 7.
+    var selectedImageSlug   = this.state.selectedImage ? this.state.selectedImage.slug : null;
     return (
       React.createElement('div', {
           className: 'flex'
         },
         this.state.images.map(function (image) {
+            var enabled = this.state.enabled && supportedImageSlugs.indexOf(image.slug) !== -1;
             return (
               React.createElement(widgets.RadioButton, {
                   key:       image.slug,
                   className: 'image-button',
-                  enabled:   this.state.enabled && image.slug === 'ubuntu-14-04-x64', // TODO: Support CentOS 7.
+                  enabled:   enabled,
                   selected:  image.slug === selectedImageSlug,
                   title:     image.distribution + ' ' + image.name,
                   onClick:   function () {
@@ -402,13 +404,15 @@ var RegionWidget = React.createClass({
           className: 'flex'
         },
         this.state.regions.map(function (region) {
-            var available = availableRegionSlugsBySize.indexOf(region.slug) !== -1 && availableRegionSlugsByImage.indexOf(region.slug);
+            var available = region.available &&
+              availableRegionSlugsBySize.indexOf(region.slug) !== -1 &&
+              availableRegionSlugsByImage.indexOf(region.slug);
             var metadata  = region.features.indexOf('metadata') !== -1;
             return (
               React.createElement(widgets.RadioButton, {
                   key:       region.slug,
                   className: 'region-button',
-                  enabled:   region.available && this.state.enabled && available && metadata,
+                  enabled:   this.state.enabled && available && metadata,
                   selected:  region.slug === selectedRegionSlug,
                   title:     region.name,
                   onClick:   function () {
@@ -655,7 +659,7 @@ exports.DeployControl.prototype = {
   },
   loadSizes: function (next) {
     exports.getSizes(function (sizes) {
-        this.state.sizes = sizes;
+        this.state.sizes = sizes.length ? sizes : null;
         return next();
       }.bind(this),
       function (err) {
@@ -668,9 +672,11 @@ exports.DeployControl.prototype = {
   },
   loadImages: function (next) {
     exports.getDistributionImages(function (images) {
-        this.state.images = images.filter(function (image) {
-            return image.slug === 'ubuntu-14-04-x64' || image.slug === 'centos-7-0-x64';
+        var supportedImageSlugs = ['centos-7-0-x64', 'ubuntu-14-04-x64'];
+        var validImages         = images.filter(function (image) {
+            return supportedImageSlugs.indexOf(image.slug) !== -1;
           });
+        this.state.images = validImages.length ? validImages : null;
         return next();
       }.bind(this),
       function (err) {
@@ -683,7 +689,7 @@ exports.DeployControl.prototype = {
   },
   loadRegions: function (next) {
     exports.getRegions(function (regions) {
-        this.state.regions = regions;
+        this.state.regions = regions.length ? regions : null;
         return next();
       }.bind(this),
       function (err) {
@@ -696,7 +702,7 @@ exports.DeployControl.prototype = {
   },
   loadKeys: function (next) {
     exports.getAccountKeys(function (keys) {
-        this.state.keys = keys;
+        this.state.keys = keys.length ? keys : null;
         return next();
       }.bind(this),
       function (err) {
@@ -775,92 +781,83 @@ exports.DeployControl.prototype = {
     this.renderWidgets();
   },
   updateSelectedSize: function () {
-    var sizes            = this.state.sizes;
+    var sizes            = this.state.sizes || [];
     var selectedSizeSlug = this.storage.get('selected_size_slug');
     var selectedSize;
-    if (sizes) {
-      if (selectedSizeSlug) {
-        for (var i = 0; i < sizes.length; i += 1) {
-          if (sizes[i].slug === selectedSizeSlug) {
-            selectedSize = sizes[i];
-            break;
-          }
+    if (selectedSizeSlug) {
+      for (var i = 0; i < sizes.length; i += 1) {
+        if (sizes[i].slug === selectedSizeSlug) {
+          selectedSize = sizes[i];
+          break;
         }
       }
-      if (!selectedSize && sizes.length) {
-        selectedSize = sizes[0];
-      }
+    }
+    if (!selectedSize && sizes.length) {
+      selectedSize = sizes[0];
     }
     this.state.selectedSize = selectedSize;
     this.storage.set('selected_size_slug', selectedSize ? selectedSize.slug : null);
   },
   updateSelectedImage: function () {
-    var images            = this.state.images;
-    var selectedImageSlug = this.storage.get('selected_image_slug');
+    var supportedImageSlugs = ['ubuntu-14-04-x64']; // TODO: Support CentOS 7.
+    var images              = this.state.images || [];
+    var validImages         = images.filter(function (image) {
+        return supportedImageSlugs.indexOf(image.slug) !== -1;
+      });
+    var selectedImageSlug   = this.storage.get('selected_image_slug');
     var selectedImage;
-    if (images) {
-      if (selectedImageSlug) {
-        for (var i = 0; i < images.length; i += 1) {
-          if (images[i].slug === selectedImageSlug) {
-            selectedImage = images[i];
-            break;
-          }
-        }
-      }
-      if (!selectedImage) {
-        for (var j = 0; j < images.length; j += 1) {
-          selectedImage = images[j];
+    if (selectedImageSlug) {
+      for (var i = 0; i < validImages.length; i += 1) {
+        if (validImages[i].slug === selectedImageSlug) {
+          selectedImage = validImages[i];
           break;
         }
       }
+    }
+    if (!selectedImage && validImages.length) {
+      selectedImage = validImages[0];
     }
     this.state.selectedImage = selectedImage;
     this.storage.set('selected_image_slug', selectedImage ? selectedImage.slug : null);
   },
   updateSelectedRegion: function () {
-    var regions                     = this.state.regions;
     var availableRegionSlugsBySize  = this.state.selectedSize ? this.state.selectedSize.regions : [];
     var availableRegionSlugsByImage = this.state.selectedImage ? this.state.selectedImage.regions : [];
+    var regions                     = this.state.regions || [];
+    var validRegions                = regions.filter(function (region) {
+        return availableRegionSlugsBySize.indexOf(region.slug) !== -1 &&
+          availableRegionSlugsByImage.indexOf(region.slug) !== -1 &&
+          region.features.indexOf('metadata') !== -1;
+      });
     var selectedRegionSlug          = this.storage.get('selected_region_slug');
     var selectedRegion;
-    if (regions) {
-      if (selectedRegionSlug && availableRegionSlugsBySize.indexOf(selectedRegionSlug) !== -1 && availableRegionSlugsByImage.indexOf(selectedRegionSlug) !== -1) {
-        for (var i = 0; i < regions.length; i += 1) {
-          if (regions[i].slug === selectedRegionSlug) {
-            if (regions[i].features.indexOf('metadata') !== -1) {
-              selectedRegion = regions[i];
-            }
-            break;
-          }
+    if (selectedRegionSlug) {
+      for (var i = 0; i < validRegions.length; i += 1) {
+        if (validRegions[i].slug === selectedRegionSlug) {
+          selectedRegion = validRegions[i];
+          break;
         }
       }
-      if (!selectedRegion) {
-        for (var j = 0; j < regions.length; j += 1) {
-          if (availableRegionSlugsBySize.indexOf(regions[j].slug) !== -1 && availableRegionSlugsByImage.indexOf(regions[j].slug) !== -1 && regions[j].features.indexOf('metadata') !== -1) {
-            selectedRegion = regions[j];
-            break;
-          }
-        }
-      }
+    }
+    if (!selectedRegion && validRegions.length) {
+      selectedRegion = validRegions[0];
     }
     this.state.selectedRegion = selectedRegion;
     this.storage.set('selected_region_slug', selectedRegion ? selectedRegion.slug : null);
   },
   updateSelectedKeys: function () {
-    var keys           = this.state.keys;
+    var keys           = this.state.keys || [];
     var selectedKeyIds = this.storage.get('selected_key_ids');
     var selectedKeys   = [];
-    if (keys) {
-      if (selectedKeyIds) {
-        for (var i = 0; i < keys.length; i += 1) {
-          if (selectedKeyIds.indexOf(keys[i].id) !== -1) {
-            selectedKeys.push(keys[i]);
-          }
+    if (selectedKeyIds) {
+      for (var i = 0; i < keys.length; i += 1) {
+        if (selectedKeyIds.indexOf(keys[i].id) !== -1) {
+          selectedKeys.push(keys[i]);
         }
       }
-      if (!selectedKeys.length && keys.length) {
-        selectedKeys.push(keys[0]);
-      }
+    }
+    if (!selectedKeys.length && keys.length) {
+      selectedKeys.push(keys[0]);
     }
     this.state.selectedKeys = selectedKeys;
     selectedKeyIds = selectedKeys ?
