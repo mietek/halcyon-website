@@ -1014,13 +1014,17 @@ exports.MonitorControl = function (props) {
       this.props[key] = props[key];
     }.bind(this));
   this.storage = new storage.CachedStorage(this.props.prefix);
+  if (this.props.selectedDropletId) {
+    this.storage.set('selected_droplet_id', this.props.selectedDropletId);
+  }
   this.state = this.getInitialState();
   this.createWidgets();
 };
 exports.MonitorControl.prototype = {
   getDefaultProps: function () {
     return {
-      prefix: 'digitalocean'
+      prefix:            'digitalocean',
+      onSelectIpAddress: null
     };
   },
   getInitialState: function () {
@@ -1059,7 +1063,7 @@ exports.MonitorControl.prototype = {
         account: this.state.account ? this.state.account.email : null
       });
     this.dropletWidget.setState({
-        enabled:           !locked && !failed,
+        enabled:           !failed,
         droplets:          this.state.droplets,
         selectedDroplet:   this.state.selectedDroplet
       });

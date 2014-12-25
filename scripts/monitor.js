@@ -39,7 +39,7 @@ exports.Control = function (props) {
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
-      dropletId: null
+      selectedDropletId: null
     };
   },
   getInitialState: function () {
@@ -74,13 +74,13 @@ exports.Control.prototype = {
 
 
 exports.start = function () {
-  var dropletId;
+  var selectedDropletId;
   var query = http.parseQueryString(location.search);
   if (query) {
-    dropletId = query['droplet_id'];
+    selectedDropletId = query['id'];
   }
   var control = new exports.Control({
-      dropletId: dropletId
+      selectedDropletId: selectedDropletId
     });
   control.loadData();
 };
