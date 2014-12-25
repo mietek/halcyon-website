@@ -465,8 +465,12 @@ exports.DeployControl = function (props) {
       this.props[key] = props[key];
     }.bind(this));
   this.storage = new storage.CachedStorage(this.props.prefix);
-  this.storage.set('token', this.props.token);
-  this.storage.set('default_hostname', this.props.defaultHostname);
+  if (this.props.token) {
+    this.storage.set('token', this.props.token);
+  }
+  if (this.props.defaultHostname) {
+    this.storage.set('default_hostname', this.props.defaultHostname);
+  }
   this.state = this.getInitialState();
   this.createWidgets();
 };
