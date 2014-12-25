@@ -3,7 +3,6 @@
 var DigitalOcean = require('digitalocean');
 var React = require('react');
 var http = require('http');
-var widgets = require('widgets');
 
 
 var MonitorWidget = React.createClass({
@@ -32,6 +31,7 @@ exports.Control = function (props) {
     }.bind(this));
   this.state = this.getInitialState();
   this.createWidgets();
+  this.createControl();
 };
 exports.Control.prototype = {
   getDefaultProps: function () {
@@ -53,7 +53,11 @@ exports.Control.prototype = {
     this.monitorWidget.setState({
       });
   },
+  createControl: function () {
+    this.doControl = new DigitalOcean.MonitorControl({});
+  },
   loadData: function () {
+    this.doControl.loadData();
   }
 };
 

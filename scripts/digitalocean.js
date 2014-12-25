@@ -175,6 +175,32 @@ exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, key
 };
 
 
+exports.getDroplets = function (yea, nay, token) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/droplets',
+    function (resp) {
+      var droplets = resp['droplets'];
+      if (!droplets) {
+        return nay('bad_response');
+      }
+      return yea(droplets);
+    },
+    nay, token);
+};
+
+
+exports.getDroplet = function (id, yea, nay, token) {
+  exports.getJsonResource('https://api.digitalocean.com/v2/droplets/' + id,
+    function (resp) {
+      var droplet = resp['droplet'];
+      if (!droplet) {
+        return nay('bad_response');
+      }
+      return yea(droplet);
+    },
+    nay, token);
+};
+
+
 var SizeLegend = React.createClass({
   displayName: 'SizeLegend',
   getDefaultProps: function () {
@@ -839,5 +865,203 @@ exports.DeployControl.prototype = {
     } else {
       this.props.onUnready();
     }
+  }
+};
+
+
+var DropletWidget = React.createClass({
+  displayName: 'DropletWidget',
+  getDefaultProps: function () {
+    return {
+      onSelectDroplet: undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled:         false,
+      droplets:        undefined,
+      selectedDroplet: undefined
+    };
+  },
+  render: function () {
+    if (!this.state.droplets) {
+      return React.createElement(widgets.RadioButton, {
+          className: 'droplet-button meta',
+          enabled:   false,
+          title:     'none'
+        });
+    }
+    var selectedDropletId = this.state.selectedDroplet ? this.state.selectedDroplet.id : null;
+    return (
+      React.createElement('div', {
+          className: 'flex'
+        },
+        this.state.droplets.map(function (droplet) {
+            return (
+              React.createElement(widgets.RadioButton, {
+                  key:       droplet.id,
+                  className: 'droplet-button',
+                  enabled:   this.state.enabled,
+                  selected:  droplet.id === selectedDropletId,
+                  title:     droplet.name,
+                  onClick:   function () {
+                    this.props.onSelectDroplet(droplet);
+                  }.bind(this)
+                })
+            );
+          }.bind(this))));
+  }
+});
+
+
+var DropletLegend = React.createClass({
+  displayName: 'DropletLegend',
+  getDefaultProps: function () {
+    return {
+    };
+  },
+  getInitialState: function () {
+    return {
+      failed:          false,
+      selectedDroplet: undefined
+    };
+  },
+  render: function () {
+    if (this.state.failed) {
+      return (
+        React.createElement(widgets.LegendArea, null,
+          React.createElement('p', null,
+            'Something went wrong.  ',
+            React.createElement('a', {
+                href: ''
+              },
+              'Refresh'),
+            ' the page to continue.')));
+    }
+    var droplet = this.state.selectedDroplet;
+    if (!droplet) {
+      return (
+        React.createElement(widgets.LegendArea, null,
+          React.createElement('p', null, 'Loading…')));
+    }
+    var dump;
+    dump = JSON.stringify(droplet);
+    return (
+      React.createElement(widgets.LegendArea, null,
+        React.createElement('p', null, dump)));
+  }
+});
+
+
+exports.MonitorControl = function (props) {
+  this.props = this.getDefaultProps();
+  Object.keys(props).forEach(function (key) {
+      this.props[key] = props[key];
+    }.bind(this));
+  this.storage = new storage.CachedStorage(this.props.prefix);
+  this.state = this.getInitialState();
+  this.createWidgets();
+};
+exports.MonitorControl.prototype = {
+  getDefaultProps: function () {
+    return {
+      prefix: 'digitalocean'
+    };
+  },
+  getInitialState: function () {
+    return {
+      failed:          false,
+      account:         undefined,
+      droplets:        undefined,
+      selectedDroplet: undefined
+    };
+  },
+  createWidgets: function () {
+    this.accountWidget = React.render(
+      React.createElement(widgets.AccountWidget, null),
+      document.getElementById('digitalocean-account-widget'));
+    this.dropletWidget = React.render(
+      React.createElement(DropletWidget, {
+          onSelectDroplet: this.handleSelectDroplet.bind(this)
+        }),
+      document.getElementById('digitalocean-droplet-widget'));
+    this.dropletLegend = React.render(
+      React.createElement(DropletLegend, null),
+      document.getElementById('digitalocean-droplet-legend'));
+  },
+  renderWidgets: function () {
+    var failed = this.state.failed;
+    this.accountWidget.setState({
+        account: this.state.account ? this.state.account.email : undefined
+      });
+    this.dropletWidget.setState({
+        enabled:         !failed,
+        droplets:        this.state.droplets,
+        selectedDroplet: this.state.selectedDroplet
+      });
+    this.dropletLegend.setState({
+        failed:          failed,
+        selectedDroplet: this.state.selectedDroplet
+      });
+  },
+  loadData: function () {
+    this.loadAccount(function () {
+        this.loadDroplets(function () {
+            console.log(this.state.droplets);
+            this.updateSelectedDroplet();
+            this.renderWidgets();
+          }.bind(this));
+      }.bind(this));
+  },
+  loadAccount: function (next) {
+    exports.getAccount(function (account) {
+        this.state.account = account;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load account:', err);
+        this.state.failed  = true;
+        this.state.account = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
+  },
+  loadDroplets: function (next) {
+    exports.getDroplets(function (droplets) {
+        this.state.droplets = droplets;
+        return next();
+      }.bind(this),
+      function (err) {
+        console.error('Failed to load droplets:', err);
+        this.state.failed   = true;
+        this.state.droplets = null;
+        return next();
+      }.bind(this),
+      this.storage.get('token'));
+  },
+  updateSelectedDroplet: function () {
+    var droplets          = this.state.droplets;
+    var selectedDropletId = this.storage.get('selected_droplet_id');
+    var selectedDroplet;
+    if (droplets) {
+      if (selectedDropletId) {
+        for (var i = 0; i < droplets.length; i += 1) {
+          if (droplets[i].id === selectedDropletId) {
+            selectedDroplet = droplets[i];
+            break;
+          }
+        }
+      }
+      if (!selectedDroplet && droplets.length) {
+        selectedDroplet = droplets[0];
+      }
+    }
+    this.state.selectedDroplet = selectedDroplet;
+    this.storage.set('selected_droplet_id', selectedDroplet ? selectedDroplet.id : undefined);
+  },
+  handleSelectDroplet: function (selectedDroplet) {
+    this.state.selectedDroplet = selectedDroplet;
+    this.storage.set('selected_droplet_id', selectedDroplet.id);
+    this.renderWidgets();
   }
 };

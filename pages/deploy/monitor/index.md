@@ -14,6 +14,17 @@ Deploy to DigitalOcean
 Words words words.
 
 
-#### Live deploy log
+### DigitalOcean account
+
+<div id="digitalocean-account-widget" class="widget"></div>
+
+
+#### Droplet
+
+<div id="digitalocean-droplet-widget" class="widget"></div>
+<div id="digitalocean-droplet-legend" class="full"></div>
+
+
+#### Live install log
 
 <div id="monitor-widget" class="full"></div>
