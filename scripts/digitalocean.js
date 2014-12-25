@@ -968,8 +968,8 @@ var DropletLegend = React.createClass({
       status:    droplet.status,
       createdAt: droplet['created_at']
     };
-    if (droplet.networks && droplet.networks.v4 && droplet.networks.v4['ip_address']) {
-      info.ipAddress = droplet.networks.v4['ip_address'];
+    if (droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
+      info.ipAddress = droplet.networks.v4[0]['ip_address'];
     }
     return (
       React.createElement(widgets.LegendArea, {
@@ -1143,10 +1143,21 @@ exports.MonitorControl.prototype = {
     }
     this.state.selectedDroplet = selectedDroplet;
     this.storage.set('selected_droplet_id', selectedDroplet ? selectedDroplet.id : null);
+    this.updateSelectedIpAddress();
+  },
+  updateSelectedIpAddress: function () {
+    var droplet = this.state.selectedDroplet;
+    var ipAddress;
+    if (droplet && droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
+      ipAddress = droplet.networks.v4[0]['ip_address'];
+    }
+    this.storage.set('selected_ip_address', ipAddress);
+    this.props.onSelectIpAddress(ipAddress);
   },
   handleSelectDroplet: function (selectedDroplet) {
     this.state.selectedDroplet = selectedDroplet;
     this.storage.set('selected_droplet_id', selectedDroplet.id);
+    this.updateSelectedIpAddress();
     this.renderWidgets();
   },
   handleDestroyDroplet: function () {
