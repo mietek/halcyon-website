@@ -808,7 +808,9 @@ exports.start = function () {
     } else if (query.vendor === 'digitalocean') {
       doToken = token;
     }
-    sourceUrl = query['url'];
+    if (query['url']) {
+      sourceUrl = query['url'];
+    }
   }
   var control = new exports.Control({
       ghClientId:    '2765f53aa92837f0a835',
