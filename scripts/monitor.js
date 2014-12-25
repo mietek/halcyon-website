@@ -6,8 +6,8 @@ var http = require('http');
 var widgets = require('widgets');
 
 
-var MonitorWidget = React.createClass({
-  displayName: 'MonitorWidget',
+var MonitorLegend = React.createClass({
+  displayName: 'MonitorLegend',
   getDefaultProps: function () {
     return {
     };
@@ -48,13 +48,13 @@ exports.Control.prototype = {
     };
   },
   createWidgets: function () {
-    this.monitorWidget = React.render(
-      React.createElement(MonitorWidget, null),
+    this.monitorLegend = React.render(
+      React.createElement(MonitorLegend, null),
       document.getElementById('monitor-legend'));
     this.renderWidgets();
   },
   renderWidgets: function () {
-    this.monitorWidget.setState({
+    this.monitorLegend.setState({
         selectedIpAddress: this.state.selectedIpAddress
       });
   },
