@@ -562,8 +562,8 @@ exports.DeployControl.prototype = {
         selectedSize:   this.state.selectedSize
       });
     this.sizeLegend.setState({
-        selectedSize:   this.state.selectedSize,
-        failed:         failed
+        failed:         failed,
+        selectedSize:   this.state.selectedSize
       });
     this.imageWidget.setState({
         enabled:        linkable && !failed,
