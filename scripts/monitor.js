@@ -151,6 +151,7 @@ MonitorControl.prototype = {
   getDefaultProps: function () {
     return {
       prefix:            'digitalocean',
+      selectedDropletId: null,
       onSelectIpAddress: null
     };
   },
@@ -240,11 +241,7 @@ MonitorControl.prototype = {
   },
   updateSelectedDroplet: function () {
     var droplets   = this.state.droplets || [];
-    var selectedId = this.state.selectedDroplet && this.state.selectedDroplet.id;
-    if (!selectedId) {
-      var query = http.parseQueryString(location.search);
-      selectedId = query && parseInt(query['id']);
-    }
+    var selectedId = (this.state.selectedDroplet && this.state.selectedDroplet.id) || this.props.selectedDropletId;
     var selectedDroplet;
     if (selectedId) {
       for (var i = 0; i < droplets.length; i += 1) {
@@ -323,6 +320,7 @@ exports.Control = function (props) {
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
+      selectedDropletId: null
     };
   },
   getInitialState: function () {
@@ -343,6 +341,7 @@ exports.Control.prototype = {
   },
   createControl: function () {
     this.doControl = new MonitorControl({
+        selectedDropletId: this.props.selectedDropletId,
         onSelectIpAddress: this.handleSelectIpAddress.bind(this)
       });
   },
@@ -357,6 +356,9 @@ exports.Control.prototype = {
 
 
 exports.start = function () {
-  var control = new exports.Control();
+  var query = http.parseQueryString(location.search);
+  var control = new exports.Control({
+      selectedDropletId: query && parseInt(query['id'])
+    });
   control.loadData();
 };
