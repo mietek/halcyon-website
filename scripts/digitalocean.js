@@ -100,6 +100,8 @@ exports.getSizes = function (yea, nay, token) {
 
 
 exports.getDistributionImages = function (yea, nay, token) {
+  var potentiallySupportedSlugs = ['centos-7-0-x64', 'ubuntu-14-04-x64'];
+  var supportedSlugs            = ['ubuntu-14-04-x64']; // TODO: Support CentOS 7.
   exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution',
     function (resp) {
       var images = resp['images'];
@@ -111,7 +113,13 @@ exports.getDistributionImages = function (yea, nay, token) {
           var title2 = image2.distribution + ' ' + image2.name;
           return title1.localeCompare(title2);
         });
-      return yea(images);
+      return yea(images.filter(function (image) {
+          return potentiallySupportedSlugs.indexOf(image.slug) !== -1;
+        })
+        .map(function (image) {
+          image.supported = supportedSlugs.indexOf(image.slug) !== -1;
+          return image;
+        }));
     },
     nay, token);
 };
@@ -127,7 +135,10 @@ exports.getRegions = function (yea, nay, token) {
       regions.sort(function (region1, region2) {
           return region1.name.localeCompare(region2.name);
         });
-      return yea(regions);
+      return yea(regions.map(function (region) {
+          region.supported = region.available && region.features.indexOf('metadata') !== -1;
+          return region;
+        }));
     },
     nay, token);
 };

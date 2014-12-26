@@ -2,7 +2,6 @@
 
 var React = require('react');
 var http = require('http');
-var storage = require('storage');
 var utils = require('utils');
 var widgets = require('widgets');
 
@@ -125,20 +124,24 @@ var SourceLegend = React.createClass({
   displayName: 'SourceLegend',
   getDefaultProps: function () {
     return {
-      onLink: null
+      onConnect: null
     };
   },
   getInitialState: function () {
     return {
-      account:    null,
-      sourceInfo: null
+      account:        null,
+      accountPending: false,
+      accountError:   null,
+      sourceInfo:     null,
+      sourceError:    null
     };
   },
-  handleLink: function (event) {
+  handleConnect: function (event) {
     event.preventDefault();
-    this.props.onLink();
+    this.props.onConnect();
   },
   render: function () {
+    // TODO: Rewrite this.
     var info = this.state.sourceInfo;
     if (!info) {
       return (
@@ -157,7 +160,7 @@ var SourceLegend = React.createClass({
           this.state.account ? null : React.createElement('p', null,
             React.createElement('a', {
                 href: '',
-                onClick: this.handleLink
+                onClick: this.handleConnect
               },
               'Connect'),
             ' your GitHub account to avoid running into GitHub API rate limits.')));
@@ -181,96 +184,75 @@ var SourceLegend = React.createClass({
               React.createElement('a', {
                   href: info.website || info.repository
                 },
-                React.createElement('strong', null, info.name || 'no name'))),
-            React.createElement('p', null, info.description || 'no description')))));
+                React.createElement('strong', null, info.name || 'unnamed'))),
+            React.createElement('p', null, info.description || 'undescribed')))));
   }
 });
 
 
-exports.DeployControl = function (props) {
+// TODO: env vars need to live here!!!
+
+exports.GitHubDeployControl = function (props) {
   this.props = this.getDefaultProps();
+  this.state = this.getInitialState();
   Object.keys(props || {}).forEach(function (key) {
       this.props[key] = props[key];
     }.bind(this));
-  this.storage = new storage.CachedStorage(this.props.prefix);
-  if (this.props.token) {
-    this.storage.set('token', this.props.token);
-  }
-  if (this.props.sourceUrl) {
-    this.storage.set('source_url', this.props.sourceUrl);
-  }
-  this.state = this.getInitialState();
   this.createWidgets();
-  this.updateReady();
 };
-exports.DeployControl.prototype = {
+exports.GitHubDeployControl.prototype = {
   getDefaultProps: function () {
     return {
-      prefix:    'github',
       clientId:  null,
       token:     null,
-      sourceUrl: null,
-      onReady:   null,
-      onUnready: null
+      sourceUrl: null
     };
   },
   getInitialState: function () {
     return {
-      linkable: false,
-      account:  null,
-      vars:     null
+      token:          null,
+      account:        null,
+      accountPending: false,
+      accountError:   null,
+      sourceInfo:     null,
+      sourceError:    null,
+      sourceUrl:      null
     };
   },
   createWidgets: function () {
     this.accountWidget = React.render(
       React.createElement(widgets.AccountWidget, {
-          onLink:   this.handleLink.bind(this),
-          onUnlink: this.handleUnlink.bind(this)
+          onConnect:   this.handleConnect.bind(this),
+          onForget:    this.handleForget.bind(this)
         }),
       document.getElementById('github-account-widget'));
-    this.sourceWidget = React.render(
-      React.createElement(widgets.InputWidget, {
-          type:        'url',
-          placeholder: 'https://github.com/user/project',
-          onChange:    this.handleChangeSourceUrl.bind(this)
-        }),
-      document.getElementById('github-source-widget'));
     this.sourceLegend = React.render(
       React.createElement(SourceLegend, {
-          onLink: this.handleLink.bind(this)
+          onConnect:   this.handleConnect.bind(this)
         }),
-      document.getElementById('github-source-legend'));
-    this.varsWidget = React.render(
-      React.createElement(widgets.MapWidget, {
-          onChange: this.handleChangeVars.bind(this)
-        }),
-      document.getElementById('github-vars-widget'));
+      document.getElementById('source-legend'));
     this.renderWidgets();
   },
   renderWidgets: function () {
     this.accountWidget.setState({
-        enabled:    this.state.linkable,
-        account:    this.state.account ? this.state.account.login : null
-      });
-    this.sourceWidget.setState({
-        enabled:    true,
-        value:      this.storage.get('source_url')
+        enabled:        !this.state.accountPending,
+        account:        this.state.account && this.state.account.login
       });
     this.sourceLegend.setState({
-        account:    this.state.account,
-        sourceInfo: this.state.sourceInfo
-      });
-    this.varsWidget.setState({
-        enabled:    true,
-        items:      this.storage.get('vars')
+        account:        this.state.account,
+        accountPending: this.state.accountPending,
+        accountError:   this.state.accountError,
+        sourceInfo:     this.state.sourceInfo,
+        sourceError:    this.state.sourceError
       });
   },
   loadData: function () {
+    this.state.accountPending = true;
     this.loadAccount(function () {
-        this.state.linkable = true;
+        this.state.accountPending = false;
         this.renderWidgets();
         this.loadSourceInfo(function () {
-            this.updateVars();
+            this.updateEnvVars();
             this.renderWidgets();
           }.bind(this));
       }.bind(this));
@@ -280,9 +262,9 @@ exports.DeployControl.prototype = {
         this.state.account = account;
         return next();
       }.bind(this),
-      function (err) {
-        console.error('Failed to load account:', err);
-        this.state.account = null;
+      function (error) {
+        this.state.account      = null;
+        this.state.accountError = error;
         return next();
       }.bind(this),
       this.storage.get('token'));
@@ -300,14 +282,14 @@ exports.DeployControl.prototype = {
       }.bind(this),
       this.storage.get('token'));
   },
-  handleLink: function () {
+  handleConnect: function () {
     this.storage.unset('token');
     this.state.linkable = false;
     this.state.account  = null;
     this.renderWidgets();
     exports.requestToken(this.props.clientId);
   },
-  handleUnlink: function () {
+  handleForget: function () {
     this.storage.unset('token');
     this.state.linkable = true;
     this.state.account  = null;

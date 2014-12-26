@@ -374,8 +374,8 @@ exports.AccountWidget = React.createClass({
   displayName: 'AccountWidget',
   getDefaultProps: function () {
     return {
-      onLink:   undefined,
-      onUnlink: undefined
+      onConnect: undefined,
+      onForget:  undefined
     };
   },
   getInitialState: function () {
@@ -401,8 +401,8 @@ exports.AccountWidget = React.createClass({
             mode:         !!this.state.account,
             trueTitle:    'Forget',
             falseTitle:   'Connect',
-            onTrueClick:  this.props.onUnlink,
-            onFalseClick: this.props.onLink
+            onTrueClick:  this.props.onForget,
+            onFalseClick: this.props.onConnect
           })));
   }
 });

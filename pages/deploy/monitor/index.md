@@ -19,9 +19,12 @@ Deploy to DigitalOcean
 
 #### Droplet
 
-<div id="digitalocean-droplet-widget" class="widget"></div>
-<div id="digitalocean-droplet-legend" class="full"></div>
-<div id="droplet-action-widget" class="widget"></div>
+<div id="droplet-widget" class="widget"></div>
+
+<div id="droplet-legend" class="full"></div>
+
+<div id="action-widget" class="widget"></div>
+<div id="action-legend" class="full"></div>
 
 
 #### Live install log

@@ -58,10 +58,15 @@ var DropletLegend = React.createClass({
   },
   getInitialState: function () {
     return {
-      selectedDroplet: null
+      account:         null,
+      accountPending:  false,
+      accountError:    null,
+      selectedDroplet: null,
+      dropletsError:   null,
     };
   },
   render: function () {
+    // TODO: Rewrite this.
     var droplet = this.state.selectedDroplet;
     if (!droplet) {
       return (
@@ -124,6 +129,24 @@ var ActionWidget = React.createClass({
 });
 
 
+var ActionLegend = React.createClass({
+  displayName: 'ActionLegend',
+  getDefaultProps: function () {
+    return {
+    };
+  },
+  getInitialState: function () {
+    return {
+      actionPending: false,
+      actionError:   null
+    };
+  },
+  render: function () {
+    // TODO
+  }
+});
+
+
 var DigitalOceanMonitorControl = function (props) {
   this.props = this.getDefaultProps();
   this.state = this.getInitialState();
@@ -143,9 +166,13 @@ DigitalOceanMonitorControl.prototype = {
   getInitialState: function () {
     return {
       account:         null,
+      accountPending:  false,
+      accountError:    null,
       droplets:        null,
+      dropletsError:   null,
       selectedDroplet: null,
-      actionPending:   false
+      actionPending:   false,
+      actionError:     null
     };
   },
   createWidgets: function () {
@@ -154,37 +181,53 @@ DigitalOceanMonitorControl.prototype = {
       document.getElementById('digitalocean-account-widget'));
     this.dropletWidget = React.render(
       React.createElement(DropletWidget, {
-          onSelect: this.handleSelectDroplet.bind(this)
+          onSelect: this.selectDroplet.bind(this)
         }),
-      document.getElementById('digitalocean-droplet-widget'));
+      document.getElementById('droplet-widget'));
     this.dropletLegend = React.render(
       React.createElement(DropletLegend, null),
-      document.getElementById('digitalocean-droplet-legend'));
+      document.getElementById('droplet-legend'));
     this.actionWidget = React.render(
       React.createElement(ActionWidget, {
-          onView:    this.handleViewDroplet.bind(this),
-          onDestroy: this.handleDestroyDroplet.bind(this)
+          onView:    this.viewDroplet.bind(this),
+          onDestroy: this.destroyDroplet.bind(this)
         }),
-      document.getElementById('droplet-action-widget'));
+      document.getElementById('action-widget'));
+    this.actionLegend = React.render(
+      React.createElement(ActionLegend, null),
+      document.getElementById('action-legend'));
+    this.renderWidgets();
   },
   renderWidgets: function () {
     this.accountWidget.setState({
-        account:           this.state.account && this.state.account.email
+        enabled:         false,
+        account:         this.state.account && this.state.account.email
       });
     this.dropletWidget.setState({
-        enabled:           !!this.state.account,
-        droplets:          this.state.droplets,
-        selectedDroplet:   this.state.selectedDroplet
+        enabled:         !this.state.accountPending,
+        droplets:        this.state.droplets,
+        selectedDroplet: this.state.selectedDroplet
       });
     this.dropletLegend.setState({
-        selectedDroplet:   this.state.selectedDroplet
+        account:         this.state.account,
+        accountPending:  this.state.accountPending,
+        accountError:    this.state.accountError,
+        dropletsError:   this.state.dropletsError,
+        selectedDroplet: this.state.selectedDroplet
       });
     this.actionWidget.setState({
-        enabled:           this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.actionPending
+        enabled:         !this.state.accountPending && this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.actionPending
+      });
+    this.actionLegend.setState({
+        actionPending:  this.state.actionPending,
+        actionError:    this.state.actionError
       });
   },
   loadData: function () {
+    this.state.accountPending = true;
     this.loadAccount(function () {
+        this.state.accountPending = false;
+        this.renderWidgets();
         this.loadDroplets(function () {
             this.updateSelectedDroplet();
             this.renderWidgets();
@@ -196,9 +239,9 @@ DigitalOceanMonitorControl.prototype = {
         this.state.account = account;
         return next();
       }.bind(this),
-      function (err) {
-        console.error('Failed to load account:', err); // TODO: Improve failure handling.
-        this.state.account = null;
+      function (error) {
+        this.state.account      = null;
+        this.state.accountError = error;
         return next();
       }.bind(this),
       this.props.token);
@@ -208,20 +251,48 @@ DigitalOceanMonitorControl.prototype = {
         this.state.droplets = droplets;
         return next();
       }.bind(this),
-      function (err) {
-        console.error('Failed to load droplets:', err); // TODO: Improve failure handling.
-        this.state.droplets = null;
+      function (error) {
+        this.state.droplets      = null;
+        this.state.dropletsError = error;
         return next();
       }.bind(this),
       this.props.token);
   },
+  viewDroplet: function () {
+    location.href = 'http://' + this.state.selectedDroplet.ipAddress + ':8080/'; // TODO: Support custom ports.
+  },
+  destroyDroplet: function () {
+    this.state.actionPending = true;
+    this.renderWidgets();
+    DigitalOcean.destroyDroplet(
+      this.state.selectedDroplet.id,
+      function () {
+        this.loadDroplets(function () {
+            this.state.actionPending = false;
+            this.updateSelectedDroplet();
+            this.renderWidgets();
+          }.bind(this));
+      }.bind(this),
+      function (error) {
+        this.state.actionPending = false;
+        this.state.actionError   = error;
+        this.renderWidgets();
+      }.bind(this),
+      this.props.token);
+  },
+  selectDroplet: function (selectedDroplet) {
+    this.state.selectedDroplet = selectedDroplet;
+    localStorage.setItem('monitor-droplet-id', selectedDroplet && selectedDroplet.id);
+    this.props.onSelectDroplet(selectedDroplet);
+    this.renderWidgets();
+  },
   updateSelectedDroplet: function () {
-    var droplets   = this.state.droplets || [];
-    var selectedId = (this.state.selectedDroplet && this.state.selectedDroplet.id) || this.props.dropletId;
+    var droplets          = this.state.droplets || [];
+    var selectedDropletId = (this.state.selectedDroplet && this.state.selectedDroplet.id) || this.props.dropletId;
     var selectedDroplet;
-    if (selectedId) {
+    if (selectedDropletId) {
       for (var i = 0; i < droplets.length; i += 1) {
-        if (droplets[i].id === selectedId) {
+        if (droplets[i].id === selectedDropletId) {
           selectedDroplet = droplets[i];
           break;
         }
@@ -230,35 +301,7 @@ DigitalOceanMonitorControl.prototype = {
     if (!selectedDroplet && droplets.length) {
       selectedDroplet = droplets[0];
     }
-    this.handleSelectDroplet(selectedDroplet);
-  },
-  handleSelectDroplet: function (selectedDroplet) {
-    this.state.selectedDroplet = selectedDroplet;
-    localStorage.setItem('monitor-droplet-id', selectedDroplet.id);
-    this.props.onSelectDroplet(selectedDroplet);
-    this.renderWidgets();
-  },
-  handleViewDroplet: function () {
-    location.href = 'http://' + this.state.selectedDroplet.ipAddress + ':8080/'; // TODO: Use custom port.
-  },
-  handleDestroyDroplet: function () {
-    this.state.actionPending = true;
-    this.renderWidgets();
-    DigitalOcean.destroyDroplet(
-      this.state.selectedDroplet.id,
-      function () {
-        this.loadDroplets(function () {
-            this.updateSelectedDroplet();
-            this.state.actionPending = false;
-            this.renderWidgets();
-          }.bind(this));
-      }.bind(this),
-      function (err) {
-        console.error('Failed to destroy droplet:', err); // TODO: Improve failure handling.
-        this.state.actionPending = false;
-        this.renderWidgets();
-      }.bind(this),
-      this.props.token);
+    this.selectDroplet(selectedDroplet);
   }
 };
 
@@ -291,7 +334,6 @@ exports.Control = function (props) {
     }.bind(this));
   this.state = this.getInitialState();
   this.createWidgets();
-  this.createControl();
 };
 exports.Control.prototype = {
   getDefaultProps: function () {
@@ -319,13 +361,13 @@ exports.Control.prototype = {
     this.digitalOceanControl = new DigitalOceanMonitorControl({
         token:           this.props.digitalOceanToken,
         dropletId:       this.props.dropletId,
-        onSelectDroplet: this.handleSelectDroplet.bind(this)
+        onSelectDroplet: this.selectDroplet.bind(this)
       });
   },
   loadData: function () {
     this.digitalOceanControl.loadData();
   },
-  handleSelectDroplet: function (droplet) {
+  selectDroplet: function (droplet) {
     this.state.droplet = droplet;
     this.renderWidgets();
   }

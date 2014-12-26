@@ -11,8 +11,6 @@ page-footer: |
 Deploy to DigitalOcean
 ======================
 
-<div id="background-image"></div>
-
 
 ### GitHub account
 
@@ -21,13 +19,14 @@ Deploy to DigitalOcean
 
 #### Source repository
 
-<div id="github-source-widget" class="widget"></div>
+<div id="source-widget" class="widget"></div>
 
 
 #### Environment variables
 
-<div id="github-vars-widget" class="widget"></div>
-<div id="github-source-legend" class="full"></div>
+<div id="env-vars-widget" class="widget"></div>
+
+<div id="source-legend" class="full"></div>
 
 
 ### DigitalOcean account
@@ -37,28 +36,29 @@ Deploy to DigitalOcean
 
 #### Hostname
 
-<div id="digitalocean-hostname-widget" class="widget"></div>
+<div id="hostname-widget" class="widget"></div>
 
 
 #### Size
 
-<div id="digitalocean-size-widget" class="widget"></div>
+<div id="size-widget" class="widget"></div>
 
 
 #### Image
 
-<div id="digitalocean-image-widget" class="widget"></div>
+<div id="image-widget" class="widget"></div>
 
 
 #### Region
 
-<div id="digitalocean-region-widget" class="widget"></div>
+<div id="region-widget" class="widget"></div>
 
 
 #### SSH keys
 
-<div id="digitalocean-keys-widget" class="widget"></div>
+<div id="keys-widget" class="widget"></div>
 
+<div id="droplet-legend" class="full"></div>
 
-<div id="digitalocean-size-legend" class="full"></div>
-<div id="deploy-widget" class="widget"></div>
+<div id="action-widget" class="widget"></div>
+<div id="action-legend" class="full"></div>
