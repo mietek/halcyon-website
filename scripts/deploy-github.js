@@ -15,18 +15,30 @@ var SourceWidget = React.createClass({
   },
   getInitialState: function () {
     return {
-      sourceUrl: undefined
+      sourceUrl:   undefined,
+      sourceInfo:  undefined,
+      sourceError: undefined
     };
   },
   render: function () {
     return (
       React.createElement('div', null,
-        React.createElement(widgets.InputField, {
-            enabled:      true,
-            type:         'url',
-            placeholder:  'https://github.com/user/project',
-            value:        this.state.sourceUrl,
-            onChange:     this.props.onChange
+        React.createElement('div', {
+            className: 'flex',
+          },
+          React.createElement(widgets.InputField, {
+              enabled:      true,
+              type:         'url',
+              placeholder:  'https://github.com/user/project',
+              value:        this.state.sourceUrl,
+              onChange:     this.props.onChange
+            })),
+        React.createElement(widgets.DynamicDisplay, {
+            value:       this.state.sourceInfo,
+            loadingMsg:  'Loading source information…',
+            error:       this.state.sourceError,
+            errorMsg:    'Failed to load source information.',
+            noReloadMsg: true
           })));
   }
 });
@@ -138,7 +150,9 @@ exports.Control.prototype = {
         accountError: this.state.accountError
       });
     this.sourceWidget.setState({
-        sourceUrl:    this.state.sourceUrl
+        sourceUrl:    this.state.sourceUrl,
+        sourceInfo:   this.state.sourceInfo,
+        sourceError:  this.state.sourceError
       });
     this.envVarItemsWidget.setState({
         enabled:      true,

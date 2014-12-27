@@ -485,9 +485,10 @@ exports.AccountWidget = React.createClass({
               onFalseClick: this.props.onConnect
             })),
         React.createElement(exports.DynamicDisplay, {
-          value:    true,
-          error:    this.state.accountError,
-          errorMsg: 'Failed to load account.'
+          value:      this.state.account,
+          loadingMsg: 'Loading account…',
+          error:      this.state.accountError,
+          errorMsg:   'Failed to load account.'
         })));
   }
 });
