@@ -20,7 +20,7 @@ var SourceLegend = React.createClass({
       sourceUrl:    undefined,
       sourceInfo:   undefined,
       sourceError:  undefined,
-      envVars:      undefined
+      envVarItems:  undefined
     };
   },
   connect: function (event) {
@@ -48,10 +48,13 @@ exports.Control = function (props) {
 exports.Control.prototype = {
   getDefaultProps: function () {
     return {
-      clientId:           undefined,
-      storedToken:        undefined,
-      onForgetAccount:    undefined,
-      onChangeSourceInfo: undefined
+      clientId:            undefined,
+      storedToken:         undefined,
+      storedSourceUrl:     undefined,
+      storedEnvVarItems:   undefined,
+      onForgetAccount:     undefined,
+      onChangeSourceUrl:   undefined,
+      onChangeEnvVarItems: undefined
     };
   },
   makeWidgets: function () {
@@ -61,6 +64,18 @@ exports.Control.prototype = {
           onForget:     this.forgetAccount.bind(this)
         }),
       document.getElementById('github-account-widget'));
+    this.sourceWidget = React.render(
+      React.createElement(widgets.InputWidget, {
+          type:         'url',
+          placeholder:  'https://github.com/user/project',
+          onChange:     this.changeSourceUrl.bind(this)
+        }),
+      document.getElementById('source-widget'));
+    this.envVarItemsWidget = React.render(
+      React.createElement(widgets.MapWidget, {
+          onChange:     this.changeEnvVarItems.bind(this)
+        }),
+      document.getElementById('env-vars-widget'));
     this.sourceLegend = React.render(
       React.createElement(SourceLegend, {
           onConnect:    this.connectAccount.bind(this)
@@ -72,10 +87,10 @@ exports.Control.prototype = {
         token:        this.props.storedToken,
         account:      undefined,
         accountError: undefined,
-        sourceUrl:    undefined,
+        sourceUrl:    this.props.storedSourceUrl,
         sourceInfo:   undefined,
         sourceError:  undefined,
-        envVars:      undefined
+        envVarItems:  this.props.storedEnvVarItems
       });
   },
   forgetAccount: function () {
@@ -98,11 +113,19 @@ exports.Control.prototype = {
         account:      this.state.account && this.state.account.login,
         accountError: this.state.accountError
       });
+    this.sourceWidget.setState({
+        enabled:      true,
+        value:        this.state.sourceUrl
+      });
+    this.envVarItemsWidget.setState({
+        enabled:      true,
+        items:        this.state.envVarItems
+      });
     this.sourceLegend.setState({
         sourceUrl:    this.state.sourceUrl,
         sourceInfo:   this.state.sourceInfo,
         sourceError:  this.state.sourceError,
-        envVars:      this.state.envVars
+        envVarItems:  this.state.envVarItems
       });
   },
   start: function () {
@@ -127,7 +150,7 @@ exports.Control.prototype = {
             sourceInfo:  sourceInfo,
             sourceError: err
           });
-        this.props.onChangeSourceInfo(sourceInfo);
+        this.updateEnvVarItems();
       }.bind(this),
       this.state.token);
   },
@@ -137,13 +160,60 @@ exports.Control.prototype = {
         sourceInfo:  undefined,
         sourceError: undefined
       });
-    this.props.onChangeSourceInfo();
+    this.props.onChangeSourceUrl(sourceUrl);
+    this.updateEnvVarItems();
     this.debouncedLoadSourceInfo();
   },
-  changeEnvVars: function (envVars) {
+  changeEnvVarItems: function (envVarItems) {
     this.setState({
-        envVars: envVars
+        envVarItems: envVarItems
       });
+    this.props.onChangeEnvVarItems(envVarItems);
+  },
+  updateEnvVarItems: function () {
+    var envVarItems   = [];
+    var originalItems = {};
+    if (this.state.sourceInfo && this.state.sourceInfo.env) {
+      Object.keys(this.state.sourceInfo.env).forEach(function (name) {
+          if (name === 'BUILDPACK_URL') {
+            return;
+          }
+          var value = this.state.sourceInfo.env[name];
+          var originalItem = {
+            original: true,
+            name:     name
+          };
+          if (typeof value === 'string') {
+            originalItem.required = true;
+            originalItem.value    = value;
+          } else {
+            originalItem.required = value.required !== false;
+            originalItem.value    = value.value;
+          }
+          originalItems[name] = originalItem;
+          envVarItems.push(originalItem);
+        }.bind(this));
+    }
+    (this.state.envVarItems || []).forEach(function (item) {
+        if (item.original) {
+          return;
+        }
+        var originalItem = originalItems[item.name];
+        if (originalItem && !originalItem.value) {
+          delete originalItem.original;
+          originalItem.value = item.value;
+        } else {
+          if (item.required) {
+            envVarItems.push({
+                name:  item.name,
+                value: item.value
+              });
+          } else {
+            envVarItems.push(item);
+          }
+        }
+      });
+    this.changeEnvVarItems(envVarItems);
   }
 };
 exports.Control.prototype.debouncedLoadSourceInfo = utils.debounce(exports.Control.prototype.loadSourceInfo, 500);

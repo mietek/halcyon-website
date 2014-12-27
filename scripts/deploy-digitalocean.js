@@ -345,6 +345,7 @@ exports.Control.prototype = {
       callbackUrl:      undefined,
       referralCode:     undefined,
       storedToken:      undefined,
+      defaultHostname:  undefined,
       storedSizeSlug:   undefined,
       storedImageSlug:  undefined,
       storedRegionSlug: undefined,
@@ -363,6 +364,12 @@ exports.Control.prototype = {
           onForget:     this.forgetAccount.bind(this)
         }),
       document.getElementById('digitalocean-account-widget'));
+    this.hostnameWidget = React.render(
+      React.createElement(widgets.InputWidget, {
+          placeholder:  this.props.defaultHostname,
+          onChange:     this.changeHostname.bind(this)
+        }),
+      document.getElementById('hostname-widget'));
     this.sizeWidget = React.render(
       React.createElement(SizeWidget, {
           onSelect:     this.selectSize.bind(this)
@@ -403,7 +410,7 @@ exports.Control.prototype = {
         token:            this.props.storedToken,
         account:          undefined,
         accountError:     undefined,
-        hostname:         undefined,
+        hostname:         this.props.defaultHostname,
         sizes:            undefined,
         sizesError:       undefined,
         selectedSize:     undefined,
@@ -452,6 +459,10 @@ exports.Control.prototype = {
     this.accountWidget.setState({
         enabled:        !!this.state.account,
         account:        this.state.account && this.state.account.email
+      });
+    this.hostnameWidget.setState({
+        enabled:        true,
+        value:          this.state.hostname
       });
     this.sizeWidget.setState({
         enabled:        !!this.state.account,
@@ -696,8 +707,9 @@ exports.Control.prototype = {
     this.selectKeys(selectedKeys);
   },
   changeHostname: function (hostname) {
+    var validHostname = hostname.replace(/[^a-z0-9\-]/g, '');
     this.setState({
-        hostname: hostname
+        hostname: validHostname
       });
   },
   changeSourceUrl: function (sourceUrl) {
