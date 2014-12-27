@@ -127,8 +127,8 @@ exports.PushButton = React.createClass({
       React.createElement('a', {
           id:        this.props.id,
           className: className,
-          href:      this.props.enabled ? '' : null,
-          onClick:   this.props.enabled ? this.click : null
+          href:      this.props.enabled && '',
+          onClick:   this.props.enabled && this.click
         }, this.props.title));
   }
 });
@@ -256,7 +256,7 @@ exports.MapWidget = React.createClass({
   render: function () {
     return (
       React.createElement('div', null,
-        this.state.items ? this.state.items.map(function (item, index) {
+        this.state.items && this.state.items.map(function (item, index) {
             return (
               React.createElement(exports.MapItemWidget, {
                   key:           index,
@@ -274,7 +274,7 @@ exports.MapWidget = React.createClass({
                     this.removeItem(index);
                   }.bind(this)
                 }));
-          }.bind(this)) : null,
+          }.bind(this)),
         React.createElement('div', {
             className: 'flex justify-end'
           },
@@ -334,8 +334,8 @@ exports.BimodalPushButton = React.createClass({
       React.createElement('a', {
           id:        this.props.id,
           className: className,
-          href:      this.props.enabled ? '' : null,
-          onClick:   this.props.enabled ? this.click : null
+          href:      this.props.enabled && '',
+          onClick:   this.props.enabled && this.click
         }, title));
   }
 });

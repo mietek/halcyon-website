@@ -124,11 +124,11 @@ exports.Control.prototype = {
   },
   forgetAccount: function () {
     this.setState({
-        token:        null,
-        account:      null,
-        accountError: null,
-        sourceInfo:   null,
-        sourceError:  null
+        token:        undefined,
+        account:      undefined,
+        accountError: undefined,
+        sourceInfo:   undefined,
+        sourceError:  undefined
       });
     this.props.onForgetAccount();
   },
@@ -179,10 +179,10 @@ exports.Control.prototype = {
   changeSourceUrl: function (sourceUrl) {
     this.setState({
         sourceUrl:   sourceUrl,
-        sourceInfo:  null,
-        sourceError: null
+        sourceInfo:  undefined,
+        sourceError: undefined
       });
-    this.props.onChangeSourceInfo(null);
+    this.props.onChangeSourceInfo();
     this.debouncedLoadSourceInfo();
   },
   changeEnvVars: function (envVars) {

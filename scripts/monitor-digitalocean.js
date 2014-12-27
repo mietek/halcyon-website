@@ -277,14 +277,14 @@ exports.Control.prototype = {
   destroyDroplet: function () {
     this.setState({
         action:      'destroy',
-        actionError: null
+        actionError: undefined
       });
     DigitalOcean.destroyDroplet(
       this.state.selectedDroplet.id,
       function (nil, err) {
         this.loadDroplets(function () {
             this.setState({
-                action:      null,
+                action:      undefined,
                 actionError: err
               });
           }.bind(this));

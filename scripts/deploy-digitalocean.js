@@ -569,7 +569,7 @@ exports.Control.prototype = {
   createDroplet: function () {
     this.setState({
         action:      'create',
-        actionError: null
+        actionError: undefined
       });
     DigitalOcean.createDroplet(
       this.state.hostname,
@@ -585,7 +585,7 @@ exports.Control.prototype = {
           location.href = '/deploy/monitor/?id=' + droplet.id;
         } else {
           this.setState({
-              droplet:      null,
+              droplet:      undefined,
               dropletError: err
             });
         }

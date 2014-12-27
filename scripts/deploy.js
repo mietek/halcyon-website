@@ -20,26 +20,26 @@ var Control = function (props) {
 Control.prototype = {
   getDefaultProps: function () {
     return {
-      digitalOceanClientId:     null,
-      digitalOceanCallbackUrl:  null,
-      digitalOceanReferralCode: null,
-      digitalOceanToken:        null,
-      gitHubClientId:           null,
-      gitHubToken:              null,
-      defaultHostname:          null,
-      storedSizeSlug:           null,
-      storedImageSlug:          null,
-      storedRegionSlug:         null,
-      storedKeyIds:             null,
-      storedSourceUrl:          null,
-      storedEnvVarItems:        null,
-      onChangeHostname:         null,
-      onSelectSize:             null,
-      onSelectImage:            null,
-      onSelectRegion:           null,
-      onSelectKeys:             null,
-      onChangeSourceUrl:        null,
-      onChangeEnvVarItems:      null
+      digitalOceanClientId:     undefined,
+      digitalOceanCallbackUrl:  undefined,
+      digitalOceanReferralCode: undefined,
+      digitalOceanToken:        undefined,
+      gitHubClientId:           undefined,
+      gitHubToken:              undefined,
+      defaultHostname:          undefined,
+      storedSizeSlug:           undefined,
+      storedImageSlug:          undefined,
+      storedRegionSlug:         undefined,
+      storedKeyIds:             undefined,
+      storedSourceUrl:          undefined,
+      storedEnvVarItems:        undefined,
+      onChangeHostname:         undefined,
+      onSelectSize:             undefined,
+      onSelectImage:            undefined,
+      onSelectRegion:           undefined,
+      onSelectKeys:             undefined,
+      onChangeSourceUrl:        undefined,
+      onChangeEnvVarItems:      undefined
     };
   },
   makeControls: function () {
@@ -129,10 +129,10 @@ Control.prototype = {
     this.gitHubControl.start();
   },
   unsetDigitalOceanToken: function () {
-    utils.store('digitalocean-token', null);
+    utils.store('digitalocean-token', undefined);
   },
   unsetGitHubToken: function () {
-    utils.store('github-token', null);
+    utils.store('github-token', undefined);
   },
   setSize: function (size) {
     utils.store('deploy-size-slug', size && size.slug);
