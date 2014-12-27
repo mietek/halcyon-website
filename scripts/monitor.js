@@ -68,7 +68,7 @@ Control.prototype = {
     this.monitorLegend.setState({
         ipAddress: droplet && droplet.ipAddress
       });
-    utils.store('monitor-droplet-id', droplet && droplet.id);
+    utils.storeJson('monitor-droplet-id', droplet && droplet.id);
   }
 };
 
