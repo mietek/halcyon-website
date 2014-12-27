@@ -19,7 +19,8 @@ var DeployLegend = React.createClass({
       accountError: undefined,
       sourceUrl:    undefined,
       sourceInfo:   undefined,
-      sourceError:  undefined
+      sourceError:  undefined,
+      envVars:      undefined
     };
   },
   connect: function (event) {
@@ -117,7 +118,8 @@ exports.Control.prototype = {
         accountError: undefined,
         sourceUrl:    undefined,
         sourceInfo:   undefined,
-        sourceError:  undefined
+        sourceError:  undefined,
+        envVars:      undefined
       });
   },
   forgetAccount: function () {
@@ -140,11 +142,12 @@ exports.Control.prototype = {
         account:      this.state.account && this.state.account.login
       });
     this.deployLegend.setState({
-        account:      this.state.account,
+        account:      this.state.account && this.state.account.login,
         accountError: this.state.accountError,
         sourceUrl:    this.state.sourceUrl,
         sourceInfo:   this.state.sourceInfo,
-        sourceError:  this.state.sourceError
+        sourceError:  this.state.sourceError,
+        envVars:      this.state.envVars
       });
   },
   start: function () {
@@ -181,6 +184,11 @@ exports.Control.prototype = {
       });
     this.props.onChangeSourceInfo(null);
     this.debouncedLoadSourceInfo();
+  },
+  changeEnvVars: function (envVars) {
+    this.setState({
+        envVars: envVars
+      });
   }
 };
 exports.Control.prototype.debouncedLoadSourceInfo = utils.debounce(exports.Control.prototype.loadSourceInfo, 500);

@@ -475,16 +475,27 @@ exports.Control.prototype = {
         selectedKeys:   this.state.selectedKeys
       });
     this.deployLegend.setState({
-        account:        this.state.account,
+        account:        this.state.account && this.state.account.email,
         accountError:   this.state.accountError,
         hostname:       this.state.hostname,
-        selectedSize:   this.state.selectedSize,
+        selectedSize:   this.state.selectedSize && {
+          slug:           this.state.selectedSize.slug
+        },
         sizesError:     this.state.sizesError,
-        selectedImage:  this.state.selectedImage,
+        selectedImage:  this.state.selectedImage && {
+          slug:           this.state.selectedImage.slug
+        },
         imagesError:    this.state.imagesError,
-        selectedRegion: this.state.selectedRegion,
+        selectedRegion: this.state.selectedRegion && {
+          slug:           this.state.selectedRegion.slug
+        },
         regionsError:   this.state.regionsError,
-        selectedKeys:   this.state.selectedKeys,
+        selectedKeys:   (this.state.selectedKeys || []).map(function (key) {
+            return {
+              id:   key.id,
+              name: key.name
+            };
+          }),
         keysError:      this.state.keysError,
         sourceUrl:      this.state.sourceUrl,
         envVars:        this.state.envVars

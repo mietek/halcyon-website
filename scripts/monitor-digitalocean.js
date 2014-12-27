@@ -215,10 +215,19 @@ exports.Control.prototype = {
         selectedDroplet: this.state.selectedDroplet
       });
     this.dropletLegend.setState({
-        account:         this.state.account,
+        account:         this.state.account && this.state.account.email,
         accountError:    this.state.accountError,
         dropletsError:   this.state.dropletsError,
-        selectedDroplet: this.state.selectedDroplet
+        selectedDroplet: this.state.selectedDroplet && {
+          id:              this.state.selectedDroplet.id,
+          name:            this.state.selectedDroplet.name,
+          sizeSlug:        this.state.selectedDroplet['size_slug'],
+          imageSlug:       this.state.selectedDroplet.image.slug,
+          regionSlug:      this.state.selectedDroplet.region.slug,
+          status:          this.state.selectedDroplet.status,
+          locked:          this.state.selectedDroplet.locked,
+          ipAddress:       this.state.selectedDroplet.ipAddress
+        }
       });
     this.actionWidget.setState({
         enabled:         !!this.state.account && this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.action
