@@ -428,8 +428,9 @@ exports.Control.prototype = {
   setState: function (state) {
     utils.update(this.state, state);
     this.accountWidget.setState({
-        enabled:        !!this.state.account,
-        account:        this.state.account && this.state.account.email
+        enabled:        this.state.account || this.state.accountError,
+        account:        this.state.account && this.state.account.email,
+        accountError:   this.state.accountError
       });
     this.hostnameWidget.setState({
         enabled:        true,

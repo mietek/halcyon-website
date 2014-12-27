@@ -145,7 +145,7 @@ exports.Control.prototype = {
   setState: function (state) {
     utils.update(this.state, state);
     this.accountWidget.setState({
-        enabled:      !!this.state.account,
+        enabled:      this.state.account || this.state.accountError,
         account:      this.state.account && this.state.account.login,
         accountError: this.state.accountError
       });
