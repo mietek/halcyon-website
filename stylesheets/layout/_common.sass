@@ -303,8 +303,13 @@ input:-ms-input-placeholder
   margin-right: 0
 
 
+div.flex-item
+  @include flex
+
 div.flex
   @include flex
+  margin-top: ln(1/2)
+  margin-bottom: ln(1/2)
 
 div.justify-end
   justify-content: flex-end
@@ -316,13 +321,44 @@ div.shrink
   flex: 1 1
 
 
-// TODO
-div.pre-like.meta
+.meta
   font-style: italic
+
+.meta-button
+  @include radio-button
+  font-style: italic
+  width: ln(6.25)
 
 
 .widget
   margin-right: ln(1/2)
+
+
+.loading
+  color: $subject-color
+  font-style: italic
+
+.loading p
+  margin-top: 0
+  margin-bottom: 0
+
+
+.error
+  color: $orange
+  font-style: italic
+
+.error a
+  @include frob-always
+    color: $orange
+
+.error code
+  color: $orange
+  font-size: em((12/14) * (3/4))
+  line-height: ln(3/4)
+
+.error p
+  margin-top: 0
+  margin-bottom: 0
 
 
 .account-field

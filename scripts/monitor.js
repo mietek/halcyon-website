@@ -18,12 +18,12 @@ var MonitorLegend = React.createClass({
     };
   },
   render: function () {
+    // TODO: Write this.
     return (
       React.createElement(widgets.LegendArea, {
           pre: true
         },
         JSON.stringify(this.state, null, 2)));
-    // TODO: Write this.
   }
 });
 
@@ -52,7 +52,7 @@ Control.prototype = {
   },
   makeWidgets: function () {
     this.monitorLegend = React.render(
-      React.createElement(MonitorLegend, null),
+      React.createElement(MonitorLegend),
       document.getElementById('monitor-legend'));
   },
   setInitialState: function () {

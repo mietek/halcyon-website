@@ -395,7 +395,7 @@ exports.Control.prototype = {
         }),
       document.getElementById('action-widget'));
     this.actionLegend = React.render(
-      React.createElement(ActionLegend, null),
+      React.createElement(ActionLegend),
       document.getElementById('action-legend'));
   },
   setInitialState: function () {

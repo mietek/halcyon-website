@@ -8,8 +8,8 @@ page-footer: |
 ---
 
 
-[Deploy to DigitalOcean](/deploy) — Monitor
-===========================================
+[Deploy to DigitalOcean](/deploy) —<br> Monitor
+===============================================
 
 
 ### DigitalOcean account

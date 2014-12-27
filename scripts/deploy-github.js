@@ -6,8 +6,8 @@ var utils = require('utils');
 var widgets = require('widgets');
 
 
-var DeployLegend = React.createClass({
-  displayName: 'DeployLegend',
+var SourceLegend = React.createClass({
+  displayName: 'SourceLegend',
   getDefaultProps: function () {
     return {
       onConnect: undefined
@@ -28,56 +28,12 @@ var DeployLegend = React.createClass({
     this.props.onConnect();
   },
   render: function () {
+    // TODO: Write this.
     return (
       React.createElement(widgets.LegendArea, {
           pre: true
         },
         JSON.stringify(this.state, null, 2)));
-    // TODO: Rewrite this.
-    // var info = this.state.sourceInfo;
-    // if (!info) {
-    //   return (
-    //     React.createElement(widgets.LegendArea, null,
-    //       React.createElement('p', null,
-    //         'Enter a ',
-    //         React.createElement('em', null, 'git'),
-    //         ' URL to continue.'),
-    //       React.createElement('p', null,
-    //         'For applications hosted on GitHub, the environment variables required for configuration can be determined from an ',
-    //         React.createElement('a', {
-    //             href: 'https://devcenter.heroku.com/articles/app-json-schema'
-    //           },
-    //           React.createElement('code', null, 'app.json')),
-    //         ' file included in the repository.'),
-    //       this.state.account ? null : React.createElement('p', null,
-    //         React.createElement('a', {
-    //             href: '',
-    //             onClick: this.connect
-    //           },
-    //           'Connect'),
-    //         ' your GitHub account to avoid running into GitHub API rate limits.')));
-    // }
-    // return (
-    //   React.createElement(widgets.LegendArea, null,
-    //     React.createElement('div', {
-    //         className: 'flex'
-    //       },
-    //       info.logo ? React.createElement('a', {
-    //           href: info.website || info.repository
-    //         },
-    //         React.createElement('img', {
-    //             className: 'source-logo',
-    //             src:       info.logo
-    //           })) : null,
-    //       React.createElement('div', {
-    //           className: 'shrink'
-    //         },
-    //         React.createElement('p', null,
-    //           React.createElement('a', {
-    //               href: info.website || info.repository
-    //             },
-    //             React.createElement('strong', null, info.name || 'unnamed'))),
-    //         React.createElement('p', null, info.description || 'undescribed')))));
   }
 });
 
@@ -105,8 +61,8 @@ exports.Control.prototype = {
           onForget:     this.forgetAccount.bind(this)
         }),
       document.getElementById('github-account-widget'));
-    this.deployLegend = React.render(
-      React.createElement(DeployLegend, {
+    this.sourceLegend = React.render(
+      React.createElement(SourceLegend, {
           onConnect:    this.connectAccount.bind(this)
         }),
       document.getElementById('github-legend'));
@@ -139,11 +95,10 @@ exports.Control.prototype = {
     utils.update(this.state, state);
     this.accountWidget.setState({
         enabled:      !!this.state.account,
-        account:      this.state.account && this.state.account.login
-      });
-    this.deployLegend.setState({
         account:      this.state.account && this.state.account.login,
-        accountError: this.state.accountError,
+        accountError: this.state.accountError
+      });
+    this.sourceLegend.setState({
         sourceUrl:    this.state.sourceUrl,
         sourceInfo:   this.state.sourceInfo,
         sourceError:  this.state.sourceError,

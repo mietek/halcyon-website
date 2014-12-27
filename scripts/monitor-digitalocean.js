@@ -17,35 +17,47 @@ var DropletWidget = React.createClass({
     return {
       enabled:         false,
       droplets:        undefined,
+      dropletsError:   undefined,
       selectedDroplet: undefined
     };
   },
   render: function () {
-    if (!this.state.droplets || !this.state.droplets.length) {
-      return React.createElement(widgets.RadioButton, {
-          className: 'droplet-button meta',
-          enabled:   false,
-          title:     'none'
-        });
+    var contents;
+    if (this.state.droplets) {
+      if (!this.state.droplets.length) {
+        contents = React.createElement(widgets.RadioButton, {
+            className: 'meta-button',
+            title:     'none'
+          });
+      } else {
+        contents = this.state.droplets.map(function (droplet) {
+          return (
+            React.createElement(widgets.RadioButton, {
+                key:       droplet.id,
+                className: 'droplet-button',
+                enabled:   this.state.enabled,
+                selected:  this.state.selectedDroplet && droplet.id === this.state.selectedDroplet.id,
+                title:     droplet.name,
+                onClick:   function () {
+                  this.props.onSelect(droplet);
+                }.bind(this)
+              })
+          );
+        }.bind(this));
+      }
     }
     return (
-      React.createElement('div', {
-          className: 'flex'
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex',
         },
-        this.state.droplets.map(function (droplet) {
-            return (
-              React.createElement(widgets.RadioButton, {
-                  key:       droplet.id,
-                  className: 'droplet-button',
-                  enabled:   this.state.enabled,
-                  selected:  this.state.selectedDroplet && droplet.id === this.state.selectedDroplet.id,
-                  title:     droplet.name,
-                  onClick:   function () {
-                    this.props.onSelect(droplet);
-                  }.bind(this)
-                })
-            );
-          }.bind(this))));
+        contents,
+        React.createElement(widgets.DynamicDisplay, {
+            value:      this.state.droplets,
+            loadingMsg: 'Loading droplets…',
+            error:      this.state.dropletsError,
+            errorMsg:   'Failed to load droplets.'
+          }))));
   }
 });
 
@@ -57,42 +69,26 @@ var DropletLegend = React.createClass({
   },
   getInitialState: function () {
     return {
-      account:         undefined,
-      accountError:    undefined,
-      selectedDroplet: undefined,
-      dropletsError:   undefined
+      selectedDroplet: undefined
     };
   },
   render: function () {
+    // TODO: Write this.
+    var droplet = this.state.selectedDroplet || {};
     return (
       React.createElement(widgets.LegendArea, {
           pre: true
         },
-        JSON.stringify(this.state, null, 2)));
-    // TODO: Rewrite this.
-    // var droplet = this.state.selectedDroplet;
-    // if (!droplet) {
-    //   return (
-    //     React.createElement(widgets.LegendArea, null,
-    //       React.createElement('p', null,
-    //         React.createElement('a', {
-    //             href: '/deploy/'
-    //           },
-    //           'Create'),
-    //         ' a droplet to begin.')));
-    // }
-    // var info = {
-    //   id:        droplet.id,
-    //   locked:    droplet.locked,
-    //   status:    droplet.status,
-    //   createdAt: droplet['created_at'],
-    //   ipAddress: droplet.ipAddress
-    // };
-    // return (
-    //   React.createElement(widgets.LegendArea, {
-    //       pre: true
-    //     },
-    //     JSON.stringify(info, null, 2)));
+        JSON.stringify({
+            id:         droplet.id,
+            name:       droplet.name,
+            sizeSlug:   droplet['size_slug'],
+            imageSlug:  droplet.image && droplet.image.slug,
+            regionSlug: droplet.region && droplet.region.slug,
+            status:     droplet.status,
+            locked:     droplet.locked,
+            ipAddress:  droplet.ipAddress
+          }, null, 2)));
   }
 });
 
@@ -107,7 +103,9 @@ var ActionWidget = React.createClass({
   },
   getInitialState: function () {
     return {
-      enabled: false
+      enabled:     false,
+      action:      undefined,
+      actionError: undefined
     };
   },
   render: function () {
@@ -132,28 +130,6 @@ var ActionWidget = React.createClass({
 });
 
 
-var ActionLegend = React.createClass({
-  displayName: 'ActionLegend',
-  getDefaultProps: function () {
-    return {};
-  },
-  getInitialState: function () {
-    return {
-      action:      undefined,
-      actionError: undefined
-    };
-  },
-  render: function () {
-    return (
-      React.createElement(widgets.LegendArea, {
-          pre: true
-        },
-        JSON.stringify(this.state, null, 2)));
-    // TODO: Write this.
-  }
-});
-
-
 exports.Control = function (props) {
   this.props = this.getDefaultProps();
   utils.update(this.props, props);
@@ -171,7 +147,7 @@ exports.Control.prototype = {
   },
   makeWidgets: function () {
     this.accountWidget = React.render(
-      React.createElement(widgets.AccountWidget, null),
+      React.createElement(widgets.AccountWidget),
       document.getElementById('digitalocean-account-widget'));
     this.dropletWidget = React.render(
       React.createElement(DropletWidget, {
@@ -179,7 +155,7 @@ exports.Control.prototype = {
         }),
       document.getElementById('droplet-widget'));
     this.dropletLegend = React.render(
-      React.createElement(DropletLegend, null),
+      React.createElement(DropletLegend),
       document.getElementById('droplet-legend'));
     this.actionWidget = React.render(
       React.createElement(ActionWidget, {
@@ -187,9 +163,6 @@ exports.Control.prototype = {
           onDestroy: this.destroyDroplet.bind(this)
         }),
       document.getElementById('action-widget'));
-    this.actionLegend = React.render(
-      React.createElement(ActionLegend, null),
-      document.getElementById('action-legend'));
   },
   setInitialState: function () {
     this.setState({
@@ -207,32 +180,20 @@ exports.Control.prototype = {
     utils.update(this.state, state);
     this.accountWidget.setState({
         enabled:         false,
-        account:         this.state.account && this.state.account.email
+        account:         this.state.account && this.state.account.email,
+        accountError:    this.state.accountError
       });
     this.dropletWidget.setState({
         enabled:         !!this.state.account,
         droplets:        this.state.droplets,
+        dropletsError:   this.state.dropletsError,
         selectedDroplet: this.state.selectedDroplet
       });
     this.dropletLegend.setState({
-        account:         this.state.account && this.state.account.email,
-        accountError:    this.state.accountError,
-        dropletsError:   this.state.dropletsError,
-        selectedDroplet: this.state.selectedDroplet && {
-          id:              this.state.selectedDroplet.id,
-          name:            this.state.selectedDroplet.name,
-          sizeSlug:        this.state.selectedDroplet['size_slug'],
-          imageSlug:       this.state.selectedDroplet.image.slug,
-          regionSlug:      this.state.selectedDroplet.region.slug,
-          status:          this.state.selectedDroplet.status,
-          locked:          this.state.selectedDroplet.locked,
-          ipAddress:       this.state.selectedDroplet.ipAddress
-        }
+        selectedDroplet: this.state.selectedDroplet
       });
     this.actionWidget.setState({
-        enabled:         !!this.state.account && this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.action
-      });
-    this.actionLegend.setState({
+        enabled:         !!this.state.account && this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.action,
         action:          this.state.action,
         actionError:     this.state.actionError
       });

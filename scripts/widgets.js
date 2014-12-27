@@ -152,7 +152,7 @@ exports.MapItemWidget = React.createClass({
     className += this.props.required ? ' required' : '';
     return (
       React.createElement('div', {
-          className: 'flex'
+          className: 'flex-item'
         },
         React.createElement(exports.InputField, {
             className:   className,
@@ -276,7 +276,7 @@ exports.MapWidget = React.createClass({
                 }));
           }.bind(this)),
         React.createElement('div', {
-            className: 'flex justify-end'
+            className: 'flex-item justify-end'
           },
           React.createElement(exports.PushButton, {
               className: 'map-button',
@@ -301,7 +301,7 @@ exports.LegendArea = React.createClass({
     return (
       React.createElement(tag, {
           id:        this.props.id,
-          className: className // TODO: Clean up CSS.
+          className: className
         },
         this.props.pre ? React.createElement('code', null, this.props.children) : this.props.children));
   }
@@ -370,6 +370,86 @@ exports.RadioButton = React.createClass({
 });
 
 
+exports.LoadingDisplay = React.createClass({
+  displayName: 'LoadingDisplay',
+  getDefaultProps: function () {
+    return {
+      loadingMsg: 'Loading…'
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', {
+          className: 'loading'
+        },
+        React.createElement('p', null,
+          this.props.loadingMsg)));
+  }
+});
+
+
+exports.ErrorDisplay = React.createClass({
+  displayName: 'ErrorDisplay',
+  getDefaultProps: function () {
+    return {
+      error:       undefined,
+      errorMsg:    'Something went wrong.',
+      noReloadMsg: false
+    };
+  },
+  render: function () {
+    if (!this.props.error) {
+      return (
+        React.createElement('div'));
+    }
+    return (
+      React.createElement('div', {
+          className: 'error'
+        },
+        React.createElement('p', null,
+          this.props.errorMsg,
+          this.props.noReloadMsg ? null :
+            React.createElement('span', null,
+              ' Please ',
+              React.createElement('a', {
+                  href: ''
+                },
+                'reload'),
+              ' the page and try again.')),
+          React.createElement('code', null,
+            JSON.stringify({
+                error: this.props.error
+              }))));
+  }
+});
+
+
+exports.DynamicDisplay = React.createClass({
+  displayName: 'DynamicDisplay',
+  getDefaultProps: function () {
+    return {
+      value:       undefined,
+      loadingMsg:  undefined,
+      error:       undefined,
+      errorMsg:    undefined,
+      noReloadMsg: false
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', null,
+        (!this.props.value && !this.props.error) ? React.createElement(exports.LoadingDisplay, {
+            loadingMsg:  this.props.loadingMsg
+          }) : null,
+        this.props.error ? React.createElement(exports.ErrorDisplay, {
+            error:       this.props.error,
+            errorMsg:    this.props.errorMsg,
+            noReloadMsg: this.props.noReloadMsg
+          }) : null));
+  }
+});
+
+
 exports.AccountWidget = React.createClass({
   displayName: 'AccountWidget',
   getDefaultProps: function () {
@@ -380,29 +460,34 @@ exports.AccountWidget = React.createClass({
   },
   getInitialState: function () {
     return {
-      enabled: false,
-      account: undefined
+      enabled:      false,
+      account:      undefined,
+      accountError: undefined
     };
   },
   render: function () {
-    var className = 'account-field';
-    className += this.state.account ? '' : ' meta';
     return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        React.createElement(exports.StaticField, {
-            className: className,
-            title:     this.state.account ? this.state.account : 'none'
-          }),
-        React.createElement(exports.BimodalPushButton, {
-            className:    'account-button',
-            enabled:      this.state.enabled,
-            mode:         !!this.state.account,
-            trueTitle:    'Forget',
-            falseTitle:   'Connect',
-            onTrueClick:  this.props.onForget,
-            onFalseClick: this.props.onConnect
-          })));
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex'
+          },
+          React.createElement(exports.StaticField, {
+              className: 'account-field' + (this.state.account ? '' : ' meta'),
+              title:     this.state.account ? this.state.account : 'none'
+            }),
+          React.createElement(exports.BimodalPushButton, {
+              className:    'account-button',
+              enabled:      this.state.enabled,
+              mode:         !!this.state.account,
+              trueTitle:    'Forget',
+              falseTitle:   'Connect',
+              onTrueClick:  this.props.onForget,
+              onFalseClick: this.props.onConnect
+            })),
+        React.createElement(exports.DynamicDisplay, {
+          value:    true,
+          error:    this.state.accountError,
+          errorMsg: 'Failed to load account.'
+        })));
   }
 });
