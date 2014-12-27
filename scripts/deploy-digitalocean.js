@@ -2,6 +2,7 @@
 
 var DigitalOcean = require('digitalocean');
 var React = require('react');
+var cloudConfig = require('cloud-config');
 var utils = require('utils');
 var widgets = require('widgets');
 
@@ -579,7 +580,7 @@ exports.Control.prototype = {
       this.state.selectedKeys.map(function (key) {
           return key.id;
         }),
-      null, // TODO: Use sourceUrl and envVars here.
+      cloudConfig.formatSetupYml(this.state.sourceUrl, this.state.envVars, null), // TODO: Provide command here.
       function (droplet, err) {
         if (droplet) {
           location.href = '/deploy/monitor/?id=' + droplet.id;
