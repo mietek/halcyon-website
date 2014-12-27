@@ -138,7 +138,6 @@ install_app () {
 	sudo -u app bash -c "
 		HOME='/app' \
 		HALCYON_NO_SELF_UPDATE=1 \
-		HALCYON_INTERNAL_NO_COPY_LOCAL_SOURCE=1 \
 			/app/halcyon/halcyon install \"${clone_dir}\" 2>&1 |
 				tee -a '/var/log/setup.log'
 	" || return 1
@@ -151,9 +150,11 @@ install_app () {
 	if [[ -z "${app_command}" ]]; then
 		local executable
 		if executable=$(
-			HALCYON_NO_SELF_UPDATE=1 \
-			HALCYON_INTERNAL_NO_COPY_LOCAL_SOURCE=1 \
-				halcyon executable "${clone_dir}"
+			sudo -u app bash -c "
+				HOME='/app' \
+				HALCYON_NO_SELF_UPDATE=1 \
+					/app/halcyon/halcyon executable "${clone_dir}" 2>'/dev/null'
+			"
 		); then
 			expect_existing "/app/bin/${executable}"
 
