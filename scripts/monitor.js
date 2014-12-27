@@ -33,8 +33,6 @@ var Control = function (props) {
   utils.update(this.props, props);
   this.makeControls();
   this.makeWidgets();
-  this.state = {};
-  this.setInitialState();
 };
 Control.prototype = {
   getDefaultProps: function () {
@@ -54,12 +52,6 @@ Control.prototype = {
     this.monitorLegend = React.render(
       React.createElement(MonitorLegend),
       document.getElementById('monitor-legend'));
-  },
-  setInitialState: function () {
-    this.setState();
-  },
-  setState: function (state) {
-    utils.update(this.state, state);
   },
   start: function () {
     this.digitalOceanControl.start();
