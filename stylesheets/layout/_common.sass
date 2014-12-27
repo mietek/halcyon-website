@@ -317,8 +317,15 @@ div.justify-end
 div.full
   @include full
 
-div.shrink
+
+.source-info
   flex: 1 1
+
+.source-info p:first-of-type
+  margin-top: 0
+
+.source-info p:last-of-type
+  margin-bottom: 0
 
 
 .meta
@@ -390,8 +397,6 @@ div.shrink
 .source-logo
   width: ln(3)
   height: ln(3)
-  margin-top: ln(1/2)
-  margin-bottom: ln(1/2)
   margin-right: ln(1)
 
 

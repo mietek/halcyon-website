@@ -10,17 +10,66 @@ var SourceWidget = React.createClass({
   displayName: 'SourceWidget',
   getDefaultProps: function () {
     return {
-      onChange: undefined
+      onChange:  undefined,
+      onConnect: undefined
     };
   },
   getInitialState: function () {
     return {
-      sourceUrl:   undefined,
-      sourceInfo:  undefined,
-      sourceError: undefined
+      noAccount:    false,
+      sourceUrl:    undefined,
+      sourceInfo:   undefined,
+      sourceError:  undefined
     };
   },
+  connect: function (event) {
+    event.preventDefault();
+    this.props.onConnect();
+  },
   render: function () {
+    var extraMsg;
+    var err = this.state.sourceError;
+    if (err) {
+      if (typeof err === 'object' && err[0] === 'client_error') {
+        if (err[1] === 403 && this.state.noAccount) {
+          extraMsg = React.createElement('p', {
+              className: 'meta'
+            },
+            React.createElement('a', {
+                href:    '',
+                onClick: this.connect
+              },
+              'Connect'),
+            ' your GitHub account to avoid running into GitHub API rate limits.');
+        } else if (err[1] === 404) {
+          extraMsg = React.createElement('p', {
+              className: 'meta'
+            },
+            'Source information can be loaded from an ',
+            React.createElement('a', {
+                href: 'https://devcenter.heroku.com/articles/app-json-schema'
+              },
+              React.createElement('code', null, 'app.json')),
+            ' file located at the root of the repository.');
+        }
+      } else if (err === 'no_url') {
+        if (this.state.sourceUrl && this.state.sourceUrl.length) {
+          extraMsg = React.createElement('p', {
+              className: 'meta'
+            },
+            'Source information can only be loaded from ',
+            React.createElement('em', null, 'git'),
+            ' repositories hosted on GitHub.  If the URL is valid, the application can still be deployed.');
+        } else {
+          extraMsg = React.createElement('p', {
+              className: 'meta'
+            },
+            'Enter a ',
+            React.createElement('em', null, 'git'),
+            ' repository URL to continue.');
+        }
+      }
+    }
     return (
       React.createElement('div', null,
         React.createElement('div', {
@@ -39,7 +88,8 @@ var SourceWidget = React.createClass({
             error:       this.state.sourceError,
             errorMsg:    'Failed to load source information.',
             noReloadMsg: true
-          })));
+          }),
+        extraMsg));
   }
 });
 
@@ -47,31 +97,41 @@ var SourceWidget = React.createClass({
 var SourceLegend = React.createClass({
   displayName: 'SourceLegend',
   getDefaultProps: function () {
-    return {
-      onConnect: undefined
-    };
+    return {};
   },
   getInitialState: function () {
     return {
-      account:      undefined,
-      accountError: undefined,
-      sourceUrl:    undefined,
-      sourceInfo:   undefined,
-      sourceError:  undefined,
-      envVarItems:  undefined
+      sourceInfo: undefined
     };
   },
-  connect: function (event) {
-    event.preventDefault();
-    this.props.onConnect();
-  },
   render: function () {
-    // TODO: Write this.
+    var info = this.state.sourceInfo;
+    if (!info) {
+      return (
+        React.createElement('div'));
+    }
     return (
-      React.createElement(widgets.LegendArea, {
-          pre: true
-        },
-        JSON.stringify(this.state, null, 2)));
+      React.createElement(widgets.LegendArea, null,
+        React.createElement('div', {
+            className: 'flex'
+          },
+          !info.logo ? null :
+            React.createElement('a', {
+                href: info.website || info.repository
+              },
+              React.createElement('img', {
+                  className: 'source-logo',
+                  src:       info.logo
+                })),
+          React.createElement('div', {
+              className: 'source-info'
+            },
+            React.createElement('p', null,
+              React.createElement('a', {
+                  href: info.website || info.repository
+                },
+                React.createElement('strong', null, info.name || 'unnamed'))),
+            React.createElement('p', null, info.description || 'undescribed')))));
   }
 });
 
@@ -150,6 +210,7 @@ exports.Control.prototype = {
         accountError: this.state.accountError
       });
     this.sourceWidget.setState({
+        noAccount:    !this.state.account && !this.state.accountError,
         sourceUrl:    this.state.sourceUrl,
         sourceInfo:   this.state.sourceInfo,
         sourceError:  this.state.sourceError
@@ -159,10 +220,7 @@ exports.Control.prototype = {
         items:        this.state.envVarItems
       });
     this.sourceLegend.setState({
-        sourceUrl:    this.state.sourceUrl,
-        sourceInfo:   this.state.sourceInfo,
-        sourceError:  this.state.sourceError,
-        envVarItems:  this.state.envVarItems
+        sourceInfo:   this.state.sourceInfo
       });
   },
   start: function () {
