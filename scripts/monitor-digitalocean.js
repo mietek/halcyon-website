@@ -50,14 +50,14 @@ var DropletWidget = React.createClass({
       React.createElement('div', null,
         React.createElement('div', {
             className: 'flex',
-        },
-        contents,
+          },
+          contents),
         React.createElement(widgets.DynamicDisplay, {
             value:      this.state.droplets,
             loadingMsg: 'Loading droplets…',
             error:      this.state.dropletsError,
             errorMsg:   'Failed to load droplets.'
-          }))));
+          })));
   }
 });
 
