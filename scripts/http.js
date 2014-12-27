@@ -74,12 +74,12 @@ exports.makeRequest = function (method, url, data, next, opts) {
         return next(req.responseText);
       }
       if (req.status >= 400 && req.status < 500) {
-        return next(null, 'client_error');
+        return next(null, ['client_error', req.status]);
       }
       if (req.status >= 500) {
-        return next(null, 'server_error');
+        return next(null, ['server_error', req.status]);
       }
-      return next(null, 'unknown_error');
+      return next(null, ['unknown_error', req.status]);
     }
   };
   if (data && data.length) {
