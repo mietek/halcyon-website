@@ -242,41 +242,12 @@ var DeployLegend = React.createClass({
     this.props.onConnect();
   },
   render: function () {
+    // TODO: Write this.
     return (
       React.createElement(widgets.LegendArea, {
           pre: true
         },
         JSON.stringify(this.state, null, 2)));
-    // TODO: Rewrite this.
-    // var size = this.state.selectedSize;
-    // if (!size) {
-    //   return (
-    //     React.createElement(widgets.LegendArea, null,
-    //       React.createElement('p', null,
-    //         React.createElement('a', {
-    //             href: '',
-    //             onClick: this.connect
-    //           },
-    //           'Connect'),
-    //         ' your DigitalOcean account to continue.'),
-    //       React.createElement('p', null,
-    //         'If you need to sign up for a new account, you can help the Halcyon project and receive $10 credit from DigitalOcean by using a ',
-    //         React.createElement('a', {
-    //             href: 'https://cloud.digitalocean.com/registrations/new?refcode=' + this.props.referralCode
-    //           },
-    //           'referral link'),
-    //         '.')));
-    // }
-    // return (
-    //   React.createElement(widgets.LegendArea, null,
-    //     React.createElement('p', null,
-    //       React.createElement('a', {
-    //           href: 'https://digitalocean.com/pricing/'
-    //         },
-    //         React.createElement('strong', null, '$' + size['price_monthly'] + '/month'),
-    //         ' — $' + size['price_hourly'] + '/hour')),
-    //     React.createElement('p', null,
-    //       (size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB')) + ' RAM, ' + size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') + size.disk + ' GB SSD disk, ' + size.transfer + ' TB transfer')));
   }
 });
 
@@ -321,12 +292,12 @@ var ActionLegend = React.createClass({
     };
   },
   render: function () {
+    // TODO: Write this.
     return (
       React.createElement(widgets.LegendArea, {
           pre: true
         },
         JSON.stringify(this.state, null, 2)));
-    // TODO: Write this.
   }
 });
 
