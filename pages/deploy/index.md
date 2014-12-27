@@ -61,4 +61,3 @@ Deploy to DigitalOcean
 <div id="droplet-legend" class="full"></div>
 
 <div id="action-widget" class="widget"></div>
-<div id="action-legend" class="full"></div>

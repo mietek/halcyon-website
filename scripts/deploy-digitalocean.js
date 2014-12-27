@@ -328,28 +328,6 @@ var ActionWidget = React.createClass({
 });
 
 
-var ActionLegend = React.createClass({
-  displayName: 'ActionLegend',
-  getDefaultProps: function () {
-    return {};
-  },
-  getInitialState: function () {
-    return {
-      action:      undefined,
-      actionError: undefined
-    };
-  },
-  render: function () {
-    // TODO: Write this.
-    return (
-      React.createElement(widgets.LegendArea, {
-          pre: true
-        },
-        JSON.stringify(this.state, null, 2)));
-  }
-});
-
-
 exports.Control = function (props) {
   this.props = this.getDefaultProps();
   utils.update(this.props, props);
@@ -420,9 +398,6 @@ exports.Control.prototype = {
           onCreate:     this.createDroplet.bind(this)
         }),
       document.getElementById('action-widget'));
-    this.actionLegend = React.render(
-      React.createElement(ActionLegend),
-      document.getElementById('action-legend'));
   },
   setInitialState: function () {
     this.setState({
@@ -538,10 +513,6 @@ exports.Control.prototype = {
       });
     this.actionWidget.setState({
         enabled:        !!this.state.account && this.state.hostname && this.state.selectedSize && this.state.selectedImage && this.state.selectedRegion && this.state.sourceUrl && !this.state.action
-      });
-    this.actionLegend.setState({
-        action:         this.state.action,
-        actionError:    this.state.actionError
       });
   },
   start: function () {
