@@ -344,13 +344,10 @@ exports.Control.prototype = {
       callbackUrl:      undefined,
       referralCode:     undefined,
       storedToken:      undefined,
-      defaultHostname:  undefined,
       storedSizeSlug:   undefined,
       storedImageSlug:  undefined,
       storedRegionSlug: undefined,
       storedKeyIds:     undefined,
-      storedSourceUrl:  undefined,
-      storedEnvVars:    undefined,
       onForgetAccount:  undefined,
       onSelectSize:     undefined,
       onSelectImage:    undefined,
@@ -405,7 +402,7 @@ exports.Control.prototype = {
         token:            this.props.storedToken,
         account:          undefined,
         accountError:     undefined,
-        hostname:         this.props.defaultHostname,
+        hostname:         undefined,
         sizes:            undefined,
         sizesError:       undefined,
         selectedSize:     undefined,
@@ -420,8 +417,8 @@ exports.Control.prototype = {
         selectedKeys:     undefined,
         action:           undefined,
         actionError:      undefined,
-        sourceUrl:        this.props.storedSourceUrl,
-        envVars:          this.props.storedEnvVars
+        sourceUrl:        undefined,
+        envVars:          undefined
       });
   },
   forgetAccount: function () {

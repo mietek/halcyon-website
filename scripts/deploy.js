@@ -48,7 +48,6 @@ Control.prototype = {
         callbackUrl:        this.props.digitalOceanCallbackUrl,
         referralCode:       this.props.digitalOceanReferralCode,
         storedToken:        this.props.digitalOceanToken,
-        defaultHostname:    this.props.defaultHostname,
         storedSizeSlug:     this.props.storedSizeSlug,
         storedImageSlug:    this.props.storedImageSlug,
         storedRegionSlug:   this.props.storedRegionSlug,
