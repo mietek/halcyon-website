@@ -1,5 +1,5 @@
 ---
-title: Deploy to DigitalOcean
+title: Deploy to DigitalOcean — Monitor
 page-data:
 - key: max-section-link-level
   value: 4
@@ -8,8 +8,8 @@ page-footer: |
 ---
 
 
-Deploy to DigitalOcean
-======================
+[Deploy to DigitalOcean](/deploy) — Monitor
+===========================================
 
 
 ### DigitalOcean account
