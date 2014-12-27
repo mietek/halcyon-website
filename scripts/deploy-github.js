@@ -6,6 +6,32 @@ var utils = require('utils');
 var widgets = require('widgets');
 
 
+var SourceWidget = React.createClass({
+  displayName: 'SourceWidget',
+  getDefaultProps: function () {
+    return {
+      onChange: undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      sourceUrl: undefined
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', null,
+        React.createElement(widgets.InputField, {
+            enabled:      true,
+            type:         'url',
+            placeholder:  'https://github.com/user/project',
+            value:        this.state.sourceUrl,
+            onChange:     this.props.onChange
+          })));
+  }
+});
+
+
 var SourceLegend = React.createClass({
   displayName: 'SourceLegend',
   getDefaultProps: function () {
@@ -65,9 +91,7 @@ exports.Control.prototype = {
         }),
       document.getElementById('github-account-widget'));
     this.sourceWidget = React.render(
-      React.createElement(widgets.InputWidget, {
-          type:         'url',
-          placeholder:  'https://github.com/user/project',
+      React.createElement(SourceWidget, {
           onChange:     this.changeSourceUrl.bind(this)
         }),
       document.getElementById('source-widget'));
@@ -114,8 +138,7 @@ exports.Control.prototype = {
         accountError: this.state.accountError
       });
     this.sourceWidget.setState({
-        enabled:      true,
-        value:        this.state.sourceUrl
+        sourceUrl:    this.state.sourceUrl
       });
     this.envVarItemsWidget.setState({
         enabled:      true,
