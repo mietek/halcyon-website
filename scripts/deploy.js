@@ -1,51 +1,75 @@
 'use strict';
 
-var DigitalOcean = require('deploy-digitalocean');
-var GitHub = require('deploy-github');
+var DigitalOceanDeploy = require('deploy-digitalocean');
+var GitHubDeploy = require('deploy-github');
+var GitHub = require('github');
 var React = require('react');
 var http = require('http');
 var utils = require('utils');
 var widgets = require('widgets');
 
 
-exports.Control = function (props) {
+var Control = function (props) {
   this.props = this.getDefaultProps();
-  Object.keys(props || {}).forEach(function (key) {
-      this.props[key] = props[key];
-    }.bind(this));
-  this.state = this.getInitialState();
-  this.createWidgets();
-  this.createControl();
+  utils.update(this.props, props);
+  this.makeControls();
+  this.makeWidgets();
+  this.state = {};
+  this.setInitialState();
 };
-exports.Control.prototype = {
+Control.prototype = {
   getDefaultProps: function () {
     return {
       digitalOceanClientId:     null,
       digitalOceanCallbackUrl:  null,
-      digitalOceanToken:        null,
       digitalOceanReferralCode: null,
+      digitalOceanToken:        null,
       gitHubClientId:           null,
       gitHubToken:              null,
-      hostname:                 null,
-      sizeSlug:                 null,
-      imageSlug:                null,
-      regionSlug:               null,
-      keyIds:                   null,
-      sourceUrl:                null,
-      envVars:                  null
+      defaultHostname:          null,
+      storedSizeSlug:           null,
+      storedImageSlug:          null,
+      storedRegionSlug:         null,
+      storedKeyIds:             null,
+      storedSourceUrl:          null,
+      storedEnvVars:            null,
+      onChangeHostname:         null,
+      onSelectSize:             null,
+      onSelectImage:            null,
+      onSelectRegion:           null,
+      onSelectKeys:             null,
+      onChangeSourceUrl:        null,
+      onChangeEnvVars:          null
     };
   },
-  getInitialState: function () {
-    return {
-      hostname:                 null,
-      sourceUrl:                null,
-      envVars:                  null
-    };
+  makeControls: function () {
+    this.digitalOceanControl = new DigitalOceanDeploy.Control({
+        clientId:           this.props.digitalOceanClientId,
+        callbackUrl:        this.props.digitalOceanCallbackUrl,
+        referralCode:       this.props.digitalOceanReferralCode,
+        storedToken:        this.props.digitalOceanToken,
+        defaultHostname:    this.props.defaultHostname,
+        storedSizeSlug:     this.props.storedSizeSlug,
+        storedImageSlug:    this.props.storedImageSlug,
+        storedRegionSlug:   this.props.storedRegionSlug,
+        storedKeyIds:       this.props.storedKeyIds,
+        onForgetAccount:    this.unsetDigitalOceanToken.bind(this),
+        onSelectSize:       this.setSize.bind(this),
+        onSelectImage:      this.setImage.bind(this),
+        onSelectRegion:     this.setRegion.bind(this),
+        onSelectKeys:       this.setKeys.bind(this)
+      });
+    this.gitHubControl = new GitHubDeploy.Control({
+        clientId:           this.props.gitHubClientId,
+        storedToken:        this.props.gitHubToken,
+        onForgetAccount:    this.unsetGitHubToken.bind(this),
+        onChangeSourceInfo: this.changeSourceInfo.bind(this)
+      });
   },
-  createWidgets: function () {
+  makeWidgets: function () {
     this.hostnameWidget = React.render(
       React.createElement(widgets.InputWidget, {
-          placeholder: this.props.hostname,
+          placeholder: this.props.defaultHostname,
           onChange:    this.changeHostname.bind(this)
         }),
       document.getElementById('hostname-widget'));
@@ -61,97 +85,164 @@ exports.Control.prototype = {
           onChange:    this.changeEnvVars.bind(this)
         }),
       document.getElementById('env-vars-widget'));
-    this.renderWidgets();
   },
-  createControl: function () {
-    this.digitalOceanControl = new DigitalOcean.DeployControl({
-        clientId:     this.props.digitalOceanClientId,
-        callbackUrl:  this.props.digitalOceanCallbackUrl,
-        token:        this.props.digitalOceanToken,
-        referralCode: this.props.digitalOceanReferralCode,
-        hostname:     this.props.hostname,
-        sizeSlug:     this.props.sizeSlug,
-        imageSlug:    this.props.imageSlug,
-        regionSlug:   this.props.regionSlug,
-        keyIds:       this.props.keyIds,
-        sourceUrl:    this.props.sourceUrl,
-        envVars:      this.props.envVars
-      });
-    this.gitHubControl = new GitHub.DeployControl({
-        clientId:     this.props.gitHubClientId,
-        token:        this.props.gitHubToken,
-        sourceUrl:    this.props.sourceUrl
+  setInitialState: function () {
+    this.setState({
+        hostname:  this.props.defaultHostname,
+        sourceUrl: this.props.storedSourceUrl,
+        envVars:   this.props.storedEnvVars
       });
   },
-  renderWidgets: function () {
+  setState: function (state) {
+    utils.update(this.state, state);
     this.hostnameWidget.setState({
         enabled: true,
         value:   this.state.hostname
       });
     this.sourceWidget.setState({
         enabled: true,
-        value:   this.state.sourceUrl || this.props.sourceUrl
+        value:   this.state.sourceUrl
       });
     this.envVarsWidget.setState({
         enabled: true,
-        items:   this.state.envVars || this.props.envVars
+        items:   this.state.envVars
       });
+    if ('hostname' in state) {
+      this.digitalOceanControl.changeHostname(state.hostname);
+    }
+    if ('sourceUrl' in state) {
+      this.digitalOceanControl.changeSourceUrl(state.sourceUrl);
+      this.gitHubControl.changeSourceUrl(state.sourceUrl);
+    }
+    if ('envVars' in state) {
+      this.digitalOceanControl.changeEnvVars(state.envVars);
+    }
   },
-  loadData: function () {
-    this.digitalOceanControl.loadData();
-    this.gitHubControl.loadData();
+  start: function () {
+    this.digitalOceanControl.start();
+    this.gitHubControl.start();
+  },
+  unsetDigitalOceanToken: function () {
+    utils.store('digitalocean-token', null);
+  },
+  unsetGitHubToken: function () {
+    utils.store('github-token', null);
+  },
+  setSize: function (size) {
+    utils.store('deploy-size-slug', size && size.slug);
+  },
+  setImage: function (image) {
+    utils.store('deploy-image-slug', image && image.slug);
+  },
+  setRegion: function (region) {
+    utils.store('deploy-region-slug', region && region.slug);
+  },
+  setKeys: function (keys) {
+    utils.storeJson('deploy-key-ids', keys && keys.map(function (key) {
+        return key.id;
+      }));
   },
   changeHostname: function (hostname) {
     var validHostname = hostname.replace(/[^a-z0-9\-]/g, '');
-    this.state.hostname = validHostname;
-    this.renderWidgets();
-    this.digitalOceanControl.changeHostname(validHostname);
+    this.setState({
+        hostname: validHostname
+      });
   },
   changeSourceUrl: function (sourceUrl) {
-    this.state.sourceUrl = sourceUrl;
-    this.renderWidgets();
-    this.digitalOceanControl.changeSourceUrl(sourceUrl);
-    this.gitHubControl.changeSourceUrl(sourceUrl);
+    this.setState({
+        sourceUrl:  sourceUrl,
+      });
+    this.updateEnvVars();
+    utils.store('deploy-source-url', sourceUrl);
   },
-  changeEnvVars: function (envVars)  {
-    this.state.envVars = envVars;
-    this.renderWidgets();
-    this.digitalOceanControl.changeEnvVars(envVars);
+  changeSourceInfo: function (sourceInfo) {
+    this.updateEnvVars(sourceInfo);
+  },
+  changeEnvVars: function (envVars) {
+    this.setState({
+        envVars: envVars
+      });
+    utils.storeJson('deploy-env-vars', envVars);
+  },
+  updateEnvVars: function (sourceInfo) {
+    var envVars       = [];
+    var originalItems = {};
+    if (sourceInfo && sourceInfo.env) {
+      Object.keys(sourceInfo.env).forEach(function (name) {
+          if (name === 'BUILDPACK_URL') {
+            return;
+          }
+          var value = sourceInfo.env[name];
+          var originalItem = {
+            original: true,
+            name:     name
+          };
+          if (typeof value === 'string') {
+            originalItem.required = true;
+            originalItem.value    = value;
+          } else {
+            originalItem.required = value.required !== false;
+            originalItem.value    = value.value;
+          }
+          originalItems[name] = originalItem;
+          envVars.push(originalItem);
+        }.bind(this));
+    }
+    (this.state.envVars || []).forEach(function (item) {
+        if (item.original) {
+          return;
+        }
+        var originalItem = originalItems[item.name];
+        if (originalItem && !originalItem.value) {
+          delete originalItem.original;
+          originalItem.value = item.value;
+        } else {
+          if (item.required) {
+            envVars.push({
+                name:  item.name,
+                value: item.value
+              });
+          } else {
+            envVars.push(item);
+          }
+        }
+      });
+    this.changeEnvVars(envVars);
   }
 };
 
 
 exports.start = function () {
   if (GitHub.parseRepoUrl(document.referrer)) {
-    localStorage.setItem('deploy-source-url', document.referrer);
+    utils.store('deploy-source-url', document.referrer);
   }
   var query = http.parseQueryString(location.search);
   if (query) {
     if (query['access_token']) {
       if (query.vendor === 'digitalocean') {
-        localStorage.setItem('digitalocean-token', query['access_token']);
+        utils.store('digitalocean-token', query['access_token']);
       } else if (query['vendor'] === 'github') {
-        localStorage.setItem('github-token', query['access_token']);
+        utils.store('github-token', query['access_token']);
       }
     }
     if (query['url']) {
-      localStorage.setItem('deploy-source-url', query['url']);
+      utils.store('deploy-source-url', query['url']);
     }
   }
-  var keyIds = localStorage.getItem('deploy-key-ids');
-  var control = new exports.Control({
+  window.control = new Control({
       digitalOceanClientId:     '2530da1c8b65fd7e627f9ba234db0cfddae44c2ddf7e603648301f043318cac4',
       digitalOceanCallbackUrl:  'https://halcyon-digitalocean-callback.herokuapp.com/callback',
-      digitalOceanToken:        localStorage.getItem('digitalocean-token'),
       digitalOceanReferralCode: '6b1199e29661',
+      digitalOceanToken:        utils.load('digitalocean-token'),
+      defaultHostname:          utils.getRandomHostname(),
       gitHubClientId:           '2765f53aa92837f0a835',
-      gitHubToken:              localStorage.getItem('github-token'),
-      hostname:                 utils.getRandomHostname(),
-      sizeSlug:                 localStorage.getItem('deploy-size-slug'),
-      imageSlug:                localStorage.getItem('deploy-image-slug'),
-      regionSlug:               localStorage.getItem('deploy-region-slug'),
-      keyIds:                   keyIds && JSON.parse(keyIds),
-      sourceUrl:                localStorage.getItem('deploy-source-url')
+      gitHubToken:              utils.load('github-token'),
+      storedSizeSlug:           utils.load('deploy-size-slug'),
+      storedImageSlug:          utils.load('deploy-image-slug'),
+      storedRegionSlug:         utils.load('deploy-region-slug'),
+      storedKeyIds:             utils.loadJson('deploy-key-ids'),
+      storedSourceUrl:          utils.load('deploy-source-url'),
+      storedEnvVars:            utils.loadJson('deploy-env-vars')
     });
-  control.loadData();
+  window.control.start();
 };

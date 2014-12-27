@@ -26,7 +26,7 @@ Deploy to DigitalOcean
 
 <div id="env-vars-widget" class="widget"></div>
 
-<div id="source-legend" class="full"></div>
+<div id="github-legend" class="full"></div>
 
 
 ### DigitalOcean account
@@ -58,7 +58,7 @@ Deploy to DigitalOcean
 
 <div id="keys-widget" class="widget"></div>
 
-<div id="droplet-legend" class="full"></div>
+<div id="digitalocean-legend" class="full"></div>
 
 <div id="action-widget" class="widget"></div>
 <div id="action-legend" class="full"></div>

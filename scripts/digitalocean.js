@@ -13,43 +13,49 @@ exports.addJsonHeader = function (opts) {
 };
 
 
-exports.getJsonResource = function (url, yea, nay, token, opts) {
+exports.getJsonResource = function (url, next, token, opts) {
   if (!token) {
-    return nay('no_token');
+    return next(null, 'no_token');
   }
-  http.getResource(url, function (resp) {
+  http.getResource(url,
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var json = JSON.parse(resp);
       if (!json) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
-      return yea(json);
+      return next(json);
     },
-    nay, exports.addAuthHeader(token, exports.addJsonHeader(opts)));
+    exports.addAuthHeader(token, exports.addJsonHeader(opts)));
 };
 
 
-exports.postJsonResource = function (url, obj, yea, nay, token, opts) {
+exports.postJsonResource = function (url, obj, next, token, opts) {
   if (!token) {
-    return nay('no_token');
+    return next(null, 'no_token');
   }
   http.postResource(url, obj ? JSON.stringify(obj) : null,
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var json = JSON.parse(resp);
       if (!json) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
-      return yea(json);
+      return next(json);
     },
-    nay, exports.addAuthHeader(token, exports.addJsonHeader(opts)));
+    exports.addAuthHeader(token, exports.addJsonHeader(opts)));
 };
 
 
-exports.deleteResource = function (url, yea, nay, token, opts) {
+exports.deleteResource = function (url, next, token, opts) {
   if (!token) {
-    return nay('no_token');
+    return next(null, 'no_token');
   }
-  http.deleteResource(url, yea, nay,
-    exports.addAuthHeader(token, exports.addJsonHeader(opts)));
+  http.deleteResource(url, next, exports.addAuthHeader(token, exports.addJsonHeader(opts)));
 };
 
 
@@ -65,55 +71,67 @@ exports.requestToken = function (clientId, callbackUrl, state) {
 };
 
 
-exports.revokeToken = function (yea, nay, token) {
+exports.revokeToken = function (next, token) {
   http.postResource(http.addQueryToUrl({
       'access_token': token
     },
-    'https://cloud.digitalocean.com/v1/oauth/revoke'), null, yea, nay);
+    'https://cloud.digitalocean.com/v1/oauth/revoke'), null, next);
 };
 
 
-exports.getAccount = function (yea, nay, token) {
+exports.getAccount = function (next, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/account',
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var account = resp['account'];
-      return account ? yea(account) : nay('bad_response');
+      if (!account) {
+        return next(null, 'bad_response');
+      }
+      return next(account);
     },
-    nay, token);
+    token);
 };
 
 
-exports.getSizes = function (yea, nay, token) {
+exports.getSizes = function (next, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/sizes',
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var sizes = resp['sizes'];
       if (!sizes) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
       sizes.sort(function (size1, size2) {
           return size1['price_monthly'] - size2['price_monthly'];
         });
-      return yea(sizes);
+      return next(sizes);
     },
-    nay, token);
+    token);
 };
 
 
-exports.getDistributionImages = function (yea, nay, token) {
+exports.getDistributionImages = function (next, token) {
   var potentiallySupportedSlugs = ['centos-7-0-x64', 'ubuntu-14-04-x64'];
   var supportedSlugs            = ['ubuntu-14-04-x64']; // TODO: Support CentOS 7.
   exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution',
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var images = resp['images'];
       if (!images) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
       images.sort(function (image1, image2) {
           var title1 = image1.distribution + ' ' + image1.name;
           var title2 = image2.distribution + ' ' + image2.name;
           return title1.localeCompare(title2);
         });
-      return yea(images.filter(function (image) {
+      return next(images.filter(function (image) {
           return potentiallySupportedSlugs.indexOf(image.slug) !== -1;
         })
         .map(function (image) {
@@ -121,46 +139,52 @@ exports.getDistributionImages = function (yea, nay, token) {
           return image;
         }));
     },
-    nay, token);
+    token);
 };
 
 
-exports.getRegions = function (yea, nay, token) {
+exports.getRegions = function (next, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/regions',
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var regions = resp['regions'];
       if (!regions) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
       regions.sort(function (region1, region2) {
           return region1.name.localeCompare(region2.name);
         });
-      return yea(regions.map(function (region) {
+      return next(regions.map(function (region) {
           region.supported = region.available && region.features.indexOf('metadata') !== -1;
           return region;
         }));
     },
-    nay, token);
+    token);
 };
 
 
-exports.getAccountKeys = function (yea, nay, token) {
+exports.getAccountKeys = function (next, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/account/keys',
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var keys = resp['ssh_keys'];
       if (!keys) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
       keys.sort(function (key1, key2) {
           return key1.name.localeCompare(key2.name);
         });
-      return yea(keys);
+      return next(keys);
     },
-    nay, token);
+    token);
 };
 
 
-exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, keyIds, sourceUrl, yea, nay, token) {
+exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, keyIds, userData, next, token) {
   exports.postJsonResource('https://api.digitalocean.com/v2/droplets', {
       'name':               hostname,
       'size':               sizeSlug,
@@ -170,57 +194,65 @@ exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, key
       'backups':            false, // TODO: Support extra options.
       'ipv6':               false,
       'private_networking': false,
-      'user_data':          null // TODO: Use sourceUrl.
+      'user_data':          userData
     },
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var droplet = resp['droplet'];
       if (!droplet) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
-      return yea(droplet);
+      return next(droplet);
     },
-    nay, token);
+    token);
 };
 
 
-exports.destroyDroplet = function (dropletId, yea, nay, token) {
-  exports.deleteResource('https://api.digitalocean.com/v2/droplets/' + dropletId,
-    yea, nay, token);
+exports.destroyDroplet = function (dropletId, next, token) {
+  exports.deleteResource('https://api.digitalocean.com/v2/droplets/' + dropletId, next, token);
 };
 
 
-exports.getDroplets = function (yea, nay, token) {
+exports.getDroplets = function (next, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/droplets',
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var droplets = resp['droplets'];
       if (!droplets) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
       droplets.sort(function (droplet1, droplet2) {
           return droplet1.name.localeCompare(droplet2.name);
         });
-      return yea(droplets.map(function (droplet) {
+      return next(droplets.map(function (droplet) {
           if (droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
             droplet.ipAddress = droplet.networks.v4[0]['ip_address'];
           }
           return droplet;
         }));
     },
-    nay, token);
+    token);
 };
 
 
-exports.getDroplet = function (dropletId, yea, nay, token) {
+exports.getDroplet = function (dropletId, next, token) {
   exports.getJsonResource('https://api.digitalocean.com/v2/droplets/' + dropletId,
-    function (resp) {
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var droplet = resp['droplet'];
       if (!droplet) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
       if (droplet.networks && droplet.networks.v4 && droplet.networks.v4[0]) {
         droplet.ipAddress = droplet.networks.v4[0]['ip_address'];
       }
-      return yea(droplet);
+      return next(droplet);
     },
-    nay, token);
+    token);
 };

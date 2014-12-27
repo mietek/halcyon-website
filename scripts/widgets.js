@@ -56,7 +56,7 @@ exports.InputField = React.createClass({
       onChange:    undefined
     };
   },
-  handleChange: function (event) {
+  change: function (event) {
     this.props.onChange(event.target.value);
   },
   render: function () {
@@ -68,7 +68,7 @@ exports.InputField = React.createClass({
           type:         this.props.type || 'text',
           placeholder:  this.props.placeholder,
           value:        this.props.value,
-          onChange:     this.handleChange
+          onChange:     this.change
         }));
   }
 });
@@ -116,7 +116,7 @@ exports.PushButton = React.createClass({
       onClick: undefined
     };
   },
-  handleClick: function (event) {
+  click: function (event) {
     event.preventDefault();
     this.props.onClick();
   },
@@ -128,7 +128,7 @@ exports.PushButton = React.createClass({
           id:        this.props.id,
           className: className,
           href:      this.props.enabled ? '' : null,
-          onClick:   this.props.enabled ? this.handleClick : null
+          onClick:   this.props.enabled ? this.click : null
         }, this.props.title));
   }
 });
@@ -191,7 +191,7 @@ exports.MapWidget = React.createClass({
       items:   undefined
     };
   },
-  handleChangeItemName: function (changedIndex, changedName) {
+  changeItemName: function (changedIndex, changedName) {
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
@@ -210,7 +210,7 @@ exports.MapWidget = React.createClass({
       this.props.onChange(changedItems);
     }
   },
-  handleChangeItemValue: function (changedIndex, changedValue) {
+  changeItemValue: function (changedIndex, changedValue) {
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
@@ -229,7 +229,7 @@ exports.MapWidget = React.createClass({
       this.props.onChange(changedItems);
     }
   },
-  handleRemoveItem: function (removedIndex) {
+  removeItem: function (removedIndex) {
     var found = false;
     var changedItems = [];
     this.state.items.forEach(function (item, index) {
@@ -243,7 +243,7 @@ exports.MapWidget = React.createClass({
       this.props.onChange(changedItems.length ? changedItems : undefined);
     }
   },
-  handleAddItem: function () {
+  addItem: function () {
     var changedItems = [];
     if (this.state.items) {
       this.state.items.forEach(function (item) {
@@ -265,13 +265,13 @@ exports.MapWidget = React.createClass({
                   name:          item.name,
                   value:         item.value,
                   onChangeName:  function (name) {
-                    this.handleChangeItemName(index, name);
+                    this.changeItemName(index, name);
                   }.bind(this),
                   onChangeValue: function (value) {
-                    this.handleChangeItemValue(index, value);
+                    this.changeItemValue(index, value);
                   }.bind(this),
                   onRemove:      function () {
-                    this.handleRemoveItem(index);
+                    this.removeItem(index);
                   }.bind(this)
                 }));
           }.bind(this)) : null,
@@ -282,7 +282,7 @@ exports.MapWidget = React.createClass({
               className: 'map-button',
               enabled:   this.state.enabled,
               title:     'Add',
-              onClick:   this.handleAddItem
+              onClick:   this.addItem
             }))));
   }
 });
@@ -320,7 +320,7 @@ exports.BimodalPushButton = React.createClass({
       onFalseClick: undefined
     };
   },
-  handleClick: function (event) {
+  click: function (event) {
     event.preventDefault();
     var onClick = this.props.mode ? this.props.onTrueClick : this.props.onFalseClick;
     onClick();
@@ -335,7 +335,7 @@ exports.BimodalPushButton = React.createClass({
           id:        this.props.id,
           className: className,
           href:      this.props.enabled ? '' : null,
-          onClick:   this.props.enabled ? this.handleClick : null
+          onClick:   this.props.enabled ? this.click : null
         }, title));
   }
 });
@@ -351,7 +351,7 @@ exports.RadioButton = React.createClass({
       onClick:  undefined
     };
   },
-  handleClick: function (event) {
+  click: function (event) {
     event.preventDefault();
     this.props.onClick();
   },
@@ -364,7 +364,7 @@ exports.RadioButton = React.createClass({
           id:        this.props.id,
           className: className,
           href:      this.props.enabled ? '' : undefined,
-          onClick:   this.props.enabled ? this.handleClick : undefined
+          onClick:   this.props.enabled ? this.click : undefined
         }, this.props.title));
   }
 });

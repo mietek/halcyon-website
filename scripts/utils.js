@@ -58,3 +58,42 @@ exports.debounce = function (func, duration) {
       duration);
   };
 };
+
+
+exports.update = function (target, source) {
+  Object.keys(source || {}).forEach(function (key) {
+      target[key] = source[key];
+    });
+};
+
+
+exports.store = function (key, value) {
+  if (value) {
+    localStorage.setItem(key, value);
+  } else {
+    localStorage.removeItem(key);
+  }
+};
+
+
+exports.storeJson = function (key, value) {
+  if (value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  } else {
+    localStorage.removeItem(key);
+  }
+};
+
+
+exports.load = function (key) {
+  return localStorage.getItem(key);
+};
+
+
+exports.loadJson = function (key) {
+  var value = localStorage.getItem(key);
+  if (value) {
+    return JSON.parse(value);
+  }
+  return null;
+};

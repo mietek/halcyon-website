@@ -45,25 +45,29 @@ exports.addRawHeader = function (opts) {
 };
 
 
-exports.getResource = function (url, yea, nay, token, opts) {
-  http.getResource(url, yea, nay, exports.addAuthHeader(token, opts));
+exports.getResource = function (url, next, token, opts) {
+  http.getResource(url, next, exports.addAuthHeader(token, opts));
 };
 
 
-exports.getJsonResource = function (url, yea, nay, token, opts) {
-  exports.getResource(url, function (resp) {
+exports.getJsonResource = function (url, next, token, opts) {
+  exports.getResource(url,
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var json = JSON.parse(resp);
       if (!json) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
-      return yea(json);
+      return next(json);
     },
-    nay, token, exports.addJsonHeader(opts));
+    token, exports.addJsonHeader(opts));
 };
 
 
-exports.getRawResource = function (url, yea, nay, token, opts) {
-  exports.getResource(url, yea, nay, token, exports.addRawHeader(opts));
+exports.getRawResource = function (url, next, token, opts) {
+  exports.getResource(url, next, token, exports.addRawHeader(opts));
 };
 
 
@@ -77,41 +81,49 @@ exports.requestToken = function (clientId, state) {
 };
 
 
-exports.getAuthenticatedUser = function (yea, nay, token) {
+exports.getAuthenticatedUser = function (next, token) {
   if (!token) {
-    return nay('no_token');
+    return next(null, 'no_token');
   }
-  exports.getJsonResource('https://api.github.com/user', yea, nay, token);
+  exports.getJsonResource('https://api.github.com/user', next, token);
 };
 
 
-exports.listRepoRoot = function (url, yea, nay, token) {
-  exports.getJsonResource(exports.addPathToRepoUrl(url), function (resp) {
+exports.listRepoRoot = function (url, next, token) {
+  exports.getJsonResource(exports.addPathToRepoUrl(url),
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var result = [];
       resp.forEach(function (file) {
           if (!file.name) {
-            return nay('bad_response');
+            return next(null, 'bad_response');
           }
           result.push(file.name);
         });
-      return yea(result);
+      return next(result);
     },
-    nay, token);
+    token);
 };
 
 
-exports.getRawFile = function (url, path, yea, nay, token) {
-  exports.getRawResource(exports.addPathToRepoUrl(url, path), yea, nay, token);
+exports.getRawFile = function (url, path, next, token) {
+  exports.getRawResource(exports.addPathToRepoUrl(url, path), next, token);
 };
 
 
-exports.getJsonFile = function (url, path, yea, nay, token) {
-  exports.getRawResource(exports.addPathToRepoUrl(url, path), function (resp) {
+exports.getJsonFile = function (url, path, next, token) {
+  exports.getRawResource(exports.addPathToRepoUrl(url, path),
+    function (resp, err) {
+      if (err) {
+        return next(null, err);
+      }
       var json = JSON.parse(resp);
       if (!json) {
-        return nay('bad_response');
+        return next(null, 'bad_response');
       }
-      return yea(json);
+      return next(json);
     },
-    nay, token);
+    token);
 };

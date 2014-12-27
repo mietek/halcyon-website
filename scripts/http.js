@@ -57,9 +57,9 @@ exports.addAuthHeader = function (value, opts) {
 };
 
 
-exports.makeRequest = function (method, url, data, yea, nay, opts) {
+exports.makeRequest = function (method, url, data, next, opts) {
   if (!url) {
-    return nay('no_url');
+    return next(null, 'no_url');
   }
   var req = new XMLHttpRequest();
   req.open(method, url, true);
@@ -71,15 +71,15 @@ exports.makeRequest = function (method, url, data, yea, nay, opts) {
   req.onreadystatechange = function () {
     if (req.readyState === 4) {
       if (req.status >= 200 && req.status < 400) {
-        return yea(req.responseText);
+        return next(req.responseText);
       }
       if (req.status >= 400 && req.status < 500) {
-        return nay('client_error');
+        return next(null, 'client_error');
       }
       if (req.status >= 500) {
-        return nay('server_error');
+        return next(null, 'server_error');
       }
-      return nay('unknown_error');
+      return next(null, 'unknown_error');
     }
   };
   if (data && data.length) {
@@ -90,16 +90,16 @@ exports.makeRequest = function (method, url, data, yea, nay, opts) {
 };
 
 
-exports.getResource = function (url, yea, nay, opts) {
-  exports.makeRequest('GET', url, null, yea, nay, opts);
+exports.getResource = function (url, next, opts) {
+  exports.makeRequest('GET', url, null, next, opts);
 };
 
 
-exports.postResource = function (url, data, yea, nay, opts) {
-  exports.makeRequest('POST', url, data, yea, nay, opts);
+exports.postResource = function (url, data, next, opts) {
+  exports.makeRequest('POST', url, data, next, opts);
 };
 
 
-exports.deleteResource = function (url, yea, nay, opts) {
-  exports.makeRequest('DELETE', url, null, yea, nay, opts);
+exports.deleteResource = function (url, next, opts) {
+  exports.makeRequest('DELETE', url, null, next, opts);
 };
