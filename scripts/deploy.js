@@ -32,14 +32,14 @@ Control.prototype = {
       storedRegionSlug:         null,
       storedKeyIds:             null,
       storedSourceUrl:          null,
-      storedEnvVars:            null,
+      storedEnvVarItems:        null,
       onChangeHostname:         null,
       onSelectSize:             null,
       onSelectImage:            null,
       onSelectRegion:           null,
       onSelectKeys:             null,
       onChangeSourceUrl:        null,
-      onChangeEnvVars:          null
+      onChangeEnvVarItems:      null
     };
   },
   makeControls: function () {
@@ -79,17 +79,17 @@ Control.prototype = {
           onChange:    this.changeSourceUrl.bind(this)
         }),
       document.getElementById('source-widget'));
-    this.envVarsWidget = React.render(
+    this.envVarItemsWidget = React.render(
       React.createElement(widgets.MapWidget, {
-          onChange:    this.changeEnvVars.bind(this)
+          onChange:    this.changeEnvVarItems.bind(this)
         }),
       document.getElementById('env-vars-widget'));
   },
   setInitialState: function () {
     this.setState({
-        hostname:  this.props.defaultHostname,
-        sourceUrl: this.props.storedSourceUrl,
-        envVars:   this.props.storedEnvVars
+        hostname:    this.props.defaultHostname,
+        sourceUrl:   this.props.storedSourceUrl,
+        envVarItems: this.props.storedEnvVarItems
       });
   },
   setState: function (state) {
@@ -102,9 +102,9 @@ Control.prototype = {
         enabled: true,
         value:   this.state.sourceUrl
       });
-    this.envVarsWidget.setState({
+    this.envVarItemsWidget.setState({
         enabled: true,
-        items:   this.state.envVars
+        items:   this.state.envVarItems
       });
     if ('hostname' in state) {
       this.digitalOceanControl.changeHostname(state.hostname);
@@ -113,8 +113,15 @@ Control.prototype = {
       this.digitalOceanControl.changeSourceUrl(state.sourceUrl);
       this.gitHubControl.changeSourceUrl(state.sourceUrl);
     }
-    if ('envVars' in state) {
-      this.digitalOceanControl.changeEnvVars(state.envVars);
+    if ('envVarItems' in state) {
+      var envVars = {};
+      (state.envVarItems || []).forEach(function (item) {
+          if (item.name && item.name.length && item.value && item.value.length) {
+            envVars[item.name] = item.value;
+          }
+        });
+      this.digitalOceanControl.changeEnvVars(envVars);
+      this.gitHubControl.changeEnvVars(envVars);
     }
   },
   start: function () {
@@ -151,20 +158,20 @@ Control.prototype = {
     this.setState({
         sourceUrl:  sourceUrl,
       });
-    this.updateEnvVars();
+    this.updateEnvVarItems();
     utils.store('deploy-source-url', sourceUrl);
   },
   changeSourceInfo: function (sourceInfo) {
-    this.updateEnvVars(sourceInfo);
+    this.updateEnvVarItems(sourceInfo);
   },
-  changeEnvVars: function (envVars) {
+  changeEnvVarItems: function (envVarItems) {
     this.setState({
-        envVars: envVars
+        envVarItems: envVarItems
       });
-    utils.storeJson('deploy-env-vars', envVars);
+    utils.storeJson('deploy-env-var-items', envVarItems);
   },
-  updateEnvVars: function (sourceInfo) {
-    var envVars       = [];
+  updateEnvVarItems: function (sourceInfo) {
+    var envVarItems   = [];
     var originalItems = {};
     if (sourceInfo && sourceInfo.env) {
       Object.keys(sourceInfo.env).forEach(function (name) {
@@ -184,10 +191,10 @@ Control.prototype = {
             originalItem.value    = value.value;
           }
           originalItems[name] = originalItem;
-          envVars.push(originalItem);
+          envVarItems.push(originalItem);
         }.bind(this));
     }
-    (this.state.envVars || []).forEach(function (item) {
+    (this.state.envVarItems || []).forEach(function (item) {
         if (item.original) {
           return;
         }
@@ -197,16 +204,16 @@ Control.prototype = {
           originalItem.value = item.value;
         } else {
           if (item.required) {
-            envVars.push({
+            envVarItems.push({
                 name:  item.name,
                 value: item.value
               });
           } else {
-            envVars.push(item);
+            envVarItems.push(item);
           }
         }
       });
-    this.changeEnvVars(envVars);
+    this.changeEnvVarItems(envVarItems);
   }
 };
 
@@ -241,7 +248,7 @@ exports.start = function () {
       storedRegionSlug:         utils.load('deploy-region-slug'),
       storedKeyIds:             utils.loadJson('deploy-key-ids'),
       storedSourceUrl:          utils.load('deploy-source-url'),
-      storedEnvVars:            utils.loadJson('deploy-env-vars')
+      storedEnvVarItems:        utils.loadJson('deploy-env-var-items')
     });
   window.control.start();
 };
