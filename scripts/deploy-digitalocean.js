@@ -260,8 +260,8 @@ var KeysWidget = React.createClass({
 });
 
 
-var DeployLegend = React.createClass({
-  displayName: 'DeployLegend',
+var DropletLegend = React.createClass({
+  displayName: 'DropletLegend',
   getDefaultProps: function () {
     return {
       referralCode: undefined,
@@ -409,12 +409,12 @@ exports.Control.prototype = {
           onSelect:     this.selectKeys.bind(this)
         }),
       document.getElementById('keys-widget'));
-    this.deployLegend = React.render(
-      React.createElement(DeployLegend, {
+    this.dropletLegend = React.render(
+      React.createElement(DropletLegend, {
           referralCode: this.props.referralCode,
           onConnect:    this.connectAccount.bind(this)
         }),
-      document.getElementById('digitalocean-legend'));
+      document.getElementById('droplet-legend'));
     this.actionWidget = React.render(
       React.createElement(ActionWidget, {
           onCreate:     this.createDroplet.bind(this)
@@ -510,7 +510,7 @@ exports.Control.prototype = {
         keysError:      this.state.keysError,
         selectedKeys:   this.state.selectedKeys
       });
-    this.deployLegend.setState({
+    this.dropletLegend.setState({
         account:        this.state.account && this.state.account.email,
         accountError:   this.state.accountError,
         hostname:       this.state.hostname,

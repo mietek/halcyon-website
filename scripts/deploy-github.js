@@ -176,7 +176,7 @@ exports.Control.prototype = {
       React.createElement(SourceLegend, {
           onConnect:    this.connectAccount.bind(this)
         }),
-      document.getElementById('github-legend'));
+      document.getElementById('source-legend'));
   },
   setInitialState: function () {
     this.setState({
