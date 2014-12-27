@@ -18,22 +18,20 @@ var SizeWidget = React.createClass({
     return {
       enabled:      false,
       sizes:        undefined,
+      sizesError:   undefined,
       selectedSize: undefined
     };
   },
   render: function () {
-    if (!this.state.sizes || !this.state.sizes.length) {
-      return React.createElement(widgets.RadioButton, {
-          className: 'size-button meta',
-          enabled:   false,
+    var contents;
+    if (this.state.sizes) {
+      if (!this.state.sizes.length) {
+        contents = React.createElement(widgets.RadioButton, {
+          className: 'meta-button',
           title:     'none'
         });
-    }
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.sizes.map(function (size) {
+      } else {
+        contents = this.state.sizes.map(function (size) {
             return (
               React.createElement(widgets.RadioButton, {
                   key:       size.slug,
@@ -46,7 +44,21 @@ var SizeWidget = React.createClass({
                   }.bind(this)
                 })
             );
-          }.bind(this))));
+          }.bind(this));
+      }
+    }
+    return (
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex',
+          },
+          contents),
+        React.createElement(widgets.DynamicDisplay, {
+            value:      this.state.sizes,
+            loadingMsg: 'Loading sizes…',
+            error:      this.state.sizesError,
+            errorMsg:   'Failed to load sizes.'
+          })));
   }
 });
 
@@ -62,22 +74,20 @@ var ImageWidget = React.createClass({
     return {
       enabled:       false,
       images:        undefined,
+      imagesError:   undefined,
       selectedImage: undefined
     };
   },
   render: function () {
-    if (!this.state.images || !this.state.images.length) {
-      return React.createElement(widgets.RadioButton, {
-          className: 'image-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.images.map(function (image) {
+    var contents;
+    if (this.state.images) {
+      if (!this.state.images.length) {
+        contents = React.createElement(widgets.RadioButton, {
+            className: 'meta-button',
+            title:     'none'
+          });
+      } else {
+        contents = this.state.images.map(function (image) {
             return (
               React.createElement(widgets.RadioButton, {
                   key:       image.slug,
@@ -90,7 +100,21 @@ var ImageWidget = React.createClass({
                   }.bind(this)
                 })
             );
-          }.bind(this))));
+          }.bind(this));
+      }
+    }
+    return (
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex',
+          },
+          contents),
+        React.createElement(widgets.DynamicDisplay, {
+            value:      this.state.images,
+            loadingMsg: 'Loading images…',
+            error:      this.state.imagesError,
+            errorMsg:   'Failed to load images.'
+          })));
   }
 });
 
@@ -108,22 +132,20 @@ var RegionWidget = React.createClass({
       selectedSize:   undefined,
       selectedImage:  undefined,
       regions:        undefined,
+      regionsError:   undefined,
       selectedRegion: undefined
     };
   },
   render: function () {
-    if (!this.state.regions || !this.state.regions.length) {
-      return React.createElement(widgets.RadioButton, {
-          className: 'region-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.regions.map(function (region) {
+    var contents;
+    if (this.state.regions) {
+      if (!this.state.regions.length) {
+        contents = React.createElement(widgets.RadioButton, {
+            className: 'meta-button',
+            title:     'none'
+          });
+      } else {
+        contents = this.state.regions.map(function (region) {
             return (
               React.createElement(widgets.RadioButton, {
                   key:       region.slug,
@@ -136,7 +158,21 @@ var RegionWidget = React.createClass({
                   }.bind(this)
                 })
             );
-          }.bind(this))));
+          }.bind(this));
+      }
+    }
+    return (
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex',
+          },
+          contents),
+        React.createElement(widgets.DynamicDisplay, {
+            value:      this.state.regions,
+            loadingMsg: 'Loading regions…',
+            error:      this.state.regionsError,
+            errorMsg:   'Failed to load regions.'
+          })));
   }
 });
 
@@ -152,6 +188,7 @@ var KeysWidget = React.createClass({
     return {
       enabled:      false,
       keys:         undefined,
+      keysError:    undefined,
       selectedKeys: undefined
     };
   },
@@ -175,21 +212,18 @@ var KeysWidget = React.createClass({
     this.props.onSelect(selectedKeys);
   },
   render: function () {
-    if (!this.state.keys || !this.state.keys.length) {
-      return React.createElement(widgets.RadioButton, {
-          className: 'key-button meta',
-          enabled:   false,
-          title:     'none'
-        });
-    }
-    var selectedKeyIds = this.state.selectedKeys && this.state.selectedKeys.map(function (key) {
-        return key.id;
-      });
-    return (
-      React.createElement('div', {
-          className: 'flex'
-        },
-        this.state.keys.map(function (key) {
+    var contents;
+    if (this.state.keys) {
+      if (!this.state.keys.length) {
+        contents = React.createElement(widgets.RadioButton, {
+            className: 'meta-button',
+            title:     'none'
+          });
+      } else {
+        var selectedKeyIds = this.state.selectedKeys && this.state.selectedKeys.map(function (key) {
+            return key.id;
+          });
+        contents = this.state.keys.map(function (key) {
             var selected = selectedKeyIds && selectedKeyIds.indexOf(key.id) !== -1;
             return (
               React.createElement(widgets.RadioButton, {
@@ -207,7 +241,21 @@ var KeysWidget = React.createClass({
                   }.bind(this)
                 })
             );
-          }.bind(this))));
+          }.bind(this));
+      }
+    }
+    return (
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex',
+          },
+          contents),
+        React.createElement(widgets.DynamicDisplay, {
+            value:      this.state.keys,
+            loadingMsg: 'Loading SSH keys…',
+            error:      this.state.keysError,
+            errorMsg:   'Failed to load SSH keys.'
+          })));
   }
 });
 
@@ -439,11 +487,13 @@ exports.Control.prototype = {
     this.sizeWidget.setState({
         enabled:        !!this.state.account,
         sizes:          this.state.sizes,
+        sizesError:     this.state.sizesError,
         selectedSize:   this.state.selectedSize
       });
     this.imageWidget.setState({
         enabled:        !!this.state.account,
         images:         this.state.images,
+        imagesError:    this.state.imagesError,
         selectedImage:  this.state.selectedImage
       });
     this.regionWidget.setState({
@@ -451,11 +501,13 @@ exports.Control.prototype = {
         selectedSize:   this.state.selectedSize,
         selectedImage:  this.state.selectedImage,
         regions:        this.state.regions,
+        regionsError:   this.state.regionsError,
         selectedRegion: this.state.selectedRegion
       });
     this.keysWidget.setState({
         enabled:        !!this.state.account,
         keys:           this.state.keys,
+        keysError:      this.state.keysError,
         selectedKeys:   this.state.selectedKeys
       });
     this.deployLegend.setState({
