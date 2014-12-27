@@ -31,19 +31,19 @@ var DropletWidget = React.createClass({
           });
       } else {
         contents = this.state.droplets.map(function (droplet) {
-          return (
-            React.createElement(widgets.RadioButton, {
-                key:       droplet.id,
-                className: 'droplet-button',
-                enabled:   this.state.enabled,
-                selected:  this.state.selectedDroplet && droplet.id === this.state.selectedDroplet.id,
-                title:     droplet.name,
-                onClick:   function () {
-                  this.props.onSelect(droplet);
-                }.bind(this)
-              })
-          );
-        }.bind(this));
+            return (
+              React.createElement(widgets.RadioButton, {
+                  key:       droplet.id,
+                  className: 'droplet-button',
+                  enabled:   this.state.enabled,
+                  selected:  this.state.selectedDroplet && droplet.id === this.state.selectedDroplet.id,
+                  title:     droplet.name,
+                  onClick:   function () {
+                    this.props.onSelect(droplet);
+                  }.bind(this)
+                })
+            );
+          }.bind(this));
       }
     }
     return (
