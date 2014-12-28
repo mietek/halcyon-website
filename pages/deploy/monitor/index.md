@@ -1,5 +1,5 @@
 ---
-title: Deploy to DigitalOcean — Monitor
+title: Haskell on DigitalOcean — Monitor
 page-data:
 - key: max-section-link-level
   value: 2
@@ -8,8 +8,8 @@ page-footer: |
 ---
 
 
-[Deploy to DigitalOcean](/deploy) —<br> Monitor
-===============================================
+[Haskell on DigitalOcean](/deploy) —<br> Monitor
+================================================
 
 
 ### DigitalOcean account

@@ -1,5 +1,5 @@
 ---
-title: Deploy to DigitalOcean
+title: Haskell on DigitalOcean
 page-data:
 - key: max-section-link-level
   value: 2
@@ -8,8 +8,8 @@ page-footer: |
 ---
 
 
-Deploy to DigitalOcean
-======================
+Haskell on DigitalOcean
+=======================
 
 
 ### GitHub account
