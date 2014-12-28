@@ -123,7 +123,7 @@ exports.start = function () {
   }
   window.control = new Control({
       digitalOceanClientId:     '2530da1c8b65fd7e627f9ba234db0cfddae44c2ddf7e603648301f043318cac4',
-      digitalOceanCallbackUrl:  'https://halcyon-digitalocean-callback.herokuapp.com/callback',
+      digitalOceanCallbackUrl:  'https://callback.halcyon.sh:8001/digitalocean',
       digitalOceanReferralCode: '6b1199e29661',
       digitalOceanToken:        utils.load('digitalocean-token'),
       defaultHostname:          utils.getRandomHostname(),
