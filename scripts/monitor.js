@@ -44,7 +44,7 @@ Control.prototype = {
   makeControls: function () {
     this.digitalOceanControl = new DigitalOcean.Control({
         storedToken:     this.props.digitalOceanToken,
-        storedDropletId: this.props.storedDropletId,
+        storedDropletId: this.props.storedDropletId && parseInt(this.props.storedDropletId),
         onSelectDroplet: this.selectDroplet.bind(this)
       });
   },
