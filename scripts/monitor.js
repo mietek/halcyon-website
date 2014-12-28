@@ -13,14 +13,16 @@ var MonitorLegend = React.createClass({
     return {};
   },
   getInitialState: function () {
-    return {};
+    return {
+      response: undefined
+    };
   },
   render: function () {
     return (
       React.createElement(widgets.LegendArea, {
-          pre: true
-        },
-        JSON.stringify(this.state, null, 2)));
+          pre:  true,
+          html: this.state.response
+        }));
   }
 });
 
@@ -34,10 +36,7 @@ var MonitorControl = function (props) {
 };
 MonitorControl.prototype = {
   getDefaultProps: function () {
-    return {
-      finished:  false,
-      ipAddress: undefined
-    };
+    return {};
   },
   makeWidgets: function () {
     this.monitorLegend = React.render(
@@ -46,22 +45,48 @@ MonitorControl.prototype = {
   },
   setInitialState: function () {
     this.setState({
+        droplet:   undefined,
+        status:    undefined,
+        response:  undefined
       });
   },
   setState: function (state) {
     utils.update(this.state, state);
     this.monitorLegend.setState({
-        finished:  this.state.finished,
-        ipAddress: this.state.ipAddress
+        response:  this.state.response
       });
   },
-  start: function () {
-    // TODO: Write this.
-  },
-  changeIpAddress: function (ipAddress) {
+  selectDroplet: function (droplet) {
+    if (droplet && this.state.droplet && droplet.id === this.state.droplet.id && droplet.ipAddress === this.state.droplet.ipAddress) {
+      return;
+    }
     this.setState({
-        finished:  false,
-        ipAddress: ipAddress
+        droplet:   droplet,
+        status:    undefined,
+        response:  undefined
+      });
+    if (droplet && droplet.ipAddress) {
+      var req = http.makeRequest('GET', 'http://' + this.state.droplet.ipAddress + ':4040/', null, null, {
+        onChangeState: function () {
+            this.changeRequestState(req);
+          }.bind(this)
+      });
+    }
+  },
+  changeRequestState: function (req) {
+    console.log('status', req.status);
+    var esc    = String.fromCharCode(0x1b) + '\\[';
+    var startB = new RegExp(esc + '1m', 'g');
+    var endB   = new RegExp(esc + '0m', 'g');
+    var link   = new RegExp('open (https?://.*)\n');
+    var validResponse = req.responseText;
+    validResponse = validResponse && validResponse
+      .replace(startB, '<b>')
+      .replace(endB, '</b>')
+      .replace(link, 'open <a href="$1">$1</a>\n');
+    this.setState({
+        status:   req.status,
+        response: validResponse
       });
   }
 };
@@ -89,10 +114,9 @@ Control.prototype = {
   },
   start: function () {
     this.digitalOceanControl.start();
-    this.monitorControl.start();
   },
   selectDroplet: function (droplet) {
-    this.monitorControl.changeIpAddress(droplet && droplet.ipAddress);
+    this.monitorControl.selectDroplet(droplet);
     utils.storeJson('monitor-droplet-id', droplet && droplet.id);
   }
 };
