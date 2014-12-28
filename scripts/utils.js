@@ -92,8 +92,5 @@ exports.load = function (key) {
 
 exports.loadJson = function (key) {
   var value = localStorage.getItem(key);
-  if (value) {
-    return JSON.parse(value);
-  }
-  return null;
+  return value && JSON.parse(value);
 };
