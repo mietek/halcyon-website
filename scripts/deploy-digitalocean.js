@@ -264,7 +264,6 @@ var DropletLegend = React.createClass({
   displayName: 'DropletLegend',
   getDefaultProps: function () {
     return {
-      referralCode: undefined,
       onConnect:    undefined
     };
   },
@@ -357,6 +356,7 @@ exports.Control.prototype = {
   makeWidgets: function () {
     this.accountWidget = React.render(
       React.createElement(widgets.AccountWidget, {
+          referralCode: this.props.referralCode,
           onConnect:    this.connectAccount.bind(this),
           onForget:     this.forgetAccount.bind(this)
         }),

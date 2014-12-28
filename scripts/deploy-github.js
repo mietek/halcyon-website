@@ -158,6 +158,7 @@ exports.Control.prototype = {
   makeWidgets: function () {
     this.accountWidget = React.render(
       React.createElement(widgets.AccountWidget, {
+          noExtraMsg:   true,
           onConnect:    this.connectAccount.bind(this),
           onForget:     this.forgetAccount.bind(this)
         }),

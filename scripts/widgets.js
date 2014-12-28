@@ -454,8 +454,10 @@ exports.AccountWidget = React.createClass({
   displayName: 'AccountWidget',
   getDefaultProps: function () {
     return {
-      onConnect: undefined,
-      onForget:  undefined
+      referralCode: undefined,
+      noExtraMsg:   false,
+      onConnect:    undefined,
+      onForget:     undefined
     };
   },
   getInitialState: function () {
@@ -465,7 +467,37 @@ exports.AccountWidget = React.createClass({
       accountError: undefined
     };
   },
+  connect: function (event) {
+    event.preventDefault();
+    this.props.onConnect();
+  },
   render: function () {
+    // TODO: Refactor this.
+    var account = this.state.account;
+    var err     = this.state.accountError;
+    var extraMsg;
+    if (err === 'no_token') {
+      account  = 'none';
+      err      = null;
+      extraMsg = React.createElement('div', {
+          className: 'meta'
+        },
+        React.createElement('p', null,
+          'Please ',
+          React.createElement('a', {
+              href: '',
+              onClick: this.connect
+            },
+            'connect'),
+          ' your DigitalOcean account to continue.'),
+        React.createElement('p', null,
+          'If you need to sign up for an account, you can use a ',
+          React.createElement('a', {
+              href: 'https://cloud.digitalocean.com/registrations/new?refcode=' + this.props.referralCode
+            },
+            'referral link'),
+          ' to receive $10 credit from DigitalOcean and help the Halcyon project.'));
+    }
     return (
       React.createElement('div', null,
         React.createElement('div', {
@@ -485,10 +517,11 @@ exports.AccountWidget = React.createClass({
               onFalseClick: this.props.onConnect
             })),
         React.createElement(exports.DynamicDisplay, {
-          value:      this.state.account,
+          value:      account,
           loadingMsg: 'Loading account…',
-          error:      this.state.accountError,
+          error:      err,
           errorMsg:   'Failed to load account.'
-        })));
+        }),
+        this.props.noExtraMsg ? null : extraMsg));
   }
 });
