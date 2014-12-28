@@ -181,13 +181,13 @@ exports.Control.prototype = {
   },
   setInitialState: function () {
     this.setState({
-        token:        this.props.storedToken,
+        token:        undefined,
         account:      undefined,
         accountError: undefined,
-        sourceUrl:    this.props.storedSourceUrl,
+        sourceUrl:    undefined,
         sourceInfo:   undefined,
         sourceError:  undefined,
-        envVarItems:  this.props.storedEnvVarItems
+        envVarItems:  undefined
       });
   },
   forgetAccount: function () {
@@ -225,6 +225,11 @@ exports.Control.prototype = {
       });
   },
   start: function () {
+    this.setState({
+        token: this.props.storedToken
+      });
+    this.changeSourceUrl(this.props.storedSourceUrl);
+    this.changeEnvVarItems(this.props.storedEnvVarItems);
     this.loadAccount(function () {
         this.loadSourceInfo();
       }.bind(this));

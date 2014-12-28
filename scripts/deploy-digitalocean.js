@@ -404,10 +404,10 @@ exports.Control.prototype = {
   },
   setInitialState: function () {
     this.setState({
-        token:            this.props.storedToken,
+        token:            undefined,
         account:          undefined,
         accountError:     undefined,
-        hostname:         this.props.defaultHostname,
+        hostname:         undefined,
         sizes:            undefined,
         sizesError:       undefined,
         selectedSize:     undefined,
@@ -519,6 +519,10 @@ exports.Control.prototype = {
       });
   },
   start: function () {
+    this.setState({
+        token: this.props.storedToken
+      });
+    this.changeHostname(this.props.defaultHostname);
     this.loadAccount(function () {
         this.loadSizes();
         this.loadImages();

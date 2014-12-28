@@ -167,7 +167,7 @@ exports.Control.prototype = {
   },
   setInitialState: function () {
     this.setState({
-        token:           this.props.storedToken,
+        token:           undefined,
         account:         undefined,
         accountError:    undefined,
         droplets:        undefined,
@@ -200,6 +200,9 @@ exports.Control.prototype = {
       });
   },
   start: function () {
+    this.setState({
+        token: this.props.storedToken
+      });
     var loop = function () {
       this.loadDroplets(function () {
           setTimeout(loop, 10 * 1000);
