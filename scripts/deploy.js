@@ -88,17 +88,18 @@ Control.prototype = {
   changeEnvVarItems: function (envVarItems) {
     var envVars = envVarItems && {};
     (envVarItems || []).forEach(function (item) {
-        if (item.name && item.name.length && item.value && item.value.length && !item.original) {
+        if (item.name && item.name.length && item.value && item.value.length) {
           envVars[item.name] = item.value;
         }
       });
     envVars = (envVars && Object.keys(envVars).length) ? envVars : undefined;
     this.digitalOceanControl.changeEnvVars(envVars);
-    var customItems = envVarItems && envVarItems.filter(function (item) {
-        return !item.original;
+    var re = new RegExp('DATABASE|KEY|PASSPHRASE|PASSWORD|POSTGRESQL|PRIVATE|SECRET');
+    var storedItems = envVarItems && envVarItems.filter(function (item) {
+        return ((item.name && item.name.length) || (item.value && item.value.length)) && !item.original && (!item.name || !item.name.match(re));
       });
-    customItems = (customItems && customItems.length) ? customItems : undefined;
-    utils.storeJson('deploy-env-var-items', customItems);
+    storedItems = (storedItems && storedItems.length) ? storedItems : undefined;
+    utils.storeJson('deploy-env-var-items', storedItems);
   }
 };
 
