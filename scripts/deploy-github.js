@@ -52,7 +52,7 @@ var SourceWidget = React.createClass({
                 href: 'https://devcenter.heroku.com/articles/app-json-schema'
               },
               React.createElement('code', null, 'app.json')),
-            ' file located at the root of the repository.');
+            ' file located at the root of the repository.  If the URL is valid, the application can still be deployed.');
         }
       } else if (err === 'no_url') {
         info = {};
@@ -61,7 +61,7 @@ var SourceWidget = React.createClass({
           extraMsg = React.createElement('p', {
               className: 'meta'
             },
-            'Source information can only be loaded from ',
+            'Source information can be loaded from ',
             React.createElement('em', null, 'git'),
             ' repositories hosted on GitHub.  If the URL is valid, the application can still be deployed.');
         } else {
