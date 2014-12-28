@@ -25,6 +25,6 @@ page-footer: |
 <div id="action-widget" class="widget"></div>
 
 
-#### Live install log
+#### Live log
 
 <div id="monitor-legend" class="full"></div>
