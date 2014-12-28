@@ -251,20 +251,22 @@ exports.Control.prototype = {
       this.state.token);
   },
   changeSourceUrl: function (sourceUrl) {
+    var validSourceUrl = (sourceUrl && sourceUrl.length) ? sourceUrl : undefined;
     this.setState({
-        sourceUrl:   sourceUrl,
+        sourceUrl:   validSourceUrl,
         sourceInfo:  undefined,
         sourceError: undefined
       });
-    this.props.onChangeSourceUrl(sourceUrl);
+    this.props.onChangeSourceUrl(validSourceUrl);
     this.updateEnvVarItems();
     this.debouncedLoadSourceInfo();
   },
   changeEnvVarItems: function (envVarItems) {
+    var validEnvVarItems = (envVarItems && envVarItems.length) ? envVarItems : undefined;
     this.setState({
-        envVarItems: envVarItems
+        envVarItems: validEnvVarItems
       });
-    this.props.onChangeEnvVarItems(envVarItems);
+    this.props.onChangeEnvVarItems(validEnvVarItems);
   },
   updateEnvVarItems: function () {
     var envVarItems   = [];
