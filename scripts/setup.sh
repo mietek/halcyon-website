@@ -45,8 +45,11 @@ install_halcyon () {
 	echo '-----> Welcome to Haskell on DigitalOcean' >&2
 	echo >&2
 
+	echo '-----> Setting up' >&2
+	echo '       Creating app directory' >&2
 	mkdir -p '/app' || return 1
 	if ! id -u app 2>'/dev/null'; then
+		echo '       Adding app user' >&2
 		adduser --home '/app' --no-create-home --shell '/usr/sbin/nologin' --disabled-password --gecos '' app >'/dev/null' || return 1
 	fi
 
@@ -54,13 +57,18 @@ install_halcyon () {
 	uid=$( id -u app ) || return 1
 	gid=$( id -g app ) || return 1
 
+	echo '       Creating monitor script' >&2
 	format_monitor >'/app/setup-monitor.sh' || return 1
+
+	echo '       Setting permissions' >&2
 	chmod +x '/app/setup-monitor.sh' || return 1
 	chown app:app -R '/app' '/var/log/setup.log' || return 1
 
+	echo '       Downloading ucspi-tcp' >&2
 	( cd '/tmp' && curl -sLO 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' ) || return 1
 	dpkg -i '/tmp/ucspi-tcp_0.88-3_amd64.deb' >'/dev/null' || return 1
 
+	echo '       Starting ucspi-tcp' >&2
 	tcpserver -D -H -R -u "${uid}" -g "${gid}" -l 0 0 "${SETUP_MONITOR_PORT:-4040}" '/app/setup-monitor.sh' &
 	export SETUP_INTERNAL_MONITOR_PID="$!"
 
@@ -117,7 +125,7 @@ install_app () {
 	fi
 
 	local clone_dir source_dir
-	clone_dir=$( get_tmp_dir 'setup-clone' ) || die
+	clone_dir=$( get_tmp_dir 'setup-clone' ) || return 1
 
 	log_begin "Cloning ${SETUP_APP_SOURCE_URL}..."
 
