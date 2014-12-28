@@ -17,7 +17,7 @@ exports.getJsonResource = function (url, next, token, opts) {
   if (!token) {
     return next(null, 'no_token');
   }
-  http.getResource(url,
+  return http.getResource(url,
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -36,7 +36,7 @@ exports.postJsonResource = function (url, obj, next, token, opts) {
   if (!token) {
     return next(null, 'no_token');
   }
-  http.postResource(url, obj ? JSON.stringify(obj) : null,
+  return http.postResource(url, obj ? JSON.stringify(obj) : null,
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -55,7 +55,7 @@ exports.deleteResource = function (url, next, token, opts) {
   if (!token) {
     return next(null, 'no_token');
   }
-  http.deleteResource(url, next, exports.addAuthHeader(token, exports.addJsonHeader(opts)));
+  return http.deleteResource(url, next, exports.addAuthHeader(token, exports.addJsonHeader(opts)));
 };
 
 
@@ -72,7 +72,7 @@ exports.requestToken = function (clientId, callbackUrl, state) {
 
 
 exports.revokeToken = function (next, token) {
-  http.postResource(http.addQueryToUrl({
+  return http.postResource(http.addQueryToUrl({
       'access_token': token
     },
     'https://cloud.digitalocean.com/v1/oauth/revoke'), null, next);
@@ -80,7 +80,7 @@ exports.revokeToken = function (next, token) {
 
 
 exports.getAccount = function (next, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/account',
+  return exports.getJsonResource('https://api.digitalocean.com/v2/account',
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -96,7 +96,7 @@ exports.getAccount = function (next, token) {
 
 
 exports.getSizes = function (next, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/sizes',
+  return exports.getJsonResource('https://api.digitalocean.com/v2/sizes',
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -120,7 +120,7 @@ exports.getSizes = function (next, token) {
 exports.getDistributionImages = function (next, token) {
   var potentiallySupportedSlugs = ['centos-7-0-x64', 'ubuntu-14-04-x64'];
   var supportedSlugs            = ['ubuntu-14-04-x64']; // TODO: Support CentOS 7.
-  exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution',
+  return exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution',
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -147,7 +147,7 @@ exports.getDistributionImages = function (next, token) {
 
 
 exports.getRegions = function (next, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/regions',
+  return exports.getJsonResource('https://api.digitalocean.com/v2/regions',
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -169,7 +169,7 @@ exports.getRegions = function (next, token) {
 
 
 exports.getAccountKeys = function (next, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/account/keys',
+  return exports.getJsonResource('https://api.digitalocean.com/v2/account/keys',
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -188,7 +188,7 @@ exports.getAccountKeys = function (next, token) {
 
 
 exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, keyIds, userData, next, token) {
-  exports.postJsonResource('https://api.digitalocean.com/v2/droplets', {
+  return exports.postJsonResource('https://api.digitalocean.com/v2/droplets', {
       'name':               hostname,
       'size':               sizeSlug,
       'image':              imageSlug,
@@ -214,12 +214,12 @@ exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, key
 
 
 exports.destroyDroplet = function (dropletId, next, token) {
-  exports.deleteResource('https://api.digitalocean.com/v2/droplets/' + dropletId, next, token);
+  return exports.deleteResource('https://api.digitalocean.com/v2/droplets/' + dropletId, next, token);
 };
 
 
 exports.getDroplets = function (next, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/droplets',
+  return exports.getJsonResource('https://api.digitalocean.com/v2/droplets',
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -243,7 +243,7 @@ exports.getDroplets = function (next, token) {
 
 
 exports.getDroplet = function (dropletId, next, token) {
-  exports.getJsonResource('https://api.digitalocean.com/v2/droplets/' + dropletId,
+  return exports.getJsonResource('https://api.digitalocean.com/v2/droplets/' + dropletId,
     function (resp, err) {
       if (err) {
         return next(null, err);

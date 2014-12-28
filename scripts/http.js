@@ -87,19 +87,20 @@ exports.makeRequest = function (method, url, data, next, opts) {
   } else {
     req.send();
   }
+  return req;
 };
 
 
 exports.getResource = function (url, next, opts) {
-  exports.makeRequest('GET', url, null, next, opts);
+  return exports.makeRequest('GET', url, null, next, opts);
 };
 
 
 exports.postResource = function (url, data, next, opts) {
-  exports.makeRequest('POST', url, data, next, opts);
+  return exports.makeRequest('POST', url, data, next, opts);
 };
 
 
 exports.deleteResource = function (url, next, opts) {
-  exports.makeRequest('DELETE', url, null, next, opts);
+  return exports.makeRequest('DELETE', url, null, next, opts);
 };

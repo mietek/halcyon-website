@@ -46,12 +46,12 @@ exports.addRawHeader = function (opts) {
 
 
 exports.getResource = function (url, next, token, opts) {
-  http.getResource(url, next, exports.addAuthHeader(token, opts));
+  return http.getResource(url, next, exports.addAuthHeader(token, opts));
 };
 
 
 exports.getJsonResource = function (url, next, token, opts) {
-  exports.getResource(url,
+  return exports.getResource(url,
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -67,7 +67,7 @@ exports.getJsonResource = function (url, next, token, opts) {
 
 
 exports.getRawResource = function (url, next, token, opts) {
-  exports.getResource(url, next, token, exports.addRawHeader(opts));
+  return exports.getResource(url, next, token, exports.addRawHeader(opts));
 };
 
 
@@ -85,12 +85,12 @@ exports.getAuthenticatedUser = function (next, token) {
   if (!token) {
     return next(null, 'no_token');
   }
-  exports.getJsonResource('https://api.github.com/user', next, token);
+  return exports.getJsonResource('https://api.github.com/user', next, token);
 };
 
 
 exports.listRepoRoot = function (url, next, token) {
-  exports.getJsonResource(exports.addPathToRepoUrl(url),
+  return exports.getJsonResource(exports.addPathToRepoUrl(url),
     function (resp, err) {
       if (err) {
         return next(null, err);
@@ -109,12 +109,12 @@ exports.listRepoRoot = function (url, next, token) {
 
 
 exports.getRawFile = function (url, path, next, token) {
-  exports.getRawResource(exports.addPathToRepoUrl(url, path), next, token);
+  return exports.getRawResource(exports.addPathToRepoUrl(url, path), next, token);
 };
 
 
 exports.getJsonFile = function (url, path, next, token) {
-  exports.getRawResource(exports.addPathToRepoUrl(url, path),
+  return exports.getRawResource(exports.addPathToRepoUrl(url, path),
     function (resp, err) {
       if (err) {
         return next(null, err);
