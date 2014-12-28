@@ -14,7 +14,7 @@ export SETUP_MONITOR_PORT='{{monitorPort}}'
 format_monitor () {
 	cat <<-'EOF'
 		#!/usr/bin/env bash
-		echo -e 'HTTP/1.0 200 OK\r'
+		echo -e 'HTTP/1.1 200 OK\r'
 		echo -e "Date: $( date -Ru )\r"
 		echo -e 'Access-Control-Allow-Origin: *\r'
 		echo -e 'Content-Type: text/plain; charset=utf-8\r'
@@ -42,13 +42,17 @@ EOF
 
 
 install_halcyon () {
-	mkdir '/app' || return 1
-	adduser --home '/app' --no-create-home --shell '/usr/sbin/nologin' --disabled-password --gecos '' app >'/dev/null' || return 1
+	echo '-----> Welcome to Haskell on DigitalOcean' >&2
+	echo >&2
+
+	mkdir -p '/app' || return 1
+	if ! id -u app 2>'/dev/null'; then
+		adduser --home '/app' --no-create-home --shell '/usr/sbin/nologin' --disabled-password --gecos '' app >'/dev/null' || return 1
+	fi
+
 	local uid gid
 	uid=$( id -u app ) || return 1
 	gid=$( id -g app ) || return 1
-
-	echo '-----> Welcome to Haskell on DigitalOcean' >&2
 
 	format_monitor >'/app/setup-monitor.sh' || return 1
 	chmod +x '/app/setup-monitor.sh' || return 1
@@ -94,7 +98,7 @@ install_halcyon () {
 	fi
 	echo " done, ${commit_hash:0:7}" >&2
 
-	HALCYON_NO_SELF_UPDATE=1
+	HALCYON_NO_SELF_UPDATE=1 \
 		source '/app/halcyon/src.sh' || return 1
 	chown app:app -R '/app' || return 1
 }
@@ -129,35 +133,40 @@ install_app () {
 		USER='app' \
 		HOME='/app' \
 		HALCYON_NO_SELF_UPDATE=1 \
+		HALCYON_NO_CLEAN_CACHE=1 \
 			/app/halcyon/halcyon install \"${clone_dir}\"
 	" || return 1
 
 	( sleep "${SETUP_MONITOR_LIFE:-3600}" && kill "${SETUP_INTERNAL_MONITOR_PID}" ) &
 
-	local app_command
-	app_command="${SETUP_APP_COMMAND:-}"
-	if [[ -z "${app_command}" ]]; then
-		local executable
-		if executable=$(
-			sudo -u app bash -c "
-				USER='app' \
-				HOME='/app' \
-				HALCYON_NO_SELF_UPDATE=1 \
-					/app/halcyon/halcyon executable \"${clone_dir}\" 2>'/dev/null'
-			"
-		); then
-			expect_existing "/app/bin/${executable}"
-
-			app_command="/app/bin/${executable}"
-		fi
+	local executable
+	if ! executable=$(
+		sudo -u app bash -c "
+			USER='app' \
+			HOME='/app' \
+			HALCYON_NO_SELF_UPDATE=1 \
+				/app/halcyon/halcyon executable \"${clone_dir}\" 2>'/dev/null'
+		"
+	); then
+		log_warning 'Cannot determine executable'
+		return 0
 	fi
+	expect_existing "/app/bin/${executable}"
+
+	local app_command
+	app_command="${SETUP_APP_COMMAND:-/app/bin/${executable}}"
 	if [[ -z "${app_command}" ]]; then
 		log_warning 'Cannot create Upstart config'
 		return 0
 	fi
 
-	format_upstart_config "${app_command}" >'/etc/init/app.conf' || return 1
-	start app || return 1
+	log 'Creating Upstart config'
+
+	format_upstart_config "${app_command}" >"/etc/init/${executable}.conf" || return 1
+
+	log 'Starting app'
+
+	start "${executable}" 2>&1 | quote || return 1
 
 	local ip_address
 	ip_address=$( curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address ) || return 1
