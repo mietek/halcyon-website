@@ -62,75 +62,6 @@ var DropletWidget = React.createClass({
 });
 
 
-var DropletLegend = React.createClass({
-  displayName: 'DropletLegend',
-  getDefaultProps: function () {
-    return {};
-  },
-  getInitialState: function () {
-    return {
-      selectedDroplet: undefined
-    };
-  },
-  render: function () {
-    // TODO: Write this.
-    var droplet = this.state.selectedDroplet || {};
-    return (
-      React.createElement(widgets.LegendArea, {
-          pre: true
-        },
-        JSON.stringify({
-            id:         droplet.id,
-            name:       droplet.name,
-            sizeSlug:   droplet['size_slug'],
-            imageSlug:  droplet.image && droplet.image.slug,
-            regionSlug: droplet.region && droplet.region.slug,
-            status:     droplet.status,
-            locked:     droplet.locked,
-            ipAddress:  droplet.ipAddress
-          }, null, 2)));
-  }
-});
-
-
-var ActionWidget = React.createClass({
-  displayName: 'ActionWidget',
-  getDefaultProps: function () {
-    return {
-      onView:    undefined,
-      onDestroy: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled:     false,
-      action:      undefined,
-      actionError: undefined
-    };
-  },
-  render: function () {
-    // TODO: Add error handling.
-    return (
-      React.createElement('div', null,
-        React.createElement('div', {
-            className: 'flex'
-          },
-          React.createElement(widgets.PushButton, {
-              className: 'view-button',
-              enabled:   this.state.enabled,
-              title:     'View droplet',
-              onClick:   this.props.onView
-            }),
-          React.createElement(widgets.PushButton, {
-              className: 'destroy-button',
-              enabled:   this.state.enabled,
-              title:     'Destroy droplet',
-              onClick:   this.props.onDestroy
-            }))));
-  }
-});
-
-
 exports.Control = function (props) {
   this.props = this.getDefaultProps();
   utils.update(this.props, props);
@@ -156,12 +87,12 @@ exports.Control.prototype = {
         }),
       document.getElementById('droplet-widget'));
     this.dropletLegend = React.render(
-      React.createElement(DropletLegend),
+      React.createElement(widgets.DropletLegend),
       document.getElementById('droplet-legend'));
     this.actionWidget = React.render(
-      React.createElement(ActionWidget, {
-          onView:    this.viewDroplet.bind(this),
-          onDestroy: this.destroyDroplet.bind(this)
+      React.createElement(widgets.ActionWidget, {
+          title:     'Destroy droplet',
+          onClick:   this.destroyDroplet.bind(this)
         }),
       document.getElementById('action-widget'));
   },
@@ -191,7 +122,16 @@ exports.Control.prototype = {
         selectedDroplet: this.state.selectedDroplet
       });
     this.dropletLegend.setState({
-        selectedDroplet: this.state.selectedDroplet
+        hostname:        this.state.selectedDroplet && this.state.selectedDroplet.name,
+        ipAddress:       this.state.selectedDroplet && this.state.selectedDroplet.ipAddress,
+        port:            8080, // TODO: Support custom ports.
+        size:            this.state.selectedDroplet && {
+          memory:          this.state.selectedDroplet.memory,
+          vcpus:           this.state.selectedDroplet.vcpus,
+          disk:            this.state.selectedDroplet.disk
+        },
+        image:           this.state.selectedDroplet && this.state.selectedDroplet.image,
+        region:          this.state.selectedDroplet && this.state.selectedDroplet.region
       });
     this.actionWidget.setState({
         enabled:         !!this.state.account && this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.action,

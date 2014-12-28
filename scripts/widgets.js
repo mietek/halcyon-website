@@ -525,3 +525,83 @@ exports.AccountWidget = React.createClass({
         this.props.noExtraMsg ? null : extraMsg));
   }
 });
+
+
+exports.DropletLegend = React.createClass({
+  displayName: 'DropletLegend',
+  getInitialState: function () {
+    return {
+      hostname:  undefined,
+      ipAddress: undefined,
+      port:      undefined,
+      size:      undefined,
+      image:     undefined,
+      region:    undefined
+    };
+  },
+  render: function () {
+    var size   = this.state.size;
+    var image  = this.state.image;
+    var region = this.state.region;
+    return (
+      React.createElement(exports.LegendArea, null,
+        !this.state.hostname ? null :
+          React.createElement('p', null,
+            React.createElement('strong', null,
+            !this.state.ipAddress ? this.state.hostname :
+              React.createElement('a', {
+                  href: 'http://' + this.state.ipAddress + ((this.state.port && this.state.port !== 80) ? (':' + this.state.port) : '') + '/'
+                },
+                this.state.hostname))),
+        React.createElement('ul', null,
+          !size || !size['price_monthly'] ? null :
+            React.createElement('li', null,
+              '$' + size['price_monthly'] + '/month' + (size['price_hourly'] ? (' ($' + size['price_hourly'] + '/hour)') : '')),
+          !size ? null :
+            React.createElement('li', null,
+              (size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB')) + ' memory (' + size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') + size.disk + ' GB disk' + (size.transfer ? (', ' + size.transfer + ' TB transfer)') : ')')),
+          !image ? null :
+            React.createElement('li', null,
+              image.distribution + ' ' + image.name),
+          !region ? null :
+            React.createElement('li', null,
+              region.name))));
+  }
+});
+
+
+exports.ActionWidget = React.createClass({
+  displayName: 'ActionWidget',
+  getDefaultProps: function () {
+    return {
+      title:   undefined,
+      onClick: undefined
+    };
+  },
+  getInitialState: function () {
+    return {
+      enabled:     false,
+      action:      undefined,
+      actionError: undefined
+    };
+  },
+  render: function () {
+    return (
+      React.createElement('div', null,
+        React.createElement('div', {
+            className: 'flex'
+          },
+          React.createElement(exports.PushButton, {
+              className: 'action-button',
+              enabled:   this.state.enabled,
+              title:     this.props.title,
+              onClick:   this.props.onClick
+            })),
+          React.createElement(exports.DynamicDisplay, {
+              value:      !this.state.action,
+              loadingMsg: 'Performing action…',
+              error:      this.state.actionError,
+              errorMsg:   'Failed to perform action.'
+            })));
+  }
+});

@@ -260,67 +260,6 @@ var KeysWidget = React.createClass({
 });
 
 
-var DropletLegend = React.createClass({
-  displayName: 'DropletLegend',
-  getInitialState: function () {
-    return {
-      selectedSize:   undefined,
-      selectedImage:  undefined,
-      selectedRegion: undefined,
-      selectedKeys:   undefined
-    };
-  },
-  render: function () {
-    var size = this.state.selectedSize;
-    if (!size) {
-      return (
-        React.createElement('div'));
-    }
-    return (
-      React.createElement(widgets.LegendArea, null,
-        React.createElement('p', null,
-          React.createElement('a', {
-              href: 'https://digitalocean.com/pricing/'
-            },
-            React.createElement('strong', null, '$' + size['price_monthly'] + '/month'),
-            ' — $' + size['price_hourly'] + '/hour')),
-        React.createElement('p', null,
-          (size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB')) + ' RAM, ' + size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') + size.disk + ' GB SSD disk, ' + size.transfer + ' TB transfer')));
-  }
-});
-
-
-var ActionWidget = React.createClass({
-  displayName: 'ActionWidget',
-  getDefaultProps: function () {
-    return {
-      onCreate: undefined
-    };
-  },
-  getInitialState: function () {
-    return {
-      enabled:     false,
-      action:      undefined,
-      actionError: undefined
-    };
-  },
-  render: function () {
-    // TODO: Add error handling.
-    return (
-      React.createElement('div', null,
-        React.createElement('div', {
-            className: 'flex'
-          },
-          React.createElement(widgets.PushButton, {
-              className: 'create-button',
-              enabled:   this.state.enabled,
-              title:     'Create droplet',
-              onClick:   this.props.onCreate
-            }))));
-  }
-});
-
-
 exports.Control = function (props) {
   this.props = this.getDefaultProps();
   utils.update(this.props, props);
@@ -382,11 +321,12 @@ exports.Control.prototype = {
         }),
       document.getElementById('keys-widget'));
     this.dropletLegend = React.render(
-      React.createElement(DropletLegend),
+      React.createElement(widgets.DropletLegend),
       document.getElementById('droplet-legend'));
     this.actionWidget = React.render(
-      React.createElement(ActionWidget, {
-          onCreate:     this.createDroplet.bind(this)
+      React.createElement(widgets.ActionWidget, {
+          title:        'Create droplet',
+          onClick:      this.createDroplet.bind(this)
         }),
       document.getElementById('action-widget'));
   },
@@ -477,13 +417,15 @@ exports.Control.prototype = {
         selectedKeys:   this.state.selectedKeys
       });
     this.dropletLegend.setState({
-        selectedSize:   this.state.selectedSize,
-        selectedImage:  this.state.selectedImage,
-        selectedRegion: this.state.selectedRegion,
-        selectedKeys:   this.state.selectedKeys
+        hostname:       this.state.hostname,
+        size:           this.state.selectedSize,
+        image:          this.state.selectedImage,
+        region:         this.state.selectedRegion
       });
     this.actionWidget.setState({
-        enabled:        !!this.state.account && this.state.hostname && this.state.selectedSize && this.state.selectedImage && this.state.selectedRegion && this.state.sourceUrl && !this.state.action
+        enabled:        !!this.state.account && this.state.hostname && this.state.selectedSize && this.state.selectedImage && this.state.selectedRegion && this.state.sourceUrl && !this.state.action,
+        action:         this.state.action,
+        actionError:    this.state.actionError
       });
   },
   start: function () {
@@ -595,8 +537,8 @@ exports.Control.prototype = {
           location.href = '/deploy/monitor/?id=' + droplet.id;
         } else {
           this.setState({
-              droplet:      undefined,
-              dropletError: err
+              action:      undefined,
+              actionError: err
             });
         }
       }.bind(this),
