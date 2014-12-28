@@ -537,44 +537,72 @@ exports.Control.prototype = {
       this.state.token);
   },
   loadSizes: function () {
-    DigitalOcean.getSizes(function (sizes, err) {
-        this.setState({
-            sizes:      sizes,
-            sizesError: err
-          });
-        this.updateSelectedSize();
-      }.bind(this),
-      this.state.token);
+    if (this.state.token) {
+      DigitalOcean.getSizes(function (sizes, err) {
+          this.setState({
+              sizes:      sizes,
+              sizesError: err
+            });
+          this.updateSelectedSize();
+        }.bind(this),
+        this.state.token);
+    } else {
+      this.setState({
+          sizes:      [],
+          sizesError: undefined
+        });
+    }
   },
   loadImages: function () {
-    DigitalOcean.getDistributionImages(function (images, err) {
-        this.setState({
-            images:      images,
-            imagesError: err
-          });
-        this.updateSelectedImage();
-      }.bind(this),
-      this.state.token);
+    if (this.state.token) {
+      DigitalOcean.getDistributionImages(function (images, err) {
+          this.setState({
+              images:      images,
+              imagesError: err
+            });
+          this.updateSelectedImage();
+        }.bind(this),
+        this.state.token);
+    } else {
+      this.setState({
+          images:      [],
+          imagesError: undefined
+        });
+    }
   },
   loadRegions: function () {
-    DigitalOcean.getRegions(function (regions, err) {
-        this.setState({
-            regions:      regions,
-            regionsError: err
-          });
-        this.updateSelectedRegion();
-      }.bind(this),
-      this.state.token);
+    if (this.state.token) {
+      DigitalOcean.getRegions(function (regions, err) {
+          this.setState({
+              regions:      regions,
+              regionsError: err
+            });
+          this.updateSelectedRegion();
+        }.bind(this),
+        this.state.token);
+    } else {
+      this.setState({
+          regions:      [],
+          regionsError: undefined
+        });
+    }
   },
   loadKeys: function () {
-    DigitalOcean.getAccountKeys(function (keys, err) {
-        this.setState({
-            keys:      keys,
-            keysError: err
-          });
-        this.updateSelectedKeys();
-      }.bind(this),
-      this.state.token);
+    if (this.state.token) {
+      DigitalOcean.getAccountKeys(function (keys, err) {
+          this.setState({
+              keys:      keys,
+              keysError: err
+            });
+          this.updateSelectedKeys();
+        }.bind(this),
+        this.state.token);
+    } else {
+      this.setState({
+          keys:      [],
+          keysError: undefined
+        });
+    }
   },
   createDroplet: function () {
     this.setState({
