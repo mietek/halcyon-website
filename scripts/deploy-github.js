@@ -189,19 +189,6 @@ exports.Control.prototype = {
         envVarItems:  undefined
       });
   },
-  forgetAccount: function () {
-    this.setState({
-        token:        undefined,
-        account:      undefined,
-        accountError: undefined,
-        sourceInfo:   undefined,
-        sourceError:  undefined
-      });
-    this.props.onForgetAccount();
-  },
-  connectAccount: function () {
-    GitHub.requestToken(this.props.clientId);
-  },
   setState: function (state) {
     utils.update(this.state, state);
     this.accountWidget.setState({
@@ -232,6 +219,21 @@ exports.Control.prototype = {
     this.loadAccount(function () {
         this.loadSourceInfo();
       }.bind(this));
+  },
+  connectAccount: function () {
+    GitHub.requestToken(this.props.clientId);
+  },
+  forgetAccount: function () {
+    // TODO: Improve token handling.
+    console.log('forgetting');
+    this.setState({
+        token:        undefined,
+        account:      undefined,
+        accountError: 'no_token',
+        sourceInfo:   {},
+        sourceError:  undefined
+      });
+    this.props.onForgetAccount();
   },
   loadAccount: function (next) {
     GitHub.getAuthenticatedUser(function (account, err) {

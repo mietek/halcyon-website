@@ -354,31 +354,6 @@ exports.Control.prototype = {
         envVars:          undefined
       });
   },
-  forgetAccount: function () {
-    this.setState({
-        token:            undefined,
-        account:          undefined,
-        accountError:     undefined,
-        sizes:            undefined,
-        sizesError:       undefined,
-        selectedSize:     undefined,
-        images:           undefined,
-        imagesError:      undefined,
-        selectedImage:    undefined,
-        regions:          undefined,
-        regionsError:     undefined,
-        selectedRegion:   undefined,
-        keys:             undefined,
-        keysError:        undefined,
-        selectedKeys:     undefined,
-        action:           undefined,
-        actionError:      undefined
-      });
-    this.props.onForgetAccount();
-  },
-  connectAccount: function () {
-    DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
-  },
   setState: function (state) {
     utils.update(this.state, state);
     this.accountWidget.setState({
@@ -439,6 +414,30 @@ exports.Control.prototype = {
         this.loadRegions();
         this.loadKeys();
       }.bind(this));
+  },
+  connectAccount: function () {
+    DigitalOcean.requestToken(this.props.clientId, this.props.callbackUrl);
+  },
+  forgetAccount: function () {
+    // TODO: Improve token handling.
+    this.setState({
+        token:            undefined,
+        account:          undefined,
+        accountError:     'no_token',
+        sizes:            [],
+        sizesError:       undefined,
+        selectedSize:     undefined,
+        images:           [],
+        imagesError:      undefined,
+        selectedImage:    undefined,
+        regions:          [],
+        regionsError:     undefined,
+        selectedRegion:   undefined,
+        keys:             [],
+        keysError:        undefined,
+        selectedKeys:     undefined
+      });
+    this.props.onForgetAccount();
   },
   loadAccount: function (next) {
     DigitalOcean.getAccount(function (account, err) {
