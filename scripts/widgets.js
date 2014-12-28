@@ -363,8 +363,8 @@ exports.RadioButton = React.createClass({
       React.createElement('a', {
           id:        this.props.id,
           className: className,
-          href:      this.props.enabled ? '' : undefined,
-          onClick:   this.props.enabled ? this.click : undefined
+          href:      this.props.enabled && '',
+          onClick:   this.props.enabled && this.click
         }, this.props.title));
   }
 });
