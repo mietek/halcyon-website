@@ -2,7 +2,7 @@
 title: Deploy to DigitalOcean — Monitor
 page-data:
 - key: max-section-link-level
-  value: 4
+  value: 2
 page-footer: |
   <script>monitor.start();</script>
 ---
