@@ -547,10 +547,10 @@ exports.DropletLegend = React.createClass({
     };
   },
   render: function () {
+    var port   = ((this.state.port && this.state.port !== 80) ? (':' + this.state.port) : '');
     var size   = this.state.size;
     var image  = this.state.image;
     var region = this.state.region;
-    var port   = ((this.state.port && this.state.port !== 80) ? (':' + this.state.port) : '');
     return (
       React.createElement(exports.LegendArea, null,
         !this.state.hostname ? null :
@@ -560,7 +560,7 @@ exports.DropletLegend = React.createClass({
               React.createElement('a', {
                   href: 'http://' + this.state.ipAddress + port + '/'
                 },
-                this.state.hostname + port))),
+                this.state.hostname))),
         React.createElement('ul', null,
           !size || !size['price_monthly'] ? null :
             React.createElement('li', null,
