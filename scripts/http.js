@@ -61,14 +61,13 @@ exports.makeRequest = function (method, url, data, next, opts) {
   if (!url) {
     return next(null, 'no_url');
   }
+  opts = opts || {};
   var req = new XMLHttpRequest();
   req.open(method, url, true);
-  if (opts && opts.headers) {
-    Object.keys(opts.headers).forEach(function (key) {
-        req.setRequestHeader(key, opts.headers[key]);
-      });
-  }
-  req.onreadystatechange = function () {
+  Object.keys(opts.headers || {}).forEach(function (key) {
+      req.setRequestHeader(key, opts.headers[key]);
+    });
+  req.onreadystatechange = opts.onChangeState || function () {
     if (req.readyState === 4) {
       if (req.status >= 200 && req.status < 400) {
         return next(req.responseText);
