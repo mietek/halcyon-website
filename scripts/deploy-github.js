@@ -28,18 +28,20 @@ var SourceWidget = React.createClass({
   },
   render: function () {
     var extraMsg;
-    var err = this.state.sourceError;
+    var info = this.state.sourceUrl;
+    var err  = this.state.sourceError;
     if (err) {
       if (typeof err === 'object' && err[0] === 'client_error') {
         if (err[1] === 403 && this.state.noAccount) {
           extraMsg = React.createElement('p', {
               className: 'meta'
             },
+            'Please ',
             React.createElement('a', {
                 href:    '',
                 onClick: this.connect
               },
-              'Connect'),
+              'connect'),
             ' your GitHub account to avoid running into GitHub API rate limits.');
         } else if (err[1] === 404) {
           extraMsg = React.createElement('p', {
@@ -53,6 +55,8 @@ var SourceWidget = React.createClass({
             ' file located at the root of the repository.');
         }
       } else if (err === 'no_url') {
+        info = {};
+        err  = null;
         if (this.state.sourceUrl && this.state.sourceUrl.length) {
           extraMsg = React.createElement('p', {
               className: 'meta'
@@ -83,9 +87,9 @@ var SourceWidget = React.createClass({
               onChange:     this.props.onChange
             })),
         React.createElement(widgets.DynamicDisplay, {
-            value:       this.state.sourceInfo,
+            value:       info,
             loadingMsg:  'Loading source information…',
-            error:       this.state.sourceError,
+            error:       err,
             errorMsg:    'Failed to load source information.',
             noReloadMsg: true
           }),
