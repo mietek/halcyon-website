@@ -27,6 +27,18 @@ var MonitorLegend = React.createClass({
 });
 
 
+var fixResponseText = function (responseText) {
+  var esc    = String.fromCharCode(0x1b) + '\\[';
+  var startB = new RegExp(esc + '1m', 'g');
+  var endB   = new RegExp(esc + '0m', 'g');
+  var openA  = new RegExp('open (https?://.*)\n');
+  return responseText
+    .replace(startB, '<b>')
+    .replace(endB, '</b>')
+    .replace(openA, 'open <a class="open-link" href="$1">$1</a>\n');
+};
+
+
 var MonitorControl = function (props) {
   this.props = this.getDefaultProps();
   utils.update(this.props, props);
@@ -74,19 +86,9 @@ MonitorControl.prototype = {
     }
   },
   changeRequestState: function (req) {
-    console.log('status', req.status);
-    var esc    = String.fromCharCode(0x1b) + '\\[';
-    var startB = new RegExp(esc + '1m', 'g');
-    var endB   = new RegExp(esc + '0m', 'g');
-    var link   = new RegExp('open (https?://.*)\n');
-    var validResponse = req.responseText;
-    validResponse = validResponse && validResponse
-      .replace(startB, '<b>')
-      .replace(endB, '</b>')
-      .replace(link, 'open <a href="$1">$1</a>\n');
     this.setState({
-        status:   req.status,
-        response: validResponse
+        status:   req && req.status,
+        response: req && req.responseText && fixResponseText(req.responseText)
       });
   }
 };
