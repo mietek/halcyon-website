@@ -63,7 +63,11 @@ install_halcyon () {
 
 	echo '-----> Preparing to install' >&2
 
-	( cd '/tmp' && curl --retry 10 -sLO 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' ) || return 1
+	while true; do
+		if ( cd '/tmp' && curl -sLO 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' ); then
+			break
+		fi
+	done
 	dpkg -i '/tmp/ucspi-tcp_0.88-3_amd64.deb' >'/dev/null' || return 1
 
 	tcpserver -D -H -R -u "${uid}" -g "${gid}" -l 0 0 "${SETUP_MONITOR_PORT:-4040}" '/app/setup-monitor.sh' &
