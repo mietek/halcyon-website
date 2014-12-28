@@ -262,39 +262,30 @@ var KeysWidget = React.createClass({
 
 var DropletLegend = React.createClass({
   displayName: 'DropletLegend',
-  getDefaultProps: function () {
-    return {
-      onConnect:    undefined
-    };
-  },
   getInitialState: function () {
     return {
-      account:        undefined,
-      accountError:   undefined,
-      hostname:       undefined,
       selectedSize:   undefined,
-      sizesError:     undefined,
       selectedImage:  undefined,
-      imagesError:    undefined,
       selectedRegion: undefined,
-      regionsError:   undefined,
-      selectedKeys:   undefined,
-      keysError:      undefined,
-      sourceUrl:      undefined,
-      envVars:        undefined
+      selectedKeys:   undefined
     };
   },
-  connect: function (event) {
-    event.preventDefault();
-    this.props.onConnect();
-  },
   render: function () {
-    // TODO: Write this.
+    var size = this.state.selectedSize;
+    if (!size) {
+      return (
+        React.createElement('div'));
+    }
     return (
-      React.createElement(widgets.LegendArea, {
-          pre: true
-        },
-        JSON.stringify(this.state, null, 2)));
+      React.createElement(widgets.LegendArea, null,
+        React.createElement('p', null,
+          React.createElement('a', {
+              href: 'https://digitalocean.com/pricing/'
+            },
+            React.createElement('strong', null, '$' + size['price_monthly'] + '/month'),
+            ' — $' + size['price_hourly'] + '/hour')),
+        React.createElement('p', null,
+          (size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB')) + ' RAM, ' + size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') + size.disk + ' GB SSD disk, ' + size.transfer + ' TB transfer')));
   }
 });
 
@@ -366,7 +357,7 @@ exports.Control.prototype = {
       document.getElementById('digitalocean-account-widget'));
     this.hostnameWidget = React.render(
       React.createElement(widgets.InputWidget, {
-          placeholder:  this.props.defaultHostname,
+          placeholder:  'hello-world-2015',
           onChange:     this.changeHostname.bind(this)
         }),
       document.getElementById('hostname-widget'));
@@ -391,10 +382,7 @@ exports.Control.prototype = {
         }),
       document.getElementById('keys-widget'));
     this.dropletLegend = React.render(
-      React.createElement(DropletLegend, {
-          referralCode: this.props.referralCode,
-          onConnect:    this.connectAccount.bind(this)
-        }),
+      React.createElement(DropletLegend),
       document.getElementById('droplet-legend'));
     this.actionWidget = React.render(
       React.createElement(ActionWidget, {
@@ -489,30 +477,10 @@ exports.Control.prototype = {
         selectedKeys:   this.state.selectedKeys
       });
     this.dropletLegend.setState({
-        account:        this.state.account && this.state.account.email,
-        accountError:   this.state.accountError,
-        hostname:       this.state.hostname,
-        selectedSize:   this.state.selectedSize && {
-          slug:           this.state.selectedSize.slug
-        },
-        sizesError:     this.state.sizesError,
-        selectedImage:  this.state.selectedImage && {
-          slug:           this.state.selectedImage.slug
-        },
-        imagesError:    this.state.imagesError,
-        selectedRegion: this.state.selectedRegion && {
-          slug:           this.state.selectedRegion.slug
-        },
-        regionsError:   this.state.regionsError,
-        selectedKeys:   (this.state.selectedKeys || []).map(function (key) {
-            return {
-              id:   key.id,
-              name: key.name
-            };
-          }),
-        keysError:      this.state.keysError,
-        sourceUrl:      this.state.sourceUrl,
-        envVars:        this.state.envVars
+        selectedSize:   this.state.selectedSize,
+        selectedImage:  this.state.selectedImage,
+        selectedRegion: this.state.selectedRegion,
+        selectedKeys:   this.state.selectedKeys
       });
     this.actionWidget.setState({
         enabled:        !!this.state.account && this.state.hostname && this.state.selectedSize && this.state.selectedImage && this.state.selectedRegion && this.state.sourceUrl && !this.state.action
