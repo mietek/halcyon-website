@@ -28,7 +28,7 @@ var SourceWidget = React.createClass({
   },
   render: function () {
     var extraMsg;
-    var info = this.state.sourceUrl;
+    var info = this.state.sourceInfo;
     var err  = this.state.sourceError;
     if (err) {
       if (typeof err === 'object' && err[0] === 'client_error') {
@@ -47,24 +47,24 @@ var SourceWidget = React.createClass({
           extraMsg = React.createElement('p', {
               className: 'meta'
             },
-            'Source information can be loaded from an ',
+            'Source information can only be loaded from an ',
             React.createElement('a', {
                 href: 'https://devcenter.heroku.com/articles/app-json-schema'
               },
               React.createElement('code', null, 'app.json')),
-            ' file located at the root of the repository.  If the URL is valid, the application can still be deployed.');
+            ' file located at the root of the repository.  The application can still be deployed, as long as the URL is valid.');
         }
       } else if (err === 'no_url') {
-        info = {};
-        err  = null;
         if (this.state.sourceUrl && this.state.sourceUrl.length) {
           extraMsg = React.createElement('p', {
               className: 'meta'
             },
-            'Source information can be loaded from ',
+            'Source information can only be loaded from ',
             React.createElement('em', null, 'git'),
-            ' repositories hosted on GitHub.  If the URL is valid, the application can still be deployed.');
+            ' repositories hosted on GitHub.  The application can still be deployed, as long as the URL is valid.');
         } else {
+          info = {};
+          err  = null;
           extraMsg = React.createElement('p', {
               className: 'meta'
             },
