@@ -650,7 +650,7 @@ exports.Control.prototype = {
     this.selectKeys(selectedKeys);
   },
   changeHostname: function (hostname) {
-    var validHostname = hostname && hostname.replace(/[^a-z0-9\-]/g, '');
+    var validHostname = hostname && hostname.replace(/[^a-z0-9\-\.]/g, '');
     validHostname = (validHostname && validHostname.length) ? validHostname : undefined;
     this.setState({
         hostname: validHostname
