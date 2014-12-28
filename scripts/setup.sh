@@ -4,7 +4,6 @@ set -o pipefail
 
 export BASHMENOT_URL='{{bashmenotUrl}}'
 export HALCYON_URL='{{halcyonUrl}}'
-export SETUP_HALCYON_OPTS='{{halcyonOpts}}'
 export SETUP_APP_SOURCE_URL='{{appSourceUrl}}'
 export SETUP_APP_COMMAND='{{appCommand}}'
 export SETUP_APP_PORT='{{appPort}}'
@@ -142,7 +141,7 @@ install_app () {
 		HOME='/app' \
 		HALCYON_NO_SELF_UPDATE=1 \
 		HALCYON_NO_CLEAN_CACHE=1 \
-			/app/halcyon/halcyon install ${SETUP_HALCYON_OPTS:-} \"${clone_dir}\"
+			/app/halcyon/halcyon install \"${clone_dir}\"
 	" || return 1
 
 	( sleep "${SETUP_MONITOR_LIFE:-3600}" && kill "${SETUP_INTERNAL_MONITOR_PID}" ) &
