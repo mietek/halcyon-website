@@ -36,7 +36,7 @@ var SizeWidget = React.createClass({
               React.createElement(widgets.RadioButton, {
                   key:       size.slug,
                   className: 'size-button',
-                  enabled:   this.state.enabled,
+                  enabled:   this.state.enabled && size.supported,
                   selected:  this.state.selectedSize && size.slug === this.state.selectedSize.slug,
                   title:     size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB'),
                   onClick:   function () {
@@ -662,18 +662,21 @@ exports.Control.prototype = {
   },
   updateSelectedSize: function () {
     var sizes            = this.state.sizes || [];
+    var supportedSizes   = sizes.filter(function (size) {
+        return size.supported;
+      });
     var selectedSizeSlug = (this.state.selectedSize && this.state.selectedSize.slug) || this.props.storedSizeSlug;
     var selectedSize;
     if (selectedSizeSlug) {
-      for (var i = 0; i < sizes.length; i += 1) {
-        if (sizes[i].slug === selectedSizeSlug) {
-          selectedSize = sizes[i];
+      for (var i = 0; i < supportedSizes.length; i += 1) {
+        if (supportedSizes[i].slug === selectedSizeSlug) {
+          selectedSize = supportedSizes[i];
           break;
         }
       }
     }
-    if (!selectedSize && sizes.length) {
-      selectedSize = sizes[0];
+    if (!selectedSize && supportedSizes.length) {
+      selectedSize = supportedSizes[0];
     }
     this.selectSize(selectedSize);
   },

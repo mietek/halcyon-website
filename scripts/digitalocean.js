@@ -108,7 +108,10 @@ exports.getSizes = function (next, token) {
       sizes.sort(function (size1, size2) {
           return size1['price_monthly'] - size2['price_monthly'];
         });
-      return next(sizes);
+      return next(sizes.map(function (size) {
+          size.supported = size.memory > 512;
+          return size;
+        }));
     },
     token);
 };
