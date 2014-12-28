@@ -109,6 +109,7 @@ var ActionWidget = React.createClass({
     };
   },
   render: function () {
+    // TODO: Add error handling.
     return (
       React.createElement('div', null,
         React.createElement('div', {

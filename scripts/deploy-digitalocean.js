@@ -308,10 +308,13 @@ var ActionWidget = React.createClass({
   },
   getInitialState: function () {
     return {
-      enabled: false
+      enabled:     false,
+      action:      undefined,
+      actionError: undefined
     };
   },
   render: function () {
+    // TODO: Add error handling.
     return (
       React.createElement('div', null,
         React.createElement('div', {
