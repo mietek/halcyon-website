@@ -100,9 +100,6 @@ var SourceWidget = React.createClass({
 
 var SourceLegend = React.createClass({
   displayName: 'SourceLegend',
-  getDefaultProps: function () {
-    return {};
-  },
   getInitialState: function () {
     return {
       sourceInfo: undefined
@@ -178,9 +175,7 @@ exports.Control.prototype = {
         }),
       document.getElementById('env-vars-widget'));
     this.sourceLegend = React.render(
-      React.createElement(SourceLegend, {
-          onConnect:    this.connectAccount.bind(this)
-        }),
+      React.createElement(SourceLegend),
       document.getElementById('source-legend'));
   },
   setInitialState: function () {
