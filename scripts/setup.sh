@@ -19,7 +19,7 @@ format_monitor () {
 		echo -e 'Access-Control-Allow-Origin: *\r'
 		echo -e 'Content-Type: text/plain; charset=utf-8\r'
 		echo -e 'Connection: close\r\n\r'
-		tail -n +0 -F '/var/log/setup.log' --pid="${SETUP_INTERNAL_STREAM_PID}"
+		tail -n +0 -F '/var/log/setup.log'
 		echo -e '\r\n\r'
 EOF
 }
@@ -48,24 +48,21 @@ EOF
 
 
 install_halcyon () {
-	adduser --home '/app' --no-create-home --shell '/usr/sbin/nologin' --disabled-password --gecos '' app || return 1
+	mkdir '/app' || return 1
+	adduser --home '/app' --no-create-home --shell '/usr/sbin/nologin' --disabled-password --gecos '' app >'/dev/null' || return 1
 	local uid gid
 	uid=$( id -u app ) || return 1
 	gid=$( id -g app ) || return 1
 
 	echo '-----> Welcome to Haskell on DigitalOcean' >&2
 
-	( while true; do sleep 1; done ) &
-	export SETUP_INTERNAL_STREAM_PID="$!"
-
-	mkdir '/app' || return 1
 	format_profile >'/app/.profile' || return 1
 	format_monitor >'/app/setup-monitor.sh' || return 1
 	chmod +x '/app/setup-monitor.sh' || return 1
 	chown app:app -R '/app' '/var/log/setup.log' || return 1
 
-	( cd '/tmp' && curl -LO 'http://mirrors.digitalocean.com/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' ) || return 1
-	dpkg -i '/tmp/ucspi-tcp_0.88-3_amd64.deb' || return 1
+	( cd '/tmp' && curl -sLO 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' ) || return 1
+	dpkg -i '/tmp/ucspi-tcp_0.88-3_amd64.deb' >'/dev/null' || return 1
 
 	tcpserver -D -H -R -u "${uid}" -g "${gid}" -l 0 0 "${SETUP_MONITOR_PORT:-4040}" '/app/setup-monitor.sh' &
 	export SETUP_INTERNAL_MONITOR_PID="$!"
@@ -79,8 +76,8 @@ install_halcyon () {
 
 	echo '-----> Installing OS packages' >&2
 
-	apt-get update || return 1
-	apt-get install -y "${packages[@]}" || return 1
+	apt-get update -qq -o acquire::http::timeout=10 || true
+	apt-get install -qq -y "${packages[@]}" >'/dev/null' 2>&1 || return 1
 
 	local url base_url branch
 	url="${HALCYON_URL:-https://github.com/mietek/halcyon}"
@@ -115,7 +112,8 @@ install_halcyon () {
 
 if ! install_halcyon >'/var/log/setup.log' 2>&1; then
 	echo '   *** ERROR: Failed to install Halcyon' >>'/var/log/setup.log'
-	exit 1
+	echo -e '\n\n.' >>'/var/log/setup.log'
+	exit 0
 fi
 
 
@@ -143,7 +141,6 @@ install_app () {
 			/app/halcyon/halcyon install \"${clone_dir}\"
 	" || return 1
 
-	kill "${SETUP_INTERNAL_STREAM_PID}" || true
 	( sleep "${SETUP_MONITOR_LIFE:-3600}" && kill "${SETUP_INTERNAL_MONITOR_PID}" ) &
 
 	local app_command
@@ -171,20 +168,18 @@ install_app () {
 	start app || return 1
 
 	local ip_address
-	ip_address=$( curl http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address ) || return 1
+	ip_address=$( curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address ) || return 1
 
 	log
 	log
 	log 'Install succeeded'
 	log
 	log 'To see the app:'
-	log_indent "$ curl http://${ip_address}:${SETUP_APP_PORT:8080}"
-	log
-	log
+	log_indent "$ open http://${ip_address}:${SETUP_APP_PORT:-8080}"
 }
 
 
 if ! install_app 2>>'/var/log/setup.log'; then
 	log_error 'Failed to install app' 2>>'/var/log/setup.log'
-	exit 1
 fi
+echo -e '\n\n.' >>'/var/log/setup.log'
