@@ -25,13 +25,6 @@ EOF
 }
 
 
-format_profile () {
-	cat <<-EOF
-		source <( halcyon/halcyon paths )
-EOF
-}
-
-
 format_upstart_config () {
 	cat <<-EOF
 		start on runlevel [2345]
@@ -39,6 +32,7 @@ format_upstart_config () {
 		setuid app
 		setgid app
 		chdir /app
+		env USER=app
 		env HOME=/app
 		env PORT="${SETUP_APP_PORT:-8080}"
 {{envVarLines}}
@@ -56,7 +50,6 @@ install_halcyon () {
 
 	echo '-----> Welcome to Haskell on DigitalOcean' >&2
 
-	format_profile >'/app/.profile' || return 1
 	format_monitor >'/app/setup-monitor.sh' || return 1
 	chmod +x '/app/setup-monitor.sh' || return 1
 	chown app:app -R '/app' '/var/log/setup.log' || return 1
@@ -100,13 +93,10 @@ install_halcyon () {
 		return 1
 	fi
 	echo " done, ${commit_hash:0:7}" >&2
+
+	HALCYON_NO_SELF_UPDATE=1
+		source '/app/halcyon/src.sh' || return 1
 	chown app:app -R '/app' || return 1
-
-	source <( HALCYON_NO_SELF_UPDATE=1 \
-		'/app/halcyon/halcyon' paths ) || return 1
-	BASHMENOT_NO_SELF_UPDATE=1 \
-		source '/app/halcyon/lib/bashmenot/src.sh' || return 1
-
 }
 
 
@@ -136,6 +126,7 @@ install_app () {
 	log_end "done, ${commit_hash:0:7}"
 
 	sudo -u app bash -c "
+		USER='app' \
 		HOME='/app' \
 		HALCYON_NO_SELF_UPDATE=1 \
 			/app/halcyon/halcyon install \"${clone_dir}\"
@@ -149,6 +140,7 @@ install_app () {
 		local executable
 		if executable=$(
 			sudo -u app bash -c "
+				USER='app' \
 				HOME='/app' \
 				HALCYON_NO_SELF_UPDATE=1 \
 					/app/halcyon/halcyon executable \"${clone_dir}\" 2>'/dev/null'
