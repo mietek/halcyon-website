@@ -297,7 +297,7 @@ exports.LegendArea = React.createClass({
   },
   render: function () {
     var tag = this.props.pre ? 'pre' : 'div';
-    var className = this.props.pre ? '' : 'pre-like meta'; // TODO: Clean up CSS.
+    var className = this.props.pre ? '' : 'pre-like';
     return (
       React.createElement(tag, {
           id:        this.props.id,
