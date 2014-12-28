@@ -299,7 +299,7 @@ exports.LegendArea = React.createClass({
   render: function () {
     var tag       = this.props.pre ? 'pre' : 'div';
     var innerTag  = this.props.pre ? 'code' : 'span';
-    var className = this.props.pre ? '' : 'pre-like';
+    var className = this.props.className || (this.props.pre ? '' : 'pre-like');
     return (
       React.createElement(tag, {
           id:        this.props.id,

@@ -31,11 +31,11 @@ var fixResponseText = function (responseText) {
   var esc    = String.fromCharCode(0x1b) + '\\[';
   var startB = new RegExp(esc + '1m', 'g');
   var endB   = new RegExp(esc + '0m', 'g');
-  var openA  = new RegExp('open (https?://.*)\n');
+  var link   = new RegExp('(https?://[^ \n]*?)(\n|\\.\\.\\.)', 'g');
   return responseText
     .replace(startB, '<b>')
     .replace(endB, '</b>')
-    .replace(openA, 'open <a class="open-link" href="$1">$1</a>\n');
+    .replace(link, '<a href="$1">$1</a>$2');
 };
 
 
