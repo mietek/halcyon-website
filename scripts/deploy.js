@@ -86,14 +86,19 @@ Control.prototype = {
     utils.store('deploy-source-url', sourceUrl);
   },
   changeEnvVarItems: function (envVarItems) {
-    var envVars = {};
+    var envVars = envVarItems && {};
     (envVarItems || []).forEach(function (item) {
-        if (item.name && item.name.length && item.value && item.value.length) {
+        if (item.name && item.name.length && item.value && item.value.length && !item.original) {
           envVars[item.name] = item.value;
         }
       });
+    envVars = (envVars && Object.keys(envVars).length) ? envVars : undefined;
     this.digitalOceanControl.changeEnvVars(envVars);
-    utils.storeJson('deploy-env-var-items', envVarItems);
+    var customItems = envVarItems && envVarItems.filter(function (item) {
+        return !item.original;
+      });
+    customItems = (customItems && customItems.length) ? customItems : undefined;
+    utils.storeJson('deploy-env-var-items', customItems);
   }
 };
 
