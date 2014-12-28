@@ -13,12 +13,9 @@ var MonitorLegend = React.createClass({
     return {};
   },
   getInitialState: function () {
-    return {
-      ipAddress: undefined
-    };
+    return {};
   },
   render: function () {
-    // TODO: Write this.
     return (
       React.createElement(widgets.LegendArea, {
           pre: true
@@ -28,11 +25,52 @@ var MonitorLegend = React.createClass({
 });
 
 
+var MonitorControl = function (props) {
+  this.props = this.getDefaultProps();
+  utils.update(this.props, props);
+  this.makeWidgets();
+  this.state = {};
+  this.setInitialState();
+};
+MonitorControl.prototype = {
+  getDefaultProps: function () {
+    return {
+      finished:  false,
+      ipAddress: undefined
+    };
+  },
+  makeWidgets: function () {
+    this.monitorLegend = React.render(
+      React.createElement(MonitorLegend),
+      document.getElementById('monitor-legend'));
+  },
+  setInitialState: function () {
+    this.setState({
+      });
+  },
+  setState: function (state) {
+    utils.update(this.state, state);
+    this.monitorLegend.setState({
+        finished:  this.state.finished,
+        ipAddress: this.state.ipAddress
+      });
+  },
+  start: function () {
+    // TODO: Write this.
+  },
+  changeIpAddress: function (ipAddress) {
+    this.setState({
+        finished:  false,
+        ipAddress: ipAddress
+      });
+  }
+};
+
+
 var Control = function (props) {
   this.props = this.getDefaultProps();
   utils.update(this.props, props);
   this.makeControls();
-  this.makeWidgets();
 };
 Control.prototype = {
   getDefaultProps: function () {
@@ -47,19 +85,14 @@ Control.prototype = {
         storedDropletId: this.props.storedDropletId && parseInt(this.props.storedDropletId),
         onSelectDroplet: this.selectDroplet.bind(this)
       });
-  },
-  makeWidgets: function () {
-    this.monitorLegend = React.render(
-      React.createElement(MonitorLegend),
-      document.getElementById('monitor-legend'));
+    this.monitorControl = new MonitorControl();
   },
   start: function () {
     this.digitalOceanControl.start();
+    this.monitorControl.start();
   },
   selectDroplet: function (droplet) {
-    this.monitorLegend.setState({
-        ipAddress: droplet && droplet.ipAddress
-      });
+    this.monitorControl.changeIpAddress(droplet && droplet.ipAddress);
     utils.storeJson('monitor-droplet-id', droplet && droplet.id);
   }
 };
