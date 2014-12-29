@@ -123,7 +123,6 @@ exports.Control.prototype = {
       });
     this.dropletLegend.setState({
         hostname:        this.state.selectedDroplet && this.state.selectedDroplet.name,
-        ipAddress:       this.state.selectedDroplet && this.state.selectedDroplet.ipAddress,
         port:            8080, // TODO: Support custom ports.
         size:            this.state.selectedDroplet && {
           memory:          this.state.selectedDroplet.memory,
@@ -131,7 +130,9 @@ exports.Control.prototype = {
           disk:            this.state.selectedDroplet.disk
         },
         image:           this.state.selectedDroplet && this.state.selectedDroplet.image,
-        region:          this.state.selectedDroplet && this.state.selectedDroplet.region
+        region:          this.state.selectedDroplet && this.state.selectedDroplet.region,
+        ipAddress:       this.state.selectedDroplet && this.state.selectedDroplet.ipAddress,
+        createdAt:       this.state.selectedDroplet && this.state.selectedDroplet['created_at']
       });
     this.actionWidget.setState({
         enabled:         !!this.state.account && this.state.selectedDroplet && !this.state.selectedDroplet.locked && !this.state.action,

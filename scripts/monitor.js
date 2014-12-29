@@ -5,6 +5,7 @@ var React = require('react');
 var easeScroll = require('ease-scroll');
 var http = require('http');
 var utils = require('utils');
+var widgets = require('widgets');
 
 
 var MonitorLegend = React.createClass({
@@ -14,19 +15,39 @@ var MonitorLegend = React.createClass({
   },
   getInitialState: function () {
     return {
-      log: undefined
+      droplet: undefined,
+      log:     undefined
     };
   },
   render: function () {
+    var createdAt, monitorLife, monitorUntil;
+    if (this.state.droplet) {
+      createdAt    = Date.parse(this.state.droplet['created_at']);
+      monitorLife  = 3600 * 1000; // TODO: Support custom values;
+      monitorUntil = createdAt + monitorLife;
+    }
     return (
-      React.createElement('pre', {
-          id: 'monitor-log'
-        },
-        React.createElement('code', {
-            dangerouslySetInnerHTML: {
-              __html: this.state.log
-            }
-          })));
+      React.createElement('div', null,
+        (!this.state.droplet || !this.state.log) ? null :
+          React.createElement('pre', {
+              id: 'monitor-log'
+            },
+            React.createElement('code', {
+                dangerouslySetInnerHTML: {
+                  __html: this.state.log
+                }
+              })),
+        React.createElement('div', {
+            className: 'inner'
+          },
+          React.createElement(widgets.LoadingDisplay, {
+              loadingMsg:
+                !this.state.droplet ? 'Not available.' :
+                !this.state.droplet.ipAddress ? 'Waiting for IP address…' :
+                (!this.state.log && Date.now() < monitorUntil) ? 'Waiting for response…' :
+                Date.now() < monitorUntil ? 'Live log expires at ' + new Date(monitorUntil).toLocaleString() :
+                'Live log expired at ' + new Date(monitorUntil).toLocaleString()
+            }))));
   },
   componentDidUpdate: function () {
     var node = this.getDOMNode();
@@ -77,7 +98,8 @@ MonitorControl.prototype = {
   setState: function (state) {
     utils.update(this.state, state);
     this.monitorLegend.setState({
-        log: this.state.log
+        droplet: this.state.droplet,
+        log:     this.state.log
       });
   },
   start: function () {

@@ -576,29 +576,33 @@ exports.DropletLegend = React.createClass({
   getInitialState: function () {
     return {
       hostname:  undefined,
-      ipAddress: undefined,
       port:      undefined,
       size:      undefined,
       image:     undefined,
-      region:    undefined
+      region:    undefined,
+      ipAddress: undefined,
+      createdAt: undefined
     };
   },
   render: function () {
-    var ip     = this.state.ipAddress;
+    if (!this.state.hostname) {
+      return (
+        React.createElement('div'));
+    }
     var port   = (this.state.port && this.state.port !== 80) ? (':' + this.state.port) : '';
     var size   = this.state.size;
     var image  = this.state.image;
     var region = this.state.region;
+    var ip     = this.state.ipAddress;
     return (
       React.createElement(exports.LegendArea, null,
-        !this.state.hostname ? null :
-          React.createElement('p', null,
-            React.createElement('strong', null,
-            !ip ? this.state.hostname :
-              React.createElement('a', {
-                  href: 'http://' + ip + port + '/'
-                },
-                this.state.hostname))),
+        React.createElement('p', null,
+          React.createElement('strong', null,
+          !ip ? this.state.hostname :
+            React.createElement('a', {
+                href: 'http://' + ip + port + '/'
+              },
+              this.state.hostname))),
         React.createElement('ul', null,
           !size || !size['price_monthly'] ? null :
             React.createElement('li', null,
@@ -611,14 +615,14 @@ exports.DropletLegend = React.createClass({
               (size.memory < 1024 ?
                 size.memory + ' MB' :
                 size.memory / 1024 + ' GB') +
-              ' memory (' + size.vcpus + ' CPU' +
+              ' memory, ' + size.vcpus + ' CPU' +
               (size.vcpus > 1 ?
                 's, ' :
                 ', ') +
               size.disk + ' GB disk' +
               (size.transfer ?
-                ', ' + size.transfer + ' TB transfer)' :
-                ')')),
+                ', ' + size.transfer + ' TB transfer' :
+                '')),
           !image ? null :
             React.createElement('li', null,
               image.distribution + ' ' + image.name),
@@ -627,7 +631,12 @@ exports.DropletLegend = React.createClass({
               region.name),
           !ip ? null :
             React.createElement('li', null,
-              ip))));
+              ip)),
+        !this.state.createdAt ? null :
+          React.createElement('p', {
+                className: 'meta'
+              },
+            'Droplet created at ' + new Date(this.state.createdAt).toLocaleString())));
   }
 });
 
