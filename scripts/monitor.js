@@ -50,7 +50,11 @@ var MonitorLegend = React.createClass({
             }))));
   },
   componentDidUpdate: function () {
-    var node = this.getDOMNode();
+    var node = this.getDOMNode().firstChild;
+    if (node.tagName !== 'PRE') {
+      console.log(node);
+      return;
+    }
     var startOffset = node.scrollTop;
     var maxOffset = node.scrollHeight - node.clientHeight;
     easeScroll.tween(startOffset, maxOffset, maxOffset, 500, function (y) {
