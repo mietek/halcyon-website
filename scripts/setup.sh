@@ -61,9 +61,10 @@ install_halcyon () {
 	echo '-----> Preparing installation' >&2
 
 	while true; do
-		if ( cd '/tmp' && curl -sLOS 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' 2>&1 | sed -u 's/^/       /' >&2 ); then
+		if ( cd '/tmp' && curl -sLOS 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' >'/var/log/setup-curl.log' 2>&1 ); then
 			break
 		fi
+		sed -u 's/^/       /' <'/var/log/setup-curl.log' >&2
 		echo '-----> Retrying...' >&2
 	done
 	dpkg -i '/tmp/ucspi-tcp_0.88-3_amd64.deb' >'/dev/null' || return 1
@@ -81,15 +82,17 @@ install_halcyon () {
 	echo '-----> Installing OS packages' >&2
 
 	while true; do
-		if apt-get update 2>&1 | sed -u 's/^/       /' >&2 ; then
+		if apt-get update -o acquire::http::timeout=10 >'/var/log/setup-apt-get-update.log' 2>&1; then
 			break
 		fi
+		sed -u 's/^/       /' <'/var/log/setup-apt-get-update.log' >&2
 		echo '-----> Retrying...' >&2
 	done
 	while true; do
-		if apt-get install -qqy "${packages[@]}" 2>&1 | sed -u 's/^/       /' >&2 ; then
+		if apt-get install -y "${packages[@]}" >'/var/log/setup-apt-get-install.log' 2>&1; then
 			break
 		fi
+		sed -u 's/^/       /' <'/var/log/setup-apt-get-install.log' >&2
 		echo '-----> Retrying...' >&2
 	done
 
