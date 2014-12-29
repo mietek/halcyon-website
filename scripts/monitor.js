@@ -20,7 +20,7 @@ var MonitorLegend = React.createClass({
   render: function () {
     return (
       React.createElement('pre', {
-          id: 'monitor-legend'
+          id: 'monitor-log'
         },
         React.createElement('code', {
             dangerouslySetInnerHTML: {
