@@ -288,6 +288,43 @@ exports.MapWidget = React.createClass({
 });
 
 
+exports.ToggleArea = React.createClass({
+  displayName: 'ToggleArea',
+  getDefaultProps: function () {
+    return {
+    };
+  },
+  getInitialState: function () {
+    return {
+      open: false
+    };
+  },
+  click: function (event) {
+    event.preventDefault();
+    this.setState({
+        open: !this.state.open
+      });
+  },
+  render: function () {
+    return (
+      React.createElement('div', {
+          className: 'toggle',
+        },
+        React.createElement('a', {
+            className: 'toggle-button' + (this.state.open ? ' open' : ''),
+            href:      '',
+            onClick:   this.click
+          },
+          'Toggle'),
+        React.createElement('pre', {
+            id:        this.props.id,
+            className: 'toggle' + (this.state.open ? ' open' : ''),
+          },
+          React.createElement('code', null, this.props.children))));
+  }
+});
+
+
 exports.LegendArea = React.createClass({
   displayName: 'LegendArea',
   getDefaultProps: function () {
