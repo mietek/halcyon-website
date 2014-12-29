@@ -14,7 +14,7 @@ var MonitorLegend = React.createClass({
   },
   getInitialState: function () {
     return {
-      response: undefined
+      log: undefined
     };
   },
   render: function () {
@@ -24,7 +24,7 @@ var MonitorLegend = React.createClass({
         },
         React.createElement('code', {
             dangerouslySetInnerHTML: {
-              __html: this.state.response
+              __html: this.state.log
             }
           })));
   },
@@ -39,12 +39,12 @@ var MonitorLegend = React.createClass({
 });
 
 
-var fixResponseText = function (responseText) {
+var reformatLog = function (log) {
   var esc    = String.fromCharCode(0x1b) + '\\[';
   var startB = new RegExp(esc + '1m', 'g');
   var endB   = new RegExp(esc + '0m', 'g');
   var link   = new RegExp('(https?://[^ \n]*?)(\n|\\.\\.\\.)', 'g');
-  return responseText
+  return log
     .replace(startB, '<b>')
     .replace(endB, '</b>')
     .replace(link, '<a href="$1">$1</a>$2');
@@ -69,38 +69,60 @@ MonitorControl.prototype = {
   },
   setInitialState: function () {
     this.setState({
-        droplet:   undefined,
-        status:    undefined,
-        response:  undefined
+        droplet: undefined,
+        request: undefined,
+        log:     undefined
       });
   },
   setState: function (state) {
     utils.update(this.state, state);
     this.monitorLegend.setState({
-        response:  this.state.response
+        log: this.state.log
       });
+  },
+  start: function () {
+    var loop = function () {
+        if (this.state.request && (!this.state.log || !this.state.log.length)) {
+          this.state.request.abort();
+          this.setState({
+              request: undefined
+            });
+          this.loadLog();
+        }
+        setTimeout(loop, 10 * 1000);
+      }.bind(this);
+    loop();
   },
   selectDroplet: function (droplet) {
     if (droplet && this.state.droplet && droplet.id === this.state.droplet.id && droplet.ipAddress === this.state.droplet.ipAddress) {
       return;
     }
+    if (this.state.request) {
+      this.state.request.abort();
+    }
     this.setState({
-        droplet:   droplet,
-        status:    undefined,
-        response:  undefined
+        droplet: droplet,
+        request: undefined,
+        log:     undefined
       });
-    if (droplet && droplet.ipAddress) {
-      var req = http.makeRequest('GET', 'http://' + this.state.droplet.ipAddress + ':4040/', null, null, {
-        onChangeState: function () {
-            this.changeRequestState(req);
+    this.loadLog();
+  },
+  loadLog: function () {
+    if (this.state.droplet && this.state.droplet.ipAddress) {
+      var url = 'http://' + this.state.droplet.ipAddress + ':4040/';
+      var request = http.makeRequest('GET', url, null, null, {
+          onChangeState: function () {
+            this.changeRequestState(request);
           }.bind(this)
-      });
+        });
+      this.setState({
+          request: request
+        });
     }
   },
-  changeRequestState: function (req) {
+  changeRequestState: function (request) {
     this.setState({
-        status:   req && req.status,
-        response: req && req.responseText && fixResponseText(req.responseText)
+        log: request && request.responseText && reformatLog(request.responseText)
       });
   }
 };
@@ -128,6 +150,7 @@ Control.prototype = {
   },
   start: function () {
     this.digitalOceanControl.start();
+    this.monitorControl.start();
   },
   selectDroplet: function (droplet) {
     this.monitorControl.selectDroplet(droplet);
