@@ -547,7 +547,8 @@ exports.DropletLegend = React.createClass({
     };
   },
   render: function () {
-    var port   = ((this.state.port && this.state.port !== 80) ? (':' + this.state.port) : '');
+    var ip     = this.state.ipAddress;
+    var port   = (this.state.port && this.state.port !== 80) ? (':' + this.state.port) : '';
     var size   = this.state.size;
     var image  = this.state.image;
     var region = this.state.region;
@@ -556,24 +557,40 @@ exports.DropletLegend = React.createClass({
         !this.state.hostname ? null :
           React.createElement('p', null,
             React.createElement('strong', null,
-            !this.state.ipAddress ? this.state.hostname :
+            !ip ? this.state.hostname :
               React.createElement('a', {
-                  href: 'http://' + this.state.ipAddress + port + '/'
+                  href: 'http://' + ip + port + '/'
                 },
                 this.state.hostname))),
         React.createElement('ul', null,
           !size || !size['price_monthly'] ? null :
             React.createElement('li', null,
-              '$' + size['price_monthly'] + '/month' + (size['price_hourly'] ? (' ($' + size['price_hourly'] + '/hour)') : '')),
+              '$' + size['price_monthly'] + '/month' +
+                (size['price_hourly'] ?
+                  ' ($' + size['price_hourly'] + '/hour)' :
+                  '')),
           !size ? null :
             React.createElement('li', null,
-              (size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB')) + ' memory (' + size.vcpus + ' CPU' + (size.vcpus > 1 ? 's, ' : ', ') + size.disk + ' GB disk' + (size.transfer ? (', ' + size.transfer + ' TB transfer)') : ')')),
+              (size.memory < 1024 ?
+                size.memory + ' MB' :
+                size.memory / 1024 + ' GB') +
+              ' memory (' + size.vcpus + ' CPU' +
+              (size.vcpus > 1 ?
+                's, ' :
+                ', ') +
+              size.disk + ' GB disk' +
+              (size.transfer ?
+                ', ' + size.transfer + ' TB transfer)' :
+                ')')),
           !image ? null :
             React.createElement('li', null,
               image.distribution + ' ' + image.name),
           !region ? null :
             React.createElement('li', null,
-              region.name))));
+              region.name),
+          !ip ? null :
+            React.createElement('li', null,
+              ip))));
   }
 });
 
