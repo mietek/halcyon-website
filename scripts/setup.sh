@@ -43,7 +43,6 @@ EOF
 
 install_halcyon () {
 	echo '-----> Welcome to Haskell on DigitalOcean' >&2
-	echo >&2
 
 	mkdir -p '/app' || return 1
 
@@ -60,7 +59,7 @@ install_halcyon () {
 	chmod +x '/app/setup-monitor.sh' || return 1
 	chown app:app -R '/app' '/var/log/setup.log' || return 1
 
-	echo '-----> Preparing to install' >&2
+	echo '-----> Preparing installation' >&2
 
 	while true; do
 		if ( cd '/tmp' && curl -sLO 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' ); then
@@ -92,6 +91,7 @@ install_halcyon () {
 		branch='master'
 	fi
 
+	echo >&2
 	echo -n '-----> Installing Halcyon...' >&2
 
 	local commit_hash
