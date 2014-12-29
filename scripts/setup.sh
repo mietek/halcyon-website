@@ -45,16 +45,15 @@ install_halcyon () {
 	echo '-----> Welcome to Haskell on DigitalOcean' >&2
 
 	mkdir -p '/app' || return 1
-
-	if ! id -u app 2>'/dev/null'; then
-		adduser --home '/app' --no-create-home --shell '/usr/sbin/nologin' --disabled-password --gecos '' app >'/dev/null' || return 1
-	fi
+	useradd -Md '/app' -lrs '/usr/sbin/nologin' app >'/dev/null' || return 1
+	passwd -l app >'/dev/null' || return 1
 
 	local uid gid
 	uid=$( id -u app ) || return 1
 	gid=$( id -g app ) || return 1
 
 	format_monitor >'/app/setup-monitor.sh' || return 1
+	touch '/var/log/setup.log' || return 1
 
 	chmod +x '/app/setup-monitor.sh' || return 1
 	chown app:app -R '/app' '/var/log/setup.log' || return 1
@@ -62,13 +61,14 @@ install_halcyon () {
 	echo '-----> Preparing installation' >&2
 
 	while true; do
-		if ( cd '/tmp' && curl -sLO 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' ); then
+		if ( cd '/tmp' && curl -sLOS 'http://mirrors.kernel.org/ubuntu/pool/universe/u/ucspi-tcp/ucspi-tcp_0.88-3_amd64.deb' 2>&1 | sed -u 's/^/       /' >&2 ); then
 			break
 		fi
+		echo '-----> Retrying...' >&2
 	done
 	dpkg -i '/tmp/ucspi-tcp_0.88-3_amd64.deb' >'/dev/null' || return 1
 
-	tcpserver -D -H -R -u "${uid}" -g "${gid}" -l 0 0 "${SETUP_MONITOR_PORT:-4040}" '/app/setup-monitor.sh' &
+	tcpserver -DHRu "${uid}" -g "${gid}" -l 0 0 "${SETUP_MONITOR_PORT:-4040}" '/app/setup-monitor.sh' &
 	export SETUP_INTERNAL_MONITOR_PID="$!"
 
 	local -a packages
@@ -80,8 +80,18 @@ install_halcyon () {
 
 	echo '-----> Installing OS packages' >&2
 
-	apt-get update -qq -o acquire::http::timeout=10 || true
-	apt-get install -qq -y "${packages[@]}" >'/dev/null' 2>&1 || return 1
+	while true; do
+		if apt-get update 2>&1 | sed -u 's/^/       /' >&2 ; then
+			break
+		fi
+		echo '-----> Retrying...' >&2
+	done
+	while true; do
+		if apt-get install -qqy "${packages[@]}" 2>&1 | sed -u 's/^/       /' >&2 ; then
+			break
+		fi
+		echo '-----> Retrying...' >&2
+	done
 
 	local url base_url branch
 	url="${HALCYON_URL:-https://github.com/mietek/halcyon}"
