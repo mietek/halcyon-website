@@ -2,9 +2,9 @@
 
 var DigitalOcean = require('monitor-digitalocean');
 var React = require('react');
+var easeScroll = require('ease-scroll');
 var http = require('http');
 var utils = require('utils');
-var widgets = require('widgets');
 
 
 var MonitorLegend = React.createClass({
@@ -19,10 +19,22 @@ var MonitorLegend = React.createClass({
   },
   render: function () {
     return (
-      React.createElement(widgets.LegendArea, {
-          pre:  true,
-          html: this.state.response
-        }));
+      React.createElement('pre', {
+          id: 'monitor-legend'
+        },
+        React.createElement('code', {
+            dangerouslySetInnerHTML: {
+              __html: this.state.response
+            }
+          })));
+  },
+  componentDidUpdate: function () {
+    var node = this.getDOMNode();
+    var startOffset = node.scrollTop;
+    var maxOffset = node.scrollHeight - node.clientHeight;
+    easeScroll.tween(startOffset, maxOffset, maxOffset, 500, function (y) {
+        node.scrollTop = y;
+      });
   }
 });
 
