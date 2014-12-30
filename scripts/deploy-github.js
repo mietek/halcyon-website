@@ -34,7 +34,7 @@ var SourceWidget = React.createClass({
       if (typeof err === 'object' && err[0] === 'client_error') {
         if (err[1] === 403 && this.state.noAccount) {
           extraMsg = React.createElement('p', {
-              className: 'meta'
+              className: 'em'
             },
             'Please ',
             React.createElement('a', {
@@ -45,7 +45,7 @@ var SourceWidget = React.createClass({
             ' your GitHub account to avoid running into GitHub API rate limits.');
         } else if (err[1] === 404) {
           extraMsg = React.createElement('p', {
-              className: 'meta'
+              className: 'em'
             },
             'Source information can only be loaded from an ',
             React.createElement('a', {
@@ -57,7 +57,7 @@ var SourceWidget = React.createClass({
       } else if (err === 'no_url') {
         if (this.state.sourceUrl && this.state.sourceUrl.length) {
           extraMsg = React.createElement('p', {
-              className: 'meta'
+              className: 'em'
             },
             'Source information can only be loaded from ',
             React.createElement('em', null, 'git'),
@@ -66,7 +66,7 @@ var SourceWidget = React.createClass({
           info = {};
           err  = null;
           extraMsg = React.createElement('p', {
-              className: 'meta'
+              className: 'em'
             },
             'Enter a ',
             React.createElement('em', null, 'git'),

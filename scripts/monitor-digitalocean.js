@@ -26,7 +26,7 @@ var DropletWidget = React.createClass({
     if (this.state.droplets) {
       if (!this.state.droplets.length) {
         contents = React.createElement(widgets.RadioButton, {
-            className: 'meta-button',
+            className: 'none-button',
             title:     'none'
           });
       } else {

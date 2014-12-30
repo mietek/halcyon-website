@@ -27,7 +27,7 @@ var SizeWidget = React.createClass({
     if (this.state.sizes) {
       if (!this.state.sizes.length) {
         contents = React.createElement(widgets.RadioButton, {
-          className: 'meta-button',
+          className: 'none-button',
           title:     'none'
         });
       } else {
@@ -83,7 +83,7 @@ var ImageWidget = React.createClass({
     if (this.state.images) {
       if (!this.state.images.length) {
         contents = React.createElement(widgets.RadioButton, {
-            className: 'meta-button',
+            className: 'none-button',
             title:     'none'
           });
       } else {
@@ -141,7 +141,7 @@ var RegionWidget = React.createClass({
     if (this.state.regions) {
       if (!this.state.regions.length) {
         contents = React.createElement(widgets.RadioButton, {
-            className: 'meta-button',
+            className: 'none-button',
             title:     'none'
           });
       } else {
@@ -216,7 +216,7 @@ var KeysWidget = React.createClass({
     if (this.state.keys) {
       if (!this.state.keys.length) {
         contents = React.createElement(widgets.RadioButton, {
-            className: 'meta-button',
+            className: 'none-button',
             title:     'none'
           });
       } else {

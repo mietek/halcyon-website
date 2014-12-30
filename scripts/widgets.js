@@ -524,7 +524,7 @@ exports.AccountWidget = React.createClass({
       account  = 'none';
       err      = null;
       extraMsg = React.createElement('div', {
-          className: 'meta'
+          className: 'em'
         },
         React.createElement('p', null,
           'Please ',
@@ -548,7 +548,7 @@ exports.AccountWidget = React.createClass({
             className: 'flex'
           },
           React.createElement(exports.StaticField, {
-              className: 'account-field' + (this.state.account ? '' : ' meta'),
+              className: 'account-field' + (this.state.account ? '' : ' em'),
               title:     this.state.account ? this.state.account : 'none'
             }),
           React.createElement(exports.BimodalPushButton, {
@@ -634,7 +634,7 @@ exports.DropletLegend = React.createClass({
               ip)),
         !this.state.createdAt ? null :
           React.createElement('p', {
-                className: 'meta'
+                className: 'em'
               },
             'Droplet created at ' + new Date(this.state.createdAt).toLocaleString())));
   }
