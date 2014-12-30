@@ -118,8 +118,7 @@ exports.getSizes = function (next, token) {
 
 
 exports.getDistributionImages = function (next, token) {
-  var potentiallySupportedSlugs = ['centos-7-0-x64', 'ubuntu-14-04-x64'];
-  var supportedSlugs            = ['ubuntu-14-04-x64']; // TODO: Support CentOS 7.
+  var supportedSlugs = ['centos-7-0-x64', 'ubuntu-14-04-x64'];
   return exports.getJsonResource('https://api.digitalocean.com/v2/images?type=distribution',
     function (resp, err) {
       if (err) {
@@ -135,10 +134,10 @@ exports.getDistributionImages = function (next, token) {
           return title1.localeCompare(title2);
         });
       return next(images.filter(function (image) {
-          return potentiallySupportedSlugs.indexOf(image.slug) !== -1;
+          return supportedSlugs.indexOf(image.slug) !== -1;
         })
         .map(function (image) {
-          image.supported = supportedSlugs.indexOf(image.slug) !== -1;
+          image.supported = true;
           return image;
         }));
     },
@@ -195,7 +194,7 @@ exports.createDroplet = function (hostname, sizeSlug, imageSlug, regionSlug, key
       'region':             regionSlug,
       'ssh_keys':           keyIds,
       'backups':            false, // TODO: Support extra options.
-      'ipv6':               false,
+      'ipv6':               true,
       'private_networking': false,
       'user_data':          userData
     },

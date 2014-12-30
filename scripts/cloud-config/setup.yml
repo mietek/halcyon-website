@@ -1,0 +1,30 @@
+#cloud-config
+users:
+  - name: app
+    homedir: "/app"
+    no-log-init: true
+    inactive: true
+    shell: "/usr/sbin/nologin"
+    system: true
+
+write_files:
+  - path: "/app/setup-monitor.sh"
+    permissions: "0755"
+    content: |
+{{setupMonitorSh}}
+
+{{partialSetupYml}}
+
+  - path: "/root/setup.sh"
+    permissions: "0755"
+    content: |
+{{setupSh}}
+
+  - path: "/var/log/setup.log"
+    content:
+
+  - path: "/var/run/setup.pid"
+    content:
+
+runcmd:
+  - "/root/setup.sh"

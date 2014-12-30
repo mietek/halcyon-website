@@ -1,0 +1,4 @@
+[Socket]
+ListenStream={{setupMonitorPort}}
+Accept=true
+NoDelay=true

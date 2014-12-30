@@ -166,7 +166,7 @@ exports.Control.prototype = {
   loadDroplets: function (next) {
     DigitalOcean.getDroplets(function (droplets, err) {
         var ourDroplets = droplets && droplets.filter(function (droplet) {
-            return droplet.features.indexOf('backups') === -1 && droplet.features.indexOf('ipv6') === -1 && droplet.features.indexOf('private_networking') === -1; // TODO: Filter our droplets properly.
+            return droplet.features.indexOf('backups') === -1 && droplet.features.indexOf('private_networking') === -1; // TODO: Filter our droplets properly.
           });
         this.setState({
             droplets:      ourDroplets,

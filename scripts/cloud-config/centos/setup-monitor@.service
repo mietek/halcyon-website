@@ -1,0 +1,9 @@
+[Unit]
+Description=Haskell on DigitalOcean setup monitor
+
+[Service]
+User=app
+StandardInput=null
+StandardOutput=socket
+Restart=on-failure
+ExecStart=/app/setup-monitor.sh

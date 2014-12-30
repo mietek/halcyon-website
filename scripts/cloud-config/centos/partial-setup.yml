@@ -1,0 +1,11 @@
+  - path: "/etc/systemd/system/app.service"
+    content: |
+{{appService}}
+
+  - path: "/etc/systemd/system/setup-monitor.socket"
+    content: |
+{{setupMonitorSocket}}
+
+  - path: "/etc/systemd/system/setup-monitor@.service"
+    content: |
+{{setupMonitorService}}

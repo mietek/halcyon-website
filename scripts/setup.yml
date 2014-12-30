@@ -1,8 +1,0 @@
-#cloud-config
-write_files:
-  - path: /root/setup.sh
-    permissions: 0755
-    content: |
-{{setupShLines}}
-runcmd:
-  - /root/setup.sh

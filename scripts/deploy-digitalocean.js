@@ -530,7 +530,7 @@ exports.Control.prototype = {
       this.state.selectedKeys.map(function (key) {
           return key.id;
         }),
-      cloudConfig.formatSetupYml(this.state.sourceUrl, this.state.envVars, null), // TODO: Provide command here.
+      cloudConfig.formatUserData(this.state.selectedImage.distribution.toLowerCase(), this.state.sourceUrl, this.state.envVars, null), // TODO: Provide command here.
       function (droplet, err) {
         if (droplet) {
           location.href = '/deploy/monitor/?id=' + droplet.id;

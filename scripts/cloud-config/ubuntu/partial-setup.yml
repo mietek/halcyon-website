@@ -1,0 +1,7 @@
+  - path: "/etc/init/app.conf"
+    content: |
+{{appConf}}
+
+  - path: "/etc/init/setup-monitor.conf"
+    content: |
+{{setupMonitorConf}}
