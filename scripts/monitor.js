@@ -7,6 +7,8 @@ var http = require('http');
 var utils = require('utils');
 var widgets = require('widgets');
 
+/* global innerHeight, scrollX, scrollY */
+
 
 var MonitorLegend = React.createClass({
   displayName: 'MonitorLegend',
@@ -51,15 +53,13 @@ var MonitorLegend = React.createClass({
   },
   componentDidUpdate: function () {
     var node = this.getDOMNode().firstChild;
-    if (node.tagName !== 'PRE') {
-      console.log(node);
-      return;
+    if (node.tagName === 'PRE') {
+      var startOffset = node.scrollTop;
+      var maxOffset = node.scrollHeight - node.clientHeight;
+      easeScroll.tween(startOffset, maxOffset, maxOffset, 500, function (y) {
+          node.scrollTop = y;
+        });
     }
-    var startOffset = node.scrollTop;
-    var maxOffset = node.scrollHeight - node.clientHeight;
-    easeScroll.tween(startOffset, maxOffset, maxOffset, 500, function (y) {
-        node.scrollTop = y;
-      });
   }
 });
 
@@ -115,7 +115,7 @@ MonitorControl.prototype = {
             });
           this.loadLog();
         }
-        setTimeout(loop, 10 * 1000);
+        setTimeout(loop, 1 * 1000);
       }.bind(this);
     loop();
   },
@@ -147,9 +147,21 @@ MonitorControl.prototype = {
     }
   },
   changeRequestState: function (request) {
-    this.setState({
-        log: request && request.responseText && reformatLog(request.responseText)
-      });
+    var log = request && request.responseText && reformatLog(request.responseText);
+    var mustScroll = !this.state.log && log;
+    if (log) {
+      this.setState({
+          log: log
+        });
+    }
+    if (mustScroll) {
+      var startOffset = scrollY;
+      var maxOffset   = document.body.scrollHeight - innerHeight;
+      var offset      = easeScroll.getElementOffsetById('live-log');
+      easeScroll.tween(startOffset, maxOffset, offset, 500, function (y) {
+          scrollTo(scrollX, y);
+        });
+    }
   }
 };
 
