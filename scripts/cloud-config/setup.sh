@@ -5,7 +5,7 @@ set -o pipefail
 {{setupEnvVars}}
 
 
-{{partialSetupSh}}
+{{setupPartSh}}
 
 
 retry () {

@@ -13,7 +13,7 @@ write_files:
     content: |
 {{setupMonitorSh}}
 
-{{partialSetupYml}}
+{{setupPartYml}}
 
   - path: "/root/setup.sh"
     permissions: "0755"

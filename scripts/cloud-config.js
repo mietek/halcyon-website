@@ -5,15 +5,15 @@ var utils = require('utils');
 var raw = {
   centos: {
     appService: require('./cloud-config/raw!./cloud-config/centos/app.service'),
-    partialSetupSh: require('./cloud-config/raw!./cloud-config/centos/partial-setup.sh'),
-    partialSetupYml: require('./cloud-config/raw!./cloud-config/centos/partial-setup.yml'),
+    setupPartSh: require('./cloud-config/raw!./cloud-config/centos/setup.part.sh'),
+    setupPartYml: require('./cloud-config/raw!./cloud-config/centos/setup.part.yml'),
     setupMonitorSocket: require('./cloud-config/raw!./cloud-config/centos/setup-monitor.socket'),
     setupMonitorService: require('./cloud-config/raw!./cloud-config/centos/setup-monitor@.service')
   },
   ubuntu: {
     appConf: require('./cloud-config/raw!./cloud-config/ubuntu/app.conf'),
-    partialSetupSh: require('./cloud-config/raw!./cloud-config/ubuntu/partial-setup.sh'),
-    partialSetupYml: require('./cloud-config/raw!./cloud-config/ubuntu/partial-setup.yml'),
+    setupPartSh: require('./cloud-config/raw!./cloud-config/ubuntu/setup.part.sh'),
+    setupYml: require('./cloud-config/raw!./cloud-config/ubuntu/setup.part.yml'),
     setupMonitorConf: require('./cloud-config/raw!./cloud-config/ubuntu/setup-monitor.conf')
   },
   setupMonitorSh: require('./cloud-config/raw!./cloud-config/setup-monitor.sh'),
@@ -29,22 +29,22 @@ var format = {
           return 'Environment="' + key + '=' + (envVars[key] || '') + '"';
         });
     },
-    partialSetupSh: function (opts) {
-      return utils.format(raw.centos.partialSetupSh, {
-          setupMonitorLife: opts.monitorLife
+    setupPartSh: function (opts) {
+      return utils.format(raw.centos.setupPartSh, {
+          setupMonitorLife:     opts.monitorLife
         });
     },
-    partialSetupYml: function (opts) {
-      return utils.format(raw.centos.partialSetupYml, {
-          appService:          utils.indent(6, utils.format(raw.centos.appService, {
-              appDescription:      opts.description,
-              appPort:             opts.port,
-              appEnvVars:          format.centos.appEnvVars(opts.envVars)
+    setupPartYml: function (opts) {
+      return utils.format(raw.centos.setupPartYml, {
+          appService:           utils.indent(6, utils.format(raw.centos.appService, {
+              appDescription:       opts.description,
+              appPort:              opts.port,
+              appEnvVars:           format.centos.appEnvVars(opts.envVars)
             })),
-          setupMonitorSocket:  utils.indent(6, utils.format(raw.centos.setupMonitorSocket, {
-              setupMonitorPort:    opts.monitorPort
+          setupMonitorSocket:   utils.indent(6, utils.format(raw.centos.setupMonitorSocket, {
+              setupMonitorPort:     opts.monitorPort
             })),
-          setupMonitorService: utils.indent(6, raw.centos.setupMonitorService)
+          setupMonitorService:  utils.indent(6, raw.centos.setupMonitorService)
         });
     }
   },
@@ -54,20 +54,20 @@ var format = {
           return 'env ' + key + '="' + (envVars[key] || '') + '"';
         });
     },
-    partialSetupSh: function (opts) {
-      return utils.format(raw.ubuntu.partialSetupSh, {
-          setupMonitorLife: opts.monitorLife
+    setupPartSh: function (opts) {
+      return utils.format(raw.ubuntu.setupPartSh, {
+          setupMonitorLife:     opts.monitorLife
         });
     },
-    partialSetupYml: function (opts) {
-      return utils.format(raw.ubuntu.partialSetupYml, {
-          appConf:          utils.indent(6, utils.format(raw.ubuntu.appConf, {
-              appDescription:   opts.description,
-              appPort:          opts.port,
-              appEnvVars:       format.ubuntu.appEnvVars(opts.envVars)
+    setupPartYml: function (opts) {
+      return utils.format(raw.ubuntu.setupPartYml, {
+          appConf:              utils.indent(6, utils.format(raw.ubuntu.appConf, {
+              appDescription:       opts.description,
+              appPort:              opts.port,
+              appEnvVars:           format.ubuntu.appEnvVars(opts.envVars)
             })),
-          setupMonitorConf: utils.indent(6, utils.format(raw.ubuntu.setupMonitorConf, {
-              setupMonitorPort: opts.monitorPort
+          setupMonitorConf:     utils.indent(6, utils.format(raw.ubuntu.setupMonitorConf, {
+              setupMonitorPort:     opts.monitorPort
             }))
         });
     }
@@ -80,7 +80,7 @@ var format = {
   setupSh: function (opts) {
     return utils.format(raw.setupSh, {
         setupEnvVars:   format.setupEnvVars(opts.envVars),
-        partialSetupSh: format[opts.platform].partialSetupSh(opts),
+        setupPartSh:    format[opts.platform].setupPartSh(opts),
         appSourceUrl:   opts.sourceUrl,
         appCommand:     opts.command,
         appPort:        opts.port
@@ -88,9 +88,9 @@ var format = {
   },
   setupYml: function (opts) {
     return utils.format(raw.setupYml, {
-        setupMonitorSh:  utils.indent(6, raw.setupMonitorSh),
-        partialSetupYml: format[opts.platform].partialSetupYml(opts),
-        setupSh:         utils.indent(6, format.setupSh(opts))
+        setupMonitorSh: utils.indent(6, raw.setupMonitorSh),
+        setupPartYml:   format[opts.platform].setupPartYml(opts),
+        setupSh:        utils.indent(6, format.setupSh(opts))
       });
   }
 };
