@@ -2,7 +2,7 @@
 
 var DigitalOcean = require('digitalocean');
 var React = require('react');
-var cloudConfig = require('cloud-config');
+var HalcyonCloudConfig = require('halcyon-cloud-config');
 var utils = require('utils');
 var widgets = require('widgets');
 
@@ -530,7 +530,14 @@ exports.Control.prototype = {
       this.state.selectedKeys.map(function (key) {
           return key.id;
         }),
-      cloudConfig.formatUserData(this.state.selectedImage.distribution.toLowerCase(), this.state.sourceUrl, this.state.envVars, null), // TODO: Provide command here.
+      HalcyonCloudConfig.formatDigitalOceanUserData(
+        this.state.selectedImage.distribution.toLowerCase(),
+        this.state.sourceUrl, {
+          envVars:     this.state.envVars,
+          command:     null, // TODO: Provide extra options here.
+          description: null,
+          port:        null
+        }),
       function (droplet, err) {
         if (droplet) {
           location.href = '/deploy/monitor/?id=' + droplet.id;

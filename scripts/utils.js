@@ -94,21 +94,3 @@ exports.loadJson = function (key) {
   var value = localStorage.getItem(key);
   return value && JSON.parse(value);
 };
-
-
-exports.format = function (source, macros) {
-  return Object.keys(macros || {}).reduce(function (result, key) {
-      var re = new RegExp('\\{\\{' + key + '\\}\\}', 'g');
-      return result.replace(re, macros[key] || '');
-    }, source);
-};
-
-
-exports.indent = function (spaces, source) {
-  var str = new Array(spaces + 1).join(' ');
-  return source.split('\n')
-    .map(function (line) {
-      return str + line;
-    })
-    .join('\n');
-};
