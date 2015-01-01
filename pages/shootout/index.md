@@ -15,7 +15,9 @@ page-head: |
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
-All examples can be deployed to the [Heroku](https://heroku.com/) web application platform just by pushing a button, via [Haskell on Heroku](https://haskellonheroku.com/).
+All examples can be installed with a single command on regular machines running most recent Linux distributions.
+
+Additionally, all examples can be deployed to a new [DigitalOcean](https://digitalocean.com/) droplet or to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
 
 
 <div><nav><ul class="toc toc1 menu open">
@@ -64,20 +66,20 @@ The columns included in the results are:
 
 The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
 
-The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on a [DigitalOcean](https://digitalocean.com/) instance with 8GB of memory, 4 logical cores, and SSD storage, running Ubuntu 14.04 (`x86_64`).
+The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
 
 
 ### Commentary
 
-Unsurprisingly, the results show first build times are dominated by building sandboxes.
+Unsurprisingly, the results show first installation times are dominated by building sandboxes.
 
 Halcyon attempts to mitigate the impact of sandbox build times:
 
-1. Once a sandbox directory is built, Halcyon archives it, and restores it during subsequent builds.
+1. Once a sandbox directory is built, Halcyon archives it, and restores it during subsequent installations.
 
 2. When building a new sandbox directory, Halcyon locates previously built sandboxes containing a subset of the required dependencies.  Each matching sandbox is assigned a score, and the highest scoring sandbox is used as a base for the new sandbox.
 
-Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  An install involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
+Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  An installation involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
 
 If no build is needed, the application is restored from a previously archived install directory.  This allows installing most of the [example applications](/examples/) and shootout entries in under 10 seconds.
 
@@ -116,7 +118,7 @@ _hello-apiary_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-apiary-log" href="" title="Toggle">Toggle</a>
@@ -152,9 +154,9 @@ _hello-apiary_
               Prefix:                                   <b>/app/sandbox</b>
               External storage:                         <b>private and public</b>
 
-       -----> Restoring install
+       -----> Restoring install directory
               Extracting halcyon-install-b3faab4-alex-3.1.3.tar.gz... done, 2.5MB
-       -----> Install restored
+       -----> Install directory restored
        -----> Installing app into /app/sandbox... done
 -----> Building sandbox
        Resolving dependencies...
@@ -230,7 +232,7 @@ _hello-happstack_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-happstack-log" href="" title="Toggle">Toggle</a>
@@ -321,7 +323,7 @@ _hello-mflow_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-mflow-log" href="" title="Toggle">Toggle</a>
@@ -357,9 +359,9 @@ _hello-mflow_
               Prefix:                                   <b>/app/sandbox</b>
               External storage:                         <b>private and public</b>
 
-       -----> Restoring install
+       -----> Restoring install directory
               Extracting halcyon-install-85c6517-cpphs-1.18.6.tar.gz... done, 3.2MB
-       -----> Install restored
+       -----> Install directory restored
        -----> Installing app into /app/sandbox... done
 -----> Building sandbox
        Resolving dependencies...
@@ -435,7 +437,7 @@ _hello-miku_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-miku-log" href="" title="Toggle">Toggle</a>
@@ -529,7 +531,7 @@ _hello-scotty_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-log" href="" title="Toggle">Toggle</a>
@@ -629,7 +631,7 @@ _hello-simple_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-simple-log" href="" title="Toggle">Toggle</a>
@@ -728,7 +730,7 @@ _hello-snap_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-snap-log" href="" title="Toggle">Toggle</a>
@@ -822,7 +824,7 @@ _hello-spock_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-spock-log" href="" title="Toggle">Toggle</a>
@@ -924,7 +926,7 @@ _hello-wai_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wai-log" href="" title="Toggle">Toggle</a>
@@ -1021,7 +1023,7 @@ _hello-wheb_
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wheb-log" href="" title="Toggle">Toggle</a>
@@ -1127,7 +1129,7 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 </div>
 
 
-#### First build log
+#### First installation log
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-yesod-log" href="" title="Toggle">Toggle</a>

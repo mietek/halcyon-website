@@ -15,7 +15,9 @@ Example applications { .with-toc }
 
 Real-world Haskell applications, demonstrating advanced usage of Halcyon.
 
-All examples can be deployed to the [Heroku](https://heroku.com/) web application platform just by pushing a button, via [Haskell on Heroku](https://haskellonheroku.com/).
+All examples can be installed with a single command on regular machines running most recent Linux distributions.
+
+Additionally, all examples can be deployed to a new [DigitalOcean](https://digitalocean.com/) droplet or to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
 
 
 </section></div>

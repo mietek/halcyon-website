@@ -62,9 +62,9 @@ Need commercial support?  Contact the [author](#about) directly.
 Examples
 --------
 
-Halcyon is being used in production since June 2014, enabling push-button deployment of Haskell applications to the [Heroku](https://heroku.com/) web application platform, as [Haskell on Heroku](https://haskellonheroku.com/).
+All examples can be installed with a single command on regular machines running most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
 
-All examples can be deployed to Heroku just by pushing a button.
+Additionally, all examples can be deployed to a new [DigitalOcean](https://digitalocean.com/) droplet or to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
 
 
 ### Example applications
@@ -143,10 +143,10 @@ Installing a previously built application usually takes less than 10 seconds.
        Source hash:                              <b>bcfc50f</b>
        External storage:                         <b>private and public</b>
 
------> Restoring install
+-----> Restoring install directory
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
        Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
------> Install restored
+-----> Install directory restored
 -----> Installing app into /app... done
 
 -----> App installed:                            <b>howistart-0.1</b>

@@ -50,17 +50,17 @@ With an archive of the application install directory available, installing can t
        Source hash:                              <b>bcfc50f</b>
        External storage:                         <b>private and public</b>
 
------> Restoring install
+-----> Restoring install directory
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
        Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
------> Install restored
+-----> Install directory restored
 -----> Installing app into /app... done
 
 -----> App installed:                            <b>howistart-0.1</b>
 </code></pre>
 </div>
 
-If an install archive is not available, Halcyon will build the application and any required dependencies on the fly.
+If an install directory archive is not available, Halcyon will build the application and any required dependencies on the fly.
 
 
 #### Cabal package labels
