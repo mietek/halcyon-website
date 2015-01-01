@@ -584,6 +584,7 @@ Used when installing an application with no constraints specified, or when insta
 
 Supported versions include:
 
+- [GHC 7.8.4](https://haskell.org/ghc/download_ghc_7_8_4)
 - [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
 - [GHC 7.8.2](https://haskell.org/ghc/download_ghc_7_8_2)
 - [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3)
@@ -641,6 +642,8 @@ Version of _cabal-install_ to bootstrap or restore in the Cabal directory.
 
 Supported versions include:
 
+- [_cabal-install_ 1.20.0.6](https://www.haskell.org/cabal/release/cabal-install-1.20.0.6/)
+- [_cabal-install_ 1.20.0.5](https://www.haskell.org/cabal/release/cabal-install-1.20.0.5/)
 - [_cabal-install_ 1.20.0.3](https://www.haskell.org/cabal/release/cabal-install-1.20.0.3/)
 - [_cabal-install_ 1.20.0.2](https://www.haskell.org/cabal/release/cabal-install-1.20.0.2/)
 - [_cabal-install_ 1.20.0.1](https://www.haskell.org/cabal/release/cabal-install-1.20.0.1/)
