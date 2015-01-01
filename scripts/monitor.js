@@ -115,7 +115,7 @@ MonitorControl.prototype = {
             });
           this.loadLog();
         }
-        setTimeout(loop, 1 * 1000);
+        setTimeout(loop, 15 * 1000);
       }.bind(this);
     loop();
   },

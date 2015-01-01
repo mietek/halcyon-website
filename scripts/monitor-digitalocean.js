@@ -146,7 +146,7 @@ exports.Control.prototype = {
       });
     var loop = function () {
       this.loadDroplets(function () {
-          setTimeout(loop, 10 * 1000);
+          setTimeout(loop, 60 * 1000);
         }.bind(this));
     }.bind(this);
     this.loadAccount(function () {
