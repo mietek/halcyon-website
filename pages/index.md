@@ -1,6 +1,6 @@
 ---
-title: Haskell application deployment
-page-description: Halcyon is a system for deploying Haskell web and non-web applications.
+title: Haskell application installer
+page-description: Halcyon is a system for building and installing Haskell applications.
 page-class: hero tweak-gallery tweak-listings
 page-data:
 - key: min-section-link-level
@@ -13,7 +13,7 @@ header-class: hero
 main-class: hero
 hero: |
   <h1 class="logotype">Halcyon</h1>
-  <p>Deploy any Haskell application.  Instantly.</p>
+  <p>Install any Haskell application.  Instantly.</p>
   <div id="hero-button"><a href="#halcyon" title="More">More</a></div>
 page-footer: |
   <script>
@@ -29,21 +29,48 @@ page-footer: |
 Halcyon
 =======
 
-Halcyon is a system for deploying Haskell web and non-web applications, powering [Haskell on Heroku](https://haskellonheroku.com/).
+Halcyon is a system for building and installing Haskell applications.
 
 
 ### Features
 
-- **Simple.**  Halcyon can install any Haskell application with a single command, building all required dependencies on the fly.
+- Halcyon does not require GHC to be installed, as it can install the right version of GHC for the application.
 
-- **Fast.**  All build results are archived and cached, which means incremental builds can be ready in under 30 seconds.
+- Halcyon supports most recent GHC versions, including GHC 7.8.4.
 
-- **Reliable.**  Halcyon allows all build-time and run-time dependencies to be explicitly declared, aiming to achieve 100% reproducible results.
+- Halcyon uses regular Cabal packages, sandboxes, and repositories, such as Hackage.
+
+- Halcyon can install applications directly from _git_ repositories.
+
+- Halcyon allows _git_ repositories to be declared as sandbox sources.
+
+- Halcyon automatically archives, caches, and restores all build products, using both local and remote storage.
+
+- Halcyon can reuse previously built Cabal sandboxes as a base for building new sandboxes.
+
+- Halcyon uses Amazon S3 buckets for public and private remote storage.
+
+- Halcyon can use the same archives on multiple systems, from development, to continuous integration and deployment.
+
+- Halcyon supports declaring dependencies and version constraints in a format easy to integrate with other tools.
+
+- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex_ and _happy_.
+
+- Halcyon includes workarounds for many _cabal-install_ issues, such as [#220](https://github.com/haskell/cabal/issues/220), [#779](https://github.com/haskell/cabal/issues/779),
+[#713](https://github.com/haskell/cabal/issues/713), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
+
+- Halcyon allows native OS packages to be declared and installed in a cross-platform fashion.
+
+- Halcyon includes hooks for complete control over the build process.
+
+- Halcyon runs on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+
+- Halcyon is written in GNU _bash_, and can be ported to any POSIX system.
+
+- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
 
 
 ### Support
-
-_**Work in progress.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8N3tj), or follow <a href="https://twitter.com/mietek">@mietek</a>._
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
 
@@ -62,7 +89,7 @@ Need commercial support?  Contact the [author](#about) directly.
 Examples
 --------
 
-All examples can be installed with a single command on regular machines running most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+All examples can be installed with a single command on regular machines running most recent Linux distributions.
 
 Additionally, all examples can be deployed to a new [DigitalOcean](https://digitalocean.com/) droplet or to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
 
@@ -228,7 +255,7 @@ Thanks to [Joe Nelson](http://begriffs.com/), [Brian McKenna](http://brianmckenn
 
 The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).  The monospaced font is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  Website built with [_cannot_](https://cannot.mietek.io/).
 
-This project is not affiliated with [Heroku](https://heroku.com/), [DigitalOcean](https://digitalocean.com/), or [Amazon](https://amazon.com/).
+This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or [Heroku](https://heroku.com/).
 
 
 <aside>
