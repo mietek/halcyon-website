@@ -72,7 +72,7 @@ var reformatLog = function (log) {
   return log
     .replace(startB, '<b>')
     .replace(endB, '</b>')
-    .replace(link, '<a href="$1">$1</a>$2');
+    .replace(link, '<a href="$1" target="_blank">$1</a>$2');
 };
 
 

@@ -178,7 +178,7 @@ exports.Control.prototype = {
       this.state.token);
   },
   viewDroplet: function () {
-    location.href = 'http://' + this.state.selectedDroplet.ipAddress + ':8080/'; // TODO: Support custom ports.
+    window.open('http://' + this.state.selectedDroplet.ipAddress + ':8080/'); // TODO: Support custom ports.
   },
   destroyDroplet: function () {
     this.setState({

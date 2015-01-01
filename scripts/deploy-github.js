@@ -49,7 +49,8 @@ var SourceWidget = React.createClass({
             },
             'Source information can only be loaded from an ',
             React.createElement('a', {
-                href: 'https://devcenter.heroku.com/articles/app-json-schema'
+                href:   'https://devcenter.heroku.com/articles/app-json-schema',
+                target: '_blank'
               },
               React.createElement('code', null, 'app.json')),
             ' file located at the root of the repository.  The application can still be deployed, as long as the URL is valid.');
@@ -118,7 +119,8 @@ var SourceLegend = React.createClass({
           },
           !info.logo ? null :
             React.createElement('a', {
-                href: info.website || info.repository
+                href:   info.website || info.repository,
+                target: '_blank'
               },
               React.createElement('img', {
                   className: 'source-logo',
@@ -129,7 +131,8 @@ var SourceLegend = React.createClass({
             },
             React.createElement('p', null,
               React.createElement('a', {
-                  href: info.website || info.repository
+                  href:   info.website || info.repository,
+                  target: '_blank'
                 },
                 React.createElement('strong', null, info.name || 'unnamed'))),
             React.createElement('p', null, info.description || 'undescribed')))));
