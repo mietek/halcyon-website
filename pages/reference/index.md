@@ -36,14 +36,32 @@ The application may be specified as:
 When no application is specified, Halcyon attempts to detect an application in the current directory.  If no application is detected, Halcyon installs GHC and Cabal only.  To ignore the current directory, set [`HALCYON_NO_APP`](#halcyon_no_app) to `1`.
 
 
+### `halcyon build`
+
+> ---------------------|---
+> Arguments:           | _`app? option*`_
+
+Builds the specified application, restoring or building all needed dependencies.
+
+
 ### `halcyon label`
 
 > ---------------------|---
 > Arguments:           | _`app? option*`_
 
-Outputs the Cabal package label of the specified application, as determined by [`halcyon install`](#halcyon-install).
+Outputs the Cabal package label of the specified application.
 
 Intended to quickly determine the newest version of an application.
+
+
+### `halcyon executable`
+
+> ---------------------|---
+> Arguments:           | _`app? option*`_
+
+Outputs the name of a single executable declared in the Cabal package description for the specified application.
+
+Intended to support integration with deployment systems.
 
 
 ### `halcyon constraints`
@@ -114,7 +132,7 @@ _If the install directory consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcy
 
 Root of the path to the directory in which Halcyon installs applications.
 
-Intended to support advanced workflows.
+Intended to support advanced installation workflows.
 
 <div class="pre-like">
 _If the install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
