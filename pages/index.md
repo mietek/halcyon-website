@@ -180,7 +180,7 @@ Installing a previously built application usually takes less than 10 seconds.
 </code></pre>
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-apiary">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
 
 
