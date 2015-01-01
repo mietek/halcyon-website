@@ -154,9 +154,11 @@ exports.Control.prototype = {
       storedToken:         undefined,
       storedSourceUrl:     undefined,
       storedEnvVarItems:   undefined,
+      storedCommand:       undefined,
       onForgetAccount:     undefined,
       onChangeSourceUrl:   undefined,
-      onChangeEnvVarItems: undefined
+      onChangeEnvVarItems: undefined,
+      onChangeCommand:     undefined
     };
   },
   makeWidgets: function () {
@@ -177,6 +179,12 @@ exports.Control.prototype = {
           onChange:     this.changeEnvVarItems.bind(this)
         }),
       document.getElementById('env-vars-widget'));
+    this.commandWidget = React.render(
+      React.createElement(widgets.InputWidget, {
+          placeholder:  '/app/bin/${executable}',
+          onChange:     this.changeCommand.bind(this)
+        }),
+      document.getElementById('command-widget'));
     this.sourceLegend = React.render(
       React.createElement(SourceLegend),
       document.getElementById('source-legend'));
@@ -189,7 +197,9 @@ exports.Control.prototype = {
         sourceUrl:    undefined,
         sourceInfo:   undefined,
         sourceError:  undefined,
-        envVarItems:  undefined
+        envVarItems:  undefined,
+        command:      undefined,
+        commandError: undefined
       });
   },
   setState: function (state) {
@@ -209,6 +219,10 @@ exports.Control.prototype = {
         enabled:      true,
         items:        this.state.envVarItems
       });
+    this.commandWidget.setState({ // TODO: Improve error display.
+        enabled:      true,
+        value:        this.state.command
+      });
     this.sourceLegend.setState({
         sourceInfo:   this.state.sourceInfo
       });
@@ -219,8 +233,10 @@ exports.Control.prototype = {
       });
     this.changeSourceUrl(this.props.storedSourceUrl);
     this.changeEnvVarItems(this.props.storedEnvVarItems);
+    this.changeCommand(this.props.storedCommand);
     this.loadAccount(function () {
         this.loadSourceInfo();
+        this.loadCommand();
       }.bind(this));
   },
   connectAccount: function () {
@@ -257,6 +273,13 @@ exports.Control.prototype = {
       }.bind(this),
       this.state.token);
   },
+  loadCommand: function () {
+    GitHub.getRawFile(this.state.sourceUrl, 'Procfile',
+      function (procfile, err) {
+        this.changeCommand(utils.getCommandFromProcfile(procfile), err);
+      }.bind(this),
+      this.state.token);
+  },
   changeSourceUrl: function (sourceUrl) {
     var validSourceUrl = (sourceUrl && sourceUrl.length) ? sourceUrl : undefined;
     this.setState({
@@ -266,7 +289,9 @@ exports.Control.prototype = {
       });
     this.props.onChangeSourceUrl(validSourceUrl);
     this.updateEnvVarItems();
+    this.changeCommand();
     this.debouncedLoadSourceInfo();
+    this.debouncedLoadCommand();
   },
   changeEnvVarItems: function (envVarItems) {
     var validEnvVarItems = (envVarItems && envVarItems.length) ? envVarItems : undefined;
@@ -274,6 +299,14 @@ exports.Control.prototype = {
         envVarItems: validEnvVarItems
       });
     this.props.onChangeEnvVarItems(validEnvVarItems);
+  },
+  changeCommand: function (command, err) {
+    var validCommand = (command && command.length) ? command : undefined;
+    this.setState({
+        command:    validCommand,
+        commandErr: err
+      });
+    this.props.onChangeCommand(validCommand);
   },
   updateEnvVarItems: function () {
     var envVarItems   = [];
@@ -322,3 +355,4 @@ exports.Control.prototype = {
   }
 };
 exports.Control.prototype.debouncedLoadSourceInfo = utils.debounce(exports.Control.prototype.loadSourceInfo, 500);
+exports.Control.prototype.debouncedLoadCommand = utils.debounce(exports.Control.prototype.loadCommand, 500);

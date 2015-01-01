@@ -351,7 +351,8 @@ exports.Control.prototype = {
         action:           undefined,
         actionError:      undefined,
         sourceUrl:        undefined,
-        envVars:          undefined
+        envVars:          undefined,
+        command:          undefined
       });
   },
   setState: function (state) {
@@ -534,8 +535,8 @@ exports.Control.prototype = {
         this.state.selectedImage.distribution.toLowerCase(),
         this.state.sourceUrl, {
           envVars:     this.state.envVars,
-          command:     null, // TODO: Provide extra options here.
-          description: null,
+          command:     this.state.command,
+          description: null, // TODO: Provide extra options here.
           port:        null
         }),
       function (droplet, err) {
@@ -670,6 +671,11 @@ exports.Control.prototype = {
   changeEnvVars: function (envVars) {
     this.setState({
         envVars: envVars
+      });
+  },
+  changeCommand: function (command) {
+    this.setState({
+        command: command
       });
   }
 };

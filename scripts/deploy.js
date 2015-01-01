@@ -27,7 +27,8 @@ Control.prototype = {
       storedRegionSlug:         undefined,
       storedKeyIds:             undefined,
       storedSourceUrl:          undefined,
-      storedEnvVarItems:        undefined
+      storedEnvVarItems:        undefined,
+      storedCommand:            undefined
     };
   },
   makeControls: function () {
@@ -52,9 +53,11 @@ Control.prototype = {
         storedToken:         this.props.gitHubToken,
         storedSourceUrl:     this.props.storedSourceUrl,
         storedEnvVarItems:   this.props.storedEnvVarItems,
+        storedCommand:       this.props.storedCommand,
         onForgetAccount:     this.forgetGitHubToken.bind(this),
         onChangeSourceUrl:   this.changeSourceUrl.bind(this),
-        onChangeEnvVarItems: this.changeEnvVarItems.bind(this)
+        onChangeEnvVarItems: this.changeEnvVarItems.bind(this),
+        onChangeCommand:     this.changeCommand.bind(this)
       });
   },
   start: function () {
@@ -100,6 +103,10 @@ Control.prototype = {
       });
     storedItems = (storedItems && storedItems.length) ? storedItems : undefined;
     utils.storeJson('deploy-env-var-items', storedItems);
+  },
+  changeCommand: function (command) {
+    this.digitalOceanControl.changeCommand(command);
+    utils.store('deploy-command', command);
   }
 };
 
@@ -134,7 +141,8 @@ exports.start = function () {
       storedRegionSlug:         utils.load('deploy-region-slug'),
       storedKeyIds:             utils.loadJson('deploy-key-ids'),
       storedSourceUrl:          utils.load('deploy-source-url'),
-      storedEnvVarItems:        utils.loadJson('deploy-env-var-items')
+      storedEnvVarItems:        utils.loadJson('deploy-env-var-items'),
+      storedCommand:            utils.load('deploy-command')
     });
   window.control.start();
 };

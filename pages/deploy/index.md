@@ -26,6 +26,11 @@ Haskell on DigitalOcean
 
 <div id="env-vars-widget" class="widget"></div>
 
+
+#### Command
+
+<div id="command-widget" class="widget"></div>
+
 <div id="source-legend" class="full"></div>
 
 

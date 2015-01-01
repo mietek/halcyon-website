@@ -94,3 +94,16 @@ exports.loadJson = function (key) {
   var value = localStorage.getItem(key);
   return value && JSON.parse(value);
 };
+
+
+exports.getCommandFromProcfile = function (procfile) {
+  var result = null;
+  (procfile && procfile.split('\n') || []).every(function (line) {
+    if (line.indexOf('web: ') === 0) {
+      result = line.slice(5);
+      return false;
+    }
+    return true;
+  });
+  return result;
+};
