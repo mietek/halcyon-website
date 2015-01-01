@@ -167,7 +167,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 #### Deploying
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/tryhaskell">https://github.com/mietek/tryhaskell</a></span>
-<span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
+<span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=8 PORT=8080 tryhaskell</span>
 </code></pre>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell">Deploy to DigitalOcean</a>
