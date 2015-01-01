@@ -227,8 +227,6 @@ exports.Control.prototype = {
     GitHub.requestToken(this.props.clientId);
   },
   forgetAccount: function () {
-    // TODO: Improve token handling.
-    console.log('forgetting');
     this.setState({
         token:        undefined,
         account:      undefined,
