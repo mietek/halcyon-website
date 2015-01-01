@@ -103,7 +103,8 @@ Using Halcyon in production since July 2014.
 <span class="prompt">$</span> <span class="input">PORT=8080 howistart</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy **How I Start** to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
 
 
 #### Extra dependencies
@@ -137,7 +138,8 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 <span class="prompt">$</span> <span class="input">PORT=8080 hl</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy **Haskell Language** to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hl">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy to Heroku</a>
 
 
 #### Extra dependencies
@@ -168,7 +170,8 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 <span class="prompt">$</span> <span class="input">MUEVAL_TIMEOUT=4 PORT=8080 tryhaskell</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy **Try Haskell** to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy to Heroku</a>
 
 
 #### Extra dependencies
@@ -199,7 +202,8 @@ Try Idris
 <span class="prompt">$</span> <span class="input">tryidris 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy **Try Idris** to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryidris">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy to Heroku</a>
 
 
 #### Extra dependencies
@@ -234,7 +238,8 @@ Try PureScript
 <span class="prompt">$</span> <span class="input">trypurescript -p 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy **Try PureScript** to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/trypurescript">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy to Heroku</a>
 
 
 #### Extra dependencies
@@ -267,7 +272,8 @@ Try Haste
 <span class="prompt">$</span> <span class="input">tryplayground 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy **Try Haste** to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaste">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy to Heroku</a>
 
 
 #### Extra dependencies
@@ -312,7 +318,8 @@ Wiki with _git_ file storage.
 <span class="prompt">$</span> <span class="input">gitit -p 8080</span>
 </code></pre>
 
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy **Gitit** to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/gitit">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy to Heroku</a>
 
 
 #### Extra dependencies
