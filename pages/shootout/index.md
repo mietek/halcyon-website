@@ -19,7 +19,7 @@ All examples can be deployed to the [Heroku](https://heroku.com/) web applicatio
 
 
 <div><nav><ul class="toc toc1 menu open">
-<li><a href="#first-build-times">First build times</a></li>
+<li><a href="#shootout-results">Shootout results</a></li>
 <li><a href="#hello-apiary"><i>hello-apiary</i></a></li>
 <li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
 <li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
@@ -36,8 +36,8 @@ All examples can be deployed to the [Heroku](https://heroku.com/) web applicatio
 For advanced applications, see the [examples](/examples/).
 
 
-First build times
------------------
+Shootout results
+----------------
 
 <div class="chart" id="shootout-chart"></div>
 
