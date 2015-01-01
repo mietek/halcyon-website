@@ -613,15 +613,15 @@ exports.DropletLegend = React.createClass({
           !size ? null :
             React.createElement('li', null,
               (size.memory < 1024 ?
-                size.memory + ' MB' :
-                size.memory / 1024 + ' GB') +
-              ' memory, ' + size.vcpus + ' CPU' +
+                size.memory + ' MB' :
+                size.memory / 1024 + ' GB') +
+              ' memory, ' + size.vcpus + ' CPU' +
               (size.vcpus > 1 ?
                 's, ' :
                 ', ') +
-              size.disk + ' GB disk' +
+              size.disk + ' GB disk' +
               (size.transfer ?
-                ', ' + size.transfer + ' TB transfer' :
+                ', ' + size.transfer + ' TB transfer' :
                 '')),
           !image ? null :
             React.createElement('li', null,

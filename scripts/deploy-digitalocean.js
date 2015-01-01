@@ -38,7 +38,7 @@ var SizeWidget = React.createClass({
                   className: 'size-button',
                   enabled:   this.state.enabled && size.supported,
                   selected:  this.state.selectedSize && size.slug === this.state.selectedSize.slug,
-                  title:     size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB'),
+                  title:     size.memory < 1024 ? size.memory + ' MB' : (size.memory / 1024 + ' GB'),
                   onClick:   function () {
                     this.props.onSelect(size);
                   }.bind(this)
