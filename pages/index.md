@@ -56,8 +56,8 @@ Halcyon is a system for building and installing Haskell applications.
 
 - Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex_ and _happy_.
 
-- Halcyon includes workarounds for many _cabal-install_ issues, such as [#220](https://github.com/haskell/cabal/issues/220), [#779](https://github.com/haskell/cabal/issues/779),
-[#713](https://github.com/haskell/cabal/issues/713), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
+- Halcyon includes workarounds for many _cabal-install_ issues, such as [#220](https://github.com/haskell/cabal/issues/220),
+[#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
 
 - Halcyon allows native OS packages to be declared and installed in a cross-platform fashion.
 
