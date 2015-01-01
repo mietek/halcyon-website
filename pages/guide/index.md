@@ -22,13 +22,9 @@ User’s guide
 Quick start
 -----------
 
-Set up a 64-bit Ubuntu machine, and install Halcyon.
+Halcyon can be installed in one command on most recent Linux distributions.
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">apt-get update</span>
-<span class="prompt">$</span> <span class="input">apt-get install build-essential git pigz zlib1g-dev</span>
-<span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon">https://github.com/mietek/halcyon</a></span>
-<span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
-</code></pre>
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
 
 Halcyon is now ready to install any of the [example applications](/examples/) or [shootout entries](/shootout/).
 
@@ -106,9 +102,9 @@ Setting up a machine
 
 To set up one machine for building and installing applications:
 
-1.  [Provision a machine](#provisioning-a-machine) with one of the supported operating systems, and install the required OS-specific packages.
+1.  [Provision a machine](#provisioning-a-machine) with one of the supported operating systems.
 
-2.  [Install Halcyon](#installing-halcyon) by cloning the Halcyon source repository, and set the needed environment variables.
+2.  [Install Halcyon](#installing-halcyon) by running the Halcyon setup script.
 
 
 ### Provisioning a machine
@@ -127,10 +123,17 @@ Currently, Halcyon fully supports the `x86_64` architecture, and the following L
 - Fedora 19 and 20
 - Ubuntu 10.04, 12.04, and 14.04
 
-All platform-specific configuration needed for Halcyon fits in a [very small shell script](https://gist.github.com/mietek/5a213e2023d1c7f6bdf9).
-
 
 ### Installing Halcyon
+
+Most OS-specific setup needed for Halcyon can be performed by a single command.
+
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
+
+The Halcyon setup script installs the necessary OS packages, installs Halcyon, and sets up the needed environment variables.
+
+
+#### Setup details
 
 Halcyon is installed with _git_, and automatically updates itself before executing any command.  The source repository used for self-updates is defined by [`HALCYON_URL`](/reference/#halcyon_url).
 
@@ -138,9 +141,6 @@ Halcyon is installed with _git_, and automatically updates itself before executi
 </code></pre>
 
 To disable self-updates, set [`HALCYON_NO_SELF_UPDATE`](/reference/#halcyon_no_self_update) to `1`.
-
-
-#### Environment variables
 
 The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables, which include `PATH`, `LIBRARY_PATH`, and `LD_LIBRARY_PATH`.
 
@@ -151,19 +151,27 @@ $ source <( halcyon/halcyon paths )
 Setting environment variables is best done as part of a `.profile` script.
 
 
-#### Directories
+#### Base and prefix directories
 
-By default, Halcyon requires write access to the `/app` directory, which is where it builds or restores:
+By default, Halcyon requires write access to the `/app` directory.  This is done for two reasons:
 
-- _GHC directory_, with GHC and the global GHC package database
-- _Cabal directory_, with _cabal-install_ and the Cabal package database
-- _sandbox directory_, with a Cabal sandbox and any additional build-time dependencies
+1. `/app` is the default path to the base directory, defined by [`HALCYON_BASE`](/reference/#halcyon_base), which is where Halcyon builds or restores the following directories:
+
+    - The _GHC directory_, with GHC and the global GHC package database
+    - The _Cabal directory_, with _cabal-install_ and the Cabal package database
+    - The _sandbox directory_, with a Cabal sandbox and any additional build-time dependencies
+
+    GHC and Cabal sandboxes are not easily relocatable.  Changing the base directory will require Halcyon to rebuild all previously built archives from scratch, and is not recommended for a quick start.
+
+2. `/app` is the default path to the prefix directory, defined by [`HALCYON_PREFIX`](/reference/#halcyon_prefix), which is where Halcyon installs applications.
+
+    Changing the prefix directory can be easily done on a per-installation basis, as it will only cause an application-level change, and require an incremental build.
 
 
 Declaring dependencies
 ----------------------
 
-Halcyon allows all build-time and run-time dependencies to be explicitly declared, aiming to achieve 100% reproducible results.
+Halcyon allows all build-time and run-time dependencies to be explicitly declared, aiming to achieve 100% reproducible build results.
 
 
 #### Cabal files
@@ -301,15 +309,15 @@ Advanced usage
 
 _**Work in progress.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8N3tj), or follow <a href="https://twitter.com/mietek">@mietek</a>._
 
-- _Installing locally and remotely.  [Base path](/reference/#halcyon_base), [prefix path](/reference/#halcyon_prefix), [root path](/reference#halcyon_root).  Archive names.  Tags._
+- _Archive names.  Tags._
 
 - _[Rebuilding applications](/reference/#halcyon_app_rebuild), [reconfiguring applications](/reference/#halcyon_app_reconfigure), [reinstalling applications](/reference/#halcyon_app_reinstall).  Source hash, constraints hash, magic hash.  Source directory, build directory, install directory.  [Pre-build hook](/reference/#halcyon_pre_build_hook), [post-build hook](/reference/#halcyon_post_build_hook), [pre-install hook](/reference/#halcyon_pre_install_hook), [post-install hook](/reference/#halcyon_post_install_hook)._
 
-- _Swapping multiple GHC directories.  [Rebuilding GHC directories](/reference/#halcyon_ghc_rebuild).  [GHC pre-build hook](/reference/#halcyon_ghc_pre_build_hook), [GHC post-build hook](/reference/#halcyon_ghc_post_build_hook), GHC magic hash._
+- _Swapping multiple GHC versions.  [Rebuilding GHC directories](/reference/#halcyon_ghc_rebuild).  [GHC pre-build hook](/reference/#halcyon_ghc_pre_build_hook), [GHC post-build hook](/reference/#halcyon_ghc_post_build_hook), GHC magic hash._
 
 - _Using custom Cabal repositories.  [Updating Cabal directories](/reference/#halcyon_cabal_update).  [Rebuilding Cabal directories](/reference/#halcyon_cabal_rebuild).  [Cabal pre-build hook](/reference/#halcyon_cabal_pre_build_hook), [Cabal post-build hook](/reference/#halcyon_cabal_post_build_hook), [Cabal pre-update hook](/reference/#halcyon_cabal_pre_update_hook), [Cabal post-update hook](/reference/#halcyon_cabal_post_update_hook), Cabal magic hash._
 
-- _Preparing partially-matching sandbox directories.  [Rebuilding sandbox directories](/reference/#halcyon_sandbox_rebuild).  [Sandbox pre-build hook](/reference/#halcyon_sandbox_pre_build_hook), [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), sandbox magic hash._
+- _Preparing partially-matching sandboxes.  [Rebuilding sandbox directories](/reference/#halcyon_sandbox_rebuild).  [Sandbox pre-build hook](/reference/#halcyon_sandbox_pre_build_hook), [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), sandbox magic hash._
 
 
 ### Storage and caching
