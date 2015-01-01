@@ -86,7 +86,7 @@ General options
 > Type:                | directory
 > Command-line option: | `--base=…`
 
-Directory in which Halcyon restores or builds layers.
+Directory in which Halcyon builds or restores the GHC, Cabal, and sandbox directories.
 
 Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 
@@ -250,19 +250,19 @@ Forces Halcyon to run `cabal configure` again.
 > Type:                | `0` or `1`
 > Command-line option: | `--no-build`
 
-Prevents building any layers, or the application.
+Prevents building the application or any application dependencies.
 
-Intended to use on install machines incapable of building the application.
+Intended to use on dedicated install machines.
 
 
-### `HALCYON_NO_BUILD_LAYERS`
+### `HALCYON_NO_BUILD_DEPENDENCIES`
 
 > ---------------------|---
 > Default value:       | `0`
 > Type:                | `0` or `1`
-> Command-line option: | `--no-build-layers`
+> Command-line option: | `--no-build-dependencies`
 
-Prevents building any layers.
+Prevents building any application dependencies.
 
 Intended to use on install machines capable of building the application.
 
@@ -352,17 +352,17 @@ linux-(debian-7|ubuntu-12):libicu48
 ```
 
 
-### `HALCYON_EXTRA_LAYERS`
+### `HALCYON_EXTRA_DEPENDENCIES`
 
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--extra-layers`
-> Magic file:          | `.halcyon/extra-layers`
+> Command-line option: | `--extra-dependencies`
+> Magic file:          | `.halcyon/extra-dependencies`
 
-Additional layers to include in the install directory, as run-time dependencies.
+Additional dependencies to include in the install directory, as run-time dependencies.
 
-The layers can be specified as one or more of:
+The dependencies can be specified as one or more of the following directories:
 
 - `ghc`
 - `cabal`
@@ -371,14 +371,14 @@ The layers can be specified as one or more of:
 Intended to support applications which need to compile Haskell at run-time.
 
 
-### `HALCYON_RESTORE_LAYERS`
+### `HALCYON_RESTORE_DEPENDENCIES`
 
 > ---------------------|---
 > Default value:       | `0`
 > Type:                | `0` or `1`
-> Command-line option: | `--restore-layers`
+> Command-line option: | `--restore-dependencies`
 
-Forces Halcyon to restore all layers, even when an install directory archive is available.
+Forces Halcyon to restore all dependencies, even when an install directory archive is available.
 
 
 ### `HALCYON_PRE_INSTALL_HOOK`
@@ -568,8 +568,8 @@ Prevents uploading cached archives and constraints files to [`HALCYON_S3_BUCKET`
 Prevents deleting out-of-date archives and constraints files from [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
 
-GHC layer options
------------------
+GHC options
+-----------
 
 ### `HALCYON_GHC_VERSION`
 
@@ -578,7 +578,7 @@ GHC layer options
 > Type:                | version
 > Command-line option: | `--ghc-version=…`
 
-Default version of GHC to install or restore in the GHC layer.
+Default version of GHC to install or restore in the GHC directory.
 
 Used when installing an application with no constraints specified, or when installing GHC and Cabal only.
 
@@ -602,7 +602,7 @@ Supported versions include:
 > Magic file:          | `.halcyon/ghc-pre-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
-Script to execute when building the GHC layer, before installing GHC.
+Script to execute when building the GHC directory, before installing GHC.
 
 
 ### `HALCYON_GHC_POST_BUILD_HOOK`
@@ -614,7 +614,7 @@ Script to execute when building the GHC layer, before installing GHC.
 > Magic file:          | `.halcyon/ghc-post-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
-Script to execute when building the GHC layer, after installing GHC.
+Script to execute when building the GHC directory, after installing GHC.
 
 
 ### `HALCYON_GHC_REBUILD`
@@ -624,11 +624,11 @@ Script to execute when building the GHC layer, after installing GHC.
 > Type:                | `0` or `1`
 > Command-line option: | `--ghc-rebuild`
 
-Forces Halcyon to rebuild the GHC layer from scratch, which implies installing GHC again.
+Forces Halcyon to rebuild the GHC directory from scratch, which implies installing GHC again.
 
 
-Cabal layer options
--------------------
+Cabal options
+-------------
 
 ### `HALCYON_CABAL_VERSION`
 
@@ -637,7 +637,7 @@ Cabal layer options
 > Type:                | version
 > Command-line option: | `--cabal-version=…`
 
-Version of _cabal-install_ to bootstrap or restore in the Cabal layer.
+Version of _cabal-install_ to bootstrap or restore in the Cabal directory.
 
 Supported versions include:
 
@@ -654,7 +654,7 @@ Supported versions include:
 > Type:                | string
 > Command-line option: | `--cabal-repo=…`
 
-Name and URL of the Cabal repository referenced by the Cabal package database in the Cabal layer.
+Name and URL of the Cabal repository referenced by the Cabal package database in the Cabal directory.
 
 The value must match the format of a `remote-repo` entry in a `cabal.config` file.
 
@@ -670,7 +670,7 @@ The value must match the format of a `remote-repo` entry in a `cabal.config` fil
 > Magic file:          | `.halcyon/cabal-pre-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
-Script to execute when building the Cabal layer, before bootstrapping _cabal-install_.
+Script to execute when building the Cabal directory, before bootstrapping _cabal-install_.
 
 
 ### `HALCYON_CABAL_POST_BUILD_HOOK`
@@ -682,7 +682,7 @@ Script to execute when building the Cabal layer, before bootstrapping _cabal-ins
 > Magic file:          | `.halcyon/cabal-post-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
-Script to execute when building the Cabal layer, after bootstrapping _cabal-install_.
+Script to execute when building the Cabal directory, after bootstrapping _cabal-install_.
 
 
 ### `HALCYON_CABAL_PRE_UPDATE_HOOK`
@@ -694,7 +694,7 @@ Script to execute when building the Cabal layer, after bootstrapping _cabal-inst
 > Magic file:          | `.halcyon/cabal-pre-update-hook`
 > Script arguments:    | _none_
 
-Script to execute when updating the Cabal layer, before running `cabal update`.
+Script to execute when updating the Cabal directory, before running `cabal update`.
 
 
 ### `HALCYON_CABAL_POST_UPDATE_HOOK`
@@ -706,7 +706,7 @@ Script to execute when updating the Cabal layer, before running `cabal update`.
 > Magic file:          | `.halcyon/cabal-post-update-hook`
 > Script arguments:    | _none_
 
-Script to execute when updating the Cabal layer, after running `cabal update`.
+Script to execute when updating the Cabal directory, after running `cabal update`.
 
 
 ### `HALCYON_CABAL_REBUILD`
@@ -716,7 +716,7 @@ Script to execute when updating the Cabal layer, after running `cabal update`.
 > Type:                | `0` or `1`
 > Command-line option: | `--cabal-rebuild`
 
-Forces Halcyon to rebuild the Cabal layer from scratch, which implies bootstrapping _cabal-install_ again.
+Forces Halcyon to rebuild the Cabal directory from scratch, which implies bootstrapping _cabal-install_ again.
 
 
 ### `HALCYON_CABAL_UPDATE`
@@ -726,11 +726,11 @@ Forces Halcyon to rebuild the Cabal layer from scratch, which implies bootstrapp
 > Type:                | `0` or `1`
 > Command-line option: | `--cabal-update`
 
-Forces Halcyon to update the Cabal layer, which means running `cabal update` again.
+Forces Halcyon to update the Cabal directory, which means running `cabal update` again.
 
 
-Sandbox layer options
----------------------
+Sandbox options
+---------------
 
 ### `HALCYON_SANDBOX_SOURCES`
 
@@ -740,7 +740,7 @@ Sandbox layer options
 > Command-line option: | `--sandbox-sources=…`
 > Magic file:          | `.halcyon/sandbox-sources`
 
-Additional Cabal packages to include in the sandbox layer, as build-time dependencies.
+Additional Cabal packages to include in the sandbox directory, as build-time dependencies.
 
 The packages are made available for installation by running `cabal sandbox add-source`, must be separated by whitespace, and may be specified as:
 
@@ -762,7 +762,7 @@ https://github.com/mietek/text-icu#fpic
 > Command-line option: | `--sandbox-extra-apps=…`
 > Magic file:          | `.halcyon/sandbox-extra-apps`
 
-Additional Haskell applications to include in the sandbox layer, as build-time dependencies.
+Additional Haskell applications to include in the sandbox directory, as build-time dependencies.
 
 The applications must be separated by whitespace, and may be specified as:
 
@@ -820,7 +820,7 @@ The flags must be separated by whitespace.
 > Command-line option: | `--sandbox-extra-os-packages=…`
 > Magic file:          | `.halcyon/sandbox-extra-os-packages`
 
-Additional OS packages to install in the sandbox layer, as build-time dependencies.
+Additional OS packages to install in the sandbox directory, as build-time dependencies.
 
 The packages must be separated by whitespace, and may include a GNU _bash_ regular expression, specified as a _`pattern`_`:` prefix.
 
@@ -842,7 +842,7 @@ linux-(debian|ubuntu):libicu-dev
 > Magic file:          | `.halcyon/sandbox-pre-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
-Script to execute when building the sandbox layer, before running `cabal install`.
+Script to execute when building the sandbox directory, before running `cabal install`.
 
 
 ### `HALCYON_SANDBOX_POST_BUILD_HOOK`
@@ -854,7 +854,7 @@ Script to execute when building the sandbox layer, before running `cabal install
 > Magic file:          | `.halcyon/sandbox-post-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
-Script to execute when building the sandbox layer, after running `cabal install`.
+Script to execute when building the sandbox directory, after running `cabal install`.
 
 
 ### `HALCYON_SANDBOX_REBUILD`
@@ -864,7 +864,7 @@ Script to execute when building the sandbox layer, after running `cabal install`
 > Type:                | `0` or `1`
 > Command-line option: | `--sandbox-rebuild`
 
-Forces Halcyon to rebuild the sandbox layer and the application from scratch, which implies reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
+Forces Halcyon to rebuild the sandbox directory and the application from scratch, which implies reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
 
 
 Self-update options

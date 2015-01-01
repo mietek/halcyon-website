@@ -151,13 +151,13 @@ $ source <( halcyon/halcyon paths )
 Setting environment variables is best done as part of a `.profile` script.
 
 
-#### Layers
+#### Directories
 
-By default, Halcyon requires write access to the `/app` directory, which is where it builds or restores _layers:_
+By default, Halcyon requires write access to the `/app` directory, which is where it builds or restores:
 
-- _GHC layer_, with GHC and the global GHC package database
-- _Cabal layer_, with _cabal-install_ and the Cabal package database
-- _sandbox layer_, with a Cabal sandbox and any additional build-time dependencies
+- _GHC directory_, with GHC and the global GHC package database
+- _Cabal directory_, with _cabal-install_ and the Cabal package database
+- _sandbox directory_, with a Cabal sandbox and any additional build-time dependencies
 
 
 Declaring dependencies
@@ -211,7 +211,7 @@ The Cabal package description format includes the `build-tools` and `extra-libra
 
 #### Sandbox extra apps
 
-Halcyon allows additional applications to be declared for installation in the sandbox layer, by including a [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) magic file.
+Halcyon allows additional applications to be declared for installation in the sandbox directory, by including a [`sandbox-extra-apps`](/reference/#halcyon_sandbox_extra_apps) magic file.
 
 ```
 alex-3.1.3
@@ -225,7 +225,7 @@ Each entry may be a Cabal package label, a directory path, or a _git_ URL.
 
 #### Sandbox extra OS packages
 
-The [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) magic file is used to declare additional OS-specific packages for installation in the sandbox layer.
+The [`sandbox-extra-os-packages`](/reference/#halcyon_sandbox_extra_os_packages) magic file is used to declare additional OS-specific packages for installation in the sandbox directory.
 
 ```
 linux-ubuntu-14:libicu52
@@ -240,7 +240,7 @@ Packages with no patterns are always installed.
 
 #### Sandbox sources
 
-Additional Cabal packages may be made available for installation in the sandbox layer by including a [`sandbox-sources`](/reference/#halcyon_sandbox_sources) magic file.
+Additional Cabal packages may be made available for installation in the sandbox directory by including a [`sandbox-sources`](/reference/#halcyon_sandbox_sources) magic file.
 
 ```
 https://github.com/mietek/text-icu#fpic
@@ -287,9 +287,9 @@ linux-(debian-7|ubuntu-12):libicu48
 ```
 
 
-#### Extra layers
+#### Extra dependencies
 
-Certain applications may require a Haskell development environment to be available at run-time.  To install any of the GHC, Cabal, and sandbox layers together with the application, include an [`extra-layers`](/reference/#halcyon_extra_layers) magic file.
+Certain applications may require a Haskell development environment to be available at run-time.  To install any of the GHC, Cabal, and sandbox directories together with the application, include an [`extra-dependencies`](/reference/#halcyon_extra_dependencies) magic file.
 
 ```
 ghc
@@ -305,11 +305,11 @@ _**Work in progress.**  For updates, please sign up to the [Halcyon announcement
 
 - _[Rebuilding applications](/reference/#halcyon_app_rebuild), [reconfiguring applications](/reference/#halcyon_app_reconfigure), [reinstalling applications](/reference/#halcyon_app_reinstall).  Source hash, constraints hash, magic hash.  Source directory, build directory, install directory.  [Pre-build hook](/reference/#halcyon_pre_build_hook), [post-build hook](/reference/#halcyon_post_build_hook), [pre-install hook](/reference/#halcyon_pre_install_hook), [post-install hook](/reference/#halcyon_post_install_hook)._
 
-- _Swapping multiple GHC layers.  [Rebuilding GHC layers](/reference/#halcyon_ghc_rebuild).  [GHC layer pre-build hook](/reference/#halcyon_ghc_pre_build_hook), [GHC layer post-build hook](/reference/#halcyon_ghc_post_build_hook), GHC layer magic hash._
+- _Swapping multiple GHC directories.  [Rebuilding GHC directories](/reference/#halcyon_ghc_rebuild).  [GHC pre-build hook](/reference/#halcyon_ghc_pre_build_hook), [GHC post-build hook](/reference/#halcyon_ghc_post_build_hook), GHC magic hash._
 
-- _Using custom Cabal repositories.  [Updating Cabal layers](/reference/#halcyon_cabal_update).  [Rebuilding Cabal layers](/reference/#halcyon_cabal_rebuild).  [Cabal layer pre-build hook](/reference/#halcyon_cabal_pre_build_hook), [Cabal layer post-build hook](/reference/#halcyon_cabal_post_build_hook), [Cabal layer pre-update hook](/reference/#halcyon_cabal_pre_update_hook), [Cabal layer post-update hook](/reference/#halcyon_cabal_post_update_hook), Cabal layer magic hash._
+- _Using custom Cabal repositories.  [Updating Cabal directories](/reference/#halcyon_cabal_update).  [Rebuilding Cabal directories](/reference/#halcyon_cabal_rebuild).  [Cabal pre-build hook](/reference/#halcyon_cabal_pre_build_hook), [Cabal post-build hook](/reference/#halcyon_cabal_post_build_hook), [Cabal pre-update hook](/reference/#halcyon_cabal_pre_update_hook), [Cabal post-update hook](/reference/#halcyon_cabal_post_update_hook), Cabal magic hash._
 
-- _Preparing partially-matching sandbox layers.  [Rebuilding sandbox layers](/reference/#halcyon_sandbox_rebuild).  [Sandbox layer pre-build hook](/reference/#halcyon_sandbox_pre_build_hook), [sandbox layer post-build hook](/reference/#halcyon_sandbox_post_build_hook), sandbox layer magic hash._
+- _Preparing partially-matching sandbox directories.  [Rebuilding sandbox directories](/reference/#halcyon_sandbox_rebuild).  [Sandbox pre-build hook](/reference/#halcyon_sandbox_pre_build_hook), [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), sandbox magic hash._
 
 
 ### Storage and caching

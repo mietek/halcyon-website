@@ -73,9 +73,9 @@ Unsurprisingly, the results show first build times are dominated by building san
 
 Halcyon attempts to mitigate the impact of sandbox build times:
 
-1.  Once the sandbox is built, Halcyon archives it as part of the sandbox layer, which is restored during subsequent installs.
+1. Once a sandbox directory is built, Halcyon archives it, and restores it during subsequent builds.
 
-2.  When building a new sandbox, Halcyon locates previously built sandbox layers containing a subset of the required dependencies.  Each matching layer is assigned a score, and the highest scoring layer is used as a base for the new sandbox.
+2. When building a new sandbox directory, Halcyon locates previously built sandboxes containing a subset of the required dependencies.  Each matching sandbox is assigned a score, and the highest scoring sandbox is used as a base for the new sandbox.
 
 Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  An install involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
 
@@ -136,13 +136,13 @@ _hello-apiary_
        Sandbox magic hash:                       <b>ae3848d</b>
        Sandbox extra apps:                       <b>alex-3.1.3</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox direcotry
 -----> Creating sandbox
 -----> Installing sandbox extra apps
        -----> Unpacking app
@@ -162,9 +162,9 @@ _hello-apiary_
        ...
        Installed apiary-1.2.0
 -----> Sandbox built, 81MB
-       Removing documentation from sandbox layer... done, 81MB
-       Stripping sandbox layer... done, 70MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 81MB
+       Stripping sandbox directory... done, 70MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-f00c991.ae3848d-hello-apiary-1.0.tar.gz... done, 12MB
 
 -----> Configuring app
@@ -248,13 +248,13 @@ _hello-happstack_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -262,9 +262,9 @@ _hello-happstack_
        ...
        Installed happstack-lite-7.3.5
 -----> Sandbox built, 65MB
-       Removing documentation from sandbox layer... done, 64MB
-       Stripping sandbox layer... done, 55MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 64MB
+       Stripping sandbox directory... done, 55MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-c1c4c32-hello-happstack-1.0.tar.gz... done, 8.8MB
 
 -----> Configuring app
@@ -341,13 +341,13 @@ _hello-mflow_
        Sandbox magic hash:                       <b>0cda71a</b>
        Sandbox extra apps:                       <b>cpphs-1.18.6</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Installing sandbox extra apps
        -----> Unpacking app
@@ -367,9 +367,9 @@ _hello-mflow_
        ...
        Installed MFlow-0.4.5.9
 -----> Sandbox built, 151MB
-       Removing documentation from sandbox layer... done, 150MB
-       Stripping sandbox layer... done, 130MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 150MB
+       Stripping sandbox directory... done, 130MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-9eb1156.0cda71a-hello-mflow-1.0.tar.gz... done, 23MB
 
 -----> Configuring app
@@ -453,13 +453,13 @@ _hello-miku_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -467,9 +467,9 @@ _hello-miku_
        ...
        Installed miku-2014.11.17
 -----> Sandbox built, 84MB
-       Removing documentation from sandbox layer... done, 84MB
-       Stripping sandbox layer... done, 73MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 84MB
+       Stripping sandbox directory... done, 73MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-957fb97-hello-miku-1.0.tar.gz... done, 13MB
 
 -----> Configuring app
@@ -547,13 +547,13 @@ _hello-scotty_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -561,9 +561,9 @@ _hello-scotty_
        ...
        Installed scotty-0.9.0
 -----> Sandbox built, 83MB
-       Removing documentation from sandbox layer... done, 82MB
-       Stripping sandbox layer... done, 71MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 82MB
+       Stripping sandbox directory... done, 71MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-7535560-hello-scotty-1.0.tar.gz... done, 12MB
 
 -----> Configuring app
@@ -647,13 +647,13 @@ _hello-simple_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -661,9 +661,9 @@ _hello-simple_
        ...
        Installed simple-0.10.0.2
 -----> Sandbox built, 101MB
-       Removing documentation from sandbox layer... done, 100MB
-       Stripping sandbox layer... done, 88MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 100MB
+       Stripping sandbox directory... done, 88MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-a63103a-hello-simple-1.0.tar.gz... done, 15MB
 
 -----> Configuring app
@@ -746,13 +746,13 @@ _hello-snap_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -760,9 +760,9 @@ _hello-snap_
        ...
        Installed snap-core-0.9.6.3
 -----> Sandbox built, 75MB
-       Removing documentation from sandbox layer... done, 75MB
-       Stripping sandbox layer... done, 65MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 75MB
+       Stripping sandbox directory... done, 65MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-03695cd-hello-snap-1.0.tar.gz... done, 11MB
 
 -----> Configuring app
@@ -840,13 +840,13 @@ _hello-spock_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -854,9 +854,9 @@ _hello-spock_
        ...
        Installed Spock-0.7.5.1
 -----> Sandbox built, 104MB
-       Removing documentation from sandbox layer... done, 103MB
-       Stripping sandbox layer... done, 88MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 103MB
+       Stripping sandbox directory... done, 88MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-d33fb1e-hello-spock-1.0.tar.gz... done, 15MB
 
 -----> Configuring app
@@ -942,13 +942,13 @@ _hello-wai_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -956,9 +956,9 @@ _hello-wai_
        ...
        Installed wai-3.0.2
 -----> Sandbox built, 45MB
-       Removing documentation from sandbox layer... done, 44MB
-       Stripping sandbox layer... done, 39MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 44MB
+       Stripping sandbox directory... done, 39MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-270c17b-hello-wai-1.0.tar.gz... done, 6.4MB
 
 -----> Configuring app
@@ -1039,13 +1039,13 @@ _hello-wheb_
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -1053,9 +1053,9 @@ _hello-wheb_
        ...
        Installed Wheb-0.3.1.0
 -----> Sandbox built, 146MB
-       Removing documentation from sandbox layer... done, 145MB
-       Stripping sandbox layer... done, 128MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 145MB
+       Stripping sandbox directory... done, 128MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-410ca91-hello-wheb-1.0.tar.gz... done, 22MB
 
 -----> Configuring app
@@ -1145,13 +1145,13 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox layer
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
        Resolving dependencies...
@@ -1159,9 +1159,9 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
        ...
        Installed yesod-1.4.1.1
 -----> Sandbox built, 251MB
-       Removing documentation from sandbox layer... done, 250MB
-       Stripping sandbox layer... done, 217MB
------> Archiving sandbox layer
+       Removing documentation from sandbox directory... done, 250MB
+       Stripping sandbox directory... done, 217MB
+-----> Archiving sandbox directory
        Creating halcyon-sandbox-141ed8a-hello-yesod-1.0.tar.gz... done, 38MB
 
 -----> Configuring app

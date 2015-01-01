@@ -173,7 +173,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 
 - current version of _mueval_, as a [sandbox source](/guide/#sandbox-sources)
 - [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
-- GHC and sandbox layers, as [extra layers](/guide/#extra-layers)
+- GHC and sandbox directories, as [extra dependencies](/guide/#extra-dependencies)
 - static website content, as [extra data files](/guide/#extra-data-files)
 
 **Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1GB.
@@ -276,7 +276,7 @@ Try Haste
     - _libbz2_ and _libgmp_, as [sandbox extra OS packages](/guide/#sandbox-extra-os-packages)
     - [extra configure flags](/reference/#halcyon_extra_configure_flags) for Haste
     - [pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
-- GHC and Cabal layers, as [extra layers](/guide/#extra-layers)
+- GHC and Cabal directories, as [extra dependencies](/guide/#extra-dependencies)
 - static website content, as [extra data files](/guide/#extra-data-files)
 
 **Note:**  Deploying this example may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1GB.

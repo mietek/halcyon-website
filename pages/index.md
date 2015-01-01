@@ -36,7 +36,7 @@ Halcyon is a system for deploying Haskell web and non-web applications, powering
 
 - **Simple.**  Halcyon can install any Haskell application with a single command, building all required dependencies on the fly.
 
-- **Fast.**  All build results are archived in _layers,_ which means incremental builds can be ready in under 30 seconds.
+- **Fast.**  All build results are archived and cached, which means incremental builds can be ready in under 30 seconds.
 
 - **Reliable.**  Halcyon allows all build-time and run-time dependencies to be explicitly declared, aiming to achieve 100% reproducible results.
 
@@ -163,23 +163,23 @@ The [`halcyon install`](/reference/#halcyon-install) command can also install a 
 <div class="toggle">
 <a class="toggle-button" data-target="log2" href="" title="Toggle">Toggle</a>
 <pre class="toggle" id="log2"><code>$ halcyon install
------> Installing GHC and Cabal layers
+-----> Installing GHC and Cabal
        External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
 
------> Restoring GHC layer
+-----> Restoring GHC directory
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.3.tar.gz... done
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
 
------> Locating Cabal layers
+-----> Locating Cabal directories
        Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
------> Restoring Cabal layer
+-----> Restoring Cabal directory
        Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done, 172MB
 
------> GHC and Cabal layers installed
+-----> GHC and Cabal installed
 </code></pre>
 </div>
 
