@@ -177,6 +177,8 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 - GHC and sandbox directories, as [extra dependencies](/guide/#extra-dependencies)
 - static website content, as [extra data files](/guide/#extra-data-files)
 
+**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
+
 
 ### Usage
 
@@ -189,8 +191,6 @@ $ MUEVAL_TIMEOUT=8 PORT=8080 tryhaskell
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy to Heroku</a>
-
-**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
 
 
 Try Idris
@@ -211,6 +211,8 @@ Try Idris
     - _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 - static website content, as [extra data files](/guide/#extra-data-files)
 
+**Note:**  Requires a machine with at least 1 GB of memory in order to run.
+
 
 <aside>
 <a class="micro face brian-mckenna" href="https://twitter.com/puffnfresh/status/527902645928087553"></a>
@@ -230,8 +232,6 @@ $ tryidris 8080
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryidris">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy to Heroku</a>
-
-**Note:**  Requires a machine with at least 1 GB of memory in order to run.
 
 
 Try PureScript
@@ -293,6 +293,8 @@ Try Haste
 - GHC and Cabal directories, as [extra dependencies](/guide/#extra-dependencies)
 - static website content, as [extra data files](/guide/#extra-data-files)
 
+**Note:**  Deploying this example may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.
+
 
 <aside>
 <a class="micro face anton-ekblad" href="https://github.com/valderman/haste-compiler"></a>
@@ -315,8 +317,6 @@ $ tryplayground 8080
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaste">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy to Heroku</a>
-
-**Note:**  Deploying this example may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.
 
 
 Gitit
