@@ -15,8 +15,8 @@ page-head: |
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
-<div><nav><ul class="toc toc1 menu open">
-<li><a href="#results">Results</a></li>
+<div><nav><ul class="toc menu open">
+<li class="space"><a href="#shootout-results">Shootout results</a></li>
 <li><a href="#hello-apiary"><i>hello-apiary</i></a></li>
 <li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
 <li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
@@ -30,15 +30,15 @@ Simple applications, intended to compare build times and sizes across most Haske
 <li><a href="#hello-yesod"><i>hello-yesod</i></a></li>
 </ul></nav></div>
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.
-
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
-
 For advanced applications, see the [examples](/examples/).
 
+All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
 
-Results
--------
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
+
+
+Shootout results
+----------------
 
 <div class="chart" id="shootout-chart"></div>
 
@@ -77,7 +77,7 @@ hello-yesod,10,521,535,537,251MB,25MB
 
 The columns included in the results are:
 
-- Example name
+- Application name
 - GHC and Cabal restore time
 - Sandbox build time
 - Application build time

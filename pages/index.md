@@ -44,7 +44,7 @@ Halcyon is a system for installing Haskell applications.
 
 - **Fast.**  Halcyon automatically archives, caches, and restores all build products, using both local and remote storage. [More…](/guide/#storage-and-caching)
 
-- Halcyon can reuse previously built Cabal sandboxes as a base for building new sandboxes. [More…](/shootout/#results)
+- Halcyon can reuse previously built Cabal sandboxes as a base for building new sandboxes. [More…](/shootout/#shootout-results)
 
 - Halcyon runs on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.  [More…](/guide/#setting-up-a-machine)
 
@@ -132,9 +132,9 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 Examples
 --------
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.
+All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
 
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
 
 
 ### Example applications
@@ -174,6 +174,21 @@ Additionally, all examples can be deployed in one click to a new [DigitalOcean](
 ### “Hello, world!” shootout
 
 [Simple applications](/shootout/), intended to compare build times and sizes across most Haskell web frameworks.
+
+<div><nav><ul class="toc menu open">
+<li class="space"><a href="/shootout/#shootout-results">Shootout results</a></li>
+<li><a href="/shootout/#hello-apiary"><i>hello-apiary</i></a></li>
+<li><a href="/shootout/#hello-happstack"><i>hello-happstack</i></a></li>
+<li><a href="/shootout/#hello-mflow"><i>hello-mflow</i></a></li>
+<li><a href="/shootout/#hello-miku"><i>hello-miku</i></a></li>
+<li><a href="/shootout/#hello-scotty"><i>hello-scotty</i></a></li>
+<li><a href="/shootout/#hello-simple"><i>hello-simple</i></a></li>
+<li><a href="/shootout/#hello-snap"><i>hello-snap</i></a></li>
+<li><a href="/shootout/#hello-spock"><i>hello-spock</i></a></li>
+<li><a href="/shootout/#hello-wai"><i>hello-wai</i></a></li>
+<li><a href="/shootout/#hello-wheb"><i>hello-wheb</i></a></li>
+<li><a href="/shootout/#hello-yesod"><i>hello-yesod</i></a></li>
+</ul></nav></div>
 
 
 Documentation

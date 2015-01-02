@@ -45,11 +45,11 @@ Real-world Haskell applications, demonstrating advanced usage of Halcyon.
 </ul>
 </nav></div>
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.
-
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
-
 For simple applications, see the [shootout](/shootout/).
+
+All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
+
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
 
 
 CircuitHub
