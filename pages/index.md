@@ -32,9 +32,9 @@ Halcyon
 Halcyon is a system for installing Haskell applications.
 
 
-### Features
+#### Simple
 
-- **Simple.**  Halcyon uses regular Cabal packages, sandboxes, and repositories, such as Hackage.
+- Halcyon uses regular Cabal packages, sandboxes, and repositories, such as Hackage.
 
 - Halcyon does not require GHC to be installed, as it can install the right version of GHC for the application.
 
@@ -42,7 +42,10 @@ Halcyon is a system for installing Haskell applications.
 
 - Halcyon can install applications directly from _git_ repositories.  [More…](/guide/#basic-usage)
 
-- **Fast.**  Halcyon automatically archives, caches, and restores all build products, using both local and remote storage. [More…](/guide/#storage-and-caching)
+
+#### Fast
+
+- Halcyon automatically archives, caches, and restores all build products, using both local and remote storage. [More…](/guide/#storage-and-caching)
 
 - Halcyon can reuse previously built Cabal sandboxes as a base for building new sandboxes. [More…](/shootout/#shootout-results)
 
@@ -50,7 +53,17 @@ Halcyon is a system for installing Haskell applications.
 
 - Halcyon can use the same archives on multiple systems, from development, to continuous integration and deployment.  [More…](/guide/#setting-up-multiple-machines)
 
-- **Reliable.**  Halcyon has been used in production since June 2014.  [More…](/examples/#circuithub)
+
+<aside>
+<a class="micro face mietek" href="#about"></a>
+<blockquote>_“If Halcyon is not helping you install applications easily, there is a bug in Halcyon.”_</blockquote>
+<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
+</aside>
+
+
+#### Reliable
+
+- Halcyon has been used in production since June 2014.  [More…](/examples/#circuithub)
 
 - Halcyon includes workarounds for many _cabal-install_ issues, including [#220](https://github.com/haskell/cabal/issues/220),
 [#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
@@ -59,7 +72,10 @@ Halcyon is a system for installing Haskell applications.
 
 - Halcyon supports declaring dependencies and version constraints in a format easy to integrate with other tools.  [More…](/guide/#declaring-dependencies)
 
-- **Powerful.**  Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
+
+#### Powerful
+
+- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
 
 - Halcyon allows _git_ repositories to be declared as sandbox sources.  [More…](/guide/#sandbox-sources)
 
@@ -82,13 +98,6 @@ The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a>
 Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues/).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues/) for problems with the documentation.
 
 Need commercial support?  Contact the [author](#about) directly.
-
-
-<aside>
-<a class="micro face mietek" href="#about"></a>
-<blockquote>_“If Halcyon is not helping you install applications easily, there is a bug in Halcyon.”_</blockquote>
-<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
-</aside>
 
 
 Usage
@@ -191,6 +200,13 @@ Additionally, all examples can be deployed in one click to a new [DigitalOcean](
 </ul></nav></div>
 
 
+<aside>
+<a class="micro face brian-mckenna" href=""></a>
+<blockquote>_“Deployment of Haskell applications is getting interesting due to Miëtek’s Halcyon project.”_</blockquote>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+</aside>
+
+
 Documentation
 -------------
 
@@ -239,9 +255,6 @@ This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or
 
 
 <aside>
-<a class="micro face brian-mckenna" href=""></a>
-<blockquote>_“Deployment of Haskell applications is getting interesting due to Miëtek’s Halcyon project.”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 <a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
 <blockquote>_“Check out Miëtek’s [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
 <p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
