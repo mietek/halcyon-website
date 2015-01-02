@@ -19,16 +19,6 @@ User’s guide
 <div><nav id="main-toc"></nav></div>
 
 
-Quick start
------------
-
-Halcyon can be installed in one command on most recent Linux distributions.
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
-
-Halcyon is now ready to install any of the [example applications](/examples/) or [shootout entries](/shootout/).
-
-
 Basic usage
 -----------
 
@@ -145,15 +135,6 @@ Halcyon is designed to install applications by building all required dependencie
 The build machine must be capable of compiling and linking Haskell programs.  At least 4 GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2 GB of memory installed.
 
 
-### Installing Halcyon
-
-Halcyon can be installed in one command on most recent Linux distributions.
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
-
-The Halcyon setup script ensures the necessary OS packages are installed, clones the Halcyon _git_ repository, and sets up the needed environment variables.
-
-
 #### Supported platforms
 
 Currently, Halcyon fully supports the `x86_64` architecture, and the following Linux distributions:
@@ -162,6 +143,15 @@ Currently, Halcyon fully supports the `x86_64` architecture, and the following L
 - Debian 6 and 7
 - Fedora 19 and 20
 - Ubuntu 10.04, 12.04, and 14.04
+
+
+### Installing Halcyon
+
+Halcyon can be installed in one command on most recent Linux distributions.
+
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
+
+The Halcyon setup script ensures the necessary OS packages are installed, clones the Halcyon _git_ repository, and sets up the needed environment variables.
 
 
 #### Setup details

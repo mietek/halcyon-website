@@ -94,7 +94,7 @@ Need commercial support?  Contact the [author](#about) directly.
 Usage
 -----
 
-The [`halcyon install`](#usage) command is intended to be used instead of `cabal install`.
+The [`halcyon install`](/guide/#basic-usage) command is intended to be used instead of `cabal install`.  [More…](/guide/#basic-usage)
 
 <div class="toggle">
 <a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
