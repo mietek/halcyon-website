@@ -97,6 +97,37 @@ Command-line options take precedence over environment variables, which in turn t
 Using magic files is the recommended method of specifying application-specific options, as it does not require the user to perform any additional actions.
 
 
+### Base and prefix directories
+
+By default, Halcyon requires write access to the `/app` directory.  This is done for two reasons:
+
+1. `/app` is the default path to the base directory, defined by [`HALCYON_BASE`](/reference/#halcyon_base), which is where Halcyon builds or restores the following directories:
+
+    - The _GHC directory_, with GHC and the global GHC package database
+    - The _Cabal directory_, with _cabal-install_ and the Cabal package database
+    - The _sandbox directory_, with a Cabal sandbox and any additional build-time dependencies
+
+    GHC and Cabal sandboxes are not easily relocatable.  Changing the base directory will require Halcyon to rebuild all previously built archives from scratch, and is not recommended for a quick start.
+
+2. `/app` is the default path to the prefix directory, defined by [`HALCYON_PREFIX`](/reference/#halcyon_prefix), which is where Halcyon installs applications.
+
+    Changing the prefix directory can be easily done on a per-installation basis, as it will only cause an application-level change, and require an incremental build.
+
+
+### Storage and caching
+
+Halcyon supports building and installing applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent storage.
+
+All files are cached locally on the build machine.  The cache directory is defined by [`HALCYON_CACHE`](/reference/#halcyon_cache), which defaults to `/var/tmp/halcyon-cache`.
+
+In order to delete the entire contents of the cache before installing an application, set [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) to `1`.
+
+
+#### Public storage
+
+By default, Halcyon downloads any needed files from a public read-only location, defined by [`HALCYON_PUBLIC_STORAGE`](/reference/#halcyon_public_storage).  To prevent using public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1`.
+
+
 Setting up a machine
 --------------------
 
@@ -114,6 +145,15 @@ Halcyon is designed to install applications by building all required dependencie
 The build machine must be capable of compiling and linking Haskell programs.  At least 4 GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2 GB of memory available.
 
 
+### Installing Halcyon
+
+Halcyon can be installed in one command on most recent Linux distributions.
+
+<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
+
+The Halcyon setup script ensures the necessary OS packages are installed, clones the Halcyon _git_ repository, and sets up the needed environment variables.
+
+
 #### Supported platforms
 
 Currently, Halcyon fully supports the `x86_64` architecture, and the following Linux distributions:
@@ -122,15 +162,6 @@ Currently, Halcyon fully supports the `x86_64` architecture, and the following L
 - Debian 6 and 7
 - Fedora 19 and 20
 - Ubuntu 10.04, 12.04, and 14.04
-
-
-### Installing Halcyon
-
-Halcyon can be installed in one command on most recent Linux distributions.
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
-
-The Halcyon setup script ensures the necessary OS packages are installed, clones the Halcyon _git_ repository, and sets up the needed environment variables.
 
 
 #### Setup details
@@ -149,23 +180,6 @@ $ source <( halcyon/halcyon paths )
 ```
 
 Setting environment variables is best done as part of a `.profile` script.
-
-
-#### Base and prefix directories
-
-By default, Halcyon requires write access to the `/app` directory.  This is done for two reasons:
-
-1. `/app` is the default path to the base directory, defined by [`HALCYON_BASE`](/reference/#halcyon_base), which is where Halcyon builds or restores the following directories:
-
-    - The _GHC directory_, with GHC and the global GHC package database
-    - The _Cabal directory_, with _cabal-install_ and the Cabal package database
-    - The _sandbox directory_, with a Cabal sandbox and any additional build-time dependencies
-
-    GHC and Cabal sandboxes are not easily relocatable.  Changing the base directory will require Halcyon to rebuild all previously built archives from scratch, and is not recommended for a quick start.
-
-2. `/app` is the default path to the prefix directory, defined by [`HALCYON_PREFIX`](/reference/#halcyon_prefix), which is where Halcyon installs applications.
-
-    Changing the prefix directory can be easily done on a per-installation basis, as it will only cause an application-level change, and require an incremental build.
 
 
 Declaring dependencies
@@ -304,36 +318,6 @@ ghc
 ```
 
 
-Advanced usage
---------------
-
-_**Work in progress.**  For updates, please follow <a href="https://twitter.com/mietek">@mietek</a>._
-
-- _Archive names.  Tags._
-
-- _[Rebuilding applications](/reference/#halcyon_app_rebuild), [reconfiguring applications](/reference/#halcyon_app_reconfigure), [reinstalling applications](/reference/#halcyon_app_reinstall).  Source hash, constraints hash, magic hash.  Source directory, build directory, install directory.  [Pre-build hook](/reference/#halcyon_pre_build_hook), [post-build hook](/reference/#halcyon_post_build_hook), [pre-install hook](/reference/#halcyon_pre_install_hook), [post-install hook](/reference/#halcyon_post_install_hook)._
-
-- _Swapping multiple GHC versions.  [Rebuilding GHC directories](/reference/#halcyon_ghc_rebuild).  [GHC pre-build hook](/reference/#halcyon_ghc_pre_build_hook), [GHC post-build hook](/reference/#halcyon_ghc_post_build_hook), GHC magic hash._
-
-- _Using custom Cabal repositories.  [Updating Cabal directories](/reference/#halcyon_cabal_update).  [Rebuilding Cabal directories](/reference/#halcyon_cabal_rebuild).  [Cabal pre-build hook](/reference/#halcyon_cabal_pre_build_hook), [Cabal post-build hook](/reference/#halcyon_cabal_post_build_hook), [Cabal pre-update hook](/reference/#halcyon_cabal_pre_update_hook), [Cabal post-update hook](/reference/#halcyon_cabal_post_update_hook), Cabal magic hash._
-
-- _Preparing partially-matching sandboxes.  [Rebuilding sandbox directories](/reference/#halcyon_sandbox_rebuild).  [Sandbox pre-build hook](/reference/#halcyon_sandbox_pre_build_hook), [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), sandbox magic hash._
-
-
-### Storage and caching
-
-Halcyon supports building and installing applications on separate machines, without requiring the machines involved to communicate directly, or to be equipped with permanent storage.
-
-All files are cached locally on the build machine.  The cache directory is defined by [`HALCYON_CACHE`](/reference/#halcyon_cache), which defaults to `/var/tmp/halcyon-cache`.
-
-In order to delete the entire contents of the cache before installing an application, set [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) to `1`.
-
-
-#### Public storage
-
-By default, Halcyon downloads any needed files from a public read-only location, defined by [`HALCYON_PUBLIC_STORAGE`](/reference/#halcyon_public_storage).  To prevent using public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1`.
-
-
 Setting up multiple machines
 ----------------------------
 
@@ -372,3 +356,19 @@ $ export HALCYON_S3_BUCKET=...
 The default S3 endpoint can only be used for buckets located in the US Standard region.  To use a bucket located in a different region, set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the address of the appropriate [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region).
 
 By default, all uploaded files are assigned the `private` [S3 <abbr title="Access control list">ACL</abbr>](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html).  To make future uploads publicly available, set [`HALCYON_S3_ACL`](/reference/#halcyon_s3_acl) to `public-read`.
+
+
+Advanced usage
+--------------
+
+_**Work in progress.**  For updates, please follow <a href="https://twitter.com/mietek">@mietek</a>._
+
+- _Archive names.  Tags._
+
+- _[Rebuilding applications](/reference/#halcyon_app_rebuild), [reconfiguring applications](/reference/#halcyon_app_reconfigure), [reinstalling applications](/reference/#halcyon_app_reinstall).  Source hash, constraints hash, magic hash.  Source directory, build directory, install directory.  [Pre-build hook](/reference/#halcyon_pre_build_hook), [post-build hook](/reference/#halcyon_post_build_hook), [pre-install hook](/reference/#halcyon_pre_install_hook), [post-install hook](/reference/#halcyon_post_install_hook)._
+
+- _Swapping multiple GHC versions.  [Rebuilding GHC directories](/reference/#halcyon_ghc_rebuild).  [GHC pre-build hook](/reference/#halcyon_ghc_pre_build_hook), [GHC post-build hook](/reference/#halcyon_ghc_post_build_hook), GHC magic hash._
+
+- _Using custom Cabal repositories.  [Updating Cabal directories](/reference/#halcyon_cabal_update).  [Rebuilding Cabal directories](/reference/#halcyon_cabal_rebuild).  [Cabal pre-build hook](/reference/#halcyon_cabal_pre_build_hook), [Cabal post-build hook](/reference/#halcyon_cabal_post_build_hook), [Cabal pre-update hook](/reference/#halcyon_cabal_pre_update_hook), [Cabal post-update hook](/reference/#halcyon_cabal_post_update_hook), Cabal magic hash._
+
+- _Preparing partially-matching sandboxes.  [Rebuilding sandbox directories](/reference/#halcyon_sandbox_rebuild).  [Sandbox pre-build hook](/reference/#halcyon_sandbox_pre_build_hook), [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), sandbox magic hash._

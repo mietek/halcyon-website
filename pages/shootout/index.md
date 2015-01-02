@@ -42,6 +42,25 @@ Results
 
 <div class="chart" id="shootout-chart"></div>
 
+Installing an application for the first time is dominated by building the sandbox containing the application dependencies.
+
+Halcyon attempts to mitigate the impact of sandbox build times:
+
+1. Once a sandbox directory is built, Halcyon archives it, and restores it during subsequent installations.
+
+2. When building a new sandbox directory, Halcyon locates previously built sandboxes containing a subset of the required dependencies.  Each matching sandbox is assigned a score, and the highest scoring sandbox is used as a base for the new sandbox.
+
+Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  An installation involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
+
+If no build is needed, the application is restored from a previously archived install directory.  This allows installing most of the [example applications](/examples/) and shootout entries in under 10 seconds.
+
+
+<aside>
+<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
+<blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+</aside>
+
 
 ### Methodology
 
@@ -66,28 +85,6 @@ The columns included in the results are:
 The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
 
 The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
-
-
-### Commentary
-
-Unsurprisingly, the results show first installation times are dominated by building sandboxes.
-
-Halcyon attempts to mitigate the impact of sandbox build times:
-
-1. Once a sandbox directory is built, Halcyon archives it, and restores it during subsequent installations.
-
-2. When building a new sandbox directory, Halcyon locates previously built sandboxes containing a subset of the required dependencies.  Each matching sandbox is assigned a score, and the highest scoring sandbox is used as a base for the new sandbox.
-
-Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  An installation involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
-
-If no build is needed, the application is restored from a previously archived install directory.  This allows installing most of the [example applications](/examples/) and shootout entries in under 10 seconds.
-
-
-<aside>
-<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
-<blockquote>_“Check out [Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
-<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
-</aside>
 
 
 _hello-apiary_
