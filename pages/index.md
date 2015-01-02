@@ -69,6 +69,8 @@ Halcyon is a system for installing Haskell applications.
 - Halcyon includes workarounds for many _cabal-install_ issues, such as [#220](https://github.com/haskell/cabal/issues/220),
 [#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
 
+- Halcyon has been used in production since June 2014.  [More…](/examples/#circuithub)
+
 
 <aside>
 <a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
