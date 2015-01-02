@@ -1,6 +1,6 @@
 ---
-title: Haskell application installer
-page-description: Halcyon is a system for building and installing Haskell applications.
+title: System for installing Haskell applications
+page-description: Halcyon is a system for installing Haskell applications.
 page-class: hero tweak-gallery tweak-listings
 page-data:
 - key: min-section-link-level
