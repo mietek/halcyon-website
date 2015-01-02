@@ -15,10 +15,9 @@ page-head: |
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
-All examples can be installed with a single command on regular machines running most recent Linux distributions.
+All examples can be installed in one command on regular machines running most recent Linux distributions.
 
-Additionally, all examples can be deployed to a new [DigitalOcean](https://digitalocean.com/) droplet or to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
-
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
 
 <div><nav><ul class="toc toc1 menu open">
 <li><a href="#shootout-results">Shootout results</a></li>

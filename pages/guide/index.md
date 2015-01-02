@@ -126,11 +126,11 @@ Currently, Halcyon fully supports the `x86_64` architecture, and the following L
 
 ### Installing Halcyon
 
-Most OS-specific setup needed for Halcyon can be performed by a single command.
+Halcyon can be installed in one command on most recent Linux distributions.
 
 <pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
 
-The Halcyon setup script installs the necessary OS packages, installs Halcyon, and sets up the needed environment variables.
+The Halcyon setup script ensures the necessary OS packages are installed, clones the Halcyon _git_ repository, and sets up the needed environment variables.
 
 
 #### Setup details
@@ -307,7 +307,7 @@ ghc
 Advanced usage
 --------------
 
-_**Work in progress.**  For updates, please sign up to the [Halcyon announcements list](http://eepurl.com/8N3tj), or follow <a href="https://twitter.com/mietek">@mietek</a>._
+_**Work in progress.**  For updates, please follow <a href="https://twitter.com/mietek">@mietek</a>._
 
 - _Archive names.  Tags._
 
