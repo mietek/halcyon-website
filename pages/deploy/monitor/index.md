@@ -8,8 +8,8 @@ page-footer: |
 ---
 
 
-[Haskell on DigitalOcean](/deploy) —<br> Monitor
-================================================
+[Haskell on DigitalOcean](/deploy/) —<br> Monitor
+=================================================
 
 
 ### DigitalOcean account
