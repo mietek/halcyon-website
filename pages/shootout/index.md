@@ -15,10 +15,6 @@ page-head: |
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
-
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
-
 <div><nav><ul class="toc toc1 menu open">
 <li><a href="#results">Results</a></li>
 <li><a href="#hello-apiary"><i>hello-apiary</i></a></li>
@@ -34,6 +30,10 @@ Additionally, all examples can be deployed in one click to a new [DigitalOcean](
 <li><a href="#hello-yesod"><i>hello-yesod</i></a></li>
 </ul></nav></div>
 
+All examples can be installed in one command on regular machines running most recent Linux distributions.
+
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
+
 For advanced applications, see the [examples](/examples/).
 
 
@@ -45,9 +45,9 @@ Results
 
 #### Comments
 
-Installing an application for the first time is dominated by building the sandbox containing the application dependencies.
+The time spent installing a Haskell application is dominated by building application dependencies.
 
-Halcyon attempts to mitigate the impact of sandbox build times:
+Halcyon keeps application dependencies in a Cabal sandbox, and attempts to mitigate the impact of sandbox build times:
 
 1. Once a sandbox directory is built, Halcyon archives it, and restores it during subsequent installations.
 
@@ -152,7 +152,7 @@ $ PORT=8080 hello-apiary
 -----> Restoring Cabal directory
        Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-13.tar.gz... done, 174MB
 
------> Building sandbox direcotry
+-----> Building sandbox directory
 -----> Creating sandbox
 -----> Installing sandbox extra apps
        -----> Unpacking app
