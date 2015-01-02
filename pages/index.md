@@ -75,7 +75,7 @@ Halcyon is a system for installing Haskell applications.
 
 #### Powerful
 
-- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
+- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
 
 - Halcyon allows _git_ repositories to be declared as sandbox sources.  [More…](/guide/#sandbox-sources)
 
@@ -143,7 +143,7 @@ Examples
 
 All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
 
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
 
 
 ### Example applications
@@ -203,7 +203,7 @@ Additionally, all examples can be deployed in one click to a new [DigitalOcean](
 <aside>
 <a class="micro face brian-mckenna" href=""></a>
 <blockquote>_“Deployment of Haskell applications is getting interesting due to Miëtek’s Halcyon project.”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 </aside>
 
 
@@ -257,5 +257,5 @@ This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or
 <aside>
 <a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
 <blockquote>_“Check out Miëtek’s [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
-<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 </aside>
