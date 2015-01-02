@@ -15,10 +15,6 @@ Example applications { .with-toc }
 
 Real-world Haskell applications, demonstrating advanced usage of Halcyon.
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
-
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
-
 
 </section></div>
 <div class="gallery-background">
@@ -49,6 +45,10 @@ Additionally, all examples can be deployed in one click to a new [DigitalOcean](
 </ul>
 </nav></div>
 
+All examples can be installed in one command on regular machines running most recent Linux distributions.
+
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
+
 For simple applications, see the [shootout](/shootout/).
 
 
@@ -70,7 +70,7 @@ Using Halcyon in production since June 2014.
 
 - _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 - _libpcre_, as a [sandbox extra OS package](/guide/#sandbox-extra-os-packages)
-- private Cabal packages, as [sandbox sources](/guide/#sandbox-sources)
+- Private Cabal packages, as [sandbox sources](/guide/#sandbox-sources)
 
 
 <aside>
@@ -100,7 +100,7 @@ Using Halcyon in production since July 2014.
 #### Extra dependencies
 
 - _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
-- static website content, as [extra data files](/guide/#extra-data-files)
+- Static website content, as [extra data files](/guide/#extra-data-files)
 
 
 <aside>
@@ -139,8 +139,8 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 - _alex_ and _happy_, as [sandbox extra apps](/guide/#sandbox-extra-apps), with version constraints
 - _libicu_, for build-time and run-time use, as a [sandbox extra OS package](/guide/#sandbox-extra-os-packages) and an [extra OS package](/guide/#extra-os-packages)
-- patched version of _text-icu_, as a [sandbox source](/guide/#sandbox-sources)
-- static website content, as [extra data files](/guide/#extra-data-files)
+- Patched version of _text-icu_, as a [sandbox source](/guide/#sandbox-sources)
+- Static website content, as [extra data files](/guide/#extra-data-files)
 
 **Note:**  The patched version of _text-icu_ is needed to work around Cabal issue [#2207](https://github.com/haskell/cabal/issues/2207).
 
@@ -172,12 +172,12 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 
 #### Extra dependencies
 
-- current version of _mueval_, as a [sandbox source](/guide/#sandbox-sources)
-- [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
+- Current version of _mueval_, as a [sandbox source](/guide/#sandbox-sources)
+- [Sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
 - GHC and sandbox directories, as [extra dependencies](/guide/#extra-dependencies)
-- static website content, as [extra data files](/guide/#extra-data-files)
+- Static website content, as [extra data files](/guide/#extra-data-files)
 
-**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
+**Note:**  Deploying Try Haskell may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
 
 
 ### Usage
@@ -207,11 +207,11 @@ Try Idris
 
 #### Extra dependencies
 
-- [pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Idris, with version constraints and extra dependencies:
+- [Pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Idris, with version constraints and extra dependencies:
     - _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
-- static website content, as [extra data files](/guide/#extra-data-files)
+- Static website content, as [extra data files](/guide/#extra-data-files)
 
-**Note:**  Requires a machine with at least 1 GB of memory in order to run.
+**Note:**  Try Idris requires a machine with at least 1 GB of memory in order to run.
 
 
 <aside>
@@ -248,7 +248,7 @@ Try PureScript
 
 #### Extra dependencies
 
-None.
+> _None_
 
 
 <aside>
@@ -286,14 +286,14 @@ Try Haste
 #### Extra dependencies
 
 - _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
-- [pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Haste, with version constraints and extra dependencies:
+- [Pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Haste, with version constraints and extra dependencies:
     - _libbz2_ and _libgmp_, as [sandbox extra OS packages](/guide/#sandbox-extra-os-packages)
-    - [extra configure flags](/reference/#halcyon_extra_configure_flags) for Haste
-    - [pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
+    - [Extra configure flags](/reference/#halcyon_extra_configure_flags) for Haste
+    - [Pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
 - GHC and Cabal directories, as [extra dependencies](/guide/#extra-dependencies)
-- static website content, as [extra data files](/guide/#extra-data-files)
+- Static website content, as [extra data files](/guide/#extra-data-files)
 
-**Note:**  Deploying this example may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.
+**Note:**  Deploying Try Haste may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.
 
 
 <aside>
@@ -333,7 +333,7 @@ Wiki with _git_ file storage.
 
 #### Extra dependencies
 
-None.
+> _None_
 
 
 <aside>
