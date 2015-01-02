@@ -173,6 +173,8 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy to Heroku</a>
 
+**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
+
 
 #### Extra dependencies
 
@@ -180,8 +182,6 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 - [sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
 - GHC and sandbox directories, as [extra dependencies](/guide/#extra-dependencies)
 - static website content, as [extra data files](/guide/#extra-data-files)
-
-**Note:**  Deploying this example may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
 
 
 Try Idris
@@ -204,6 +204,8 @@ Try Idris
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryidris">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy to Heroku</a>
+
+**Note:**  Requires a machine with at least 1 GB of memory available to run.
 
 
 #### Extra dependencies
@@ -275,6 +277,8 @@ Try Haste
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaste">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy to Heroku</a>
 
+**Note:**  Deploying this example may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.
+
 
 #### Extra dependencies
 
@@ -286,8 +290,6 @@ Try Haste
     - [pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
 - GHC and Cabal directories, as [extra dependencies](/guide/#extra-dependencies)
 - static website content, as [extra data files](/guide/#extra-data-files)
-
-**Note:**  Deploying this example may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.
 
 
 <aside>
