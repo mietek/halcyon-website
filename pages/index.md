@@ -34,42 +34,38 @@ Halcyon is a system for installing Haskell applications.
 
 ### Features
 
-- Halcyon uses regular Cabal packages, sandboxes, and repositories, such as Hackage.
-
-- Halcyon supports most recent GHC versions, including GHC 7.8.4.  [More…](/reference/#halcyon_ghc_version)
+- **Simple.**  Halcyon uses regular Cabal packages, sandboxes, and repositories, such as Hackage.
 
 - Halcyon does not require GHC to be installed, as it can install the right version of GHC for the application.
 
+- Halcyon supports most recent GHC versions, including GHC 7.8.4.  [More…](/reference/#halcyon_ghc_version)
+
 - Halcyon can install applications directly from _git_ repositories.  [More…](/guide/#basic-usage)
 
-- Halcyon automatically archives, caches, and restores all build products, using both local and remote storage. [More…](/guide/#storage-and-caching)
-
-- Halcyon runs on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.  [More…](/guide/#setting-up-a-machine)
+- **Fast.**  Halcyon automatically archives, caches, and restores all build products, using both local and remote storage. [More…](/guide/#storage-and-caching)
 
 - Halcyon can reuse previously built Cabal sandboxes as a base for building new sandboxes. [More…](/shootout/#results)
 
-- Halcyon supports declaring dependencies and version constraints in a format easy to integrate with other tools.  [More…](/guide/#declaring-dependencies)
-
-- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex_ and _happy_.  [More…](/guide/#sandbox-extra-apps)
-
-- Halcyon allows native OS packages to be declared and installed in a cross-platform fashion.  [More…](/guide/#sandbox-extra-os-packages)
-
-- Halcyon allows _git_ repositories to be declared as sandbox sources.  [More…](/guide/#sandbox-sources)
+- Halcyon runs on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.  [More…](/guide/#setting-up-a-machine)
 
 - Halcyon can use the same archives on multiple systems, from development, to continuous integration and deployment.  [More…](/guide/#setting-up-multiple-machines)
 
-- Halcyon uses Amazon S3 buckets for public and private remote storage.
+- **Reliable.**  Halcyon has been used in production since June 2014.  [More…](/examples/#circuithub)
+
+- Halcyon includes workarounds for many _cabal-install_ issues, including [#220](https://github.com/haskell/cabal/issues/220),
+[#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
+
+- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex_ and _happy_.  [More…](/guide/#sandbox-extra-apps)
+
+- Halcyon supports declaring dependencies and version constraints in a format easy to integrate with other tools.  [More…](/guide/#declaring-dependencies)
+
+- **Powerful.**  Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
+
+- Halcyon allows _git_ repositories to be declared as sandbox sources.  [More…](/guide/#sandbox-sources)
 
 - Halcyon includes hooks for complete control over the build process.  [More…](/guide/#advanced-usage)
 
-- Halcyon is written in GNU _bash_, and can be ported to any POSIX system.  [More…](#documentation)
-
-- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
-
-- Halcyon includes workarounds for many _cabal-install_ issues, such as [#220](https://github.com/haskell/cabal/issues/220),
-[#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
-
-- Halcyon has been used in production since June 2014.  [More…](/examples/#circuithub)
+- Halcyon allows native OS packages to be declared and installed in a cross-platform fashion.  [More…](/guide/#sandbox-extra-os-packages)
 
 
 <aside>
