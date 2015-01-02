@@ -70,6 +70,13 @@ Halcyon is a system for building and installing Haskell applications.
 - Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
 
 
+<aside>
+<a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
+<blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
+<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
+</aside>
+
+
 ### Support
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
@@ -81,17 +88,55 @@ Need commercial support?  Contact the [author](#about) directly.
 
 <aside>
 <a class="micro face mietek" href="#about"></a>
-<blockquote>_“If Halcyon is not helping you deploy applications easily, there is a bug in Halcyon.”_</blockquote>
+<blockquote>_“If Halcyon is not helping you install applications easily, there is a bug in Halcyon.”_</blockquote>
 <p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
 </aside>
+
+
+Usage
+-----
+
+The [`halcyon install`](#usage) command is intended to be used instead of `cabal install`.
+
+<div class="toggle">
+<a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
+<pre class="toggle" id="log1"><code>$ halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
+-----> Cloning https://github.com/mietek/howistart... done, cc48e01
+-----> Installing app
+       Prefix:                                   <b>/app</b>
+       Label:                                    <b>howistart-0.1</b>
+       Source hash:                              <b>bcfc50f</b>
+       External storage:                         <b>private and public</b>
+
+-----> Restoring install directory
+       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
+       Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
+-----> Install directory restored
+-----> Installing app into /app... done
+
+-----> App installed:                            <b>howistart-0.1</b>
+</code></pre>
+</div>
+
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
+
+
+### Installation
+
+Halcyon can be installed in one command on most recent Linux distributions.
+
+```
+$ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
+```
 
 
 Examples
 --------
 
-All examples can be installed with a single command on regular machines running most recent Linux distributions.
+All examples can be installed in one command on regular machines running most recent Linux distributions.
 
-Additionally, all examples can be deployed to a new [DigitalOcean](https://digitalocean.com/) droplet or to the [Heroku](https://heroku.com/) web application platform just by pushing a button.
+Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
 
 
 ### Example applications
@@ -133,86 +178,8 @@ Additionally, all examples can be deployed to a new [DigitalOcean](https://digit
 [Simple applications](/shootout/), intended to compare build times and sizes across most Haskell web frameworks.
 
 
-<aside>
-<a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
-<blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
-<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
-</aside>
-
-
-Usage
------
-
-Halcyon is installed with _git_, and automatically updates itself before executing any command.
-
-The [`halcyon paths`](/reference/#halcyon-paths) command helps set the needed environment variables.
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon">https://github.com/mietek/halcyon</a></span>
-<span class="prompt">$</span> <span class="input">source &lt;( halcyon/halcyon paths )</span>
-</code></pre>
-
-See the [user’s guide](/guide/) for details.
-
-
-### Installing applications
-
-The [`halcyon install`](/reference/#halcyon-install) command accepts directories, Cabal packages, and _git_ URLs.
-
-Installing a previously built application usually takes less than 10 seconds.
-
-<div class="toggle">
-<a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="log1"><code>$ halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
------> Cloning https://github.com/mietek/howistart... done, cc48e01
------> Installing app
-       Prefix:                                   <b>/app</b>
-       Label:                                    <b>howistart-0.1</b>
-       Source hash:                              <b>bcfc50f</b>
-       External storage:                         <b>private and public</b>
-
------> Restoring install directory
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
-       Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
------> Install directory restored
------> Installing app into /app... done
-
------> App installed:                            <b>howistart-0.1</b>
-</code></pre>
-</div>
-
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
-
-
-#### Installing GHC and Cabal only
-
-The [`halcyon install`](/reference/#halcyon-install) command can also install a previously built Haskell development environment in under 20 seconds.
-
-<div class="toggle">
-<a class="toggle-button" data-target="log2" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="log2"><code>$ halcyon install
------> Installing GHC and Cabal
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
-
------> Restoring GHC directory
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.3.tar.gz... done
-       Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
-
------> Locating Cabal directories
-       Listing s3://s3.halcyon.sh/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
------> Restoring Cabal directory
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done
-       Extracting halcyon-cabal-1.20.0.3-hackage-2014-12-01.tar.gz... done, 172MB
-
------> GHC and Cabal installed
-</code></pre>
-</div>
-
-
-### Documentation
+Documentation
+-------------
 
 <div><nav>
 <ul class="menu open">
@@ -222,7 +189,7 @@ The [`halcyon install`](/reference/#halcyon-install) command can also install a 
 </nav></div>
 
 
-#### Internal documentation
+### Internal documentation
 
 Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_bashmenot_](https://bashmenot.mietek.io/) shell function library.
 
