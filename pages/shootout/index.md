@@ -67,7 +67,7 @@ If no build is needed, the application is restored from a previously archived in
 
 ### Methodology
 
-The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, [set up Halcyon](/guide/#quick-start), and perform a benchmark run by using the included test script.
+The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, perform a benchmark by using the included test script.
 
 ```
 $ halcyon/test bench-shootout
