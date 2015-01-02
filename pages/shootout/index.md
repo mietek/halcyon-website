@@ -42,6 +42,9 @@ Results
 
 <div class="chart" id="shootout-chart"></div>
 
+
+#### Comments
+
 Installing an application for the first time is dominated by building the sandbox containing the application dependencies.
 
 Halcyon attempts to mitigate the impact of sandbox build times:
