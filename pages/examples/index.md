@@ -73,10 +73,12 @@ Using Halcyon in production since June 2014.
 - Private Cabal packages, as [sandbox sources](/guide/#sandbox-sources)
 
 
-<aside>
+<aside class="inline">
 <a class="micro face andrew-seddon" href="http://www.reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/"></a>
 <blockquote>_“Thanks for all the hard work on Halcyon, [Miëtek](/#about). Rehno tells me this is making our lives much easier!”_</blockquote>
 <p>[— Andrew Seddon](http://www.reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/), [CircuitHub](https://circuithub.com/) co-founder</p>
+</aside>
+<aside class="inline">
 <a class="micro face rehno-lindeque" href="https://twitter.com/RehnoLindeque/status/536954909506437120"></a>
 <blockquote>_“[Miëtek](/#about), you are a badass. Deploying [CircuitHub](https://circuithub.com/) is so slick now, I barely stop to think about it!”_</blockquote>
 <p>[— Rehno Lindeque](https://twitter.com/RehnoLindeque/status/536954909506437120), [CircuitHub](https://circuithub.com/) co-founder</p>
