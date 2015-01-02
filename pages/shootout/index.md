@@ -114,7 +114,16 @@ _hello-apiary_
 </div>
 
 
-#### First installation log
+#### Extra dependencies
+
+- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
+
+
+### Usage
+
+```
+$ PORT=8080 hello-apiary
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-apiary-log" href="" title="Toggle">Toggle</a>
@@ -187,17 +196,8 @@ _hello-apiary_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-apiary
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-apiary">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-apiary">Deploy to Heroku</a>
-
-
-#### Extra dependencies
-
-- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 
 
 _hello-happstack_
@@ -229,7 +229,11 @@ _hello-happstack_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-happstack
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-happstack-log" href="" title="Toggle">Toggle</a>
@@ -288,10 +292,6 @@ _hello-happstack_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-happstack
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-happstack">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-happstack">Deploy to Heroku</a>
 
@@ -321,7 +321,16 @@ _hello-mflow_
 </div>
 
 
-#### First installation log
+#### Extra dependencies
+
+- _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
+
+
+### Usage
+
+```
+$ PORT=8080 hello-mflow
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-mflow-log" href="" title="Toggle">Toggle</a>
@@ -394,17 +403,8 @@ _hello-mflow_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-mflow
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-mflow">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-mflow">Deploy to Heroku</a>
-
-
-#### Extra dependencies
-
-- _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
 
 
 _hello-miku_
@@ -436,7 +436,11 @@ _hello-miku_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-miku
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-miku-log" href="" title="Toggle">Toggle</a>
@@ -495,10 +499,6 @@ _hello-miku_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-miku
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-miku">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-miku">Deploy to Heroku</a>
 
@@ -531,7 +531,11 @@ _hello-scotty_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-scotty
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-log" href="" title="Toggle">Toggle</a>
@@ -590,10 +594,6 @@ _hello-scotty_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-scotty
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-scotty">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-scotty">Deploy to Heroku</a>
 
@@ -632,7 +632,11 @@ _hello-simple_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-simple
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-simple-log" href="" title="Toggle">Toggle</a>
@@ -691,10 +695,6 @@ _hello-simple_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-simple
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-simple">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-simple">Deploy to Heroku</a>
 
@@ -732,7 +732,11 @@ _hello-snap_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-snap
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-snap-log" href="" title="Toggle">Toggle</a>
@@ -791,10 +795,6 @@ _hello-snap_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-snap
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-snap">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-snap">Deploy to Heroku</a>
 
@@ -827,7 +827,11 @@ _hello-spock_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-spock
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-spock-log" href="" title="Toggle">Toggle</a>
@@ -886,10 +890,6 @@ _hello-spock_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-spock
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-spock">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-spock">Deploy to Heroku</a>
 
@@ -930,7 +930,11 @@ _hello-wai_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-wai
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wai-log" href="" title="Toggle">Toggle</a>
@@ -989,10 +993,6 @@ _hello-wai_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-wai
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-wai">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wai">Deploy to Heroku</a>
 
@@ -1028,7 +1028,11 @@ _hello-wheb_
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-wheb
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wheb-log" href="" title="Toggle">Toggle</a>
@@ -1087,10 +1091,6 @@ _hello-wheb_
 </code></pre>
 </div>
 
-```
-$ PORT=8080 hello-wheb
-```
-
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-wheb">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wheb">Deploy to Heroku</a>
 
@@ -1135,7 +1135,11 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 </div>
 
 
-#### First installation log
+### Usage
+
+```
+$ PORT=8080 hello-yesod
+```
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-yesod-log" href="" title="Toggle">Toggle</a>
@@ -1199,10 +1203,6 @@ mkYesod <span class="string string_quoted string_quoted_double string_quoted_dou
 -----> App installed:                            <b>hello-yesod-1.0</b>
 </code></pre>
 </div>
-
-```
-$ PORT=8080 hello-yesod
-```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-yesod">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-yesod">Deploy to Heroku</a>
