@@ -142,7 +142,7 @@ To set up one machine for building and installing applications:
 
 Halcyon is designed to install applications by building all required dependencies on the fly.
 
-The build machine must be capable of compiling and linking Haskell programs.  At least 4 GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2 GB of memory available.
+The build machine must be capable of compiling and linking Haskell programs.  At least 4 GB of memory is recommended, as many common Cabal packages will fail to build on a machine with less than 2 GB of memory installed.
 
 
 ### Installing Halcyon
