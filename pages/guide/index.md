@@ -69,7 +69,7 @@ A Cabal package label consists of a package name and version, in _`name`_`-`_`ve
 Halcyon uses the `master` branch for all _git_ URLs.  Other branches may be specified with a `#`_`branch`_ suffix.
 
 
-### Specifying options
+### Options
 
 All application-specific Halcyon options may be specified by providing a _command-line option,_ by setting an _environment variable,_ or by including a _magic file._
 

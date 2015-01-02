@@ -15,7 +15,7 @@ Example applications { .with-toc }
 
 Real-world Haskell applications, demonstrating advanced usage of Halcyon.
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.
+All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
 
 Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
 

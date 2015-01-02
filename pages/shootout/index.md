@@ -15,12 +15,12 @@ page-head: |
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.
+All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
 
 Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, or to the [Heroku](https://heroku.com/) web application platform.
 
 <div><nav><ul class="toc toc1 menu open">
-<li><a href="#shootout-results">Shootout results</a></li>
+<li><a href="#results">Results</a></li>
 <li><a href="#hello-apiary"><i>hello-apiary</i></a></li>
 <li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
 <li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
@@ -37,8 +37,8 @@ Additionally, all examples can be deployed in one click to a new [DigitalOcean](
 For advanced applications, see the [examples](/examples/).
 
 
-Shootout results
-----------------
+Results
+-------
 
 <div class="chart" id="shootout-chart"></div>
 
