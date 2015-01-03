@@ -220,7 +220,7 @@ Documentation
 
 ### Internal documentation
 
-Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_bashmenot_](https://bashmenot.mietek.io/) shell function library.
+Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_bashmenot_](https://bashmenot.mietek.io/) library.
 
 <div><nav>
 <ul class="menu open">
