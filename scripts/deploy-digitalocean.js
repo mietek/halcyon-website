@@ -540,13 +540,12 @@ exports.Control.prototype = {
           port:        null
         }),
       function (droplet, err) {
+        this.setState({
+            action:      undefined,
+            actionError: err
+          });
         if (droplet) {
           location.href = '/deploy/monitor/?id=' + droplet.id;
-        } else {
-          this.setState({
-              action:      undefined,
-              actionError: err
-            });
         }
       }.bind(this),
       this.state.token);
