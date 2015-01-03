@@ -116,7 +116,7 @@ The [`halcyon install`](/guide/#basic-usage) command is intended to be used inst
        External storage:                         <b>private and public</b>
 
 -----> Restoring install directory
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
        Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
 -----> Install directory restored
 -----> Installing app into /app... done
@@ -250,6 +250,8 @@ _Like my work?  I am available for consulting.  Say <a class="hello" href="">hel
 Thanks to [Joe Nelson](http://begriffs.com/), [Brian McKenna](http://brianmckenna.org/), and [Neuman Vong](https://github.com/luciferous/) for initial work on Haskell deployment.  Thanks to [CircuitHub](https://circuithub.com/), [Purely Agile](http://purelyagile.com/), and [Tweag I/O](http://tweag.io/) for advice and assistance.
 
 The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).  The monospaced font is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  Website built with [_cannot_](https://cannot.mietek.io/).
+
+Thanks to [Fastly](https://www.fastly.com/) for providing low-latency access to Halcyon public storage.
 
 This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or [Heroku](https://heroku.com/).
 

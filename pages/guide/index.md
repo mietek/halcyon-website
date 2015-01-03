@@ -37,7 +37,7 @@ With an archive of the application install directory available, installing can t
        External storage:                         <b>private and public</b>
 
 -----> Restoring install directory
-       Downloading s3://s3.halcyon.sh/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
        Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
 -----> Install directory restored
 -----> Installing app into /app... done

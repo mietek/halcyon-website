@@ -482,7 +482,7 @@ Public storage options
 ### `HALCYON_PUBLIC_STORAGE`
 
 > ---------------------|---
-> Default value:       | [`https://s3.halcyon.sh`](https://s3.halcyon.sh/)
+> Default value:       | [`https://halcyon.global.ssl.fastly.net`](https://halcyon.global.ssl.fastly.net)
 > Type:                | S3 URL
 > Command-line option: | `--public-storage=…`
 
