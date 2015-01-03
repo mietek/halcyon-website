@@ -113,7 +113,7 @@ The [`halcyon install`](/guide/#basic-usage) command is intended to be used inst
        Prefix:                                   <b>/app</b>
        Label:                                    <b>howistart-0.1</b>
        Source hash:                              <b>bcfc50f</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
 
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done

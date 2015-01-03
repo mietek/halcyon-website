@@ -139,7 +139,7 @@ $ PORT=8080 hello-apiary
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>f00c991</b>
        Magic hash:                               <b>075003b</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -160,7 +160,7 @@ $ PORT=8080 hello-apiary
               Label:                                    <b>alex-3.1.3</b>
               Source hash:                              <b>b3faab4</b>
               Prefix:                                   <b>/app/sandbox</b>
-              External storage:                         <b>private and public</b>
+              External storage:                         <b>public</b>
 
        -----> Restoring install directory
               Extracting halcyon-install-b3faab4-alex-3.1.3.tar.gz... done, 2.5MB
@@ -249,7 +249,7 @@ $ PORT=8080 hello-happstack
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>c1c4c32</b>
        Magic hash:                               <b>5eba4ea</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -346,7 +346,7 @@ $ PORT=8080 hello-mflow
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>9eb1156</b>
        Magic hash:                               <b>015be62</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -367,7 +367,7 @@ $ PORT=8080 hello-mflow
               Label:                                    <b>cpphs-1.18.6</b>
               Source hash:                              <b>85c6517</b>
               Prefix:                                   <b>/app/sandbox</b>
-              External storage:                         <b>private and public</b>
+              External storage:                         <b>public</b>
 
        -----> Restoring install directory
               Extracting halcyon-install-85c6517-cpphs-1.18.6.tar.gz... done, 3.2MB
@@ -456,7 +456,7 @@ $ PORT=8080 hello-miku
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>957fb97</b>
        Magic hash:                               <b>4955c40</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -551,7 +551,7 @@ $ PORT=8080 hello-scotty
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>7535560</b>
        Magic hash:                               <b>26c4137</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -652,7 +652,7 @@ $ PORT=8080 hello-simple
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>a63103a</b>
        Magic hash:                               <b>5b60565</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -752,7 +752,7 @@ $ PORT=8080 hello-snap
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>03695cd</b>
        Magic hash:                               <b>507dce2</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -847,7 +847,7 @@ $ PORT=8080 hello-spock
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>d33fb1e</b>
        Magic hash:                               <b>c6e8179</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -950,7 +950,7 @@ $ PORT=8080 hello-wai
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>270c17b</b>
        Magic hash:                               <b>fb12fe6</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -1048,7 +1048,7 @@ $ PORT=8080 hello-wheb
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>410ca91</b>
        Magic hash:                               <b>96decc3</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
@@ -1155,7 +1155,7 @@ $ PORT=8080 hello-yesod
        Prefix:                                   <b>/app</b>
        Constraints hash:                         <b>141ed8a</b>
        Magic hash:                               <b>de65792</b>
-       External storage:                         <b>private and public</b>
+       External storage:                         <b>public</b>
        GHC version:                              <b>7.8.3</b>
        Cabal version:                            <b>1.20.0.3</b>
        Cabal repository:                         <b>Hackage</b>
