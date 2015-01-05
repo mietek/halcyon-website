@@ -130,7 +130,7 @@ $ PORT=8080 hello-apiary
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-apiary-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-apiary-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-apiary">https://github.com/mietek/hello-apiary</a>
+<pre class="toggle with-tweaks" id="hello-apiary-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-apiary">https://github.com/mietek/hello-apiary</a></span>
 -----> Cloning https://github.com/mietek/hello-apiary... done, d97f2b3
 -----> Determining constraints
 -----> Installing app
@@ -240,7 +240,7 @@ $ PORT=8080 hello-happstack
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-happstack-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-happstack-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-happstack">https://github.com/mietek/hello-happstack</a>
+<pre class="toggle with-tweaks" id="hello-happstack-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-happstack">https://github.com/mietek/hello-happstack</a></span>
 -----> Cloning https://github.com/mietek/hello-happstack... done, fa472e4
 -----> Determining constraints
 -----> Installing app
@@ -337,7 +337,7 @@ $ PORT=8080 hello-mflow
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-mflow-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-mflow-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-mflow">https://github.com/mietek/hello-mflow</a>
+<pre class="toggle with-tweaks" id="hello-mflow-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-mflow">https://github.com/mietek/hello-mflow</a></span>
 -----> Cloning https://github.com/mietek/hello-mflow... done, ecf421a
 -----> Determining constraints
 -----> Installing app
@@ -447,7 +447,7 @@ $ PORT=8080 hello-miku
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-miku-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-miku-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-miku">https://github.com/mietek/hello-miku</a>
+<pre class="toggle with-tweaks" id="hello-miku-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-miku">https://github.com/mietek/hello-miku</a></span>
 -----> Cloning https://github.com/mietek/hello-miku... done, 1c95812
 -----> Determining constraints
 -----> Installing app
@@ -542,7 +542,7 @@ $ PORT=8080 hello-scotty
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-scotty-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-scotty">https://github.com/mietek/hello-scotty</a>
+<pre class="toggle with-tweaks" id="hello-scotty-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-scotty">https://github.com/mietek/hello-scotty</a></span>
 -----> Cloning https://github.com/mietek/hello-scotty... done, 2412c2c
 -----> Determining constraints
 -----> Installing app
@@ -643,7 +643,7 @@ $ PORT=8080 hello-simple
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-simple-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-simple-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-simple">https://github.com/mietek/hello-simple</a>
+<pre class="toggle with-tweaks" id="hello-simple-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-simple">https://github.com/mietek/hello-simple</a></span>
 -----> Cloning https://github.com/mietek/hello-simple... done, 3dec3e1
 -----> Determining constraints
 -----> Installing app
@@ -743,7 +743,7 @@ $ PORT=8080 hello-snap
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-snap-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-snap-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-snap">https://github.com/mietek/hello-snap</a>
+<pre class="toggle with-tweaks" id="hello-snap-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-snap">https://github.com/mietek/hello-snap</a></span>
 -----> Cloning https://github.com/mietek/hello-snap... done, b094ee3
 -----> Determining constraints
 -----> Installing app
@@ -838,7 +838,7 @@ $ PORT=8080 hello-spock
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-spock-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-spock-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-spock">https://github.com/mietek/hello-spock</a>
+<pre class="toggle with-tweaks" id="hello-spock-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-spock">https://github.com/mietek/hello-spock</a></spock>
 -----> Cloning https://github.com/mietek/hello-spock... done, 903811e
 -----> Determining constraints
 -----> Installing app
@@ -941,7 +941,7 @@ $ PORT=8080 hello-wai
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wai-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-wai-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-wai">https://github.com/mietek/hello-wai</a>
+<pre class="toggle with-tweaks" id="hello-wai-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-wai">https://github.com/mietek/hello-wai</a></span>
 -----> Cloning https://github.com/mietek/hello-wai... done, 177928b
 -----> Determining constraints
 -----> Installing app
@@ -1039,7 +1039,7 @@ $ PORT=8080 hello-wheb
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wheb-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-wheb-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-wheb">https://github.com/mietek/hello-wheb</a>
+<pre class="toggle with-tweaks" id="hello-wheb-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-wheb">https://github.com/mietek/hello-wheb</a></span>
 -----> Cloning https://github.com/mietek/hello-wheb... done, fb508d2
 -----> Determining constraints
 -----> Installing app
@@ -1146,7 +1146,7 @@ $ PORT=8080 hello-yesod
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-yesod-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="hello-yesod-log"><code>$ halcyon install <a href="https://github.com/mietek/hello-yesod">https://github.com/mietek/hello-yesod</a>
+<pre class="toggle with-tweaks" id="hello-yesod-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-yesod">https://github.com/mietek/hello-yesod</a></span>
 -----> Cloning https://github.com/mietek/hello-yesod... done, f51baad
 -----> Determining constraints
 -----> Installing app
