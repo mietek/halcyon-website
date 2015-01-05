@@ -652,7 +652,7 @@ Cabal options
 ### `HALCYON_CABAL_VERSION`
 
 > ---------------------|---
-> Default value:       | `1.20.0.3`
+> Default value:       | `1.22.0.0`
 > Type:                | version
 > Command-line option: | `--cabal-version=…`
 
@@ -660,6 +660,7 @@ Version of _cabal-install_ to bootstrap or restore in the Cabal directory.
 
 Supported versions include:
 
+- [_cabal-install_ 1.22.0.0](https://www.haskell.org/cabal/release/cabal-install-1.22.0.0/)
 - [_cabal-install_ 1.20.0.6](https://www.haskell.org/cabal/release/cabal-install-1.20.0.6/)
 - [_cabal-install_ 1.20.0.5](https://www.haskell.org/cabal/release/cabal-install-1.20.0.5/)
 - [_cabal-install_ 1.20.0.3](https://www.haskell.org/cabal/release/cabal-install-1.20.0.3/)
