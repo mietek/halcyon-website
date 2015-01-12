@@ -49,7 +49,11 @@ $ which halcyon
 
 ### Tips
 
-By default, Halcyon is installed in the `halcyon` subdirectory of the base directory, which defaults to `/app`.  If you want to install Halcyon somewhere else, set the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script.
+By default, Halcyon is installed in the `halcyon` subdirectory of the base directory, which defaults to `/app`.  If you want to install Halcyon somewhere else, set the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script:
+
+```
+$ export HALCYON_DIR=…
+```
 
 If you do not want your `.bash_profile` to be modified, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the setup script.  In the future, you will need to activate Halcyon manually before each use:
 
@@ -57,7 +61,7 @@ If you do not want your `.bash_profile` to be modified, set [`HALCYON_NO_MODIFY_
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Using a custom base directory is not recommended, because it forces Halcyon to build everything from scratch, and prevents you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
+Using a custom base directory is not recommended, because it will prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
 
 
 Install GHC and Cabal
@@ -104,7 +108,11 @@ $ which cabal
 
 ### Tips
 
-Halcyon defaults to GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this with the [`--ghc-version=…`](/reference/#halcyon_ghc_version) and [`--cabal-version=…`](/reference/#halcyon_cabal_version) options.
+Halcyon defaults to GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this by specifying [`--ghc-version=…`](/reference/#halcyon_ghc_version) and [`--cabal-version=…`](/reference/#halcyon_cabal_version) options:
+
+```
+$ halcyon install --ghc-version=7.6.3
+```
 
 If the current directory contains a Haskell app, running [`halcyon install`](/reference/#halcyon-install) will install the app, unless you use the [`--no-app`](/reference/#halcyon_no_app) option.
 
