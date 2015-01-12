@@ -678,7 +678,7 @@ Cabal options
 ### `HALCYON_CABAL_VERSION`
 
 > ---------------------|---
-> Default value:       | `1.22.0.0`
+> Default value:       | `1.20.0.3`
 > Type:                | version
 > Command-line option: | `--cabal-version=…`
 
