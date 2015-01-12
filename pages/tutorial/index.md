@@ -16,17 +16,15 @@ page-head: |
 Tutorial
 ========
 
-This tutorial shows how use Halcyon while writing a new Haskell web app.
+This tutorial shows how to use Halcyon while writing a new Haskell web app.
 
 <div><nav id="main-toc"></nav></div>
-
-You will use Halcyon to install GHC and Cabal, declare and install dependencies, and finally, install the app itself.
-
-The tutorial assumes you are using a [supported Linux system](/guide/#supported-platforms) with at least 4 GB RAM, and a [GNU _bash_](https://gnu.org/software/bash/) shell.
 
 
 Set up
 ------
+
+The tutorial assumes you are using a [supported Linux system](/guide/#supported-platforms) with at least 4 GB RAM, and a [GNU _bash_](https://gnu.org/software/bash/) shell.
 
 Run the [setup script](https://github.com/mietek/halcyon/raw/master/setup.sh) to install Halcyon:
 
@@ -60,13 +58,13 @@ If you do not want your `.bash_profile` to be modified, set [`HALCYON_NO_MODIFY_
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Using a custom base directory is not recommended, because it will require Halcyon to build everything from scratch, and prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
+Using a custom base directory is not recommended, because it forces Halcyon to build everything from scratch, and prevents you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
 
 
 Install GHC and Cabal
 ---------------------
 
-Run the [`halcyon install`](/reference/#halcyon-install) command to install GHC and Cabal:
+Run [`halcyon install`](/reference/#halcyon-install) to install GHC and Cabal:
 
 ```
 $ halcyon install
@@ -106,9 +104,9 @@ GHC and Cabal are now ready to use.
 
 ### Tips
 
-When you want to install GHC and Cabal, and the current directory contains a Haskell app, you can use the [`--no-app`](/reference/#halcyon_no_app) option.
-
 By default, Halcyon uses GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this with the [`--ghc-version=…`](/reference/#halcyon_ghc_version) and [`--cabal-version=…`](/reference/#halcyon_cabal_version) options.
+
+If the current directory contains a Haskell app, running [`halcyon install`](/reference/#halcyon-install) will install the app, unless you use the [`--no-app`](/reference/#halcyon_no_app) option.
 
 
 Prepare the app
@@ -135,7 +133,7 @@ The app is now ready to be installed.
 Install the app
 ---------------
 
-Run the [`halcyon install`](/reference/#halcyon_install) comand to install the app:
+Run [`halcyon install`](/reference/#halcyon_install) in the `halcyon-tutorial` directory to install the app:
 
 ```
 $ halcyon install
