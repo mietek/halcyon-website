@@ -109,38 +109,18 @@ Halcyon defaults to GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this
 If the current directory contains a Haskell app, running [`halcyon install`](/reference/#halcyon-install) will install the app, unless you use the [`--no-app`](/reference/#halcyon_no_app) option.
 
 
-Prepare the app
----------------
-
-Use _git_ to make a local copy of the [tutorial app](https://github.com/mietek/halcyon-tutorial) repository:
-
-```
-$ git clone https://github.com/mietek/halcyon-tutorial
-Cloning into 'halcyon-tutorial'...
-remote: Counting objects: 38, done.
-remote: Compressing objects: 100% (29/29), done.
-remote: Total 38 (delta 14), reused 9 (delta 3)
-Unpacking objects: 100% (38/38), done.
-Checking connectivity... done.
-```
-```
-$ cd halcyon-tutorial
-```
-
-The app is now ready to be installed.
-
-
 Install the app
 ---------------
 
-Run [`halcyon install`](/reference/#halcyon_install) in the `halcyon-tutorial` directory to install the app:
+Install the [tutorial app](https://github.com/mietek/halcyon-tutorial) directly from the _git_ repository:
 
 ```
-$ halcyon install
+$ halcyon install https://github.com/mietek/halcyon-tutorial
 -----> Examining cache contents
        halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
        halcyon-ghc-7.8.4.tar.gz
 
+-----> Cloning https://github.com/mietek/halcyon-tutorial... done, f079321
 -----> Installing halcyon-tutorial-1.0
        Label:                                    halcyon-tutorial-1.0
        Prefix:                                   /app
