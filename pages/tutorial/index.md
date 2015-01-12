@@ -327,11 +327,132 @@ The sandbox directory is located in the base directory, next to the GHC and Caba
 Halcyon can upload every archive to _private storage._  [More…](/guide/#setting-up-private-storage)
 
 
+Declare a dependency
+--------------------
 
-Add a dependency
-----------------
+Let’s change the app to populate the empty `dateTime` fields.
 
-TODO
+The Cabal _package description_ file, `halcyon-tutorial.cabal`, is used to declare dependencies.  [More…](/guide/#declaring-dependencies)
+
+The next version of the app declares the standard Haskell [`old-locale`](http://hackage.haskell.org/package/old-locale) and [`time`](http://hackage.haskell.org/package/time) packages as additional dependencies:
+
+```
+$ git diff step2 step3 halcyon-tutorial.cabal
+diff --git a/halcyon-tutorial.cabal b/halcyon-tutorial.cabal
+index 723b9df..cd34556 100644
+--- a/halcyon-tutorial.cabal
++++ b/halcyon-tutorial.cabal
+@@ -14,9 +14,11 @@ executable halcyon-tutorial
+   ghc-options:        -O2 -Wall -threaded
+   build-depends:      base,
+                       aeson,
++                      old-locale,
+                       servant,
+                       servant-server,
+                       stm,
+                       text,
++                      time,
+                       transformers,
+                       warp
+```
+
+Check out and install the next version of the app:
+
+```
+$ git checkout -q step3
+$ halcyon install
+-----> Examining cache contents
+       halcyon-build-halcyon-tutorial-1.0.tar.gz
+       halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
+       halcyon-ghc-7.8.4.tar.gz
+       halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
+
+-----> Installing halcyon-tutorial-1.0
+       Label:                                    halcyon-tutorial-1.0
+       Prefix:                                   /app
+       Source hash:                              16e4c0e
+       External storage:                         public
+       GHC version:                              7.8.4
+
+-----> Restoring install directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+
+-----> Determining constraints
+       Label:                                    halcyon-tutorial-1.0
+       Prefix:                                   /app
+       Source hash:                              16e4c0e
+       Constraints hash:                         becfd1b
+       Magic hash:                               c7b5b77
+       External storage:                         public
+       GHC version:                              7.8.4
+       Cabal version:                            1.20.0.3
+       Cabal repository:                         Hackage
+
+-----> Using existing GHC
+
+-----> Using existing Cabal directory
+
+-----> Using existing sandbox directory
+
+-----> Restoring build directory
+       Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.4MB
+-----> Examining source changes
+       * Main.hs
+       * halcyon-tutorial.cabal
+-----> Configuring app
+-----> Building app
+       Building halcyon-tutorial-1.0...
+       Preprocessing executable 'halcyon-tutorial' for halcyon-tutorial-1.0...
+       [1 of 1] Compiling Main             ( Main.hs, dist/build/halcyon-tutorial/halcyon-tutorial-tmp/Main.o )
+       Linking dist/build/halcyon-tutorial/halcyon-tutorial ...
+-----> App built, 12MB
+       Stripping app... done, 9.4MB
+-----> Archiving build directory
+       Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
+
+-----> Restoring install directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+-----> Preparing install directory
+-----> Installing extra data files for dependencies
+-----> Install directory prepared, 8.8MB
+-----> Archiving install directory
+       Creating halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+-----> Installing app to /app
+-----> Installed halcyon-tutorial-1.0
+
+-----> App installed:                            halcyon-tutorial-1.0
+
+-----> Examining cache changes
+       * halcyon-build-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
+```
+
+In this step, Halcyon again performs an incremental build.  The previously restored sandbox directory is reused, because it already contains the `old-locale` and `time` packages.
+
+You can check this by looking at the Halcyon [`constraints`](/reference/#halcyon_constraints) magic file, which is used to declare _version constraints_ for all dependencies.  [More…](/guide/#version-constraints)
+
+```
+$ grep -E '^(old-locale|time)' .halcyon/constraints 
+old-locale-1.0.0.6
+time-1.4.2
+```
+
+The app is now ready to run again, and the timestamps also appear in the original shell:
+
+```
+$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+[{"contents":"Hello, world!","dateTime":"2015-01-12T09:21:29Z"}]
+```
+```
+$ halcyon-tutorial
+2015-01-12T09:21:29Z Hello, world!
+```
+
+
+### Tips
+
+The correct sandbox directory to use is determined by calculating a _constraints hash_ of the declared version constraints.
 
 
 Next steps
