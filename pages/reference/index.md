@@ -160,7 +160,7 @@ The versions of GHC and _cabal-install_ to install are defined by [`HALCYON_GHC_
 > ---------------------|---
 > Default value:       | `0`
 > Type:                | `0` or `1`
-> Command-line option: | `--no-modify_home`
+> Command-line option: | `--no-modify-home`
 
 Prevents Halcyon from making changes to the home directory.
 
