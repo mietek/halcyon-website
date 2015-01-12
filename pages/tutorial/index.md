@@ -326,10 +326,7 @@ The `step3` version of the app declares the standard Haskell [_old-locale_](http
 <a class="toggle-button" data-target="declare-a-dependency-diff" href="" title="Toggle">Toggle</a>
 ``` { #declare-a-dependency-diff .toggle }
 $ git diff step2 step3 halcyon-tutorial.cabal
-diff --git a/halcyon-tutorial.cabal b/halcyon-tutorial.cabal
-index 723b9df..cd34556 100644
---- a/halcyon-tutorial.cabal
-+++ b/halcyon-tutorial.cabal
+...
 **@@ -14,9 +14,11 @@** executable halcyon-tutorial
    ghc-options:        -O2 -Wall -threaded
    build-depends:      base,
@@ -434,10 +431,7 @@ The `step4` version of the app declares the [_hourglass_](http://hackage.haskell
 <a class="toggle-button" data-target="add-a-new-dependency-diff1" href="" title="Toggle">Toggle</a>
 ``` { #add-a-new-dependency-diff1 .toggle }
 $ git diff step3 step4 halcyon-tutorial.cabal
-diff --git a/halcyon-tutorial.cabal b/halcyon-tutorial.cabal
-index cd34556..55ef024 100644
---- a/halcyon-tutorial.cabal
-+++ b/halcyon-tutorial.cabal
+...
 **@@ -14,11 +14,10 @@** executable halcyon-tutorial
    ghc-options:        -O2 -Wall -threaded
    build-depends:      base,
@@ -519,10 +513,7 @@ Halcyon’s warning suggests declaring a version constraint for `hourglass-0.2.8
 <a class="toggle-button" data-target="add-a-new-dependency-diff2" href="" title="Toggle">Toggle</a>
 ``` { #add-a-new-dependency-diff2 .toggle }
 $ git diff step4 step5 .halcyon/constraints
-diff --git a/.halcyon/constraints b/.halcyon/constraints
-index 60dc85d..b40e2cc 100644
---- a/.halcyon/constraints
-+++ b/.halcyon/constraints
+...
 **@@ -38,6 +38,7 @@** file-embed-0.0.7
  free-4.10.0.1
  ghc-prim-0.3.1.0
