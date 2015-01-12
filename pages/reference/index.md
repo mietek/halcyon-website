@@ -155,6 +155,28 @@ Forces Halcyon to install GHC and Cabal only, even when the current directory is
 The versions of GHC and _cabal-install_ to install are defined by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
 
 
+### `HALCYON_NO_MODIFY_HOME`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--no-modify_home`
+
+Prevents Halcyon from making any changes to the home directory.
+
+There are two changes Halcyon could make:
+
+1.  During installation, Halcyon creates a symlink pointing `~/.cabal/config` to the `config` file located in the Cabal directory.
+
+2.  When running the setup script for the first time, Halcyon appends a line to `~/.bash_profile`, intended to set up the needed environment variables by using the [`halcyon paths`](#halcyon-paths) command:
+
+```
+source <( HALCYON_NO_SELF_UPDATE=1 "/app/halcyon/halcyon" paths )
+```
+
+The referenced path is controlled by setting [`HALCYON_DIR`](#halcyon_dir) before running the setup script.
+
+
 ### `HALCYON_LOG_TIMESTAMP`
 
 > ---------------------|---
