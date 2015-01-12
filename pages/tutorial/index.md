@@ -72,10 +72,10 @@ Run [`halcyon install`](/reference/#halcyon-install) to install GHC and Cabal:
 ```
 $ halcyon install
 -----> Installing GHC and Cabal
-       External storage:                         public
-       GHC version:                              7.8.4
-       Cabal version:                            1.20.0.3
-       Cabal repository:                         Hackage
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.4</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
 
 -----> Restoring GHC directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.4.tar.gz... done
@@ -130,11 +130,11 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
 
 -----> Cloning https://github.com/mietek/halcyon-tutorial... done, f079321
 -----> Installing halcyon-tutorial-1.0
-       Label:                                    halcyon-tutorial-1.0
-       Prefix:                                   /app
-       Source hash:                              161d7b4
-       External storage:                         public
-       GHC version:                              7.8.4
+       Label:                                    <b>halcyon-tutorial-1.0</b>
+       Prefix:                                   <b>/app</b>
+       Source hash:                              <b>161d7b4</b>
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.4</b>
 
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz... done
@@ -142,7 +142,7 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
------> App installed:                            halcyon-tutorial-1.0
+-----> App installed:                            <b>halcyon-tutorial-1.0</b>
 
 -----> Examining cache changes
        + halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
@@ -238,25 +238,25 @@ $ halcyon install
        halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
 
 -----> Installing halcyon-tutorial-1.0
-       Label:                                    halcyon-tutorial-1.0
-       Prefix:                                   /app
-       Source hash:                              500d468
-       External storage:                         public
-       GHC version:                              7.8.4
+       Label:                                    <b>halcyon-tutorial-1.0</b>
+       Prefix:                                   <b>/app</b>
+       Source hash:                              <b>500d468</b>
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.4</b>
 
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
-       Label:                                    halcyon-tutorial-1.0
-       Prefix:                                   /app
-       Source hash:                              500d468
-       Constraints hash:                         becfd1b
-       Magic hash:                               c7b5b77
-       External storage:                         public
-       GHC version:                              7.8.4
-       Cabal version:                            1.20.0.3
-       Cabal repository:                         Hackage
+       Label:                                    <b>halcyon-tutorial-1.0</b>
+       Prefix:                                   <b>/app</b>
+       Source hash:                              <b>500d468</b>
+       Constraints hash:                         <b>becfd1b</b>
+       Magic hash:                               <b>c7b5b77</b>
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.4</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
 
 -----> Using existing GHC
 
@@ -291,7 +291,7 @@ $ halcyon install
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
------> App installed:                            halcyon-tutorial-1.0
+-----> App installed:                            <b>halcyon-tutorial-1.0</b>
 
 -----> Examining cache changes
        + halcyon-build-halcyon-tutorial-1.0.tar.gz
@@ -340,16 +340,16 @@ diff --git a/halcyon-tutorial.cabal b/halcyon-tutorial.cabal
 index 723b9df..cd34556 100644
 --- a/halcyon-tutorial.cabal
 +++ b/halcyon-tutorial.cabal
-@@ -14,9 +14,11 @@ executable halcyon-tutorial
+<b>@@ -14,9 +14,11 @@</b> executable halcyon-tutorial
    ghc-options:        -O2 -Wall -threaded
    build-depends:      base,
                        aeson,
-+                      old-locale,
+<b>+                      old-locale,</b>
                        servant,
                        servant-server,
                        stm,
                        text,
-+                      time,
+<b>+                      time,</b>
                        transformers,
                        warp
 ```
@@ -366,25 +366,25 @@ $ halcyon install
        halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
 
 -----> Installing halcyon-tutorial-1.0
-       Label:                                    halcyon-tutorial-1.0
-       Prefix:                                   /app
-       Source hash:                              16e4c0e
-       External storage:                         public
-       GHC version:                              7.8.4
+       Label:                                    <b>halcyon-tutorial-1.0</b>
+       Prefix:                                   <b>/app</b>
+       Source hash:                              <b>16e4c0e</b>
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.4</b>
 
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
-       Label:                                    halcyon-tutorial-1.0
-       Prefix:                                   /app
-       Source hash:                              16e4c0e
-       Constraints hash:                         becfd1b
-       Magic hash:                               c7b5b77
-       External storage:                         public
-       GHC version:                              7.8.4
-       Cabal version:                            1.20.0.3
-       Cabal repository:                         Hackage
+       Label:                                    <b>halcyon-tutorial-1.0</b>
+       Prefix:                                   <b>/app</b>
+       Source hash:                              <b>16e4c0e</b>
+       Constraints hash:                         <b>becfd1b</b>
+       Magic hash:                               <b>c7b5b77</b>
+       External storage:                         <b>public</b>
+       GHC version:                              <b>7.8.4</b>
+       Cabal version:                            <b>1.20.0.3</b>
+       Cabal repository:                         <b>Hackage</b>
 
 -----> Using existing GHC
 
@@ -418,7 +418,7 @@ $ halcyon install
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
------> App installed:                            halcyon-tutorial-1.0
+-----> App installed:                            <b>halcyon-tutorial-1.0</b>
 
 -----> Examining cache changes
        * halcyon-build-halcyon-tutorial-1.0.tar.gz
