@@ -117,9 +117,9 @@ Using Halcyon in production since July 2014.
 ```
 $ PORT=8080 howistart
 ```
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a></span>
-</code></pre>
+```
+$ halcyon install https://github.com/mietek/howistart
+```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
@@ -152,9 +152,9 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 ```
 $ PORT=8080 hl
 ```
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hl">https://github.com/mietek/hl</a></span>
-</code></pre>
+```
+$ halcyon install https://github.com/mietek/hl
+```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hl">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy to Heroku</a>
@@ -187,9 +187,9 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 ```
 $ MUEVAL_TIMEOUT=8 PORT=8080 tryhaskell
 ```
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/tryhaskell">https://github.com/mietek/tryhaskell</a></span>
-</code></pre>
+```
+$ halcyon install https://github.com/mietek/tryhaskell
+```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy to Heroku</a>
@@ -228,9 +228,9 @@ Try Idris
 ```
 $ tryidris 8080
 ```
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/tryidris">https://github.com/mietek/tryidris</a></span>
-</code></pre>
+```
+$ halcyon install https://github.com/mietek/tryidris
+```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryidris">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy to Heroku</a>
@@ -265,9 +265,9 @@ Try PureScript
 ```
 $ trypurescript -p 8080
 ```
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/trypurescript">https://github.com/mietek/trypurescript</a></span>
-</code></pre>
+```
+$ halcyon install https://github.com/mietek/trypurescript
+```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/trypurescript">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy to Heroku</a>
@@ -313,9 +313,9 @@ Try Haste
 ```
 $ tryplayground 8080
 ```
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/tryhaste">https://github.com/mietek/tryhaste</a></span>
-</code></pre>
+```
+$ halcyon install https://github.com/mietek/tryhaste
+```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaste">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy to Heroku</a>
@@ -350,9 +350,9 @@ Wiki with _git_ file storage.
 ```
 $ gitit -p 8080
 ```
-
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/gitit">https://github.com/mietek/gitit</a></span>
-</code></pre>
+```
+$ halcyon install https://github.com/mietek/gitit
+```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/gitit">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy to Heroku</a>

@@ -102,7 +102,7 @@ General options
 > ---------------------|---
 > Default value:       | `/app`
 > Type:                | directory
-> Command-line option: | `--base=…`
+> Command-line option: | `--base=...`
 
 Directory in which Halcyon builds or restores the GHC, Cabal, and sandbox directories.
 
@@ -114,7 +114,7 @@ Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 > ---------------------|---
 > Default value:       | [`HALCYON_BASE`](#halcyon_base)
 > Type:                | directory
-> Command-line option: | `--prefix=…`
+> Command-line option: | `--prefix=...`
 
 Directory in which Halcyon installs applications.
 
@@ -130,7 +130,7 @@ _If the install directory consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcy
 > ---------------------|---
 > Default value:       | `/`
 > Type:                | directory
-> Command-line option: | `--root=…`
+> Command-line option: | `--root=...`
 
 Root of the path to the directory in which Halcyon installs applications.
 
@@ -195,7 +195,7 @@ Build-time options
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings, file, or directory, optional
-> Command-line option: | `--constraints=…`
+> Command-line option: | `--constraints=...`
 > Magic file:          | `.halcyon/constraints`
 
 Cabal package labels, to override any constraints declared in a `cabal.config` file, which may or may not be included in the source directory.
@@ -233,14 +233,14 @@ Intended to support upgrading dependencies.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--extra-configure-flags=…`
+> Command-line option: | `--extra-configure-flags=...`
 > Magic file:          | `.halcyon/extra-configure-flags`
 
 Additional flags to specify when running `cabal configure`.
 
 The flags must be separated by whitespace.
 
-**Note:**  Any `--prefix=…` flag will be ignored.
+**Note:**  Any `--prefix=...` flag will be ignored.
 
 
 ### `HALCYON_PRE_BUILD_HOOK`
@@ -248,7 +248,7 @@ The flags must be separated by whitespace.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--pre-build-hook=…`
+> Command-line option: | `--pre-build-hook=...`
 > Magic file:          | `.halcyon/pre-build-hook`
 > Script arguments:    | _`tag source_dir build_dir`_
 
@@ -260,7 +260,7 @@ Script to execute when building the application, before running `cabal build`.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--post-build-hook=…`
+> Command-line option: | `--post-build-hook=...`
 > Magic file:          | `.halcyon/post-build-hook`
 > Script arguments:    | _`tag source_dir build_dir`_
 
@@ -319,7 +319,7 @@ Install-time options
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--extra-apps=…`
+> Command-line option: | `--extra-apps=...`
 > Magic file:          | `.halcyon/extra-apps`
 
 Additional Haskell applications to include in the install directory, as run-time dependencies.
@@ -336,7 +336,7 @@ The applications must be separated by whitespace, and may be specified as:
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings, file, or directory, optional
-> Command-line option: | `--extra-apps-constraints=…`
+> Command-line option: | `--extra-apps-constraints=...`
 > Magic file:          | `.halcyon/extra-apps-constraints`
 
 Cabal package labels, to override any constraints declared in `cabal.config` files, which may or may not be included in the source directories of applications specified with [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps).
@@ -353,7 +353,7 @@ Intended to support explicitly declaring the dependencies of any application whi
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--extra-data-files=…`
+> Command-line option: | `--extra-data-files=...`
 > Magic file:          | `.halcyon/extra-data-files`
 
 Additional files to include in the install directory, as run-time dependencies.
@@ -378,7 +378,7 @@ Intended to support applications which do not declare all run-time data files as
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--extra-os-packages=…`
+> Command-line option: | `--extra-os-packages=...`
 > Magic file:          | `.halcyon/extra-os-packages`
 
 Additional OS packages to include in the install directory, as run-time dependencies.
@@ -430,7 +430,7 @@ Forces Halcyon to restore all dependencies, even when an install directory archi
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--pre-install-hook=…`
+> Command-line option: | `--pre-install-hook=...`
 > Magic file:          | `.halcyon/pre-install-hook`
 > Script arguments:    | _`tag source_dir install_dir data_dir`_
 
@@ -442,7 +442,7 @@ Script to execute when installing the application, before archiving the install 
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--post-install-hook=…`
+> Command-line option: | `--post-install-hook=...`
 > Magic file:          | `.halcyon/post-install-hook`
 > Script arguments:    | _`tag source_dir install_dir data_dir`_
 
@@ -467,7 +467,7 @@ Cache options
 > ---------------------|---
 > Default value:       | `/var/tmp/halcyon-cache`
 > Type:                | directory
-> Command-line option: | `--cache=…`
+> Command-line option: | `--cache=...`
 
 Directory in which Halcyon caches recently used archives and constraints files.
 
@@ -510,7 +510,7 @@ Public storage options
 > ---------------------|---
 > Default value:       | [`https://halcyon.global.ssl.fastly.net`](https://halcyon.global.ssl.fastly.net)
 > Type:                | S3 URL
-> Command-line option: | `--public-storage=…`
+> Command-line option: | `--public-storage=...`
 
 URL of the Amazon S3 bucket from which Halcyon restores public archives and constraints files.
 
@@ -533,7 +533,7 @@ Private storage options
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | string, optional
-> Command-line option: | `--aws-access-key-id=…`
+> Command-line option: | `--aws-access-key-id=...`
 
 Amazon Web Services username, used to authenticate S3 requests.
 
@@ -543,7 +543,7 @@ Amazon Web Services username, used to authenticate S3 requests.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | string, optional
-> Command-line option: | `--aws-secret-access-key=…`
+> Command-line option: | `--aws-secret-access-key=...`
 
 Amazon Web Services password, used to authenticate S3 requests.
 
@@ -553,7 +553,7 @@ Amazon Web Services password, used to authenticate S3 requests.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | S3 name, optional
-> Command-line option: | `--s3-bucket=…`
+> Command-line option: | `--s3-bucket=...`
 
 Name of the Amazon S3 bucket in which Halcyon stores archives and constraints files.
 
@@ -565,7 +565,7 @@ Name of the Amazon S3 bucket in which Halcyon stores archives and constraints fi
 > ---------------------|---
 > Default value:       | `s3.amazonaws.com`
 > Type:                | S3 address, optional
-> Command-line option: | `--s3-endpoint=…`
+> Command-line option: | `--s3-endpoint=...`
 
 Address of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in which [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket) is located.
 
@@ -575,7 +575,7 @@ Address of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/
 > ---------------------|---
 > Default value:       | `private`
 > Type:                | S3 ACL
-> Command-line option: | `--s3-acl=…`
+> Command-line option: | `--s3-acl=...`
 
 Name of the Amazon [S3 <abbr title="Access control list">ACL</abbr>](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html) which is assigned to all files uploaded to [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
@@ -620,7 +620,7 @@ GHC options
 > ---------------------|---
 > Default value:       | `7.8.3`
 > Type:                | version
-> Command-line option: | `--ghc-version=…`
+> Command-line option: | `--ghc-version=...`
 
 Default version of GHC to install or restore in the GHC directory.
 
@@ -643,7 +643,7 @@ Supported versions include:
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--ghc-pre-build-hook=…`
+> Command-line option: | `--ghc-pre-build-hook=...`
 > Magic file:          | `.halcyon/ghc-pre-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
@@ -655,7 +655,7 @@ Script to execute when building the GHC directory, before installing GHC.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--ghc-post-build-hook=…`
+> Command-line option: | `--ghc-post-build-hook=...`
 > Magic file:          | `.halcyon/ghc-post-build-hook`
 > Script arguments:    | _`tag source_dir ghc_dir`_
 
@@ -680,7 +680,7 @@ Cabal options
 > ---------------------|---
 > Default value:       | `1.20.0.3`
 > Type:                | version
-> Command-line option: | `--cabal-version=…`
+> Command-line option: | `--cabal-version=...`
 
 Version of _cabal-install_ to bootstrap or restore in the Cabal directory.
 
@@ -700,7 +700,7 @@ Supported versions include:
 > ---------------------|---
 > Default value:       | `Hackage:http://hackage.haskell.org/packages/archive`
 > Type:                | string
-> Command-line option: | `--cabal-repo=…`
+> Command-line option: | `--cabal-repo=...`
 
 Name and URL of the Cabal repository referenced by the Cabal package database in the Cabal directory.
 
@@ -714,7 +714,7 @@ The value must match the format of a `remote-repo` entry in a `cabal.config` fil
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--cabal-pre-build-hook=…`
+> Command-line option: | `--cabal-pre-build-hook=...`
 > Magic file:          | `.halcyon/cabal-pre-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
@@ -726,7 +726,7 @@ Script to execute when building the Cabal directory, before bootstrapping _cabal
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--cabal-post-build-hook=…`
+> Command-line option: | `--cabal-post-build-hook=...`
 > Magic file:          | `.halcyon/cabal-post-build-hook`
 > Script arguments:    | _`tag source_dir cabal_dir`_
 
@@ -738,7 +738,7 @@ Script to execute when building the Cabal directory, after bootstrapping _cabal-
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--cabal-pre-update-hook=…`
+> Command-line option: | `--cabal-pre-update-hook=...`
 > Magic file:          | `.halcyon/cabal-pre-update-hook`
 > Script arguments:    | _none_
 
@@ -750,7 +750,7 @@ Script to execute when updating the Cabal directory, before running `cabal updat
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--cabal-post-update-hook=…`
+> Command-line option: | `--cabal-post-update-hook=...`
 > Magic file:          | `.halcyon/cabal-post-update-hook`
 > Script arguments:    | _none_
 
@@ -785,7 +785,7 @@ Sandbox options
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--sandbox-sources=…`
+> Command-line option: | `--sandbox-sources=...`
 > Magic file:          | `.halcyon/sandbox-sources`
 
 Additional Cabal packages to include in the sandbox directory, as build-time dependencies.
@@ -807,7 +807,7 @@ https://github.com/mietek/text-icu#fpic
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--sandbox-extra-apps=…`
+> Command-line option: | `--sandbox-extra-apps=...`
 > Magic file:          | `.halcyon/sandbox-extra-apps`
 
 Additional Haskell applications to include in the sandbox directory, as build-time dependencies.
@@ -833,7 +833,7 @@ Intended to support installing Cabal `build-tools`, such as _alex_ or _happy_.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings, file, or directory, optional
-> Command-line option: | `--sandbox-extra-apps-constraints=…`
+> Command-line option: | `--sandbox-extra-apps-constraints=...`
 > Magic file:          | `.halcyon/sandbox-extra-apps-constraints`
 
 Cabal package labels, to override any constraints specified in `cabal.config` files, which may or may not be included in the source directories of applications specified with [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps).
@@ -850,14 +850,14 @@ Intended to support explicitly declaring the dependencies of any application whi
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--sandbox-extra-configure-flags=…`
+> Command-line option: | `--sandbox-extra-configure-flags=...`
 > Magic file:          | `.halcyon/sandbox-extra-configure-flags`
 
 Additional flags to specify when running `cabal install --dependencies-only`.
 
 The flags must be separated by whitespace.
 
-**Note:**  Any `--prefix=…` flag will be ignored.
+**Note:**  Any `--prefix=...` flag will be ignored.
 
 
 ### `HALCYON_SANDBOX_EXTRA_OS_PACKAGES`
@@ -865,7 +865,7 @@ The flags must be separated by whitespace.
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | strings or file, optional
-> Command-line option: | `--sandbox-extra-os-packages=…`
+> Command-line option: | `--sandbox-extra-os-packages=...`
 > Magic file:          | `.halcyon/sandbox-extra-os-packages`
 
 Additional OS packages to install in the sandbox directory, as build-time dependencies.
@@ -886,7 +886,7 @@ linux-(debian|ubuntu):libicu-dev
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--sandbox-pre-build-hook=…`
+> Command-line option: | `--sandbox-pre-build-hook=...`
 > Magic file:          | `.halcyon/sandbox-pre-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
@@ -898,7 +898,7 @@ Script to execute when building the sandbox directory, before running `cabal ins
 > ---------------------|---
 > Default value:       | _none_
 > Type:                | file, optional
-> Command-line option: | `--sandbox-post-build-hook=…`
+> Command-line option: | `--sandbox-post-build-hook=...`
 > Magic file:          | `.halcyon/sandbox-post-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
@@ -930,7 +930,7 @@ Directory in which Halcyon is installed.
 Intended to support using Halcyon functions in hook scripts.
 
 ```
-$ source "${HALCYON_DIR}/src.sh"
+source "${HALCYON_DIR}/src.sh"
 ```
 
 Automatically set by Halcyon at run-time.  Setting this has an effect only before installing Halcyon by running the setup script.

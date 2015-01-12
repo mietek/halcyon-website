@@ -130,21 +130,22 @@ $ PORT=8080 hello-apiary
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-apiary-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-apiary-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-apiary">https://github.com/mietek/hello-apiary</a></span>
+``` { #hello-apiary-log .toggle }
+$ halcyon install https://github.com/mietek/hello-apiary
 -----> Cloning https://github.com/mietek/hello-apiary... done, d97f2b3
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-apiary-1.0</b>
-       Source hash:                              <b>49d3c4f</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>f00c991</b>
-       Magic hash:                               <b>075003b</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
-       Sandbox magic hash:                       <b>ae3848d</b>
-       Sandbox extra apps:                       <b>alex-3.1.3</b>
+       Label:                                    **hello-apiary-1.0**
+       Source hash:                              **49d3c4f**
+       Prefix:                                   **/app**
+       Constraints hash:                         **f00c991**
+       Magic hash:                               **075003b**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
+       Sandbox magic hash:                       **ae3848d**
+       Sandbox extra apps:                       **alex-3.1.3**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -157,10 +158,10 @@ $ PORT=8080 hello-apiary
 -----> Installing sandbox extra apps
        -----> Unpacking app
        -----> Installing app
-              Label:                                    <b>alex-3.1.3</b>
-              Source hash:                              <b>b3faab4</b>
-              Prefix:                                   <b>/app/sandbox</b>
-              External storage:                         <b>public</b>
+              Label:                                    **alex-3.1.3**
+              Source hash:                              **b3faab4**
+              Prefix:                                   **/app/sandbox**
+              External storage:                         **public**
 
        -----> Restoring install directory
               Extracting halcyon-install-b3faab4-alex-3.1.3.tar.gz... done, 2.5MB
@@ -195,8 +196,8 @@ $ PORT=8080 hello-apiary
        Creating halcyon-install-49d3c4f-hello-apiary-1.0.tar.gz... done, 1.6MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-apiary-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-apiary-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-apiary">Deploy to DigitalOcean</a>
@@ -240,19 +241,20 @@ $ PORT=8080 hello-happstack
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-happstack-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-happstack-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-happstack">https://github.com/mietek/hello-happstack</a></span>
+``` { #hello-happstack-log .toggle }
+$ halcyon install https://github.com/mietek/hello-happstack
 -----> Cloning https://github.com/mietek/hello-happstack... done, fa472e4
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-happstack-1.0</b>
-       Source hash:                              <b>fc844b0</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>c1c4c32</b>
-       Magic hash:                               <b>5eba4ea</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-happstack-1.0**
+       Source hash:                              **fc844b0**
+       Prefix:                                   **/app**
+       Constraints hash:                         **c1c4c32**
+       Magic hash:                               **5eba4ea**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -291,8 +293,8 @@ $ PORT=8080 hello-happstack
        Creating halcyon-install-fc844b0-hello-happstack-1.0.tar.gz... done, 1.7MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-happstack-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-happstack-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-happstack">Deploy to DigitalOcean</a>
@@ -337,21 +339,22 @@ $ PORT=8080 hello-mflow
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-mflow-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-mflow-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-mflow">https://github.com/mietek/hello-mflow</a></span>
+``` { #hello-mflow-log .toggle }
+$ halcyon install https://github.com/mietek/hello-mflow
 -----> Cloning https://github.com/mietek/hello-mflow... done, ecf421a
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-mflow-1.0</b>
-       Source hash:                              <b>83ba62c</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>9eb1156</b>
-       Magic hash:                               <b>015be62</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
-       Sandbox magic hash:                       <b>0cda71a</b>
-       Sandbox extra apps:                       <b>cpphs-1.18.6</b>
+       Label:                                    **hello-mflow-1.0**
+       Source hash:                              **83ba62c**
+       Prefix:                                   **/app**
+       Constraints hash:                         **9eb1156**
+       Magic hash:                               **015be62**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
+       Sandbox magic hash:                       **0cda71a**
+       Sandbox extra apps:                       **cpphs-1.18.6**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -364,10 +367,10 @@ $ PORT=8080 hello-mflow
 -----> Installing sandbox extra apps
        -----> Unpacking app
        -----> Installing app
-              Label:                                    <b>cpphs-1.18.6</b>
-              Source hash:                              <b>85c6517</b>
-              Prefix:                                   <b>/app/sandbox</b>
-              External storage:                         <b>public</b>
+              Label:                                    **cpphs-1.18.6**
+              Source hash:                              **85c6517**
+              Prefix:                                   **/app/sandbox**
+              External storage:                         **public**
 
        -----> Restoring install directory
               Extracting halcyon-install-85c6517-cpphs-1.18.6.tar.gz... done, 3.2MB
@@ -402,8 +405,8 @@ $ PORT=8080 hello-mflow
        Creating halcyon-install-83ba62c-hello-mflow-1.0.tar.gz... done, 3.2MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-mflow-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-mflow-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-mflow">Deploy to DigitalOcean</a>
@@ -447,19 +450,20 @@ $ PORT=8080 hello-miku
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-miku-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-miku-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-miku">https://github.com/mietek/hello-miku</a></span>
+``` { #hello-miku-log .toggle }
+$ halcyon install https://github.com/mietek/hello-miku
 -----> Cloning https://github.com/mietek/hello-miku... done, 1c95812
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-miku-1.0</b>
-       Source hash:                              <b>a8cbc37</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>957fb97</b>
-       Magic hash:                               <b>4955c40</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-miku-1.0**
+       Source hash:                              **a8cbc37**
+       Prefix:                                   **/app**
+       Constraints hash:                         **957fb97**
+       Magic hash:                               **4955c40**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -498,8 +502,8 @@ $ PORT=8080 hello-miku
        Creating halcyon-install-a8cbc37-hello-miku-1.0.tar.gz... done, 2.1MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-miku-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-miku-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-miku">Deploy to DigitalOcean</a>
@@ -542,19 +546,20 @@ $ PORT=8080 hello-scotty
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-scotty-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-scotty">https://github.com/mietek/hello-scotty</a></span>
+``` { #hello-scotty-log .toggle }
+$ halcyon install https://github.com/mietek/hello-scotty
 -----> Cloning https://github.com/mietek/hello-scotty... done, 2412c2c
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-scotty-1.0</b>
-       Source hash:                              <b>9d43644</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>7535560</b>
-       Magic hash:                               <b>26c4137</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-scotty-1.0**
+       Source hash:                              **9d43644**
+       Prefix:                                   **/app**
+       Constraints hash:                         **7535560**
+       Magic hash:                               **26c4137**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -593,8 +598,8 @@ $ PORT=8080 hello-scotty
        Creating halcyon-install-9d43644-hello-scotty-1.0.tar.gz... done, 2.0MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-scotty-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-scotty-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-scotty">Deploy to DigitalOcean</a>
@@ -643,19 +648,20 @@ $ PORT=8080 hello-simple
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-simple-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-simple-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-simple">https://github.com/mietek/hello-simple</a></span>
+``` { #hello-simple-log .toggle }
+$ halcyon install https://github.com/mietek/hello-simple
 -----> Cloning https://github.com/mietek/hello-simple... done, 3dec3e1
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-simple-1.0</b>
-       Source hash:                              <b>7c42c3b</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>a63103a</b>
-       Magic hash:                               <b>5b60565</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-simple-1.0**
+       Source hash:                              **7c42c3b**
+       Prefix:                                   **/app**
+       Constraints hash:                         **a63103a**
+       Magic hash:                               **5b60565**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -694,8 +700,8 @@ $ PORT=8080 hello-simple
        Creating halcyon-install-7c42c3b-hello-simple-1.0.tar.gz... done, 1.1MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-simple-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-simple-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-simple">Deploy to DigitalOcean</a>
@@ -743,19 +749,20 @@ $ PORT=8080 hello-snap
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-snap-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-snap-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-snap">https://github.com/mietek/hello-snap</a></span>
+``` { #hello-snap-log .toggle }
+$ halcyon install https://github.com/mietek/hello-snap
 -----> Cloning https://github.com/mietek/hello-snap... done, b094ee3
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-snap-1.0</b>
-       Source hash:                              <b>bfb34c1</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>03695cd</b>
-       Magic hash:                               <b>507dce2</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-snap-1.0**
+       Source hash:                              **bfb34c1**
+       Prefix:                                   **/app**
+       Constraints hash:                         **03695cd**
+       Magic hash:                               **507dce2**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -794,8 +801,8 @@ $ PORT=8080 hello-snap
        Creating halcyon-install-bfb34c1-hello-snap-1.0.tar.gz... done, 1.9MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-snap-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-snap-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-snap">Deploy to DigitalOcean</a>
@@ -838,19 +845,20 @@ $ PORT=8080 hello-spock
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-spock-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-spock-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-spock">https://github.com/mietek/hello-spock</a></spock>
+``` { #hello-spock-log .toggle }
+$ halcyon install https://github.com/mietek/hello-spock
 -----> Cloning https://github.com/mietek/hello-spock... done, 903811e
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-spock-1.0</b>
-       Source hash:                              <b>476305b</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>d33fb1e</b>
-       Magic hash:                               <b>c6e8179</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-spock-1.0**
+       Source hash:                              **476305b**
+       Prefix:                                   **/app**
+       Constraints hash:                         **d33fb1e**
+       Magic hash:                               **c6e8179**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -889,8 +897,8 @@ $ PORT=8080 hello-spock
        Creating halcyon-install-476305b-hello-spock-1.0.tar.gz... done, 2.0MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-spock-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-spock-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-spock">Deploy to DigitalOcean</a>
@@ -941,19 +949,20 @@ $ PORT=8080 hello-wai
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wai-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-wai-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-wai">https://github.com/mietek/hello-wai</a></span>
+``` { #hello-wai-log .toggle }
+$ halcyon install https://github.com/mietek/hello-wai
 -----> Cloning https://github.com/mietek/hello-wai... done, 177928b
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-wai-1.0</b>
-       Source hash:                              <b>477b187</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>270c17b</b>
-       Magic hash:                               <b>fb12fe6</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-wai-1.0**
+       Source hash:                              **477b187**
+       Prefix:                                   **/app**
+       Constraints hash:                         **270c17b**
+       Magic hash:                               **fb12fe6**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -992,8 +1001,8 @@ $ PORT=8080 hello-wai
        Creating halcyon-install-477b187-hello-wai-1.0.tar.gz... done, 1.1MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-wai-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-wai-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-wai">Deploy to DigitalOcean</a>
@@ -1039,19 +1048,20 @@ $ PORT=8080 hello-wheb
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-wheb-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-wheb-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-wheb">https://github.com/mietek/hello-wheb</a></span>
+``` { #hello-wheb-log .toggle }
+$ halcyon install https://github.com/mietek/hello-wheb
 -----> Cloning https://github.com/mietek/hello-wheb... done, fb508d2
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-wheb-1.0</b>
-       Source hash:                              <b>4853ba3</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>410ca91</b>
-       Magic hash:                               <b>96decc3</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-wheb-1.0**
+       Source hash:                              **4853ba3**
+       Prefix:                                   **/app**
+       Constraints hash:                         **410ca91**
+       Magic hash:                               **96decc3**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -1090,8 +1100,8 @@ $ PORT=8080 hello-wheb
        Creating halcyon-install-4853ba3-hello-wheb-1.0.tar.gz... done, 1.6MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-wheb-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-wheb-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-wheb">Deploy to DigitalOcean</a>
@@ -1146,19 +1156,20 @@ $ PORT=8080 hello-yesod
 
 <div class="toggle">
 <a class="toggle-button" data-target="hello-yesod-log" href="" title="Toggle">Toggle</a>
-<pre class="toggle with-tweaks" id="hello-yesod-log"><code><span class="prompt">$</span> <span class="input">halcyon install <a href="https://github.com/mietek/hello-yesod">https://github.com/mietek/hello-yesod</a></span>
+``` { #hello-yesod-log .toggle }
+$ halcyon install https://github.com/mietek/hello-yesod
 -----> Cloning https://github.com/mietek/hello-yesod... done, f51baad
 -----> Determining constraints
 -----> Installing app
-       Label:                                    <b>hello-yesod-1.0</b>
-       Source hash:                              <b>0169a27</b>
-       Prefix:                                   <b>/app</b>
-       Constraints hash:                         <b>141ed8a</b>
-       Magic hash:                               <b>de65792</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.3</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **hello-yesod-1.0**
+       Source hash:                              **0169a27**
+       Prefix:                                   **/app**
+       Constraints hash:                         **141ed8a**
+       Magic hash:                               **de65792**
+       External storage:                         **public**
+       GHC version:                              **7.8.3**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Restoring GHC directory
        Extracting halcyon-ghc-7.8.3.tar.gz... done, 701MB
@@ -1203,8 +1214,8 @@ $ PORT=8080 hello-yesod
        Creating halcyon-install-0169a27-hello-yesod-1.0.tar.gz... done, 3.7MB
 -----> Installing app into /app... done
 
------> App installed:                            <b>hello-yesod-1.0</b>
-</code></pre>
+-----> App installed:                            **hello-yesod-1.0**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-yesod">Deploy to DigitalOcean</a>

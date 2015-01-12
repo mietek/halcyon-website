@@ -28,7 +28,8 @@ With an archive of the application install directory available, installing can t
 
 <div class="toggle">
 <a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="log1"><code>$ halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
+``` { #log1 }
+$ halcyon install https://github.com/mietek/howistart
 -----> Cloning https://github.com/mietek/howistart... done, cc48e01
 -----> Installing app
        Prefix:                                   <b>/app</b>
@@ -43,7 +44,7 @@ With an archive of the application install directory available, installing can t
 -----> Installing app into /app... done
 
 -----> App installed:                            <b>howistart-0.1</b>
-</code></pre>
+```
 </div>
 
 If an install directory archive is not available, Halcyon will build the application and any required dependencies on the fly.
@@ -149,7 +150,9 @@ Currently, Halcyon fully supports the `x86_64` architecture, and the following L
 
 Halcyon can be installed in one command on most recent Linux distributions.
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">source <( curl -sL <a href="https://github.com/mietek/halcyon/raw/master/setup.sh">https://github.com/mietek/halcyon/raw/master/setup.sh</a> )</span></code></pre>
+```
+$ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
+```
 
 The Halcyon setup script ensures the necessary OS packages are installed, clones the Halcyon _git_ repository, and sets up the needed environment variables.
 
@@ -158,8 +161,9 @@ The Halcyon setup script ensures the necessary OS packages are installed, clones
 
 Halcyon is installed with _git_, and automatically updates itself before executing any command.  The source repository used for self-updates is defined by [`HALCYON_URL`](/reference/#halcyon_url).
 
-<pre class="with-tweaks"><code><span class="prompt">$</span> <span class="input">git clone <a href="https://github.com/mietek/halcyon">https://github.com/mietek/halcyon</a></span>
-</code></pre>
+```
+$ git clone https://github.com/mietek/halcyon
+```
 
 To disable self-updates, set [`HALCYON_NO_SELF_UPDATE`](/reference/#halcyon_no_self_update) to `1`.
 
@@ -184,7 +188,9 @@ Haskell applications packaged with Cabal are expected to declare build-time depe
 
 The `build-depends` field of the package description is used to list package names and optional version number ranges.
 
-<pre><code>build-depends: base >=4 &amp;&amp; &lt;5</code></pre>
+```
+build-depends: base >=4 && <5
+```
 
 Recent version of _cabal-install_ include the `cabal freeze` command, which can be used to determine the exact version numbers of all dependencies, transitively.  When executed in an application directory, `cabal freeze` creates a `cabal.config` file, which contains a snapshot of the _version constraints._
 

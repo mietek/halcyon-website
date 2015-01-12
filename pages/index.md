@@ -107,13 +107,14 @@ The [`halcyon install`](/guide/#basic-usage) command is intended to be used inst
 
 <div class="toggle">
 <a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
-<pre class="toggle" id="log1"><code>$ halcyon install <a href="https://github.com/mietek/howistart">https://github.com/mietek/howistart</a>
+``` { #log1 .toggle }
+$ halcyon install https://github.com/mietek/howistart
 -----> Cloning https://github.com/mietek/howistart... done, cc48e01
 -----> Installing app
-       Prefix:                                   <b>/app</b>
-       Label:                                    <b>howistart-0.1</b>
-       Source hash:                              <b>bcfc50f</b>
-       External storage:                         <b>public</b>
+       Prefix:                                   **/app**
+       Label:                                    **howistart-0.1**
+       Source hash:                              **bcfc50f**
+       External storage:                         **public**
 
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
@@ -121,8 +122,8 @@ The [`halcyon install`](/guide/#basic-usage) command is intended to be used inst
 -----> Install directory restored
 -----> Installing app into /app... done
 
------> App installed:                            <b>howistart-0.1</b>
-</code></pre>
+-----> App installed:                            **howistart-0.1**
+```
 </div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
