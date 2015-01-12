@@ -119,7 +119,9 @@ Default value of [`HALCYON_PREFIX`](#halcyon_prefix).
 Directory in which Halcyon installs applications.
 
 <div class="pre-like">
+
 _If the install directory consists of `bin/hello`, and [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, then the application will be installed as `/app/bin/hello`._
+
 </div>
 
 
@@ -135,7 +137,9 @@ Root of the path to the directory in which Halcyon installs applications.
 Intended to support advanced installation workflows.
 
 <div class="pre-like">
+
 _If the install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_prefix) is set to `/app`, and [`HALCYON_ROOT`](#halcyon_root) is set to `/tmp/hello`, then the application will be configured to be installed as `/app/bin/hello`, and will actually be installed as `/tmp/hello/app/bin/hello`._
+
 </div>
 
 
