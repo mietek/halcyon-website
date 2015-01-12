@@ -172,10 +172,46 @@ The app is now ready to run.
 By default, the app is installed in the `/app` directory.  You can change this with the [`--prefix=…`](/reference/#halcyon_prefix) option.
 
 
-Run the app
------------
+Test the app
+------------
 
-TODO
+The tutorial app is a simple in-memory noteboard, exposing one HTTP endpoint, `/notes`, which accepts `GET` and `POST` requests.
+
+Start the app in one shell:
+
+```
+$ halcyon-tutorial
+```
+
+By default, the app listens on port 8080.  You can change this by setting the `PORT` environment variable.
+
+In another shell, make a `GET` request to see the empty noteboard:
+
+```
+$ curl localhost:8080/notes
+[]
+```
+
+Notes are JSON objects with a single text field, `contents`.
+
+Make a couple `POST` requests to add some notes:
+
+```
+$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+[{"contents":"Hello, world!"}]
+$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello?" }'
+[{"contents":"Hello?"},{"contents":"Hello, world!"}]
+```
+
+The app always responds with the contents of the entire noteboard.  The notes also appear in the original shell:
+
+```
+$ halcyon-tutorial
+Hello, world!
+Hello?
+```
+
+Press `control-C` to stop the app.
 
 
 Make a change
