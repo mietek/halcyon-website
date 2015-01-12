@@ -31,21 +31,20 @@ Run the [setup script](https://github.com/mietek/halcyon/raw/master/setup.sh) to
 ```
 $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 -----> Welcome to Halcyon
-[sudo] password for $USER:
+[sudo] password for yourself:
 -----> Creating base directory: /app
 -----> Installing OS packages
-       …
-       
 -----> Installing Halcyon in /app/halcyon... done, 9d37342
 -----> Installing bashmenot in /app/halcyon/lib/bashmenot... done, 8bd8ea3
 -----> Extending .bash_profile
 ```
+
+Halcyon is now installed and ready to use:
+
 ```
 $ which halcyon
 /app/halcyon/halcyon
 ```
-
-Halcyon is now ready to use.
 
 
 ### Tips
@@ -90,21 +89,22 @@ $ halcyon install
        + halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
        + halcyon-ghc-7.8.4.tar.gz
 ```
+
+In this step, Halcyon restores a _GHC directory archive_ and a _Cabal directory archive_, which are downloaded from public storage.
+
+GHC and Cabal are now ready to use:
+
 ```
 $ which ghc
 /app/ghc/bin/ghc
-```
-```
 $ which cabal
 /app/cabal/bin/cabal
 ```
 
-GHC and Cabal are now ready to use.
-
 
 ### Tips
 
-By default, Halcyon uses GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this with the [`--ghc-version=…`](/reference/#halcyon_ghc_version) and [`--cabal-version=…`](/reference/#halcyon_cabal_version) options.
+Halcyon defaults to GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this with the [`--ghc-version=…`](/reference/#halcyon_ghc_version) and [`--cabal-version=…`](/reference/#halcyon_cabal_version) options.
 
 If the current directory contains a Haskell app, running [`halcyon install`](/reference/#halcyon-install) will install the app, unless you use the [`--no-app`](/reference/#halcyon_no_app) option.
 
@@ -159,12 +159,15 @@ $ halcyon install
 -----> Examining cache changes
        + halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
 ```
+
+In this step, Halcyon restores an _install directory archive_ from public storage.  The correct install directory to use is determined by calculating a _source hash_ of the source directory.
+
+The app is now ready to run:
+
 ```
 $ which halcyon-tutorial
 /app/bin/halcyon-tutorial
 ```
-
-The app is now ready to run.
 
 
 ### Tips
@@ -172,8 +175,8 @@ The app is now ready to run.
 By default, the app is installed in the `/app` directory.  You can change this with the [`--prefix=…`](/reference/#halcyon_prefix) option.
 
 
-Test the app
-------------
+Run the app
+-----------
 
 The tutorial app is a simple in-memory noteboard, exposing one HTTP endpoint, `/notes`, which accepts `GET` and `POST` requests.
 
@@ -203,7 +206,7 @@ $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello?" }'
 [{"contents":"Hello?"},{"contents":"Hello, world!"}]
 ```
 
-The app always responds with the contents of the entire noteboard.  The notes also appear in the original shell:
+The app always responds with the contents of the entire noteboard.  The notes are also logged to the original shell:
 
 ```
 $ halcyon-tutorial
