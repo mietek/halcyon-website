@@ -94,7 +94,7 @@ $ halcyon install
        + halcyon-ghc-7.8.4.tar.gz
 ```
 
-In this step, Halcyon restores a _GHC directory_ archive and a _Cabal directory_ archive, which are downloaded from [public storage](/guide/#storage-and-caching).
+In this step, Halcyon restores the _GHC directory_ and the _Cabal directory_ by extracting archives downloaded from [public storage](/guide/#storage-and-caching).
 
 GHC and Cabal are now ready to use:
 
@@ -148,7 +148,7 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
        + halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
 ```
 
-In this step, Halcyon restores an _install directory_ archive from public storage.
+In this step, Halcyon restores the _install directory_ from public storage.
 
 The app is now ready to run:
 
@@ -213,6 +213,8 @@ By default, the app listens on port 8080.  You can change this by setting the `P
 Make a change
 -------------
 
+Let’s change the app to remember the date and time when each note is added.
+
 Use _git_ to make a local copy of the [tutorial app](https://github.com/mietek/halcyon-tutorial) repository:
 
 ```
@@ -220,9 +222,7 @@ $ git clone -q https://github.com/mietek/halcyon-tutorial
 $ cd halcyon-tutorial
 ```
 
-Let’s change the app to remember when each note is added.
-
-Check out the next version of the app, which includes an additional empty `dateTime` field in each note:
+Check out the next version of the app, which includes a new `dateTime` field in each note:
 
 ```
 $ git checkout -q step2
@@ -300,11 +300,11 @@ $ halcyon install
        + halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
 ```
 
-In this step, Halcyon fails to restore an install directory archive, and falls back to building the application.
+In this step, Halcyon fails to restore the install directory, and falls back to building the application.
 
-1.  First, a _sandbox directory_ archive is restored from public storage.
+1.  First, the _sandbox directory_ is restored from public storage.
 
-2.  Next, Halcyon restores a _build directory_ archive, and performs an incremental build.
+2.  Next, Halcyon restores the _build directory,_ and performs an incremental build.
 
 3.  Finally, a new install directory is prepared and archived, and the app is installed.
 
@@ -328,11 +328,11 @@ The sandbox directory is located in the base directory, next to the GHC and Caba
 Declare a dependency
 --------------------
 
-Let’s change the app to add actual timestamps to the empty `dateTime` fields.
+Let’s change the app to add actual timestamps to the `dateTime` fields.
 
-The Cabal package description file, `halcyon-tutorial.cabal`, is used to [declare dependencies](/guide/#declaring-dependencies).
+The Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal), is used to [declare dependencies](/guide/#declaring-dependencies).
 
-The next version of the app declares the standard Haskell [`old-locale`](http://hackage.haskell.org/package/old-locale) and [`time`](http://hackage.haskell.org/package/time) packages as additional dependencies:
+The next version of the app declares the standard Haskell [`old-locale`](http://hackage.haskell.org/package/old-locale) and [`time`](http://hackage.haskell.org/package/time) packages as dependencies:
 
 ```
 $ git diff step2 step3 halcyon-tutorial.cabal
@@ -426,14 +426,14 @@ $ halcyon install
        - halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
 ```
 
-In this step, Halcyon again performs an incremental build.  The previously restored sandbox directory is reused, because it already contains the `old-locale` and `time` packages.
+In this step, Halcyon again performs an incremental build.
 
-You can check this by looking at the Halcyon [`constraints`](/reference/#halcyon_constraints) magic file, which is used to declare [version constraints](/guide/#version-constraints) for all dependencies.
+The previously restored sandbox directory is reused, because [version constraints](/guide/#version-constraints) for the `old-locale` and `time` packages were already declared in [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints):
 
 ```
-$ grep -E '^(old-locale|time)' .halcyon/constraints 
-old-locale-1.0.0.6
-time-1.4.2
+$ git grep -E '^(old-locale|time)' step2 .halcyon/constraints
+step1:.halcyon/constraints:53:**old-locale**-1.0.0.6
+step1:.halcyon/constraints:83:**time**-1.4.2
 ```
 
 The app is now ready to run again, and the timestamps also appear in the original shell:
