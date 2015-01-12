@@ -150,7 +150,7 @@ _If the install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_p
 > Type:                | `0` or `1`
 > Command-line option: | `--no-app`
 
-Forces Halcon to install GHC and Cabal only, even when the current directory is a source directory.
+Forces Halcyon to install GHC and Cabal only, even when the current directory is a source directory.
 
 The versions of GHC and _cabal-install_ to install are defined by [`HALCYON_GHC_VERSION`](#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](#halcyon_cabal_version).
 
