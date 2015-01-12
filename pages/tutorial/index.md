@@ -200,7 +200,101 @@ Press `control-C` to stop the app.
 Make a change
 -------------
 
-TODO
+It would be nice to know the date and time each note was added.
+
+Use _git_ to make a local copy of the [tutorial app](https://github.com/mietek/halcyon-tutorial) repository.  Update the code to the next step, and install the app again:
+
+```
+$ git clone https://github.com/mietek/halcyon-tutorial
+$ cd halcyon-tutorial
+$ git checkout step2
+```
+```
+$ halcyon install
+-----> Examining cache contents
+       halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
+       halcyon-ghc-7.8.4.tar.gz
+       halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
+
+-----> Installing halcyon-tutorial-1.0
+       Label:                                    halcyon-tutorial-1.0
+       Prefix:                                   /app
+       Source hash:                              126214f
+       External storage:                         public
+       GHC version:                              7.8.4
+
+-----> Restoring install directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+
+-----> Determining constraints
+       Label:                                    halcyon-tutorial-1.0
+       Prefix:                                   /app
+       Source hash:                              126214f
+       Constraints hash:                         becfd1b
+       Magic hash:                               c7b5b77
+       External storage:                         public
+       GHC version:                              7.8.4
+       Cabal version:                            1.20.0.3
+       Cabal repository:                         Hackage
+
+-----> Using existing GHC
+
+-----> Using existing Cabal directory
+
+-----> Restoring sandbox directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done, 140MB
+
+-----> Restoring build directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-build-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.4MB
+-----> Examining source changes
+       * Main.hs
+-----> Building app
+       Building halcyon-tutorial-1.0...
+       Preprocessing executable 'halcyon-tutorial' for halcyon-tutorial-1.0...
+       [1 of 1] Compiling Main             ( Main.hs, dist/build/halcyon-tutorial/halcyon-tutorial-tmp/Main.o )
+       Linking dist/build/halcyon-tutorial/halcyon-tutorial ...
+-----> App built, 12MB
+       Stripping app... done, 9.4MB
+-----> Archiving build directory
+       Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
+
+-----> Restoring install directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+-----> Preparing install directory
+-----> Installing extra data files for dependencies
+-----> Install directory prepared, 8.8MB
+-----> Archiving install directory
+       Creating halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+-----> Installing app to /app
+-----> Installed halcyon-tutorial-1.0
+
+-----> App installed:                            halcyon-tutorial-1.0
+
+-----> Examining cache changes
+       + halcyon-build-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz
+       + halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+```
+
+In this step, Halcyon attempts to restore an install directory archive, fails, and falls back to building the application.
+
+1.  First, a _sandbox directory archive_ is restored from public storage.
+
+2.  Next, a _build directory archive_ is restored, and an incremental build is performed.  You can see the only change was made to the `Main.hs` file.
+
+3.  Finally, a new install directory is prepared and archived, and the app is installed.
+
+The app is now ready to run again.
+
+An additional empty `dateTime` field is now included in each note.  Make another `POST` request to see the change:
+
+```
+$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+[{"contents":"Hello, world!","dateTime":""}]
+```
 
 
 Build the app
