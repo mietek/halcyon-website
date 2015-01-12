@@ -24,7 +24,7 @@ This tutorial shows how to use Halcyon while writing a new Haskell web app.
 Set up
 ------
 
-The tutorial assumes you are using a [supported Linux system](/guide/#supported-platforms) with at least 4 GB RAM, and a [GNU _bash_](https://gnu.org/software/bash/) shell.
+The tutorial assumes you’re using a [supported Linux system](/guide/#supported-platforms) with at least 4 GB RAM, and a [GNU _bash_](https://gnu.org/software/bash/) shell.
 
 Run the [setup script](https://github.com/mietek/halcyon/raw/master/setup.sh) to install Halcyon:
 
@@ -55,13 +55,13 @@ By default, Halcyon is installed in the `halcyon` subdirectory of the base direc
 $ export HALCYON_DIR=…
 ```
 
-If you do not want your `.bash_profile` to be modified, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the setup script.  In the future, you will need to activate Halcyon manually before each use:
+If you don’t want your `.bash_profile` to be modified, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the setup script.  In the future, you’ll need to activate Halcyon manually before each use:
 
 ```
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Using a custom base directory is not recommended, because it will prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
+Using a custom base directory is not recommended, because it’ll prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.  [More…](/guide/#base-and-prefix-directories)
 
 
 Install GHC and Cabal
@@ -94,7 +94,7 @@ $ halcyon install
        + halcyon-ghc-7.8.4.tar.gz
 ```
 
-In this step, Halcyon restores a _GHC directory archive_ and a _Cabal directory archive_, which are downloaded from public storage.
+In this step, Halcyon restores a _GHC directory_ archive and a _Cabal directory_ archive, which are downloaded from public storage.
 
 GHC and Cabal are now ready to use:
 
@@ -108,7 +108,7 @@ $ which cabal
 
 ### Tips
 
-Halcyon defaults to GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this by specifying [`--ghc-version=…`](/reference/#halcyon_ghc_version) and [`--cabal-version=…`](/reference/#halcyon_cabal_version) options:
+Halcyon defaults to GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this by specifying the [`--ghc-version=…`](/reference/#halcyon_ghc_version) and [`--cabal-version=…`](/reference/#halcyon_cabal_version) options:
 
 ```
 $ halcyon install --ghc-version=7.6.3
@@ -148,7 +148,7 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
        + halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
 ```
 
-In this step, Halcyon restores an _install directory archive_ from public storage.  The correct install directory to use is determined by calculating a _source hash_ of the source directory.
+In this step, Halcyon restores an _install directory_ archive from public storage.
 
 The app is now ready to run:
 
@@ -162,6 +162,8 @@ $ which halcyon-tutorial
 
 By default, the app is installed in the `/app` directory.  You can change this with the [`--prefix=…`](/reference/#halcyon_prefix) option.
 
+The correct install directory to use is determined by calculating a _source hash_ of the source directory.
+
 
 Run the app
 -----------
@@ -173,8 +175,6 @@ Start the app in one shell:
 ```
 $ halcyon-tutorial
 ```
-
-By default, the app listens on port 8080.  You can change this by setting the `PORT` environment variable.
 
 In another shell, make a `GET` request to see the empty noteboard:
 
@@ -205,39 +205,52 @@ Hello?
 Press `control-C` to stop the app.
 
 
+### Tips
+
+By default, the app listens on port 8080.  You can change this by setting the `PORT` environment variable.
+
+
 Make a change
 -------------
 
-It would be nice to know the date and time each note was added.
-
-Use _git_ to make a local copy of the [tutorial app](https://github.com/mietek/halcyon-tutorial) repository.  Update the code to the next step, and install the app again:
+Use _git_ to make a local copy of the [tutorial app](https://github.com/mietek/halcyon-tutorial) repository:
 
 ```
-$ git clone https://github.com/mietek/halcyon-tutorial
+$ git clone -q https://github.com/mietek/halcyon-tutorial
 $ cd halcyon-tutorial
-$ git checkout step2
 ```
+
+Let’s change the app to remember when each note is added.
+
+Check out the next version of the app, which includes an additional empty `dateTime` field in each note:
+
+```
+$ git checkout -q step2
+```
+
+Install the app again:
+
 ```
 $ halcyon install
 -----> Examining cache contents
        halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
        halcyon-ghc-7.8.4.tar.gz
-       halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
+       halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
 
 -----> Installing halcyon-tutorial-1.0
        Label:                                    halcyon-tutorial-1.0
        Prefix:                                   /app
-       Source hash:                              126214f
+       Source hash:                              500d468
        External storage:                         public
        GHC version:                              7.8.4
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
        Label:                                    halcyon-tutorial-1.0
        Prefix:                                   /app
-       Source hash:                              126214f
+       Source hash:                              500d468
        Constraints hash:                         becfd1b
        Magic hash:                               c7b5b77
        External storage:                         public
@@ -269,12 +282,12 @@ $ halcyon install
        Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 8.8MB
 -----> Archiving install directory
-       Creating halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
@@ -282,33 +295,37 @@ $ halcyon install
 
 -----> Examining cache changes
        + halcyon-build-halcyon-tutorial-1.0.tar.gz
-       - halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
-       + halcyon-install-126214f-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
        + halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
 ```
 
-In this step, Halcyon attempts to restore an install directory archive, fails, and falls back to building the application.
+In this step, Halcyon fails to restore an install directory archive, and falls back to building the application.
 
-1.  First, a _sandbox directory archive_ is restored from public storage.
+1.  First, a _sandbox directory_ archive is restored from public storage.
 
-2.  Next, a _build directory archive_ is restored, and an incremental build is performed.  You can see the only change was made to the `Main.hs` file.
+2.  Next, Halcyon restores a _build directory_ archive, and performs an incremental build.
 
 3.  Finally, a new install directory is prepared and archived, and the app is installed.
 
 The app is now ready to run again.
 
-An additional empty `dateTime` field is now included in each note.  Make another `POST` request to see the change:
+Make another `POST` request to see the change:
 
 ```
-$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":""}]
 ```
 
 
-Build the app
--------------
+### Tips
 
-TODO
+Halcyon checks and reuses the previously restored GHC and Cabal directories.
+
+The sandbox directory is located in the base directory, next to the GHC and Cabal directories.  The build is performed in a temporary directory, and the source directory is never modified.
+
+Halcyon can upload every archive to _private storage._  [More…](/guide/#setting-up-private-storage)
+
 
 
 Add a dependency
