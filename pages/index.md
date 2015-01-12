@@ -212,6 +212,7 @@ Documentation
 
 <div><nav>
 <ul class="menu open">
+<li><a href="/tutorial/">Tutorial</a></li>
 <li><a href="/guide/">User’s guide</a></li>
 <li><a href="/reference/">User’s reference</a></li>
 </ul>
