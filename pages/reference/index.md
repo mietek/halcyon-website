@@ -933,6 +933,8 @@ Intended to support using Halcyon functions in hook scripts.
 $ source "${HALCYON_DIR}/src.sh"
 ```
 
+Automatically set by Halcyon at run-time.  Setting this has an effect only before installing Halcyon by running the setup script.
+
 
 ### `HALCYON_URL`
 
