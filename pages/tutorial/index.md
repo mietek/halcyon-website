@@ -28,16 +28,20 @@ The tutorial assumes you’re using a [supported Linux system](/guide/#supported
 
 Run the [setup script](https://github.com/mietek/halcyon/raw/master/setup.sh) to install Halcyon:
 
-```
+<div class="toggle">
+<a class="toggle-button" data-target="set-up-log" href="" title="Toggle">Toggle</a>
+``` { #set-up-log .toggle }
 $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 -----> Welcome to Halcyon
 [sudo] password for yourself:
 -----> Creating base directory: /app
 -----> Installing OS packages
+       ...
 -----> Installing Halcyon in /app/halcyon... done, 9d37342
 -----> Installing bashmenot in /app/halcyon/lib/bashmenot... done, 8bd8ea3
 -----> Extending .bash_profile
 ```
+</div>
 
 Halcyon is now installed and ready to use:
 
@@ -69,7 +73,9 @@ Install GHC and Cabal
 
 Run [`halcyon install`](/reference/#halcyon-install) to install GHC and Cabal:
 
-```
+<div class="toggle">
+<a class="toggle-button" data-target="install-ghc-and-cabal-log" href="" title="Toggle">Toggle</a>
+``` { #install-ghc-and-cabal-log .toggle }
 $ halcyon install
 -----> Installing GHC and Cabal
        External storage:                         **public**
@@ -87,12 +93,9 @@ $ halcyon install
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz... done
        Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz... done, 180MB
 
------> GHC and Cabal installed                   
-
------> Examining cache changes
-       + halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
-       + halcyon-ghc-7.8.4.tar.gz
+-----> GHC and Cabal installed
 ```
+</div>
 
 In this step, Halcyon restores the _GHC directory_ and the _Cabal directory_ by extracting archives downloaded from [public storage](/guide/#storage-and-caching).
 
@@ -101,6 +104,8 @@ GHC and Cabal are now ready to use:
 ```
 $ which ghc
 /app/ghc/bin/ghc
+```
+```
 $ which cabal
 /app/cabal/bin/cabal
 ```
@@ -122,12 +127,10 @@ Install the app
 
 Install the [tutorial app](https://github.com/mietek/halcyon-tutorial) directly from the _git_ repository:
 
-```
+<div class="toggle">
+<a class="toggle-button" data-target="install-the-app-log" href="" title="Toggle">Toggle</a>
+``` { #install-the-app-log .toggle }
 $ halcyon install https://github.com/mietek/halcyon-tutorial
------> Examining cache contents
-       halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
-       halcyon-ghc-7.8.4.tar.gz
-
 -----> Cloning https://github.com/mietek/halcyon-tutorial... done, f079321
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
@@ -143,10 +146,8 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
-
------> Examining cache changes
-       + halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
 ```
+</div>
 
 In this step, Halcyon restores the _install directory_ from public storage.
 
@@ -170,6 +171,8 @@ Run the app
 
 The tutorial app is a simple in-memory noteboard, exposing one HTTP endpoint, `/notes`, which accepts `GET` and `POST` requests.
 
+Notes are JSON objects with a single text field, `contents`.  The app responds to each request with a list of all notes.
+
 Start the app in one shell:
 
 ```
@@ -183,18 +186,18 @@ $ curl localhost:8080/notes
 []
 ```
 
-Notes are JSON objects with a single text field, `contents`.
-
 Make a couple `POST` requests to add some notes:
 
 ```
 $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!"}]
+```
+```
 $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello?" }'
 [{"contents":"Hello?"},{"contents":"Hello, world!"}]
 ```
 
-The app always responds with the contents of the entire noteboard.  The notes are also logged to the original shell:
+The notes are also logged to the original shell:
 
 ```
 $ halcyon-tutorial
@@ -213,16 +216,18 @@ By default, the app listens on port 8080.  You can change this by setting the `P
 Make a change
 -------------
 
-Let’s change the app to remember the date and time when each note is added.
+Let’s change the app so that it each note can contain a date and time.
 
 Use _git_ to make a local copy of the [tutorial app](https://github.com/mietek/halcyon-tutorial) repository:
 
 ```
 $ git clone -q https://github.com/mietek/halcyon-tutorial
+```
+```
 $ cd halcyon-tutorial
 ```
 
-Check out the next version of the app, which includes a new `dateTime` field in each note:
+Check out the `step2` version of the app, which includes a new `dateTime` field in each note:
 
 ```
 $ git checkout -q step2
@@ -230,13 +235,10 @@ $ git checkout -q step2
 
 Install the app again:
 
-```
+<div class="toggle">
+<a class="toggle-button" data-target="make-a-change-log" href="" title="Toggle">Toggle</a>
+``` { #make-a-change-log .toggle }
 $ halcyon install
------> Examining cache contents
-       halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
-       halcyon-ghc-7.8.4.tar.gz
-       halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
-
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
@@ -292,13 +294,8 @@ $ halcyon install
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
-
------> Examining cache changes
-       + halcyon-build-halcyon-tutorial-1.0.tar.gz
-       - halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz
-       + halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
-       + halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
 ```
+</div>
 
 In this step, Halcyon fails to restore the install directory, and falls back to building the application.
 
@@ -310,7 +307,7 @@ In this step, Halcyon fails to restore the install directory, and falls back to 
 
 The app is now ready to run again.
 
-Make another `POST` request to see the change:
+Make a `POST` request to see the change:
 
 ```
 $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
@@ -328,13 +325,15 @@ The sandbox directory is located in the base directory, next to the GHC and Caba
 Declare a dependency
 --------------------
 
-Let’s change the app to add actual timestamps to the `dateTime` fields.
+Let’s change the app so that it remembers the date and time when each note is added.
 
 The Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal), is used to [declare dependencies](/guide/#declaring-dependencies).
 
-The next version of the app declares the standard Haskell [`old-locale`](http://hackage.haskell.org/package/old-locale) and [`time`](http://hackage.haskell.org/package/time) packages as dependencies:
+The `step3` version of the app declares the standard Haskell [_old-locale_](http://hackage.haskell.org/package/old-locale) and [_time_](http://hackage.haskell.org/package/time) libraries as dependencies:
 
-```
+<div class="toggle">
+<a class="toggle-button" data-target="declare-a-dependency-diff" href="" title="Toggle">Toggle</a>
+``` { #declare-a-dependency-diff .toggle }
 $ git diff step2 step3 halcyon-tutorial.cabal
 diff --git a/halcyon-tutorial.cabal b/halcyon-tutorial.cabal
 index 723b9df..cd34556 100644
@@ -353,28 +352,19 @@ index 723b9df..cd34556 100644
                        transformers,
                        warp
 ```
+</div>
 
-Check out and install the next version of the app:
+Check out and install `step3`:
 
 ```
 $ git checkout -q step3
+```
+<div class="toggle">
+<a class="toggle-button" data-target="declare-a-dependency-log" href="" title="Toggle">Toggle</a>
+``` { #declare-a-dependency-log .toggle }
 $ halcyon install
------> Examining cache contents
-       halcyon-build-halcyon-tutorial-1.0.tar.gz
-       halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz
-       halcyon-ghc-7.8.4.tar.gz
-       halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
-
 -----> Installing halcyon-tutorial-1.0
-       Label:                                    **halcyon-tutorial-1.0**
-       Prefix:                                   **/app**
-       Source hash:                              **16e4c0e**
-       External storage:                         **public**
-       GHC version:                              **7.8.4**
-
------> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... 404 (not found)
-
+       ...
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
@@ -419,16 +409,12 @@ $ halcyon install
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
-
------> Examining cache changes
-       * halcyon-build-halcyon-tutorial-1.0.tar.gz
-       + halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz
-       - halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz
 ```
+</div>
 
 In this step, Halcyon again performs an incremental build.
 
-The previously restored sandbox directory is reused, because [version constraints](/guide/#version-constraints) for the `old-locale` and `time` packages were already declared in [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints):
+The previously restored sandbox directory is reused, because [version constraints](/guide/#version-constraints) for the _old-locale_ and _time_ libraries were already declared in the Halcyon [constraints](/reference/#halcyon_constraints) magic file, [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints):
 
 ```
 $ git grep -E '^(old-locale|time)' step2 .halcyon/constraints
@@ -436,15 +422,13 @@ step1:.halcyon/constraints:53:**old-locale**-1.0.0.6
 step1:.halcyon/constraints:83:**time**-1.4.2
 ```
 
-The app is now ready to run again, and the timestamps also appear in the original shell:
+The app is now ready to run again.
+
+Make a `POST` request to see the change:
 
 ```
 $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":"2015-01-12T09:21:29Z"}]
-```
-```
-$ halcyon-tutorial
-2015-01-12T09:21:29Z Hello, world!
 ```
 
 
