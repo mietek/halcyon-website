@@ -49,7 +49,7 @@ $ which halcyon
 
 ### Tips
 
-By default, Halcyon is installed in the `halcyon` subdirectory of the base directory, which defaults to `/app`.  If you want to install Halcyon somewhere else, set the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script:
+By default, Halcyon is installed in the `halcyon` subdirectory of the [base directory](/guide/#base-and-prefix-directories), which defaults to `/app`.  If you want to install Halcyon somewhere else, set the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script:
 
 ```
 $ export HALCYON_DIR=…
@@ -61,7 +61,7 @@ If you don’t want your `.bash_profile` to be modified, set [`HALCYON_NO_MODIFY
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Using a custom base directory is not recommended, because it’ll prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.  [More…](/guide/#base-and-prefix-directories)
+Using a custom base directory is not recommended, because it’ll prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
 
 
 Install GHC and Cabal
@@ -94,7 +94,7 @@ $ halcyon install
        + halcyon-ghc-7.8.4.tar.gz
 ```
 
-In this step, Halcyon restores a _GHC directory_ archive and a _Cabal directory_ archive, which are downloaded from public storage.
+In this step, Halcyon restores a _GHC directory_ archive and a _Cabal directory_ archive, which are downloaded from [public storage](/guide/#storage-and-caching).
 
 GHC and Cabal are now ready to use:
 
@@ -324,15 +324,13 @@ Halcyon checks and reuses the previously restored GHC and Cabal directories.
 
 The sandbox directory is located in the base directory, next to the GHC and Cabal directories.  The build is performed in a temporary directory, and the source directory is never modified.
 
-Halcyon can upload every archive to _private storage._  [More…](/guide/#setting-up-private-storage)
-
 
 Declare a dependency
 --------------------
 
-Let’s change the app to populate the empty `dateTime` fields.
+Let’s change the app to add actual timestamps to the empty `dateTime` fields.
 
-The Cabal _package description_ file, `halcyon-tutorial.cabal`, is used to declare dependencies.  [More…](/guide/#declaring-dependencies)
+The Cabal package description file, `halcyon-tutorial.cabal`, is used to [declare dependencies](/guide/#declaring-dependencies).
 
 The next version of the app declares the standard Haskell [`old-locale`](http://hackage.haskell.org/package/old-locale) and [`time`](http://hackage.haskell.org/package/time) packages as additional dependencies:
 
@@ -430,7 +428,7 @@ $ halcyon install
 
 In this step, Halcyon again performs an incremental build.  The previously restored sandbox directory is reused, because it already contains the `old-locale` and `time` packages.
 
-You can check this by looking at the Halcyon [`constraints`](/reference/#halcyon_constraints) magic file, which is used to declare _version constraints_ for all dependencies.  [More…](/guide/#version-constraints)
+You can check this by looking at the Halcyon [`constraints`](/reference/#halcyon_constraints) magic file, which is used to declare [version constraints](/guide/#version-constraints) for all dependencies.
 
 ```
 $ grep -E '^(old-locale|time)' .halcyon/constraints 
