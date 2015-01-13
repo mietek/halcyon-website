@@ -395,9 +395,9 @@ linux-(debian-7|ubuntu-12):libicu48
 > ---------------------|---
 > Default value:       | `0`
 > Type:                | `0` or `1`
-> Command-line option: | `--restore-dependencies`
+> Command-line option: | `--keep-dependencies`
 
-Forces Halcyon to restore all dependencies, even when an install directory archive is available.
+Forces Halcyon to keep all dependencies, restoring them even when an install directory archive is available.
 
 
 ### `HALCYON_PRE_INSTALL_HOOK`

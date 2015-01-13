@@ -187,7 +187,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 $ MUEVAL_TIMEOUT=8 PORT=8080 tryhaskell
 ```
 ```
-$ halcyon install https://github.com/mietek/tryhaskell
+$ halcyon install https://github.com/mietek/tryhaskell --keep-dependencies
 ```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell">Deploy to DigitalOcean</a>
@@ -312,7 +312,7 @@ Try Haste
 $ tryplayground 8080
 ```
 ```
-$ halcyon install https://github.com/mietek/tryhaste
+$ halcyon install https://github.com/mietek/tryhaste --keep-dependencies
 ```
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaste">Deploy to DigitalOcean</a>
