@@ -21,10 +21,10 @@ This tutorial shows how to use Halcyon while writing a new Haskell web app.
 <div><nav id="main-toc"></nav></div>
 
 
-Setting up Halcyon
-------------------
+Set up Halcyon
+--------------
 
-The tutorial assumes you’re using a [supported Linux system](/guide/#supported-platforms) with at least 4 GB RAM, and a [GNU _bash_](https://gnu.org/software/bash/) shell.
+The tutorial assumes you’re using a Linux system with at least 4 GB RAM, and a [GNU _bash_](https://gnu.org/software/bash/) shell.
 
 Run the [setup script](https://github.com/mietek/halcyon/raw/master/setup.sh) to install Halcyon:
 
@@ -51,9 +51,9 @@ $ which halcyon
 ```
 
 
-### Setup options
+### Options
 
-By default, Halcyon is installed in the `halcyon` subdirectory of the [base directory](/guide/#base-and-prefix-directories), which defaults to `/app`.  If you want to install Halcyon somewhere else, set the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script:
+By default, Halcyon is installed in the `halcyon` subdirectory of the base directory, which defaults to `/app`.  If you want to install Halcyon somewhere else, set the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script:
 
 ```
 $ export HALCYON_DIR=...
@@ -65,13 +65,13 @@ If you don’t want your `.bash_profile` to be modified, set [`HALCYON_NO_MODIFY
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Using a custom base directory is not recommended, because it’ll prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
+Halcyon also installs GHC, Cabal, and other dependencies in `/app`.  Changing this is not recommended, because it’ll prevent you from getting started as quickly as possible — instead of restoring previously built archives, Halcyon will have to build everything from scratch.  If you still want to change the base directory, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
 
 
-Installing GHC and Cabal
-------------------------
+Install GHC and Cabal
+---------------------
 
-Run [`halcyon install`](/reference/#halcyon-install) to install GHC and Cabal:
+Execute the Halcyon [`install`](/reference/#halcyon-install) command to install GHC and Cabal:
 
 <div class="toggle">
 <a class="toggle-button" data-target="install-ghc-and-cabal-log" href="" title="Toggle">Toggle</a>
@@ -97,7 +97,7 @@ $ halcyon install
 ```
 </div>
 
-In this step, Halcyon restores the _GHC directory_ and the _Cabal directory_ by extracting archives downloaded from [public storage](/guide/#storage-and-caching).
+In this step, Halcyon restores a _GHC directory_ and a _Cabal directory_ by extracting archives downloaded from _public storage._
 
 GHC and Cabal are now ready to use:
 
@@ -111,15 +111,13 @@ $ which cabal
 ```
 
 
-### Install options
+### Options
 
 Halcyon defaults to GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this with the [`--ghc-version=...`](/reference/#halcyon_ghc_version) and [`--cabal-version=...`](/reference/#halcyon_cabal_version) options:
 
 ```
 $ halcyon install --ghc-version=7.6.3
 ```
-
-If the current directory contains a Haskell app, running [`halcyon install`](/reference/#halcyon-install) will install the app, unless you use the [`--no-app`](/reference/#halcyon_no_app) option.
 
 
 Install the app
@@ -149,7 +147,7 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
 ```
 </div>
 
-In this step, Halcyon restores the _install directory_ from public storage.  The correct archive to restore is determined by calculating a _source hash_ of the source directory.
+In this step, Halcyon restores an _install directory_ from public storage.  The correct archive to restore is determined by calculating a _source hash_ of the source directory.
 
 The app is now ready to run:
 
@@ -159,9 +157,9 @@ $ which halcyon-tutorial
 ```
 
 
-### Install options
+### Options
 
-By default, the app is installed in the `/app` directory.  You can change this with the [`--prefix=...`](/reference/#halcyon_prefix) option.
+By default, Halcyon installs the app in the `/app` directory.  You can change this with the [`--prefix=...`](/reference/#halcyon_prefix) option.
 
 
 Run the app
@@ -195,7 +193,7 @@ $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello?" }'
 [{"contents":"Hello?"},{"contents":"Hello, world!"}]
 ```
 
-The notes are also logged to the original shell:
+Incoming notes are logged in the original shell:
 
 ```
 $ halcyon-tutorial
@@ -206,9 +204,13 @@ Hello?
 Press `control-C` to stop the app.
 
 
-### App options
+### Options
 
-By default, the app listens on port 8080.  You can change this by setting the `PORT` environment variable.
+By default, the app listens on port 8080.  You can change this by setting the `PORT` environment variable:
+
+```
+$ PORT=4040 halcyon-tutorial
+```
 
 
 Make a change
@@ -216,19 +218,10 @@ Make a change
 
 Let’s change the app so that each note can contain a date and time.
 
-Use _git_ to make a local copy of the [tutorial app](https://github.com/mietek/halcyon-tutorial) repository:
+Use _git_ to make a local copy of the [`step2`](https://github.com/mietek/halcyon-tutorial/tree/2) version of the app, which includes a new `dateTime` field in each note:
 
 ```
-$ git clone -q https://github.com/mietek/halcyon-tutorial
-```
-```
-$ cd halcyon-tutorial
-```
-
-Check out the `step2` version of the app, which includes a new `dateTime` field in each note:
-
-```
-$ git checkout -q step2
+$ git clone -q https://github.com/mietek/halcyon-tutorial -b step2
 ```
 
 Install the app again:
@@ -236,6 +229,7 @@ Install the app again:
 <div class="toggle">
 <a class="toggle-button" data-target="make-a-change-log" href="" title="Toggle">Toggle</a>
 ``` { #make-a-change-log .toggle }
+$ cd halcyon-tutorial
 $ halcyon install
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
@@ -295,15 +289,13 @@ $ halcyon install
 ```
 </div>
 
-In this step, Halcyon checks and reuses the previously restored GHC and Cabal directories, fails to restore the install directory, and falls back to building the application.
+In this step, Halcyon reuses the existing GHC and Cabal directories, and tries to restore the install directory.  This fails, and so Halcyon falls back to building the app:
 
 1.  First, the _sandbox directory_ is restored from public storage.  The correct archive to restore is determined by calculating a _constraints hash_ of the declared version constraints.  The restored directory is located in the base directory, next to the GHC and Cabal directories.
 
 2.  Next, Halcyon restores the _build directory,_ and performs an incremental build.  The build is performed in a temporary directory, and the source directory is never modified.
 
-3.  Finally, a new install directory is prepared and archived, and the app is installed.
-
-The app is now ready to run again.
+3.  Finally, a new install directory is prepared and archived, and the app is installed and ready to run again.
 
 Make a `POST` request to see the change:
 
@@ -316,11 +308,9 @@ $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 Declare a dependency
 --------------------
 
-Let’s change the app so that it remembers the date and time when each note is added.
+Let’s change the app so that it remembers when each note is added.
 
-The Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal), is used to [declare dependencies](/guide/#declaring-dependencies).
-
-The `step3` version of the app declares the standard Haskell [_old-locale_](http://hackage.haskell.org/package/old-locale) and [_time_](http://hackage.haskell.org/package/time) libraries as dependencies:
+The [`step3`](https://github.com/mietek/halcyon-tutorial/tree/step3) version of the app declares the standard Haskell [_old-locale_](http://hackage.haskell.org/package/old-locale) and [_time_](http://hackage.haskell.org/package/time) libraries as dependencies:
 
 <div class="toggle">
 <a class="toggle-button" data-target="declare-a-dependency-diff" href="" title="Toggle">Toggle</a>
@@ -342,14 +332,12 @@ $ git diff step2 step3 halcyon-tutorial.cabal
 ```
 </div>
 
-Check out and install `step3`:
+Check out and install [`step3`](https://github.com/mietek/halcyon-tutorial/tree/step3):
 
-```
-$ git checkout -q step3
-```
 <div class="toggle">
 <a class="toggle-button" data-target="declare-a-dependency-log" href="" title="Toggle">Toggle</a>
 ``` { #declare-a-dependency-log .toggle }
+$ git checkout -q step3
 $ halcyon install
 -----> Installing halcyon-tutorial-1.0
        ...
@@ -402,12 +390,12 @@ $ halcyon install
 
 In this step, Halcyon again performs an incremental build.
 
-The previously restored sandbox directory is reused, because [version constraints](/guide/#version-constraints) for the _old-locale_ and _time_ libraries were already declared in the Halcyon [constraints](/reference/#halcyon_constraints) magic file, [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints):
+Even though we added new dependencies, the existing sandbox directory is reused, because version constraints for these dependencies were already declared:
 
 ```
 $ git grep -E '^(old-locale|time)' step2 .halcyon/constraints
-step1:.halcyon/constraints:53:**old-locale**-1.0.0.6
-step1:.halcyon/constraints:83:**time**-1.4.2
+step2:.halcyon/constraints:53:**old-locale**-1.0.0.6
+step2:.halcyon/constraints:83:**time**-1.4.2
 ```
 
 The app is now ready to run again.
@@ -420,16 +408,16 @@ $ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 ```
 
 
-Add a new dependency
---------------------
+Declare a version constraint
+----------------------------
 
-Let’s try to simplify the code by using a third-party library.
+Let’s try to simplify the app by using a third-party library.
 
-The `step4` version of the app declares the [_hourglass_](http://hackage.haskell.org/package/hourglass) library as a dependency, instead of _old-locale_ and _time_:
+The [`step4`](https://github.com/mietek/halcyon-tutorial/tree/step4) version of the app replaces _old-locale_ and _time_ with  the [_hourglass_](http://hackage.haskell.org/package/hourglass) library:
 
 <div class="toggle">
-<a class="toggle-button" data-target="add-a-new-dependency-diff1" href="" title="Toggle">Toggle</a>
-``` { #add-a-new-dependency-diff1 .toggle }
+<a class="toggle-button" data-target="declare-a-version-constraint-diff1" href="" title="Toggle">Toggle</a>
+``` { #declare-a-version-constraint-diff1 .toggle }
 $ git diff step3 step4 halcyon-tutorial.cabal
 ...
 **@@ -14,11 +14,10 @@** executable halcyon-tutorial
@@ -448,16 +436,14 @@ $ git diff step3 step4 halcyon-tutorial.cabal
 ```
 </div>
 
-Adding a new dependency to the Cabal package description is simple, but what about the version constraints?
+Even though we know we want to use _hourglass,_ we don’t know which version constraints to declare — _hourglass_ could have its own dependencies, and we should add constraints for all of them.
 
-Check out `step4`, and try installing it:
+Fortunately, Halcyon can help.  Check out [`step4`](https://github.com/mietek/halcyon-tutorial/tree/step4), and try installing it:
 
-```
-$ git checkout -q step4
-```
 <div class="toggle">
-<a class="toggle-button" data-target="add-a-new-dependency-log1" href="" title="Toggle">Toggle</a>
-``` { #add-a-new-dependency-log1 .toggle }
+<a class="toggle-button" data-target="declare-a-version-constraint-log1" href="" title="Toggle">Toggle</a>
+``` { #declare-a-version-constraint-log1 .toggle }
+$ git checkout -q step4
 $ halcyon install
 -----> Installing halcyon-tutorial-1.0
        ...
@@ -505,13 +491,15 @@ $ halcyon install
 ```
 </div>
 
-In this step, Cabal fails to configure the app, because the _hourglass_ library is not included in the previously restored sandbox directory.
+In this step, Cabal fails to configure the app, because the _hourglass_ library is not included in the existing sandbox directory — which matches the declared version constraints.
 
-Halcyon’s warning suggests declaring a version constraint for `hourglass-0.2.8`, which is the newest available version of _hourglass._  `step5` declares this constraint:
+Halcyon’s warning suggests adding `hourglass-0.2.8` as a version constraint, as 0.2.8 is the newest available version of _hourglass._
+
+The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app declares this constraint:
 
 <div class="toggle">
-<a class="toggle-button" data-target="add-a-new-dependency-diff2" href="" title="Toggle">Toggle</a>
-``` { #add-a-new-dependency-diff2 .toggle }
+<a class="toggle-button" data-target="declare-a-version-constraint-diff2" href="" title="Toggle">Toggle</a>
+``` { #declare-a-version-constraint-diff2 .toggle }
 $ git diff step4 step5 .halcyon/constraints
 ...
 **@@ -38,6 +38,7 @@** file-embed-0.0.7
@@ -526,14 +514,12 @@ $ git diff step4 step5 .halcyon/constraints
 </div>
 
 
-Check out and install the `step5` version of the app:
+Check out and install [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5):
 
-```
-$ git checkout -q step5
-```
 <div class="toggle">
-<a class="toggle-button" data-target="add-a-new-dependency-log2" href="" title="Toggle">Toggle</a>
-``` { #add-a-new-dependency-log2 .toggle }
+<a class="toggle-button" data-target="declare-a-version-constraint-log2" href="" title="Toggle">Toggle</a>
+``` { #declare-a-version-constraint-log2 .toggle }
+$ git checkout -q step5
 $ halcyon install
 -----> Installing halcyon-tutorial-1.0
        ...
@@ -633,7 +619,13 @@ $ halcyon install
 ```
 </div>
 
-The app is now ready to run again.
+In this step, Halcyon extends a _partially matching_ sandbox directory, and performs an incremental build:
+
+1.  First, previously built sandboxes are located and examined.  Each sandbox is assigned a score, reflecting the number of required dependencies it contains.
+
+2.  Next, Halcyon builds and archives a new sandbox directory, by installing missing dependencies into the highest scoring sandbox.
+
+3.  Finally, the app is built, installed, and ready to run again.
 
 Make a `POST` request to see the change:
 
