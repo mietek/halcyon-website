@@ -176,7 +176,6 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 
 - Current version of _mueval_, as a [sandbox source](/guide/#sandbox-sources)
 - [Sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
-- GHC and sandbox directories, as [extra dependencies](/guide/#extra-dependencies)
 - Static website content, as [extra data files](/guide/#extra-data-files)
 
 **Note:**  Deploying Try Haskell may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
@@ -292,7 +291,6 @@ Try Haste
     - _libbz2_ and _libgmp_, as [sandbox extra OS packages](/guide/#sandbox-extra-os-packages)
     - [Extra configure flags](/reference/#halcyon_extra_configure_flags) for Haste
     - [Pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
-- GHC and Cabal directories, as [extra dependencies](/guide/#extra-dependencies)
 - Static website content, as [extra data files](/guide/#extra-data-files)
 
 **Note:**  Deploying Try Haste may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.

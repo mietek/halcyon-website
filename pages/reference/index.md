@@ -390,25 +390,6 @@ linux-(debian-7|ubuntu-12):libicu48
 ```
 
 
-### `HALCYON_EXTRA_DEPENDENCIES`
-
-> ---------------------|---
-> Default value:       | _none_
-> Type:                | strings or file, optional
-> Command-line option: | `--extra-dependencies`
-> Magic file:          | `.halcyon/extra-dependencies`
-
-Additional dependencies to include in the install directory, as run-time dependencies.
-
-The dependencies can be specified as one or more of the following directories:
-
-- `ghc`
-- `cabal`
-- `sandbox`
-
-Intended to support applications which need to compile Haskell at run-time.
-
-
 ### `HALCYON_RESTORE_DEPENDENCIES`
 
 > ---------------------|---

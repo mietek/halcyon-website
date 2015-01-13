@@ -305,15 +305,6 @@ linux-(debian-7|ubuntu-12):libicu48
 ```
 
 
-#### Extra dependencies
-
-Certain applications may require a Haskell development environment to be available at run-time.  To install any of the GHC, Cabal, and sandbox directories together with the application, include an [`extra-dependencies`](/reference/#halcyon_extra_dependencies) magic file.
-
-```
-ghc
-```
-
-
 Setting up multiple machines
 ----------------------------
 
