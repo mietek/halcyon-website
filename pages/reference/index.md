@@ -480,12 +480,12 @@ Prevents deleting any out-of-date archives from [`HALCYON_CACHE`](#halcyon_cache
 Public storage options
 ----------------------
 
-### `HALCYON_PUBLIC_STORAGE`
+### `HALCYON_PUBLIC_STORAGE_URL`
 
 > ---------------------|---
 > Default value:       | [`https://halcyon.global.ssl.fastly.net`](https://halcyon.global.ssl.fastly.net)
 > Type:                | S3 URL
-> Command-line option: | `--public-storage=...`
+> Command-line option: | `--public-storage-url=...`
 
 URL of the Amazon S3 bucket from which Halcyon restores public archives and constraints files.
 

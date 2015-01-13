@@ -116,7 +116,7 @@ In order to delete the entire contents of the cache before installing an applica
 
 #### Public storage
 
-By default, Halcyon downloads any needed files from a public read-only location, defined by [`HALCYON_PUBLIC_STORAGE`](/reference/#halcyon_public_storage).  To prevent using public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1`.
+By default, Halcyon downloads any needed files from a public read-only location, defined by [`HALCYON_PUBLIC_STORAGE_URL`](/reference/#halcyon_public_storage_url).  To prevent using public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1`.
 
 
 Setting up a machine
