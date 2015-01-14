@@ -135,9 +135,9 @@ Install the app
 
 The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web service, built with [Servant](http://haskell-servant.github.io/).
 
-The app includes a [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
+The app includes a Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon constraints file, [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
 
-Install the app directly from its _git_ repository:
+Install the app directly from the repository:
 
 <div class="toggle">
 <a class="toggle-button" data-target="install-the-app-log" href="" title="Toggle">Toggle</a>
@@ -176,7 +176,7 @@ $ which halcyon-tutorial
 Halcyon installs apps in the _prefix directory_, `/app`.  You can change this with the [`--prefix=...`](/reference/#halcyon_prefix) option:
 
 ```
-$ halcyon install --prefix=/usr/local https://github.com/mietek/halcyon-tutorial
+$ halcyon install --prefix=/usr/local example-app
 ```
 
 
@@ -629,11 +629,15 @@ $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 Next steps
 ----------
 
-You now know how to use Halcyon to install simple Haskell apps and development tools.
+You now know how to use Halcyon to develop Haskell apps.  You have also developed a simple Haskell web service.
 
-To learn more…
+Here’s some recommended reading:
+
+- Read the [Haskell on Heroku tutorial](https://haskellonheroku.com/tutorial/) to learn how to deploy Haskell web apps to Heroku.
+
+- TODO
 
 
 ---
 
-_**Work in progress.**  For updates, please follow <a href="https://twitter.com/mietek">@mietek</a>._
+_**Work in progress.**  For updates, follow <a href="https://twitter.com/mietek">@mietek</a>._
