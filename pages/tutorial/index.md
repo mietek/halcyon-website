@@ -33,12 +33,12 @@ Run the [setup script](https://github.com/mietek/halcyon/raw/master/setup.sh) to
 ``` { #set-up-log .toggle }
 $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 -----> Welcome to Halcyon
-[sudo] password for yourself:
+[sudo] password for fnord:
 -----> Creating base directory: /app
 -----> Installing OS packages
        ...
------> Installing Halcyon in /app/halcyon... done, 9d37342
------> Installing bashmenot in /app/halcyon/lib/bashmenot... done, 8bd8ea3
+-----> Installing Halcyon... done, 9d37342
+-----> Installing bashmenot... done, 8bd8ea3
 -----> Extending .bash_profile
 ```
 </div>
@@ -176,7 +176,7 @@ $ halcyon-tutorial
 In another shell, make a `GET` request to see the empty noteboard:
 
 ```
-$ curl localhost:8080/notes
+$ curl http://localhost:8080/notes
 []
 ```
 
@@ -185,11 +185,11 @@ Notes are JSON objects with a single text field, `contents`.  The app responds t
 Make a couple `POST` requests to add some notes:
 
 ```
-$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!"}]
 ```
 ```
-$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello?" }'
+$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello?" }'
 [{"contents":"Hello?"},{"contents":"Hello, world!"}]
 ```
 
@@ -300,7 +300,7 @@ In this step, Halcyon reuses the existing GHC and Cabal directories, and tries t
 Make a `POST` request to see the change:
 
 ```
-$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":""}]
 ```
 
@@ -403,7 +403,7 @@ The app is now ready to run again.
 Make a `POST` request to see the change:
 
 ```
-$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":"2015-01-12T09:21:29Z"}]
 ```
 
@@ -543,32 +543,11 @@ $ halcyon install
 -----> Locating sandbox directories
        Listing https://halcyon.global.ssl.fastly.net/?prefix=linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-... done
 -----> Examining partially matching sandbox directories
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3c81d66-hello-miku-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-4af96d8-hello-snap-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-4e16492-alex-3.1.3.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-6d8a1a2.4d296cb-hello-simple-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-028a0e6-hello-wai-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-33c011e-hello-scotty-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-47c3e8d-hello-happstack-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-7832c3f-hello-wheb-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-9382e66-cpphs-1.18.6.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-0331829-hello-spock-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-8160653.c5dac38-hello-apiary-1.0.constraints... done
+       ...
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-dac4ebf-hello-yesod-1.0.constraints... done
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-f6c821c.4795c95-hello-mflow-1.0.constraints... done
 -----> Scoring partially matching sandbox directories
-       Ignoring hello-miku-1.0 (3c81d66) as HUnit-1.2.5.2 is not needed
-       Ignoring hello-snap-1.0 (4af96d8) as HUnit-1.2.5.2 is not needed
-       Ignoring alex-3.1.3 (4e16492) as QuickCheck-2.7.6 is not needed
-            41 hello-wai-1.0 (028a0e6)
-       Ignoring hello-scotty-1.0 (33c011e) as data-default-0.5.3 is not needed
-       Ignoring hello-happstack-1.0 (47c3e8d) as base-unicode-symbols-0.2.2.4 is not needed
-       Ignoring hello-wheb-1.0 (7832c3f) as SHA-1.6.4.1 is not needed
-       Ignoring cpphs-1.18.6 (9382e66) as polyparse-1.10 is not needed
-       Ignoring hello-spock-1.0 (0331829) as QuickCheck-2.7.6 is not needed
+       ...
            101 halcyon-tutorial-1.0 (becfd1b)
-       Ignoring hello-yesod-1.0 (dac4ebf) as asn1-encoding-0.9.0 is not needed
 -----> Using partially matching sandbox directory: halcyon-tutorial-1.0 (becfd1b)
 -----> Restoring sandbox directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done
@@ -630,7 +609,7 @@ In this step, Halcyon extends a _partially matching_ sandbox directory, and perf
 Make a `POST` request to see the change:
 
 ```
-$ curl -X POST localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":"2015-01-12T09:28:26+00:00"}]
 ```
 
