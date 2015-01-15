@@ -161,7 +161,9 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
 ```
 </div>
 
-In this step, Halcyon restores the tutorial app’s _install directory_ from public storage.  The correct archive to restore is determined by calculating a _source hash_ of the source directory.
+In this step, Halcyon restores the tutorial app’s _install directory_ by using an archive from public storage.
+
+The correct archive to restore is determined by calculating a _source hash_ of the app’s _source directory._
 
 Your app is now ready to run:
 
@@ -236,7 +238,7 @@ Make a change
 
 Let’s change the code so that each note can contain a timestamp.
 
-Clone the [`step2`](https://github.com/mietek/halcyon-tutorial/tree/2) version of the app, which includes a new `dateTime` field in each note:
+Clone the [`step2`](https://github.com/mietek/halcyon-tutorial/tree/step2) version of the app, which includes a new `dateTime` field in each note:
 
 ```
 $ git clone -q https://github.com/mietek/halcyon-tutorial -b step2
@@ -308,13 +310,13 @@ $ halcyon install
 
 In this step, Halcyon tries to restore the tutorial app’s install directory.  This fails, and so Halcyon falls back to building the app:
 
-1.  First, the existing GHC and Cabal directories are reused, and the app’s _sandbox directory_ is restored next.
+1.  First, the existing GHC and Cabal directories are reused, and the app’s _sandbox directory_ is restored.
 
 2.  Next, Halcyon restores the app’s _build directory,_ and performs an incremental build.
 
-3.  Finally, a new install directory is prepared and archived, and the app is installed.
+3.  Finally, the app’s new install directory is prepared and archived, and the app is installed.
 
-Halcyon determines which sandbox to use by calculating a _constraints hash_ of the version constraints declared by your app.  Similarly, the version of GHC to use is implied by the `base` package constraint:
+Halcyon determines which sandbox archive to restore by calculating a _constraints hash_ of the version constraints declared by your app.  Similarly, the correct version of GHC to use is implied by the `base` package constraint:
 
 ```
 $ grep -E '^base-' .halcyon/constraints
@@ -337,7 +339,7 @@ Declare a dependency
 
 Now, let’s change the tutorial app so that it remembers the time each note is added.
 
-The [`step3`](https://github.com/mietek/halcyon-tutorial/tree/step3) version of the app declares the standard [_old-locale_](http://hackage.haskell.org/package/old-locale) and [_time_](http://hackage.haskell.org/package/time) libraries as dependencies:
+The [`step3`](https://github.com/mietek/halcyon-tutorial/tree/step3) version of the app declares the standard Haskell [_old-locale_](http://hackage.haskell.org/package/old-locale) and [_time_](http://hackage.haskell.org/package/time) libraries as dependencies:
 
 <div class="toggle">
 <a class="toggle-button" data-target="declare-a-dependency-diff" href="" title="Toggle">Toggle</a>
@@ -416,7 +418,7 @@ $ halcyon install
 
 In this step, Halcyon again performs an incremental build.
 
-Even though we added new dependencies, the existing sandbox directory is reused, because version constraints for these dependencies were already declared:
+The same sandbox directory is used again, because version constraints for our new dependencies were already declared:
 
 ```
 $ git grep -E '^(old-locale|time)' step2 .halcyon/constraints
