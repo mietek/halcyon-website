@@ -73,7 +73,7 @@ You’ll then need to activate Halcyon manually before each use:
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Halcyon installs development tools and other dependencies in the _base directory,_ `/app`.  Changing this path is not recommended, because it’ll prevent you from getting started as quickly as possible.
+Halcyon installs development tools and other dependencies in the _base directory,_ `/app`.  Changing this path isn’t recommended, because it’ll prevent you from getting started as quickly as possible.
 
 If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
 
@@ -306,16 +306,26 @@ $ halcyon install
 ```
 </div>
 
-In this step, Halcyon reuses the existing GHC and Cabal directories, and tries to restore the tutorial app’s install directory.  This fails, and so Halcyon falls back to building the app:
+In this step, Halcyon tries to restore the tutorial app’s install directory.  This fails, and so Halcyon falls back to building the app:
 
-1.  First, the app’s _sandbox directory_ is restored from public storage.  The correct archive to extract is determined by calculating a _constraints hash_ of the declared version constraints.  The directory is restored to `/app`, next to the GHC and Cabal directories.
+1.  First, the existing GHC and Cabal directories are reused, and the app’s _sandbox directory_ is restored next.
 
-2.  Next, Halcyon restores the app’s _build directory,_ and performs an incremental build.  The build is performed in a temporary directory, and the source directory is never modified.
+2.  Next, Halcyon restores the app’s _build directory,_ and performs an incremental build.
 
 3.  Finally, a new install directory is prepared and archived, and the app is installed.
 
+Halcyon determines which sandbox to use by calculating a _constraints hash_ of the version constraints declared by your app.  Similarly, the version of GHC to use is implied by the `base` package constraint:
+
+```
+$ grep -E '^base-' .halcyon/constraints
+base-4.7.0.2
+```
+
 Your app is now ready to run again:
 
+```
+$ halcyon-tutorial
+```
 ```
 $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":""}]
@@ -417,6 +427,9 @@ step2:.halcyon/constraints:83:**time**-1.4.2
 Your app is now ready to run again:
 
 ```
+$ halcyon-tutorial
+```
+```
 $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":"2015-01-12T09:21:29Z"}]
 ```
@@ -507,7 +520,7 @@ $ halcyon install
 ```
 </div>
 
-Cabal fails to configure the app, because the _hourglass_ library is not included in the existing sandbox directory.
+Cabal fails to configure the app, because the _hourglass_ library isn’t included in the existing sandbox directory.
 
 Halcyon suggests adding `hourglass-0.2.8` as a version constraint, because 0.2.8 is currently the newest available version of _hourglass._
 
@@ -617,6 +630,9 @@ In this step, Halcyon extends a _partially matching_ sandbox directory, and perf
 
 Your app is now ready to run again:
 
+```
+$ halcyon-tutorial
+```
 ```
 $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 [{"contents":"Hello, world!","dateTime":"2015-01-12T09:28:26+00:00"}]
