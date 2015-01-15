@@ -112,7 +112,7 @@ $ halcyon install
 </div>
 
 > ---------------------|---
-> _Expected time:_     | _20-30 seconds_
+> _Expected time:_     | _20–30 seconds_
 
 In this step, Halcyon restores a _GHC directory_ and a _Cabal directory_ by extracting archives downloaded from _public storage._
 
@@ -176,7 +176,7 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
 </div>
 
 > ---------------------|---
-> _Expected time:_     | _5-10 seconds_
+> _Expected time:_     | _5–10 seconds_
 
 In this step, Halcyon restores the tutorial app’s _install directory_ by using an archive from public storage.
 
@@ -341,7 +341,7 @@ $ halcyon install
 </div>
 
 > ---------------------|---
-> _Expected time:_     | _30-40 seconds_
+> _Expected time:_     | _30–40 seconds_
 
 In this step, Halcyon tries to restore the tutorial app’s install directory.  This fails, and so Halcyon falls back to building the app:
 
@@ -473,7 +473,7 @@ $ halcyon install
 </div>
 
 > ---------------------|---
-> _Expected time:_     | _20-25 seconds_
+> _Expected time:_     | _20–25 seconds_
 
 In this step, Halcyon again performs an incremental build.
 
@@ -597,7 +597,7 @@ $ halcyon install
 </div>
 
 > ---------------------|---
-> _Expected time:_     | _10-15 seconds_
+> _Expected time:_     | _10–15 seconds_
 
 Cabal fails to configure the app, because the _hourglass_ library isn’t included in the existing sandbox directory.
 
@@ -735,7 +735,7 @@ $ halcyon install
 </div>
 
 > ---------------------|---
-> _Expected time:_     | _75-95 seconds_
+> _Expected time:_     | _60–90 seconds_
 
 In this step, Halcyon extends a _partially matching_ sandbox directory, and performs an incremental build.
 
