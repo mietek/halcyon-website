@@ -22,7 +22,7 @@ Tutorial
 Introduction
 ------------
 
-Halcyon is a program which can be used to install Haskell apps and development tools.
+Halcyon is a program which can be used to install [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
 
 This tutorial shows how to develop a simple Haskell web app using Halcyon.
 
@@ -81,7 +81,7 @@ If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) befor
 Install GHC and Cabal
 ---------------------
 
-Execute the Halcyon [`install`](/reference/#halcyon-install) command with no arguments to install GHC and Cabal:
+Execute the Halcyon [`install`](/reference/#halcyon-install) command to install GHC and Cabal:
 
 <div class="toggle">
 <a class="toggle-button" data-target="install-ghc-and-cabal-log" href="" title="Toggle">Toggle</a>
@@ -100,12 +100,19 @@ $ halcyon install
 -----> Locating Cabal directories
        Listing https://halcyon.global.ssl.fastly.net/... done
 -----> Restoring Cabal directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz... done
-       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-12.tar.gz... done, 180MB
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz... done
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz... done, 180MB
 
 -----> GHC and Cabal installed
+
+-----> Examining cache changes
+       + halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
+       + halcyon-ghc-7.8.4.tar.gz
 ```
 </div>
+
+> ---------------------|---
+> _Expected time:_     | _20-30 seconds_
 
 In this step, Halcyon restores a _GHC directory_ and a _Cabal directory_ by extracting archives downloaded from _public storage._
 
@@ -143,23 +150,33 @@ Install the app directly from its repository:
 <a class="toggle-button" data-target="install-the-app-log" href="" title="Toggle">Toggle</a>
 ``` { #install-the-app-log .toggle }
 $ halcyon install https://github.com/mietek/halcyon-tutorial
------> Cloning https://github.com/mietek/halcyon-tutorial... done, f079321
+-----> Examining cache contents
+       halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
+       halcyon-ghc-7.8.4.tar.gz
+
+-----> Cloning https://github.com/mietek/halcyon-tutorial... done, af1461f
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **161d7b4**
+       Source hash:                              **0c985ba**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz... done
-       Extracting halcyon-install-161d7b4-halcyon-tutorial-1.0.tar.gz... done, 8.8MB
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done, 8.8MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
+
+-----> Examining cache changes
+       + halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
+
+> ---------------------|---
+> _Expected time:_     | _5-10 seconds_
 
 In this step, Halcyon restores the tutorial app’s _install directory_ by using an archive from public storage.
 
@@ -238,10 +255,13 @@ Make a change
 
 Let’s change the code so that each note can contain a timestamp.
 
-Clone the [`step2`](https://github.com/mietek/halcyon-tutorial/tree/step2) version of the app, which includes a new `dateTime` field in each note:
+The [`step2`](https://github.com/mietek/halcyon-tutorial/tree/step2) version of the app includes a new `dateTime` field in each note.
+
+Clone the app:
 
 ```
-$ git clone -q https://github.com/mietek/halcyon-tutorial -b step2
+$ git clone -q https://github.com/mietek/halcyon-tutorial
+$ cd halcyon-tutorial
 ```
 
 Install your app again:
@@ -249,22 +269,27 @@ Install your app again:
 <div class="toggle">
 <a class="toggle-button" data-target="make-a-change-log" href="" title="Toggle">Toggle</a>
 ``` { #make-a-change-log .toggle }
-$ cd halcyon-tutorial
+$ git checkout -q step2
 $ halcyon install
+-----> Examining cache contents
+       halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
+       halcyon-ghc-7.8.4.tar.gz
+       halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz
+
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **500d468**
+       Source hash:                              **56bdea7**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **500d468**
+       Source hash:                              **56bdea7**
        Constraints hash:                         **becfd1b**
        Magic hash:                               **c7b5b77**
        External storage:                         **public**
@@ -296,17 +321,27 @@ $ halcyon install
        Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
+-----> Installing extra data files for dependencies
 -----> Install directory prepared, 8.8MB
 -----> Archiving install directory
-       Creating halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
+
+-----> Examining cache changes
+       + halcyon-build-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz
+       + halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
+
+> ---------------------|---
+> _Expected time:_     | _30-40 seconds_
 
 In this step, Halcyon tries to restore the tutorial app’s install directory.  This fails, and so Halcyon falls back to building the app:
 
@@ -368,12 +403,27 @@ Check out and install `step3`:
 ``` { #declare-a-dependency-log .toggle }
 $ git checkout -q step3
 $ halcyon install
+-----> Examining cache contents
+       halcyon-build-halcyon-tutorial-1.0.tar.gz
+       halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
+       halcyon-ghc-7.8.4.tar.gz
+       halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz
+       halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+
 -----> Installing halcyon-tutorial-1.0
-       ...
+       Label:                                    **halcyon-tutorial-1.0**
+       Prefix:                                   **/app**
+       Source hash:                              **1382694**
+       External storage:                         **public**
+       GHC version:                              **7.8.4**
+
+-----> Restoring install directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **16e4c0e**
+       Source hash:                              **1382694**
        Constraints hash:                         **becfd1b**
        Magic hash:                               **c7b5b77**
        External storage:                         **public**
@@ -404,17 +454,26 @@ $ halcyon install
        Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
+-----> Installing extra data files for dependencies
 -----> Install directory prepared, 8.8MB
 -----> Archiving install directory
-       Creating halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
+
+-----> Examining cache changes
+       * halcyon-build-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
+
+> ---------------------|---
+> _Expected time:_     | _20-25 seconds_
 
 In this step, Halcyon again performs an incremental build.
 
@@ -476,12 +535,27 @@ Check out `step4`, and try installing it:
 ``` { #declare-a-version-constraint-log1 .toggle }
 $ git checkout -q step4
 $ halcyon install
+-----> Examining cache contents
+       halcyon-build-halcyon-tutorial-1.0.tar.gz
+       halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
+       halcyon-ghc-7.8.4.tar.gz
+       halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
+       halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+
 -----> Installing halcyon-tutorial-1.0
-       ...
+       Label:                                    **halcyon-tutorial-1.0**
+       Prefix:                                   **/app**
+       Source hash:                              **bf9e916**
+       External storage:                         **public**
+       GHC version:                              **7.8.4**
+
+-----> Restoring install directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-bf9e916-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **19f66f1**
+       Source hash:                              **bf9e916**
        Constraints hash:                         **becfd1b**
        Magic hash:                               **c7b5b77**
        External storage:                         **public**
@@ -522,6 +596,9 @@ $ halcyon install
 ```
 </div>
 
+> ---------------------|---
+> _Expected time:_     | _10-15 seconds_
+
 Cabal fails to configure the app, because the _hourglass_ library isn’t included in the existing sandbox directory.
 
 Halcyon suggests adding `hourglass-0.2.8` as a version constraint, because 0.2.8 is currently the newest available version of _hourglass._
@@ -552,18 +629,33 @@ Check out and install `step5`:
 ``` { #declare-a-version-constraint-log2 .toggle }
 $ git checkout -q step5
 $ halcyon install
+-----> Examining cache contents
+       halcyon-build-halcyon-tutorial-1.0.tar.gz
+       halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
+       halcyon-ghc-7.8.4.tar.gz
+       halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
+       halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+
 -----> Installing halcyon-tutorial-1.0
-       ...
+       Label:                                    **halcyon-tutorial-1.0**
+       Prefix:                                   **/app**
+       Source hash:                              **b28289b**
+       External storage:                         **public**
+       GHC version:                              **7.8.4**
+
+-----> Restoring install directory
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+
 -----> Determining constraints
-       Label:                                    <b>halcyon-tutorial-1.0</b>
-       Prefix:                                   <b>/app</b>
-       Source hash:                              <b>56646e0</b>
-       Constraints hash:                         <b>3ad1ba3</b>
-       Magic hash:                               <b>c23e21c</b>
-       External storage:                         <b>public</b>
-       GHC version:                              <b>7.8.4</b>
-       Cabal version:                            <b>1.20.0.3</b>
-       Cabal repository:                         <b>Hackage</b>
+       Label:                                    **halcyon-tutorial-1.0**
+       Prefix:                                   **/app**
+       Source hash:                              **b28289b**
+       Constraints hash:                         **3ad1ba3**
+       Magic hash:                               **c23e21c**
+       External storage:                         **public**
+       GHC version:                              **7.8.4**
+       Cabal version:                            **1.20.0.3**
+       Cabal repository:                         **Hackage**
 
 -----> Using existing GHC
 
@@ -572,13 +664,20 @@ $ halcyon install
 -----> Restoring sandbox directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Locating sandbox directories
-       Listing https://halcyon.global.ssl.fastly.net/?prefix=linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-... done
+       Listing https://halcyon.global.ssl.fastly.net/... done
 -----> Examining partially matching sandbox directories
        ...
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.constraints... done
 -----> Scoring partially matching sandbox directories
-       ...
+       Ignoring hello-miku-1.0 (3c81d66) as HUnit-1.2.5.2 is not needed
+       Ignoring hello-snap-1.0 (4af96d8) as HUnit-1.2.5.2 is not needed
+       Ignoring hello-wheb-1.0 (4c4bfdc) as SHA-1.6.4.1 is not needed
+            41 hello-wai-1.0 (028a0e6)
+       Ignoring hello-scotty-1.0 (33c011e) as data-default-0.5.3 is not needed
+       Ignoring hello-happstack-1.0 (47c3e8d) as base-unicode-symbols-0.2.2.4 is not needed
+       Ignoring hello-spock-1.0 (0331829) as QuickCheck-2.7.6 is not needed
            101 halcyon-tutorial-1.0 (becfd1b)
+       Ignoring hello-yesod-1.0 (dac4ebf) as asn1-encoding-0.9.0 is not needed
 -----> Using partially matching sandbox directory: halcyon-tutorial-1.0 (becfd1b)
 -----> Restoring sandbox directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done
@@ -611,22 +710,32 @@ $ halcyon install
        [1 of 1] Compiling Main             ( Main.hs, dist/build/halcyon-tutorial/halcyon-tutorial-tmp/Main.o )
        Linking dist/build/halcyon-tutorial/halcyon-tutorial ...
 -----> App built, 13MB
-       Stripping app... done, 9.7MB
+       Stripping app... done, 9.8MB
 -----> Archiving build directory
-       Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
+       Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.2MB
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-56646e0-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
+-----> Installing extra data files for dependencies
 -----> Install directory prepared, 9.1MB
 -----> Archiving install directory
-       Creating halcyon-install-56646e0-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
------> App installed:                            <b>halcyon-tutorial-1.0</b>
+-----> App installed:                            **halcyon-tutorial-1.0**
+
+-----> Examining cache changes
+       * halcyon-build-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz
+       + halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
+
+> ---------------------|---
+> _Expected time:_     | _75-95 seconds_
 
 In this step, Halcyon extends a _partially matching_ sandbox directory, and performs an incremental build.
 
@@ -648,7 +757,7 @@ You now know how to use Halcyon to develop Haskell apps.  You have also develope
 
 Here’s some recommended reading:
 
-- Read the [Haskell on Heroku tutorial](https://haskellonheroku.com/tutorial/) to learn how to deploy Haskell web apps to Heroku.
+- Read the [Haskell on Heroku tutorial](https://haskellonheroku.com/tutorial/) to learn how to deploy Haskell web apps to [Heroku](https://heroku.com/).
 
 - TODO
 
