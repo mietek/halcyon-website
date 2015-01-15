@@ -296,7 +296,6 @@ $ halcyon install
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
------> Installing extra data files for dependencies
 -----> Install directory prepared, 8.8MB
 -----> Archiving install directory
        Creating halcyon-install-500d468-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
@@ -395,7 +394,6 @@ $ halcyon install
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
------> Installing extra data files for dependencies
 -----> Install directory prepared, 8.8MB
 -----> Archiving install directory
        Creating halcyon-install-16e4c0e-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
@@ -605,7 +603,6 @@ $ halcyon install
 -----> Restoring install directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-56646e0-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
------> Installing extra data files for dependencies
 -----> Install directory prepared, 9.1MB
 -----> Archiving install directory
        Creating halcyon-install-56646e0-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
