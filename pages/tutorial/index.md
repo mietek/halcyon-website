@@ -137,7 +137,7 @@ The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web s
 
 The app includes a Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon constraints file, [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
 
-Install the app directly from the repository:
+Install the app directly from its repository:
 
 <div class="toggle">
 <a class="toggle-button" data-target="install-the-app-log" href="" title="Toggle">Toggle</a>
@@ -161,7 +161,7 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
 ```
 </div>
 
-In this step, Halcyon restores an _install directory_ from public storage.  The correct archive to restore is determined by calculating a _source hash_ of the source directory.
+In this step, Halcyon restores the tutorial app’s _install directory_ from public storage.  The correct archive to restore is determined by calculating a _source hash_ of the source directory.
 
 Your app is now ready to run:
 
@@ -307,11 +307,11 @@ $ halcyon install
 ```
 </div>
 
-In this step, Halcyon reuses the existing GHC and Cabal directories, and tries to restore an install directory.  This fails, and so Halcyon falls back to building the app:
+In this step, Halcyon reuses the existing GHC and Cabal directories, and tries to restore the tutorial app’s install directory.  This fails, and so Halcyon falls back to building the app:
 
-1.  First, a _sandbox directory_ is restored from public storage.  The correct archive to extract is determined by calculating a _constraints hash_ of the declared version constraints.  The directory is restored to `/app`, next to the GHC and Cabal directories.
+1.  First, the app’s _sandbox directory_ is restored from public storage.  The correct archive to extract is determined by calculating a _constraints hash_ of the declared version constraints.  The directory is restored to `/app`, next to the GHC and Cabal directories.
 
-2.  Next, Halcyon restores a _build directory,_ and performs an incremental build.  The build is performed in a temporary directory, and the source directory is never modified.
+2.  Next, Halcyon restores the app’s _build directory,_ and performs an incremental build.  The build is performed in a temporary directory, and the source directory is never modified.
 
 3.  Finally, a new install directory is prepared and archived, and the app is installed.
 
