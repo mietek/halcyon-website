@@ -116,6 +116,8 @@ $ halcyon install
 
 In this step, Halcyon restores a _GHC directory_ and a _Cabal directory_ by extracting archives downloaded from _public storage._
 
+All downloaded archives are cached in the Halcyon _cache directory._
+
 GHC and Cabal are now ready to use:
 
 ```
@@ -140,7 +142,7 @@ $ halcyon install --ghc-version=7.6.3
 Install the app
 ---------------
 
-The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web service for keeping notes, built with [Servant](http://haskell-servant.github.io/).
+The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web service for storing notes, built with [Servant](http://haskell-servant.github.io/).
 
 The app includes a Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon constraints file, [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
 
@@ -475,9 +477,9 @@ $ halcyon install
 > ---------------------|---
 > _Expected time:_     | _20–25 seconds_
 
-In this step, Halcyon again performs an incremental build.
+In this step, Halcyon reuses the existing GHC, Cabal, and sandbox directories, performs an incremental build, and installs the app.
 
-The existing sandbox directory is reused, because version constraints for our new dependencies were already declared:
+The previously restored sandbox directory can be used again, because version constraints for our new dependencies are already declared:
 
 ```
 $ git grep -E '^(old-locale|time)' step2 .halcyon/constraints
