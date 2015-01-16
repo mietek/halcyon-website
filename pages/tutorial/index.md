@@ -140,7 +140,7 @@ $ halcyon install --ghc-version=7.6.3
 Install the app
 ---------------
 
-The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web service, built with [Servant](http://haskell-servant.github.io/).
+The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web service for keeping notes, built with [Servant](http://haskell-servant.github.io/).
 
 The app includes a Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon constraints file, [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
 
@@ -204,6 +204,8 @@ Run the app
 
 The tutorial app exposes one HTTP endpoint, `/notes`, which accepts `GET` and `POST` requests.
 
+Notes are JSON objects with a single text field, `contents`.  The app responds to each request with a list of all existing notes.
+
 Start your app in one shell:
 
 ```
@@ -216,8 +218,6 @@ In another shell, make a `GET` request to see an empty list of notes:
 $ curl http://localhost:8080/notes
 []
 ```
-
-Notes are JSON objects with a single text field, `contents`.  The app responds to each request with a list of all existing notes.
 
 Make a couple `POST` requests to add some notes:
 
@@ -264,7 +264,7 @@ $ git clone -q https://github.com/mietek/halcyon-tutorial
 $ cd halcyon-tutorial
 ```
 
-Install your app again:
+Check out and install `step2`:
 
 <div class="toggle">
 <a class="toggle-button" data-target="make-a-change-log" href="" title="Toggle">Toggle</a>
@@ -477,7 +477,7 @@ $ halcyon install
 
 In this step, Halcyon again performs an incremental build.
 
-The same sandbox directory is used again, because version constraints for our new dependencies were already declared:
+The existing sandbox directory is reused, because version constraints for our new dependencies were already declared:
 
 ```
 $ git grep -E '^(old-locale|time)' step2 .halcyon/constraints
@@ -524,7 +524,7 @@ $ git diff step3 step4 halcyon-tutorial.cabal
 ```
 </div>
 
-Even though we know we want to use _hourglass,_ we don’t know which version constraints to declare — _hourglass_ could have its own dependencies, and we should add constraints for all of them.
+In order for Halcyon to provide the correct sandbox directory, we need to declare version constraints for _hourglass_ and all of its dependencies.
 
 We can use Halcyon to find out what these constraints are.
 
@@ -599,11 +599,11 @@ $ halcyon install
 > ---------------------|---
 > _Expected time:_     | _10–15 seconds_
 
-Cabal fails to configure the app, because the _hourglass_ library isn’t included in the existing sandbox directory.
+As expected, Cabal fails to configure the app, because the _hourglass_ library isn’t provided in the existing sandbox directory.
 
-Halcyon suggests adding `hourglass-0.2.8` as a version constraint, because 0.2.8 is currently the newest available version of _hourglass._
+Halcyon suggests adding a single version constraint, `hourglass-0.2.8`, because 0.2.8 is currently the newest version of _hourglass_, and constraints for all of its dependencies are already declared.
 
-The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app declares this constraint:
+The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app includes this constraint:
 
 <div class="toggle">
 <a class="toggle-button" data-target="declare-a-version-constraint-diff2" href="" title="Toggle">Toggle</a>
