@@ -479,7 +479,7 @@ $ halcyon install
 
 In this step, Halcyon reuses the existing GHC, Cabal, and sandbox directories, performs an incremental build, and installs the app.
 
-The previously restored sandbox directory can be used again, because version constraints for our new dependencies are already declared:
+The previously-restored sandbox directory can be used again, because version constraints for our new dependencies are already declared:
 
 ```
 $ git grep -E '^(old-locale|time)' step2 .halcyon/constraints
@@ -498,16 +498,16 @@ $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 ```
 
 
-Determine a version constraint
-------------------------------
+Declare a constraint
+--------------------
 
 Let’s try to simplify the code by using a third-party library.
 
 The [`step4`](https://github.com/mietek/halcyon-tutorial/tree/step4) version of the app replaces _old-locale_ and _time_ with the [_hourglass_](http://hackage.haskell.org/package/hourglass) library:
 
 <div class="toggle">
-<a class="toggle-button" data-target="determine-a-version-constraint-diff" href="" title="Toggle">Toggle</a>
-``` { #determine-a-version-constraint-diff .toggle }
+<a class="toggle-button" data-target="declare-a-constraint-diff" href="" title="Toggle">Toggle</a>
+``` { #declare-a-constraint-diff .toggle }
 $ git diff step3 step4 halcyon-tutorial.cabal
 ...
 **@@ -14,11 +14,10 @@** executable halcyon-tutorial
@@ -533,8 +533,8 @@ Halcyon can be used to determine these constraints.
 Check out `step4`, and try installing it:
 
 <div class="toggle">
-<a class="toggle-button" data-target="determine-a-version-constraint-log" href="" title="Toggle">Toggle</a>
-``` { #determine-a-version-constraint-log .toggle }
+<a class="toggle-button" data-target="declare-a-constraint-log" href="" title="Toggle">Toggle</a>
+``` { #declare-a-constraint-log .toggle }
 $ git checkout -q step4
 $ halcyon install
 -----> Examining cache contents
@@ -603,20 +603,20 @@ $ halcyon install
 
 As expected, Cabal fails to configure the app, because the _hourglass_ library isn’t provided in the existing sandbox directory.
 
-Halcyon suggests adding a single version constraint for the newest version of _hourglass_, which is currently 0.2.8.  The 
+Halcyon suggests adding a single version constraint for the newest version of _hourglass_, which is currently 0.2.8.  Constraints for all of its dependencies are already declared.
 
 
 
-Declare a version constraint
-----------------------------
+Build a sandbox
+---------------
 
-Now, let’s declare the version constraint we determined, `hourglass-0.2.8`.
+Halcyon always provides a sandbox directory matching the declared version constraints.  If needed, the sandbox directory is built on-the-fly — either from scratch, or based on a previously-built sandbox.
 
-The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app includes this constraint:
+The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app includes the constraint we determined, `hourglass-0.2.8`:
 
 <div class="toggle">
-<a class="toggle-button" data-target="declare-a-version-constraint-diff" href="" title="Toggle">Toggle</a>
-``` { #declare-a-version-constraint-diff .toggle }
+<a class="toggle-button" data-target="build-a-sandbox-diff" href="" title="Toggle">Toggle</a>
+``` { #build-a-sandbox-diff .toggle }
 $ git diff step4 step5 .halcyon/constraints
 ...
 **@@ -38,6 +38,7 @@** file-embed-0.0.7
@@ -630,12 +630,11 @@ $ git diff step4 step5 .halcyon/constraints
 ```
 </div>
 
-
 Check out and install `step5`:
 
 <div class="toggle">
-<a class="toggle-button" data-target="declare-a-version-constraint-log" href="" title="Toggle">Toggle</a>
-``` { #declare-a-version-constraint-log .toggle }
+<a class="toggle-button" data-target="build-a-sandbox-log" href="" title="Toggle">Toggle</a>
+``` { #build-a-sandbox-log .toggle }
 $ git checkout -q step5
 $ halcyon install
 -----> Examining cache contents
@@ -748,7 +747,7 @@ $ halcyon install
 
 In this step, Halcyon reuses the existing GHC and Cabal directories, and tries to locate the correct sandbox directory for the current version of the app.  This fails, and so Halcyon falls back to building the sandbox:
 
-1.  First, previously built sandbox directories are located and assigned a score, which reflects the number of required dependencies within the sandbox.
+1.  First, previously-built sandbox directories are located and assigned a score, which reflects the number of required dependencies within each sandbox.
 
 2.  Next, Halcyon builds and archives a new sandbox, based on the highest-scoring _partially-matching_ sandbox directory.
 
