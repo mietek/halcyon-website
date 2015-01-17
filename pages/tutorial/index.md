@@ -22,7 +22,7 @@ Tutorial
 Introduction
 ------------
 
-Halcyon is a program which can be used to install [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
 
 This tutorial shows how to develop a simple Haskell web app using Halcyon.
 
@@ -68,7 +68,7 @@ If you don’t want your `.bash_profile` to be extended, set [`HALCYON_NO_MODIFY
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Halcyon installs development tools and other dependencies in the _base directory,_ `/app`.  Changing this path isn’t recommended, because it’ll prevent you from getting started as quickly as possible.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
+Halcyon installs development tools and other dependencies in the _base directory,_ which defaults to `/app`.  Changing this path isn’t recommended, because it’ll prevent you from using previously-built archives.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
 
 
 Install GHC and Cabal
@@ -139,7 +139,7 @@ Install the app
 
 The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web service for storing notes, built with [Servant](http://haskell-servant.github.io/).
 
-The app includes a Cabal package description file, [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon constraints file, [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
+The app includes a Cabal _package description file,_ [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon _constraints file,_ [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
 
 Install the app directly from the _git_ repository:
 
@@ -189,7 +189,7 @@ $ which halcyon-tutorial
 
 ### Options
 
-Halcyon installs apps in the _prefix directory_, `/app`.  You can change this with the [`HALCYON_PREFIX`](/reference/#halcyon_prefix) option:
+Halcyon installs apps in the _prefix directory_, which defaults to `/app`.  You can change this with the [`HALCYON_PREFIX`](/reference/#halcyon_prefix) option:
 
 ```
 $ halcyon install --prefix=/usr/local example-app
@@ -250,7 +250,7 @@ $ PORT=4040 halcyon-tutorial
 Make a change
 -------------
 
-Let’s change the code so that each note can contain a timestamp.
+Let’s change the tutorial app so that each note can contain a timestamp.
 
 The [`step2`](https://github.com/mietek/halcyon-tutorial/tree/step2) version of the app includes a new `dateTime` field in each note.
 
@@ -340,11 +340,11 @@ $ halcyon install
 > ---------------------|---
 > _Expected time:_     | _30–40 seconds_
 
-In this step, Halcyon tries to restore the tutorial app’s install directory.  This fails, and so Halcyon falls back to building the app:
+In this step, Halcyon tries to restore the tutorial app’s install directory by using an archive from public storage.  This fails, and so Halcyon falls back to building the app:
 
-1.  First, the existing GHC and Cabal directories are reused, and the app’s _sandbox directory_ is restored.
+1.  First, the existing GHC and Cabal directories are reused, and the app’s _sandbox directory_ is restored from public storage.
 
-2.  Next, Halcyon restores the app’s _build directory,_ and performs an incremental build.
+2.  Next, Halcyon restores the app’s _build directory_ from public storage, and performs an incremental build.
 
 3.  Finally, the app’s new install directory is prepared and archived, and the app is installed.
 
@@ -515,9 +515,7 @@ $ git diff step3 step4 halcyon-tutorial.cabal
                        warp
 ```
 
-In order for Halcyon to provide the correct sandbox directory, we need to declare version constraints for _hourglass_ and all of its dependencies.
-
-Halcyon can be used to determine these constraints.
+In order for Halcyon to provide the correct sandbox directory, we need to declare version constraints for _hourglass_ and all of its dependencies.  You can determine these constraints using Halcyon.
 
 Check out `step4`, and try installing it:
 
@@ -590,18 +588,9 @@ $ halcyon install
 > ---------------------|---
 > _Expected time:_     | _10–15 seconds_
 
-As expected, Cabal fails to configure the app, because the _hourglass_ library isn’t provided in the existing sandbox directory.
+In this step, Cabal fails to configure the app, because the _hourglass_ library isn’t provided in the existing sandbox directory, and Halcyon suggests adding a single version constraint, `hourglass-0.2.8`.
 
-Halcyon suggests adding a single version constraint for the newest version of _hourglass_, which is currently 0.2.8.  Constraints for all of its dependencies are already declared.
-
-
-
-Build a sandbox
----------------
-
-Halcyon always provides a sandbox directory matching the declared version constraints.  If needed, the sandbox directory is built on-the-fly — either from scratch, or based on a previously-built sandbox.
-
-The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app includes the constraint we determined, `hourglass-0.2.8`:
+The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app declares this constraint:
 
 ```
 $ git diff -U1 step4 step5 .halcyon/constraints
@@ -611,6 +600,12 @@ $ git diff -U1 step4 step5 .halcyon/constraints
 **+hourglass-0.2.6**
  http-date-0.0.4
 ```
+
+
+Build the sandbox
+---------------
+
+Halcyon always provides a sandbox directory matching the declared version constraints.  If needed, the sandbox directory is built on-the-fly — either from scratch, or based on a previously-built sandbox.
 
 Check out and install `step5`:
 
@@ -751,7 +746,7 @@ Set up private storage
 
 Halcyon can upload all newly created archives to _private storage,_ which is an external cache for the apps and dependencies you build.
 
-By using private storage, you can effortlessly share archives between multiple machines, and avoid running into resource limits on your installation targets.
+By using private storage, you can share archives between multiple machines, and avoid running into resource limits on your installation targets.
 
 To use private storage, you’ll need to:
 
@@ -761,7 +756,7 @@ To use private storage, you’ll need to:
 
 - Give the IAM user [permission to access](http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) the S3 bucket
 
-Configure private storage by setting [`HALCYON_AWS_ACCESS_KEY_ID`](/reference/#halcyon_aws_access_key_id),  [`HALCYON_AWS_SECRET_ACCESS_KEY`](/reference/#halcyon_aws_secret_access_key), and [`HALCYON_S3_BUCKET`](/reference/#halcyon_s3_bucket):
+Once you’re done, configure private storage by setting [`HALCYON_AWS_ACCESS_KEY_ID`](/reference/#halcyon_aws_access_key_id),  [`HALCYON_AWS_SECRET_ACCESS_KEY`](/reference/#halcyon_aws_secret_access_key), and [`HALCYON_S3_BUCKET`](/reference/#halcyon_s3_bucket):
 
 ```
 $ export HALCYON_AWS_ACCESS_KEY_ID=example-access-key-id
@@ -778,7 +773,7 @@ $ export HALCYON_S3_ENDPOINT=s3-example-region.amazonaws.com
 
 ### Options
 
-By default, all uploads are assigned the `private` [S3 <abbr title="Access control list">ACL</abbr>](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html).  To make future uploads publicly available, set [`HALCYON_S3_ACL`](/reference/#halcyon_s3_acl) to `public-read`:
+By default, all uploads are assigned the `private` [Amazon S3 ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html).  To make newly-uploaded files available to the public, set [`HALCYON_S3_ACL`](/reference/#halcyon_s3_acl) to `public-read`:
 
 ```
 $ export HALCYON_S3_ACL=public-read
