@@ -30,9 +30,11 @@ This tutorial shows how to develop a simple Haskell web app using Halcyon.
 Set up
 ------
 
+The [Halcyon setup script](https://github.com/mietek/halcyon/blob/master/setup.sh) installs the necessary OS packages, clones the [Halcyon _git_ repository](https://github.com/mietek/halcyon), and sets up environment variables.
+
 The tutorial assumes you’re using a Linux system with at least 4 GB RAM and GNU _bash_ 4 or newer.
 
-Run the [setup script](https://github.com/mietek/halcyon/raw/master/setup.sh) to install Halcyon:
+Run the setup script to install Halcyon:
 
 ```
 $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
@@ -46,7 +48,7 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 -----> Extending .bash_profile
 ```
 
-Halcyon is now installed and ready to use:
+Halcyon is now ready to use:
 
 ```
 $ which halcyon
@@ -56,19 +58,15 @@ $ which halcyon
 
 ### Options
 
-If you want to change where Halcyon is installed, set the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script:
+You can change where Halcyon is installed by setting the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the script.
 
-```
-$ export HALCYON_DIR="${HOME}/halcyon"
-```
-
-If you don’t want your `.bash_profile` to be extended, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before setting up.  You’ll then need to activate Halcyon manually before each use:
+If you don’t want your `.bash_profile` to be extended, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the script.  You’ll then need to activate Halcyon manually before each use:
 
 ```
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Halcyon installs development tools and other dependencies in the _base directory,_ which defaults to `/app`.  Changing this path isn’t recommended, because it’ll prevent you from using previously-built archives.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script.
+Halcyon installs development tools and other dependencies in the _base directory,_ which defaults to `/app`.  Changing this path isn’t recommended, because it’ll require all dependencies to be built from scratch.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the script.
 
 
 Install GHC and Cabal
@@ -125,13 +123,11 @@ $ which cabal
 
 ### Options
 
-All Halcyon options can be specified by setting an _environment variable._  You can also specify most options as a _command-line argument._
+All Halcyon options can be specified by setting an _environment variable._  You can also specify most options with a _command-line argument._
 
-By default, Halcyon installs GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this with the [`HALCYON_GHC_VERSION`](/reference/#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](/reference/#halcyon_cabal_version) options:
+By default, Halcyon installs GHC 7.8.4 and _cabal-install_ 1.20.0.3.  You can change this with the [`HALCYON_GHC_VERSION`](/reference/#halcyon_ghc_version) and [`HALCYON_CABAL_VERSION`](/reference/#halcyon_cabal_version) options.
 
-```
-$ halcyon install --ghc-version=7.6.3
-```
+The cache directory defaults to `/var/tmp/halcyon-cache`, and can be changed with the [`HALCYON_CACHE`](/reference/#halcyon_cache) option.
 
 
 Install the app
@@ -141,7 +137,7 @@ The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web s
 
 The app includes a Cabal _package description file,_ [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon _constraints file,_ [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
 
-Install the app directly from the _git_ repository:
+Use the Halcyon [`install`](/reference/#halcyon-install) command to install the app directly from the _git_ repository:
 
 <div class="toggle">
 <a class="toggle-button" data-target="install-the-app-log" href="" title="Toggle">Toggle</a>
@@ -189,11 +185,9 @@ $ which halcyon-tutorial
 
 ### Options
 
-Halcyon installs apps in the _prefix directory_, which defaults to `/app`.  You can change this with the [`HALCYON_PREFIX`](/reference/#halcyon_prefix) option:
+Halcyon installs apps in the _prefix directory_, which defaults to `/app`.  You can change this with the [`HALCYON_PREFIX`](/reference/#halcyon_prefix) option.
 
-```
-$ halcyon install --prefix=/usr/local example-app
-```
+For _git_ URLs, the `master` branch is used by default.  Other branches can be specified by adding a `#`_`branch`_ suffix.
 
 
 Run the app
@@ -261,7 +255,7 @@ $ git clone -q https://github.com/mietek/halcyon-tutorial
 $ cd halcyon-tutorial
 ```
 
-Check out and install `step2`:
+Check out `step2`, and install it with the Halcyon [`install`](/reference/#halcyon-install) command:
 
 <div class="toggle">
 <a class="toggle-button" data-target="make-a-change-log" href="" title="Toggle">Toggle</a>
@@ -610,8 +604,8 @@ Halcyon always provides a sandbox directory matching the declared version constr
 Check out and install `step5`:
 
 <div class="toggle">
-<a class="toggle-button" data-target="build-a-sandbox-log" href="" title="Toggle">Toggle</a>
-``` { #build-a-sandbox-log .toggle }
+<a class="toggle-button" data-target="build-the-sandbox-log" href="" title="Toggle">Toggle</a>
+``` { #build-the-sandbox-log .toggle }
 $ git checkout -q step5
 $ halcyon install
 -----> Examining cache contents
@@ -744,7 +738,7 @@ $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 Set up private storage
 ----------------------
 
-Halcyon can upload all newly created archives to _private storage,_ which is an external cache for the apps and dependencies you build.
+Halcyon can use _private storage_ as well as public storage.  Private storage is an external cache for the apps and dependencies you build.
 
 By using private storage, you can share archives between multiple machines, and avoid running into resource limits on your installation targets.
 
@@ -788,8 +782,6 @@ You now know how to use Halcyon to develop Haskell apps.  You have also develope
 Here’s some recommended reading:
 
 - Read the [Haskell on Heroku tutorial](https://haskellonheroku.com/tutorial/) to learn how to deploy Haskell web apps to [Heroku](https://heroku.com/).
-
-- TODO
 
 
 ---
