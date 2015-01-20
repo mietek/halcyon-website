@@ -26,7 +26,7 @@ This tutorial shows how to develop a simple Haskell web app using Halcyon.
 Set up
 ------
 
-The [Halcyon setup script](https://github.com/mietek/halcyon/blob/master/setup.sh) installs the necessary OS packages, clones the [Halcyon _git_ repository](https://github.com/mietek/halcyon), and sets up environment variables.
+Halcyon can be installed by cloning the [_git_ repository](https://github.com/mietek/halcyon), or by running the [setup script](https://github.com/mietek/halcyon/blob/master/setup.sh), which also installs the necessary OS packages and sets up the environment.
 
 The tutorial assumes you’re using a Linux system with at least 4 GB RAM and GNU _bash_ 4 or newer.
 
@@ -941,8 +941,6 @@ Next steps
 ----------
 
 You now know how to use Halcyon to develop Haskell apps.  You have also developed a simple Haskell web service.
-
-Here’s some recommended reading:
 
 - See the [Halcyon reference](/reference/) for a complete list of the available commands and options.
 
