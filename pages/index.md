@@ -36,54 +36,9 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 
 #### Simple
 
-- Halcyon uses regular Cabal packages, sandboxes, and repositories, such as Hackage.
+- Halcyon uses regular Cabal packages, sandboxes, and repositories, such as Hackage and Stackage.
 
-- Halcyon does not require GHC to be installed, as it can install the right version of GHC for the application.
-
-- Halcyon supports most recent GHC versions, including GHC 7.8.4.  [More…](/reference/#halcyon_ghc_version)
-
-- Halcyon can install applications directly from _git_ repositories.
-
-
-#### Fast
-
-- Halcyon automatically archives, caches, and restores all build products, using both local and remote storage.
-
-- Halcyon can reuse previously built Cabal sandboxes as a base for building new sandboxes. [More…](/shootout/#shootout-results)
-
-- Halcyon runs on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
-
-- Halcyon can use the same archives on multiple systems, from development, to continuous integration and deployment.
-
-
-<aside>
-<a class="micro face mietek" href="#about"></a>
-<blockquote>_“If Halcyon is not helping you install applications easily, there is a bug in Halcyon.”_</blockquote>
-<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
-</aside>
-
-
-#### Reliable
-
-- Halcyon has been used in production since June 2014.  [More…](/examples/#circuithub)
-
-- Halcyon includes workarounds for many _cabal-install_ issues, including [#220](https://github.com/haskell/cabal/issues/220),
-[#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
-
-- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex_ and _happy_.
-
-- Halcyon supports declaring dependencies and version constraints in a format easy to integrate with other tools.
-
-
-#### Powerful
-
-- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
-
-- Halcyon allows _git_ repositories to be declared as sandbox sources.
-
-- Halcyon includes hooks for complete control over the build process.
-
-- Halcyon allows native OS packages to be declared and installed in a cross-platform fashion.
+- Halcyon does not require GHC to be installed, as it can install the correct version of GHC for the app.
 
 
 <aside>
@@ -91,6 +46,28 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 <blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
 <p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
 </aside>
+
+
+#### Fast
+
+- Halcyon automatically archives and restores all build products, using local cache and external storage.
+
+- Halcyon can use the same archives on multiple systems, saving time during development, continuous integration, and deployment.
+
+
+#### Reliable
+
+- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex,_ _happy,_ and other build tools.
+
+- Halcyon includes workarounds for many _cabal-install_ issues, including [#220](https://github.com/haskell/cabal/issues/220),
+[#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
+
+
+#### Powerful
+
+- Halcyon allows native OS packages to be declared as dependencies and automatically installed.
+
+- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/) or [Haskell on Heroku](https://haskellonheroku.com/).
 
 
 ### Support
@@ -102,31 +79,47 @@ Please report any problems with Halcyon on the [issue tracker](https://github.co
 Need commercial support?  Contact the [author](#about) directly.
 
 
+<aside>
+<a class="micro face mietek" href="#about"></a>
+<blockquote>_“If Halcyon is not helping you install apps easily, there is a bug in Halcyon.”_</blockquote>
+<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
+</aside>
+
+
+### Examples
+
+- See the [Halcyon examples](/examples/) for a demonstration of advanced Halcyon features.
+
+- Take a look at the [Halcyon shootout](/shootout/) for a comparison of build times and sizes across most Haskell web frameworks.
+
+All apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+
+Additionally, all apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+
+
 Usage
 -----
 
-The [`halcyon install`](/reference/#halcyon-install) command is intended to be used instead of `cabal install`.
+The [`halcyon install`](/reference/#halcyon-install) command can be used instead of `cabal install`:
 
-<div class="toggle">
-<a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
-``` { #log1 .toggle }
-$ halcyon install https://github.com/mietek/howistart
------> Cloning https://github.com/mietek/howistart... done, cc48e01
------> Installing app
+```
+$ halcyon install https://github.com/mietek/halcyon-tutorial
+-----> Cloning https://github.com/mietek/halcyon-tutorial... done, af1461f
+-----> Installing halcyon-tutorial-1.0
+       Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Label:                                    **howistart-0.1**
-       Source hash:                              **bcfc50f**
+       Source hash:                              **0c985ba**
        External storage:                         **public**
+       GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-install-bcfc50f-howistart-0.1.tar.gz... done
-       Extracting halcyon-install-bcfc50f-howistart-0.1.tar.gz... done, 30MB
------> Install directory restored
------> Installing app into /app... done
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done, 8.8MB
+-----> Installing app to /app
+-----> Installed halcyon-tutorial-1.0
 
------> App installed:                            **howistart-0.1**
+-----> App installed:                            **halcyon-tutorial-1.0**
 ```
-</div>
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
@@ -134,104 +127,25 @@ $ halcyon install https://github.com/mietek/howistart
 
 ### Installation
 
-Halcyon can be installed in one command on most recent Linux distributions.
+Halcyon can be installed by cloning the [_git_ repository](https://github.com/mietek/halcyon), or by running the [setup script](https://github.com/mietek/halcyon/blob/master/setup.sh), which also installs the necessary OS packages and sets up the environment:
 
 ```
 $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 ```
 
 
-Examples
---------
+### Documentation
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.
+- Start with the [Halcyon tutorial](/tutorial/) to learn how to deploy a simple Haskell web app using Halcyon.
 
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
-
-
-### Example applications
-
-[Real-world Haskell applications](/examples/), demonstrating advanced usage of Halcyon.
-
-</section></section></div>
-<div class="gallery-background">
-<div class="wrapper">
-<div class="gallery-frame" id="examples-gallery">
-<div class="gallery-contents">
-<a href="/examples/#circuithub" class="gallery-item" id="item-circuithub">CircuitHub</a>
-<a href="/examples/#how-i-start" class="gallery-item" id="item-howistart">How I Start</a>
-<a href="/examples/#haskell-language" class="gallery-item" id="item-hl">Haskell Language</a>
-<a href="/examples/#try-haskell" class="gallery-item" id="item-tryhaskell">Try Haskell</a>
-<a href="/examples/#try-idris" class="gallery-item" id="item-tryidris">Try Idris</a>
-<a href="/examples/#try-purescript" class="gallery-item" id="item-trypurescript">Try PureScript</a>
-<a href="/examples/#try-haste" class="gallery-item" id="item-tryhaste">Try Haste</a>
-<a href="/examples/#gitit" class="gallery-item" id="item-gitit">Gitit</a>
-</div></div></div></div>
-<div class="wrapper"><section><section>
-
-<div id="gallery-links"><nav>
-<ul class="menu open">
-<li><a class="gallery-link" href="/examples/#circuithub" id="link-circuithub">CircuitHub</a></li>
-<li><a class="gallery-link" href="/examples/#how-i-start" id="link-howistart">How I Start</a></li>
-<li><a class="gallery-link" href="/examples/#haskell-language" id="link-hl">Haskell Language</a></li>
-<li><a class="gallery-link" href="/examples/#try-haskell" id="link-tryhaskell">Try Haskell</a></li>
-<li><a class="gallery-link" href="/examples/#try-idris" id="link-tryidris">Try Idris</a></li>
-<li><a class="gallery-link" href="/examples/#try-purescript" id="link-trypurescript">Try PureScript</a></li>
-<li><a class="gallery-link" href="/examples/#try-haste" id="link-tryhaste">Try Haste</a></li>
-<li><a class="gallery-link" href="/examples/#gitit" id="link-gitit">Gitit</a></li>
-</ul>
-</nav></div>
+- See the [Halcyon reference](/reference/) for a complete list of the available commands and options.
 
 
-### “Hello, world!” shootout
-
-[Simple applications](/shootout/), intended to compare build times and sizes across most Haskell web frameworks.
-
-<div><nav><ul class="toc menu open">
-<li class="space"><a href="/shootout/#shootout-results">Shootout results</a></li>
-<li><a href="/shootout/#hello-apiary"><i>hello-apiary</i></a></li>
-<li><a href="/shootout/#hello-happstack"><i>hello-happstack</i></a></li>
-<li><a href="/shootout/#hello-mflow"><i>hello-mflow</i></a></li>
-<li><a href="/shootout/#hello-miku"><i>hello-miku</i></a></li>
-<li><a href="/shootout/#hello-scotty"><i>hello-scotty</i></a></li>
-<li><a href="/shootout/#hello-simple"><i>hello-simple</i></a></li>
-<li><a href="/shootout/#hello-snap"><i>hello-snap</i></a></li>
-<li><a href="/shootout/#hello-spock"><i>hello-spock</i></a></li>
-<li><a href="/shootout/#hello-wai"><i>hello-wai</i></a></li>
-<li><a href="/shootout/#hello-wheb"><i>hello-wheb</i></a></li>
-<li><a href="/shootout/#hello-yesod"><i>hello-yesod</i></a></li>
-</ul></nav></div>
-
-
-<aside>
-<a class="micro face brian-mckenna" href=""></a>
-<blockquote>_“Deployment of Haskell applications is getting interesting due to Miëtek’s Halcyon project.”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
-</aside>
-
-
-Documentation
--------------
-
-<div><nav>
-<ul class="menu open">
-<li><a href="/tutorial/">Tutorial</a></li>
-<li><a href="/reference/">Reference</a></li>
-</ul>
-</nav></div>
-
-
-### Internal documentation
+#### Internals
 
 Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_bashmenot_](https://bashmenot.mietek.io/) library.
 
-<div><nav>
-<ul class="menu open">
-<li><a href="https://github.com/mietek/halcyon">Source code</a></li>
-<li><a href="https://bashmenot.mietek.io/reference/">_bashmenot_ programmer’s reference</a></li>
-<li><a href="https://github.com/mietek/bashmenot">_bashmenot_ source code</a></li>
-</ul>
-</nav></div>
+- Dive into the [Halcyon source code](https://github.com/mietek/halcyon) to understand how it all works.
 
 
 About
@@ -260,6 +174,9 @@ This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or
 
 
 <aside>
+<a class="micro face brian-mckenna" href=""></a>
+<blockquote>_“Deployment of Haskell applications is getting interesting due to Miëtek’s Halcyon project.”_</blockquote>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 <a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
 <blockquote>_“Check out Miëtek’s [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
 <p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
