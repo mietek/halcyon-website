@@ -15,11 +15,7 @@ Halcyon shootout { .with-toc }
 
 Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
 
-These example apps are intended to compare build times and sizes across most Haskell web frameworks.
-
-All example apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
-
-Additionally, all example apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+These examples are intended to compare build times and sizes across most Haskell web frameworks.
 
 
 <div><nav><ul class="toc menu open">
@@ -37,6 +33,10 @@ Additionally, all example apps can be deployed in one click to [DigitalOcean](ht
 <li><a href="#hello-yesod"><i>hello-yesod</i></a></li>
 </ul></nav></div>
 
+All example apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+
+Additionally, all example apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+
 
 Results
 -------
@@ -51,7 +51,7 @@ Results
 
 #### Comments
 
-The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
+The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the app from scratch.  GHC and Cabal are restored from local cache.
 
 The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
 
@@ -65,13 +65,13 @@ hello-yesod,10,521,535,537,251MB,25MB
 
 The output of the test script includes:
 
-- Application name
+- App name
 - GHC and Cabal restore time
 - Sandbox build time
-- Application build time
-- Application install time
+- App build time
+- App install time
 - Sandbox size
-- Application size
+- App size
 
 
 _hello-apiary_
@@ -1367,11 +1367,11 @@ function drawChart() {
   if (cannot.getLayout() === 'small') {
     envName = 'GHC and Cabal';
     sandboxName = 'Sandbox';
-    appName = 'Application';
+    appName = 'App';
   } else {
     envName = 'Restoring GHC and Cabal';
     sandboxName = 'Building sandbox';
-    appName = 'Building and installing application';
+    appName = 'Building and installing app';
   }
   data.addColumn('string', 'Name');
   data.addColumn('number', envName);
@@ -1415,7 +1415,7 @@ function drawChart() {
     var appMean = mean(result.appTimes);
     var appLow = low(result.appTimes);
     var appHigh = high(result.appTimes);
-    var appTip = 'Building and installing application: ' + fix(appMean) + 's';
+    var appTip = 'Building and installing app: ' + fix(appMean) + 's';
     if (appLow !== appHigh) {
       appTip += ' [' + appLow + 's, ' + appHigh + 's]';
     }

@@ -41,13 +41,6 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 - Halcyon does not require GHC to be installed, as it can install the correct version of GHC for the app.
 
 
-<aside>
-<a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
-<blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
-<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
-</aside>
-
-
 #### Fast
 
 - Halcyon automatically archives and restores all build products, using local cache and external storage.
@@ -70,6 +63,13 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 - Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/) or [Haskell on Heroku](https://haskellonheroku.com/).
 
 
+<aside>
+<a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
+<blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
+<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
+</aside>
+
+
 ### Support
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
@@ -77,13 +77,6 @@ The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a>
 Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues) for problems with the documentation.
 
 Need commercial support?  Contact the [author](#about) directly.
-
-
-<aside>
-<a class="micro face mietek" href="#about"></a>
-<blockquote>_“If Halcyon is not helping you install apps easily, there is a bug in Halcyon.”_</blockquote>
-<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
-</aside>
 
 
 ### Examples
@@ -95,6 +88,13 @@ Need commercial support?  Contact the [author](#about) directly.
 All example apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
 
 Additionally, all example apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+
+
+<aside>
+<a class="micro face mietek" href="#about"></a>
+<blockquote>_“If Halcyon is not helping you install apps easily, there is a bug in Halcyon.”_</blockquote>
+<p>[— Miëtek Bak](#about), with apologies to [Jordan Sissel](https://github.com/jordansissel/fpm)</p>
+</aside>
 
 
 Usage
@@ -150,6 +150,13 @@ Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_
 - Read the [Halcyon source code](https://github.com/mietek/halcyon) to understand how it works.
 
 
+<aside>
+<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
+<blockquote>_“Check out Miëtek’s [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+</aside>
+
+
 About
 -----
 
@@ -173,9 +180,3 @@ The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubi
 Thanks to [Fastly](https://www.fastly.com/) for providing low-latency access to Halcyon public storage.
 
 This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or [Heroku](https://heroku.com/).
-
-<aside class="inline">
-<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
-<blockquote>_“Check out Miëtek’s [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
-<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
-</aside>

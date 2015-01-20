@@ -756,7 +756,7 @@ $ export HALCYON_AWS_SECRET_ACCESS_KEY=example-secret-access-key
 $ export HALCYON_S3_BUCKET=example-bucket
 ```
 
-If your S3 bucket isn’t located in the Amazon US Standard region, you’ll also need to set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the address of the correct [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region):
+If your S3 bucket isn’t located in the Amazon US Standard region, set [`HALCYON_S3_ENDPOINT`](/reference/#halcyon_s3_endpoint) to the address of the correct [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region):
 
 ```
 $ export HALCYON_S3_ENDPOINT=s3-example-region.amazonaws.com
@@ -772,8 +772,8 @@ $ export HALCYON_S3_ACL=public-read
 ```
 
 
-Populate private storage
-------------------------
+Use private storage
+-------------------
 
 Let’s force Halcyon to build the sandbox directory again, in order to populate your private storage.
 
