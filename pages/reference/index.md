@@ -17,6 +17,14 @@ Reference
 =========
 
 
+Introduction
+------------
+
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
+
+This reference lists Halcyon commands and options.
+
+
 Commands
 --------
 
@@ -201,7 +209,7 @@ rts-1.0
 
 Any specified directory must contain a file named _`name-version`_`.constraints`, matching the app label.
 
-Intended to support explicitly declaring the dependencies of any app which does not already do so.
+Intended to support explicitly declaring the dependencies of any app which doesn’t already do so.
 
 
 ### `HALCYON_IGNORE_ALL_CONSTRAINTS`
@@ -215,7 +223,7 @@ Forces Halcyon to ignore any constraints declared in a `cabal.config` file or `.
 
 Intended to support upgrading dependencies.
 
-**Note:**  Ignoring only certain constraints is not supported.  See Cabal issue [#2265](https://github.com/haskell/cabal/issues/2265) for details.
+**Note:**  Ignoring only certain constraints isn’t supported.  See Cabal issue [#2265](https://github.com/haskell/cabal/issues/2265) for details.
 
 
 ### `HALCYON_EXTRA_CONFIGURE_FLAGS`
@@ -345,7 +353,7 @@ Each label must include a Cabal package name and version number, in _`name`_`-`_
 
 Any specified directory must contain a file named _`name-version`_`.constraints`, each matching the label of one app.
 
-Intended to support explicitly declaring the dependencies of any app which does not already do so.
+Intended to support explicitly declaring the dependencies of any app which doesn’t already do so.
 
 
 ### `HALCYON_EXTRA_DATA_FILES`
@@ -368,7 +376,7 @@ static
 
 At run-time, the files will be available in the Cabal [data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
 
-Intended to support apps which do not declare all run-time data files as `data-files` in the Cabal package description.
+Intended to support apps which don’t declare all run-time data files as `data-files` in the Cabal package description.
 
 **Note:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
 
@@ -687,7 +695,7 @@ Name and URL of the Cabal repository referenced by the Cabal package database in
 
 The value must match the format of a `remote-repo` entry in a `cabal.config` file.
 
-**Note:**  HTTPS URLs are not supported.  See Cabal issue [#936](https://github.com/haskell/cabal/issues/936) for details.
+**Note:**  HTTPS URLs aren’t supported.  See Cabal issue [#936](https://github.com/haskell/cabal/issues/936) for details.
 
 
 ### `HALCYON_CABAL_PRE_BUILD_HOOK`
@@ -838,7 +846,7 @@ Each label must include a Cabal package name and version number, in _`name`_`-`_
 
 Any specified directory must contain a file named _`name-version`_`.constraints`, matching the app label.
 
-Intended to support explicitly declaring the dependencies of any app which does not already do so.
+Intended to support explicitly declaring the dependencies of any app which doesn’t already do so.
 
 
 ### `HALCYON_SANDBOX_EXTRA_OS_PACKAGES`
