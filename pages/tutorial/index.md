@@ -942,6 +942,6 @@ Next steps
 
 You now know how to use Halcyon to develop Haskell apps.  You have also developed a simple Haskell web service.
 
-- See the [Halcyon reference](/reference/) for a complete list of the available commands and options.
+- See the [Halcyon reference](/reference/) for a complete list of available commands and options.
 
 - Read the [Haskell on Heroku tutorial](https://haskellonheroku.com/tutorial/) to learn how to deploy Haskell web apps to [Heroku](https://heroku.com/).
