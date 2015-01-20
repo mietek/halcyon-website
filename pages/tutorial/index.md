@@ -187,8 +187,6 @@ $ which halcyon-tutorial
 
 Halcyon installs apps in the _prefix directory_, which defaults to `/app`.  You can change this with the [`HALCYON_PREFIX`](/reference/#halcyon_prefix) option.
 
-For _git_ URLs, the `master` branch is used by default.  Other branches can be specified by adding a `#`_`branch`_ suffix.
-
 
 Run the app
 -----------
