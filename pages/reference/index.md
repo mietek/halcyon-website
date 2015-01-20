@@ -1,5 +1,5 @@
 ---
-title: User’s reference
+title: Reference
 page-class: add-section-toc rule-before-h3 tweak-listings
 page-data:
 - key: max-back-link-level
@@ -13,8 +13,8 @@ page-head: |
 ---
 
 
-User’s reference
-================
+Reference
+=========
 
 
 Commands
