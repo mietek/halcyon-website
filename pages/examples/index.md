@@ -13,7 +13,13 @@ page-head: |
 Halcyon examples { .with-toc }
 ================
 
-Real-world Haskell applications, demonstrating advanced usage of Halcyon.
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
+
+These example apps are intended to demonstrate advanced features of Halcyon.
+
+All apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+
+Additionally, all apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
 
 
 </section></div>
@@ -44,12 +50,6 @@ Real-world Haskell applications, demonstrating advanced usage of Halcyon.
 <li><a class="gallery-link" href="#gitit" id="link-gitit">Gitit</a></li>
 </ul>
 </nav></div>
-
-For simple applications, see the [shootout](/shootout/).
-
-All examples can be installed in one command on regular machines running most recent Linux distributions.
-
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
 
 
 CircuitHub
