@@ -40,18 +40,18 @@ Halcyon is a system for installing Haskell applications.
 
 - Halcyon supports most recent GHC versions, including GHC 7.8.4.  [More…](/reference/#halcyon_ghc_version)
 
-- Halcyon can install applications directly from _git_ repositories.  [More…](/guide/#basic-usage)
+- Halcyon can install applications directly from _git_ repositories.
 
 
 #### Fast
 
-- Halcyon automatically archives, caches, and restores all build products, using both local and remote storage. [More…](/guide/#storage-and-caching)
+- Halcyon automatically archives, caches, and restores all build products, using both local and remote storage.
 
 - Halcyon can reuse previously built Cabal sandboxes as a base for building new sandboxes. [More…](/shootout/#shootout-results)
 
-- Halcyon runs on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.  [More…](/guide/#setting-up-a-machine)
+- Halcyon runs on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
 
-- Halcyon can use the same archives on multiple systems, from development, to continuous integration and deployment.  [More…](/guide/#setting-up-multiple-machines)
+- Halcyon can use the same archives on multiple systems, from development, to continuous integration and deployment.
 
 
 <aside>
@@ -68,20 +68,20 @@ Halcyon is a system for installing Haskell applications.
 - Halcyon includes workarounds for many _cabal-install_ issues, including [#220](https://github.com/haskell/cabal/issues/220),
 [#713](https://github.com/haskell/cabal/issues/713), [#779](https://github.com/haskell/cabal/issues/779), [#784](https://github.com/haskell/cabal/issues/784), [#1883](https://github.com/haskell/cabal/issues/1883), [#1908](https://github.com/haskell/cabal/issues/1908), [#1915](https://github.com/haskell/cabal/issues/1915), [#1992](https://github.com/haskell/cabal/issues/1992), [#2265](https://github.com/haskell/cabal/issues/2265), and [#2309](https://github.com/haskell/cabal/issues/2309).
 
-- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex_ and _happy_.  [More…](/guide/#sandbox-extra-apps)
+- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex_ and _happy_.
 
-- Halcyon supports declaring dependencies and version constraints in a format easy to integrate with other tools.  [More…](/guide/#declaring-dependencies)
+- Halcyon supports declaring dependencies and version constraints in a format easy to integrate with other tools.
 
 
 #### Powerful
 
 - Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/), or [Haskell on Heroku](https://haskellonheroku.com/).
 
-- Halcyon allows _git_ repositories to be declared as sandbox sources.  [More…](/guide/#sandbox-sources)
+- Halcyon allows _git_ repositories to be declared as sandbox sources.
 
-- Halcyon includes hooks for complete control over the build process.  [More…](/guide/#advanced-usage)
+- Halcyon includes hooks for complete control over the build process.
 
-- Halcyon allows native OS packages to be declared and installed in a cross-platform fashion.  [More…](/guide/#sandbox-extra-os-packages)
+- Halcyon allows native OS packages to be declared and installed in a cross-platform fashion.
 
 
 <aside>
@@ -103,7 +103,7 @@ Need commercial support?  Contact the [author](#about) directly.
 Usage
 -----
 
-The [`halcyon install`](/guide/#basic-usage) command is intended to be used instead of `cabal install`.  [More…](/guide/#basic-usage)
+The [`halcyon install`](/reference/#halcyon-install) command is intended to be used instead of `cabal install`.
 
 <div class="toggle">
 <a class="toggle-button" data-target="log1" href="" title="Toggle">Toggle</a>
@@ -132,7 +132,7 @@ $ halcyon install https://github.com/mietek/howistart
 
 ### Installation
 
-Halcyon can be installed in one command on most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
+Halcyon can be installed in one command on most recent Linux distributions.
 
 ```
 $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
@@ -142,7 +142,7 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 Examples
 --------
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
+All examples can be installed in one command on regular machines running most recent Linux distributions.
 
 Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
 
@@ -214,7 +214,6 @@ Documentation
 <div><nav>
 <ul class="menu open">
 <li><a href="/tutorial/">Tutorial</a></li>
-<li><a href="/guide/">User’s guide</a></li>
 <li><a href="/reference/">User’s reference</a></li>
 </ul>
 </nav></div>

@@ -32,7 +32,7 @@ Simple applications, intended to compare build times and sizes across most Haske
 
 For advanced applications, see the [examples](/examples/).
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.  [More…](/guide/#setting-up-a-machine)
+All examples can be installed in one command on regular machines running most recent Linux distributions.
 
 Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
 
@@ -119,7 +119,7 @@ _hello-apiary_
 
 #### Extra dependencies
 
-- _alex_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
+- _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
 
 
 ### Usage
@@ -328,7 +328,7 @@ _hello-mflow_
 
 #### Extra dependencies
 
-- _cpphs_, as a [sandbox extra app](/guide/#sandbox-extra-apps), with version constraints
+- _cpphs_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
 
 
 ### Usage
