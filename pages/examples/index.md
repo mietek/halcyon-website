@@ -218,7 +218,7 @@ Try Idris
 <aside>
 <a class="micro face brian-mckenna" href="https://twitter.com/puffnfresh/status/527902645928087553"></a>
 <blockquote>_“[Miëtek](/#about), you are absolutely amazing. Thank you!”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](http://tryidris.org/) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 </aside>
 
 
