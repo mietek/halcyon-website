@@ -140,6 +140,8 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 
 - See the [Halcyon reference](/reference/) for a complete list of available commands and options.
 
+- Read the [Haskell on Heroku tutorial](https://haskellonheroku.com/tutorial/) to learn how to deploy Haskell web apps to [Heroku](https://heroku.com/).
+
 
 #### Internals
 
