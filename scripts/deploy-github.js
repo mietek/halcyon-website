@@ -53,7 +53,7 @@ var SourceWidget = React.createClass({
                 target: '_blank'
               },
               React.createElement('code', null, 'app.json')),
-            ' file located at the root of the repository.  The application can still be deployed, as long as the URL is valid.');
+            ' file located at the root of the repository.  The app can still be deployed, as long as the URL is valid.');
         }
       } else if (err === 'no_url') {
         if (this.state.sourceUrl && this.state.sourceUrl.length) {
@@ -62,7 +62,7 @@ var SourceWidget = React.createClass({
             },
             'Source information can only be loaded from ',
             React.createElement('em', null, 'git'),
-            ' repositories hosted on GitHub.  The application can still be deployed, as long as the URL is valid.');
+            ' repositories hosted on GitHub.  The app can still be deployed, as long as the URL is valid.');
         } else {
           info = {};
           err  = null;
