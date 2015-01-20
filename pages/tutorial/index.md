@@ -944,9 +944,6 @@ You now know how to use Halcyon to develop Haskell apps.  You have also develope
 
 Here’s some recommended reading:
 
+- See the [Halcyon reference](/reference/) for a complete list of the available commands and options.
+
 - Read the [Haskell on Heroku tutorial](https://haskellonheroku.com/tutorial/) to learn how to deploy Haskell web apps to [Heroku](https://heroku.com/).
-
-
----
-
-_**Work in progress.**  For updates, follow <a href="https://twitter.com/mietek">@mietek</a>._
