@@ -13,10 +13,17 @@ page-head: |
 Halcyon shootout { .with-toc }
 ================
 
-Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
+
+These example apps are intended to compare build times and sizes across most Haskell web frameworks.
+
+All apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+
+Additionally, all apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+
 
 <div><nav><ul class="toc menu open">
-<li class="space"><a href="#shootout-results">Shootout results</a></li>
+<li><a href="#results">Results</a></li>
 <li><a href="#hello-apiary"><i>hello-apiary</i></a></li>
 <li><a href="#hello-happstack"><i>hello-happstack</i></a></li>
 <li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
@@ -30,33 +37,11 @@ Simple applications, intended to compare build times and sizes across most Haske
 <li><a href="#hello-yesod"><i>hello-yesod</i></a></li>
 </ul></nav></div>
 
-For advanced applications, see the [examples](/examples/).
 
-All examples can be installed in one command on regular machines running most recent Linux distributions.
-
-Additionally, all examples can be deployed in one click to a new [DigitalOcean](https://digitalocean.com/) droplet, using the prototype [Haskell on DigitalOcean](https://halcyon.sh/deploy/) interface, or to the [Heroku](https://heroku.com/) web application platform, using the [Haskell on Heroku](https://haskellonheroku.com/) buildpack.
-
-
-Shootout results
-----------------
+Results
+-------
 
 <div class="chart" id="shootout-chart"></div>
-
-
-#### Comments
-
-The time spent installing a Haskell application is dominated by building application dependencies.
-
-Halcyon keeps application dependencies in a Cabal sandbox, and attempts to mitigate the impact of sandbox build times:
-
-1. Once a sandbox directory is built, Halcyon archives it, and restores it during subsequent installations.
-
-2. When building a new sandbox directory, Halcyon locates previously built sandboxes containing a subset of the required dependencies.  Each matching sandbox is assigned a score, and the highest scoring sandbox is used as a base for the new sandbox.
-
-Moreover, Halcyon supports building the application incrementally, by archiving and restoring the build directory.  An installation involving an incremental build is expected to finish in under 30 seconds, plus actual build time.
-
-If no build is needed, the application is restored from a previously archived install directory.  This allows installing most of the [example applications](/examples/) and shootout entries in under 10 seconds.
-
 
 <aside>
 <a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
@@ -64,18 +49,21 @@ If no build is needed, the application is restored from a previously archived in
 <p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 </aside>
 
+#### Comments
 
-### Methodology
+The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
 
-The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, perform a benchmark by using the included test script.
+The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
+
+The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, use the included test script:
 
 ```
-$ halcyon/test bench-shootout
+$ halcyon/test shootout --bench
 ...
 hello-yesod,10,521,535,537,251MB,25MB
 ```
 
-The columns included in the results are:
+The output of the test script includes:
 
 - Application name
 - GHC and Cabal restore time
@@ -84,10 +72,6 @@ The columns included in the results are:
 - Application install time
 - Sandbox size
 - Application size
-
-The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the application from scratch.  GHC and Cabal are restored from local cache.
-
-The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
 
 
 _hello-apiary_
