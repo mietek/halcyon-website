@@ -1,6 +1,6 @@
 ---
-title: System for installing Haskell applications
-page-description: Halcyon is a system for installing Haskell applications.
+title: System for installing Haskell apps
+page-description: Halcyon is a system for installing Haskell apps and development tools.
 page-class: hero tweak-gallery tweak-listings
 page-data:
 - key: min-section-link-level
@@ -13,7 +13,7 @@ header-class: hero
 main-class: hero
 hero: |
   <h1 class="logotype">Halcyon</h1>
-  <p>Install any Haskell application.  Instantly.</p>
+  <p>System for installing Haskell apps.</p>
   <div id="hero-button"><a href="#halcyon" title="More">More</a></div>
 page-footer: |
   <script>
@@ -29,8 +29,10 @@ page-footer: |
 Halcyon
 =======
 
-Halcyon is a system for installing Haskell applications.
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
 
+
+### Features
 
 #### Simple
 

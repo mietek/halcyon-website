@@ -13,8 +13,8 @@ page-head: |
 ---
 
 
-Reference
-=========
+Halcyon reference
+=================
 
 Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
 

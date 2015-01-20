@@ -1,5 +1,5 @@
 ---
-title: “Hello, world!” shootout
+title: Shootout
 page-class: tweak-listings
 page-head: |
   <style>
@@ -10,8 +10,8 @@ page-head: |
 ---
 
 
-“Hello, world!” shootout { .with-toc }
-========================
+Halcyon shootout { .with-toc }
+================
 
 Simple applications, intended to compare build times and sizes across most Haskell web frameworks.
 

@@ -1,5 +1,5 @@
 ---
-title: Example applications
+title: Examples
 page-class: tweak-gallery tweak-listings
 page-head: |
   <style>
@@ -10,8 +10,8 @@ page-head: |
 ---
 
 
-Example applications { .with-toc }
-====================
+Halcyon examples { .with-toc }
+================
 
 Real-world Haskell applications, demonstrating advanced usage of Halcyon.
 
