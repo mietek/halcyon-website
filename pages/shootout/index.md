@@ -17,9 +17,9 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 
 These example apps are intended to compare build times and sizes across most Haskell web frameworks.
 
-All apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+All example apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
 
-Additionally, all apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+Additionally, all example apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
 
 
 <div><nav><ul class="toc menu open">

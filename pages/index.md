@@ -74,7 +74,7 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 
 The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
 
-Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues/).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues/) for problems with the documentation.
+Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues) for problems with the documentation.
 
 Need commercial support?  Contact the [author](#about) directly.
 
@@ -92,9 +92,9 @@ Need commercial support?  Contact the [author](#about) directly.
 
 - Take a look at the [Halcyon shootout](/shootout/) for a comparison of build times and sizes across most Haskell web frameworks.
 
-All apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+All example apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
 
-Additionally, all apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+Additionally, all example apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
 
 
 Usage
@@ -136,7 +136,7 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 
 ### Documentation
 
-- Start with the [Halcyon tutorial](/tutorial/) to learn how to deploy a simple Haskell web app using Halcyon.
+- Start with the [Halcyon tutorial](/tutorial/) to learn how to develop a simple Haskell web app using Halcyon.
 
 - See the [Halcyon reference](/reference/) for a complete list of available commands and options.
 
@@ -145,7 +145,7 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 
 Halcyon is written in [GNU _bash_](https://gnu.org/software/bash/), using the [_bashmenot_](https://bashmenot.mietek.io/) library.
 
-- Dive into the [Halcyon source code](https://github.com/mietek/halcyon) to understand how it all works.
+- Read the [Halcyon source code](https://github.com/mietek/halcyon) to understand how it works.
 
 
 About
@@ -164,7 +164,7 @@ _Like my work?  I am available for consulting.  Say <a class="hello" href="">hel
 
 ### Acknowledgments
 
-Thanks to [Joe Nelson](http://begriffs.com/), [Brian McKenna](http://brianmckenna.org/), and [Neuman Vong](https://github.com/luciferous/) for initial work on Haskell deployment.  Thanks to [CircuitHub](https://circuithub.com/), [Purely Agile](http://purelyagile.com/), and [Tweag I/O](http://tweag.io/) for advice and assistance.
+Thanks to [Joe Nelson](http://begriffs.com/), [Brian McKenna](http://brianmckenna.org/), and [Neuman Vong](https://github.com/luciferous) for initial work on Haskell deployment.  Thanks to [CircuitHub](https://circuithub.com/), [Purely Agile](http://purelyagile.com/), and [Tweag I/O](http://tweag.io/) for advice and assistance.
 
 The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).  The monospaced font is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  Website built with [_cannot_](https://cannot.mietek.io/).
 
@@ -172,11 +172,7 @@ Thanks to [Fastly](https://www.fastly.com/) for providing low-latency access to 
 
 This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or [Heroku](https://heroku.com/).
 
-
-<aside>
-<a class="micro face brian-mckenna" href=""></a>
-<blockquote>_“Deployment of Haskell applications is getting interesting due to Miëtek’s Halcyon project.”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](/examples/#try-idris) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+<aside class="inline">
 <a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
 <blockquote>_“Check out Miëtek’s [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
 <p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
