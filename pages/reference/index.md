@@ -865,6 +865,8 @@ linux-(centos|fedora):libicu-devel
 linux-(debian|ubuntu):libicu-dev
 ```
 
+**Note:**  Implements Cabal feature request [`#571`](https://github.com/haskell/cabal/issues/571).
+
 
 ### `HALCYON_SANDBOX_PRE_BUILD_HOOK`
 
