@@ -580,7 +580,7 @@ $ halcyon install
 > ---------------------|---
 > _Expected time:_     | _10–15 seconds_
 
-In this step, Cabal fails to configure the app, because the _hourglass_ library isn’t provided in the existing sandbox directory, and Halcyon suggests adding a single version constraint, `hourglass-0.2.8`.
+In this step, Cabal fails to configure the app, because the _hourglass_ library isn’t provided in the existing sandbox directory.  Halcyon suggests adding a single version constraint, `hourglass-0.2.8`.
 
 The [`step5`](https://github.com/mietek/halcyon-tutorial/tree/step5) version of the app declares this constraint:
 
