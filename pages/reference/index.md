@@ -16,7 +16,7 @@ page-head: |
 Halcyon reference
 =================
 
-Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://haskell.org/cabal/users-guide/).
 
 This reference is a complete list of available Halcyon commands and options.
 
@@ -362,7 +362,7 @@ Intended to support explicitly declaring the dependencies of any app which doesn
 
 Additional files to include in the install directory, as run-time dependencies.
 
-The files must be separated by whitespace, and can be specified as file or directory globs, relative to the build directory.  GNU _bash_ [filename expansion](http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html) is performed on each glob.
+The files must be separated by whitespace, and can be specified as file or directory globs, relative to the build directory.  GNU _bash_ [filename expansion](http://gnu.org/software/bash/manual/html_node/Filename-Expansion.html) is performed on each glob.
 
 ```
 app.cfg
@@ -671,13 +671,13 @@ Version of _cabal-install_ to bootstrap or restore in the Cabal directory.
 
 Supported versions include:
 
-- [_cabal-install_ 1.22.0.0](https://www.haskell.org/cabal/release/cabal-install-1.22.0.0/)
-- [_cabal-install_ 1.20.0.6](https://www.haskell.org/cabal/release/cabal-install-1.20.0.6/)
-- [_cabal-install_ 1.20.0.5](https://www.haskell.org/cabal/release/cabal-install-1.20.0.5/)
-- [_cabal-install_ 1.20.0.3](https://www.haskell.org/cabal/release/cabal-install-1.20.0.3/)
-- [_cabal-install_ 1.20.0.2](https://www.haskell.org/cabal/release/cabal-install-1.20.0.2/)
-- [_cabal-install_ 1.20.0.1](https://www.haskell.org/cabal/release/cabal-install-1.20.0.1/)
-- [_cabal-install_ 1.20.0.0](https://www.haskell.org/cabal/release/cabal-install-1.20.0.0/)
+- [_cabal-install_ 1.22.0.0](https://haskell.org/cabal/release/cabal-install-1.22.0.0/)
+- [_cabal-install_ 1.20.0.6](https://haskell.org/cabal/release/cabal-install-1.20.0.6/)
+- [_cabal-install_ 1.20.0.5](https://haskell.org/cabal/release/cabal-install-1.20.0.5/)
+- [_cabal-install_ 1.20.0.3](https://haskell.org/cabal/release/cabal-install-1.20.0.3/)
+- [_cabal-install_ 1.20.0.2](https://haskell.org/cabal/release/cabal-install-1.20.0.2/)
+- [_cabal-install_ 1.20.0.1](https://haskell.org/cabal/release/cabal-install-1.20.0.1/)
+- [_cabal-install_ 1.20.0.0](https://haskell.org/cabal/release/cabal-install-1.20.0.0/)
 
 
 ### `HALCYON_CABAL_REPO`

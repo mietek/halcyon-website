@@ -29,7 +29,7 @@ page-footer: |
 Halcyon
 =======
 
-Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://haskell.org/cabal/users-guide/).
 
 
 ### Features
@@ -177,6 +177,6 @@ Thanks to [Joe Nelson](http://begriffs.com/), [Brian McKenna](http://brianmckenn
 
 The welcome image is based on [Altocumulus Cloud](https://flickr.com/photos/kubina/146306532/), by [Jeff Kubina](https://flickr.com/photos/kubina/).  The monospaced font is [PragmataPro](http://fsd.it/fonts/pragmatapro.htm), by [Fabrizio Schiavi](http://fsd.it/).  The sans-serif font is [Concourse](http://practicaltypography.com/concourse.html), by [Matthew Butterick](http://practicaltypography.com/).  Website built with [_cannot_](https://cannot.mietek.io/).
 
-Thanks to [Fastly](https://www.fastly.com/) for providing low-latency access to Halcyon public storage.
+Thanks to [Fastly](https://fastly.com/) for providing low-latency access to Halcyon public storage.
 
 This project is not affiliated with [DigitalOcean](https://digitalocean.com/) or [Heroku](https://heroku.com/).

@@ -13,7 +13,7 @@ page-head: |
 Halcyon examples { .with-toc }
 ================
 
-Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://www.haskell.org/cabal/users-guide/).
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://haskell.org/cabal/users-guide/).
 
 These examples are intended to demonstrate advanced Halcyon features.
 
@@ -74,9 +74,9 @@ Using Halcyon in production since June 2014.
 
 
 <aside class="inline">
-<a class="micro face andrew-seddon" href="http://www.reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/"></a>
+<a class="micro face andrew-seddon" href="http://reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/"></a>
 <blockquote>_“Thanks for all the hard work on Halcyon, [Miëtek](/#about). Rehno tells me this is making our lives much easier!”_</blockquote>
-<p>[— Andrew Seddon](http://www.reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/), [CircuitHub](https://circuithub.com/) co-founder</p>
+<p>[— Andrew Seddon](http://reddit.com/r/haskell/comments/2ogoot/deploy_any_haskell_application_instantly/), [CircuitHub](https://circuithub.com/) co-founder</p>
 </aside>
 <aside class="inline">
 <a class="micro face rehno-lindeque" href="https://twitter.com/RehnoLindeque/status/536954909506437120"></a>
