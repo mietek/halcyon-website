@@ -13,7 +13,7 @@ header-class: hero
 main-class: hero
 hero: |
   <h1 class="logotype">Halcyon</h1>
-  <p>System for installing Haskell apps.</p>
+  <p>System for installing Haskell apps</p>
   <div id="hero-button"><a href="#halcyon" title="More">More</a></div>
 page-footer: |
   <script>
