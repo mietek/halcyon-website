@@ -25,6 +25,7 @@ These examples are intended to compare build times and sizes across most Haskell
 <li><a href="#hello-mflow"><i>hello-mflow</i></a></li>
 <li><a href="#hello-miku"><i>hello-miku</i></a></li>
 <li><a href="#hello-scotty"><i>hello-scotty</i></a></li>
+<li><a href="#hello-servant"><i>hello-servant</i></a></li>
 <li><a href="#hello-simple"><i>hello-simple</i></a></li>
 <li><a href="#hello-snap"><i>hello-snap</i></a></li>
 <li><a href="#hello-spock"><i>hello-spock</i></a></li>
@@ -588,6 +589,66 @@ $ halcyon install https://github.com/mietek/hello-scotty
 
 <a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-scotty">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-scotty">Deploy to Heroku</a>
+
+
+_hello-servant_
+---------------
+
+> ---------------------|---
+> Framework:           | [Servant](http://haskell-servant.github.io/) 0.2.1
+> Dependencies:        | [101](https://github.com/mietek/hello-servant/blob/master/.halcyon/constraints)
+> First build time:    | …
+> Sandbox size:        | …
+> App size:            | …
+> Source code:         | [_hello-servant_](https://github.com/mietek/hello-servant)
+
+
+#### `Main.hs`
+
+<div class="toggle">
+<a class="toggle-button open" data-target="hello-servant-source" href="" title="Toggle">Toggle</a>
+<pre class="toggle open textmate-source" id="hello-servant-source"><code><span class="source source_haskell"><span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Data.Proxy</span></span>
+<span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Data.Text</span></span>
+<span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Network.Wai.Handler.Warp</span></span>
+<span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">Servant</span></span>
+<span class="meta meta_import meta_import_haskell"><span class="keyword keyword_other keyword_other_haskell">import</span> <span class="support support_other support_other_module support_other_module_haskell">System.Environment</span></span>
+
+<span class="keyword keyword_other keyword_other_haskell">type</span> <span class="constant constant_other constant_other_haskell">Hello</span> <span class="keyword keyword_operator keyword_operator_haskell">=</span> <span class="constant constant_other constant_other_haskell">Get</span> <span class="constant constant_other constant_other_haskell">Text</span>
+
+<span class="meta meta_function meta_function_type-declaration meta_function_type-declaration_haskell"><span class="entity entity_name entity_name_function entity_name_function_haskell">server</span> <span class="keyword keyword_other keyword_other_double-colon keyword_other_double-colon_haskell">::</span> <span class="storage storage_type storage_type_haskell">Server</span> <span class="storage storage_type storage_type_haskell">Hello</span>
+</span>server <span class="keyword keyword_operator keyword_operator_haskell">=</span> <span class="support support_function support_function_prelude support_function_prelude_haskell">return</span> <span class="string string_quoted string_quoted_double string_quoted_double_haskell"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_haskell">"</span>Hello, world!<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_haskell">"</span></span>
+
+<span class="meta meta_function meta_function_type-declaration meta_function_type-declaration_haskell"><span class="entity entity_name entity_name_function entity_name_function_haskell">proxy</span> <span class="keyword keyword_other keyword_other_double-colon keyword_other_double-colon_haskell">::</span> <span class="storage storage_type storage_type_haskell">Proxy</span> <span class="storage storage_type storage_type_haskell">Hello</span>
+</span>proxy <span class="keyword keyword_operator keyword_operator_haskell">=</span> <span class="constant constant_other constant_other_haskell">Proxy</span>
+
+<span class="meta meta_function meta_function_type-declaration meta_function_type-declaration_haskell"><span class="entity entity_name entity_name_function entity_name_function_haskell">main</span> <span class="keyword keyword_other keyword_other_double-colon keyword_other_double-colon_haskell">::</span> <span class="support support_type support_type_prelude support_type_prelude_haskell">IO</span> <span class="support support_constant support_constant_unit support_constant_unit_haskell">()</span>
+</span>main <span class="keyword keyword_operator keyword_operator_haskell">=</span> <span class="keyword keyword_control keyword_control_haskell">do</span>
+    env <span class="keyword keyword_operator keyword_operator_haskell">&lt;-</span> getEnvironment
+    <span class="keyword keyword_other keyword_other_haskell">let</span> port <span class="keyword keyword_operator keyword_operator_haskell">=</span> <span class="support support_function support_function_prelude support_function_prelude_haskell">maybe</span> <span class="constant constant_numeric constant_numeric_haskell">8080</span> <span class="support support_function support_function_prelude support_function_prelude_haskell">read</span> <span class="keyword keyword_operator keyword_operator_haskell">$</span> <span class="support support_function support_function_prelude support_function_prelude_haskell">lookup</span> <span class="string string_quoted string_quoted_double string_quoted_double_haskell"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_haskell">"</span>PORT<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_haskell">"</span></span> env
+    run port <span class="keyword keyword_operator keyword_operator_haskell">$</span> serve proxy server
+</span></code></pre>
+</div>
+
+
+### Usage
+
+```
+$ PORT=8080 hello-servant
+```
+
+
+#### Installation
+
+<!-- <div class="toggle">
+<a class="toggle-button" data-target="hello-servant-log" href="" title="Toggle">Toggle</a>
+``` { #hello-servant-log .toggle } -->
+```
+$ halcyon install https://github.com/mietek/hello-servant
+```
+<!-- </div> -->
+
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-servant">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-servant">Deploy to Heroku</a>
 
 
 _hello-simple_
@@ -1214,6 +1275,7 @@ var rawResults = [
   ['hello-mflow',9,349,359,361,'151MB','20MB'],
   ['hello-miku',6,301,308,309,'84MB','13MB'],
   ['hello-scotty',7,277,285,286,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',6,292,297,299,'101MB','6.4MB'],
   ['hello-snap',7,270,276,277,'75MB','12MB'],
   ['hello-spock',5,289,295,296,'104MB','12MB'],
@@ -1226,6 +1288,7 @@ var rawResults = [
   ['hello-mflow',7,319,328,330,'151MB','20MB'],
   ['hello-miku',6,282,290,291,'84MB','13MB'],
   ['hello-scotty',7,271,277,279,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',7,292,299,300,'101MB','6.4MB'],
   ['hello-snap',6,266,272,274,'75MB','12MB'],
   ['hello-spock',7,288,295,297,'104MB','12MB'],
@@ -1238,6 +1301,7 @@ var rawResults = [
   ['hello-mflow',8,324,334,336,'151MB','20MB'],
   ['hello-miku',8,288,295,296,'84MB','13MB'],
   ['hello-scotty',7,285,294,295,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',8,290,296,298,'101MB','6.4MB'],
   ['hello-snap',7,284,290,291,'75MB','12MB'],
   ['hello-spock',8,292,299,301,'104MB','12MB'],
@@ -1250,6 +1314,7 @@ var rawResults = [
   ['hello-mflow',8,325,333,335,'151MB','20MB'],
   ['hello-miku',8,306,313,314,'84MB','13MB'],
   ['hello-scotty',7,281,286,287,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',8,307,313,314,'101MB','6.4MB'],
   ['hello-snap',6,288,295,296,'75MB','12MB'],
   ['hello-spock',6,299,307,308,'104MB','12MB'],
@@ -1262,6 +1327,7 @@ var rawResults = [
   ['hello-mflow',8,361,371,373,'151MB','20MB'],
   ['hello-miku',7,338,347,349,'84MB','13MB'],
   ['hello-scotty',9,325,333,334,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',9,351,357,358,'101MB','6.4MB'],
   ['hello-snap',9,350,357,358,'75MB','12MB'],
   ['hello-spock',8,350,357,359,'104MB','12MB'],
@@ -1274,6 +1340,7 @@ var rawResults = [
   ['hello-mflow',7,352,360,362,'151MB','20MB'],
   ['hello-miku',9,357,363,365,'84MB','13MB'],
   ['hello-scotty',9,319,326,327,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',10,334,342,344,'101MB','6.4MB'],
   ['hello-snap',8,325,333,335,'75MB','12MB'],
   ['hello-spock',8,336,346,347,'104MB','12MB'],
@@ -1286,6 +1353,7 @@ var rawResults = [
   ['hello-mflow',6,360,370,372,'151MB','20MB'],
   ['hello-miku',10,337,344,345,'84MB','13MB'],
   ['hello-scotty',9,311,318,319,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',10,354,362,363,'101MB','6.4MB'],
   ['hello-snap',10,348,357,358,'75MB','12MB'],
   ['hello-spock',7,326,332,333,'104MB','12MB'],
@@ -1298,6 +1366,7 @@ var rawResults = [
   ['hello-mflow',8,339,346,347,'151MB','20MB'],
   ['hello-miku',6,309,314,315,'84MB','13MB'],
   ['hello-scotty',6,315,322,323,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',7,362,370,371,'101MB','6.4MB'],
   ['hello-snap',9,329,337,339,'75MB','12MB'],
   ['hello-spock',10,326,334,336,'104MB','12MB'],
@@ -1310,6 +1379,7 @@ var rawResults = [
   ['hello-mflow',8,339,348,350,'151MB','20MB'],
   ['hello-miku',7,301,308,310,'84MB','13MB'],
   ['hello-scotty',10,280,288,289,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',7,296,300,302,'101MB','6.4MB'],
   ['hello-snap',7,272,279,280,'75MB','12MB'],
   ['hello-spock',7,291,300,301,'104MB','12MB'],
@@ -1322,6 +1392,7 @@ var rawResults = [
   ['hello-mflow',8,334,343,344,'151MB','20MB'],
   ['hello-miku',8,288,295,296,'84MB','13MB'],
   ['hello-scotty',9,275,283,284,'83MB','12MB'],
+  ['hello-servant',0,0,0,0,'?','?'],
   ['hello-simple',9,295,301,302,'101MB','6.4MB'],
   ['hello-snap',8,282,287,288,'75MB','12MB'],
   ['hello-spock',8,295,303,304,'104MB','12MB'],
