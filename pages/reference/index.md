@@ -75,7 +75,7 @@ Outputs the version constraints of the specified app.
 
 Intended to quickly determine the newest versions of all Cabal packages required to build the app.
 
-**Note:**  Recommended over `cabal freeze` because of Cabal issue [#1908](https://github.com/haskell/cabal/issues/1908).
+**Note:**  Recommended over `cabal freeze` because of Cabal issue [`#1908`](https://github.com/haskell/cabal/issues/1908).
 
 
 ### `halcyon paths`
@@ -91,7 +91,7 @@ Outputs a shell script which sets up the needed environment variables.
 
 3. `LANG` is set to `C.UTF-8`, unless already set.
 
-**Note:**  Using a UTF-8 locale works around Cabal issue [#1883](https://github.com/haskell/cabal/issues/1883).
+**Note:**  Using a UTF-8 locale works around Cabal issue [`#1883`](https://github.com/haskell/cabal/issues/1883).
 
 
 General options
@@ -219,7 +219,7 @@ Forces Halcyon to ignore any constraints declared in a `cabal.config` file or `.
 
 Intended to support upgrading dependencies.
 
-**Note:**  Ignoring only certain constraints isn’t supported.  See Cabal issue [#2265](https://github.com/haskell/cabal/issues/2265) for details.
+**Note:**  Ignoring only certain constraints isn’t supported.  See Cabal issue [`#2265`](https://github.com/haskell/cabal/issues/2265) for details.
 
 
 ### `HALCYON_EXTRA_CONFIGURE_FLAGS`
@@ -370,11 +370,11 @@ snaplets
 static
 ```
 
-At run-time, the files will be available in the Cabal [data files directory](https://www.haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
+At run-time, the files will be available in the Cabal [data files directory](https://haskell.org/cabal/users-guide/developing-packages.html#accessing-data-files-from-package-code).
 
 Intended to support apps which don’t declare all run-time data files as `data-files` in the Cabal package description.
 
-**Note:**  Works around Cabal issue [#713](https://github.com/haskell/cabal/issues/713) and [#784](https://github.com/haskell/cabal/issues/784).
+**Note:**  Works around Cabal issue [`#713`](https://github.com/haskell/cabal/issues/713) and [`#784`](https://github.com/haskell/cabal/issues/784).
 
 
 ### `HALCYON_EXTRA_OS_PACKAGES`
@@ -691,7 +691,7 @@ Name and URL of the Cabal repository referenced by the Cabal package database in
 
 The value must match the format of a `remote-repo` entry in a `cabal.config` file.
 
-**Note:**  HTTPS URLs aren’t supported.  See Cabal issue [#936](https://github.com/haskell/cabal/issues/936) for details.
+**Note:**  HTTPS URLs aren’t supported.  See Cabal issue [`#936`](https://github.com/haskell/cabal/issues/936) for details.
 
 
 ### `HALCYON_CABAL_PRE_BUILD_HOOK`
@@ -799,7 +799,7 @@ The packages are made available for installation by running `cabal sandbox add-s
 https://github.com/mietek/text-icu#fpic
 ```
 
-**Note:**  Implements Cabal feature requests [#1534](https://github.com/haskell/cabal/issues/1534) and [#2189](https://github.com/haskell/cabal/issues/2189).
+**Note:**  Implements Cabal feature requests [`#1534`](https://github.com/haskell/cabal/issues/1534) and [`#2189`](https://github.com/haskell/cabal/issues/2189).
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS`
@@ -825,7 +825,7 @@ happy-1.19.4
 
 Intended to support installing Cabal `build-tools`, such as _alex_ or _happy_.
 
-**Note:**  Works around Cabal issues [#220](https://github.com/haskell/cabal/issues/220) and [#779](https://github.com/haskell/cabal/issues/779).
+**Note:**  Works around Cabal issues [`#220`](https://github.com/haskell/cabal/issues/220) and [`#779`](https://github.com/haskell/cabal/issues/779).
 
 
 ### `HALCYON_SANDBOX_EXTRA_APPS_CONSTRAINTS`

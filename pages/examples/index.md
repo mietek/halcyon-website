@@ -144,7 +144,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 - Patched version of _text-icu_, as a [sandbox source](/reference/#halcyon_sandbox_sources)
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
 
-**Note:**  The patched version of _text-icu_ is needed to work around Cabal issue [#2207](https://github.com/haskell/cabal/issues/2207).
+**Note:**  The patched version of _text-icu_ is needed to work around Cabal issue [`#2207`](https://github.com/haskell/cabal/issues/2207).
 
 
 ### Usage
