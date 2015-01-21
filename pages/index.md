@@ -72,7 +72,7 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 
 ### Support
 
-The <a href="irc://chat.freenode.net/haskell-deployment">#haskell-deployment</a> IRC channel on [freenode](https://freenode.net/) is a good place to ask questions and find answers.
+The <a href="irc://chat.freenode.net/haskell-deployment">`#haskell-deployment`</a> IRC channel on [_freenode_](https://freenode.net/) is a good place to ask questions and find answers.
 
 Please report any problems with Halcyon on the [issue tracker](https://github.com/mietek/halcyon/issues).  There is a [separate issue tracker](https://github.com/mietek/halcyon-website/issues) for problems with the documentation.
 
