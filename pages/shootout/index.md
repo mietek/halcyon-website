@@ -79,8 +79,8 @@ _hello-apiary_
 -----------------
 
 > ---------------------|---
-> Framework:           | [Apiary](https://github.com/philopon/apiary) 1.2.0
-> Dependencies:        | [65](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints) and _alex_ 3.1.3
+> Framework:           | [Apiary](https://github.com/philopon/apiary) 1.2.3
+> Dependencies:        | [54](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints) and _alex_ 3.1.4
 > First build time:    | …
 > Sandbox size:        | 81MB
 > App size:            | 9.8MB
@@ -193,8 +193,8 @@ _hello-happstack_
 -----------------
 
 > ---------------------|---
-> Framework:           | [Happstack](http://happstack.com/) Lite 7.3.5
-> Dependencies:        | [44](https://github.com/mietek/hello-happstack/blob/master/.halcyon/constraints)
+> Framework:           | [Happstack](http://happstack.com/) Lite 7.3.6
+> Dependencies:        | [43](https://github.com/mietek/hello-happstack/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 65MB
 > App size:            | 12MB
@@ -291,7 +291,7 @@ _hello-mflow_
 
 > ---------------------|---
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
-> Dependencies:        | [106](https://github.com/mietek/hello-mflow/blob/master/.halcyon/constraints) and _cpphs_ 1.18.6
+> Dependencies:        | [108](https://github.com/mietek/hello-mflow/blob/master/.halcyon/constraints) and _cpphs_ 1.18.8
 > First build time:    | …
 > Sandbox size:        | 151MB
 > App size:            | 20MB
@@ -499,8 +499,8 @@ _hello-scotty_
 --------------
 
 > ---------------------|---
-> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
-> Dependencies:        | [74](https://github.com/mietek/hello-scotty/blob/master/.halcyon/constraints)
+> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.1
+> Dependencies:        | [76](https://github.com/mietek/hello-scotty/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 83MB
 > App size:            | 12MB
@@ -655,8 +655,8 @@ _hello-simple_
 --------------
 
 > ---------------------|---
-> Framework:           | [Simple](http://simple.cx/) 0.10.0.2
-> Dependencies:        | [70](https://github.com/mietek/hello-simple/blob/master/.halcyon/constraints)
+> Framework:           | [Simple](http://simple.cx/) 0.10.1
+> Dependencies:        | [72](https://github.com/mietek/hello-simple/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 101MB
 > App size:            | 6.4MB
@@ -757,7 +757,7 @@ _hello-snap_
 ------------
 
 > ---------------------|---
-> Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
+> Framework:           | [Snap](http://snapframework.com/) 0.9.6.4
 > Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 75MB
@@ -858,8 +858,8 @@ _hello-spock_
 -------------
 
 > ---------------------|---
-> Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.5.1
-> Dependencies:        | [79](https://github.com/mietek/hello-spock/blob/master/.halcyon/constraints)
+> Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.7.0
+> Dependencies:        | [78](https://github.com/mietek/hello-spock/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 104MB
 > App size:            | 12MB
@@ -954,8 +954,8 @@ _hello-wai_
 -----------
 
 > ---------------------|---
-> Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2
-> Dependencies:        | [38](https://github.com/mietek/hello-wai/blob/master/.halcyon/constraints)
+> Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2.2
+> Dependencies:        | [41](https://github.com/mietek/hello-wai/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 45MB
 > App size:            | 6MB
@@ -1059,7 +1059,7 @@ _hello-wheb_
 
 > ---------------------|---
 > Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework) 0.3.1.0
-> Dependencies:        | [98](https://github.com/mietek/hello-wheb/blob/master/.halcyon/constraints)
+> Dependencies:        | [100](https://github.com/mietek/hello-wheb/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 146MB
 > App size:            | 9.9MB
@@ -1157,8 +1157,8 @@ _hello-yesod_
 -------------
 
 > ---------------------|---
-> Framework:           | [Yesod](http://yesodweb.com/) 1.4.1.1
-> Dependencies:        | [146](https://github.com/mietek/hello-yesod/blob/master/.halcyon/constraints)
+> Framework:           | [Yesod](http://yesodweb.com/) 1.4.1.3
+> Dependencies:        | [148](https://github.com/mietek/hello-yesod/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | 251MB
 > App size:            | 25MB
