@@ -43,14 +43,14 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 
 #### Fast
 
-- Halcyon automatically archives and restores all build products, using local cache and external storage.
+- Halcyon archives and caches all build products, optionally uploading archives to external storage.
 
-- Halcyon can use the same archives on multiple systems, saving time during development, continuous integration, and deployment.
+- Halcyon automatically restores archived build products, saving time during development, continuous integration, and deployment.
 
 
 #### Reliable
 
-- Halcyon can automatically install dependencies which cause problems for _cabal-install_, such as _alex,_ _happy,_ and other build tools.
+- Halcyon has been used in production since [June 2014](/examples/#circuithub).
 
 - Halcyon includes solutions for many _cabal-install_ issues, such as [`#220`](https://github.com/haskell/cabal/issues/220),
 [`#713`](https://github.com/haskell/cabal/issues/713), [`#779`](https://github.com/haskell/cabal/issues/779), [`#784`](https://github.com/haskell/cabal/issues/784), [`#1534`](https://github.com/haskell/cabal/issues/1534), [`#1883`](https://github.com/haskell/cabal/issues/1883), [`#1908`](https://github.com/haskell/cabal/issues/1908), [`#1915`](https://github.com/haskell/cabal/issues/1915), [`#1992`](https://github.com/haskell/cabal/issues/1992), [`#2189`](https://github.com/haskell/cabal/issues/2189), [`#2265`](https://github.com/haskell/cabal/issues/2265), and [`#2309`](https://github.com/haskell/cabal/issues/2309).
@@ -58,9 +58,9 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 
 #### Powerful
 
-- Halcyon allows native OS packages to be declared as dependencies and automatically installed.
+- Halcyon allows [sandbox sources](/reference/#halcyon_sandbox_sources), [build tools](/reference/#halcyon_sandbox_extra_apps), and [native OS packages](/reference/#halcyon_sandbox_extra_os_packages) to be declared as dependencies and installed together with the app.
 
-- Halcyon can be used to construct deployment systems, such as [Haskell on DigitalOcean](https://halcyon.sh/deploy/) or [Haskell on Heroku](https://haskellonheroku.com/).
+- Halcyon can be used to construct deployment systems, such as [Haskell on Heroku](https://haskellonheroku.com/).
 
 
 <aside>
