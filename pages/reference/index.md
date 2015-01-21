@@ -562,7 +562,7 @@ Address of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/
 > Type:                | S3 ACL
 > Command-line option: | `--s3-acl=...`
 
-Name of the Amazon [S3 <abbr title="Access control list">ACL</abbr>](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html) which is assigned to all files uploaded to [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
+Name of the [S3 ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html) which is assigned to all files uploaded to [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket).
 
 Commonly used values are `private` and `public-read`.
 

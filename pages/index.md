@@ -38,7 +38,7 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 
 - Halcyon uses regular Cabal packages, sandboxes, and repositories.
 
-- Halcyon does not require GHC to be installed, as it can install the correct version of GHC for the app.
+- Halcyon does not require GHC to be installed, as it can install the right version of GHC for the app.
 
 
 #### Fast
