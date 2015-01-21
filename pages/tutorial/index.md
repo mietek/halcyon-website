@@ -478,7 +478,7 @@ $ halcyon-tutorial
 ```
 ```
 $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
-[{"contents":"Hello, world!","dateTime":"2015-01-12T09:21:29Z"}]
+[{"contents":"Hello, world!","dateTime":"2015-01-15T09:21:29Z"}]
 ```
 
 
@@ -729,7 +729,7 @@ $ halcyon-tutorial
 ```
 ```
 $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
-[{"contents":"Hello, world!","dateTime":"2015-01-12T09:28:26+00:00"}]
+[{"contents":"Hello, world!","dateTime":"2015-01-15T09:28:26+00:00"}]
 ```
 
 
