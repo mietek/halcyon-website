@@ -82,8 +82,8 @@ _hello-apiary_
 > Framework:           | [Apiary](https://github.com/philopon/apiary) 1.2.3
 > Dependencies:        | [54](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints) and _alex_ 3.1.4
 > First build time:    | …
-> Sandbox size:        | 81MB
-> App size:            | 9.8MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-apiary_](https://github.com/mietek/hello-apiary)
 
 
@@ -196,8 +196,8 @@ _hello-happstack_
 > Framework:           | [Happstack](http://happstack.com/) Lite 7.3.6
 > Dependencies:        | [43](https://github.com/mietek/hello-happstack/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 65MB
-> App size:            | 12MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-happstack_](https://github.com/mietek/hello-happstack)
 
 
@@ -293,8 +293,8 @@ _hello-mflow_
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
 > Dependencies:        | [108](https://github.com/mietek/hello-mflow/blob/master/.halcyon/constraints) and _cpphs_ 1.18.8
 > First build time:    | …
-> Sandbox size:        | 151MB
-> App size:            | 20MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-mflow_](https://github.com/mietek/hello-mflow)
 
 
@@ -405,8 +405,8 @@ _hello-miku_
 > Framework:           | [_miku_](https://github.com/nfjinjing/miku) 2014.11.17
 > Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 84MB
-> App size:            | 13MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-miku_](https://github.com/mietek/hello-miku)
 
 
@@ -502,8 +502,8 @@ _hello-scotty_
 > Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.1
 > Dependencies:        | [76](https://github.com/mietek/hello-scotty/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 83MB
-> App size:            | 12MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-scotty_](https://github.com/mietek/hello-scotty)
 
 
@@ -658,8 +658,8 @@ _hello-simple_
 > Framework:           | [Simple](http://simple.cx/) 0.10.1
 > Dependencies:        | [72](https://github.com/mietek/hello-simple/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 101MB
-> App size:            | 6.4MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-simple_](https://github.com/mietek/hello-simple)
 
 
@@ -760,8 +760,8 @@ _hello-snap_
 > Framework:           | [Snap](http://snapframework.com/) 0.9.6.4
 > Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 75MB
-> App size:            | 12MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-snap_](https://github.com/mietek/hello-snap)
 
 
@@ -861,8 +861,8 @@ _hello-spock_
 > Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.7.0
 > Dependencies:        | [78](https://github.com/mietek/hello-spock/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 104MB
-> App size:            | 12MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-spock_](https://github.com/mietek/hello-spock)
 
 
@@ -957,8 +957,8 @@ _hello-wai_
 > Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2.2
 > Dependencies:        | [41](https://github.com/mietek/hello-wai/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 45MB
-> App size:            | 6MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-wai_](https://github.com/mietek/hello-wai)
 
 
@@ -1061,8 +1061,8 @@ _hello-wheb_
 > Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework) 0.3.1.0
 > Dependencies:        | [100](https://github.com/mietek/hello-wheb/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 146MB
-> App size:            | 9.9MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-wheb_](https://github.com/mietek/hello-wheb)
 
 
@@ -1160,8 +1160,8 @@ _hello-yesod_
 > Framework:           | [Yesod](http://yesodweb.com/) 1.4.1.3
 > Dependencies:        | [148](https://github.com/mietek/hello-yesod/blob/master/.halcyon/constraints)
 > First build time:    | …
-> Sandbox size:        | 251MB
-> App size:            | 25MB
+> Sandbox size:        | …
+> App size:            | …
 > Source code:         | [_hello-yesod_](https://github.com/mietek/hello-yesod)
 
 
@@ -1408,13 +1408,17 @@ rawResults.forEach(function (rawRow) {
       envTimes: [],
       sandboxTimes: [],
       appTimes: [],
-      installTimes: []
+      installTimes: [],
+      sandboxSize: null,
+      appSize: null
     };
   }
   results[name].envTimes.push(rawRow[1]);
   results[name].sandboxTimes.push(rawRow[2] - rawRow[1]);
   results[name].appTimes.push(rawRow[4] - rawRow[2]);
   results[name].installTimes.push(rawRow[4]);
+  results[name].sandboxSize = rawRow[5];
+  results[name].appSize = rawRow[6];
 });
 google.load("visualization", "1", { packages: ["corechart"] });
 google.setOnLoadCallback(drawChart);
@@ -1492,8 +1496,12 @@ function drawChart() {
     }
     appTip += '\n' + installTip;
     data.addRow([name, envMean, envLow, envHigh, envTip, sandboxMean, sandboxLow, sandboxHigh, sandboxTip, appMean, appLow, appHigh, appTip]);
-    var sel = '#' + name + ' tr:nth-of-type(3) td:nth-of-type(2)';
-    document.querySelectorAll(sel)[0].firstChild.nodeValue = installValue;
+    var installTimeCell = '#' + name + ' tr:nth-of-type(3) td:nth-of-type(2)';
+    var sandboxSizeCell = '#' + name + ' tr:nth-of-type(4) td:nth-of-type(2)';
+    var appSizeCell = '#' + name + ' tr:nth-of-type(5) td:nth-of-type(2)';
+    document.querySelectorAll(installTimeCell)[0].firstChild.nodeValue = installValue;
+    document.querySelectorAll(sandboxSizeCell)[0].firstChild.nodeValue = result.sandboxSize;
+    document.querySelectorAll(appSizeCell)[0].firstChild.nodeValue = result.appSize;
   });
   var options = {
     chartArea: {
