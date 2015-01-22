@@ -286,7 +286,7 @@ $ halcyon install
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -420,7 +420,7 @@ $ halcyon install
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -550,7 +550,7 @@ $ halcyon install
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -640,7 +640,7 @@ $ halcyon install
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 

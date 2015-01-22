@@ -135,7 +135,7 @@ $ halcyon install https://github.com/mietek/hello-apiary
        Sandbox magic hash:                       **1dd8630**
        Sandbox extra apps:                       **alex-3.1.4**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -246,7 +246,7 @@ $ halcyon install https://github.com/mietek/hello-happstack
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -346,7 +346,7 @@ $ halcyon install https://github.com/mietek/hello-mflow
        Sandbox magic hash:                       **5ff190e**
        Sandbox extra apps:                       **cpphs-1.18.8**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -457,7 +457,7 @@ $ halcyon install https://github.com/mietek/hello-miku
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -554,7 +554,7 @@ $ halcyon install https://github.com/mietek/hello-scotty
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -661,9 +661,9 @@ $ halcyon install https://github.com/mietek/hello-servant
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
------> Using existing Cabal
+-----> Using existing Cabal directory
 
 -----> Building sandbox directory
 -----> Creating sandbox
@@ -764,7 +764,7 @@ $ halcyon install https://github.com/mietek/hello-simple
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -866,7 +866,7 @@ $ halcyon install https://github.com/mietek/hello-snap
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -963,7 +963,7 @@ $ halcyon install https://github.com/mietek/hello-spock
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -1067,7 +1067,7 @@ $ halcyon install https://github.com/mietek/hello-wai
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -1166,7 +1166,7 @@ $ halcyon install https://github.com/mietek/hello-wheb
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
@@ -1275,7 +1275,7 @@ $ halcyon install https://github.com/mietek/hello-yesod
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC
+-----> Using existing GHC directory
 
 -----> Using existing Cabal directory
 
