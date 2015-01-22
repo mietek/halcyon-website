@@ -79,7 +79,8 @@ _hello-apiary_
 -----------------
 
 > ---------------------|---
-> Framework:           | [Apiary](https://github.com/philopon/apiary) 1.2.3
+> Framework:           | [_apiary_](https://hackage.haskell.org/package/apiary) 1.2.3
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [54](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints) and _alex_ 3.1.4
 > First build time:    | …
 > Sandbox size:        | …
@@ -195,7 +196,8 @@ _hello-happstack_
 -----------------
 
 > ---------------------|---
-> Framework:           | [Happstack](http://happstack.com/) Lite 7.3.6
+> Framework:           | [_happstack-lite_](https://hackage.haskell.org/package/happstack-lite) 7.3.6
+> Server:              | [_happstack-server_](https://hackage.haskell.org/package/happstack-server) 7.4.0
 > Dependencies:        | [43](https://github.com/mietek/hello-happstack/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -292,7 +294,8 @@ _hello-mflow_
 -------------
 
 > ---------------------|---
-> Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
+> Framework:           | [MFlow](https://hackage.haskell.org/package/MFlow) 0.4.5.9
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [108](https://github.com/mietek/hello-mflow/blob/master/.halcyon/constraints) and _cpphs_ 1.18.8
 > First build time:    | …
 > Sandbox size:        | …
@@ -406,7 +409,8 @@ _hello-miku_
 ------------
 
 > ---------------------|---
-> Framework:           | [_miku_](https://github.com/nfjinjing/miku) 2014.11.17
+> Framework:           | [_miku_](https://hackage.haskell.org/package/miku) 2014.11.17
+> Server:              | [_snap-server_](https://hackage.haskell.org/package/snap-server) 0.9.4.6
 > Dependencies:        | [59](https://github.com/mietek/hello-miku/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -504,7 +508,8 @@ _hello-scotty_
 --------------
 
 > ---------------------|---
-> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.1
+> Framework:           | [_scotty_](https://hackage.haskell.org/package/scotty) 0.9.1
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [76](https://github.com/mietek/hello-scotty/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -600,7 +605,8 @@ _hello-servant_
 ---------------
 
 > ---------------------|---
-> Framework:           | [Servant](http://haskell-servant.github.io/) 0.2.1
+> Framework:           | [_servant_](https://hackage.haskell.org/package/servant) 0.2.1
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [101](https://github.com/mietek/hello-servant/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -708,7 +714,8 @@ _hello-simple_
 --------------
 
 > ---------------------|---
-> Framework:           | [Simple](http://simple.cx/) 0.10.1
+> Framework:           | [_simple_](https://hackage.haskell.org/package/simple) 0.10.1
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [72](https://github.com/mietek/hello-simple/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -811,7 +818,8 @@ _hello-snap_
 ------------
 
 > ---------------------|---
-> Framework:           | [Snap](http://snapframework.com/) 0.9.6.4
+> Framework:           | [_snap-core_](https://hackage.haskell.org/package/snap-core) 0.9.6.4
+> Server:              | [_snap-server_](https://hackage.haskell.org/package/snap-server) 0.9.4.6
 > Dependencies:        | [42](https://github.com/mietek/hello-snap/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -913,7 +921,8 @@ _hello-spock_
 -------------
 
 > ---------------------|---
-> Framework:           | [Spock](https://github.com/agrafix/Spock) 0.7.7.0
+> Framework:           | [Spock](https://hackage.haskell.org/package/Spock) 0.7.7.0
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [78](https://github.com/mietek/hello-spock/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -1009,7 +1018,8 @@ _hello-wai_
 -----------
 
 > ---------------------|---
-> Framework:           | [WAI](https://hackage.haskell.org/package/wai/) 3.0.2.2
+> Framework:           | [_wai_](https://hackage.haskell.org/package/wai/) 3.0.2.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [41](https://github.com/mietek/hello-wai/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -1113,7 +1123,8 @@ _hello-wheb_
 ------------
 
 > ---------------------|---
-> Framework:           | [Wheb](https://github.com/hansonkd/Wheb-Framework) 0.3.1.0
+> Framework:           | [Wheb](https://hackage.haskell.org/package/Wheb) 0.3.1.0
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [100](https://github.com/mietek/hello-wheb/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -1213,7 +1224,8 @@ _hello-yesod_
 -------------
 
 > ---------------------|---
-> Framework:           | [Yesod](http://yesodweb.com/) 1.4.1.3
+> Framework:           | [_yesod_](https://hackage.haskell.org/package/yesod) 1.4.1.3
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
 > Dependencies:        | [148](https://github.com/mietek/hello-yesod/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -1554,9 +1566,9 @@ function drawChart() {
     }
     appTip += '\n' + installTip;
     data.addRow([name, envMean, envLow, envHigh, envTip, sandboxMean, sandboxLow, sandboxHigh, sandboxTip, appMean, appLow, appHigh, appTip]);
-    var installTimeCell = '#' + name + ' tr:nth-of-type(3) td:nth-of-type(2)';
-    var sandboxSizeCell = '#' + name + ' tr:nth-of-type(4) td:nth-of-type(2)';
-    var appSizeCell = '#' + name + ' tr:nth-of-type(5) td:nth-of-type(2)';
+    var installTimeCell = '#' + name + ' tr:nth-of-type(4) td:nth-of-type(2)';
+    var sandboxSizeCell = '#' + name + ' tr:nth-of-type(5) td:nth-of-type(2)';
+    var appSizeCell = '#' + name + ' tr:nth-of-type(6) td:nth-of-type(2)';
     document.querySelectorAll(installTimeCell)[0].firstChild.nodeValue = installValue;
     document.querySelectorAll(sandboxSizeCell)[0].firstChild.nodeValue = result.sandboxSize;
     document.querySelectorAll(appSizeCell)[0].firstChild.nodeValue = result.appSize;
