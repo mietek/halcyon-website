@@ -80,7 +80,7 @@ _hello-apiary_
 
 > ---------------------|---
 > Framework:           | [_apiary_](https://hackage.haskell.org/package/apiary) 1.2.3
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [54](https://github.com/mietek/hello-apiary/blob/master/.halcyon/constraints) and _alex_ 3.1.4
 > First build time:    | …
 > Sandbox size:        | …
@@ -158,7 +158,7 @@ $ halcyon install https://github.com/mietek/hello-apiary
 -----> Building sandbox
        ...
        Installed apiary-1.2.3
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 76MB
        Removing documentation from sandbox directory... done, 76MB
        Stripping sandbox directory... done, 65MB
@@ -295,7 +295,7 @@ _hello-mflow_
 
 > ---------------------|---
 > Framework:           | [MFlow](https://hackage.haskell.org/package/MFlow) 0.4.5.9
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [108](https://github.com/mietek/hello-mflow/blob/master/.halcyon/constraints) and _cpphs_ 1.18.8
 > First build time:    | …
 > Sandbox size:        | …
@@ -371,7 +371,7 @@ $ halcyon install https://github.com/mietek/hello-mflow
 -----> Building sandbox
        ...
        Installed MFlow-0.4.5.9
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 155MB
        Removing documentation from sandbox directory... done, 154MB
        Stripping sandbox directory... done, 133MB
@@ -509,7 +509,7 @@ _hello-scotty_
 
 > ---------------------|---
 > Framework:           | [_scotty_](https://hackage.haskell.org/package/scotty) 0.9.1
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [76](https://github.com/mietek/hello-scotty/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -568,7 +568,7 @@ $ halcyon install https://github.com/mietek/hello-scotty
 -----> Building sandbox
        ...
        Installed scotty-0.9.1
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 84MB
        Removing documentation from sandbox directory... done, 84MB
        Stripping sandbox directory... done, 73MB
@@ -606,7 +606,7 @@ _hello-servant_
 
 > ---------------------|---
 > Framework:           | [_servant_](https://hackage.haskell.org/package/servant) 0.2.1
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [101](https://github.com/mietek/hello-servant/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -676,7 +676,7 @@ $ halcyon install https://github.com/mietek/hello-servant
 -----> Building sandbox
        ...
        Installed servant-0.2.1
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 160MB
        Removing documentation from sandbox directory... done, 159MB
        Stripping sandbox directory... done, 140MB
@@ -715,7 +715,7 @@ _hello-simple_
 
 > ---------------------|---
 > Framework:           | [_simple_](https://hackage.haskell.org/package/simple) 0.10.1
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [72](https://github.com/mietek/hello-simple/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -780,7 +780,7 @@ $ halcyon install https://github.com/mietek/hello-simple
 -----> Building sandbox
        ...
        Installed simple-0.10.1
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 102MB
        Removing documentation from sandbox directory... done, 102MB
        Stripping sandbox directory... done, 89MB
@@ -922,7 +922,7 @@ _hello-spock_
 
 > ---------------------|---
 > Framework:           | [Spock](https://hackage.haskell.org/package/Spock) 0.7.7.0
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [78](https://github.com/mietek/hello-spock/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -981,7 +981,7 @@ $ halcyon install https://github.com/mietek/hello-spock
 -----> Building sandbox
        ...
        Installed Spock-0.7.7.0
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 94MB
        Removing documentation from sandbox directory... done, 93MB
        Stripping sandbox directory... done, 80MB
@@ -1019,7 +1019,7 @@ _hello-wai_
 
 > ---------------------|---
 > Framework:           | [_wai_](https://hackage.haskell.org/package/wai/) 3.0.2.2
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [41](https://github.com/mietek/hello-wai/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -1086,7 +1086,7 @@ $ halcyon install https://github.com/mietek/hello-wai
 -----> Building sandbox
        ...
        Installed wai-3.0.2.2
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 47MB
        Removing documentation from sandbox directory... done, 46MB
        Stripping sandbox directory... done, 40MB
@@ -1124,7 +1124,7 @@ _hello-wheb_
 
 > ---------------------|---
 > Framework:           | [Wheb](https://hackage.haskell.org/package/Wheb) 0.3.1.0
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [100](https://github.com/mietek/hello-wheb/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -1186,7 +1186,7 @@ $ halcyon install https://github.com/mietek/hello-wheb
 -----> Building sandbox
        ...
        Installed Wheb-0.3.1.0
-       Installed warp-3.0.5.2
+       Installed warp-3.0.6
 -----> Sandbox built, 148MB
        Removing documentation from sandbox directory... done, 147MB
        Stripping sandbox directory... done, 129MB
@@ -1224,8 +1224,8 @@ _hello-yesod_
 -------------
 
 > ---------------------|---
-> Framework:           | [_yesod_](https://hackage.haskell.org/package/yesod) 1.4.1.3
-> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.5.2
+> Framework:           | [_yesod_](https://hackage.haskell.org/package/yesod) 1.4.1.4
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Dependencies:        | [148](https://github.com/mietek/hello-yesod/blob/master/.halcyon/constraints)
 > First build time:    | …
 > Sandbox size:        | …
@@ -1295,8 +1295,8 @@ $ halcyon install https://github.com/mietek/hello-yesod
 -----> Creating sandbox
 -----> Building sandbox
        ...
-       Installed yesod-1.4.1.3
-       Installed warp-3.0.5.2
+       Installed yesod-1.4.1.4
+       Installed warp-3.0.6
 -----> Sandbox built, 255MB
        Removing documentation from sandbox directory... done, 253MB
        Stripping sandbox directory... done, 220MB
@@ -1308,8 +1308,8 @@ $ halcyon install https://github.com/mietek/hello-yesod
        Building hello-yesod-1.0...
        Preprocessing executable 'hello-yesod' for hello-yesod-1.0...
        ...
-       Loading package yesod-1.4.1.3 ... linking ... done.
-       Loading package warp-3.0.5.2 ... linking ... done.
+       Loading package yesod-1.4.1.4 ... linking ... done.
+       Loading package warp-3.0.6 ... linking ... done.
 
        Main.hs:10:1: Warning:
            Defined but not used: type constructor or class ‘Widget’
