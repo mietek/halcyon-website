@@ -121,14 +121,14 @@ $ PORT=8080 hello-apiary
 <a class="toggle-button" data-target="hello-apiary-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-apiary-log .toggle }
 $ halcyon install https://github.com/mietek/hello-apiary
------> Cloning https://github.com/mietek/hello-apiary... done, ed5b011
+-----> Cloning https://github.com/mietek/hello-apiary... done, 4db6a68
 -----> Installing hello-apiary-1.0
 -----> Determining constraints
        Label:                                    **hello-apiary-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **a53c031**
-       Constraints hash:                         **958ff13**
-       Magic hash:                               **22287c8**
+       Source hash:                              **2c8b323**
+       Constraints hash:                         **34cee3a**
+       Magic hash:                               **9ab52f3**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
@@ -136,9 +136,11 @@ $ halcyon install https://github.com/mietek/hello-apiary
        Sandbox magic hash:                       **1dd8630**
        Sandbox extra apps:                       **alex-3.1.4**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
@@ -156,14 +158,16 @@ $ halcyon install https://github.com/mietek/hello-apiary
        -----> Installing app to /app/sandbox
        -----> Installed alex-3.1.4
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed apiary-1.2.3
        Installed warp-3.0.6
+       Installed apiary-1.2.3
 -----> Sandbox built, 76MB
-       Removing documentation from sandbox directory... done, 76MB
+       Removing documentation from sandbox directory... done, 75MB
        Stripping sandbox directory... done, 65MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-958ff13.1dd8630-hello-apiary-1.0.tar.gz... done, 11MB
+       Creating halcyon-sandbox-34cee3a.1dd8630-hello-apiary-1.0.tar.gz... done, 11MB
 
 -----> Configuring app
 -----> Building app
@@ -180,7 +184,7 @@ $ halcyon install https://github.com/mietek/hello-apiary
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 7.0MB
 -----> Archiving install directory
-       Creating halcyon-install-a53c031-hello-apiary-1.0.tar.gz... done, 1.6MB
+       Creating halcyon-install-2c8b323-hello-apiary-1.0.tar.gz... done, 1.6MB
 -----> Installing app to /app
 -----> Installed hello-apiary-1.0
 
@@ -234,13 +238,12 @@ $ PORT=8080 hello-happstack
 <div class="toggle">
 <a class="toggle-button" data-target="hello-happstack-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-happstack-log .toggle }
-$ halcyon install https://github.com/mietek/hello-happstack
------> Cloning https://github.com/mietek/hello-happstack... done, c3b755e
+-----> Cloning https://github.com/mietek/hello-happstack... done, 464deac
 -----> Installing hello-happstack-1.0
 -----> Determining constraints
        Label:                                    **hello-happstack-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **ed46b35**
+       Source hash:                              **a3e96f1**
        Constraints hash:                         **3b0b768**
        Magic hash:                               **52d0f07**
        External storage:                         **public**
@@ -248,16 +251,20 @@ $ halcyon install https://github.com/mietek/hello-happstack
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed happstack-lite-7.3.6
        Installed happstack-server-7.4.0
+       Installed happstack-lite-7.3.6
 -----> Sandbox built, 65MB
        Removing documentation from sandbox directory... done, 64MB
        Stripping sandbox directory... done, 55MB
@@ -278,7 +285,7 @@ $ halcyon install https://github.com/mietek/hello-happstack
 -----> Preparing install directory
 -----> Install directory prepared, 8.4MB
 -----> Archiving install directory
-       Creating halcyon-install-ed46b35-hello-happstack-1.0.tar.gz... done, 1.7MB
+       Creating halcyon-install-a3e96f1-hello-happstack-1.0.tar.gz... done, 1.7MB
 -----> Installing app to /app
 -----> Installed hello-happstack-1.0
 
@@ -334,14 +341,14 @@ $ PORT=8080 hello-mflow
 <a class="toggle-button" data-target="hello-mflow-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-mflow-log .toggle }
 $ halcyon install https://github.com/mietek/hello-mflow
------> Cloning https://github.com/mietek/hello-mflow... done, 5354489
+-----> Cloning https://github.com/mietek/hello-mflow... done, d79dba3
 -----> Installing hello-mflow-1.0
 -----> Determining constraints
        Label:                                    **hello-mflow-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **59defe3**
-       Constraints hash:                         **5997705**
-       Magic hash:                               **cbba333**
+       Source hash:                              **931df8b**
+       Constraints hash:                         **d031451**
+       Magic hash:                               **e710ffa**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
@@ -349,9 +356,11 @@ $ halcyon install https://github.com/mietek/hello-mflow
        Sandbox magic hash:                       **5ff190e**
        Sandbox extra apps:                       **cpphs-1.18.8**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
@@ -369,14 +378,16 @@ $ halcyon install https://github.com/mietek/hello-mflow
        -----> Installing app to /app/sandbox
        -----> Installed cpphs-1.18.8
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed MFlow-0.4.5.9
        Installed warp-3.0.6
+       Installed MFlow-0.4.5.9
 -----> Sandbox built, 155MB
        Removing documentation from sandbox directory... done, 154MB
        Stripping sandbox directory... done, 133MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-5997705.5ff190e-hello-mflow-1.0.tar.gz... done, 23MB
+       Creating halcyon-sandbox-d031451.5ff190e-hello-mflow-1.0.tar.gz... done, 23MB
 
 -----> Configuring app
 -----> Building app
@@ -393,7 +404,7 @@ $ halcyon install https://github.com/mietek/hello-mflow
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 15MB
 -----> Archiving install directory
-       Creating halcyon-install-59defe3-hello-mflow-1.0.tar.gz... done, 3.3MB
+       Creating halcyon-install-931df8b-hello-mflow-1.0.tar.gz... done, 3.3MB
 -----> Installing app to /app
 -----> Installed hello-mflow-1.0
 
@@ -448,26 +459,30 @@ $ PORT=8080 hello-miku
 <a class="toggle-button" data-target="hello-miku-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-miku-log .toggle }
 $ halcyon install https://github.com/mietek/hello-miku
------> Cloning https://github.com/mietek/hello-miku... done, 972d7a1
+-----> Cloning https://github.com/mietek/hello-miku... done, 0ca7468
 -----> Installing hello-miku-1.0
 -----> Determining constraints
        Label:                                    **hello-miku-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **95a0bb1**
-       Constraints hash:                         **ffba4e6**
-       Magic hash:                               **835b052**
+       Source hash:                              **d2ce38b**
+       Constraints hash:                         **1d84a99**
+       Magic hash:                               **d849f1f**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
        Installed miku-2014.11.17
        Installed snap-server-0.9.4.6
@@ -475,7 +490,7 @@ $ halcyon install https://github.com/mietek/hello-miku
        Removing documentation from sandbox directory... done, 84MB
        Stripping sandbox directory... done, 73MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-ffba4e6-hello-miku-1.0.tar.gz... done, 13MB
+       Creating halcyon-sandbox-1d84a99-hello-miku-1.0.tar.gz... done, 13MB
 
 -----> Configuring app
 -----> Building app
@@ -492,7 +507,7 @@ $ halcyon install https://github.com/mietek/hello-miku
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 11MB
 -----> Archiving install directory
-       Creating halcyon-install-95a0bb1-hello-miku-1.0.tar.gz... done, 2.1MB
+       Creating halcyon-install-d2ce38b-hello-miku-1.0.tar.gz... done, 2.1MB
 -----> Installing app to /app
 -----> Installed hello-miku-1.0
 
@@ -545,35 +560,38 @@ $ PORT=8080 hello-scotty
 <div class="toggle">
 <a class="toggle-button" data-target="hello-scotty-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-scotty-log .toggle }
-$ halcyon install https://github.com/mietek/hello-scotty
------> Cloning https://github.com/mietek/hello-scotty... done, 03726cf
+-----> Cloning https://github.com/mietek/hello-scotty... done, d858114
 -----> Installing hello-scotty-1.0
 -----> Determining constraints
        Label:                                    **hello-scotty-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **1840ee2**
-       Constraints hash:                         **6e85aa0**
-       Magic hash:                               **a4671fe**
+       Source hash:                              **96454ee**
+       Constraints hash:                         **110abd2**
+       Magic hash:                               **69d5fd3**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed scotty-0.9.1
        Installed warp-3.0.6
+       Installed scotty-0.9.1
 -----> Sandbox built, 84MB
        Removing documentation from sandbox directory... done, 84MB
        Stripping sandbox directory... done, 73MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-6e85aa0-hello-scotty-1.0.tar.gz... done, 12MB
+       Creating halcyon-sandbox-110abd2-hello-scotty-1.0.tar.gz... done, 12MB
 
 -----> Configuring app
 -----> Building app
@@ -589,7 +607,7 @@ $ halcyon install https://github.com/mietek/hello-scotty
 -----> Preparing install directory
 -----> Install directory prepared, 9.0MB
 -----> Archiving install directory
-       Creating halcyon-install-1840ee2-hello-scotty-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-96454ee-hello-scotty-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed hello-scotty-1.0
 
@@ -654,26 +672,30 @@ $ PORT=8080 hello-servant
 <a class="toggle-button" data-target="hello-servant-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-servant-log .toggle }
 $ halcyon install https://github.com/mietek/hello-servant
------> Cloning https://github.com/mietek/hello-servant... done, a09253c
+-----> Cloning https://github.com/mietek/hello-servant... done, 6bec98b
 -----> Installing hello-servant-1.0
 -----> Determining constraints
        Label:                                    **hello-servant-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **25e7222**
-       Constraints hash:                         **e138d6f**
-       Magic hash:                               **47e5824**
+       Source hash:                              **78f958d**
+       Constraints hash:                         **f458aa8**
+       Magic hash:                               **3bffeae**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
        Installed servant-0.2.1
        Installed warp-3.0.6
@@ -681,7 +703,7 @@ $ halcyon install https://github.com/mietek/hello-servant
        Removing documentation from sandbox directory... done, 159MB
        Stripping sandbox directory... done, 140MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-e138d6f-hello-servant-1.0.tar.gz... done, 24MB
+       Creating halcyon-sandbox-f458aa8-hello-servant-1.0.tar.gz... done, 24MB
 
 -----> Configuring app
 -----> Building app
@@ -698,7 +720,7 @@ $ halcyon install https://github.com/mietek/hello-servant
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 8.1MB
 -----> Archiving install directory
-       Creating halcyon-install-25e7222-hello-servant-1.0.tar.gz... done, 1.8MB
+       Creating halcyon-install-78f958d-hello-servant-1.0.tar.gz... done, 1.8MB
 -----> Installing app to /app
 -----> Installed hello-servant-1.0
 
@@ -758,34 +780,38 @@ $ PORT=8080 hello-simple
 <a class="toggle-button" data-target="hello-simple-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-simple-log .toggle }
 $ halcyon install https://github.com/mietek/hello-simple
------> Cloning https://github.com/mietek/hello-simple... done, f83c2d6
+-----> Cloning https://github.com/mietek/hello-simple... done, 13e6b52
 -----> Installing hello-simple-1.0
 -----> Determining constraints
        Label:                                    **hello-simple-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **631778f**
-       Constraints hash:                         **bcf8074**
-       Magic hash:                               **044b315**
+       Source hash:                              **4ad50e1**
+       Constraints hash:                         **4db1fca**
+       Magic hash:                               **7624c31**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed simple-0.10.1
        Installed warp-3.0.6
+       Installed simple-0.10.1
 -----> Sandbox built, 102MB
        Removing documentation from sandbox directory... done, 102MB
        Stripping sandbox directory... done, 89MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-bcf8074-hello-simple-1.0.tar.gz... done, 16MB
+       Creating halcyon-sandbox-4db1fca-hello-simple-1.0.tar.gz... done, 16MB
 
 -----> Configuring app
 -----> Building app
@@ -802,7 +828,7 @@ $ halcyon install https://github.com/mietek/hello-simple
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 4.9MB
 -----> Archiving install directory
-       Creating halcyon-install-631778f-hello-simple-1.0.tar.gz... done, 1.1MB
+       Creating halcyon-install-4ad50e1-hello-simple-1.0.tar.gz... done, 1.1MB
 -----> Installing app to /app
 -----> Installed hello-simple-1.0
 
@@ -861,26 +887,30 @@ $ PORT=8080 hello-snap
 <a class="toggle-button" data-target="hello-snap-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-snap-log .toggle }
 $ halcyon install https://github.com/mietek/hello-snap
------> Cloning https://github.com/mietek/hello-snap... done, d42760d
+-----> Cloning https://github.com/mietek/hello-snap... done, b47331a
 -----> Installing hello-snap-1.0
 -----> Determining constraints
        Label:                                    **hello-snap-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **52c0b22**
-       Constraints hash:                         **861fd5c**
-       Magic hash:                               **c6abdb6**
+       Source hash:                              **4cc052a**
+       Constraints hash:                         **335d31e**
+       Magic hash:                               **c12b874**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
        Installed snap-core-0.9.6.4
        Installed snap-server-0.9.4.6
@@ -888,7 +918,7 @@ $ halcyon install https://github.com/mietek/hello-snap
        Removing documentation from sandbox directory... done, 75MB
        Stripping sandbox directory... done, 65MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-861fd5c-hello-snap-1.0.tar.gz... done, 11MB
+       Creating halcyon-sandbox-335d31e-hello-snap-1.0.tar.gz... done, 11MB
 
 -----> Configuring app
 -----> Building app
@@ -905,7 +935,7 @@ $ halcyon install https://github.com/mietek/hello-snap
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 9.2MB
 -----> Archiving install directory
-       Creating halcyon-install-52c0b22-hello-snap-1.0.tar.gz... done, 1.9MB
+       Creating halcyon-install-4cc052a-hello-snap-1.0.tar.gz... done, 1.9MB
 -----> Installing app to /app
 -----> Installed hello-snap-1.0
 
@@ -959,34 +989,38 @@ $ PORT=8080 hello-spock
 <a class="toggle-button" data-target="hello-spock-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-spock-log .toggle }
 $ halcyon install https://github.com/mietek/hello-spock
------> Cloning https://github.com/mietek/hello-spock... done, da0cb83
+-----> Cloning https://github.com/mietek/hello-spock... done, 73550da
 -----> Installing hello-spock-1.0
 -----> Determining constraints
        Label:                                    **hello-spock-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **d225ab3**
-       Constraints hash:                         **1e0b9d9**
-       Magic hash:                               **1066fc1**
+       Source hash:                              **f616025**
+       Constraints hash:                         **b94066d**
+       Magic hash:                               **ade4ef3**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed Spock-0.7.7.0
        Installed warp-3.0.6
+       Installed Spock-0.7.7.0
 -----> Sandbox built, 94MB
        Removing documentation from sandbox directory... done, 93MB
        Stripping sandbox directory... done, 80MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-1e0b9d9-hello-spock-1.0.tar.gz... done, 14MB
+       Creating halcyon-sandbox-b94066d-hello-spock-1.0.tar.gz... done, 14MB
 
 -----> Configuring app
 -----> Building app
@@ -1002,7 +1036,7 @@ $ halcyon install https://github.com/mietek/hello-spock
 -----> Preparing install directory
 -----> Install directory prepared, 8.9MB
 -----> Archiving install directory
-       Creating halcyon-install-d225ab3-hello-spock-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-f616025-hello-spock-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed hello-spock-1.0
 
@@ -1064,26 +1098,30 @@ $ PORT=8080 hello-wai
 <a class="toggle-button" data-target="hello-wai-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-wai-log .toggle }
 $ halcyon install https://github.com/mietek/hello-wai
------> Cloning https://github.com/mietek/hello-wai... done, d9ac7e3
+-----> Cloning https://github.com/mietek/hello-wai... done, c08c907
 -----> Installing hello-wai-1.0
 -----> Determining constraints
        Label:                                    **hello-wai-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **71254c9**
-       Constraints hash:                         **0a5566d**
-       Magic hash:                               **5e25587**
+       Source hash:                              **d7c23a9**
+       Constraints hash:                         **ffec23f**
+       Magic hash:                               **815d4c4**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
        Installed wai-3.0.2.2
        Installed warp-3.0.6
@@ -1091,7 +1129,7 @@ $ halcyon install https://github.com/mietek/hello-wai
        Removing documentation from sandbox directory... done, 46MB
        Stripping sandbox directory... done, 40MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-0a5566d-hello-wai-1.0.tar.gz... done, 6.7MB
+       Creating halcyon-sandbox-ffec23f-hello-wai-1.0.tar.gz... done, 6.7MB
 
 -----> Configuring app
 -----> Building app
@@ -1107,7 +1145,7 @@ $ halcyon install https://github.com/mietek/hello-wai
 -----> Preparing install directory
 -----> Install directory prepared, 4.7MB
 -----> Archiving install directory
-       Creating halcyon-install-71254c9-hello-wai-1.0.tar.gz... done, 1.1MB
+       Creating halcyon-install-d7c23a9-hello-wai-1.0.tar.gz... done, 1.1MB
 -----> Installing app to /app
 -----> Installed hello-wai-1.0
 
@@ -1164,34 +1202,38 @@ $ PORT=8080 hello-wheb
 <a class="toggle-button" data-target="hello-wheb-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-wheb-log .toggle }
 $ halcyon install https://github.com/mietek/hello-wheb
------> Cloning https://github.com/mietek/hello-wheb... done, 416c5e4
+-----> Cloning https://github.com/mietek/hello-wheb... done, 24f9824
 -----> Installing hello-wheb-1.0
 -----> Determining constraints
        Label:                                    **hello-wheb-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **8447f36**
-       Constraints hash:                         **7716502**
-       Magic hash:                               **e9c0c7f**
+       Source hash:                              **b572bc1**
+       Constraints hash:                         **c8cc6cc**
+       Magic hash:                               **0c8a416**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed Wheb-0.3.1.0
        Installed warp-3.0.6
+       Installed Wheb-0.3.1.0
 -----> Sandbox built, 148MB
        Removing documentation from sandbox directory... done, 147MB
        Stripping sandbox directory... done, 129MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-7716502-hello-wheb-1.0.tar.gz... done, 23MB
+       Creating halcyon-sandbox-c8cc6cc-hello-wheb-1.0.tar.gz... done, 23MB
 
 -----> Configuring app
 -----> Building app
@@ -1208,7 +1250,7 @@ $ halcyon install https://github.com/mietek/hello-wheb
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 7.1MB
 -----> Archiving install directory
-       Creating halcyon-install-8447f36-hello-wheb-1.0.tar.gz... done, 1.7MB
+       Creating halcyon-install-b572bc1-hello-wheb-1.0.tar.gz... done, 1.7MB
 -----> Installing app to /app
 -----> Installed hello-wheb-1.0
 
@@ -1274,42 +1316,46 @@ $ PORT=8080 hello-yesod
 <a class="toggle-button" data-target="hello-yesod-log" href="" title="Toggle">Toggle</a>
 ``` { #hello-yesod-log .toggle }
 $ halcyon install https://github.com/mietek/hello-yesod
------> Cloning https://github.com/mietek/hello-yesod... done, b77c84f
+-----> Cloning https://github.com/mietek/hello-yesod... done, a91e42d
 -----> Installing hello-yesod-1.0
 -----> Determining constraints
        Label:                                    **hello-yesod-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **b8bfb6b**
-       Constraints hash:                         **92699b8**
-       Magic hash:                               **a943a2f**
+       Source hash:                              **d47f851**
+       Constraints hash:                         **1a1d740**
+       Magic hash:                               **de9e85b**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
        Cabal repository:                         **Hackage**
 
------> Using existing GHC directory
+-----> Restoring GHC directory
+       Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
------> Using existing Cabal directory
+-----> Restoring Cabal directory
+       Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-23.tar.gz... done, 182MB
 
 -----> Building sandbox directory
 -----> Creating sandbox
 -----> Building sandbox
+       Resolving dependencies...
+       Notice: installing into a sandbox located at /app/sandbox
        ...
-       Installed yesod-1.4.1.4
        Installed warp-3.0.6
+       Installed yesod-1.4.1.4
 -----> Sandbox built, 255MB
-       Removing documentation from sandbox directory... done, 253MB
+       Removing documentation from sandbox directory... done, 254MB
        Stripping sandbox directory... done, 220MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-92699b8-hello-yesod-1.0.tar.gz... done, 39MB
+       Creating halcyon-sandbox-1a1d740-hello-yesod-1.0.tar.gz... done, 39MB
 
 -----> Configuring app
 -----> Building app
        Building hello-yesod-1.0...
        Preprocessing executable 'hello-yesod' for hello-yesod-1.0...
        ...
-       Loading package yesod-1.4.1.4 ... linking ... done.
        Loading package warp-3.0.6 ... linking ... done.
+       Loading package yesod-1.4.1.4 ... linking ... done.
 
        Main.hs:10:1: Warning:
            Defined but not used: type constructor or class ‘Widget’
@@ -1325,7 +1371,7 @@ $ halcyon install https://github.com/mietek/hello-yesod
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 19MB
 -----> Archiving install directory
-       Creating halcyon-install-b8bfb6b-hello-yesod-1.0.tar.gz... done, 3.8MB
+       Creating halcyon-install-d47f851-hello-yesod-1.0.tar.gz... done, 3.8MB
 -----> Installing app to /app
 -----> Installed hello-yesod-1.0
 
