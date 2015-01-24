@@ -105,7 +105,7 @@ _hello-apiary_
 
 #### Extra dependencies
 
-- _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
+- _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
 
 
 ### Usage
@@ -325,7 +325,7 @@ _hello-mflow_
 
 #### Extra dependencies
 
-- _cpphs_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
+- _cpphs_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
 
 
 ### Usage

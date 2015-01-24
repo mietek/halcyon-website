@@ -68,7 +68,7 @@ Using Halcyon in production since June 2014.
 
 #### Extra dependencies
 
-- _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
+- _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
 - _libpcre_, as a [sandbox extra OS package](/reference/#halcyon_sandbox_extra_os_packages)
 - Private Cabal packages, as [sandbox sources](/reference/#halcyon_sandbox_sources)
 
@@ -101,7 +101,7 @@ Using Halcyon in production since July 2014.
 
 #### Extra dependencies
 
-- _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
+- _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
 
 
@@ -117,6 +117,10 @@ Using Halcyon in production since July 2014.
 ```
 $ PORT=8080 howistart
 ```
+
+
+#### Installation
+
 ```
 $ halcyon install https://github.com/mietek/howistart
 ```
@@ -139,7 +143,7 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 #### Extra dependencies
 
-- _alex_ and _happy_, as [sandbox extra apps](/reference/#halcyon_sandbox_extra_apps), with version constraints
+- _alex_ and _happy_, as [sandbox extra apps](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
 - _libicu_, for build-time and run-time use, as a [sandbox extra OS package](/reference/#halcyon_sandbox_extra_os_packages) and an [extra OS package](/reference/#halcyon_extra_os_packages)
 - Patched version of _text-icu_, as a [sandbox source](/reference/#halcyon_sandbox_sources)
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
@@ -152,6 +156,10 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 ```
 $ PORT=8080 hl
 ```
+
+
+#### Installation
+
 ```
 $ halcyon install https://github.com/mietek/hl
 ```
@@ -174,7 +182,7 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 
 #### Extra dependencies
 
-- Current version of _mueval_, as a [sandbox source](/reference/#halcyon_sandbox_sources)
+- _git_ `HEAD` version of _mueval_, as a [sandbox source](/reference/#halcyon_sandbox_sources)
 - [Sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
 
@@ -186,6 +194,10 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 ```
 $ MUEVAL_TIMEOUT=8 PORT=8080 tryhaskell
 ```
+
+
+#### Installation
+
 ```
 $ halcyon install https://github.com/mietek/tryhaskell --keep-dependencies
 ```
@@ -208,8 +220,8 @@ Try Idris
 
 #### Extra dependencies
 
-- [Pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Idris, with version constraints and extra dependencies:
-    - _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
+- [Pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Idris, with [version constraints](/reference/#halcyon_constraints) and additional dependencies:
+    - _alex_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
 
 **Note:**  Try Idris requires a machine with at least 1 GB of memory in order to run.
@@ -227,6 +239,10 @@ Try Idris
 ```
 $ tryidris 8080
 ```
+
+
+#### Installation
+
 ```
 $ halcyon install https://github.com/mietek/tryidris
 ```
@@ -249,7 +265,7 @@ Try PureScript
 
 #### Extra dependencies
 
-> _None_
+> _none_
 
 
 <aside>
@@ -264,6 +280,10 @@ Try PureScript
 ```
 $ trypurescript -p 8080
 ```
+
+
+#### Installation
+
 ```
 $ halcyon install https://github.com/mietek/trypurescript
 ```
@@ -286,8 +306,8 @@ Try Haste
 
 #### Extra dependencies
 
-- _cpphs_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with version constraints
-- [Pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Haste, with version constraints and extra dependencies:
+- _cpphs_, as a [sandbox extra app](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
+- [Pre-install hook](/reference/#halcyon_pre_install_hook), using Halcyon recursively to install Haste, with [version constraints](/reference/#halcyon_constraints) and additional dependencies:
     - _libbz2_ and _libgmp_, as [sandbox extra OS packages](/reference/#halcyon_sandbox_extra_os_packages)
     - [Extra configure flags](/reference/#halcyon_extra_configure_flags) for Haste
     - [Pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
@@ -311,6 +331,10 @@ Try Haste
 ```
 $ tryplayground 8080
 ```
+
+
+#### Installation
+
 ```
 $ halcyon install https://github.com/mietek/tryhaste --keep-dependencies
 ```
@@ -333,7 +357,7 @@ Wiki with _git_ file storage.
 
 #### Extra dependencies
 
-> _None_
+> _none_
 
 
 <aside>
@@ -348,6 +372,10 @@ Wiki with _git_ file storage.
 ```
 $ gitit -p 8080
 ```
+
+
+#### Installation
+
 ```
 $ halcyon install https://github.com/mietek/gitit
 ```
