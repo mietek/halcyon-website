@@ -1609,7 +1609,11 @@ function drawChart() {
       }
     }
   };
-  options.hAxis.ticks = [0, 120, 240, 360, 480, 600];
+  if (cannot.getLayout() === 'small') {
+    options.hAxis.ticks = [0, 120, 240, 360, 480, 600];
+  } else {
+    options.hAxis.ticks = [0, 60, 120, 180, 240, 300, 360, 420, 480, 540, 600];
+  }
   var chart = new google.visualization.BarChart(document.getElementById('shootout-chart'));
   chart.draw(data, options);
 }
