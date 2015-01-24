@@ -181,7 +181,7 @@ exports.Control.prototype = {
       document.getElementById('env-vars-widget'));
     this.commandWidget = React.render(
       React.createElement(widgets.InputWidget, {
-          placeholder:  '/app/bin/${executable}',
+          placeholder:  'automatic',
           onChange:     this.changeCommand.bind(this)
         }),
       document.getElementById('command-widget'));

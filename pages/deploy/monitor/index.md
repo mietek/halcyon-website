@@ -11,6 +11,10 @@ page-footer: |
 [Haskell on DigitalOcean](/deploy/) —<br> Monitor
 =================================================
 
+Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://haskell.org/cabal/users-guide/).
+
+This service can deploy Haskell apps to [DigitalOcean](https://digitalocean.com/) droplets, using Halcyon as part of the deployment process.
+
 
 ### DigitalOcean account
 
