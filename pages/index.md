@@ -31,7 +31,7 @@ Halcyon
 
 Halcyon is a system for installing [Haskell](https://haskell.org/) apps and development tools, including [GHC](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/) and [Cabal](https://haskell.org/cabal/users-guide/).
 
-Follow the [Halcyon tutorial](/tutorial/) to get started.
+**Follow the [Halcyon tutorial](/tutorial/) to get started.**
 
 
 ### Features
@@ -102,34 +102,37 @@ Additionally, all example apps can be deployed in one click to [DigitalOcean](ht
 Usage
 -----
 
-The [`halcyon install`](/reference/#halcyon-install) command can be used instead of `cabal install`:
+Halcyon provides the [`halcyon install`](/reference/#halcyon-install) command, which can be used to install Haskell apps:
 
 ```
 $ halcyon install https://github.com/mietek/halcyon-tutorial
------> Cloning https://github.com/mietek/halcyon-tutorial... done, af1461f
+-----> Cloning https://github.com/mietek/halcyon-tutorial... done, f1ccdd9
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **0c985ba**
+       Source hash:                              **b90bb47**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done
-       Extracting halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done, 8.8MB
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b90bb47-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-install-b90bb47-halcyon-tutorial-1.0.tar.gz... done, 8.8MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
-
 
 ### Installation
 
-Halcyon can be installed by cloning the [_git_ repository](https://github.com/mietek/halcyon), or by running the [setup script](https://github.com/mietek/halcyon/blob/master/setup.sh), which also installs the necessary OS packages and sets up the environment:
+Halcyon can be installed by cloning the [Halcyon source repository](https://github.com/mietek/halcyon):
+
+```
+$ git clone https://github.com/mietek/halcyon
+```
+
+Alternatively, you can run the [Halcyon setup script](https://github.com/mietek/halcyon/blob/master/setup.sh), which also installs the necessary OS packages and sets up the environment:
 
 ```
 $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
@@ -138,7 +141,7 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 
 ### Documentation
 
-- Start with the [Halcyon tutorial](/tutorial/) to learn how to develop a simple Haskell web app using Halcyon.
+- **Start with the [Halcyon tutorial](/tutorial/) to learn how to develop a simple Haskell web app using Halcyon.**
 
 - See the [Halcyon reference](/reference/) for a complete list of available commands and options.
 
