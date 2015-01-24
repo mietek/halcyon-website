@@ -183,7 +183,7 @@ $ which halcyon-tutorial
 
 Some Halcyon options, such as [`HALCYON_CONSTRAINTS`](/reference/#halcyon_constraints), can be specified by including a _magic file_ in your app’s source directory.  Command-line arguments take precedence over environment variables, which in turn take precedence over magic files.
 
-Using magic files is the recommended way of specifing options, as it doesn’t require the user to perform any additional actions when installing your app.
+Using magic files is the recommended way of specifing options, as it doesn’t require the user to perform any additional actions when installing the app.
 
 Halcyon installs apps in the _prefix directory_, which defaults to `/app`.  You can change this with the [`HALCYON_PREFIX`](/reference/#halcyon_prefix) option.
 
