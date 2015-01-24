@@ -940,7 +940,7 @@ linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.4.tar.gz
 
 ### Options
 
-You can disable public or private storage with the [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) and [`HALCYON_NO_PRIVATE_STORAGE`](/reference/#halcyon_no_private_storage) options.
+If you want to avoid downloading any archives from public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1` before populating your private storage.
 
 
 Next steps
