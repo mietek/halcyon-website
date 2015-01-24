@@ -247,7 +247,7 @@ exports.Control.prototype = {
         token:        undefined,
         account:      undefined,
         accountError: 'no_token',
-        sourceInfo:   {},
+        sourceInfo:   undefined,
         sourceError:  undefined
       });
     this.props.onForgetAccount();

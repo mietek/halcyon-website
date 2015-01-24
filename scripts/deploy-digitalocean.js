@@ -425,16 +425,16 @@ exports.Control.prototype = {
         token:            undefined,
         account:          undefined,
         accountError:     'no_token',
-        sizes:            [],
+        sizes:            undefined,
         sizesError:       undefined,
         selectedSize:     undefined,
-        images:           [],
+        images:           undefined,
         imagesError:      undefined,
         selectedImage:    undefined,
-        regions:          [],
+        regions:          undefined,
         regionsError:     undefined,
         selectedRegion:   undefined,
-        keys:             [],
+        keys:             undefined,
         keysError:        undefined,
         selectedKeys:     undefined
       });
@@ -462,7 +462,7 @@ exports.Control.prototype = {
         this.state.token);
     } else {
       this.setState({
-          sizes:      [],
+          sizes:      undefined,
           sizesError: undefined
         });
     }
@@ -479,7 +479,7 @@ exports.Control.prototype = {
         this.state.token);
     } else {
       this.setState({
-          images:      [],
+          images:      undefined,
           imagesError: undefined
         });
     }
@@ -496,7 +496,7 @@ exports.Control.prototype = {
         this.state.token);
     } else {
       this.setState({
-          regions:      [],
+          regions:      undefined,
           regionsError: undefined
         });
     }
@@ -513,7 +513,7 @@ exports.Control.prototype = {
         this.state.token);
     } else {
       this.setState({
-          keys:      [],
+          keys:      undefined,
           keysError: undefined
         });
     }
