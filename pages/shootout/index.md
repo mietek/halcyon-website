@@ -59,7 +59,7 @@ The times given are _mean [low, high]_, calculated across 10 test runs.  Each te
 The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, use the included test script:
 
 ```
-$ halcyon/test/test shootout --bench
+$ halcyon/bin/test shootout --bench
 ...
 hello-yesod,10,521,535,537,251MB,25MB
 ```
@@ -192,7 +192,7 @@ $ halcyon install https://github.com/mietek/hello-apiary
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-apiary" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-apiary" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-apiary" target="_blank">Deploy to Heroku</a>
 
 
@@ -293,7 +293,7 @@ $ PORT=8080 hello-happstack
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-happstack" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-happstack" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-happstack" target="_blank">Deploy to Heroku</a>
 
 
@@ -412,7 +412,7 @@ $ halcyon install https://github.com/mietek/hello-mflow
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-mflow" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-mflow" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-mflow" target="_blank">Deploy to Heroku</a>
 
 
@@ -515,7 +515,7 @@ $ halcyon install https://github.com/mietek/hello-miku
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-miku" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-miku" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-miku" target="_blank">Deploy to Heroku</a>
 
 
@@ -615,7 +615,7 @@ $ PORT=8080 hello-scotty
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-scotty" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-scotty" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-scotty" target="_blank">Deploy to Heroku</a>
 
 
@@ -728,7 +728,7 @@ $ halcyon install https://github.com/mietek/hello-servant
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-servant" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-servant" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-servant" target="_blank">Deploy to Heroku</a>
 
 
@@ -836,7 +836,7 @@ $ halcyon install https://github.com/mietek/hello-simple
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-simple" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-simple" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-simple" target="_blank">Deploy to Heroku</a>
 
 
@@ -943,7 +943,7 @@ $ halcyon install https://github.com/mietek/hello-snap
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-snap" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-snap" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-snap" target="_blank">Deploy to Heroku</a>
 
 
@@ -1044,7 +1044,7 @@ $ halcyon install https://github.com/mietek/hello-spock
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-spock" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-spock" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-spock" target="_blank">Deploy to Heroku</a>
 
 
@@ -1153,7 +1153,7 @@ $ halcyon install https://github.com/mietek/hello-wai
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-wai" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-wai" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wai" target="_blank">Deploy to Heroku</a>
 
 
@@ -1258,7 +1258,7 @@ $ halcyon install https://github.com/mietek/hello-wheb
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-wheb" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-wheb" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-wheb" target="_blank">Deploy to Heroku</a>
 
 
@@ -1379,7 +1379,7 @@ $ halcyon install https://github.com/mietek/hello-yesod
 ```
 </div>
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hello-yesod" target="_blank">Deploy to DigitalOcean</a>
+<a class="digitalocean-button" href="/deploy/?url=https://github.com/mietek/hello-yesod" target="_blank">Deploy to DigitalOcean</a>
 <a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hello-yesod" target="_blank">Deploy to Heroku</a>
 
 
