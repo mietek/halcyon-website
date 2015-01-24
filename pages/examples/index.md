@@ -127,8 +127,8 @@ $ PORT=8080 howistart
 $ halcyon install https://github.com/mietek/howistart
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart">Deploy to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/howistart" target="_blank">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/howistart" target="_blank">Deploy to Heroku</a>
 
 
 Haskell Language
@@ -165,8 +165,8 @@ $ PORT=8080 hl
 $ halcyon install https://github.com/mietek/hl
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hl">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl">Deploy to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/hl" target="_blank">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/hl" target="_blank">Deploy to Heroku</a>
 
 
 Try Haskell
@@ -202,8 +202,8 @@ $ MUEVAL_TIMEOUT=8 PORT=8080 tryhaskell
 $ halcyon install https://github.com/mietek/tryhaskell --keep-dependencies
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell">Deploy to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaskell" target="_blank">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaskell" target="_blank">Deploy to Heroku</a>
 
 
 Try Idris
@@ -249,8 +249,8 @@ $ tryidris 8080
 $ halcyon install https://github.com/mietek/tryidris
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryidris">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris">Deploy to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryidris" target="_blank">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryidris" target="_blank">Deploy to Heroku</a>
 
 
 Try PureScript
@@ -292,8 +292,8 @@ $ trypurescript -p 8080
 $ halcyon install https://github.com/mietek/trypurescript
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/trypurescript">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript">Deploy to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/trypurescript" target="_blank">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/trypurescript" target="_blank">Deploy to Heroku</a>
 
 
 Try Haste
@@ -343,8 +343,8 @@ $ tryplayground 8080
 $ halcyon install https://github.com/mietek/tryhaste --keep-dependencies
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaste">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste">Deploy to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/tryhaste" target="_blank">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/tryhaste" target="_blank">Deploy to Heroku</a>
 
 
 Gitit
@@ -385,5 +385,5 @@ $ gitit -p 8080
 $ halcyon install https://github.com/mietek/gitit
 ```
 
-<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/gitit">Deploy to DigitalOcean</a>
-<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit">Deploy to Heroku</a>
+<a class="digitalocean-button" href="https://halcyon.sh/deploy/?url=https://github.com/mietek/gitit" target="_blank">Deploy to DigitalOcean</a>
+<a class="heroku-button" href="https://heroku.com/deploy?template=https://github.com/mietek/gitit" target="_blank">Deploy to Heroku</a>
