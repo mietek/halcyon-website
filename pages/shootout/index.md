@@ -59,7 +59,7 @@ The times given are _mean [low, high]_, calculated across 10 test runs.  Each te
 The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, use the included test script:
 
 ```
-$ halcyon/test shootout --bench
+$ halcyon/test/test shootout --bench
 ...
 hello-yesod,10,521,535,537,251MB,25MB
 ```
