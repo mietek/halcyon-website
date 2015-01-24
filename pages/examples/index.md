@@ -148,10 +148,8 @@ Introduction to Haskell, featuring [Try Haskell](#try-haskell).
 
 - _alex_ and _happy_, as [sandbox extra apps](/reference/#halcyon_sandbox_extra_apps), with [version constraints](/reference/#halcyon_sandbox_extra_apps_constraints)
 - _libicu_, for build-time and run-time use, as a [sandbox extra OS package](/reference/#halcyon_sandbox_extra_os_packages) and an [extra OS package](/reference/#halcyon_extra_os_packages)
-- Patched version of _text-icu_, as a [sandbox source](/reference/#halcyon_sandbox_sources)
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
-
-**Note:**  The patched version of _text-icu_ is needed to work around Cabal issue [`#2207`](https://github.com/haskell/cabal/issues/2207).
+- Workaround for Cabal issue [`#2207`](https://github.com/haskell/cabal/issues/2207), as a [sandbox extra configure flag](/reference/#halcyon_sandbox_extra_configure_flags)
 
 
 ### Usage
@@ -189,8 +187,6 @@ Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mue
 - _git_ `HEAD` version of _mueval_, as a [sandbox source](/reference/#halcyon_sandbox_sources)
 - [Sandbox post-build hook](/reference/#halcyon_sandbox_post_build_hook), to set up paths for _mueval_
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
-
-**Note:**  Deploying Try Haskell may take longer than expected, because including GHC for use at run-time balloons the install directory to just under 1 GB.
 
 
 ### Usage
@@ -322,8 +318,6 @@ Try Haste
     - [Extra configure flags](/reference/#halcyon_extra_configure_flags) for Haste
     - [Pre-install hook](/reference/#halcyon_pre_install_hook) to bootstrap Haste
 - Static website content, as [extra data files](/reference/#halcyon_extra_data_files)
-
-**Note:**  Deploying Try Haste may take longer than expected, because including GHC and Haste for run-time use balloons the install directory to well over 1 GB.
 
 
 <aside>
