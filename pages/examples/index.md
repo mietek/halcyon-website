@@ -58,7 +58,8 @@ CircuitHub
 > ---------------------|---
 > Website:             | [CircuitHub](https://circuithub.com/)
 > Author:              | [CircuitHub team](https://circuithub.com/about/team)
-> Framework:           | [Yesod](http://yesodweb.com/) 1.2.19
+> Framework:           | [_yesod_](https://hackage.haskell.org/package/yesod) 1.2.19
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.1.1
 > Source code:         | _private_
 
 Electronics manufacturing service, built for hardware startups.
@@ -91,7 +92,8 @@ How I Start
 > ---------------------|---
 > Website:             | [How I Start](https://howistart.org/)
 > Author:              | [Tristan Sloughter](https://github.com/howistart/howistart.org)
-> Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
+> Framework:           | [_snap-core_](https://hackage.haskell.org/package/snap-core) 0.9.6.4
+> Server:              | [_snap-server_](https://hackage.haskell.org/package/snap-server) 0.9.4.6
 > Source code:         | [_howistart_](https://github.com/mietek/howistart)
 
 Collection of software development tutorials.
@@ -135,7 +137,8 @@ Haskell Language
 > ---------------------|---
 > Website:             | [Haskell Language](http://haskell-lang.org/)
 > Author:              | [Haskell Infrastructure team](https://github.com/haskell-infra/hl)
-> Framework:           | [Yesod](http://yesodweb.com/) 1.4.3
+> Framework:           | [_yesod_](https://hackage.haskell.org/package/yesod) 1.2.5.2
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 2.1.5.1
 > Source code:         | [_hl_](https://github.com/mietek/hl)
 
 Introduction to Haskell, featuring [Try Haskell](#try-haskell).
@@ -174,7 +177,8 @@ Try Haskell
 > ---------------------|---
 > Website:             | [Try Haskell](http://tryhaskell.org/)
 > Author:              | [Chris Done](https://github.com/chrisdone/tryhaskell)
-> Framework:           | [Snap](http://snapframework.com/) 0.9.6.3
+> Framework:           | [_snap-core_](https://hackage.haskell.org/package/snap-core) 0.9.6.4
+> Server:              | [_snap-server_](https://hackage.haskell.org/package/snap-server) 0.9.4.6
 > Source code:         | [_tryhaskell_](https://github.com/mietek/tryhaskell)
 
 Interactive Haskell tutorial, powered by [_mueval_](https://github.com/gwern/mueval).
@@ -212,7 +216,9 @@ Try Idris
 > ---------------------|---
 > Website:             | [Try Idris](http://tryidris.org/)
 > Author:              | [Brian McKenna](https://github.com/puffnfresh/tryidris)
-> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
+> Compiler:            | [_idris_](https://hackage.haskell.org/package/idris) 0.9.16
+> Framework:           | [_scotty_](https://github.com/scotty-web/scotty) 0.9.1
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Source code:         | [_tryidris_](https://github.com/mietek/tryidris)
 
 [Idris](http://idris-lang.org/) compiler on a webpage.
@@ -257,7 +263,9 @@ Try PureScript
 > ---------------------|---
 > Website:             | [Try PureScript](http://try.purescript.org/)
 > Author:              | [Phil Freeman](https://github.com/purescript/trypurescript)
-> Framework:           | [Scotty](https://github.com/scotty-web/scotty) 0.9.0
+> Compiler:            | [_purescript_](https://hackage.haskell.org/package/purescript) 0.5.7.1
+> Framework:           | [_scotty_](https://github.com/scotty-web/scotty) 0.9.1
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Source code:         | [_trypurescript_](https://github.com/mietek/trypurescript)
 
 [PureScript](http://purescript.org/) compiler on a webpage.
@@ -298,7 +306,9 @@ Try Haste
 > ---------------------|---
 > Website:             | [Try Haste](https://tryplayg.herokuapp.com/)
 > Author:              | [Alberto G. Corona](https://github.com/agocorona/tryhplay)
+> Compiler:            | [_haste-compiler_](https://hackage.haskell.org/package/haste-compiler) 0.5
 > Framework:           | [MFlow](https://github.com/agocorona/MFlow) 0.4.5.9
+> Server:              | [_warp_](https://hackage.haskell.org/package/warp) 3.0.6
 > Source code:         | [_tryhaste_](https://github.com/mietek/tryhaste)
 
 [Haste](http://haste-lang.org/) development environment on a webpage.
@@ -349,7 +359,8 @@ Gitit
 > ---------------------|---
 > Website:             | [Gitit demo](http://gitit.net/)
 > Author:              | [John MacFarlane](https://github.com/jgm/gitit)
-> Framework:           | [Happstack](http://happstack.com/) 7.3.9
+> Framework:           | _none_
+> Server:              | [_happstack-server_](https://hackage.haskell.org/package/happstack-server) 7.3.9
 > Source code:         | [_gitit_](https://github.com/mietek/gitit)
 
 Wiki with _git_ file storage.
