@@ -103,7 +103,7 @@ $ halcyon install
 > ---------------------|---
 > _Expected time:_     | _20–30 seconds_
 
-In this step, Halcyon restores a _GHC directory_ and a _Cabal directory_ by extracting archives downloaded from _public storage,_ which is an external cache for previously-built apps and dependencies.
+In this step, Halcyon restores the _GHC directory_ and the _Cabal directory_ by extracting archives downloaded from _public storage,_ which is an external cache for previously-built apps and dependencies.
 
 All downloaded archives are cached in the Halcyon _cache directory._
 
@@ -920,7 +920,7 @@ $ halcyon install --purge-cache
 ```
 </div>
 
-In this step, Halcyon restores a GHC directory and a Cabal directory from public storage, and builds the sandbox and the app again.
+In this step, Halcyon restores the GHC and Cabal directories from public storage, builds and archives a sandbox based on a partially-matching sandbox directory, performs an incremental build, and installs the app again.
 
 All downloaded and newly-created archives are uploaded to your private storage:
 
