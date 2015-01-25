@@ -794,8 +794,8 @@ $ rm -rf /app/ghc /app/cabal /app/sandbox
 Install the app again, using the [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) option to empty the cache directory before building:
 
 <div class="toggle">
-<a class="toggle-button" data-target="populate-private-storage-log" href="" title="Toggle">Toggle</a>
-``` { #populate-private-storage-log .toggle }
+<a class="toggle-button" data-target="use-private-storage-log" href="" title="Toggle">Toggle</a>
+``` { #use-private-storage-log .toggle }
 $ halcyon install --purge-cache
 -----> Purging cache
 
@@ -847,13 +847,9 @@ $ halcyon install --purge-cache
        Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.constraints... 404 (not found)
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.constraints... done
 -----> Scoring partially matching sandbox directories
-       Ignoring hello-miku-1.0 (3c81d66) as HUnit-1.2.5.2 is not needed
        Ignoring hello-snap-1.0 (4af96d8) as HUnit-1.2.5.2 is not needed
-       Ignoring hello-wheb-1.0 (4c4bfdc) as SHA-1.6.4.1 is not needed
             41 hello-wai-1.0 (028a0e6)
-       Ignoring hello-scotty-1.0 (33c011e) as data-default-0.5.3 is not needed
        Ignoring hello-happstack-1.0 (47c3e8d) as base-unicode-symbols-0.2.2.4 is not needed
-       Ignoring hello-spock-1.0 (0331829) as QuickCheck-2.7.6 is not needed
            101 halcyon-tutorial-1.0 (becfd1b)
        Ignoring hello-yesod-1.0 (dac4ebf) as asn1-encoding-0.9.0 is not needed
 -----> Using partially matching sandbox directory: halcyon-tutorial-1.0 (becfd1b)
