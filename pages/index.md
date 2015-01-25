@@ -87,9 +87,9 @@ Need commercial support?  Contact the [author](#about) directly.
 
 - Take a look at the [Halcyon shootout](/shootout/) for a comparison of build times and sizes across most Haskell web frameworks.
 
-All example apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+Each example app can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
 
-Additionally, all example apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+Additionally, each example app can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
 
 
 <aside>

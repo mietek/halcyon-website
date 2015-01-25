@@ -34,9 +34,9 @@ These examples are intended to compare build times and sizes across most Haskell
 <li><a href="#hello-yesod"><i>hello-yesod</i></a></li>
 </ul></nav></div>
 
-All example apps can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+Each example app can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
 
-Additionally, all example apps can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
+Additionally, each example app can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
 
 
 Results
@@ -54,7 +54,7 @@ Results
 
 The test simulates installing each example for the first time, by forcing Halcyon to rebuild the sandbox and the app from scratch.  GHC and Cabal are restored from local cache.
 
-The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all examples on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
+The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all example apps on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
 
 The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, use the included test script:
 
