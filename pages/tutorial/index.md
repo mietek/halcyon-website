@@ -26,7 +26,7 @@ This tutorial shows how to develop a simple Haskell web app using Halcyon.
 Set up
 ------
 
-Halcyon can be installed by cloning the [_git_ repository](https://github.com/mietek/halcyon), or by running the [setup script](https://github.com/mietek/halcyon/blob/master/setup.sh), which also installs the necessary OS packages and sets up the environment.
+Halcyon can be installed by cloning the [Halcyon source repository](https://github.com/mietek/halcyon), or by running the [setup script](https://github.com/mietek/halcyon/blob/master/setup.sh), which also installs the necessary OS packages and sets up the environment.
 
 The tutorial assumes you’re using a Linux system with at least 4 GB RAM and GNU _bash_ 4 or newer.
 
@@ -54,15 +54,17 @@ $ which halcyon
 
 ### Options
 
-You can change where Halcyon is installed by setting the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the script.
-
-If you don’t want your `.bash_profile` to be extended, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the script.  You’ll then need to activate Halcyon manually before each use:
+If you don’t want your `.bash_profile` to be extended, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the setup script.  You’ll then need to activate Halcyon manually before each use:
 
 ```
 $ source <( /app/halcyon/halcyon paths )
 ```
 
-Halcyon installs development tools and other dependencies in the _base directory,_ which defaults to `/app`.  Changing this path isn’t recommended, because it’ll require all dependencies to be built from scratch.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the script.
+You can change where Halcyon is installed by setting the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script.
+
+<div class="pre-like"><p>
+_Halcyon installs development tools and other dependencies in the _base directory,_ which defaults to `/app`.  Changing this path isn’t recommended, because it’ll require all dependencies to be built from scratch.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script._
+</p></div>
 
 
 Install GHC and Cabal
@@ -133,7 +135,7 @@ The [tutorial app](https://github.com/mietek/halcyon-tutorial) is a simple web s
 
 The app includes a Cabal _package description file,_ [`halcyon-tutorial.cabal`](https://github.com/mietek/halcyon-tutorial/blob/master/halcyon-tutorial.cabal) file, used to declare dependencies, and a Halcyon _constraints file,_ [`.halcyon/constraints`](https://github.com/mietek/halcyon-tutorial/blob/master/.halcyon/constraints) file, used to declare version constraints.
 
-Use the Halcyon [`install`](/reference/#halcyon-install) command to install the app directly from the _git_ repository:
+Use the Halcyon [`install`](/reference/#halcyon-install) command to install the app directly from the [_halcyon-tutorial_ source repository](https://github.com/mietek/halcyon-tutorial):
 
 <div class="toggle">
 <a class="toggle-button" data-target="install-the-app-log" href="" title="Toggle">Toggle</a>
