@@ -920,7 +920,7 @@ $ halcyon install --purge-cache
 ```
 </div>
 
-In this step, Halcyon builds the sandbox and the app again.
+In this step, Halcyon restores a GHC directory and a Cabal directory from public storage, and builds the sandbox and the app again.
 
 All downloaded and newly-created archives are uploaded to your private storage:
 
