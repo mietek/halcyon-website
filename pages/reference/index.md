@@ -518,20 +518,20 @@ Private storage options
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | string, optional
+> Type:                | 20-character string, optional
 > Command-line option: | `--aws-access-key-id=...`
 
-Amazon Web Services username, used to authenticate S3 requests.
+Amazon Web Services access key ID, used to authenticate S3 requests.
 
 
 ### `HALCYON_AWS_SECRET_ACCESS_KEY`
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | string, optional
+> Type:                | 40-character string, optional
 > Command-line option: | `--aws-secret-access-key=...`
 
-Amazon Web Services password, used to authenticate S3 requests.
+Amazon Web Services secret access key, used to authenticate S3 requests.
 
 
 ### `HALCYON_S3_BUCKET`
