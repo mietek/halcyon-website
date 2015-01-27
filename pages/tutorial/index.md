@@ -744,9 +744,9 @@ $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 Set up private storage
 ----------------------
 
-Halcyon can use _private storage_ as well as public storage.  Private storage is an external cache for the apps and dependencies you build.
+Halcyon can use _private storage_ as well as public storage.  Private storage is an external cache for the apps and dependencies you build, and a method for sharing build products between multiple machines.
 
-By using private storage, you can share archives between multiple machines, and avoid running into resource limits on your installation targets.
+By using private storage, you can perform builds on a fast machine, and share build products with your installation targets.
 
 To use private storage, you’ll need to:
 
@@ -783,7 +783,7 @@ $ export HALCYON_S3_ACL=public-read
 Use private storage
 -------------------
 
-Let’s force Halcyon to build the sandbox directory again, in order to populate your private storage.
+Let’s build a sandbox directory for your app again, in order to populate your private storage.
 
 Remove the existing GHC, Cabal, and sandbox directories:
 
@@ -791,7 +791,7 @@ Remove the existing GHC, Cabal, and sandbox directories:
 $ rm -rf /app/ghc /app/cabal /app/sandbox
 ```
 
-Install the app again, using the [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) option to empty the cache directory before building:
+Install the app again, using the [`HALCYON_PURGE_CACHE`](/reference/#halcyon_purge_cache) option to delete the existing sandbox directory archive from the cache:
 
 <div class="toggle">
 <a class="toggle-button" data-target="use-private-storage-log" href="" title="Toggle">Toggle</a>
@@ -920,7 +920,23 @@ $ halcyon install --purge-cache
 ```
 </div>
 
+> ---------------------|---
+> _Expected time:_     | _90–120 seconds_
+
 In this step, Halcyon restores the GHC and Cabal directories from public storage, builds and archives a sandbox based on a partially-matching sandbox directory, performs an incremental build, and installs the app again.
+
+Once again, your app is now ready to run:
+
+```
+$ halcyon-tutorial
+```
+```
+$ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
+[{"contents":"Hello, world!","dateTime":"2015-01-15T09:32:14+00:00"}]
+```
+
+
+### Options
 
 All downloaded and newly-created archives are uploaded to your private storage:
 
@@ -934,9 +950,6 @@ linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0
 linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
 linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.4.tar.gz
 ```
-
-
-### Options
 
 If you want to avoid downloading any archives from public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1` before populating your private storage.
 
