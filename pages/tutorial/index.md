@@ -925,6 +925,8 @@ $ halcyon install --purge-cache
 
 In this step, Halcyon restores the GHC and Cabal directories from public storage, builds and archives a sandbox based on a partially-matching sandbox directory, performs an incremental build, and installs the app again.
 
+All downloaded and newly-created archives are uploaded to your private storage.
+
 Once again, your app is now ready to run:
 
 ```
@@ -937,19 +939,6 @@ $ curl -X POST http://localhost:8080/notes -d '{ "contents": "Hello, world!" }'
 
 
 ### Options
-
-All downloaded and newly-created archives are uploaded to your private storage:
-
-```
-$ s3_list example-bucket linux-ubuntu-14
-       Listing s3://example-bucket/?prefix=linux-ubuntu-14... done
-linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-build-halcyon-tutorial-1.0.tar.gz
-linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz
-linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.constraints
-linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz
-linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
-linux-ubuntu-14.04-x86_64/halcyon-ghc-7.8.4.tar.gz
-```
 
 If you want to avoid downloading any archives from public storage, set [`HALCYON_NO_PUBLIC_STORAGE`](/reference/#halcyon_no_public_storage) to `1` before populating your private storage.
 
