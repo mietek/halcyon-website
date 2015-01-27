@@ -56,7 +56,7 @@ The test simulates installing each example for the first time, by forcing Halcyo
 
 The times given are _mean [low, high]_, calculated across 10 test runs.  Each test run consists of building all example apps on an 8 GB DigitalOcean droplet, running Ubuntu 14.04.
 
-The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, use the included test script:
+The raw results are available as a [CSV file](https://gist.github.com/mietek/c37e9fba6290a96a926e).  To reproduce the results, use the [Halcyon test script](https://github.com/mietek/halcyon/blob/master/bin/test):
 
 ```
 $ halcyon/bin/test shootout --bench
