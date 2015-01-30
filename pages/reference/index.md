@@ -236,7 +236,7 @@ The flags must be separated by whitespace.
 **Note:**  Any `--prefix=...` flags will be ignored.
 
 <div class="pre-like"><p>
-_See the [Haskell Language](/examples/#haskell-language) source code for an example of using extra configure flags._
+_See the [Try Haste](/examples/#try-haste) source code for an example of using extra configure flags._
 </p></div>
 
 
@@ -779,6 +779,10 @@ Additional flags for `cabal install --dependencies-only`.
 The flags must be separated by whitespace.
 
 **Note:**  Any `--prefix=...` flags will be ignored.
+
+<div class="pre-like"><p>
+_See the [Haskell Language](/examples/#haskell-language) source code for an example of using extra configure flags._
+</p></div>
 
 
 ### `HALCYON_SANDBOX_SOURCES`
