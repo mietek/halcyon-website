@@ -604,7 +604,7 @@ GHC options
 ### `HALCYON_GHC_VERSION`
 
 > ---------------------|---
-> Default value:       | `7.8.3`
+> Default value:       | `7.8.4`
 > Type:                | version
 > Command-line option: | `--ghc-version=...`
 
