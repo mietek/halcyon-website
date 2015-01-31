@@ -271,7 +271,7 @@ Script to be executed when building the app, after `cabal build`.
 > Type:                | `0` or `1`
 > Command-line option: | `--app-rebuild`
 
-Forces Halcyon to build the app from scratch, reinstalling all [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps) and [`HALCYON_EXTRA_OS_PACKAGES`](#halcyon_extra_os_packages).
+Forces Halcyon to build the app from scratch, which includes reinstalling all [`HALCYON_EXTRA_APPS`](#halcyon_extra_apps) and [`HALCYON_EXTRA_OS_PACKAGES`](#halcyon_extra_os_packages).
 
 
 ### `HALCYON_APP_RECONFIGURE`
@@ -655,7 +655,7 @@ Script to execute when building the GHC directory, after GHC is installed.
 > Type:                | `0` or `1`
 > Command-line option: | `--ghc-rebuild`
 
-Forces Halcyon to rebuild the GHC directory from scratch, installing GHC again.
+Forces Halcyon to rebuild the GHC directory from scratch by installing GHC again.
 
 
 Cabal options
@@ -692,7 +692,7 @@ Name and URL of the Cabal repository to be referenced in the Halcyon `cabal.conf
 
 The value must be in `remote-repo` format.
 
-**Note:**  HTTPS URLs aren’t supported.  See Cabal issue [`#936`](https://github.com/haskell/cabal/issues/936) for details.
+**Note:**  Cabal doesn’t support HTTPS URLs.  See Cabal issue [`#936`](https://github.com/haskell/cabal/issues/936) for details.
 
 
 ### `HALCYON_CABAL_PRE_BUILD_HOOK`
@@ -750,7 +750,7 @@ Script to execute when updating the Cabal directory, after `cabal update`.
 > Type:                | `0` or `1`
 > Command-line option: | `--cabal-rebuild`
 
-Forces Halcyon to rebuild the Cabal directory from scratch, bootstrapping _cabal-install_ again.
+Forces Halcyon to rebuild the Cabal directory from scratch by bootstrapping _cabal-install_ again.
 
 
 ### `HALCYON_CABAL_UPDATE`
@@ -760,7 +760,7 @@ Forces Halcyon to rebuild the Cabal directory from scratch, bootstrapping _cabal
 > Type:                | `0` or `1`
 > Command-line option: | `--cabal-update`
 
-Forces Halcyon to update the Cabal directory, running `cabal update` again.
+Forces Halcyon to update the Cabal directory by running `cabal update` again.
 
 
 Sandbox options
@@ -903,7 +903,7 @@ _See the [Try Haskell](/examples/#try-haskell) source code for an example of usi
 > Type:                | `0` or `1`
 > Command-line option: | `--sandbox-rebuild`
 
-Forces Halcyon to rebuild the sandbox directory and the app from scratch, reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
+Forces Halcyon to rebuild the sandbox directory and the app from scratch, which includes reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
 
 
 Self-update options
