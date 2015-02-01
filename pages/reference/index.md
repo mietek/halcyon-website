@@ -221,6 +221,28 @@ Intended to support upgrading dependencies.
 **Note:**  Ignoring only certain constraints isn’t supported.  See Cabal issue [`#2265`](https://github.com/haskell/cabal/issues/2265) for details.
 
 
+### `HALCYON_EXTRA_SOURCE_HASH_IGNORE`
+
+> ---------------------|---
+> Default value:       | _none_
+> Type:                | strings or file, optional
+> Command-line option: | `--extra-source-hash-ignore=...`
+> Magic file:          | `.halcyon/extra-source-hash-ignore`
+
+Additional files or directories to be ignored when calculating the source hash.
+
+By default, Halcyon ignores:
+
+- `.git`
+- `.gitmodules`
+- `.ghc`
+- `.cabal`
+- `.cabal-sandbox`
+- `cabal.sandbox.config`
+
+The files or directories must be separated by whitespace, and can be specified as names or `find -name` patterns.
+
+
 ### `HALCYON_EXTRA_CONFIGURE_FLAGS`
 
 > ---------------------|---
