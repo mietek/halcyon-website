@@ -55,7 +55,8 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 - Halcyon has been used in production since [June 2014](/examples/#circuithub).
 
 - Halcyon includes solutions for many _cabal-install_ issues, such as [`#220`](https://github.com/haskell/cabal/issues/220),
-[`#571`](https://github.com/haskell/cabal/issues/571), [`#713`](https://github.com/haskell/cabal/issues/713), [`#779`](https://github.com/haskell/cabal/issues/779), [`#784`](https://github.com/haskell/cabal/issues/784), [`#1534`](https://github.com/haskell/cabal/issues/1534), [`#1883`](https://github.com/haskell/cabal/issues/1883), [`#1908`](https://github.com/haskell/cabal/issues/1908), [`#1915`](https://github.com/haskell/cabal/issues/1915), [`#1992`](https://github.com/haskell/cabal/issues/1992), [`#2189`](https://github.com/haskell/cabal/issues/2189), [`#2265`](https://github.com/haskell/cabal/issues/2265), and [`#2309`](https://github.com/haskell/cabal/issues/2309).
+[`#571`](https://github.com/haskell/cabal/issues/571), [`#713`](https://github.com/haskell/cabal/issues/713), [`#779`](https://github.com/haskell/cabal/issues/779), [`#784`](https://github.com/haskell/cabal/issues/784), [`#1534`](https://github.com/haskell/cabal/issues/1534), [`#1883`](https://github.com/haskell/cabal/issues/1883), [`#1908`](https://github.com/haskell/cabal/issues/1908), [`#1915`](https://github.com/haskell/cabal/issues/1915), [`#1992`](https://github.com/haskell/cabal/issues/1992), [`#2189`](https://github.com/haskell/cabal/issues/2189), [`#2265`](https://github.com/haskell/cabal/issues/2265), [`#2309`](https://github.com/haskell/cabal/issues/2309), and
+[`#2400`](https://github.com/haskell/cabal/issues/2400).
 
 
 #### Powerful
