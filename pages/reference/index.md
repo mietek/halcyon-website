@@ -899,7 +899,7 @@ _See the [Haskell Language](/examples/#haskell-language) source code for an exam
 > Magic file:          | `.halcyon/sandbox-pre-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
-Script to execute when building the sandbox directory, before `cabal install`.
+Script to execute when building the sandbox directory, before `cabal install --dependencies-only`.
 
 
 ### `HALCYON_SANDBOX_POST_BUILD_HOOK`
@@ -911,7 +911,7 @@ Script to execute when building the sandbox directory, before `cabal install`.
 > Magic file:          | `.halcyon/sandbox-post-build-hook`
 > Script arguments:    | _`tag source_dir constraints`_
 
-Script to execute when building the sandbox directory, after `cabal install`.
+Script to execute when building the sandbox directory, after `cabal install --dependencies-only`.
 
 <div class="pre-like"><p>
 _See the [Try Haskell](/examples/#try-haskell) source code for an example of using a sandbox post-build hook._
