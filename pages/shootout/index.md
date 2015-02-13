@@ -44,11 +44,6 @@ Results
 
 <div class="chart" id="shootout-chart"></div>
 
-<aside>
-<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
-<blockquote>_“Check out [Miëtek’s](/#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
-<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
-</aside>
 
 #### Comments
 
@@ -73,6 +68,13 @@ The output of the test script includes:
 - App install time
 - Sandbox size
 - App size
+
+
+<aside>
+<a class="micro face joe-nelson" href="https://twitter.com/begriffs/status/522811714325475329"></a>
+<blockquote>_“Check out [Miëtek’s](/#about) [Haskell on Heroku](https://haskellonheroku.com/) buildpack — it dynamically selects a pre-made Cabal sandbox for build speed.”_</blockquote>
+<p>[— Joe Nelson](https://twitter.com/begriffs/status/522811714325475329), [inspiration](https://begriffs.com/posts/2013-08-22-haskell-on-heroku-omg-lets-get-this.html) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+</aside>
 
 
 _hello-apiary_
