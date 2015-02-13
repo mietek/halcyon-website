@@ -82,6 +82,13 @@ Please report any problems with Halcyon on the [issue tracker](https://github.co
 Need commercial support?  Contact the [author](#about) directly.
 
 
+<aside>
+<a class="micro face joe-nash" href="https://twitter.com/jna_sh/status/565143953369214978"></a>
+<blockquote>_“Halcyon is wonderful. Like, my god. Thank you [Miëtek](#about).”_</blockquote>
+<p>[— Joe Nash](https://twitter.com/jna_sh/status/565143953369214978), Haskell enthusiast</p>
+</aside>
+
+
 ### Examples
 
 - See the [Halcyon examples](/examples/) for a demonstration of advanced Halcyon features.
