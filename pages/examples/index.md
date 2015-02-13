@@ -110,7 +110,7 @@ Using Halcyon in production since July 2014.
 <aside>
 <a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
 <blockquote>_“[Miëtek’s](/#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](https://howistart.org/) fast and simple!  Thanks!”_</blockquote>
-<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](https://howistart.org/) author</p>
+<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), author of [How I Start](https://howistart.org/)</p>
 </aside>
 
 
@@ -232,7 +232,7 @@ Try Idris
 <aside>
 <a class="micro face brian-mckenna" href="https://twitter.com/puffnfresh/status/527902645928087553"></a>
 <blockquote>_“[Miëtek](/#about), you are absolutely amazing. Thank you!”_</blockquote>
-<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), [Try Idris](http://tryidris.org/) author and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
+<p>[— Brian McKenna](https://twitter.com/puffnfresh/status/527902645928087553), author of [Try Idris](http://tryidris.org/) and [inspiration](http://brianmckenna.org/blog/haskell_buildpack_heroku) for [Haskell on Heroku](https://haskellonheroku.com/)</p>
 </aside>
 
 
@@ -275,7 +275,7 @@ Try PureScript
 <aside>
 <a class="micro face phil-freeman" href="https://twitter.com/paf31/status/527900905900085248"></a>
 <blockquote>_“[Miëtek’s](/#about) [Haskell on Heroku](https://haskellonheroku.com/) looks excellent.”_</blockquote>
-<p>[— Phil Freeman](https://twitter.com/paf31/status/527900905900085248), [PureScript](http://purescript.org/) and [Try PureScript](http://try.purescript.org/) author</p>
+<p>[— Phil Freeman](https://twitter.com/paf31/status/527900905900085248), author of [PureScript](http://purescript.org/) and [Try PureScript](http://try.purescript.org/)</p>
 </aside>
 
 
@@ -323,10 +323,10 @@ Try Haste
 <aside>
 <a class="micro face anton-ekblad" href="https://github.com/valderman/haste-compiler"></a>
 <blockquote>_“Building Haste yourself is not recommended.  Why jump through hoops if you don't have to?”_</blockquote>
-<p>[— Anton Ekblad](https://github.com/valderman/haste-compiler), [Haste](http://haste-lang.org/) author</p>
+<p>[— Anton Ekblad](https://github.com/valderman/haste-compiler), author of [Haste](http://haste-lang.org/)</p>
 <a class="micro face alberto-g-corona" href="https://twitter.com/AGoCorona/status/527731803432714240"></a>
 <blockquote>_“The app needs GHC and Haste running in the instance to compile programs.  That is the difficult thing.”_</blockquote>
-<p>[— Alberto G. Corona](https://twitter.com/AGoCorona/status/527731803432714240), [MFlow](https://github.com/agocorona/MFlow) and [Try Haste](https://tryplayg.herokuapp.com/) author</p>
+<p>[— Alberto G. Corona](https://twitter.com/AGoCorona/status/527731803432714240), author of [MFlow](https://github.com/agocorona/MFlow) and [Try Haste](https://tryplayg.herokuapp.com/)</p>
 </aside>
 
 

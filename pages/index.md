@@ -69,7 +69,7 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
 <aside>
 <a class="micro face tristan-sloughter" href="https://twitter.com/t_sloughter/status/539168929131003904"></a>
 <blockquote>_“[Miëtek’s](#about) [Haskell on Heroku](https://haskellonheroku.com/) and Halcyon has made deploying [How I Start](/examples/#how-i-start) fast and simple!  Thanks!”_</blockquote>
-<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), [How I Start](/examples/#how-i-start) author</p>
+<p>[— Tristan Sloughter](https://twitter.com/t_sloughter/status/539168929131003904), author of [How I Start](/examples/#how-i-start)</p>
 </aside>
 
 
