@@ -207,20 +207,6 @@ _The source code of each [example app](/examples/) includes a constraints magic 
 </p></div>
 
 
-### `HALCYON_IGNORE_ALL_CONSTRAINTS`
-
-> ---------------------|---
-> Default value:       | `0`
-> Type:                | `0` or `1`
-> Command-line option: | `--ignore-all-constraints`
-
-Forces Halcyon to ignore any version constraints declared by the app, and use the newest versions of all required Cabal packages.
-
-Intended to support upgrading dependencies.
-
-**Note:**  Ignoring only certain constraints isn’t supported.  See Cabal issue [`#2265`](https://github.com/haskell/cabal/issues/2265) for details.
-
-
 ### `HALCYON_EXTRA_SOURCE_HASH_IGNORE`
 
 > ---------------------|---
@@ -304,6 +290,20 @@ Forces Halcyon to build the app from scratch, which includes reinstalling all [`
 > Command-line option: | `--app-reconfigure`
 
 Forces Halcyon to run `cabal configure` before building the app.
+
+
+### `HALCYON_IGNORE_ALL_CONSTRAINTS`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--ignore-all-constraints`
+
+Forces Halcyon to ignore any version constraints declared by the app, and use the newest versions of all required Cabal packages.
+
+Intended to support upgrading dependencies.
+
+**Note:**  Ignoring only certain constraints isn’t supported.  See Cabal issue [`#2265`](https://github.com/haskell/cabal/issues/2265) for details.
 
 
 ### `HALCYON_NO_BUILD`
