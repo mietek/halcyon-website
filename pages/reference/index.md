@@ -703,16 +703,16 @@ Supported versions include:
 - [_cabal-install_ 1.20.0.0](https://haskell.org/cabal/release/cabal-install-1.20.0.0/)
 
 
-### `HALCYON_CABAL_REPO`
+### `HALCYON_CABAL_REMOTE_REPO`
 
 > ---------------------|---
-> Default value:       | `Hackage:http://hackage.haskell.org/packages/archive`
-> Type:                | string
-> Command-line option: | `--cabal-repo=...`
+> Default value:       | `hackage:http://hackage.haskell.org/packages/archive`
+> Type:                | string or file
+> Command-line option: | `--cabal-remote-repo=...`
 
 Name and URL of the Cabal repository to be referenced in the Halcyon `cabal.config` file.
 
-The value must be in `remote-repo` format.
+The value must be in Cabal `remote-repo` format.
 
 **Note:**  Cabal doesn’t support HTTPS URLs.  See Cabal issue [`#936`](https://github.com/haskell/cabal/issues/936) for details.
 
