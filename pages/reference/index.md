@@ -709,6 +709,7 @@ Supported versions include:
 > Default value:       | `hackage:http://hackage.haskell.org/packages/archive`
 > Type:                | string or file
 > Command-line option: | `--cabal-remote-repo=...`
+> Magic file:          | `.halcyon/cabal-remote-repo`
 
 Name and URL of the Cabal repository to be referenced in the Halcyon `cabal.config` file.
 
