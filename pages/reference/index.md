@@ -192,7 +192,7 @@ Build-time options
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings, file, or directory, optional
+> Type:                | string, file, or directory, optional
 > Command-line option: | `--constraints=...`
 > Magic file:          | `.halcyon/constraints`
 
@@ -225,7 +225,7 @@ Intended to support upgrading dependencies.
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--extra-source-hash-ignore=...`
 > Magic file:          | `.halcyon/extra-source-hash-ignore`
 
@@ -247,7 +247,7 @@ The files or directories must be separated by whitespace, and can be specified a
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--extra-configure-flags=...`
 > Magic file:          | `.halcyon/extra-configure-flags`
 
@@ -349,7 +349,7 @@ Install-time options
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--extra-apps=...`
 > Magic file:          | `.halcyon/extra-apps`
 
@@ -362,7 +362,7 @@ The apps must be separated by whitespace, and can be specified as for [`halcyon 
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings, file, or directory, optional
+> Type:                | string, file, or directory, optional
 > Command-line option: | `--extra-apps-constraints=...`
 > Magic file:          | `.halcyon/extra-apps-constraints`
 
@@ -377,7 +377,7 @@ When a directory is specified, it must contain constraints files named _`name-ve
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--extra-data-files=...`
 > Magic file:          | `.halcyon/extra-data-files`
 
@@ -398,7 +398,7 @@ _See the [How I Start](/examples/#how-i-start) source code for an example of usi
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--extra-os-packages=...`
 > Magic file:          | `.halcyon/extra-os-packages`
 
@@ -792,7 +792,7 @@ Sandbox options
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--sandbox-extra-configure-flags=...`
 > Magic file:          | `.halcyon/sandbox-extra-configure-flags`
 
@@ -811,7 +811,7 @@ _See the [Haskell Language](/examples/#haskell-language) source code for an exam
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--sandbox-sources=...`
 > Magic file:          | `.halcyon/sandbox-sources`
 
@@ -833,7 +833,7 @@ _See the [Try Haskell](/examples/#try-haskell) source code for an example of usi
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--sandbox-extra-apps=...`
 > Magic file:          | `.halcyon/sandbox-extra-apps`
 
@@ -854,7 +854,7 @@ _See the [Haskell Language](/examples/#haskell-language) source code for an exam
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings, file, or directory, optional
+> Type:                | string, file, or directory, optional
 > Command-line option: | `--sandbox-extra-apps-constraints=...`
 > Magic file:          | `.halcyon/sandbox-extra-apps-constraints`
 
@@ -873,7 +873,7 @@ _See the [Haskell Language](/examples/#haskell-language) source code for an exam
 
 > ---------------------|---
 > Default value:       | _none_
-> Type:                | strings or file, optional
+> Type:                | string or file, optional
 > Command-line option: | `--sandbox-extra-os-packages=...`
 > Magic file:          | `.halcyon/sandbox-extra-os-packages`
 
