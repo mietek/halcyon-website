@@ -22,16 +22,16 @@ These examples are intended to demonstrate advanced Halcyon features.
 <div class="gallery-background">
 <div class="wrapper">
 <div class="gallery-frame" id="examples-gallery">
-<div class="gallery-contents">
-<a href="#circuithub" class="gallery-item" id="item-circuithub">CircuitHub</a>
-<a href="#how-i-start" class="gallery-item" id="item-howistart">How I Start</a>
-<a href="#haskell-language" class="gallery-item" id="item-hl">Haskell Language</a>
-<a href="#try-haskell" class="gallery-item" id="item-tryhaskell">Try Haskell</a>
-<a href="#try-idris" class="gallery-item" id="item-tryidris">Try Idris</a>
-<a href="#try-purescript" class="gallery-item" id="item-trypurescript">Try PureScript</a>
-<a href="#try-haste" class="gallery-item" id="item-tryhaste">Try Haste</a>
-<a href="#gitit" class="gallery-item" id="item-gitit">Gitit</a>
-</div></div></div></div>
+<ul class="gallery-contents">
+<li><a href="#circuithub" class="gallery-item" id="item-circuithub">CircuitHub</a></li>
+<li><a href="#how-i-start" class="gallery-item" id="item-howistart">How I Start</a></li>
+<li><a href="#haskell-language" class="gallery-item" id="item-hl">Haskell Language</a></li>
+<li><a href="#try-haskell" class="gallery-item" id="item-tryhaskell">Try Haskell</a></li>
+<li><a href="#try-idris" class="gallery-item" id="item-tryidris">Try Idris</a></li>
+<li><a href="#try-purescript" class="gallery-item" id="item-trypurescript">Try PureScript</a></li>
+<li><a href="#try-haste" class="gallery-item" id="item-tryhaste">Try Haste</a></li>
+<li><a href="#gitit" class="gallery-item" id="item-gitit">Gitit</a></li>
+</ul></div></div></div>
 <div class="wrapper"><section class="level1">
 
 <div id="gallery-links"><nav>

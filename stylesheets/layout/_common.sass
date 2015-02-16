@@ -67,11 +67,12 @@ div.gallery-frame
   overflow-y: hidden
   -webkit-overflow-scrolling: touch
 
-div.gallery-contents
+ul.gallery-contents
   background-color: $white
   display: flex
+  width: $gallery-size * 100%
 
-div.gallery-frame a.gallery-item
+ul.gallery-contents li
   width: (1/$gallery-size) * 100%
 
 
@@ -84,7 +85,6 @@ a.gallery-item
   border-right: 1px rgba($object-color, 0.2) solid
   border-bottom: 1px rgba($object-color, 0.2) solid
   background-size: cover
-  flex: 1
   transition: ease(opacity, 1, 0)
   position: relative
   &:last-of-type
