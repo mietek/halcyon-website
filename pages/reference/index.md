@@ -203,7 +203,7 @@ Each constraint must be in _`name`_`-`_`version`_ format, referencing a Cabal pa
 When a directory is specified, it must contain a constraints file named _`name-version`_`.constraints`, referencing the app name and version number.
 
 <div class="pre-like"><p>
-_The source code of each [example app](/examples/) includes a constraints magic file._
+_The source code of each [example app](/examples/) includes a constraints file._
 </p></div>
 
 
