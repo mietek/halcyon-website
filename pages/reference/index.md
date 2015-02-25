@@ -299,7 +299,7 @@ Forces Halcyon to run `cabal configure` before building the app.
 > Type:                | `0` or `1`
 > Command-line option: | `--ignore-all-constraints`
 
-Forces Halcyon to ignore any version constraints declared by the app, and use the newest versions of all required Cabal packages.
+Forces Halcyon to ignore any version constraints declared with [`HALCYON_CONSTRAINTS`](#halcyon_constraints) or in a `cabal.config` file, and use the newest versions of all required Cabal packages.
 
 Intended to support upgrading dependencies.
 
