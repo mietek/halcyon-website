@@ -39,8 +39,8 @@ $ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
 -----> Creating base directory: /app
 -----> Installing OS packages
        ...
------> Installing Halcyon... done, 9d37342
------> Installing bashmenot... done, 8bd8ea3
+-----> Installing Halcyon... done, fd5fc7d
+-----> Installing bashmenot... done, 5165edd
 -----> Extending .bash_profile
 ```
 
@@ -87,7 +87,7 @@ $ halcyon install
        Extracting halcyon-ghc-7.8.4.tar.gz... done, 701MB
 
 -----> Locating Cabal directories
-       Listing https://halcyon.global.ssl.fastly.net/... done
+       Listing https://halcyon.global.ssl.fastly.net/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
 -----> Restoring Cabal directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz... done
        Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz... done, 180MB
@@ -145,24 +145,24 @@ $ halcyon install https://github.com/mietek/halcyon-tutorial
        halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
        halcyon-ghc-7.8.4.tar.gz
 
------> Cloning https://github.com/mietek/halcyon-tutorial... done, af1461f
+-----> Cloning https://github.com/mietek/halcyon-tutorial... done, f1ccdd9
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **0c985ba**
+       Source hash:                              **b90bb47**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done
-       Extracting halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz... done, 8.8MB
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b90bb47-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-install-b90bb47-halcyon-tutorial-1.0.tar.gz... done, 8.8MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
 -----> App installed:                            **halcyon-tutorial-1.0**
 
 -----> Examining cache changes
-       + halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-b90bb47-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
 
@@ -270,19 +270,19 @@ $ halcyon install
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **56bdea7**
+       Source hash:                              **e682845**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-e682845-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **56bdea7**
-       Constraints hash:                         **becfd1b**
-       Magic hash:                               **c7b5b77**
+       Source hash:                              **e682845**
+       Constraints hash:                         **f458aa8**
+       Magic hash:                               **3bffeae**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
@@ -293,8 +293,8 @@ $ halcyon install
 -----> Using existing Cabal directory
 
 -----> Restoring sandbox directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done
-       Extracting halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done, 140MB
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz... done, 140MB
 
 -----> Restoring build directory
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-build-halcyon-tutorial-1.0.tar.gz... done
@@ -307,17 +307,17 @@ $ halcyon install
        [1 of 1] Compiling Main             ( Main.hs, dist/build/halcyon-tutorial/halcyon-tutorial-tmp/Main.o )
        Linking dist/build/halcyon-tutorial/halcyon-tutorial ...
 -----> App built, 12MB
-       Stripping app... done, 9.4MB
+       Stripping app... done, 9.8MB
 -----> Archiving build directory
        Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-e682845-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 8.8MB
 -----> Archiving install directory
-       Creating halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-e682845-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
@@ -325,9 +325,9 @@ $ halcyon install
 
 -----> Examining cache changes
        + halcyon-build-halcyon-tutorial-1.0.tar.gz
-       - halcyon-install-0c985ba-halcyon-tutorial-1.0.tar.gz
-       + halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz
-       + halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-b90bb47-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-e682845-halcyon-tutorial-1.0.tar.gz
+       + halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
 
@@ -398,25 +398,25 @@ $ halcyon install
        halcyon-build-halcyon-tutorial-1.0.tar.gz
        halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
        halcyon-ghc-7.8.4.tar.gz
-       halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz
-       halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+       halcyon-install-e682845-halcyon-tutorial-1.0.tar.gz
+       halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz
 
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **1382694**
+       Source hash:                              **becc434**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-becc434-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **1382694**
-       Constraints hash:                         **becfd1b**
-       Magic hash:                               **c7b5b77**
+       Source hash:                              **becc434**
+       Constraints hash:                         **f458aa8**
+       Magic hash:                               **3bffeae**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
@@ -429,10 +429,10 @@ $ halcyon install
 -----> Using existing sandbox directory
 
 -----> Restoring build directory
-       Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.4MB
+       Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.8MB
 -----> Examining source changes
-       * Main.hs
        * halcyon-tutorial.cabal
+       * Main.hs
 -----> Configuring app
 -----> Building app
        Building halcyon-tutorial-1.0...
@@ -440,17 +440,17 @@ $ halcyon install
        [1 of 1] Compiling Main             ( Main.hs, dist/build/halcyon-tutorial/halcyon-tutorial-tmp/Main.o )
        Linking dist/build/halcyon-tutorial/halcyon-tutorial ...
 -----> App built, 12MB
-       Stripping app... done, 9.4MB
+       Stripping app... done, 9.8MB
 -----> Archiving build directory
        Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.1MB
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-becc434-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 8.8MB
 -----> Archiving install directory
-       Creating halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-becc434-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
@@ -458,8 +458,8 @@ $ halcyon install
 
 -----> Examining cache changes
        * halcyon-build-halcyon-tutorial-1.0.tar.gz
-       - halcyon-install-56bdea7-halcyon-tutorial-1.0.tar.gz
-       + halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-becc434-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-e682845-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
 
@@ -528,13 +528,13 @@ $ halcyon install
        halcyon-build-halcyon-tutorial-1.0.tar.gz
        halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
        halcyon-ghc-7.8.4.tar.gz
-       halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
-       halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+       halcyon-install-becc434-halcyon-tutorial-1.0.tar.gz
+       halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz
 
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **bf9e916**
+       Source hash:                              **1300f53**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
@@ -544,9 +544,9 @@ $ halcyon install
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **bf9e916**
-       Constraints hash:                         **becfd1b**
-       Magic hash:                               **c7b5b77**
+       Source hash:                              **1300f53**
+       Constraints hash:                         **f458aa8**
+       Magic hash:                               **3bffeae**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
@@ -568,10 +568,10 @@ $ halcyon install
         integer-gmp-0.5.1.0
 
 -----> Restoring build directory
-       Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.4MB
+       Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.8MB
 -----> Examining source changes
-       * Main.hs
        * halcyon-tutorial.cabal
+       * Main.hs
 -----> Configuring app
        ...
        Could not resolve dependencies:
@@ -618,25 +618,25 @@ $ halcyon install
        halcyon-build-halcyon-tutorial-1.0.tar.gz
        halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
        halcyon-ghc-7.8.4.tar.gz
-       halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
-       halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+       halcyon-install-becc434-halcyon-tutorial-1.0.tar.gz
+       halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz
 
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **b28289b**
+       Source hash:                              **fba454f**
        External storage:                         **public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **b28289b**
-       Constraints hash:                         **3ad1ba3**
-       Magic hash:                               **c23e21c**
+       Source hash:                              **fba454f**
+       Constraints hash:                         **0551a64**
+       Magic hash:                               **4877c9d**
        External storage:                         **public**
        GHC version:                              **7.8.4**
        Cabal version:                            **1.20.0.3**
@@ -647,26 +647,22 @@ $ halcyon install
 -----> Using existing Cabal directory
 
 -----> Restoring sandbox directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Locating sandbox directories
-       Listing https://halcyon.global.ssl.fastly.net/... done
------> Examining partially matching sandbox directories
+       Listing https://halcyon.global.ssl.fastly.net/?prefix=linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-... done
+-----> Examining partially-matching sandbox directories
        ...
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.constraints... done
------> Scoring partially matching sandbox directories
-       Ignoring hello-miku-1.0 (3c81d66) as HUnit-1.2.5.2 is not needed
-       Ignoring hello-snap-1.0 (4af96d8) as HUnit-1.2.5.2 is not needed
-       Ignoring hello-wheb-1.0 (4c4bfdc) as SHA-1.6.4.1 is not needed
-            41 hello-wai-1.0 (028a0e6)
-       Ignoring hello-scotty-1.0 (33c011e) as data-default-0.5.3 is not needed
-       Ignoring hello-happstack-1.0 (47c3e8d) as base-unicode-symbols-0.2.2.4 is not needed
-       Ignoring hello-spock-1.0 (0331829) as QuickCheck-2.7.6 is not needed
-           101 halcyon-tutorial-1.0 (becfd1b)
-       Ignoring hello-yesod-1.0 (dac4ebf) as asn1-encoding-0.9.0 is not needed
------> Using partially matching sandbox directory: halcyon-tutorial-1.0 (becfd1b)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.constraints... done
+-----> Scoring partially-matching sandbox directories
+       Ignoring hello-yesod-1.0 (1a1d740) as asn1-encoding-0.9.0 is not needed
+       Ignoring hello-happstack-1.0 (3b0b768) as extensible-exceptions-0.1.1.4 is not needed
+       Ignoring hello-scotty-1.0 (110abd2) as data-default-0.5.3 is not needed
+       Ignoring hello-snap-1.0 (335d31e) as HUnit-1.2.5.2 is not needed
+           101 halcyon-tutorial-1.0 (f458aa8)
+            41 hello-wai-1.0 (ffec23f)
+-----> Using partially-matching sandbox directory: halcyon-tutorial-1.0 (f458aa8)
 -----> Restoring sandbox directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done
-       Extracting halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done, 140MB
+       Extracting halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz... done, 140MB
 -----> Building sandbox directory
 -----> Building sandbox
        Resolving dependencies...
@@ -679,7 +675,7 @@ $ halcyon install
        Removing documentation from sandbox directory... done, 144MB
        Stripping sandbox directory... done, 143MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz... done, 24MB
+       Creating halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz... done, 24MB
 
 -----> Restoring build directory
        Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.4MB
@@ -700,12 +696,12 @@ $ halcyon install
        Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.2MB
 
 -----> Restoring install directory
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 9.1MB
 -----> Archiving install directory
-       Creating halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Creating halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
 
@@ -713,9 +709,9 @@ $ halcyon install
 
 -----> Examining cache changes
        * halcyon-build-halcyon-tutorial-1.0.tar.gz
-       - halcyon-install-1382694-halcyon-tutorial-1.0.tar.gz
-       + halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz
-       + halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz
+       - halcyon-install-becc434-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz
+       + halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
 
@@ -802,13 +798,13 @@ $ halcyon install --purge-cache
 -----> Installing halcyon-tutorial-1.0
        Label:                                    **halcyon-tutorial-1.0**
        Prefix:                                   **/app**
-       Source hash:                              **b28289b**
+       Source hash:                              **fba454f**
        External storage:                         **private and public**
        GHC version:                              **7.8.4**
 
 -----> Restoring install directory
-       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 
 -----> Determining constraints
        Label:                                    **halcyon-tutorial-1.0**
@@ -829,7 +825,7 @@ $ halcyon install --purge-cache
 
 -----> Locating Cabal directories
        Listing s3://example-bucket/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
-       Listing https://halcyon.global.ssl.fastly.net/... done
+       Listing https://halcyon.global.ssl.fastly.net/?prefix=linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-... done
 -----> Restoring Cabal directory
        Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz... 404 (not found)
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz... done
@@ -837,26 +833,27 @@ $ halcyon install --purge-cache
        Extracting halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz... done, 181MB
 
 -----> Restoring sandbox directory
-       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz... 404 (not found)
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Locating sandbox directories
        Listing s3://example-bucket/?prefix=linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-... done
-       Listing https://halcyon.global.ssl.fastly.net/... done
------> Examining partially matching sandbox directories
+       Listing https://halcyon.global.ssl.fastly.net/?prefix=linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-... done
+-----> Examining partially-matching sandbox directories
        ...
-       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.constraints... 404 (not found)
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.constraints... done
------> Scoring partially matching sandbox directories
-       Ignoring hello-snap-1.0 (4af96d8) as HUnit-1.2.5.2 is not needed
-            41 hello-wai-1.0 (028a0e6)
-       Ignoring hello-happstack-1.0 (47c3e8d) as base-unicode-symbols-0.2.2.4 is not needed
-           101 halcyon-tutorial-1.0 (becfd1b)
-       Ignoring hello-yesod-1.0 (dac4ebf) as asn1-encoding-0.9.0 is not needed
------> Using partially matching sandbox directory: halcyon-tutorial-1.0 (becfd1b)
+       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.constraints... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.constraints... done
+-----> Scoring partially-matching sandbox directories
+       Ignoring hello-yesod-1.0 (1a1d740) as asn1-encoding-0.9.0 is not needed
+       Ignoring hello-happstack-1.0 (3b0b768) as extensible-exceptions-0.1.1.4 is not needed
+       Ignoring hello-scotty-1.0 (110abd2) as data-default-0.5.3 is not needed
+       Ignoring hello-snap-1.0 (335d31e) as HUnit-1.2.5.2 is not needed
+           101 halcyon-tutorial-1.0 (f458aa8)
+            41 hello-wai-1.0 (ffec23f)
+-----> Using partially-matching sandbox directory: halcyon-tutorial-1.0 (f458aa8)
 -----> Restoring sandbox directory
-       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done
-       Extracting halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz... done, 140MB
+       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz... done
+       Extracting halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz... done, 140MB
 -----> Building sandbox directory
 -----> Building sandbox
        Resolving dependencies...
@@ -867,22 +864,23 @@ $ halcyon install --purge-cache
        Installed hourglass-0.2.8
 -----> Sandbox built, 144MB
        Removing documentation from sandbox directory... done, 144MB
-       Stripping sandbox directory... done, 143MB
+       Stripping sandbox directory... done, 144MB
 -----> Archiving sandbox directory
-       Creating halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz... done, 24MB
-       Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz... done
-       Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.constraints... done
+       Creating halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz... done, 25MB
+       Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz... done
+       Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-0551a64-halcyon-tutorial-1.0.constraints... done
        Listing s3://example-bucket/?prefix=linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-sandbox-... done
 
 -----> Restoring build directory
        Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-build-halcyon-tutorial-1.0.tar.gz... 404 (not found)
        Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-build-halcyon-tutorial-1.0.tar.gz... done
+       Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-build-halcyon-tutorial-1.0.tar.gz... done
        Extracting halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 9.4MB
 -----> Examining source changes
-       * .halcyon/constraints
-       * Main.hs
        * cabal.config
+       * .halcyon/constraints
        * halcyon-tutorial.cabal
+       * Main.hs
 -----> Configuring app
 -----> Building app
        Building halcyon-tutorial-1.0...
@@ -890,20 +888,20 @@ $ halcyon install --purge-cache
        [1 of 1] Compiling Main             ( Main.hs, dist/build/halcyon-tutorial/halcyon-tutorial-tmp/Main.o )
        Linking dist/build/halcyon-tutorial/halcyon-tutorial ...
 -----> App built, 13MB
-       Stripping app... done, 9.8MB
+       Stripping app... done, 11MB
 -----> Archiving build directory
        Creating halcyon-build-halcyon-tutorial-1.0.tar.gz... done, 2.2MB
        Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-build-halcyon-tutorial-1.0.tar.gz... done
 
 -----> Restoring install directory
-       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
-       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
+       Downloading https://halcyon.global.ssl.fastly.net/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... 404 (not found)
 -----> Preparing install directory
 -----> Installing extra data files for dependencies
 -----> Install directory prepared, 9.1MB
 -----> Archiving install directory
-       Creating halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
-       Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz... done
+       Creating halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... done, 2.0MB
+       Uploading s3://example-bucket/linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz... done
        Listing s3://example-bucket/?prefix=linux-ubuntu-14.04-x86_64/ghc-7.8.4/halcyon-install-... done
 -----> Installing app to /app
 -----> Installed halcyon-tutorial-1.0
@@ -914,9 +912,9 @@ $ halcyon install --purge-cache
        + halcyon-build-halcyon-tutorial-1.0.tar.gz
        + halcyon-cabal-1.20.0.3-hackage-2015-01-15.tar.gz
        + halcyon-ghc-7.8.4.tar.gz
-       + halcyon-install-b28289b-halcyon-tutorial-1.0.tar.gz
-       + halcyon-sandbox-3ad1ba3-halcyon-tutorial-1.0.tar.gz
-       + halcyon-sandbox-becfd1b-halcyon-tutorial-1.0.tar.gz
+       + halcyon-install-fba454f-halcyon-tutorial-1.0.tar.gz
+       + halcyon-sandbox-0551a64-halcyon-tutorial-1.0.tar.gz
+       + halcyon-sandbox-f458aa8-halcyon-tutorial-1.0.tar.gz
 ```
 </div>
 
