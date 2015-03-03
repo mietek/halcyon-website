@@ -577,6 +577,13 @@ Name of the Amazon S3 bucket in which Halcyon stores private archives and constr
 
 Address of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in which [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket) is located.
 
+**Note:**  Currently, the following S3 regions can’t be used:
+
+- China (Beijing)
+- EU (Frankfurt)
+
+See _bashmenot_ issue [`#9`](https://github.com/mietek/bashmenot/issues/9) for details.
+
 
 ### `HALCYON_S3_ACL`
 
