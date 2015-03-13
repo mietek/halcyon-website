@@ -696,6 +696,7 @@ Cabal options
 > Default value:       | `1.20.0.3`
 > Type:                | version
 > Command-line option: | `--cabal-version=...`
+> Magic file:          | `.halcyon/cabal-version`
 
 Version of _cabal-install_ to be bootstrapped or restored in the Cabal directory.
 
