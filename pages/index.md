@@ -60,6 +60,7 @@ Halcyon is a system for installing [Haskell](https://haskell.org/) apps and deve
   [`#713`](https://github.com/haskell/cabal/issues/713),
   [`#779`](https://github.com/haskell/cabal/issues/779),
   [`#784`](https://github.com/haskell/cabal/issues/784),
+  [`#1196`](https://github.com/haskell/cabal/issues/1196),
   [`#1534`](https://github.com/haskell/cabal/issues/1534),
   [`#1883`](https://github.com/haskell/cabal/issues/1883),
   [`#1908`](https://github.com/haskell/cabal/issues/1908),
