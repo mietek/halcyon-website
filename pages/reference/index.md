@@ -97,7 +97,7 @@ Outputs a shell script which sets up the needed environment variables:
 
 1. [`HALCYON_BASE`](#halcyon_base) is set to `/app`, unless already set.
 
-2. `PATH`, `CPATH`, `LIBRARY_PATH`, `LD_LIBRARY_PATH`, `PKG_CONFIG_PATH` are set to point into [`HALCYON_BASE`](#halcyon_base).
+2. `CABAL_CONFIG`, `PATH`, `CPATH`, `LIBRARY_PATH`, `LD_LIBRARY_PATH`, `PKG_CONFIG_PATH` are set to point into [`HALCYON_BASE`](#halcyon_base).
 
 3. `LANG` is set to `C.UTF-8`, unless already set.
 
