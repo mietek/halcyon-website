@@ -33,7 +33,7 @@ The tutorial assumes you’re using a Linux system with at least 4 GB RAM and G
 Run the setup script to install Halcyon:
 
 ```
-$ source <( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )
+$ eval "$( curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh )"
 -----> Welcome to Halcyon
 [sudo] password for fnord:
 -----> Creating base directory: /app
@@ -57,7 +57,7 @@ $ which halcyon
 If you don’t want your `.bash_profile` to be extended, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the setup script.  You’ll then need to activate Halcyon manually before each use:
 
 ```
-$ source <( /app/halcyon/halcyon paths )
+$ eval "$( /app/halcyon/halcyon paths )"
 ```
 
 You can change where Halcyon is installed by setting the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script.
