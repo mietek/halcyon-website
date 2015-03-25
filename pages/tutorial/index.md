@@ -720,7 +720,7 @@ $ halcyon install
 
 In this step, Halcyon reuses the existing GHC and Cabal directories, and tries to locate the right sandbox directory for the current version of the app.  This fails, and so Halcyon falls back to building the sandbox:
 
-1.  First, previously-built sandbox directories are located and assigned a score, which reflects the number of required dependencies within each sandbox.
+1.  First, each previously-built sandbox directory is located and assigned a score, which reflects the number of required dependencies contained within.
 
 2.  Next, Halcyon builds and archives a new sandbox, based on the highest-scoring _partially-matching_ sandbox directory.
 
