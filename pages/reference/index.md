@@ -844,6 +844,16 @@ Forces Halcyon to update the Cabal directory by running `cabal update` again.
 Disables stripping the contents of the Cabal directory after running the Cabal post-build hook.
 
 
+### `HALCYON_CABAL_NO_UPDATE`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--cabal-no-update`
+
+Prevents updating the Cabal directory by running `cabal update`.
+
+
 Sandbox options
 ---------------
 
