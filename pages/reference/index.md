@@ -292,6 +292,16 @@ Forces Halcyon to build the app from scratch, which includes reinstalling all [`
 Forces Halcyon to run `cabal configure` before building the app.
 
 
+### `HALCYON_APP_NO_STRIP`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--app-no-strip`
+
+Disables stripping the contents of the build directory after running the post-build hook.
+
+
 ### `HALCYON_IGNORE_ALL_CONSTRAINTS`
 
 > ---------------------|---
@@ -687,6 +697,16 @@ Script to execute when building the GHC directory, after GHC is installed.
 Forces Halcyon to rebuild the GHC directory from scratch by installing GHC again.
 
 
+### `HALCYON_GHC_NO_STRIP`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--ghc-no-strip`
+
+Disables stripping the contents of the GHC directory after running the GHC post-build hook.
+
+
 Cabal options
 -------------
 
@@ -792,6 +812,16 @@ Forces Halcyon to rebuild the Cabal directory from scratch by bootstrapping _cab
 > Command-line option: | `--cabal-update`
 
 Forces Halcyon to update the Cabal directory by running `cabal update` again.
+
+
+### `HALCYON_CABAL_NO_STRIP`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--cabal-no-strip`
+
+Disables stripping the contents of the Cabal directory after running the Cabal post-build hook.
 
 
 Sandbox options
@@ -935,6 +965,16 @@ _See the [Try Haskell](/examples/#try-haskell) source code for an example of usi
 > Command-line option: | `--sandbox-rebuild`
 
 Forces Halcyon to rebuild the sandbox directory and the app from scratch, which includes reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
+
+
+### `HALCYON_SANDBOX_NO_STRIP`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--sandbox-no-strip`
+
+Disables stripping the contents of the sandbox directory after running the sandbox post-build hook.
 
 
 Self-update options
