@@ -743,13 +743,17 @@ Version of _cabal-install_ to be bootstrapped or restored in the Cabal directory
 
 Supported versions include:
 
-- [_cabal-install_ 1.22.0.0](https://haskell.org/cabal/release/cabal-install-1.22.0.0/)
-- [_cabal-install_ 1.20.0.6](https://haskell.org/cabal/release/cabal-install-1.20.0.6/)
-- [_cabal-install_ 1.20.0.5](https://haskell.org/cabal/release/cabal-install-1.20.0.5/)
-- [_cabal-install_ 1.20.0.3](https://haskell.org/cabal/release/cabal-install-1.20.0.3/)
-- [_cabal-install_ 1.20.0.2](https://haskell.org/cabal/release/cabal-install-1.20.0.2/)
-- [_cabal-install_ 1.20.0.1](https://haskell.org/cabal/release/cabal-install-1.20.0.1/)
-- [_cabal-install_ 1.20.0.0](https://haskell.org/cabal/release/cabal-install-1.20.0.0/)
+- [`1.20.0.0`](https://haskell.org/cabal/release/cabal-install-1.20.0.0/)
+- [`1.20.0.1`](https://haskell.org/cabal/release/cabal-install-1.20.0.1/)
+- [`1.20.0.2`](https://haskell.org/cabal/release/cabal-install-1.20.0.2/)
+- [`1.20.0.3`](https://haskell.org/cabal/release/cabal-install-1.20.0.3/)
+- [`1.20.0.5`](https://haskell.org/cabal/release/cabal-install-1.20.0.5/)
+- [`1.20.0.6`](https://haskell.org/cabal/release/cabal-install-1.20.0.6/)
+- [`1.22.0.0`](https://haskell.org/cabal/release/cabal-install-1.22.0.0/)
+- `1.22.0.1`
+- [`1.22.2.0`](https://haskell.org/cabal/release/cabal-install-1.22.2.0/)
+
+**Note:**  _cabal-install_ 1.22.0.1 is missing from the Cabal releases page.  See Cabal issue [`#2492`](https://github.com/haskell/cabal/issues/2492) for details.
 
 
 ### `HALCYON_CABAL_REMOTE_REPO`
