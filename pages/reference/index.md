@@ -663,14 +663,15 @@ Used when the app doesn’t declare a `base` package constraint, or when install
 
 Supported versions include:
 
-- [GHC 7.8.4](https://haskell.org/ghc/download_ghc_7_8_4)
-- [GHC 7.8.3](https://haskell.org/ghc/download_ghc_7_8_3)
-- [GHC 7.8.2](https://haskell.org/ghc/download_ghc_7_8_2)
-- [GHC 7.6.3](https://haskell.org/ghc/download_ghc_7_6_3)
-- [GHC 7.6.1](https://haskell.org/ghc/download_ghc_7_6_1)
-- [GHC 7.4.2](https://haskell.org/ghc/download_ghc_7_4_2)
-- [GHC 7.2.2](https://haskell.org/ghc/download_ghc_7_2_2)
-- [GHC 7.0.4](https://haskell.org/ghc/download_ghc_7_0_4)
+- [`7.0.4`](https://downloads.haskell.org/~ghc/7.0.4)
+- [`7.2.2`](https://downloads.haskell.org/~ghc/7.2.2)
+- [`7.4.2`](https://downloads.haskell.org/~ghc/7.4.2)
+- [`7.6.1`](https://downloads.haskell.org/~ghc/7.6.1)
+- [`7.6.3`](https://downloads.haskell.org/~ghc/7.6.3)
+- [`7.8.2`](https://downloads.haskell.org/~ghc/7.8.2)
+- [`7.8.3`](https://downloads.haskell.org/~ghc/7.8.3)
+- [`7.8.4`](https://downloads.haskell.org/~ghc/7.8.4)
+- `7.10.1-rc3`
 
 
 ### `HALCYON_GHC_PRE_BUILD_HOOK`
