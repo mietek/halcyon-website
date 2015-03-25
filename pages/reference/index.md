@@ -461,6 +461,16 @@ Script to execute when installing the app, after the contents of the install dir
 Forces Halcyon to prepare the install directory again.
 
 
+### `HALCYON_APP_NO_REMOVE_DOC`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--app-no-remove-doc`
+
+Disables removing documentation when preparing the install directory.
+
+
 ### `HALCYON_KEEP_DEPENDENCIES`
 
 > ---------------------|---
@@ -695,6 +705,16 @@ Script to execute when building the GHC directory, after GHC is installed.
 > Command-line option: | `--ghc-rebuild`
 
 Forces Halcyon to rebuild the GHC directory from scratch by installing GHC again.
+
+
+### `HALCYON_GHC_NO_REMOVE_DOC`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--ghc-no-remove-doc`
+
+Disables removing documentation from the GHC directory after running the GHC post-build hook.
 
 
 ### `HALCYON_GHC_NO_STRIP`
@@ -965,6 +985,16 @@ _See the [Try Haskell](/examples/#try-haskell) source code for an example of usi
 > Command-line option: | `--sandbox-rebuild`
 
 Forces Halcyon to rebuild the sandbox directory and the app from scratch, which includes reinstalling all [`HALCYON_SANDBOX_EXTRA_APPS`](#halcyon_sandbox_extra_apps) and [`HALCYON_SANDBOX_EXTRA_OS_PACKAGES`](#halcyon_sandbox_extra_os_packages).
+
+
+### `HALCYON_SANDBOX_NO_REMOVE_DOC`
+
+> ---------------------|---
+> Default value:       | `0`
+> Type:                | `0` or `1`
+> Command-line option: | `--sandbox-no-remove-doc`
+
+Disables removing documentation from the sandbox directory after running the GHC post-build hook.
 
 
 ### `HALCYON_SANDBOX_NO_STRIP`
