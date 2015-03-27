@@ -671,7 +671,7 @@ Supported versions include:
 - [`7.8.2`](https://downloads.haskell.org/~ghc/7.8.2)
 - [`7.8.3`](https://downloads.haskell.org/~ghc/7.8.3)
 - [`7.8.4`](https://downloads.haskell.org/~ghc/7.8.4)
-- `7.10.1-rc3`
+- [`7.10.1`](https://downloads.haskell.org/~ghc/7.10.1)
 
 
 ### `HALCYON_GHC_PRE_BUILD_HOOK`
