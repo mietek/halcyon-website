@@ -758,6 +758,7 @@ Supported versions include:
 - [`1.22.0.0`](https://haskell.org/cabal/release/cabal-install-1.22.0.0/)
 - `1.22.0.1`
 - [`1.22.2.0`](https://haskell.org/cabal/release/cabal-install-1.22.2.0/)
+- [`1.22.3.0`](https://haskell.org/cabal/release/cabal-install-1.22.3.0/)
 
 **Note:**  _cabal-install_ 1.22.0.1 is missing from the Cabal releases page.  See Cabal issue [`#2492`](https://github.com/haskell/cabal/issues/2492) for details.
 
