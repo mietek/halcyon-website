@@ -597,12 +597,18 @@ Name of the Amazon S3 bucket in which Halcyon stores private archives and constr
 
 Address of the [region-specific S3 endpoint](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in which [`HALCYON_S3_BUCKET`](#halcyon_s3_bucket) is located.
 
-**Note:**  Currently, the following S3 regions can’t be used:
+> Region               | Endpoint
+> ---------------------|-----------
+> `us-east-1`          | `s3.amazonaws.com`, default
+> `us-west-1`          | `s3-us-west-1.amazonaws.com`
+> `us-west-2`          | `s3-us-west-2.amazonaws.com`
+> `eu-west-1`          | `s3-eu-west-1.amazonaws.com`
+> `ap-southeast-1`     | `s3-ap-southeast-1.amazonaws.com`
+> `ap-southeast-2`     | `s3-ap-southeast-2.amazonaws.com`
+> `ap-northeast-1`     | `s3-ap-northeast-1.amazonaws.com`
+> `sa-east-1`          | `s3-sa-east-1.amazonaws.com`
 
-- China (Beijing)
-- EU (Frankfurt)
-
-See _bashmenot_ issue [`#9`](https://github.com/mietek/bashmenot/issues/9) for details.
+**Note:**  Currently, only regions supporting [AWS Signature Version 2](http://docs.aws.amazon.com/general/latest/gr/signature-version-2.html) are supported, which excludes `eu-central-1`.  See _bashmenot_ issue [`#9`](https://github.com/mietek/bashmenot/issues/9) for details.
 
 
 ### `HALCYON_S3_ACL`
