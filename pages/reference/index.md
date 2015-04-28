@@ -902,6 +902,8 @@ The packages must be separated by whitespace, and can be specified as:
 - directory paths
 - _git_ URLs
 
+_git_ URLs default to the `master` branch.  Other branches can be specified with a `#`_`branch`_ suffix.
+
 **Note:**  Implements Cabal feature requests [`#1534`](https://github.com/haskell/cabal/issues/1534) and [`#2189`](https://github.com/haskell/cabal/issues/2189).
 
 <div class="pre-like"><p>
