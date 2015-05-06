@@ -755,10 +755,12 @@ Supported versions include:
 - [`1.20.0.3`](https://haskell.org/cabal/release/cabal-install-1.20.0.3/)
 - [`1.20.0.5`](https://haskell.org/cabal/release/cabal-install-1.20.0.5/)
 - [`1.20.0.6`](https://haskell.org/cabal/release/cabal-install-1.20.0.6/)
+- [`1.20.1.0`](https://haskell.org/cabal/release/cabal-install-1.20.1.0/)
 - [`1.22.0.0`](https://haskell.org/cabal/release/cabal-install-1.22.0.0/)
 - `1.22.0.1`
 - [`1.22.2.0`](https://haskell.org/cabal/release/cabal-install-1.22.2.0/)
 - [`1.22.3.0`](https://haskell.org/cabal/release/cabal-install-1.22.3.0/)
+- [`1.22.4.0`](https://haskell.org/cabal/release/cabal-install-1.22.4.0/)
 
 **Note:**  _cabal-install_ 1.22.0.1 is missing from the Cabal releases page.  See Cabal issue [`#2492`](https://github.com/haskell/cabal/issues/2492) for details.
 
