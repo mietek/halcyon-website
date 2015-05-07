@@ -47,7 +47,7 @@ These examples are intended to demonstrate advanced Halcyon features.
 </ul>
 </nav></div>
 
-Each example app can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 7, Fedora 20, and Ubuntu 14.04.
+Each example app can be installed in one command on most recent Linux distributions, including CentOS 7, Debian 8, Fedora 21, and Ubuntu 15.04.
 
 Additionally, each example app can be deployed in one click to [DigitalOcean](https://digitalocean.com) or [Heroku](https://heroku.com/).
 
