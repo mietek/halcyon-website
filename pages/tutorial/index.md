@@ -54,13 +54,13 @@ $ which halcyon
 
 ### Options
 
-If you don’t want your `.bash_profile` to be extended, set [`HALCYON_NO_MODIFY_HOME`](/reference/#halcyon_no_modify_home) to `1` before running the setup script.  You’ll then need to activate Halcyon manually before each use:
+If you don’t run the setup script, you’ll need to activate Halcyon manually before each use:
 
 ```
 $ eval "$( /app/halcyon/halcyon paths )"
 ```
 
-You can change where Halcyon is installed by setting the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable before running the setup script.
+Before running the setup script, you can change the directory to which the Halcyon source repository will be cloned by setting the [`HALCYON_DIR`](/reference/#halcyon_dir) environment variable.
 
 <div class="pre-like"><p>
 _Halcyon installs development tools and other dependencies in the _base directory,_ which defaults to `/app`.  Changing this path isn’t recommended, because it’ll require all dependencies to be built from scratch.  If you still want to do it, set [`HALCYON_BASE`](/reference/#halcyon_base) before running the setup script._

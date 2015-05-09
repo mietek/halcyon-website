@@ -161,20 +161,6 @@ _If the install directory consists of `bin/hello`, [`HALCYON_PREFIX`](#halcyon_p
 When no app is specified, prevents Halcyon from looking for an app in the current directory, and instead forces Halcyon to install GHC and Cabal only.
 
 
-### `HALCYON_NO_MODIFY_HOME`
-
-> ---------------------|---
-> Default value:       | `0`
-> Type:                | `0` or `1`
-> Command-line option: | `--no-modify-home`
-
-Prevents Halcyon from making changes to the home directory:
-
-1.  When running the setup script for the first time, Halcyon extends `~/.bash_profile` to source the script output by [`halcyon paths`](#halcyon-paths).
-
-2.  When installing an app, Halcyon creates a symlink pointing `~/.cabal/config` to the `config` file located in the Cabal directory.
-
-
 ### `HALCYON_LOG_TIMESTAMP`
 
 > ---------------------|---
